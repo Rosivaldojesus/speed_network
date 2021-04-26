@@ -2,6 +2,26 @@
 
 {% block main %}
     <div class="container">
-        Página inicial do estoque
+        <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">Produto</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Modelo</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {% for produto in produtos %}
+            <tr>
+              <th>{{ produto.nome_produto }}</th>
+                <th>{{ produto.modelo_produto }}</th>
+                <th>{{ produto.marca_produto }}</th>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        </div>
     </div>
 {% endblock %}
