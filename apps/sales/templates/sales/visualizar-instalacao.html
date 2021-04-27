@@ -5,19 +5,26 @@
 
 <div class="container">
     <div>
-        ID: {{ install.id }}<br>
-		Nome: {{ install.nome_cliente }} {{ install.sobrenome_cliente }}<br>
+        <h4 class="mt-2">Nome: {{ install.nome_cliente }} {{ install.sobrenome_cliente }}</h4>
+
+
+		<h5>Dados Pessoais:</h5>
 		CPF: {{ install.cpf_cliente }}<br>
 		RG: {{ install.rg_cliente }}<br>
-		CEP: {{ install.cep_cliente }}<br>
-		Rua: {{ install.rua_cliente }}<br>
-		Bairro: {{ install.bairro_cliente }}<br>
-		Número: {{ install.numero_endereco_cliente }}<br>
-		Complemento: {{ install.complemento_endereco_cliente }}<br>
-		Cidade: {{ install.cidade }}<br>
 		Telefone: {{ install.telefone_cliente }}<br>
 		E-mail: {{ install.email_cliente }}<br>
-		Plano: {{ install.planos_instalacao }}<br>
+
+
+		<h5 class="mt-3">Endereço:</h5>
+		<strong>Rua:</strong> {{ install.rua_cliente }}, {{ install.numero_endereco_cliente }}<br>
+		<strong>Complemento:</strong> {{ install.complemento_endereco_cliente }}<br>
+		<strong>Bairro:</strong> {{ install.bairro_cliente }}<br>
+		<strong>CEP: </strong> {{ install.cep_cliente }}<br>
+		<strong>Cidade:</strong> {{ install.cidade }}<br>
+
+
+		<h6 class="mt-3">Plano:</h6>
+		<strong>Plano:</strong> {{ install.planos_instalacao }}<br>
 
     </div>
 
