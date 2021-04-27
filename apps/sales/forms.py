@@ -18,5 +18,7 @@ class InstalacaoForm(forms.ModelForm):
                   'email_cliente',
                   'planos_instalacao',
                   'data_criacao',
+                  'instalando',
+                  'concluido',
 
                   ]
