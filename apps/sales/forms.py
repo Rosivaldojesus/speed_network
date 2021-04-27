@@ -17,4 +17,6 @@ class InstalacaoForm(forms.ModelForm):
                   'telefone_cliente',
                   'email_cliente',
                   'planos_instalacao',
-                  'data_criacao',]
+                  'data_criacao',
+
+                  ]
