@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Instalacao
 from ..components.models import PlanosInternet
 from .forms import InstalacaoForm
@@ -13,6 +13,7 @@ def CadastroInstalacao(request):
     if form.is_valid():
         obj = form.save()
         obj.save()
+        return redirect('/vendas/')
     else:
         form = InstalacaoForm()
 
