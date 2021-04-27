@@ -17,3 +17,9 @@ def CadastroInstalacao(request):
         form = InstalacaoForm()
 
     return render(request, 'sales/cadastro-instalacao.html', {'form': form})
+
+def InstalacaoVisualizacao(request):
+    install = request.GET.get('id')
+    if install:
+        install = Instalacao.objects.get(id=install)
+    return render(request, 'sales/visualizar-instalacao.html',{'install': install})

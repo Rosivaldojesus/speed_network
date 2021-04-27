@@ -1,0 +1,29 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block main %}
+
+<div class="container">
+    <div>
+        ID: {{ install.id }}<br>
+		Nome: {{ install.nome_cliente }} {{ install.sobrenome_cliente }}<br>
+		CPF: {{ install.cpf_cliente }}<br>
+		RG: {{ install.rg_cliente }}<br>
+		CEP: {{ install.cep_cliente }}<br>
+		Rua: {{ install.rua_cliente }}<br>
+		Bairro: {{ install.bairro_cliente }}<br>
+		Número: {{ install.numero_endereco_cliente }}<br>
+		Complemento: {{ install.complemento_endereco_cliente }}<br>
+		Cidade: {{ install.cidade }}<br>
+		Telefone: {{ install.telefone_cliente }}<br>
+		E-mail: {{ install.email_cliente }}<br>
+		Plano: {{ install.planos_instalacao }}<br>
+
+    </div>
+
+
+
+
+
+</div>
+{% endblock %}

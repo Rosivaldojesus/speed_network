@@ -18,6 +18,7 @@
               <th scope="col">Bairro</th>
               <th scope="col">Rua</th>
               <th scope="col">Nº</th>
+               <th>Detalhes</th>
             </tr>
           </thead>
           <tbody>
@@ -27,6 +28,9 @@
               <td>{{ instalacao.bairro_cliente }}</td>
               <td>{{ instalacao.rua_cliente }}</td>
               <td>{{ instalacao.numero_endereco_cliente }}</td>
+                <td>
+                    <a href="visualizar-instalacao/?id={{ instalacao.id }}">Detalhes</a>
+                </td>
             </tr>
           {% endfor %}
 

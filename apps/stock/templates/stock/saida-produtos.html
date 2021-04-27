@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="container">
+
+<h4>--------Saidas---------</h4>
+
+        <div class="table-responsive-sm mt-2">
+        <table class="table table-sm">
+          <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                 <th>ID Produto</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Produto</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for saida in saidas %}
+            <tr>
+                <td>{{ saida.id }}</td>
+                <td>{{ saida.produto.id }}</td>
+                <td>{{ saida.quantidade }}</td>
+                <td>{{ saida.produto }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        </div>
+</div>
+{% endblock %}

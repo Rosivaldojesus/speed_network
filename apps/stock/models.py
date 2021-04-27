@@ -38,3 +38,15 @@ class SaidaProduto(models.Model):
     def __str__(self):
         return "{}".format(self.quantidade)
 
+
+class TotalProdutos(models.Model):
+    produto = models.ForeignKey(Produto, on_delete=models.DO_NOTHING)
+    entrada = models.ForeignKey(EntradaProduto, on_delete=models.DO_NOTHING)
+    saida = models.ForeignKey(SaidaProduto, on_delete=models.DO_NOTHING)
+
+    class Meta:
+        verbose_name_plural = 'Total de Produtos'
+
+    def __str__(self):
+        return "{}".format(self.produto)
+
