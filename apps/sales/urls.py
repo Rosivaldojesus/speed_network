@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import Index, CadastroInstalacao, InstalacaoVisualizacao
+from .views import Index, CadastroInstalacao, InstalacaoVisualizacao, InstalacaoEditar
 
 urlpatterns = [
     #Instalação
     path('', Index),
     path('cadastro-instalacao/', CadastroInstalacao),
-    path('visualizar-instalacao/', InstalacaoVisualizacao)
+    path('visualizar-instalacao/', InstalacaoVisualizacao),
+    path('editar-instalacao/<int:id>', InstalacaoEditar),
 ]

@@ -18,7 +18,9 @@
               <th scope="col">Bairro</th>
               <th scope="col">Rua</th>
               <th scope="col">Nº</th>
-               <th>Detalhes</th>
+              <th>Data Cadastro</th>
+               <th>Editar</th>
+                <th>Detalhes</th>
             </tr>
           </thead>
           <tbody>
@@ -28,6 +30,10 @@
               <td>{{ instalacao.bairro_cliente }}</td>
               <td>{{ instalacao.rua_cliente }}</td>
               <td>{{ instalacao.numero_endereco_cliente }}</td>
+              <td>{{ instalacao.data_criacao }}</td>
+              <td>
+                  <a href="editar-instalacao/{{ instalacao.id }}">Editar</a>
+              </td>
                 <td>
                     <a href="visualizar-instalacao/?id={{ instalacao.id }}">Detalhes</a>
                 </td>

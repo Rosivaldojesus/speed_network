@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from ..components.models import PlanosInternet, Cidade
 
@@ -17,6 +18,7 @@ class Instalacao(models.Model):
     telefone_cliente = models.CharField(max_length=10, blank=True, null=True)
     email_cliente = models.CharField(max_length=100, blank=True, null=True)
     planos_instalacao = models.ForeignKey(PlanosInternet, on_delete=models.DO_NOTHING)
+    data_criacao = models.DateTimeField(default=timezone.now)
 
 
     class Meta:

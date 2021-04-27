@@ -5,6 +5,7 @@ class InstalacaoForm(forms.ModelForm):
     class Meta:
         model = Instalacao
         fields = ['nome_cliente',
+                  'sobrenome_cliente',
                   'cpf_cliente',
                   'rg_cliente',
                   'rua_cliente',
@@ -15,4 +16,5 @@ class InstalacaoForm(forms.ModelForm):
                   'cidade',
                   'telefone_cliente',
                   'email_cliente',
-                  'planos_instalacao']
+                  'planos_instalacao',
+                  'data_criacao',]

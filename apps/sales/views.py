@@ -1,6 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Instalacao
-from ..components.models import PlanosInternet
 from .forms import InstalacaoForm
 
 # Create your views here.
@@ -24,3 +23,16 @@ def InstalacaoVisualizacao(request):
     if install:
         install = Instalacao.objects.get(id=install)
     return render(request, 'sales/visualizar-instalacao.html',{'install': install})
+
+
+
+
+
+def InstalacaoEditar(request, id=None):
+    insta = get_object_or_404(Instalacao, id=id)
+    form = InstalacaoForm(request.POST or None, instance=insta)
+    if form.is_valid():
+        obj = form.save()
+        obj.save()
+        return redirect('/vendas/')
+    return render(request, 'sales/editar-instalacao.html', {'form': form})
