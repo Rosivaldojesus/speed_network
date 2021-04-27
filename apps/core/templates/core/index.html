@@ -8,6 +8,53 @@
         <hr>
         <div>
             <div class="row">
+              <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header">
+                        Em aberto
+                    </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Pendentes: {{ pendentes }}</h5>
+                    <div align="right">
+                        <a href="/vendas/" class="btn btn-primary">Ver tudo</a>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header">
+                        Em Andamento
+                    </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Instalando: {{ instalando }}</h5>
+                    <div align="right">
+                        <a href="#" class="btn btn-primary">Ver tudo</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header">
+                        Concluído
+                    </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Instalando: {{ instalando }}</h5>
+                    <div align="right">
+                        <a href="#" class="btn btn-primary">Ver tudo</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+             <h3 class="mt-4"> Estoque</h3>
+        <hr>
+        <div>
+            <div class="row">
               <div class="col-sm-6">
                 <div class="card">
                   <div class="card-body">
@@ -28,6 +75,9 @@
               </div>
             </div>
         </div>
-    </div>
 
+
+
+
+    </div>
 {% endblock %}
