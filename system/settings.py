@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'apps.core',
     'apps.stock',
     'apps.components',
+    'apps.sales',
+
+    'crispy_forms',
 
 ]
 

@@ -11,21 +11,15 @@ class PlanosInternet(models.Model):
         return "{}".format(self.nome_plano)
 
 
-class Instalacao(models.Model):
-    nome_cliente = models.CharField(max_length=255, blank=True, null=True)
-    cpf_cliente = models.CharField(max_length=14, blank=True, null=True)
-    rg_cliente = models.CharField(max_length=20, blank=True, null=True)
-    rua_cliente = models.CharField(max_length=100, blank=True, null=True)
-    bairro_cliente = models.CharField(max_length=100, blank=True, null=True)
-    numero_endereco_cliente = models.DecimalField(max_digits=10, decimal_places=10, blank=True, null=True)
-    cidade_cliente = models.CharField(max_length=100, blank=True, null=True)
-    uf_cliente = models.CharField(max_length=2, blank=True, null=True)
-    telefone_cliente = models.CharField(max_length=10, blank=True, null=True)
-    email_cliente = models.CharField(max_length=100, blank=True, null=True)
-    plano_instalacao = models.ForeignKey(PlanosInternet, on_delete=models.DO_NOTHING)
+class Cidade(models.Model):
+    nome_cidade = models.CharField(max_length=100, blank=True, null=True)
+    uf_cidade = models.CharField(max_length=2, blank=True, null=True)
 
     class Meta:
-        verbose_name_plural = 'Instalação'
+        verbose_name_plural = 'Cidade'
 
     def __str__(self):
-        return "{}".format(self.nome_cliente)
+        return "{}".format(self.nome_cidade)
+
+
+
