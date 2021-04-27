@@ -23,3 +23,9 @@ class Cidade(models.Model):
 
 
 
+class AdicionarQuantidade(models.Model):
+    quantidade = models.DecimalField(max_digits=10, decimal_places=10)
+    class Meta:
+        verbose_name_plural = 'Adicionar Quantidade'
+    def __str__(self):
+        return "{}".format(self.quantidade)

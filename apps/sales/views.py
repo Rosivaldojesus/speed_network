@@ -5,7 +5,8 @@ from .forms import InstalacaoForm
 
 # Create your views here.
 def Index(request):
-    return render(request, 'sales/instalacao.html')
+    instalacoes = Instalacao.objects.all()
+    return render(request, 'sales/instalacao.html', {'instalacoes': instalacoes})
 
 def CadastroInstalacao(request):
     form = InstalacaoForm(request.POST)
