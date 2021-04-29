@@ -30,7 +30,7 @@
                 <td>{{ instalacao.bairro_cliente }}</td>
                 <td>{{ instalacao.rua_cliente }}</td>
                 <td>{{ instalacao.numero_endereco_cliente }}</td>
-                <td>{{ instalacao.data_instalacao }} ás {{ instalacao.hora_instalacao }}</td>
+                <td>{{ instalacao.data_instalacao|date:"d M Y" }} ás {{ instalacao.hora_instalacao }}</td>
                 <td>
                   <a href="editar-instalacao/{{ instalacao.id }}">Editar</a>
                 </td>
