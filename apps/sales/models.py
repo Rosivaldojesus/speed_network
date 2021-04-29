@@ -1,6 +1,8 @@
 from django.utils import timezone
-from django.db import models
 from ..components.models import PlanosInternet, Cidade
+from django.db import models
+from ckeditor.fields import RichTextField
+
 
 # Create your models here.
 
@@ -21,6 +23,9 @@ class Instalacao(models.Model):
     data_criacao = models.DateTimeField(default=timezone.now)
     instalando = models.BooleanField(default=False)
     concluido = models.BooleanField(default=False)
+    data_instalacao = models.DateTimeField(auto_now_add=False, auto_now=False, blank=True, null=True)
+    hora_instalacao = models.TimeField(auto_now_add=False, auto_now=False, blank=True, null=True)
+    observacao_instalacao = RichTextField(blank=True, null=True)
 
 
     class Meta:

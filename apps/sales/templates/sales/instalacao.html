@@ -3,13 +3,6 @@
 
 {% block main %}
 <div class="container">
-
-
-
-
-
-
-
     <div class="mt-3" align="right">
         <a class="btn btn-primary" href="cadastro-instalacao/">Adicionar Instalação</a>
     </div>
@@ -21,26 +14,26 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">Nome</th>
-              <th scope="col">Bairro</th>
-              <th scope="col">Rua</th>
-              <th scope="col">Nº</th>
-              <th>Data Cadastro</th>
-               <th>Editar</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Bairro</th>
+                <th scope="col">Rua</th>
+                <th scope="col">Nº</th>
+                <th>Previsão</th>
+                <th>Editar</th>
                 <th>Detalhes</th>
             </tr>
           </thead>
           <tbody>
           {% for instalacao in instalacoes %}
             <tr>
-              <td>{{ instalacao.nome_cliente }}</td>
-              <td>{{ instalacao.bairro_cliente }}</td>
-              <td>{{ instalacao.rua_cliente }}</td>
-              <td>{{ instalacao.numero_endereco_cliente }}</td>
-              <td>{{ instalacao.data_criacao }}</td>
-              <td>
+                <td>{{ instalacao.nome_cliente }}</td>
+                <td>{{ instalacao.bairro_cliente }}</td>
+                <td>{{ instalacao.rua_cliente }}</td>
+                <td>{{ instalacao.numero_endereco_cliente }}</td>
+                <td>{{ instalacao.data_instalacao }} ás {{ instalacao.hora_instalacao }}</td>
+                <td>
                   <a href="editar-instalacao/{{ instalacao.id }}">Editar</a>
-              </td>
+                </td>
                 <td>
                     <a href="visualizar-instalacao/?id={{ instalacao.id }}">Detalhes</a>
                 </td>

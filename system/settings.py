@@ -43,10 +43,12 @@ INSTALLED_APPS = [
     'apps.stock',
     'apps.components',
     'apps.sales',
+    'apps.payment',
+    'apps.services',
 
     'crispy_forms',
     'ckeditor',
-
+    "bootstrap4",
 ]
 
 MIDDLEWARE = [
@@ -57,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+
 ]
 
 ROOT_URLCONF = 'system.urls'
