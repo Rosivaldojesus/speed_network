@@ -23,7 +23,7 @@ class Instalacao(models.Model):
     data_vencimento = models.ForeignKey(DataVencimento, on_delete=models.DO_NOTHING, verbose_name='Data de Vencimento')
     data_criacao = models.DateTimeField(default=timezone.now)
     instalando = models.BooleanField(default=False, verbose_name='Status Instalado')
-    concluido_instalacao = models.BooleanField(default=False, verbose_name='Status Concluído')
+
     data_instalacao = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True, verbose_name='Data da Instalação')
     hora_instalacao = models.TimeField(auto_now_add=False, auto_now=False, blank=True, null=True, verbose_name='Hora da Instalação')
     observacao_instalacao = RichTextField(blank=True, null=True, verbose_name='Observação')
