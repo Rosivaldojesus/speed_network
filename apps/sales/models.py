@@ -20,7 +20,7 @@ class Instalacao(models.Model):
     telefone_cliente = models.CharField(max_length=10, blank=True, null=True, verbose_name='Telefone Celular')
     email_cliente = models.CharField(max_length=100, blank=True, null=True, verbose_name='E-mail')
     planos_instalacao = models.ForeignKey(PlanosInternet, on_delete=models.DO_NOTHING, verbose_name='Planos Instalação')
-    data_vencimento = models.ForeignKey(DataVencimento, on_delete=models.DO_NOTHING, verbose_name='Data Vencimento')
+    data_vencimento = models.ForeignKey(DataVencimento, on_delete=models.DO_NOTHING, verbose_name='Data de Vencimento')
     data_criacao = models.DateTimeField(default=timezone.now)
     instalando = models.BooleanField(default=False, verbose_name='Status Instalado')
     concluido = models.BooleanField(default=False, verbose_name='Status Concluído')
