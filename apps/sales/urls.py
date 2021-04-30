@@ -8,4 +8,4 @@ urlpatterns = [
     path('cadastro-instalacao/', CadastroInstalacao),
     path('visualizar-instalacao/', InstalacaoVisualizacao),
     path('editar-instalacao/<int:id>', InstalacaoEditar),
-]
+    ]

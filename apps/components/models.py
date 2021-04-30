@@ -10,6 +10,14 @@ class PlanosInternet(models.Model):
     def __str__(self):
         return "{}".format(self.nome_plano)
 
+class DataVencimento(models.Model):
+    data = models.CharField(max_length=100)
+    class Meta:
+        verbose_name_plural = 'Datas Venciemento'
+
+    def __str__(self):
+        return "{}".format(self.data)
+
 
 class Cidade(models.Model):
     nome_cidade = models.CharField(max_length=100, blank=True, null=True)

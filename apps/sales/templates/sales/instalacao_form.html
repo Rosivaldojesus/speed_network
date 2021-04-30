@@ -1,0 +1,21 @@
+<!-- Extendendo os arquivos de base -->
+{% extends 'base.html' %}
+
+<!-- Carregar os arquivos estáticos -->
+{% load static %}
+
+<!-- Bloco contendo a biblioteca Crispy forms -->
+{% load crispy_forms_tags %}
+
+<!-- Bloco contendo o  título da página -->
+{% block title %}:: Clientes {% endblock %}
+
+<!-- Bloco principal -->
+{% block main %}
+    <div class="container">
+        <form method="post">{% csrf_token %}
+        {{ form | crispy }}
+        <button type="submit" class="btn btn-primary"> Salvar </button>
+    </form>
+    </div>
+{% endblock %}

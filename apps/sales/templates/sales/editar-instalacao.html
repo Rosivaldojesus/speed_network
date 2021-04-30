@@ -6,10 +6,13 @@
 
 {% block main %}
      <div class="container">
+         <h3 class="mt-2">Editar Instalação</h3>
          <form action="" method="post"> {% csrf_token %}
 
-             {{ form.media }}
-             {{ form | crispy }}
+            <div class="mt-10">
+                {{ form | crispy }}
+            </div>
+
 
 				<input type="submit" class="btn btn-block btn-primary" value="Atualizar Informações">
 		 </form>
