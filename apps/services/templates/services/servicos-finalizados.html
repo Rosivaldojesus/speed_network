@@ -4,8 +4,7 @@
 
 {% block main %}
 <div class="container">
-  <h1 class="mt-3 mb-3">Serviços em Agendados</h1>
-
+    <h1 class="mt-3 mb-3"><span class="badge badge-success badge-pill">{{quant_finalizados}} </span> Serviços Finalizados</h1>
 
     <div class="table-responsive-sm">
         <table class="table">
@@ -13,17 +12,15 @@
             <tr>
                 <th scope="col">Serviço</th>
                 <th scope="col">Criação</th>
-                <th>Agendar</th>
+                <th>Finalização</th>
             </tr>
           </thead>
           <tbody>
-          {% for agendado in agendados %}
+          {% for finalizado in finalizados %}
             <tr>
-                <td>{{ agendado.categoria }}</td>
-                <td>{{ agendado.data_agendada|date:"d M Y" }} às {{ agendado.hora_agendada }}</td>
-                <td>
-                    <a href="/sevicos/agendar-servico/{{ aberto.id }}">Editar</a>
-                </td>
+                <td>{{ finalizado.categoria }}</td>
+                <td>{{ finalizado.data_agendada|date:"d M Y" }} às {{ agendado.hora_agendada }}</td>
+                <td>{{ finalizado.data_finalizacao}}</td>
 
             </tr>
           {% endfor %}

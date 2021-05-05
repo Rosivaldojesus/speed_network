@@ -23,6 +23,19 @@ def CadastroInstalacao(request):
     return render(request, 'sales/cadastro-instalacao.html', {'form': form})
 
 
+    return render(request, 'sales/cadastro-instalacao.html', {'form':form})
+'''
+def CadastroInstalacao(request):
+    form = InstalacaoCreateForm(request.POST)
+    if form.is_valid():
+        obj = form.save()
+        obj.save()
+        return redirect('/vendas/')
+    else:
+        form = InstalacaoCreateForm()
+    return render(request, 'sales/cadastro-instalacao.html', {'form': form})
+'''
+
 def InstalacaoVisualizacao(request):
     install = request.GET.get('id')
     if install:
