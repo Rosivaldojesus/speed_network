@@ -3,14 +3,39 @@ from django.views.generic import UpdateView
 from .models import PlanosInternet
 
 from .models import Instalacao
-from .forms import InstalacaoCreateForm, InstalacaoUpdateForm
+from .forms import InstalacaoCreateForm, InstalacaoUpdateForm,\
+    InstalacaoAgendarForm, InstalacaoFinalizarForm
 
 
 # Create your views here.
 def Index(request):
     instalacoes = Instalacao.objects.all().order_by('data_instalacao', 'data_instalacao')
-    return render(request, 'sales/instalacao.html', {'instalacoes': instalacoes})
+    quant_aberta = Instalacao.objects.filter(status_agendada='False').filter(concluido='False').count()
+    quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
+    quant_concluida = Instalacao.objects.filter(concluido='True').count()
+    return render(request, 'sales/instalacao.html', {'instalacoes': instalacoes,
+                                                     'quant_aberta': quant_aberta,
+                                                     'quant_agendada': quant_agendada,
+                                                     'quant_concluida': quant_concluida,
+                                                     })
 
+def InstalacaoAberta(request):
+    abertas = Instalacao.objects.filter(status_agendada='False').filter(concluido='False')
+    return render(request, 'sales/instalacao-aberta.html', {'abertas': abertas,
+                                                        })
+
+def InstalacaoAgendada(request):
+    agendadas = Instalacao.objects.filter(status_agendada='True').filter(concluido='False')
+    return render(request, 'sales/instalacao-agendada.html', {'agendadas':agendadas})
+
+def InstalacaoConcluida(request):
+    concluidas = Instalacao.objects.filter(concluido='True')
+    return render(request, 'sales/instalacao-concluida.html', {'concluidas': concluidas})
+'''    
+def Index(request):
+    instalacoes = Instalacao.objects.all().order_by('data_instalacao', 'data_instalacao')
+    return render(request, 'sales/instalacao.html', {'instalacoes': instalacoes})
+'''
 
 def CadastroInstalacao(request):
     form = InstalacaoCreateForm(request.POST)
@@ -52,6 +77,28 @@ def InstalacaoEditar(request, id=None):
         obj.save()
         return redirect('/vendas/')
     return render(request, 'sales/editar-instalacao.html', {'form': form})
+
+
+
+def InstalacaoAgendar(request, id=None):
+    insta = get_object_or_404(Instalacao, id=id)
+    form = InstalacaoAgendarForm(request.POST or None, instance=insta)
+    if form.is_valid():
+        obj = form.save()
+        obj.save()
+        return redirect('/vendas/')
+    return render(request, 'sales/agendar-instalacao.html', {'form': form})
+
+
+
+def InstalacaoFinalizar(request, id=None):
+    insta = get_object_or_404(Instalacao, id=id)
+    form = InstalacaoFinalizarForm(request.POST or None, instance=insta)
+    if form.is_valid():
+        obj = form.save()
+        obj.save()
+        return redirect('/vendas/')
+    return render(request, 'sales/finalizar-instalacao.html', {'form': form})
 
 
 

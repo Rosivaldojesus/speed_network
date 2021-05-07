@@ -57,9 +57,12 @@ class FinalizarServicoForm(forms.ModelForm):
     class Meta:
         model = Servico
         fields = ['servico_executado',
+                  'material_utilizado',
                   'data_finalizacao',
+
                   'status_concluido',]
         widgets = {
+
             'data_finalizacao': forms.DateInput(attrs={'type': 'date'}),
             'hora_agendada': forms.TimeInput(attrs={'type': 'time'}),
         }

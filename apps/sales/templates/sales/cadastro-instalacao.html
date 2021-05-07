@@ -10,6 +10,7 @@
 
     <form action="" method="post"> {% csrf_token %}
 
+      <!-- DADOS PESSOAIS -->
       <div class="card">
         <h5 class="card-header">Dados Pessoais</h5>
         <div class="card-body">
@@ -25,6 +26,17 @@
             </div>
           </div>
 
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>CPF</label>
+                {{form.cpf_cliente}}
+            </div>
+            <div class="form-group col-md-6">
+              <label>RG</label>
+                {{form.rg_cliente}}
+            </div>
+          </div>
+
 
 
 
@@ -33,18 +45,22 @@
       </div>
 
       <br>
-
+<!-- ENDEREÇO-->
       <div class="card">
         <h5 class="card-header">Endereço</h5>
         <div class="card-body">
 
 
           <div class="form-row">
-            <div class="form-group col-md-10">
+            <div class="form-group col-md-7">
               <label >Rua</label>
                 {{form.rua_cliente}}
             </div>
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-4">
+              <label >CEP</label>
+                {{form.rua_cliente}}
+            </div>
+            <div class="form-group col-md-1">
               <label>Nº</label>
               {{form.numero_endereco_cliente}}
             </div>
@@ -73,8 +89,33 @@
 
       <br>
 
+      <!-- CONTATOS-->
       <div class="card">
-        <h5 class="card-header">Contato</h5>
+        <h5 class="card-header">Contatos</h5>
+        <div class="card-body">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Telefone 1</label>
+                {{form.telefone1_cliente}}
+            </div>
+            <div class="form-group col-md-6">
+              <label>Telefone 2</label>
+                {{form.telefone2_cliente}}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-12">
+          <label>E-mail</label>
+            {{form.email_cliente}}
+        </div
+
+      </div>
+
+      <br>
+<!-- SERVIÇOS-->
+      <div class="card">
+        <h5 class="card-header">Servico</h5>
         <div class="card-body">
           <div class="form-row">
             <div class="form-group col-md-8">
@@ -93,22 +134,10 @@
 
       <br>
 
-      <div class="card">
-        <h5 class="card-header">Serviços</h5>
-        <div class="card-body">
-          <div class="form-row">
-            <div class="form-group col-md-4">
-              <label>Telefone</label>
-                {{form.telefone_cliente}}
-            </div>
-            <div class="form-group col-md-8">
-              <label>E-mail</label>
-                {{form.email_cliente}}
-            </div>
-          </div>
 
-        </div>
-      </div>
+      
+
+      
 
 
 

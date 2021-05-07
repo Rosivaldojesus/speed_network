@@ -8,42 +8,58 @@
     </div>
 
     <div class="mt-4">
-        <h4>Instalações Pendentes</h4>
+        <h4>Status das Instalações</h4>
     </div>
-    <div class="table-responsive-sm">
-        <table class="table">
-          <thead>
-            <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">Bairro</th>
-                <th scope="col">Rua</th>
-                <th scope="col">Nº</th>
-                <th>Previsão</th>
-                <th>Editar</th>
-                <th>Detalhes</th>
-            </tr>
-          </thead>
-          <tbody>
-          {% for instalacao in instalacoes %}
-            <tr>
-                <td>{{ instalacao.nome_cliente }}</td>
-                <td>{{ instalacao.bairro_cliente }}</td>
-                <td>{{ instalacao.rua_cliente }}</td>
-                <td>{{ instalacao.numero_endereco_cliente }}</td>
-                <td>{{ instalacao.data_instalacao|date:"d M Y" }} ás {{ instalacao.hora_instalacao }}</td>
-                <td>
 
-                  <a href="editar-instalacao/{{ instalacao.id }}">Editar</a>
-                </td>
-                <td>
-                    <a href="visualizar-instalacao/?id={{ instalacao.id }}">Detalhes</a>
-                </td>
-            </tr>
-          {% endfor %}
+    <div class="row">
 
-          </tbody>
-        </table>
+      {% if quant_aberta == 0 %}
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            Não existe instalaçãoes aguardando análise!
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Em aberto</h5>
+            <h1 class="card-text">{{quant_aberta}}</h1>
+            <a href="instalacao-aberta/" class="btn btn-primary">Ver todas</a>
+          </div>
+        </div>
+      </div>
+
+      {% endif %}
+
+
+
+
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Em agenda</h5>
+            <h1 class="card-text">{{quant_agendada}}</h1>
+            <a href="instalacao-agendada/" class="btn btn-primary">Ver todas</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Concluídas</h5>
+            <h1 class="card-text">{{quant_concluida}}</h1>
+            <a href="instalacao-concluida/" class="btn btn-primary">Ver todas</a>
+          </div>
+        </div>
+      </div>
     </div>
+
+
+
+
 </div>
 
 {% endblock %}

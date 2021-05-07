@@ -25,8 +25,10 @@ class Servico(models.Model):
     data_agendada = models.DateField(blank=True, null=True, verbose_name='Data agendada')
     hora_agendada = models.TimeField(blank=True, null=True, verbose_name='hora agendada')
 
-
     status_agendado = models.BooleanField(default=False, verbose_name='Agendado')
+
+
+    material_utilizado = models.TextField(blank=True, null=True, verbose_name='Material utilizado')
     status_concluido = models.BooleanField(default=False, verbose_name='Concluído')
 
     data_finalizacao = models.DateField(blank=True, null=True, verbose_name='Data da conclusão')
