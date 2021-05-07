@@ -16,22 +16,17 @@ class CategoriaServico(models.Model):
 
 
 class Servico(models.Model):
-    nome_cliente = models.CharField(max_length=255, blank=True, null=True, verbose_name='Nome do cliente')
+    contato_servico = models.CharField(max_length=255, blank=True, null=True, verbose_name='Nome do cliente')
     endereco_servico = models.TextField(blank=True, null=True, verbose_name='Endereço do serviço')
     servico_para_executar = models.TextField(blank=True, null=True,verbose_name='Serviço a fazer')
     servico_executado = models.TextField(blank=True, null=True, verbose_name='Serviço executado')
     categoria = models.ForeignKey(CategoriaServico, on_delete=models.DO_NOTHING, verbose_name='Categoria do serviço')
     data_criacao = models.DateTimeField(default=timezone.now, verbose_name='Data da criação')
-
     data_agendada = models.DateField(blank=True, null=True, verbose_name='Data agendada')
     hora_agendada = models.TimeField(blank=True, null=True, verbose_name='hora agendada')
-
     status_agendado = models.BooleanField(default=False, verbose_name='Agendado')
-
-
     material_utilizado = models.TextField(blank=True, null=True, verbose_name='Material utilizado')
     status_concluido = models.BooleanField(default=False, verbose_name='Concluído')
-
     data_finalizacao = models.DateField(blank=True, null=True, verbose_name='Data da conclusão')
 
     class Meta:

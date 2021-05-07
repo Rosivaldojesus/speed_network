@@ -9,7 +9,7 @@ from .models import Servico
 class ServicoForm(forms.ModelForm):
     class Meta:
         model = Servico
-        fields = ['nome_cliente',
+        fields = ['contato_servico',
                   'endereco_servico',
                   'servico_para_executar',
                   'categoria',]
