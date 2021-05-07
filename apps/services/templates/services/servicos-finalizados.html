@@ -23,6 +23,8 @@
                 <td>{{ finalizado.categoria }}</td>
                 <td>{{ finalizado.data_agendada|date:"d M Y" }} às {{ agendado.hora_agendada }}</td>
                 <td>{{ finalizado.data_finalizacao}}</td>
+                <td><a href="/servicos/visualizar-servico/?id={{ finalizado.id }}">Visualizar</a>
+                </td>
 
             </tr>
           {% endfor %}

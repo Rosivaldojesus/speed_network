@@ -16,6 +16,7 @@ class CategoriaServico(models.Model):
 
 
 class Servico(models.Model):
+    nome_cliente = models.CharField(max_length=255, blank=True, null=True, verbose_name='Nome do cliente')
     endereco_servico = models.TextField(blank=True, null=True, verbose_name='Endereço do serviço')
     servico_para_executar = models.TextField(blank=True, null=True,verbose_name='Serviço a fazer')
     servico_executado = models.TextField(blank=True, null=True, verbose_name='Serviço executado')

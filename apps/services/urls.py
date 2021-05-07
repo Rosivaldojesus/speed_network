@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import Index, CadastroServico, AgendarServico, ServicosAbertos,\
     ServicosAgendados, ServicosFinalizados, EditarServico, RemoverServico,\
-    EditarServicoAgendado, FinalizarServico
+    EditarServicoAgendado, FinalizarServico, ServicoVisualizar
 
 
 urlpatterns = [
@@ -15,5 +15,7 @@ urlpatterns = [
     path('editar-servico-agendado/<int:id>', EditarServicoAgendado),
     path('servicos-finalizados/', ServicosFinalizados),
     path('finalizar-servico/<int:id>', FinalizarServico),
+    path('visualizar-servico/', ServicoVisualizar),
+
 
 ]

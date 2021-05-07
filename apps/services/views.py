@@ -53,6 +53,10 @@ def ServicosAbertos(request):
                                                               })
 
 
+
+
+
+
 def EditarServicoAgendado(request, id=None):
     editarAgendado = get_object_or_404(Servico, id=id)
     form = EditarAgendarServicoForm(request.POST or None, instance=editarAgendado)
@@ -63,15 +67,11 @@ def EditarServicoAgendado(request, id=None):
     return render(request, 'services/editar-servico.html', {'form':form})
 
 
-
-
 def ServicosAgendados(request):
     agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False')
     quant_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
     return render(request, 'services/servicos-agendados.html', {'agendados': agendados,
                                                                 'quant_agendados':quant_agendados})
-
-
 
 
 def ServicosFinalizados(request):
@@ -99,3 +99,10 @@ def FinalizarServico(request, id=None):
         obj.save()
         return redirect('/servicos/')
     return render(request, 'services/finalizar-servico.html', {'form': form})
+
+
+def ServicoVisualizar(request):
+    servico = request.GET.get('id')
+    if servico:
+        servico = Servico.objects.get(id=servico)
+    return render(request, 'services/visualizar-servico.html', {'servico': servico})
