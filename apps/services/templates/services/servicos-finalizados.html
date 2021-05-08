@@ -6,77 +6,48 @@
 
 {% block main %}
 <div class="container">
-    <h4 class="mt-3 mb-3"><span class="badge badge-success badge-pill">{{quant_finalizados}} </span> Serviços Finalizados</h4>
+  <h4 class="mt-3 mb-3"><span class="badge badge-success badge-pill">{{quant_finalizados}} </span> Serviços Finalizados</h4>
 
-    {% for finalizado in finalizados %}  
-    <div class="card mt-1 shadow-sm">
-      <div class="card-body">
+
+  {% for finalizado in finalizados %}  
+  <div class="card mt-3 shadow border-warning">
+    <div class="card-header ">
 
         <div class="row">
-          <div class="col-sm-4">
-            <div class="card border-0">
-              <div class="card-body">
-                
-                <p class="card-text"><strong>Número OS:</strong> {{finalizado.pk}}</p>  
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body shadow-sm">
+
+                <strong>Setor:</strong> {{ finalizado.categoria }}
 
               </div>
             </div>
           </div>
-          <div class="col-sm-4">
-            <div class="card border-0">
-              <div class="card-body">
-                {{ finalizado.categoria }}
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body shadow-sm">
 
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="card border-0">
-              <div class="card-body">
-                {{ finalizado.data_finalizacao}}
+              <strong>Data de conclusão: </strong>  {{ finalizado.data_finalizacao }}
 
               </div>
             </div>
           </div>
         </div>
 
+    </div>
+    <div class="card-body">
+      {{ finalizado.servico_para_executar }}
+      <div align="right">
 
+          <td>
+              <a href="/servicos/visualizar-servico/?id={{ finalizado.id }}" class="btn btn-success">Visualizar</a>
+          </td>
 
-        
-        <p class="card-text">{{ finalizado.servico_para_executar }}</p>
-
-        
-      
-      
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="card border-0">
-              <div class="card-body">
-                  <!-- <a href="#" class="card-link">Card link</a> -->
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>  
-
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="card border-0">
-              <div class="card-body">
-                <a href="/servicos/visualizar-servico/?id={{ finalizado.id }}" class="card-link">Detalhes</a>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      
-      
-      
-      
-      
-      
       </div>
     </div>
-    {% endfor %}
-    </div>
+  </div>
+  {% endfor %}
+</div>
 </div>
 </div>
 {% endblock %}

@@ -10,18 +10,30 @@
 
 
   {% for aberto in abertos %}
-  <div class="card mt-3">
-    <div class="card-header">
-      <table class="table table-sm">
-        <thead>
-         <tr>
-           <th>{{ aberto.categoria}}</th>
-           <td align="center">
-             <p class="card-text"><small class="text-muted">{{ aberto.data_criacao }}</small></p>
-           </td>
-         </tr>
-        </thead>
-      </table>
+  <div class="card mt-3 shadow border-danger">
+    <div class="card-header ">
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body shadow-sm">
+
+                <strong>Setor:</strong> {{ aberto.categoria}}
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body shadow-sm">
+
+              <strong>Abertura: </strong>  {{ aberto.data_criacao | date:'d/m/Y H:i' }}
+
+              </div>
+            </div>
+          </div>
+        </div>
+
     </div>
     <div class="card-body">
       <h6 class="card-title"><strong>O que: </strong> {{ aberto.servico_para_executar}}</h6>
@@ -35,7 +47,7 @@
              <a href="/servicos/agendar-servico/{{ aberto.id }}" class="btn btn-success">Agendar</a>
           </td>
           <td>
-             <a href="/servicos/remover-servico/{{ aberto.id }}" class="btn btn-danger">Exluir</a>
+             <a href="/servicos/remover-servico/{{ aberto.id }}" class="btn btn-danger">Excluir</a>
           </td>
         </tr>
       </div>
