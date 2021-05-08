@@ -13,7 +13,7 @@ def login(request):
 
 
 
-@login_required(login_url='/login/')
+#@login_required(login_url='/login/')
 def Index(request):
     pendentes = Instalacao.objects.all().count()
     quant_servico_aberto = Servico.objects.filter(status_agendado='False').filter(status_concluido='False').count()
