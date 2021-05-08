@@ -18,7 +18,10 @@ class InstalacaoCreateForm(forms.ModelForm):
                   'telefone2_cliente',
                   'email_cliente',
                   'planos_instalacao',
-                  'data_vencimento']
+                  'data_vencimento',
+                  'observacao_instalacao',
+
+                  ]
         widgets = {
             'nome_cliente': forms.TextInput(attrs={'class': 'form-control'}),
             'sobrenome_cliente': forms.TextInput(attrs={'class': 'form-control'}),
@@ -37,6 +40,7 @@ class InstalacaoCreateForm(forms.ModelForm):
             'data_vencimento': forms.Select(attrs={'class': 'form-control'}),
             'data_instalacao': forms.DateInput(attrs={'type': 'date'}),
             'hora_instalacao': forms.TimeInput(attrs={'type': 'time'}),
+            'observacao_instalacao' : forms.Textarea(attrs={'class': 'form control'})
         }
 
 class InstalacaoUpdateForm(forms.ModelForm):
@@ -45,7 +49,6 @@ class InstalacaoUpdateForm(forms.ModelForm):
         fields = ['nome_cliente',
                   'sobrenome_cliente',
                   'cpf_cliente',
-
                   'cep_cliente',
                   'rua_cliente',
                   'bairro_cliente',
@@ -88,7 +91,6 @@ class InstalacaoAgendarForm(forms.ModelForm):
 class InstalacaoFinalizarForm(forms.ModelForm):
     class Meta:
         model = Instalacao
-
         fields = [
             'concluido',
             'material_utilizado',

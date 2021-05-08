@@ -75,7 +75,7 @@ def ServicosAgendados(request):
 
 
 def ServicosFinalizados(request):
-    finalizados = Servico.objects.filter(status_concluido='True')
+    finalizados = Servico.objects.filter(status_concluido='True').order_by('-id')
     quant_finalizados = Servico.objects.filter(status_concluido='True').count()
     return render(request, 'services/servicos-finalizados.html', {'finalizados':finalizados,
                                                                   'quant_finalizados':quant_finalizados})

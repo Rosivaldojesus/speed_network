@@ -25,18 +25,22 @@ class ServicoForm(forms.ModelForm):
 class AgendarServicoForm(forms.ModelForm):
     class Meta:
         model = Servico
-        fields = ['status_agendado','data_agendada', 'hora_agendada']
+        fields = ['status_agendado','data_agendada', 'hora_agendada',]
         widgets = {
             'data_agendada': forms.DateInput(attrs={'type': 'date'}),
             'hora_agendada': forms.TimeInput(attrs={'type': 'time'}),
         }
     status_agendado = forms.BooleanField(label='Marque para agendar.')
 
+
     def clean_status_agendada(self):
         agendado = self.clean_status_agendada('agendado')
         if agendado == False:
             raise forms.ValidationError('Preencher o campo data')
         return agendado
+
+
+
 
 
 

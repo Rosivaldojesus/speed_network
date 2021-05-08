@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render
 from ..sales.models import Instalacao
@@ -5,9 +6,16 @@ from ..services.models import Servico
 from ..core.models import Manuais
 
 # Create your views here.
+def login(request):
+    return render(request, 'login.html')
+
+
+
+
+
+@login_required(login_url='/login/')
 def Index(request):
     pendentes = Instalacao.objects.all().count()
-
     quant_servico_aberto = Servico.objects.filter(status_agendado='False').filter(status_concluido='False').count()
     quant_servico_agendado = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
     quant_servico_finalizados = Servico.objects.all().filter(status_concluido='True').count()

@@ -27,6 +27,7 @@ class Instalacao(models.Model):
     data_instalacao = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True, verbose_name='Data da Instalação')
     hora_instalacao = models.TimeField(auto_now_add=False, auto_now=False, blank=True, null=True, verbose_name='Hora da Instalação')
     material_utilizado = models.TextField(blank=True, null=True, verbose_name='Material utilizado')
+    data_concluido = models.DateTimeField(default=timezone.now)
     observacao_instalacao = models.TextField(blank=True, null=True, verbose_name='Observação')
 
     class Meta:
