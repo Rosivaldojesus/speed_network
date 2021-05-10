@@ -4,12 +4,10 @@
 
 {% block main %}
 <div class="container">
-  <h1 class="mt-3 mb-3">Você tem certeza que deseja exluir o serviço?</h1>
+  <h5 class="mt-3 mb-3">Você tem certeza que deseja exluir o serviço?</h5>
 
   <form action="" method="post"> {% csrf_token %}
-
         {{ form | crispy }}
-
 	    <input type="submit" class="btn btn-danger" value="sim">
       <a href="/servicos/" class="btn btn-warning">Voltar</a>
 	</form>

@@ -10,6 +10,8 @@ class PlanosInternet(models.Model):
     def __str__(self):
         return "{}".format(self.nome_plano)
 
+
+
 class DataVencimento(models.Model):
     data = models.CharField(max_length=100)
     class Meta:
@@ -37,3 +39,11 @@ class AdicionarQuantidade(models.Model):
         verbose_name_plural = 'Adicionar Quantidade'
     def __str__(self):
         return "{}".format(self.quantidade)
+
+
+class FabricanteEquipamentos(models.Model):
+    nome_fabricante = models.CharField(max_length=255)
+    class Meta:
+        verbose_name_plural = 'Fabricante equipamentos'
+    def __str__(self):
+        return "{}".format(self.nome_fabricante)
