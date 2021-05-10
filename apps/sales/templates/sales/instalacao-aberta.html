@@ -3,29 +3,34 @@
 
 {% block main %}
   <div class="container">
+
     {% for aberta in abertas %}
-      <div class="card mt-2">
-        
-        <div class="card-body">
-          <small><strong>Nome: </strong></small><br>
+    
+    <div class="card-group mt-2">
+      <div class="card border-0">
+
+        <small><strong>Nome: </strong></small>
           {{ aberta.nome_cliente }} {{ aberta.sobrenome_cliente}}
           <br>
-          <small><strong>Rua:</strong></small><br>
+          <small><strong>Rua:</strong></small>
           {{ aberta.rua_cliente }}, {{ aberta.numero_endereco_cliente }}
           <br>
-          <small><strong>Bairro:</strong></small><br>
+          <small><strong>Bairro:</strong></small>
           {{ aberta.bairro_cliente }}
-          <br>
-          <div align="right">
-              <a href="/vendas/editar-instalacao/{{ aberta.id }}" class="btn btn-primary">Editar</a>
-            
-              <a href="/vendas/agendar-instalacao/{{ aberta.id }}" class="btn btn-warning">Agendar</a>
-          
-              <a href="visualizar-instalacao/?id={{ aberta.id }}" class="btn btn btn-info">Detalhes</a>
-          </div>
-        
-        </div>
       </div>
-      {% endfor %}
+
+      <div class="card border-0">
+        <div align="right">
+          <a href="/vendas/editar-instalacao/{{ aberta.id }}" class="btn btn-primary">Editar</a>
+        
+          <a href="/vendas/agendar-instalacao/{{ aberta.id }}" class="btn btn-warning">Agendar</a>
+      
+          <a href="visualizar-instalacao/?id={{ aberta.id }}" class="btn btn btn-info">Detalhes</a>
+      </div>
+      </div>
+    </div>
+    <hr>
+    {% endfor %}
+      
   </div>
 {% endblock %}
