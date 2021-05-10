@@ -10,65 +10,37 @@
       <div>
         <div class="card-deck ">
           <div class="card shadow-lg bg-danger">
-            
-
-            <div class="display-1 text-white pr-5  " align="right">
+            <div class="display-4 text-white pr-5  " align="right">
               <strong>{{ quant_servico_aberto }}</strong>
             </div>
-
             <div class=" text-white pl-4">
               <h3>Aguardando </h3>
             </div>
-            <!--
-
-            <div class="card-body">
-              <h5 class="card-title">Em aberto</h5>
-                <div align="center">
-                    <h1 class=" p-2"><span class="badge badge-danger badge-pill">{{ quant_servico_aberto }}</span></h1>
-                </div>
+            <div align="right">
               <a href="servicos/servicos-abertos/" class="btn btn-danger">Ver todos</a>
             </div>
-            -->
           </div>
           <div class="card shadow-lg bg-warning">
-
-            <div class="display-1 text-white pr-5 " align="right">
+            <div class="display-4 text-white pr-5 " align="right">
               <strong>{{ quant_servico_agendado }}</strong>
             </div>
-
             <div class="text-white pl-4">
               <h3>Agendados</h3>
             </div>
-            <!--
-            <div class="card-body">
-            
-              <h5 class="card-title">Agendados</h5>
-                <div align="center">
-                    <h1 class="p-2"><span class="badge badge-warning badge-pill">{{ quant_servico_agendado }}</span></h1>
-                </div>
-              <a href="servicos/servicos-agendados/" class="btn btn-warning">Ver todos</a>
+            <div align="right">
+              <a href="servicos/servicos-agendados/" class="btn btn-warning text-white">Ver todos</a>
             </div>
-          -->
           </div>
-          
           <div class="card shadow-lg bg-success">
-
-            <div class="display-1 text-white pr-5 " align="right">
+            <div class="display-4 text-white pr-5 " align="right">
               <strong>{{ quant_servico_finalizados }}</strong>
             </div>
-
-            <div class=" text-white pl-4">
+            <div class="text-white pl-4">
               <h3>Finalizados</h3>
             </div>
-           <!--
-            <div class="card-body">
-              <h5 class="card-title">Finalizados</h5>
-                <div align="center">
-                    <h1 class="p-2"><span class="badge badge-success badge-pill">{{ quant_servico_finalizados }}</span></h1>
-                </div>
+            <div align="right">
               <a href="servicos/servicos-finalizados/" class="btn btn-success">Ver todos</a>
             </div>
-          -->
           </div>
         </div>
       </div>
@@ -77,62 +49,28 @@
 
   <!-- STATUS DOS SERVIÇOS -->
         <h5 class="mt-4">Status Instalações</h5>
-        <hr>
-        <div>
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-header">
-                        Em aberto
-                    </div>
-                  <div class="card-body">
-                    <h5 class="card-title">Em aberto: {{ quant_instalacao_aberta }}</h5>
-                    <div align="right">
-                        <a href="vendas/instalacao-aberta/" class="btn btn-danger">Ver tudo</a>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-header">
-                        Agendadas
-                    </div>
-                  <div class="card-body">
-                    <h5 class="card-title">Agendada: {{ quant_instalacao_agendada }}</h5>
-                    <div align="right">
-                        <a href="vendas/instalacao-agendada/" class="btn btn-warning">Ver tudo</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-header">
-                        Concluídos
-                    </div>
-                  <div class="card-body">
-                    <h5 class="card-title">Concluídas: {{ quant_instalacao_concluida }}</h5>
-                    <div align="right">
-                        <a href="vendas/instalacao-concluida/" class="btn btn-success">Ver tudo</a>
-                    </div>
-                  </div>
-                </div>
+          <div class="card-deck">
+            <div class="card" align="center">
+              <h4>Aberto</h4>
+              <div class="display-4"><strong>{{ quant_instalacao_aberta }}</strong></div>
+              <div class="card-footer">
+                <a href="vendas/instalacao-aberta/" class="btn btn-danger">Ver todos</a>
               </div>
             </div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
+            <div class="card" align="center">
+              <h4>Agendado</h4>
+              <div class="display-4"><strong>{{ quant_instalacao_agendada }}</strong></div>
+              <div class="card-footer">
+                <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white">Ver todos</a>
+              </div>
+            </div>
+            <div class="card" align="center">
+              <h4>Finalizados</h4>
+              <div class="display-4"><strong>{{ quant_instalacao_concluida }}</strong></div>
+              <div class="card-footer">
+                <a href="vendas/instalacao-concluida/" class="btn btn-success">Ver todos</a>
+              </div>
+            </div>
+          </div>
   </div>
 {% endblock %}
