@@ -6,45 +6,35 @@
 
     <div class="mt-4">
         <h5 class="mt-3 mb-3"><span class="badge badge-warning badge-pill">{{quant_finalizados}} </span> Instalações Agendadas </h5>
-
     </div>
-    <div class="table-responsive-sm">
-        <table class="table">
-          <thead>
-            <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">Bairro</th>
-                <th scope="col">Rua</th>
-                <th scope="col">Nº</th>
-                <th>Previsão</th>
-                <th>Editar</th>
-                <th>Agendar</th>
-                <th>Detalhes</th>
-            </tr>
-          </thead>
-          <tbody>
-          {% for agendada in agendadas %}
-            <tr>
-                <td>{{ agendada.nome_cliente }}</td>
-                <td>{{ agendada.bairro_cliente }}</td>
-                <td>{{ agendada.rua_cliente }}</td>
-                <td>{{ agendada.numero_endereco_cliente }}</td>
-                <td>{{ agendada.data_instalacao }}</td>
-                <td>
-                  <a href="editar-instalacao/{{ agendada.id }}">Editar</a>
-                </td>
-                <td>
 
-                  <a href="/vendas/finalizar-instalacao/{{ agendada.id }}">Finalizar</a>
-                </td>
-                <td>
-                    <a href="visualizar-instalacao/?id={{ agendada.id }}">Detalhes</a>
-                </td>
-            </tr>
-          {% endfor %}
+    <div class="card-group shadow ">
+      <div class="card border-0 mt-2 ml-4 mb-2">
+        {% for agendada in agendadas %}
 
-          </tbody>
-        </table>
+          <small><strong>Nome</strong></small>
+            {{ agendada.nome_cliente }} {{ agendada.sobrenome_cliente }}
+
+          <small><strong>Rua</strong></small>  
+            {{ agendada.rua_cliente }}, {{ agendada.numero_endereco_cliente }}
+
+          
+          <small><strong>Bairro</strong></small>
+            Bairro: {{ agendada.bairro_cliente }} 
+
+          <small><strong>Data Instalação</strong></small>  
+            {{ agendada.data_instalacao }}    
+
+      </div>
+      <div class="card border-0" align="right">
+        <div>
+          <a href="editar-instalacao/{{ agendada.id }}" class="btn btn-primary">Editar</a>
+          <a href="/vendas/finalizar-instalacao/{{ agendada.id }}" class="btn btn-success">Finalizar</a>
+          <a href="visualizar-instalacao/?id={{ agendada.id }}" class="btn btn-info">Detalhes</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
     </div>
 </div>
 
