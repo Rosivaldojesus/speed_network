@@ -6,52 +6,52 @@
     <div class="mt-2" align="right">
         <a class="btn btn-primary" href="cadastro-instalacao/">Adicionar Instalação</a>
     </div>
-    <div>
-        <h5>Status das Instalações</h5>
-    </div>
-    <div class="row">
-      {% if quant_aberta == 0 %}
-      <div class="col-sm-4">
-        <div class="card">
-          <div class="card-body">
-            Não existe instalaçãoes aguardando análise!
-          </div>
-        </div>
-      </div>
-      {% else %}
-      <div class="col-sm-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Em aberto</h5>
-            <h1 class="card-text">{{quant_aberta}}</h1>
-            <a href="instalacao-aberta/" class="btn btn-primary">Ver todas</a>
-          </div>
-        </div>
-      </div>
-
-      {% endif %}
-
-      <div class="col-sm-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Em agenda</h5>
-            <h1 class="card-text">{{quant_agendada}}</h1>
-            <a href="instalacao-agendada/" class="btn btn-primary">Ver todas</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Concluídas</h5>
-            <h1 class="card-text">{{quant_concluida}}</h1>
-            <a href="instalacao-concluida/" class="btn btn-primary">Ver todas</a>
-          </div>
-        </div>
-      </div>
-    </div>
 
 
+
+    <!-- STATUS DOS SERVIÇOS -->
+    <h5 class="mt-3">Status Instalações</h5>
+    <div class="card-deck">
+      <div class="card border-danger" align="center">
+        <div class="card-group">
+          <div class="card border-0">
+            <h4>Aberto</h4>
+          </div>
+          <div class="card border-0">
+            <div class="display-4"><strong>{{quant_aberta}}</strong></div>
+          </div>
+        </div>
+        <div class="card-footer border-danger">
+          <a href="instalacao-aberta/" class="btn btn-danger">Ver todos</a>
+        </div>
+      </div>
+      <div class="card border-warning" align="center">
+        <div class="card-group">
+          <div class="card border-0">
+            <h4>Agendado</h4>
+          </div>
+          <div class="card border-0">
+            <div class="display-4"><strong>{{quant_agendada}}</strong></div>
+          </div>
+        </div>
+        <div class="card-footer border-warning">
+          <a href="instalacao-agendada/" class="btn btn-warning text-white">Ver todos</a>
+        </div>
+      </div>
+      <div class="card border-success" align="center">
+        <div class="card-group">
+          <div class="card border-0">
+            <h4>Finalizados</h4>
+          </div>
+          <div class="card border-0">
+            <div class="display-4"><strong>{{quant_concluida}}</strong></div>
+          </div>
+        </div>
+        <div class="card-footer border-success">
+          <a href="instalacao-concluida/" class="btn btn-success">Ver todos</a>
+        </div>
+      </div>
+  </div>
 
 
 </div>
