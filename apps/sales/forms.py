@@ -56,6 +56,8 @@ class InstalacaoUpdateForm(forms.ModelForm):
                   'complemento_endereco_cliente',
                   'cidade',
                   'email_cliente',
+                  'telefone1_cliente',
+                  'telefone2_cliente',
                   'planos_instalacao',
                   'data_vencimento',
                   'data_instalacao',
