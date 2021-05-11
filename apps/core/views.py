@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.shortcuts import render
 from ..sales.models import Instalacao
 from ..services.models import Servico
-from ..core.models import Manuais, SenhasEquipamentos
+from ..core.models import Manuais, SenhasEquipamentos, SenhasPorEquipamentos
 
 # Create your views here.
 def login(request):
@@ -52,3 +52,8 @@ def ManuaisServicos(request):
 def Senhas(request):
     senhas = SenhasEquipamentos.objects.all()
     return render(request, 'core/senhas.html', {'senhas': senhas})
+
+
+def SenhasPorEquipamento(request):
+    senhasPorEquipamentos = SenhasPorEquipamentos.objects.all()
+    return render(request, 'core/senhas-por-equipamento.html', {'senhasPorEquipamentos': senhasPorEquipamentos})
