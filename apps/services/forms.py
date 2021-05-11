@@ -22,6 +22,8 @@ class ServicoForm(forms.ModelForm):
 
 
 
+
+
 class AgendarServicoForm(forms.ModelForm):
     class Meta:
         model = Servico
@@ -31,6 +33,7 @@ class AgendarServicoForm(forms.ModelForm):
             'hora_agendada': forms.TimeInput(attrs={'type': 'time'}),
         }
     status_agendado = forms.BooleanField(label='Marque para agendar.')
+    data_agendada = forms.DateInput()
 
 
     def clean_status_agendada(self):

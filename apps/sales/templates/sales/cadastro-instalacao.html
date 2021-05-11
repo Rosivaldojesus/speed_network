@@ -7,6 +7,17 @@
 <div class="container">
   <h5 class="mt-3 mb-3">Cadastro de Instalação</h5>
 
+     <!-- Messagens -->
+      {% if messages %}
+      {% for message in messages %}
+          <div class="alert {{ message.tags }}" role="alert">
+              {{ message }}
+          </div>
+      {% endfor %}
+    {% endif %}
+
+
+
 
     <form action="" method="post"> {% csrf_token %}
 

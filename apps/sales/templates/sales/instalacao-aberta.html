@@ -4,6 +4,20 @@
 {% block main %}
   <div class="container">
 
+         <!-- Messagens -->
+         {% if messages %}
+         {% for message in messages %}
+             <div class="alert {{ message.tags }}" role="alert">
+                 {{ message }}
+             </div>
+           {% endfor %}
+           {% endif %}
+   
+
+
+
+
+
     {% for aberta in abertas %}
     
     <div class="card-group mt-2 shadow border ">

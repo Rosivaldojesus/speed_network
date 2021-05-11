@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import UpdateView
 from .models import PlanosInternet
@@ -42,6 +43,7 @@ def CadastroInstalacao(request):
     if form.is_valid():
         obj = form.save()
         obj.save()
+        messages.success(request, 'Instalação cadastrada com sucesso.')
         return redirect('/vendas/')
     else:
         form = InstalacaoCreateForm()
@@ -75,6 +77,7 @@ def InstalacaoEditar(request, id=None):
     if form.is_valid():
         obj = form.save()
         obj.save()
+        messages.success(request, 'Instalação editada com sucesso.')
         return redirect('/vendas/')
     return render(request, 'sales/editar-instalacao.html', {'form': form})
 
@@ -86,6 +89,7 @@ def InstalacaoAgendar(request, id=None):
     if form.is_valid():
         obj = form.save()
         obj.save()
+        messages.success(request, 'Instalação agendada com sucesso.')
         return redirect('/vendas/')
     return render(request, 'sales/agendar-instalacao.html', {'form': form})
 
@@ -97,6 +101,7 @@ def InstalacaoFinalizar(request, id=None):
     if form.is_valid():
         obj = form.save()
         obj.save()
+        messages.success(request, 'Instalação finalizada com sucesso.')
         return redirect('/vendas/')
     return render(request, 'sales/finalizar-instalacao.html', {'form': form})
 

@@ -9,6 +9,14 @@
     <a href="cadastro-servico/" class="btn btn-primary"><h4>Abrir serviço</h4></a>
   </div>
 
+  {% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+  {% endif %}
+
   <div class="card-deck">
     <div class="card shadow-lg">
       <div class="media">

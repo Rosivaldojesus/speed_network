@@ -8,6 +8,15 @@
 <div class="container">
   <h5 class="mt-3 mb-3"><span class="badge badge-danger badge-pill">{{ qquant_aberto}}</span>  Serviços abertos</h5>
 
+<!-- Messagens -->
+  {% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+  {% endif %}
+
 
   {% for aberto in abertos %}
   <div class="card mt-3 shadow border-danger">

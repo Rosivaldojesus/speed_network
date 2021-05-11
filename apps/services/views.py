@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ServicoForm, AgendarServicoForm, EditarAgendarServicoForm, FinalizarServicoForm
 
@@ -18,10 +19,12 @@ def CadastroServico(request):
     if form.is_valid():
         obj = form.save()
         obj.save()
+        messages.success(request, 'Serviço adicionado com sucesso!')
         return redirect('/servicos/servicos-abertos/')
     else:
         form = ServicoForm()
     return render(request, 'services/cadastro-servico.html', {'form': form})
+
 
 
 def EditarServico(request, id=None):
@@ -30,13 +33,17 @@ def EditarServico(request, id=None):
     if form.is_valid():
         obj = form.save()
         obj.save()
+        messages.success(request, 'Serviço editado com sucesso!')
         return redirect('/servicos/servicos-abertos/')
     return render(request, 'services/editar-servico.html', {'form': form})
+
+
 
 def RemoverServico(request, id=None):
     servico = get_object_or_404(Servico, id=id)
     if request.method == "POST":
         servico.delete()
+        messages.success(request, 'Serviço removido com sucesso!')
         return redirect('/servicos/')
     return render(request, 'services/remover-servico.html', {'servoco': servico})
 
@@ -63,6 +70,7 @@ def EditarServicoAgendado(request, id=None):
     if form.is_valid():
         obj = form.save()
         obj.save()
+        messages.success(request, 'Serviço agendado, editado com sucesso!')
         return redirect('/servicos/')
     return render(request, 'services/editar-servico.html', {'form':form})
 
@@ -87,6 +95,7 @@ def AgendarServico(request, id=None):
     if form.is_valid():
         obj = form.save()
         obj.save()
+        messages.success(request, 'Serviço agendado com sucesso!')
         return redirect('/servicos/')
     return render(request, 'services/agendar-servico.html', {'form': form})
 
@@ -97,6 +106,7 @@ def FinalizarServico(request, id=None):
     if form.is_valid():
         obj = form.save()
         obj.save()
+        messages.success(request, 'Serviço finalizado com sucesso!')
         return redirect('/servicos/')
     return render(request, 'services/finalizar-servico.html', {'form': form})
 
