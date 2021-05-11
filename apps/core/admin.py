@@ -7,8 +7,13 @@ class ManuaisAdmin(admin.ModelAdmin):
     list_display = ('id', 'nome_manual','texto_manual')
 admin.site.register(Manuais, ManuaisAdmin)
 
+
 class SenhasEquipamentosAdmin(admin.ModelAdmin):
     list_display = ('id', 'ip_equipamento','fabricante','equipamento', 'login', 'senha')
+    list_editable = ('login', 'senha')
 admin.site.register(SenhasEquipamentos, SenhasEquipamentosAdmin)
 
-admin.site.register(SenhasPorEquipamentos)
+
+class SenhasPorEquipamentosAdmin(admin.ModelAdmin):
+    list_display = ('id', 'codigo_equipamento', 'equipamento', 'ip_equipamento','login','senha' )
+admin.site.register(SenhasPorEquipamentos,SenhasPorEquipamentosAdmin)
