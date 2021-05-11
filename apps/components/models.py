@@ -47,3 +47,14 @@ class FabricanteEquipamentos(models.Model):
         verbose_name_plural = 'Fabricante equipamentos'
     def __str__(self):
         return "{}".format(self.nome_fabricante)
+
+
+class ModelosEquipamentos(models.Model):
+    nome_modelo = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name_plural = 'Modelos equipamentos'
+
+    def __str__(self):
+        return "{}".format(self.nome_modelo)
+

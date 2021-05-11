@@ -1,6 +1,6 @@
 from ckeditor.fields import RichTextField
 from django.db import models
-from ..components.models import FabricanteEquipamentos
+from ..components.models import FabricanteEquipamentos, ModelosEquipamentos
 
 # Create your models here.
 class Manuais(models.Model):
@@ -23,6 +23,21 @@ class SenhasEquipamentos(models.Model):
 
     class Meta:
         verbose_name_plural = 'Senhas Equipamentos'
+
+    def __str__(self):
+        return "{}".format(self.equipamento)
+
+
+class SenhasPorEquipamentos(models.Model):
+    codigo_equipamento = models.CharField(max_length=120)
+    equipamento = models.ForeignKey(ModelosEquipamentos, on_delete=models.DO_NOTHING)
+    ip_equipamento = models.CharField(max_length=100, blank=True, null=True)
+    login = models.CharField(max_length=100, blank=True, null=True)
+    senha = models.CharField(max_length=100, blank=True, null=True)
+    fabricante = models.ForeignKey(FabricanteEquipamentos, on_delete=models.DO_NOTHING)
+
+    class Meta:
+        verbose_name_plural = 'Senhas por Equipamentos'
 
     def __str__(self):
         return "{}".format(self.equipamento)
