@@ -22,7 +22,9 @@ def Index(request):
 
 def InstalacaoAberta(request):
     abertas = Instalacao.objects.filter(status_agendada='False').filter(concluido='False')
+    quant_aberta = Instalacao.objects.filter(status_agendada='False').filter(concluido='False').count()
     return render(request, 'sales/instalacao-aberta.html', {'abertas': abertas,
+                                                            'quant_aberta': quant_aberta
                                                         })
 
 def InstalacaoAgendada(request):
@@ -34,7 +36,10 @@ def InstalacaoAgendada(request):
 
 def InstalacaoConcluida(request):
     concluidas = Instalacao.objects.filter(concluido='True')
-    return render(request, 'sales/instalacao-concluida.html', {'concluidas': concluidas})
+    quant_concluida = Instalacao.objects.filter(concluido='True').count()
+    return render(request, 'sales/instalacao-concluida.html', {'concluidas': concluidas,
+                                                               'quant_concluida':quant_concluida
+                                                               })
 '''    
 def Index(request):
     instalacoes = Instalacao.objects.all().order_by('data_instalacao', 'data_instalacao')
