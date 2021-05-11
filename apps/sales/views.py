@@ -26,7 +26,7 @@ def InstalacaoAberta(request):
                                                         })
 
 def InstalacaoAgendada(request):
-    agendadas = Instalacao.objects.filter(status_agendada='True').filter(concluido='False')
+    agendadas = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').order_by('data_instalacao')
     return render(request, 'sales/instalacao-agendada.html', {'agendadas':agendadas})
 
 def InstalacaoConcluida(request):
