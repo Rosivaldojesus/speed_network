@@ -47,13 +47,13 @@
     </div>
   </div>
 
-  <!-- STATUS DOS SERVIÇOS -->
+  <!-- STATUS DOS INSTALAÇÃO -->
         <h5 class="mt-3">Status Instalações</h5>
           <div class="card-deck">
             <div class="card border-danger" align="center">
               <div class="card-group">
                 <div class="card border-0">
-                  <h4>Aberto</h4>
+                  <h5>Aberto</h5>
                 </div>
                 <div class="card border-0">
                   <div class="display-4"><strong>{{ quant_instalacao_aberta }}</strong></div>
@@ -66,7 +66,7 @@
             <div class="card border-warning" align="center">
               <div class="card-group">
                 <div class="card border-0">
-                  <h4>Agendado</h4>
+                  <h5>Agendado</h5>
                 </div>
                 <div class="card border-0">
                   <div class="display-4"><strong>{{ quant_instalacao_agendada }}</strong></div>
@@ -76,10 +76,25 @@
                 <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white">Ver todos</a>
               </div>
             </div>
+            <!--
+            <div class="card border-dark" align="center">
+              <div class="card-group">
+                <div class="card border-0">
+                  <h5>Finalizados sem boletos</h5>
+                </div>
+                <div class="card border-0">
+                  <div class="display-4"><strong>{{ quant_instalacao_concluida }}</strong></div>
+                </div>
+              </div>
+              <div class="card-footer border-dark">
+                <a href="vendas/instalacao-concluida/" class="btn btn-dark">Ver todos</a>
+              </div>
+            </div>
+          -->
             <div class="card border-success" align="center">
               <div class="card-group">
                 <div class="card border-0">
-                  <h4>Finalizados</h4>
+                  <h5>Finalizados</h5>
                 </div>
                 <div class="card border-0">
                   <div class="display-4"><strong>{{ quant_instalacao_concluida }}</strong></div>
@@ -90,5 +105,35 @@
               </div>
             </div>
         </div>
+
+
+
+    <div>
+      <div class="card mt-2">
+        <div class="card-group">
+          {% for data in data %}
+          <div class="card border-0" align="center">
+            
+            <div class="card-body">
+              {{ data.data_instalacao |date:" d/m/Y" }}<br>
+              {{ data.number }}<br>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>  
+
+
+      
+
+      
+        
+      
+
+    </div>
+
+
+
+
   </div>
 {% endblock %}

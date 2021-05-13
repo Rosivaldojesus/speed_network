@@ -2,7 +2,7 @@ from django.urls import path
 from .views import Index
 from .views import CadastroInstalacao, InstalacaoVisualizacao, InstalacaoEditar,\
     InstalacaoAgendar, InstalacaoAberta, InstalacaoAgendada, InstalacaoFinalizar,\
-    InstalacaoConcluida
+    InstalacaoConcluida, InstalacaoSemBoleto, InstalacaoFinalizadaSemBoleto
 
 
 urlpatterns = [
@@ -17,5 +17,8 @@ urlpatterns = [
     path('finalizar-instalacao/<int:id>', InstalacaoFinalizar),
     path('instalacao-concluida/', InstalacaoConcluida),
     path('instalacao-aberta/', InstalacaoAberta),
-    path('instalacao-agendada/', InstalacaoAgendada)
+    path('instalacao-agendada/', InstalacaoAgendada),
+    path('instalacao-sem-boleto/', InstalacaoSemBoleto),
+    path('instalacao-finalizada-sem-boleto/', InstalacaoFinalizadaSemBoleto),
+
     ]

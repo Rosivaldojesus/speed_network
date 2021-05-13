@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<div class="container">
+
+    <div class="mt-4">
+        <h5 class="mt-3 mb-3"><span class="badge badge-warning badge-pill"> Quant </span> Instalações sem boleto </h5>
+    </div>
+
+    <!-- Messagens -->
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert {{ message.tags }}" role="alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %} 
+
+
+    {% for agendada in agendadas %}
+    <div class="card-group  border shadow-sm">
+      <div class="card border-0 mt-2 ml-4 mb-2">
+        
+
+          <small><strong>Nome</strong></small>
+            {{ agendada.nome_cliente }} {{ agendada.sobrenome_cliente }}
+
+          <small><strong>Rua</strong></small>  
+            {{ agendada.rua_cliente }}, {{ agendada.numero_endereco_cliente }}
+
+          
+          <small><strong>Bairro</strong></small>
+            Bairro: {{ agendada.bairro_cliente }} 
+
+          <small><strong>Data Instalação</strong></small>  
+            {{ agendada.data_instalacao }}  às {{ agendada.hora_instalacao }}
+          
+          <small><strong>Observação</strong></small>  
+            {{ agendada.observacao_instalacao }} 
+
+          
+      </div>  
+      <div class="card border-0 mt-4">
+        <div>
+          <a href="editar-instalacao/{{ agendada.id }}" class="btn btn-primary">Editar</a>
+          <a href="/vendas/finalizar-instalacao/{{ agendada.id }}" class="btn btn-success">Finalizar</a>
+          <a href="visualizar-instalacao/?id={{ agendada.id }}" class="btn btn-info">Detalhes</a>
+        </div>
+      </div>
+
+
+
+
+    </div>
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

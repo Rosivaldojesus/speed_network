@@ -1,9 +1,15 @@
+from select import select
+
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.shortcuts import render
 from ..sales.models import Instalacao
 from ..services.models import Servico
 from ..core.models import Manuais, SenhasEquipamentos, SenhasPorEquipamentos
+
+
+from django.db.models import Count
+
 
 # Create your views here.
 def login(request):
@@ -25,6 +31,13 @@ def Index(request):
     quant_instalacao_concluida = Instalacao.objects.filter(concluido='True').count()
 
 
+
+
+    data = Instalacao.objects.values('data_instalacao').annotate(number=Count('id'))[:7]
+    #data =  Order.objects.filter().extra({'day':"Extract(day from created)"}).values_list('day').annotate(Count('id'))
+
+
+
     return render(request, 'core/index.html',{'pendentes':pendentes,
 
                                             'quant_servico_aberto': quant_servico_aberto,
@@ -34,6 +47,8 @@ def Index(request):
                                               'quant_instalacao_aberta': quant_instalacao_aberta,
                                               'quant_instalacao_agendada':quant_instalacao_agendada,
                                               'quant_instalacao_concluida':quant_instalacao_concluida,
+
+                                              'data': data
 
 
 

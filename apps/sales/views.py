@@ -102,6 +102,15 @@ def InstalacaoAgendar(request, id=None):
     return render(request, 'sales/agendar-instalacao.html', {'form': form})
 
 
+def InstalacaoSemBoleto(request):
+    boletos = Instalacao.objects.filter(status_agendada='True')
+    return render(request, 'sales/instalacao-sem-boleto.html')
+
+
+def InstalacaoFinalizadaSemBoleto(request):
+    concluidas = Instalacao.objects.filter(concluido='True')
+    return render(request, 'sales/instalacao-finalizada-sem-boleto.html', {'concluidas':concluidas})
+
 
 def InstalacaoFinalizar(request, id=None):
     insta = get_object_or_404(Instalacao, id=id)
