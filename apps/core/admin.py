@@ -17,3 +17,5 @@ admin.site.register(SenhasEquipamentos, SenhasEquipamentosAdmin)
 class SenhasPorEquipamentosAdmin(admin.ModelAdmin):
     list_display = ('id', 'codigo_equipamento', 'equipamento', 'ip_equipamento','login','senha' )
 admin.site.register(SenhasPorEquipamentos,SenhasPorEquipamentosAdmin)
+
+

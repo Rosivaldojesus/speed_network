@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.sales',
     'apps.payment',
     'apps.services',
+    'apps.cto',
 
     'crispy_forms',
     'ckeditor',

@@ -8,7 +8,8 @@ urlpatterns = [
     path('estoque/', include('apps.stock.urls')),
     path('pagamentos/', include('apps.payment.urls')),
     path('vendas/', include('apps.sales.urls')),
-    path('servicos/', include('apps.services.urls'))
+    path('servicos/', include('apps.services.urls')),
+    path('cto/', include('apps.cto.urls'))
 
 
 ]
