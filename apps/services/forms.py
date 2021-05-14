@@ -19,11 +19,6 @@ class ServicoForm(forms.ModelForm):
         }
 
 
-
-
-
-
-
 class AgendarServicoForm(forms.ModelForm):
     class Meta:
         model = Servico
@@ -50,7 +45,7 @@ class AgendarServicoForm(forms.ModelForm):
 class EditarAgendarServicoForm(forms.ModelForm):
     class Meta:
         model = Servico
-        fields = ['status_agendado','data_agendada', 'hora_agendada']
+        fields = ['status_agendado','servico_para_executar','data_agendada', 'hora_agendada']
         widgets = {
             'data_agendada': forms.DateInput(attrs={'type': 'date'}),
             'hora_agendada': forms.TimeInput(attrs={'type': 'time'}),
