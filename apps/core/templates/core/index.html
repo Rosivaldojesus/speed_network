@@ -2,6 +2,12 @@
 
 {% block main %}
   <div class="container">
+    <!-- ********************************************************************************************** -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<!-- ********************************************************************************************** -->
+
+
+
 
   <!-- STATUS DOS SERVIÇOS -->
   <div class="card border-0 mb-3 mt-3">
@@ -126,7 +132,83 @@
        
 
 
+    
+
+      <section>
+        <div class="card-deck">
+          <div class="card border-0">
+            <div style="color: purple">
+              <h4>Equipamentos por Cliente</h4>
+              <hr>
+                </a>
+              </h2>
+            </div>
+            <div class="card-body border-0" align="center">
       
+              <canvas id="myChart" width="400" height="200"></canvas>
+                <script>
+                  var ctx = document.getElementById('myChart').getContext('2d');
+                  var chart = new Chart(ctx, {
+                    // The type of chart we want to create
+                    type: 'bar',
+                    // The data for our dataset
+                    data: {
+                      labels: ['ATRIUM VII',
+                        'BIRMANN 31',
+                        'CAPITAL CENTER',
+                        'E-TOWER',
+                        'EENU',
+                        'HL FARIA LIMA',
+                        'JARDIM PAMPLONA',
+                        'JK 360',
+                        'MORUMBI PLAZA',
+                        'PAULISTA 1100',
+                        'PINACOTECA',
+                        'SHOPPING GRAND PLAZA',
+                        'SHOPPING GRANJA VIANNA',
+                        'SHOPPING IGUATEMI ALPHAVILLE',
+                        'SKY CORPORATE',
+                        'VISTA FARIA LIMA',
+                        'WORK BELA CINTRA'],
+                      datasets: [{
+                        label: 'Equipamentos nos clientes',
+                        backgroundColor: 'rgb(0,0,128)',
+                        borderColor: 'rgb(0,0,128)',
+                        data: [{{ atrium_VII }},
+                          {{ birmann31 }},
+                          {{ capitalCenter }},
+                          {{ eTower }},
+                          {{ eenu }},
+                          {{ hlFariaLima }},
+                          {{ jardimPamplonaShopping }},
+                          {{ jk360 }},
+                          {{ morumbiPlaza }},
+                            {{ paulista1100 }},
+                            {{ pinacoteca }},
+                          {{ shoppingGrandPlaza }},
+                          {{ shoppingGranjaViana }},
+                            {{ iguatemiAlphaville }},
+                            {{ skyCorporate }},
+                          {{ vistaFariaLima }},
+                            {{ workBelaCintra }}]
+                      }]
+                    },
+                    // Configuration options go here
+                    options: {}
+                  });
+                </script>
+          </div>
+        </div>
+      </section>
+      
+
+
+      
+
+
+
+
+
 
       
         

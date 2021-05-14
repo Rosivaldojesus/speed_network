@@ -30,6 +30,7 @@ class SenhasEquipamentos(models.Model):
 
 class SenhasPorEquipamentos(models.Model):
     codigo_equipamento = models.CharField(max_length=120)
+    sn_equipamento = models.CharField(max_length=100)
     equipamento = models.ForeignKey(ModelosEquipamentos, on_delete=models.DO_NOTHING)
     ip_equipamento = models.CharField(max_length=100, blank=True, null=True)
     login = models.CharField(max_length=100, blank=True, null=True)
