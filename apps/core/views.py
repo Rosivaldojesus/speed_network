@@ -77,7 +77,7 @@ def Senhas(request):
 
 
 def SenhasPorEquipamento(request):
-    senhasPorEquipamentos = SenhasPorEquipamentos.objects.all()
+    senhasPorEquipamentos = SenhasPorEquipamentos.objects.all().order_by('codigo_equipamento')
     queryset = request.GET.get('q')
     if queryset:
         senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(
