@@ -71,4 +71,10 @@ def Senhas(request):
 
 def SenhasPorEquipamento(request):
     senhasPorEquipamentos = SenhasPorEquipamentos.objects.all()
+    queryset = request.GET.get('q')
+    if queryset:
+        senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(
+            Q(codigo_equipamento__icontains=queryset)
+        )
+
     return render(request, 'core/senhas-por-equipamento.html', {'senhasPorEquipamentos': senhasPorEquipamentos})

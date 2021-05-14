@@ -106,10 +106,11 @@ class InstalacaoFinalizarForm(forms.ModelForm):
         widgets = {
             'data_instalacao': forms.DateInput(attrs={'type': 'date'}),
             'hora_instalacao': forms.TimeInput(attrs={'type': 'time'}),
+            'data_concluido': forms.DateInput(attrs={'type': 'date'}),
 
         }
 
-    data_concluido = forms.DateTimeField()
+
     funcionario_instalacao = forms.ModelChoiceField(queryset=User.objects.all(), initial=0)
     concluido = forms.BooleanField(label='Marque para finalizar instalação.')
 
