@@ -64,6 +64,13 @@ def ManuaisServicos(request):
     return render(request, 'core/manuais.html', {'manuais':manuais})
 
 
+def ManuaisVisualizacao(request):
+    manual = request.GET.get('id')
+    if manual:
+        manual = Manuais.objects.get(id=manual)
+    return render(request, 'core/manuais-visualizacao.html',{'manual': manual})
+
+
 def Senhas(request):
     senhas = SenhasEquipamentos.objects.all()
     return render(request, 'core/senhas.html', {'senhas': senhas})
@@ -77,5 +84,4 @@ def SenhasPorEquipamento(request):
             Q(codigo_equipamento__icontains=queryset) |
             Q(sn_equipamento__icontains=queryset)
         )
-
     return render(request, 'core/senhas-por-equipamento.html', {'senhasPorEquipamentos': senhasPorEquipamentos})
