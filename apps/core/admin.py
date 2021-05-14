@@ -11,11 +11,14 @@ admin.site.register(Manuais, ManuaisAdmin)
 class SenhasEquipamentosAdmin(admin.ModelAdmin):
     list_display = ('id', 'ip_equipamento','fabricante','equipamento', 'login', 'senha')
     list_editable = ('login', 'senha')
+
 admin.site.register(SenhasEquipamentos, SenhasEquipamentosAdmin)
 
 
 class SenhasPorEquipamentosAdmin(admin.ModelAdmin):
     list_display = ('id', 'codigo_equipamento', 'equipamento', 'ip_equipamento','login','senha' )
+    search_fields = ('codigo_equipamento',)
+    list_filter = ('codigo_equipamento',)
 admin.site.register(SenhasPorEquipamentos,SenhasPorEquipamentosAdmin)
 
 
