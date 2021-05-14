@@ -1,5 +1,7 @@
 from django import forms
 from .models import Instalacao
+from django.contrib.auth.models import User
+
 
 
 class InstalacaoCreateForm(forms.ModelForm):
@@ -96,6 +98,8 @@ class InstalacaoFinalizarForm(forms.ModelForm):
         fields = [
             'concluido',
             'material_utilizado',
+            'funcionario_instalacao',
+            'data_concluido',
             'observacao_instalacao',
                   ]
 
@@ -103,6 +107,8 @@ class InstalacaoFinalizarForm(forms.ModelForm):
             'data_instalacao': forms.DateInput(attrs={'type': 'date'}),
             'hora_instalacao': forms.TimeInput(attrs={'type': 'time'}),
         }
+
+    funcionario_instalacao = forms.ModelChoiceField(queryset=User.objects.all(), initial=0)
     concluido = forms.BooleanField(label='Marque para finalizar instalação.')
 
 

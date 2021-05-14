@@ -26,65 +26,36 @@
 			</div>
 		</form>
 		-->
+			<div>
+				<a href="/cto/cadastro-cto/" class="btn btn-primary">Cadastro de CTO</a>
+			</div>
+
+
+
         </div>
-
-
+			<h5>Caixas de Terminais Ópticos</h5>
 		<div>
 			<table class="table">
 				<thead>
 				  <tr>
 					<th scope="col">Cód.</th>
 					<th scope="col">PON</th>
-					<th scope="col">Last</th>
-					<th scope="col">Handle</th>
+					<th scope="col">Total</th>
+					<th scope="col">Usada</th>
+					<th scope="col">Livre</th>
 				  </tr>
 				</thead>
 				<tbody>
 					{% for cto in ctos %}
 				  <tr>
-					<th scope="row">1</th>
-					<td>{{cto.pon_cto}}/td>
-					<td>Otto</td>
-					<td>@mdo</td>
+					<th>{{cto.codigo_cto}}</th>
+					<td>{{cto.pon_cto}}</td>
+					<td>{{cto.conexoes_opticas_cto}}</td>
+					<td>{{cto.quant_conexoes_usadas_cto}}</td>
+					<td>{{cto.livre}}</td>
 				  </tr>
-				  {% endfor %} 	
+				  {% endfor %}
 				</tbody>
 			  </table>
-		</div>
-
-
-
-
-
-
-    	<h5>Caixas de Terminais Ópticos</h5>
-
-	
-		<div class="card mt-2">
-			<div class="card-header">{{ senha.fabricante }} {{ senha.equipamento }}</div>
-			<div class="card-group">
-				<div class="card border-0">
-					<Small>Fabricante</Small>
-					<strong>{{ senha.fabricante }}</strong> 
-				</div>
-				<div class="card border-0">
-					<small>Modelo</small>
-					<strong>{{ senha.equipamento }}</strong>
-				</div>
-				<div class="card border-0">
-					<small>IP</small>
-					<strong>{{ senha.ip_equipamento }}</strong>
-				</div>
-				<div class="card border-0">
-					<small>Login</small>
-					<strong>{{ senha.login }}</strong>
-				</div>
-				<div class="card border-0">
-					<small>Senha</small>
-					<strong>{{ senha.senha }}</strong>
-				</div>
-			</div>
-		</div>
-		
-    </div>
+		</div>  	
 {% endblock %}

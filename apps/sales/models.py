@@ -1,6 +1,7 @@
 from django.utils import timezone
 from ..components.models import PlanosInternet, Cidade, DataVencimento
 from django.db import models
+from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 
 
@@ -27,6 +28,7 @@ class Instalacao(models.Model):
     data_instalacao = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True, verbose_name='Data da Instalação')
     hora_instalacao = models.TimeField(auto_now_add=False, auto_now=False, blank=True, null=True, verbose_name='Hora da Instalação')
     material_utilizado = models.TextField(blank=True, null=True, verbose_name='Material utilizado')
+    funcionario_instalacao = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     data_concluido = models.DateTimeField(null=True, blank=True)
     boleto_entregue = models.BooleanField(default=False)
     observacao_instalacao = models.TextField(blank=True, null=True, verbose_name='Observação')
