@@ -41,6 +41,8 @@
 				<thead>
 				  <tr>
 					<th scope="col">Cód.</th>
+					<th scope="col">Rua</th>
+					<th scope="col">Nº</th>
 					<th scope="col">PON</th>
 					<th scope="col">Total</th>
 					<th scope="col">Usada</th>
@@ -51,6 +53,10 @@
 					{% for cto in ctos %}
 				  <tr>
 					<th>{{cto.codigo_cto}}</th>
+
+					<td>{{cto.rua_cto}}</td>
+					<td>{{cto.numero_rua_cto}}</td>
+
 					<td>{{cto.pon_cto}}</td>
 					<td>{{cto.conexoes_opticas_cto}}</td>
 					<td>{{cto.quant_conexoes_usadas_cto}}</td>
