@@ -30,18 +30,16 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Rua</th>
                 <th scope="col">Nº</th>
-                <th>Detalhes</th>
             </tr>
           </thead>
           <tbody>
           {% for concluida in concluidas %}
             <tr>
-                <td>{{ concluida.nome_cliente }}</td>
+                <td class="nav-link">
+                    <a class="nav-link" href="visualizar-instalacao/?id={{ concluida.id }}">{{ concluida.nome_cliente }}</a>
+                </td>
                 <td>{{ concluida.rua_cliente }}</td>
                 <td>{{ concluida.numero_endereco_cliente }}</td>
-                <td>
-                    <a href="visualizar-instalacao/?id={{ concluida.id }}">Detalhes</a>
-                </td>
             </tr>
           {% endfor %}
 
