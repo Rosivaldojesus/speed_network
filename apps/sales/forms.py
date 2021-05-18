@@ -100,13 +100,9 @@ class InstalacaoFinalizarForm(forms.ModelForm):
             'material_utilizado',
 
             'data_finalizacao',
+            'funcionario_instalacao',
             'observacao_instalacao',
                   ]
-        required = (
-            'material_utilizado',
-
-        )
-
         widgets = {
             'data_instalacao': forms.DateInput(attrs={'type': 'date'}),
             'hora_instalacao': forms.TimeInput(attrs={'type': 'time'}),
@@ -114,12 +110,21 @@ class InstalacaoFinalizarForm(forms.ModelForm):
             'data_finalizacao': forms.DateInput(attrs={'type': 'date'}),
 
         }
+    funcionario_instalacao = forms.ModelChoiceField(
+        queryset=User.objects.filter(id__in=['12','13','14']),
 
-    data_finalizacao = forms.DateField(
-        widget=forms.DateInput(attrs={"type":"date"})
+        label='Funcionário instalação',
+        widget=forms.Select
     )
-
+    data_finalizacao = forms.DateField(
+        widget=forms.DateInput(attrs={"type": "date"})
+    )
     concluido = forms.BooleanField(label='Marque para finalizar instalação.')
+
+
+
+
+
 
     
 
