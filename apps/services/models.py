@@ -29,6 +29,7 @@ class Servico(models.Model):
     status_concluido = models.BooleanField(default=False, verbose_name='Concluído')
     data_finalizacao = models.DateField(blank=True, null=True, verbose_name='Data da conclusão')
 
+
     class Meta:
         verbose_name_plural = 'Serviços'
 

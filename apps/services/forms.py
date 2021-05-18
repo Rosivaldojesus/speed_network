@@ -70,6 +70,9 @@ class FinalizarServicoForm(forms.ModelForm):
             'hora_agendada': forms.TimeInput(attrs={'type': 'time'}),
         }
 
+    data_finalizacao = forms.DateField(
+        widget=forms.DateInput(attrs={"type": "date"})
+    )
     status_concluido = forms.BooleanField(label='Marque aqui para finalizar.')
     def clean_status_agendada(self):
         agendado = self.clean_status_agendada('agendado')
