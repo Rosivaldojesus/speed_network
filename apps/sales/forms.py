@@ -98,7 +98,6 @@ class InstalacaoFinalizarForm(forms.ModelForm):
         fields = [
             'concluido',
             'material_utilizado',
-
             'data_finalizacao',
             'funcionario_instalacao',
             'observacao_instalacao',
