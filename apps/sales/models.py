@@ -28,8 +28,9 @@ class Instalacao(models.Model):
     data_instalacao = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True, verbose_name='Data da Instalação')
     hora_instalacao = models.TimeField(auto_now_add=False, auto_now=False, blank=True, null=True, verbose_name='Hora da Instalação')
     material_utilizado = models.TextField(blank=True, null=True, verbose_name='Material utilizado')
-    funcionario_instalacao = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null= True)
+    funcionario_instalacao = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
     data_concluido = models.DateTimeField(null=True, blank=True)
+    data_finalizacao = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True, verbose_name='Data da Finalização')
     boleto_entregue = models.BooleanField(default=False)
     observacao_instalacao = models.TextField(blank=True, null=True, verbose_name='Observação')
 
