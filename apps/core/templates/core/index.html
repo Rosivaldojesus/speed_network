@@ -155,7 +155,7 @@
                     data: {
                       labels: [
                         {% for data in data %}
-                        '{{ data.data_instalacao |date:" d/m/Y"}}',
+                        '{{ data.data_finalizacao |date:" d/m/Y"}}',
                         {% endfor %}
                         ],
                       datasets: [{
