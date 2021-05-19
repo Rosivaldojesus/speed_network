@@ -33,9 +33,9 @@ def Index(request):
 
 
 
-    data = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate(number=Count('id')).order_by('data_finalizacao')[:4]
+    data = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate(number=Count('id')).order_by('data_finalizacao')[:30]
     #data =  Order.objects.filter().extra({'day':"Extract(day from created)"}).values_list('day').annotate(Count('id'))
-    dataServico = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('id')).order_by('data_finalizacao')[:4]
+    dataServico = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('id')).order_by('data_finalizacao')[:30]
 
 
 
