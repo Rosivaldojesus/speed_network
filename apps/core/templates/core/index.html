@@ -112,7 +112,7 @@
             </div>
         </div>
 
-
+        <!--
       <section>
         <div class="card-deck mt-4">
           <div class="card border-0">
@@ -155,10 +155,17 @@
           </div>
         </div>
       </section>
-
+      -->
 
 
       <section>
+
+        <div class="mt-4">
+          <h5>Serviços diários </h5>
+          <hr>
+            </a>
+          </h2>
+        </div>
         <!DOCTYPE html>
             <html>
             <head>
@@ -178,7 +185,7 @@
                 title: ""
               },
               axisY: {
-                title: "Oil Filter - Units",
+                title: "Instalaçãoes",
                 titleFontColor: "#4F81BC",
                 lineColor: "#4F81BC",
                 labelFontColor: "#4F81BC",
@@ -186,7 +193,7 @@
                 includeZero: true
               },
               axisY2: {
-                title: "Clutch - Units",
+                title: "Manutenções",
                 titleFontColor: "#C0504E",
                 lineColor: "#C0504E",
                 labelFontColor: "#C0504E",
@@ -204,7 +211,7 @@
                 type: "column",
                 name: "Intalações",
                 showInLegend: true,      
-                yValueFormatString: "#,##0.# Units",
+                yValueFormatString: "#,##0.#",
                 dataPoints: [
                 {% for data in data %}
                   { label: "{{ data.data_finalizacao |date:" d/m/Y"}}",  y: {{ data.number}} },
@@ -216,7 +223,7 @@
                 name: "Manutenções",
                 axisYType: "secondary",
                 showInLegend: true,
-                yValueFormatString: "#,##0.# Units",
+                yValueFormatString: "#,##0.#",
                 dataPoints: [
                 {% for data in dataServico %}
                 { label: "{{ dataServico.data_finalizacao |date:" d/m/Y"}}",  y: {{ data.number}} },
