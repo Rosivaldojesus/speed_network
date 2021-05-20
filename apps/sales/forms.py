@@ -123,7 +123,11 @@ class InstalacaoFinalizarForm(forms.ModelForm):
 
 
 
-
+class BoletoEntregueForm(forms.ModelForm):
+    class Meta:
+        model = Instalacao
+        fields = ['boleto_entregue']
+    boleto_entregue = forms.BooleanField(label='Marque para finalizar boleto.')
 
     
 

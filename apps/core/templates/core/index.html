@@ -82,21 +82,21 @@
                 <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white">Ver todos</a>
               </div>
             </div>
-            <!--
+            
             <div class="card border-dark" align="center">
               <div class="card-group">
                 <div class="card border-0">
                   <h5>Finalizados sem boletos</h5>
                 </div>
                 <div class="card border-0">
-                  <div class="display-4"><strong>{{ quant_instalacao_concluida }}</strong></div>
+                  <div class="display-4"><strong>{{ quant_instalacao_sem_boleto }}</strong></div>
                 </div>
               </div>
               <div class="card-footer border-dark">
-                <a href="vendas/instalacao-concluida/" class="btn btn-dark">Ver todos</a>
+                <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark">Ver todos</a>
               </div>
             </div>
-          -->
+          
             <div class="card border-success" align="center">
               <div class="card-group">
                 <div class="card border-0">
@@ -250,6 +250,15 @@
             <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
             </body>
             </html>
+      </section>
+
+    Testes a partir daqui
+      <section>
+
+        {% for insta in instalacao %}
+          {{ insta.quantidade_instalacao }}
+        {% endfor %}
+
       </section>
 
 

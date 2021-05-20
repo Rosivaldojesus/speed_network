@@ -1,6 +1,8 @@
 from ckeditor.fields import RichTextField
 from django.db import models
 from ..components.models import FabricanteEquipamentos, ModelosEquipamentos
+from ..sales.models import Instalacao
+from ..services.models import Servico
 
 # Create your models here.
 class Manuais(models.Model):
@@ -43,4 +45,15 @@ class SenhasPorEquipamentos(models.Model):
     def __str__(self):
         return "{}".format(self.equipamento)
 
+
+
+class GerarResultadosDiarios(models.Model):
+    quantidade_instalacao = models.ForeignKey(Instalacao, on_delete=models.DO_NOTHING)
+    quantidade_servico = models.ForeignKey(Servico, on_delete=models.DO_NOTHING)
+
+    class Meta:
+        verbose_name_plural = 'Gerar Resultados Diários'
+
+    def __str__(self):
+        return "{}".format(self.quantidade_servico)
 

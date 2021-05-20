@@ -5,7 +5,7 @@ from .models import PlanosInternet
 
 from .models import Instalacao
 from .forms import InstalacaoCreateForm, InstalacaoUpdateForm,\
-    InstalacaoAgendarForm, InstalacaoFinalizarForm
+    InstalacaoAgendarForm, InstalacaoFinalizarForm, BoletoEntregueForm
 
 
 # Create your views here.
@@ -109,8 +109,11 @@ def InstalacaoSemBoleto(request):
 
 
 def InstalacaoFinalizadaSemBoleto(request):
-    concluidas = Instalacao.objects.filter(concluido='True')
-    return render(request, 'sales/instalacao-finalizada-sem-boleto.html', {'concluidas':concluidas})
+    concluidas = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False')
+    quant_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
+    return render(request, 'sales/instalacao-finalizada-sem-boleto.html', {'concluidas':concluidas,
+                                                                           'quant_sem_boleto': quant_sem_boleto,
+                                                                           })
 
 
 def InstalacaoFinalizar(request, id=None):
@@ -123,7 +126,15 @@ def InstalacaoFinalizar(request, id=None):
         return redirect('/vendas/')
     return render(request, 'sales/finalizar-instalacao.html', {'form': form})
 
-
+def FinalizarEntregaBoleto(request, id=None):
+    boleto = get_object_or_404(Instalacao, id=id)
+    form = BoletoEntregueForm(request.POST or None, instance=boleto)
+    if form.is_valid():
+        obj = form.save()
+        obj.save()
+        messages.success(request, 'Boleto finalizado com sucesso.')
+        return redirect('/vendas/')
+    return render(request, 'sales/finalizar-boleto.html', {'form': form})
 
 '''
 

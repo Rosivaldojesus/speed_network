@@ -6,6 +6,7 @@ from django.shortcuts import render
 from ..sales.models import Instalacao
 from ..services.models import Servico
 from ..core.models import Manuais, SenhasEquipamentos, SenhasPorEquipamentos
+from .models import GerarResultadosDiarios
 
 
 from django.db.models import Count
@@ -14,8 +15,6 @@ from django.db.models import Count
 # Create your views here.
 def login(request):
     return render(request, 'login.html')
-
-
 
 
 
@@ -28,7 +27,8 @@ def Index(request):
 
     quant_instalacao_aberta = Instalacao.objects.filter(status_agendada='False').filter(concluido='False').count()
     quant_instalacao_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
-    quant_instalacao_concluida = Instalacao.objects.filter(concluido='True').count()
+    quant_instalacao_concluida = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='True').count()
+    quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
 
 
 
@@ -39,6 +39,7 @@ def Index(request):
 
 
 
+
     return render(request, 'core/index.html',{'pendentes':pendentes,
 
                                             'quant_servico_aberto': quant_servico_aberto,
@@ -46,13 +47,12 @@ def Index(request):
                                               'quant_servico_finalizados': quant_servico_finalizados,
 
                                               'quant_instalacao_aberta': quant_instalacao_aberta,
-                                              'quant_instalacao_agendada':quant_instalacao_agendada,
-                                              'quant_instalacao_concluida':quant_instalacao_concluida,
+                                              'quant_instalacao_agendada': quant_instalacao_agendada,
+                                              'quant_instalacao_concluida': quant_instalacao_concluida,
+                                              'quant_instalacao_sem_boleto': quant_instalacao_sem_boleto,
 
                                               'data': data,
                                               'dataServico': dataServico,
-
-
 
                                               })
 

@@ -5,7 +5,7 @@
 <div class="container">
 
     <div class="mt-4">
-        <h5 class="mt-3 mb-3"><span class="badge badge-dark badge-pill">{{quant_concluida}} </span> Instalações finalizadas sem boleto </h5>
+        <h5 class="mt-3 mb-3"><span class="badge badge-dark badge-pill">{{ quant_sem_boleto }} </span> Instalações finalizadas sem boleto </h5>
     </div>
 
 
@@ -31,6 +31,7 @@
                 <th scope="col">Bairro</th>
                 <th scope="col">Rua</th>
                 <th scope="col">Nº</th>
+                <th>Boleto</th>
                 <th>Detalhes</th>
             </tr>
           </thead>
@@ -42,7 +43,10 @@
                 <td>{{ concluida.rua_cliente }}</td>
                 <td>{{ concluida.numero_endereco_cliente }}</td>
                 <td>
-                    <a href="visualizar-instalacao/?id={{ concluida.id }}">Detalhes</a>
+                    <a href="/vendas/finalizar-boleto/{{ concluida.id }}">Marcar Boleto</a>
+                </td>
+                <td>
+                    <a href="/vendas/instalacao-concluida/visualizar-instalacao/?id={{ concluida.id }}">Detalhes</a>
                 </td>
             </tr>
           {% endfor %}

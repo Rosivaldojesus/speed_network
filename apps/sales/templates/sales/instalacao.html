@@ -7,7 +7,6 @@
         <a class="btn btn-primary" href="cadastro-instalacao/">Adicionar Instalação</a>
     </div>
 
-
     <!-- Messagens -->
     {% if messages %}
     {% for message in messages %}
@@ -25,7 +24,7 @@
       <div class="card border-danger" align="center">
         <div class="card-group">
           <div class="card border-0">
-            <h4>Aberto</h4>
+            <h5>Aberto</h5>
           </div>
           <div class="card border-0">
             <div class="display-4"><strong>{{quant_aberta}}</strong></div>
@@ -38,7 +37,7 @@
       <div class="card border-warning" align="center">
         <div class="card-group">
           <div class="card border-0">
-            <h4>Agendado</h4>
+            <h5>Agendado</h5>
           </div>
           <div class="card border-0">
             <div class="display-4"><strong>{{quant_agendada}}</strong></div>
@@ -48,10 +47,26 @@
           <a href="instalacao-agendada/" class="btn btn-warning text-white">Ver todos</a>
         </div>
       </div>
+
+      <div class="card border-dark" align="center">
+        <div class="card-group">
+          <div class="card border-0">
+            <h5>Finalizados sem boleto</h5>
+          </div>
+          <div class="card border-0">
+            <div class="display-4"><strong>{{quant_concluida}}</strong></div>
+          </div>
+        </div>
+        <div class="card-footer border-dark">
+          <a href="instalacao-finalizada-sem-boleto/" class="btn btn-dark">Ver todos</a>
+        </div>
+      </div>
+
+
       <div class="card border-success" align="center">
         <div class="card-group">
           <div class="card border-0">
-            <h4>Finalizados</h4>
+            <h5>Finalizados</h5>
           </div>
           <div class="card border-0">
             <div class="display-4"><strong>{{quant_concluida}}</strong></div>
