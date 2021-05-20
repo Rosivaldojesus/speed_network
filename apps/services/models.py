@@ -1,5 +1,5 @@
 from django.db import models
-from ckeditor.fields import RichTextField
+from django.contrib.auth.models import User
 
 # Create your models here.
 from django.utils import timezone
@@ -28,6 +28,7 @@ class Servico(models.Model):
     material_utilizado = models.TextField(blank=True, null=True, verbose_name='Material utilizado')
     status_concluido = models.BooleanField(default=False, verbose_name='Concluído')
     data_finalizacao = models.DateField(blank=True, null=True, verbose_name='Data da conclusão')
+    funcionario_servico = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
 
 
     class Meta:
