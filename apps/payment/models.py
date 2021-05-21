@@ -34,13 +34,12 @@ class OrigemValores(models.Model):
 
 
 class Pagamento(models.Model):
-    motivo_pagamento = models.CharField(max_length=255)
+    motivo_pagamento = models.CharField(max_length=255, verbose_name='Motivo do pagamento')
     valor_pagamento = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     origem_valor_pagamento = models.ForeignKey(OrigemValores, on_delete=models.DO_NOTHING)
     tipo_custo_pagamento = models.ForeignKey(TipoCusto, on_delete=models.DO_NOTHING)
     data_pagamento = models.DateField()
     categoria = models.ForeignKey(CategoriaPagamento, on_delete=models.DO_NOTHING)
-    observacao_pagamento = models.TextField()
 
 
     class Meta:
