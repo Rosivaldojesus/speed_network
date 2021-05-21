@@ -11,5 +11,19 @@ admin.site.register(OrigemValores)
 
 
 class PagamentoAdmin(admin.ModelAdmin):
-    list_display = ('id','motivo_pagamento')
+    list_display = ('id',
+                    'motivo_pagamento',
+                    'valor_pagamento',
+                    'origem_valor_pagamento',
+                    'tipo_custo_pagamento',
+                    'data_pagamento',
+                    'categoria'
+                    )
+    list_filter = [
+                    'origem_valor_pagamento',
+                    'tipo_custo_pagamento',
+                    'data_pagamento',
+                    'categoria']
+    list_display_links = ['motivo_pagamento']
+    ordering = ['categoria',  ]
 admin.site.register(Pagamento, PagamentoAdmin)

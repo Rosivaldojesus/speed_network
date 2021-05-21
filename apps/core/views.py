@@ -9,7 +9,7 @@ from ..core.models import Manuais, SenhasEquipamentos, SenhasPorEquipamentos
 from .models import GerarResultadosDiarios
 
 
-from django.db.models import Count
+from django.db.models import Count, Sum
 
 
 # Create your views here.

@@ -2,11 +2,19 @@ from django.shortcuts import render, redirect
 from .models import Pagamento
 from .forms import CadastarPagamentoForm
 from django.contrib import messages
-
+from django.db.models import Count, Sum
+from django.db.models.functions import TruncMonth
 # Create your views here.
 def Index(request):
+    #custoPorCategoria = Pagamento.objects.values('categoria').annotate(number=Sum('valor_pagamento'))
+
+
+
+
     pagamentos = Pagamento.objects.all()
-    return render(request, 'payment/index.html', {'pagamentos':pagamentos})
+    return render(request, 'payment/index.html', {'pagamentos':pagamentos,
+                                                  'custoPorCategoria': custoPorCategoria,
+                                                })
 
 def CadastrarPagamento(request):
     form = CadastarPagamentoForm(request.POST)
