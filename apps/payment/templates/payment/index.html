@@ -20,9 +20,24 @@
         <a href="cadastrar-pagamento/" class="btn btn-primary">+ Adicionar pagamento </a>
     </div>
 
-    {% for dia in dia %}
 
-    {{ dia.data_pagamento }} :R$: {{ dia.number }}<br>
+
+<!-- Custos Diários-->
+<h6> Custos diários</h6>
+
+
+    {% for mes in mes %}
+      {{ mes.month }} :R$: {{ mes.count }}<br>
+    {% endfor %}
+
+
+
+<!-- Custos Mensais-->
+<hr>
+<h6> Custos Mensais </h6>
+    {% for mes in mes %}
+
+      {{ mes.month }} :R$: {{ mes.count }}<br>
 
     {% endfor %}
 
