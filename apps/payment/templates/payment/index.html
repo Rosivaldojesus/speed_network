@@ -26,14 +26,13 @@
 <h6> Custos diários</h6>
 
 
-    {% for mes in mes %}
-      {{ mes.month }} :R$: {{ mes.count }}<br>
+    {% for dia in dia %}
+      {{ dia.data_pagamento }} :R$: {{ dia.number }}<br>
     {% endfor %}
 
 
-
-<!-- Custos Mensais-->
 <hr>
+<!-- Custos Mensais-->
 <h6> Custos Mensais </h6>
     {% for mes in mes %}
 

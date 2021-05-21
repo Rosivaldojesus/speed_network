@@ -9,11 +9,12 @@ from django.db.models.functions import ExtractMonth
 # Create your views here.
 def Index(request):
 
-    #dia = Pagamento.objects.filter().values('data_pagamento').annotate(number=Sum('valor_pagamento')).order_by('-data_pagamento')
+    dia = Pagamento.objects.filter().values('data_pagamento').annotate(number=Sum('valor_pagamento')).order_by('-data_pagamento')
 
     mes = Pagamento.objects.annotate(month=ExtractMonth('data_pagamento')).values('month').annotate(count=Sum('valor_pagamento')).values('month','count')
     pagamentos = Pagamento.objects.all()
     return render(request, 'payment/index.html', {'pagamentos':pagamentos,
+                                                'dia': dia,
                                                   'mes': mes,
                                                 })
 
