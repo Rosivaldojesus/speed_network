@@ -10,10 +10,13 @@ def Index(request):
 
 
 
+    dia = Pagamento.objects.filter().values('data_pagamento').annotate(number=Sum('valor_pagamento')).order_by('-data_pagamento')
+
+
 
     pagamentos = Pagamento.objects.all()
     return render(request, 'payment/index.html', {'pagamentos':pagamentos,
-                                                  'custoPorCategoria': custoPorCategoria,
+                                                  'dia': dia,
                                                 })
 
 def CadastrarPagamento(request):
