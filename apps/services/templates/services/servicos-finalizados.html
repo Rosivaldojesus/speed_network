@@ -9,44 +9,32 @@
   <h5 class="mt-3 mb-3"><span class="badge badge-success badge-pill">{{quant_finalizados}} </span> Serviços Finalizados</h5>
 
 
-  {% for finalizado in finalizados %}  
-  <div class="card mt-3 shadow border-success">
-    <div class="card-header ">
+  <table class="table">
+    <thead>
+      <tr>
+        
+        <th scope="col">Setor</th>
+        <th scope="col">Data</th>
+        <th scope="col">Detalhes</th>
+        <th scope="col">Técnico</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for finalizado in finalizados %} 
+      <tr>
+        
+        <td>{{ finalizado.categoria }}</td>
+        <td>{{ finalizado.data_finalizacao }}</td>
+        <td>
+          <a href="/servicos/visualizar-servico/?id={{ finalizado.id }}">Visualizar</a>
+      </td>
+      <td>{{ finalizado.funcionario_servico }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="card">
-              <div class="card-body shadow-sm">
-
-                <strong>Setor:</strong> {{ finalizado.categoria }}
-
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="card">
-              <div class="card-body shadow-sm">
-
-              <strong>Data de conclusão: </strong>  {{ finalizado.data_finalizacao }}
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-    </div>
-    <div class="card-body">
-      {{ finalizado.servico_para_executar }}
-      <div align="right">
-
-          <td>
-              <a href="/servicos/visualizar-servico/?id={{ finalizado.id }}" class="btn btn-success">Visualizar</a>
-          </td>
-
-      </div>
-    </div>
-  </div>
-  {% endfor %}
+     
 </div>
 </div>
 </div>
