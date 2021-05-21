@@ -1,9 +1,11 @@
 from django.contrib import admin
-from .models import CategoriaPagamento, Pagamento
+from .models import CategoriaPagamento, Pagamento, TipoCusto, OrigemValores
 
 # Register your models here.
 
 admin.site.register(CategoriaPagamento)
+admin.site.register(TipoCusto)
+admin.site.register(OrigemValores)
 
 
 
