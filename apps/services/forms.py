@@ -1,9 +1,6 @@
-from time import timezone
 
 from django import forms
-from django.template.backends import django
 from django.contrib.auth.models import User
-
 from .models import Servico
 
 

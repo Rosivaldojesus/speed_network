@@ -13,17 +13,39 @@ class CategoriaPagamento(models.Model):
         return "{}".format(self.nome_categoria)
 
 
+class TipoCusto(models.Model):
+    tipo_custo = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "Tipo de custo"
+
+    def __str__(self):
+        return "{}".format(self.tipo_custo)
+
+class OrigemValores(models.Model):
+    origem_valor = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "Origem do valor"
+
+    def __str__(self):
+        return "{}".format(self.origem_valor)
+
+
 
 class Pagamento(models.Model):
-    nome_pagamento = models.CharField(max_length=255)
+    motivo_pagamento = models.CharField(max_length=255)
     valor_pagamento = models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    data_pagamento = models.DateTimeField()
-    data_lancamento = models.DateTimeField(default=timezone.now)
+    origem_valor_pagamento = models.ForeignKey(OrigemValores, on_delete=models.DO_NOTHING)
+    tipo_custo_pagamento = models.ForeignKey(TipoCusto, on_delete=models.DO_NOTHING)
+    data_pagamento = models.DateField()
     categoria = models.ForeignKey(CategoriaPagamento, on_delete=models.DO_NOTHING)
-    motivo_pagamento = RichTextField()
+    observacao_pagamento = models.TextField()
+
 
     class Meta:
         verbose_name_plural = 'Pagamento'
 
     def __str__(self):
-        return "{}".format(self.nome_pagamento)
+        return "{}".format(self.motivo_pagamento)
+

@@ -87,3 +87,10 @@ def SenhasPorEquipamento(request):
             Q(sn_equipamento__icontains=queryset)
         )
     return render(request, 'core/senhas-por-equipamento.html', {'senhasPorEquipamentos': senhasPorEquipamentos})
+
+
+#------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------
+def InstalacoesDiarias(request):
+    return render(request, 'instalacoes-diarias.html')

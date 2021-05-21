@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import Index
 from .views import ManuaisServicos, login
-from .views import Senhas, SenhasEquipamentos, SenhasPorEquipamento, ManuaisVisualizacao
+from .views import Senhas, SenhasPorEquipamento, ManuaisVisualizacao
 
 urlpatterns = [
     path('', Index),

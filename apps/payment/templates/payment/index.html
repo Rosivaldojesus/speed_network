@@ -6,6 +6,16 @@
 
     <h2>Pagamentos</h2>
 
+     {% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+  {% endif %}
+
+
+
     <div align="right">
         <a href="cadastrar-pagamento/" class="btn btn-primary">+ Adicionar pagamento </a>
     </div>
@@ -14,18 +24,22 @@
         <table class="table table-sm">
           <thead class="table-dark">
             <tr>
-                <th>ID</th>
-                 <th>Nome</th>
-                <th scope="col">Valor</th>
+                <th>Motivo</th>
+                 <th>Valor</th>
+                <th scope="col">Origem</th>
+                <th scope="col">Tipo custo</th>
+                <th scope="col">Data</th>
                 <th scope="col">Categoria</th>
             </tr>
           </thead>
           <tbody>
             {% for pagamento in pagamentos %}
             <tr>
-                <td>{{ pagamento.id }}</td>
-                <td>{{ pagamento.nome_pagamento }}</td>
-                <td>R$: {{ pagamento.valor_pagamento }}</td>
+                <td>{{ pagamento.motivo_pagamento }}</td>
+                <td>{{ pagamento.valor_pagamento }}</td>
+                <td>R$: {{ pagamento.origem_valor_pagamento }}</td>
+                <td>{{ pagamento.tipo_custo_pagamento }}</td>
+                <td>{{ pagamento.data_pagamento | date:" d/m/Y" }}</td>
                 <td>{{ pagamento.categoria }}</td>
             </tr>
             {% endfor %}
