@@ -12,3 +12,4 @@ class CadastarPagamentoForm(forms.ModelForm):
                  'categoria',
                  ]
 
+    data_pagamento = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))

@@ -6,13 +6,8 @@ from django.db.models import Count, Sum
 from django.db.models.functions import TruncMonth
 # Create your views here.
 def Index(request):
-    #custoPorCategoria = Pagamento.objects.values('categoria').annotate(number=Sum('valor_pagamento'))
-
-
 
     dia = Pagamento.objects.filter().values('data_pagamento').annotate(number=Sum('valor_pagamento')).order_by('-data_pagamento')
-
-
 
     pagamentos = Pagamento.objects.all()
     return render(request, 'payment/index.html', {'pagamentos':pagamentos,
