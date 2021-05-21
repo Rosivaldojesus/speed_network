@@ -38,7 +38,7 @@ def InstalacaoAgendada(request):
                                                               'quant_agendada':quant_agendada})
 
 def InstalacaoConcluida(request):
-    concluidas = Instalacao.objects.filter(concluido='True')
+    concluidas = Instalacao.objects.filter(concluido='True').order_by('-id')
     quant_concluida = Instalacao.objects.filter(concluido='True').count()
     return render(request, 'sales/instalacao-concluida.html', {'concluidas': concluidas,
                                                                'quant_concluida':quant_concluida
