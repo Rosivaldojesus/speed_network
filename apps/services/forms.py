@@ -67,7 +67,7 @@ class FinalizarServicoForm(forms.ModelForm):
         }
 
     funcionario_instalacao = forms.ModelChoiceField(
-        queryset=User.objects.filter(id__in=['12', '13', '14']),
+        queryset=User.objects.filter(id__in=['2','12', '13', '14']),
 
         label='Funcionário serviço',
         widget=forms.Select

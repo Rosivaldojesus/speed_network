@@ -1,4 +1,7 @@
+from datetime import date
+
 from django.shortcuts import render, redirect
+from django.db.models import Q
 from .models import Pagamento
 from .forms import CadastarPagamentoForm
 from django.contrib import messages
@@ -31,3 +34,16 @@ def CadastrarPagamento(request):
 
 def DashboardPagamentos(request):
     return render(request, 'payment/dashboard-pagamentos.html')
+
+def TodosPagamentos(request):
+    pagamentos = Pagamento.objects.all()
+
+    inicial = date(2021, 5, 20)
+    final = date(2021, 5, 22)
+
+
+    pagamentos = Pagamento.objects.filter(data_pagamento__range=[inicial, final])
+
+
+
+    return render(request, 'payment/todos_pagamentos.html', {'pagamentos': pagamentos})

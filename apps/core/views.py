@@ -1,12 +1,10 @@
-from select import select
-
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Count
 from django.shortcuts import render
 from ..sales.models import Instalacao
 from ..services.models import Servico
 from ..core.models import Manuais, SenhasEquipamentos, SenhasPorEquipamentos
-from .models import GerarResultadosDiarios
+
 
 
 from django.db.models import Count, Sum

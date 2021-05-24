@@ -25,5 +25,7 @@ class PagamentoAdmin(admin.ModelAdmin):
                     'data_pagamento',
                     'categoria']
     list_display_links = ['motivo_pagamento']
-    ordering = ['categoria',  ]
+    search_fields = ['motivo_pagamento',
+                    'valor_pagamento',
+                    ]
 admin.site.register(Pagamento, PagamentoAdmin)
