@@ -76,7 +76,7 @@ def EditarServicoAgendado(request, id=None):
 
 
 def ServicosAgendados(request):
-    agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False')
+    agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').order_by('data_agendada')
     quant_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
     return render(request, 'services/servicos-agendados.html', {'agendados': agendados,
                                                                 'quant_agendados':quant_agendados})

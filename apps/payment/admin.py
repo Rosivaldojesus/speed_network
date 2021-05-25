@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import CategoriaPagamento, Pagamento, TipoCusto, OrigemValores
+from .models import AgendaPagamento
 
 # Register your models here.
 
@@ -8,7 +9,10 @@ admin.site.register(TipoCusto)
 admin.site.register(OrigemValores)
 
 
+class AgendaPagamentoForm(admin.ModelAdmin):
+    list_display = ('id', 'motivo_pagamento', 'categoria', 'data_pagamento')
 
+admin.site.register(AgendaPagamento, AgendaPagamentoForm)
 
 class PagamentoAdmin(admin.ModelAdmin):
     list_display = ('id',

@@ -48,3 +48,15 @@ class Pagamento(models.Model):
     def __str__(self):
         return "{}".format(self.motivo_pagamento)
 
+
+class AgendaPagamento(models.Model):
+    motivo_pagamento = models.CharField(max_length=255, verbose_name='Motivo do pagamento')
+    data_pagamento = models.DateField()
+    categoria = models.ForeignKey(CategoriaPagamento, on_delete=models.DO_NOTHING)
+
+    class Meta:
+        verbose_name_plural = ' Agenda Pagamento'
+
+    def __str__(self):
+        return "{}".format(self.motivo_pagamento)
+

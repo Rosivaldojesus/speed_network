@@ -3,7 +3,6 @@ from .models import Instalacao
 from django.contrib.auth.models import User
 
 
-
 class InstalacaoCreateForm(forms.ModelForm):
     class Meta:
         model = Instalacao
@@ -110,14 +109,9 @@ class InstalacaoFinalizarForm(forms.ModelForm):
 
         }
     funcionario_instalacao = forms.ModelChoiceField(
-        queryset=User.objects.filter(id__in=['12','13','14']),
-
-        label='Funcionário instalação',
-        widget=forms.Select
-    )
-    data_finalizacao = forms.DateField(
-        widget=forms.DateInput(attrs={"type": "date"})
-    )
+        queryset=User.objects.filter(id__in=['12','13','14']),label='Funcionário instalação',
+        widget=forms.Select)
+    data_finalizacao = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
     concluido = forms.BooleanField(label='Marque para finalizar instalação.')
 
 

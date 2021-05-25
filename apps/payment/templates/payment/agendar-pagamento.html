@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block main %}
+     <div class="container">
+         <h5 class="mt-2">Agendar Pagamento</h5>
+         <form action="" method="post"> {% csrf_token %}
+
+            <div class="mt-10">
+                {{ form | crispy }}
+            </div>
+
+				<input type="submit" class="btn btn-block btn-primary" value="Agendar pagamento">
+		 </form>
+     </div>
+
+
+
+{% endblock %}
