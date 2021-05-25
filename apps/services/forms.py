@@ -25,8 +25,11 @@ class AgendarServicoForm(forms.ModelForm):
             'data_agendada': forms.DateInput(attrs={'type': 'date'}),
             'hora_agendada': forms.TimeInput(attrs={'type': 'time'}),
         }
+
+
     status_agendado = forms.BooleanField(label='Marque para agendar.')
-    data_agendada = forms.DateInput()
+    data_agendada = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
+    hora_agendada = forms.TimeField(widget=forms.DateInput(attrs={"type": "time"}))
 
 
     def clean_status_agendada(self):

@@ -52,7 +52,17 @@
       </div>
     </div>
   </div>
+  <!--INFORMAÇÕES DOS SERVIÇOS DIÁRIOS-->
+  <div class="card">
+    <div class="card-body">
+      {% for servicosDiarios in servicosDiarios %}
+        {{ servicosDiarios.data_finalizacao | date:'d-m-Y' }}: {{ servicosDiarios.number }}<br>
 
+      {% endfor %}
+      <hr>
+      {{ servicosMensais.month }}: {{ servicosMensais.count }}<br>
+    </div>
+  </div>
 
   <!-- STATUS DOS INSTALAÇÃO -->
         <h5 class="mt-3">Status Instalações</h5>

@@ -6,7 +6,7 @@ from django.utils import timezone
 
 
 class CategoriaServico(models.Model):
-    nome_categoria = models.CharField(max_length=255, verbose_name= 'Categoria do serviço')
+    nome_categoria = models.CharField(max_length=255, verbose_name='Categoria do serviço')
 
     class Meta:
         verbose_name_plural = 'Categoria dos serviços'
@@ -18,7 +18,7 @@ class CategoriaServico(models.Model):
 class Servico(models.Model):
     contato_servico = models.CharField(max_length=255, blank=True, null=True, verbose_name='Nome do cliente')
     endereco_servico = models.TextField(blank=True, null=True, verbose_name='Endereço do serviço')
-    servico_para_executar = models.TextField(blank=True, null=True,verbose_name='Serviço a fazer')
+    servico_para_executar = models.TextField(blank=True, null=True, verbose_name='Serviço a fazer')
     servico_executado = models.TextField(blank=True, null=True, verbose_name='Serviço executado')
     categoria = models.ForeignKey(CategoriaServico, on_delete=models.DO_NOTHING, verbose_name='Categoria do serviço')
     data_criacao = models.DateTimeField(default=timezone.now, verbose_name='Data da criação')

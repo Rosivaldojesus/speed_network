@@ -4,6 +4,7 @@ from django.shortcuts import render
 from ..sales.models import Instalacao
 from ..services.models import Servico
 from ..core.models import Manuais, SenhasEquipamentos, SenhasPorEquipamentos
+from django.db.models.functions import ExtractMonth
 
 
 
@@ -28,6 +29,12 @@ def Index(request):
     quant_instalacao_concluida = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='True').count()
     quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
 
+    servicosDiarios = Servico.objects.filter(status_concluido='True').values('data_finalizacao')\
+                          .annotate(number=Count('id')).order_by('data_finalizacao')[:7]
+    servicosMensais = Servico.objects.annotate(month=ExtractMonth('data_finalizacao')).values('month').annotate(
+        count=Count('id')).values('month', 'count')[:7]
+
+
 
 
 
@@ -39,10 +46,9 @@ def Index(request):
 
 
     return render(request, 'core/index.html',{'pendentes':pendentes,
-
                                             'quant_servico_aberto': quant_servico_aberto,
-                                              'quant_servico_agendado': quant_servico_agendado,
-                                              'quant_servico_finalizados': quant_servico_finalizados,
+                                            'quant_servico_agendado': quant_servico_agendado,
+                                            'quant_servico_finalizados': quant_servico_finalizados,
 
                                               'quant_instalacao_aberta': quant_instalacao_aberta,
                                               'quant_instalacao_agendada': quant_instalacao_agendada,
@@ -51,6 +57,9 @@ def Index(request):
 
                                               'data': data,
                                               'dataServico': dataServico,
+
+                                              'servicosDiarios':servicosDiarios,
+                                              'servicosMensais':servicosMensais,
 
                                               })
 
