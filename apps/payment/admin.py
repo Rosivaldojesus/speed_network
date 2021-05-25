@@ -10,7 +10,7 @@ admin.site.register(OrigemValores)
 
 
 class AgendaPagamentoForm(admin.ModelAdmin):
-    list_display = ('id', 'motivo_pagamento', 'categoria', 'data_pagamento')
+    list_display = ('id', 'motivo_pagamento','valor_pagamento' ,'categoria', 'data_pagamento')
 
 admin.site.register(AgendaPagamento, AgendaPagamentoForm)
 
