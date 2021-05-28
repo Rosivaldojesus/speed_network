@@ -42,14 +42,14 @@ def Index(request):
     quant_servico_aberto = Servico.objects.filter(status_agendado='False').filter(status_concluido='False').count()
     quant_servico_agendado = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
     quant_servico_finalizados = Servico.objects.all().filter(status_concluido='True').count()
-    previsaoServico = Servico.objects.filter(status_agendado='True').values('data_agendada').annotate(number=Count('id')).order_by('data_agendada')
+    previsaoServico = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').values('data_agendada').annotate(number=Count('id')).order_by('data_agendada')
 
 
     quant_instalacao_aberta = Instalacao.objects.filter(status_agendada='False').filter(concluido='False').count()
     quant_instalacao_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
     quant_instalacao_concluida = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='True').count()
     quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
-    previsaoInstalacao = Instalacao.objects.filter(status_agendada='True').values('data_instalacao').annotate(number=Count('id')).order_by('data_instalacao')
+    previsaoInstalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').values('data_instalacao').annotate(number=Count('id')).order_by('data_instalacao')
 
 
     servicosDiarios = Servico.objects.filter(status_concluido='True').values('data_finalizacao')\
