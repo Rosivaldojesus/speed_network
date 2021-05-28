@@ -61,12 +61,34 @@
     {% endfor %}
   </div>
   -->
-  <h5>Previsão de Serviços</h5>
-  <div>
-    {% for previsaoServico in previsaoServico%}
-        {{ previsaoServico.data_agendada }}: {{ previsaoServico.number }}<br>
-    {% endfor %}
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Previsão de Serviços</h5>
+          <div>
+            {% for previsaoServico in previsaoServico%}
+                {{ previsaoServico.data_agendada }}: {{ previsaoServico.number }}<br>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Serviços concluídos</h5>
+          <div>
+            {% for servicoPorDia in servicoPorDia %}
+              {{ servicoPorDia.data_finalizacao }}: {{ servicoPorDia.number }}<br>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
 
 
 
