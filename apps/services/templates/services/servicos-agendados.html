@@ -30,7 +30,7 @@
             <div class="card">
               <div class="card-body shadow-sm">
 
-                <strong>Setor:</strong> {{ agendado.categoria}}
+                <strong>Data agendada: </strong>  {{ agendado.data_agendada | date:'d/m/Y' }} ás {{agendado.hora_agendada}}
 
               </div>
             </div>
@@ -39,7 +39,7 @@
             <div class="card">
               <div class="card-body shadow-sm">
 
-              <strong>Data agendada: </strong>  {{ agendado.data_agendada | date:'d/m/Y' }} ás {{agendado.hora_agendada}}
+                <strong>Setor:</strong> {{ agendado.categoria}}
 
               </div>
             </div>
@@ -53,9 +53,13 @@
       <p class="card-text"><strong>Onde: </strong>{{ agendado.endereco_servico}}</p>
       <div align="right">
         <tr>
+
+          {% if request.user.groups.all.0.name == "adm" %}
           <td>
               <a href="/servicos/editar-servico-agendado/{{ agendado.id }}" class="btn btn-warning">Editar</a>
           </td>
+          {% endif %}
+
           <td>
               <a href="/servicos/finalizar-servico/{{ agendado.id }}" class="btn btn-success">Finalizar</a>
           </td>

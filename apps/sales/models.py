@@ -33,6 +33,9 @@ class Instalacao(models.Model):
     data_finalizacao = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True, verbose_name='Data da Finalização')
     boleto_entregue = models.BooleanField(default=False)
     observacao_instalacao = models.TextField(blank=True, null=True, verbose_name='Observação')
+    instalacao_criado_por = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='instalacao_criado_por', blank=True, null=True)
+    instalacao_finalizado_por = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='instalacao_finalizado_por', blank=True, null=True)
+
 
     class Meta:
         verbose_name_plural = 'Instalação'

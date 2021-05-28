@@ -32,12 +32,6 @@ class AgendarServicoForm(forms.ModelForm):
     hora_agendada = forms.TimeField(widget=forms.DateInput(attrs={"type": "time"}))
 
 
-    def clean_status_agendada(self):
-        agendado = self.clean_status_agendada('agendado')
-        if agendado == False:
-            raise forms.ValidationError('Preencher o campo data')
-        return agendado
-
 
 
 
@@ -63,25 +57,24 @@ class FinalizarServicoForm(forms.ModelForm):
         fields = ['servico_executado',
                   'material_utilizado',
                   'data_finalizacao',
-                  'status_concluido',]
+                  'status_concluido',
+                  ]
         widgets = {
             'data_finalizacao': forms.DateInput(attrs={'type': 'date'}),
             'hora_agendada': forms.TimeInput(attrs={'type': 'time'}),
         }
 
-    funcionario_instalacao = forms.ModelChoiceField(
-        queryset=User.objects.filter(id__in=['2','3','12', '13', '14']).order_by('username'),
-
-        label='Funcionário serviço',
-        widget=forms.Select
-    )
-
+    status_concluido = forms.BooleanField(label='Marque para finalizar.')
     data_finalizacao = forms.DateField(
         widget=forms.DateInput(attrs={"type": "date"})
     )
 
 
-    status_concluido = forms.BooleanField(label='Marque aqui para finalizar.'),
+
+
+
+
+
 
 
 

@@ -40,6 +40,7 @@ class Pagamento(models.Model):
     tipo_custo_pagamento = models.ForeignKey(TipoCusto, on_delete=models.DO_NOTHING)
     data_pagamento = models.DateField()
     categoria = models.ForeignKey(CategoriaPagamento, on_delete=models.DO_NOTHING)
+    status_pago = models.BooleanField(default=False, verbose_name='Pago')
 
 
     class Meta:
@@ -54,6 +55,8 @@ class AgendaPagamento(models.Model):
     valor_pagamento = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     data_pagamento = models.DateField()
     categoria = models.ForeignKey(CategoriaPagamento, on_delete=models.DO_NOTHING)
+    status_pago = models.BooleanField(default=False, verbose_name='Pago')
+
 
     class Meta:
         verbose_name_plural = ' Agenda Pagamento'

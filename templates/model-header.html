@@ -1,86 +1,97 @@
 <div class="bg-light">
-    <section>
-    <div class="container">
-       <div>
-           <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
              </button>
+             
              <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            
                <a class="navbar-brand" href="/">Home</a>
+                 
                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-   <!--              <li class="nav-item active">-->
-   <!--                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-   <!--              </li>-->
+               
 
-                   <!--
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Estoque
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="/estoque/">Produtos</a>
-                          <a class="dropdown-item" href="/estoque/entrada-produtos/">Entradas</a>
-                          <a class="dropdown-item" href="/estoque/saida-produtos/">Saídas</a>
-                          <div class="dropdown-divider"></div>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                      </li>
-                      -->
+                
+                      {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
+                        <li class="nav-item">
+                          <a class="nav-link" href="/cto/">CTO</a>
+                       </li>
+                      {% endif %}
+                      
+                      
+                      {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
+                        <li class="nav-item">
+                           <a class="nav-link" href="/manuais/">Manuais</a>
+                        </li>
+                      {% endif %}
+
+                        
+
+                      {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
+                        <li class="nav-item">
+                           <a class="nav-link" href="/vendas/">Instalação</a>
+                        </li>
+                        {% elif request.user.groups.all.0.name == "Tecnico" or request.user.groups.all.0.name == "Venda" %}
+                        <li class="nav-item">
+                           <a class="nav-link" href="/vendas/">Instalação</a>
+                        </li>  
+                      {% endif %} 
+                      
+                    
+                                          
+                      {% if request.user.groups.all.0.name == "Master" %}
+                        <li class="nav-item">
+                          <a class="nav-link" href="/pagamentos/">Pagamentos</a>
+                        </li>
+                      {% endif %}
+
+                      
+                      {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master"  %}
+                        <li class="nav-item">
+                           <a class="nav-link" href="/servicos/">Serviços</a>
+                        </li> 
+                        {% elif request.user.groups.all.0.name == "Tecnico" %}
+                        <li class="nav-item">
+                           <a class="nav-link" href="/servicos/">Serviços</a>
+                        </li>   
+                      {% endif %}
+
+                    
+                      {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Senhas
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="/senhas/">Geral</a>
+                              <a class="dropdown-item" href="/senhas-por-equipamento/">Huawei Preta</a>
+                            </div>
+                        </li>
+                        {% elif request.user.groups.all.0.name == "tecnico" %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Senhas
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="/senhas/">Geral</a>
+                              <a class="dropdown-item" href="/senhas-por-equipamento/">Huawei Preta</a>
+                            </div>
+                        </li>  
+                
+                      {% endif %}                   
 
 
-
-                 <li class="nav-item">
-                   <a class="nav-link" href="/cto/">CTO</a>
+  
+                   <li class="nav-item">
+                   <a class="nav-link" href="/logout/">Sair</a>
                  </li>
 
-                 <li class="nav-item">
-                   <a class="nav-link" href="/vendas/">Instalação</a>
+
+                 <li>
+                  <small>BEM-VINDO(A), <strong>{{ request.user.get_short_name }}</strong></small>
                  </li>
-
-                 <li class="nav-item">
-                   <a class="nav-link" href="/manuais/">Manuais</a>
-                 </li>
-
-
-                   <!--
-                 <li class="nav-item">
-                   <a class="nav-link" href="/manuais/">Manuais</a>
-                 </li>
-                 -->
-
-                   <!--
-
-                 <li class="nav-item">
-                   <a class="nav-link" href="/pagamentos/">Pagamentos</a>
-                 </li>
-                 -->
-
-                 <li class="nav-item">
-                   <a class="nav-link" href="/servicos/">Serviços</a>
-                 </li>
-
-                   <!--
-                 <li class="nav-item">
-                   <a class="nav-link" href="/senhas/">Senhas</a>
-                 </li>
-                 -->
-
-                 <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Senhas
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="/senhas/">Geral</a>
-                          <a class="dropdown-item" href="/senhas-por-equipamento/">Huawei Preta</a>
-                        </div>
-                      </li>
-
-
-
-
-
-
                </ul>
 
                  <!--
@@ -92,6 +103,6 @@
              </div>
            </nav>
        </div>
-     </div>
-   </section>
+    </div>
+  </div>
 </div>

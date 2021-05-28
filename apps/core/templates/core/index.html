@@ -6,15 +6,14 @@
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<!-- ********************************************************************************************** -->
 
-
-
-
+  {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
   <!-- STATUS DOS SERVIÇOS -->
-  <div class="card border-0 mb-3 mt-3">
+    <div class="card border-0 mb-3 mt-3">
     <h5 class="card-header">Status Serviços</h5>
     <div class="card-body ">
       <div>
         <div class="card-deck ">
+
           <div class="card shadow-lg bg-danger">
             <div class="display-4 text-white pr-5  " align="right">
               <strong>{{ quant_servico_aberto }}</strong>
@@ -26,6 +25,7 @@
               <a href="servicos/servicos-abertos/" class="btn btn-danger">Ver todos</a>
             </div>
           </div>
+         
           <div class="card shadow-lg bg-warning">
             <div class="display-4 text-white pr-5 " align="right">
               <strong>{{ quant_servico_agendado }}</strong>
@@ -37,6 +37,7 @@
               <a href="servicos/servicos-agendados/" class="btn btn-warning text-white">Ver todos</a>
             </div>
           </div>
+
           <div class="card shadow-lg bg-success">
             <div class="display-4 text-white pr-5 " align="right">
               <strong>{{ quant_servico_finalizados }}</strong>
@@ -52,7 +53,142 @@
       </div>
     </div>
   </div>
-  <!--INFORMAÇÕES DOS SERVIÇOS DIÁRIOS-->
+
+  <div>
+    {% for servicoPorDia in servicoPorDia %}
+      {{ servicoPorDia.data_finalizacao }}: {{ servicoPorDia.number }}<br>
+    {% endfor %}
+  </div>
+
+    <!-- STATUS DOS INSTALAÇÃO -->
+    <h5 class="mt-3">Status Instalações</h5>
+    <div class="card-deck">
+
+
+      <div class="card border-danger" align="center">
+        <div class="card-group">
+          <div class="card border-0">
+            <h5>Aberto</h5>
+          </div>
+          <div class="card border-0">
+            <div class="display-4"><strong>{{ quant_instalacao_aberta }}</strong></div>
+          </div>
+        </div>
+        <div class="card-footer border-danger">
+          <a href="vendas/instalacao-aberta/" class="btn btn-danger">Ver todos</a>
+        </div>
+      </div>
+      
+
+
+      <div class="card border-warning" align="center">
+        <div class="card-group">
+          <div class="card border-0">
+            <h5>Agendado</h5>
+          </div>
+          <div class="card border-0">
+            <div class="display-4"><strong>{{ quant_instalacao_agendada }}</strong></div>
+          </div>
+        </div>
+        <div class="card-footer border-warning">
+          <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white">Ver todos</a>
+        </div>
+      </div>
+
+      <div class="card border-dark" align="center">
+        <div class="card-group">
+          <div class="card border-0">
+            <h5>Finalizados sem boletos</h5>
+          </div>
+          <div class="card border-0">
+            <div class="display-4"><strong>{{ quant_instalacao_sem_boleto }}</strong></div>
+          </div>
+        </div>
+        <div class="card-footer border-dark">
+          <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark">Ver todos</a>
+        </div>
+      </div>
+
+
+
+      <div class="card border-success" align="center">
+        <div class="card-group">
+          <div class="card border-0">
+            <h5>Finalizados</h5>
+          </div>
+          <div class="card border-0">
+            <div class="display-4"><strong>{{ quant_instalacao_concluida }}</strong></div>
+          </div>
+        </div>
+        <div class="card-footer border-success">
+          <a href="vendas/instalacao-concluida/" class="btn btn-success">Ver todos</a>
+        </div>
+      </div>
+  </div>
+
+  <div>
+
+    {% for instalacaoPorDia in instalacaoPorDia %}
+      {{ instalacaoPorDia.data_finalizacao }}: {{ instalacaoPorDia.number }}<br>
+    {% endfor %}
+   
+
+
+
+
+  {% elif request.user.groups.all.0.name == "Tecnico" %}
+
+  <div class="card-deck">
+    <div class="card text-white bg-dark mb-3"">
+      <div class="card-header">SERVIÇOS</div>
+      <div class="card-body">
+        <h5 class="card-title">Clique abaixo</h5>
+        <a href="servicos/" class="btn btn-danger">Ver todos</a>
+      </div>
+    </div>
+
+
+    <div class="card text-white bg-dark mb-3"">
+      <div class="card-header">INSTALAÇÃO</div>
+      <div class="card-body">
+        <h5 class="card-title">Clique abaixo</h5>
+        <a href="vendas/" class="btn btn-danger">Ver todos</a>
+      </div>
+    </div>
+    
+  </div>
+  {% elif request.user.groups.all.0.name == "Venda" %}
+    <div class="card text-white bg-dark mb-3">
+      <div class="card-header">INSTALAÇÃO</div>
+      <div class="card-body">
+        <h5 class="card-title">Clique abaixo</h5>
+        <a href="vendas/" class="btn btn-danger">Ver todos</a>
+      </div>
+    </div>
+    
+  </div>
+         
+    {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+--------------------------------------------------------------------------------------------------------------    
+    INFORMAÇÕES DOS SERVIÇOS DIÁRIOS
+--------------------------------------------------------------------------------------------------------------  
+  
+  -->  
   <!--
   <div class="card">
     <div class="card-body">
@@ -65,64 +201,10 @@
     </div>
   </div>
 -->
-  <!-- STATUS DOS INSTALAÇÃO -->
-        <h5 class="mt-3">Status Instalações</h5>
-          <div class="card-deck">
-            <div class="card border-danger" align="center">
-              <div class="card-group">
-                <div class="card border-0">
-                  <h5>Aberto</h5>
-                </div>
-                <div class="card border-0">
-                  <div class="display-4"><strong>{{ quant_instalacao_aberta }}</strong></div>
-                </div>
-              </div>
-              <div class="card-footer border-danger">
-                <a href="vendas/instalacao-aberta/" class="btn btn-danger">Ver todos</a>
-              </div>
-            </div>
-            <div class="card border-warning" align="center">
-              <div class="card-group">
-                <div class="card border-0">
-                  <h5>Agendado</h5>
-                </div>
-                <div class="card border-0">
-                  <div class="display-4"><strong>{{ quant_instalacao_agendada }}</strong></div>
-                </div>
-              </div>
-              <div class="card-footer border-warning">
-                <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white">Ver todos</a>
-              </div>
-            </div>
-            
-            <div class="card border-dark" align="center">
-              <div class="card-group">
-                <div class="card border-0">
-                  <h5>Finalizados sem boletos</h5>
-                </div>
-                <div class="card border-0">
-                  <div class="display-4"><strong>{{ quant_instalacao_sem_boleto }}</strong></div>
-                </div>
-              </div>
-              <div class="card-footer border-dark">
-                <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark">Ver todos</a>
-              </div>
-            </div>
-          
-            <div class="card border-success" align="center">
-              <div class="card-group">
-                <div class="card border-0">
-                  <h5>Finalizados</h5>
-                </div>
-                <div class="card border-0">
-                  <div class="display-4"><strong>{{ quant_instalacao_concluida }}</strong></div>
-                </div>
-              </div>
-              <div class="card-footer border-success">
-                <a href="vendas/instalacao-concluida/" class="btn btn-success">Ver todos</a>
-              </div>
-            </div>
-        </div>
+  
+
+  <!-- Gráfico de Instalações diárias -->
+
 
   <!-- Gráfico de Instalações diárias -->
 
@@ -132,6 +214,12 @@
 
 
 
+    </div>
 
+
+    <!---->
+
+
+  
   </div>
 {% endblock %}

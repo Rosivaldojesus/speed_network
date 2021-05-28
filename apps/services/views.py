@@ -17,10 +17,12 @@ def Index(request):
 def CadastroServico(request):
     form = ServicoForm(request.POST)
     if form.is_valid():
+        obj = form.save(commit=False)
+        obj.criado_por = request.user
         obj = form.save()
         obj.save()
         messages.success(request, 'Serviço adicionado com sucesso!')
-        return redirect('/servicos/servicos-abertos/')
+        return redirect('/servicos/')
     else:
         form = ServicoForm()
     return render(request, 'services/cadastro-servico.html', {'form': form})
@@ -105,11 +107,14 @@ def FinalizarServico(request, id=None):
     finalizar = get_object_or_404(Servico, id=id)
     form = FinalizarServicoForm(request.POST or None, instance=finalizar)
     if form.is_valid():
+        obj = form.save(commit=False)
+        obj.finalizado_por = request.user
         obj = form.save()
         obj.save()
         messages.success(request, 'Serviço finalizado com sucesso!')
         return redirect('/servicos/')
     return render(request, 'services/finalizar-servico.html', {'form': form})
+
 
 
 def ServicoVisualizar(request):

@@ -5,57 +5,100 @@
 
 {% block main %}
 <div class="container">
-  <div align="right" class="p-3">
-    <a href="cadastro-servico/" class="btn btn-primary"><h4>Abrir serviço</h4></a>
+
+    <div align="right" class="p-3">
+      <a href="cadastro-servico/" class="btn btn-primary"><h4>Abrir serviço</h4></a>
+    </div>
+
+
+
+  <div>
+    {% if messages %}
+      {% for message in messages %}
+          <div class="alert {{ message.tags }}" role="alert">
+              {{ message }}
+          </div>
+      {% endfor %}
+    {% endif %}
   </div>
 
-  {% if messages %}
-    {% for message in messages %}
-        <div class="alert {{ message.tags }}" role="alert">
-            {{ message }}
-        </div>
-    {% endfor %}
-  {% endif %}
 
-  <div class="card-deck">
-    <div class="card shadow-lg">
-      <div class="media">
-        <h5 class="p-2">Abertos</h5>
-        <div class="media-body">
-          <div align="right">
-            <h3 class="p-2"></h3>
-            <h1 class="p-2"><span class="badge badge-danger badge-pill">{{ contarAbertos }}</span></h1>
-            <a href="servicos-abertos/" class="btn btn-outline-danger">+ Ver todos</a>
+  {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
+    <div class="card-deck">
+
+      <div class="card shadow-lg">
+        <div class="media">
+          <h5 class="p-2">Abertos</h5>
+          <div class="media-body">
+            <div align="right">
+              <h3 class="p-2"></h3>
+              <h1 class="p-2"><span class="badge badge-danger badge-pill">{{ contarAbertos }}</span></h1>
+              <a href="servicos-abertos/" class="btn btn-outline-danger">+ Ver todos</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="card shadow-lg">
-      <div class="media">
-        <h5 class="p-2">Agendados</h5>
-        <div class="media-body">
-          <div align="right">
-            <h1 class="p-2"><span class="badge badge-warning badge-pill">{{contarAgendados}}</span></h1>
-            <a href="servicos-agendados/" class="btn btn-outline-warning">+ Ver todos</a>
+    
+      <div class="card shadow-lg">
+        <div class="media">
+          <h5 class="p-2">Agendados</h5>
+          <div class="media-body">
+            <div align="right">
+              <h1 class="p-2"><span class="badge badge-warning badge-pill">{{contarAgendados}}</span></h1>
+              <a href="servicos-agendados/" class="btn btn-outline-warning">+ Ver todos</a>
+            </div>
           </div>
         </div>
+      </div>
+      
+      <div class="card shadow-lg">
+        <div class="media">
+          <h5 class="p-2">Finalizados</h5>
+          <div class="media-body">
+            <div align="right">
+            <div align="right">
+              <h1 class="p-2"><span class="badge badge-success badge-pill">{{contarFinalizados}}</span></h1>
+            <a href="servicos-finalizados/" class="btn btn-outline-success">+ Ver todos</a>
+            </div>
+          </div>
+      </div>
+    
       </div>
     </div>
 
 
-    <div class="card shadow-lg">
-      <div class="media">
-        <h5 class="p-2">Finalizados</h5>
-        <div class="media-body">
-          <div align="right">
-          <div align="right">
-            <h1 class="p-2"><span class="badge badge-success badge-pill">{{contarFinalizados}}</span></h1>
-           <a href="servicos-finalizados/" class="btn btn-outline-success">+ Ver todos</a>
+
+    {% elif request.user.groups.all.0.name == "Tecnico" %}
+    <div class="card-deck">
+
+      <div class="card shadow-lg">
+        <div class="media">
+          <h5 class="p-2">Abertos</h5>
+          <div class="media-body">
+            <div align="right">
+              <h3 class="p-2"></h3>
+              <h1 class="p-2"><span class="badge badge-danger badge-pill">{{ contarAbertos }}</span></h1>
+              <a href="servicos-abertos/" class="btn btn-outline-danger">+ Ver todos</a>
+            </div>
           </div>
         </div>
+      </div>
+    
+      <div class="card shadow-lg">
+        <div class="media">
+          <h5 class="p-2">Agendados</h5>
+          <div class="media-body">
+            <div align="right">
+              <h1 class="p-2"><span class="badge badge-warning badge-pill">{{contarAgendados}}</span></h1>
+              <a href="servicos-agendados/" class="btn btn-outline-warning">+ Ver todos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
-    </div>
-</div>
+    
+    {% endif %}
+
   </div>
 {% endblock %}

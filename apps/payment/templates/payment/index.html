@@ -17,6 +17,7 @@
 
 
     <div align="right">
+        <a href="agendar-pagamento/" class="btn btn-dark">Agendar um pagamento</a>
         <a href="agendamentos-pagamentos/" class="btn btn-primary">Agenda de pagamentos </a>
         <a href="cadastrar-pagamento/" class="btn btn-primary">+ Adicionar pagamento </a>
     </div>
@@ -28,7 +29,7 @@
 
 
     {% for dia in dia %}
-      {{ dia.data_pagamento }} :R$: {{ dia.number }}<br>
+      {{ dia.data_pagamento | date:"d M Y"  }} - R$: {{ dia.number }}<br>
     {% endfor %}
 
 
@@ -36,8 +37,21 @@
 <!-- Custos Mensais-->
 <h6> Custos Mensais </h6>
     {% for mes in mes %}
+      
+      <!--Verificando mês de Abril-->
+      {% if mes.month == 4 %}
+        Abril R$: {{ mes.count }}
+      {% endif %}
+      <!--Verificando mês de Maio-->
+      {% if mes.month == 5 %}
+        Maio R$: {{ mes.count }}
+      {% endif %}
+      <!--Verificando mês de Maio-->
+      {% if mes.month == 6 %}
+        Junho R$: {{ mes.count }}
+      {% endif %}
 
-      {{ mes.month }} :R$: {{ mes.count }}<br>
+      <br>
 
     {% endfor %}
 
@@ -64,10 +78,12 @@
                 <th scope="col">Tipo custo</th>
                 <th scope="col">Data</th>
                 <th scope="col">Categoria</th>
+                <th scope="col">Status</th>
             </tr>
           </thead>
           <tbody>
             {% for pagamento in pagamentos %}
+              {% if pagamento.status_pago == True %}
             <tr>
                 <td>{{ pagamento.motivo_pagamento }}</td>
                 <td>{{ pagamento.valor_pagamento }}</td>
@@ -75,7 +91,21 @@
                 <td>{{ pagamento.tipo_custo_pagamento }}</td>
                 <td>{{ pagamento.data_pagamento | date:" d/m/Y" }}</td>
                 <td>{{ pagamento.categoria }}</td>
+                <td style="color:green;">Pago</td>
             </tr>
+              {% else%}
+            <tr>
+                <td>{{ pagamento.motivo_pagamento }}</td>
+                <td>{{ pagamento.valor_pagamento }}</td>
+                <td>R$: {{ pagamento.origem_valor_pagamento }}</td>
+                <td>{{ pagamento.tipo_custo_pagamento }}</td>
+                <td>{{ pagamento.data_pagamento | date:" d/m/Y" }}</td>
+                <td>{{ pagamento.categoria }}</td>
+                <td style="color:red;">Não Pago</td>
+            </tr>  
+
+
+              {% endif %}
             {% endfor %}
           </tbody>
         </table>

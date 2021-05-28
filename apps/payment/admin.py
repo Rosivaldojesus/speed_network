@@ -10,7 +10,8 @@ admin.site.register(OrigemValores)
 
 
 class AgendaPagamentoForm(admin.ModelAdmin):
-    list_display = ('id', 'motivo_pagamento','valor_pagamento' ,'categoria', 'data_pagamento')
+    list_display = ('id', 'motivo_pagamento','valor_pagamento' ,'categoria', 'data_pagamento', 'status_pago')
+    list_editable = ('motivo_pagamento','valor_pagamento' ,'categoria', 'data_pagamento', 'status_pago')
 
 admin.site.register(AgendaPagamento, AgendaPagamentoForm)
 
@@ -21,7 +22,9 @@ class PagamentoAdmin(admin.ModelAdmin):
                     'origem_valor_pagamento',
                     'tipo_custo_pagamento',
                     'data_pagamento',
-                    'categoria'
+                    'categoria',
+                    'status_pago',
+
                     )
     list_filter = [
                     'origem_valor_pagamento',

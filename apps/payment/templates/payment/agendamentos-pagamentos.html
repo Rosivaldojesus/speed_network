@@ -4,50 +4,121 @@
 {% block main %}
 <div class="container">
     <h4>Agendamentos Pagamentos</h4>
+    <hr>
+
+    Valor a pagar hoje: {{ totalPagarHoje.total }}<br>
+    Valor a pagar Atrasadas: {{ totalPagarAtrasadas.total }}<br>
+    Valor a pagar não vencidas: {{ totalPagarNaoVencidas.total }}<br>
+    
     </hr>
     <hr>
-    <h4>Vencer hoje </h4>
-
-                {% for vencerHoje in vencerHoje %}
-            <tr>
-                <td>{{ vencerHoje.motivo_pagamento }}</td>
-                <td>{{ vencerHoje.valor_pagamento }}</td>
-                <td>{{ vencerHoje.data_pagamento | date:" d/m/Y" }}</td>
-                <td>{{ vencerHoje.categoria }}</td>
-                <td><a href="/pagamentos/agendar-pagamento/{{ vencerHoje.id }}" class="btn btn-primary">Editar</a></td>
-
-            </tr>
-            {% endfor %}
+    <!-- CONTAS A VENCER HOJE-->
+    <div class="card">
+        <div class="card-header">
+            Vencer hoje
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Motivo</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">categoria</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Opções</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for vencerHoje in vencerHoje %}
+                    {% if vencerHoje.status_pago == False %}
+                  <tr>
+                    <td>{{ vencerHoje.motivo_pagamento }}</td>  
+                    <td>{{ vencerHoje.valor_pagamento }}</td>
+                    <td>{{ vencerHoje.data_pagamento | date:" d/m/Y" }}</td>
+                    <td>{{ vencerHoje.categoria }}</td>
+                    <td style="color:red;">Não Pago</td>
+                    <td>
+                        <a href="/pagamentos/comfirmar-pagamento/{{ vencerHoje.id }}" class="btn btn-success">Comfirmar Pagamento</a>
+                    </td>
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>           
     <hr>
-
-        <h4>Contas Atrasadas</h4>
-
-                {% for atrasada in atrasadas %}
-            <tr>
-                <td>{{ atrasada.motivo_pagamento }}</td>
-                <td>{{ atrasada.valor_pagamento }}</td>
-                <td>{{ atrasada.data_pagamento | date:" d/m/Y" }}</td>
-                <td>{{ atrasada.categoria }}</td>
-                <td><a href="/pagamentos/agendar-pagamento/{{ atrasada.id }}" class="btn btn-primary">Editar</a></td>
-
-            </tr>
-            {% endfor %}
+    <!-- CONTAS ATRASADAS-->
+    <div class="card">
+        <div class="card-header">
+            Contas Atrasadas
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <th scope="col">Motivo</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">categoria</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Opções</th>
+                </thead>
+                <tbody>
+                    {% for atrasada in atrasadas %}
+                    {% if atrasada.status_pago == False %}
+                  <tr>
+                    <td>{{ atrasada.motivo_pagamento }}</td>  
+                    <td>{{ atrasada.valor_pagamento }}</td>
+                    <td>{{ atrasada.data_pagamento | date:" d/m/Y" }}</td>
+                    <td>{{ atrasada.categoria }}</td>
+                    <td style="color:red;">Não Pago</td>
+                    <td>
+                        <a href="/pagamentos/comfirmar-pagamento/{{ atrasada.id }}" class="btn btn-success">Comfirmar Pagamento</a>
+                    </td>
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>           
     <hr>
-        <hr>
-
-        <h4>Contas Não vencidas</h4>
-
-                {% for naoVencidas in naoVencidas %}
-            <tr>
-                <td>{{ naoVencidas.motivo_pagamento }}</td>
-                <td>{{ naoVencidas.valor_pagamento }}</td>
-                <td>{{ naoVencidas.data_pagamento | date:" d/m/Y" }}</td>
-                <td>{{ naoVencidas.categoria }}</td>
-                <td><a href="/pagamentos/agendar-pagamento/{{ naoVencidas.id }}" class="btn btn-primary">Editar</a></td>
-            </tr>
-            {% endfor %}
-    <hr>
-
-
+    <!-- CONTAS NÃO VENCIDAS-->
+    <div class="card">
+        <div class="card-header">
+            Contas Não vencidas
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <th scope="col">Motivo</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">categoria</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Opções</th>
+                </thead>
+                <tbody>
+                    {% for naoVencidas in naoVencidas %}
+                    {% if naoVencidas.status_pago == False %}
+                  <tr>
+                    <td>{{ naoVencidas.motivo_pagamento }}</td>  
+                    <td>{{ naoVencidas.valor_pagamento }}</td>
+                    <td>{{ naoVencidas.data_pagamento | date:" d/m/Y" }}</td>
+                    <td>{{ naoVencidas.categoria }}</td>
+                    <td style="color:red;">Não Pago</td>
+                    <td>
+                        <a href="/pagamentos/comfirmar-pagamento/{{ naoVencidas.id }}" class="btn btn-success">Comfirmar Pagamento</a>
+                    </td>
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 {% endblock %}

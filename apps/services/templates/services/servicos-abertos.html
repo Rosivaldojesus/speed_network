@@ -49,15 +49,19 @@
       <p class="card-text"><strong>Onde: </strong>{{ aberto.endereco_servico}}</p>
       <div align="right">
         <tr>
+          {% if request.user.groups.all.0.name == "Adm" %}
           <td>
              <a href="/servicos/editar-servico/{{ aberto.id }}" class="btn btn-primary">Editar</a>
           </td>
+          {% endif %}
           <td>
              <a href="/servicos/agendar-servico/{{ aberto.id }}" class="btn btn-success">Agendar</a>
           </td>
+          {% if request.user.groups.all.0.name == "Adm" %}
           <td>
              <a href="/servicos/remover-servico/{{ aberto.id }}" class="btn btn-danger">Excluir</a>
           </td>
+          {% endif %}
         </tr>
       </div>
     </div>

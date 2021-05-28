@@ -1,23 +1,42 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Q, Count
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from ..sales.models import Instalacao
 from ..services.models import Servico
 from ..core.models import Manuais, SenhasEquipamentos, SenhasPorEquipamentos
 from django.db.models.functions import ExtractMonth
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 
 from django.db.models import Count, Sum
 
 
 # Create your views here.
-def login(request):
-    return render(request, 'login.html')
+def login_user(request):
+    return render(request, 'core/login.html')
 
+def logout_user(request):
+    logout(request)
+    return redirect('/')
 
+def submit_login(request):
+    if request.POST:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        usuario = authenticate(username=username, password=password)
+        if usuario is not None:
+            login(request, usuario)
+            return redirect('/')
+        else:
+            messages.error(request, "Por favor, insira um usuário e senha corretos "
+                                    "para uma conta de equipe. Note que ambos campos"
+                                    " são sensíveis a maiúsculas e minúsculas.")
 
-#@login_required(login_url='/login/')
+    return redirect('/')
+
+@login_required(login_url='/login/')
 def Index(request):
     pendentes = Instalacao.objects.all().count()
     quant_servico_aberto = Servico.objects.filter(status_agendado='False').filter(status_concluido='False').count()
@@ -34,16 +53,9 @@ def Index(request):
     servicosMensais = Servico.objects.annotate(month=ExtractMonth('data_finalizacao')).values('month').annotate(
         count=Count('id')).values('month', 'count')[:7]
 
-
-
-
-
-    data = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate(number=Count('id')).order_by('data_finalizacao')[:20]
+    instalacaoPorDia = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate(number=Count('id')).order_by('data_finalizacao')[:7]
     #data =  Order.objects.filter().extra({'day':"Extract(day from created)"}).values_list('day').annotate(Count('id'))
-    dataServico = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('id')).order_by('data_finalizacao')[:20]
-
-
-
+    servicoPorDia = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('id')).order_by('data_finalizacao')[:7]
 
     return render(request, 'core/index.html',{'pendentes':pendentes,
                                             'quant_servico_aberto': quant_servico_aberto,
@@ -55,14 +67,15 @@ def Index(request):
                                               'quant_instalacao_concluida': quant_instalacao_concluida,
                                               'quant_instalacao_sem_boleto': quant_instalacao_sem_boleto,
 
-                                              'data': data,
-                                              'dataServico': dataServico,
+                                              'instalacaoPorDia': instalacaoPorDia,
+                                              'servicoPorDia': servicoPorDia,
 
                                               'servicosDiarios':servicosDiarios,
                                               'servicosMensais':servicosMensais,
 
                                               })
 
+@login_required(login_url='/login/')
 def ManuaisServicos(request):
     manuais = Manuais.objects.all()
     queryset = request.GET.get('q')
@@ -73,6 +86,7 @@ def ManuaisServicos(request):
     return render(request, 'core/manuais.html', {'manuais':manuais})
 
 
+@login_required(login_url='/login/')
 def ManuaisVisualizacao(request):
     manual = request.GET.get('id')
     if manual:
@@ -80,13 +94,15 @@ def ManuaisVisualizacao(request):
     return render(request, 'core/manuais-visualizacao.html',{'manual': manual})
 
 
+@login_required(login_url='/login/')
 def Senhas(request):
     senhas = SenhasEquipamentos.objects.all()
     return render(request, 'core/senhas.html', {'senhas': senhas})
 
 
+@login_required(login_url='/login/')
 def SenhasPorEquipamento(request):
-    senhasPorEquipamentos = SenhasPorEquipamentos.objects.all().order_by('codigo_equipamento')
+    senhasPorEquipamentos = SenhasPorEquipamentos.objects.all().order_by('codigo_equipamento')[:2]
     queryset = request.GET.get('q')
     if queryset:
         senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(
@@ -99,5 +115,6 @@ def SenhasPorEquipamento(request):
 #------------------------------------------------------------------------------------
 #------------------------------------------------------------------------------------
 #------------------------------------------------------------------------------------
+@login_required(login_url='/login/')
 def InstalacoesDiarias(request):
     return render(request, 'instalacoes-diarias.html')

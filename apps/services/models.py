@@ -29,6 +29,8 @@ class Servico(models.Model):
     status_concluido = models.BooleanField(default=False, verbose_name='Concluído')
     data_finalizacao = models.DateField(blank=True, null=True, verbose_name='Data da conclusão')
     funcionario_servico = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
+    criado_por = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='criado_por', blank=True, null=True)
+    finalizado_por = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='finalizado_por', blank=True, null=True)
 
 
     class Meta:
