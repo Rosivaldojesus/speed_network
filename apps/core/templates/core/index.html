@@ -181,7 +181,8 @@
             <h5 class="card-title">Eduardo</h5>
             <div class="card-body">
               {% for instalacaoEduardo in instalacaoEduardo %}
-                {{ instalacaoEduardo.nome_cliente }}<br>
+                {{ instalacaoEduardo.nome_cliente }}: <small> ({{ instalacaoEduardo.data_instalacao }} - {{ instalacaoEduardo.hora_instalacao }})</small><br>
+                <hr>
 
               {% endfor %}
               
