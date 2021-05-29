@@ -58,7 +58,7 @@ def Index(request):
         count=Count('id')).values('month', 'count')[:7]
 
     instalacaoPorDia = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate(number=Count('id')).order_by('data_finalizacao')[:7]
-    servicoPorDia = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('id'))[3::]
+    servicoPorDia = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('id'))[:7]
 
     return render(request, 'core/index.html',{'pendentes':pendentes,
                                             'quant_servico_aberto': quant_servico_aberto,
