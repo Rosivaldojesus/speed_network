@@ -38,6 +38,7 @@ def submit_login(request):
 
 @login_required(login_url='/login/')
 def Index(request):
+    user = request.user
     pendentes = Instalacao.objects.all().count()
     quant_servico_aberto = Servico.objects.filter(status_agendado='False').filter(status_concluido='False').count()
     quant_servico_agendado = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
@@ -50,6 +51,9 @@ def Index(request):
     quant_instalacao_concluida = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='True').count()
     quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
     previsaoInstalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').values('data_instalacao').annotate(number=Count('id')).order_by('data_instalacao')
+    instalacaoEduardo = Instalacao.objects.filter(funcionario_instalacao=12).filter(status_agendada='True').filter(concluido='False').order_by('data_instalacao')
+    instalacaoDiego = Instalacao.objects.filter(funcionario_instalacao=14).filter(status_agendada='True').filter(concluido='False').order_by('data_instalacao')
+    instalacaoPaulo = Instalacao.objects.filter(funcionario_instalacao=13).filter(status_agendada='True').filter(concluido='False').order_by('data_instalacao')
 
 
     servicosDiarios = Servico.objects.filter(status_concluido='True').values('data_finalizacao')\
@@ -70,6 +74,12 @@ def Index(request):
                                               'quant_instalacao_agendada': quant_instalacao_agendada,
                                               'quant_instalacao_concluida': quant_instalacao_concluida,
                                               'quant_instalacao_sem_boleto': quant_instalacao_sem_boleto,
+                                              'instalacaoEduardo': instalacaoEduardo,
+                                              'instalacaoDiego': instalacaoDiego,
+                                              'instalacaoPaulo':instalacaoPaulo,
+
+
+
                                               'previsaoInstalacao': previsaoInstalacao,
 
                                               'instalacaoPorDia': instalacaoPorDia,

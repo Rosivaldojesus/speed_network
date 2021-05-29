@@ -75,6 +75,8 @@
         </div>
       </div>
     </div>
+
+    <!--
     <div class="col-sm-6">
       <div class="card">
         <div class="card-body">
@@ -87,6 +89,7 @@
         </div>
       </div>
     </div>
+    -->
   </div>
 
 
@@ -167,6 +170,49 @@
     {% endfor %}
     </div>
     -->
+
+  <div>
+
+    <div class="card">
+      <h5 class="card-header">Instalação agendadas por Técnico</h5>
+      <div class="card-body">
+        <div class="card-group">
+          <div class="card">
+            <h5 class="card-title">Eduardo</h5>
+            <div class="card-body">
+              {% for instalacaoEdurado in instalacaoEdurado %}
+                {{ instalacaoEduardo.nome_cliente }}<br>
+
+              {% endfor %}
+              
+            </div>
+          </div>
+          <div class="card">
+            <h5 class="card-title">Diego</h5>
+            <div class="card-body">
+              {% for instalacaoDiego in instalacaoDiego %}
+                {{ instalacaoDiego.nome_cliente }}
+              {% endfor %}
+              
+              
+            </div>
+          </div>
+          <div class="card">
+            <h5 class="card-title">Paulo</h5>
+            <div class="card-body">
+              
+              {% for instalacaoPaulo in instalacaoPaulo %}
+                {{ instalacaoPaulo.nome_cliente }}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+      
+
 
     <h5>Previsão de Instalação</h5>
     <div>

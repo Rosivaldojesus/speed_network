@@ -63,6 +63,7 @@ class InstalacaoUpdateForm(forms.ModelForm):
                   'data_vencimento',
                   'data_instalacao',
                   'hora_instalacao',
+                  'funcionario_instalacao',
                   'observacao_instalacao',
                   ]
         data_instalacao = forms.DateField(label='What is your birth date?', widget=forms.SelectDateWidget)
