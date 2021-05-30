@@ -8,52 +8,47 @@
 
   {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
   <!-- STATUS DOS SERVIÇOS -->
-
   <div class="mt-3">
     <div class="card">
       <h6 class="card-header text-white bg-dark">STATUS DOS SERVIÇOS</h6>
       <div class="card-body">
         <!--LISTANDO OS SERVIÇOS POR QUANTIDADES-->
-        
           <div class="row">
             <div class="col-sm-8">
-              <div class="card">
+              <div class="card border-0">
                 <div class="card-body">
                   <div class="row">
-          
                     <div class="col-sm-4">
                       <div class="card shadow-lg bg-danger">
-                        <div class="card-body">
-                          <h5 class="card-title text-white">Aguardando: <strong>{{ quant_servico_aberto }}</strong> 
+                        
+                          <h5 class="card-title text-white">Aguardando:( <strong>{{ quant_servico_aberto }}</strong> ) 
                              <a href="servicos/servicos-abertos/" class="btn btn-danger">Ver todos</a></h5>
-                        </div>
+                        
                       </div>
                     </div>
-          
                     <div class="col-sm-4">
-                      <div class="card">
-                        <div class="card-body bg-warning">
+                      <div class="card bg-warning">
+                        
                           <h5 class="card-title text-white">Agendados: <strong>{{ quant_servico_agendado }}</strong>
                             <a href="servicos/servicos-agendados/" class="btn btn-warning text-white">Ver todos</a>
                           </h5>
-                        </div>
+                        
                       </div>
                     </div>
-          
                     <div class="col-sm-4">
-                      <div class="card">
-                        <div class="card-body bg-success">
-                          <h5 class="card- text-white">Finalizados: <strong>{{ quant_servico_agendado }}</strong>
+                      <div class="card bg-success">
+                        
+                          <h5 class="text-white">Finalizados: <strong>{{ quant_servico_agendado }}</strong>
                             <a href="servicos/servicos-finalizados/" class="btn btn-success">Ver todos</a>
                           </h5>
-                        </div>
+                        
                       </div>
                     </div>
                   </div>                
-
                 </div>
               </div>
             </div>
+            
             <div class="col-sm-4">
               <div class="card">
                 <div class="card-body">
@@ -63,36 +58,22 @@
                             {% for previsaoServico in previsaoServico%}
                                 {{ previsaoServico.data_agendada }}: {{ previsaoServico.number }}<br>
                             {% endfor %}
-                    </div>
-                                
+                    </div>                  
                 </div>
               </div>
             </div>
           </div>
-      </div>  
+        </div>
+        
+    </div> 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--
+  <!--
   <div>
     {% for servicoPorDia in servicoPorDia %}
       {{ servicoPorDia.data_finalizacao }}: {{ servicoPorDia.number }}<br>
     {% endfor %}
   </div>
   -->
-
-  
-
     <!--
     <div class="col-sm-6">
       <div class="card">
@@ -108,12 +89,7 @@
     </div>
     -->
   </div>
-
-
-
-
     <!-- STATUS DOS INSTALAÇÃO -->
-
     <div class="mt-2">
       <div class="card">
         <h6 class="card-header text-white bg-dark">STATUS INSTALAÇÕES</h6>
@@ -133,84 +109,35 @@
               </div>
             </div>
             <div class="col-sm-8">
-
-
-
-              
-
-
-
               <div class="card">
-                
-                
-
-
-
-
                 <div class="card-body">
                   <div class="card-deck">
-                                
                     <div class="card border-danger" align="center">
-                      
                       <div class="card-group">
-                       
-
-
-                        <div class="card border-0">
                           <h5>Aberto</h5>
-                        </div>
-                        <div class="card border-0">
                           <div class="display-4"><strong>{{ quant_instalacao_aberta }}</strong></div>
-                        </div>
-                      </div>
-                      <div class="card-footer border-danger">
-                        <a href="vendas/instalacao-aberta/" class="btn btn-danger">Ver todos</a>
+                          <a href="vendas/instalacao-aberta/" class="btn btn-danger w-100">Ver todos</a>
                       </div>
                     </div>
-                    
-              
-              
                     <div class="card border-warning" align="center">
                       <div class="card-group">
-                        
-
-                        <div class="card border-0">
                           <h5>Agendado</h5>
-                        </div>
-                        <div class="card border-0">
                           <div class="display-4"><strong>{{ quant_instalacao_agendada }}</strong></div>
-                        </div>
-                      </div>
-                      <div class="card-footer border-warning">
-                        <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white">Ver todos</a>
+                          <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white w-100">Ver todos</a>
                       </div>
                     </div>
-              
                     <div class="card border-dark" align="center">
                       <div class="card-group">
-                        <div class="card border-0">
-                          <h6>Finalizados sem boletos</h6>
-                        </div>
-                        <div class="card border-0">
+                          <h6>Sem boletos</h6>
                           <div class="display-4"><strong>{{ quant_instalacao_sem_boleto }}</strong></div>
-                        </div>
-                      </div>
-                      <div class="card-footer border-dark">
-                        <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark">Ver todos</a>
+                          <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark w-100">Ver todos</a>                 
                       </div>
                     </div>  
-              
                     <div class="card border-success" align="center">
                       <div class="card-group">
-                        <div class="card border-0">
                           <h5>Finalizados</h5>
-                        </div>
-                        <div class="card border-0">
                           <div class="display-4"><strong>{{ quant_instalacao_concluida }}</strong></div>
-                        </div>
-                      </div>
-                      <div class="card-footer border-success">
-                        <a href="vendas/instalacao-concluida/" class="btn btn-success">Ver todos</a>
+                          <a href="vendas/instalacao-concluida/" class="btn btn-success w-100">Ver todos</a>
                       </div>
                     </div>
                 </div>
@@ -218,37 +145,10 @@
               </div>
             </div>
           </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
-          
         </div>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
- 
-
   <div>
-
     <!--
     <div>
     {% for instalacaoPorDia in instalacaoPorDia %}
@@ -256,9 +156,7 @@
     {% endfor %}
     </div>
     -->
-
   <div class="mt-3">
-
     <div class="card">
       <h5 class="card-header">Instalação agendadas por Técnico</h5>
       <div class="card-body">
@@ -269,9 +167,7 @@
               {% for instalacaoEduardo in instalacaoEduardo %}
                 {{ instalacaoEduardo.nome_cliente }}: <small> ({{ instalacaoEduardo.data_instalacao }} - {{ instalacaoEduardo.hora_instalacao }})</small><br>
                 <hr>
-
               {% endfor %}
-              
             </div>
           </div>
           <div class="card">
@@ -280,15 +176,12 @@
               {% for instalacaoDiego in instalacaoDiego %}
                 {{ instalacaoDiego.nome_cliente }}<br>
                 <hr>
-              {% endfor %}
-              
-              
+              {% endfor %}           
             </div>
           </div>
           <div class="card">
             <h5 class="card-title">Paulo</h5>
             <div class="card-body">
-              
               {% for instalacaoPaulo in instalacaoPaulo %}
                 {{ instalacaoPaulo.nome_cliente }}<br>
                 <hr>
@@ -299,19 +192,10 @@
       </div>
       </div>
     </div>
-
-      
-
-
-    
-   
-
-
   </div>
 </div>
 
   {% elif request.user.groups.all.0.name == "Tecnico" %}
-
   <div class="card-deck">
     <div class="card text-white bg-dark mb-3"">
       <div class="card-header">SERVIÇOS</div>
@@ -320,8 +204,6 @@
         <a href="servicos/" class="btn btn-danger">Ver todos</a>
       </div>
     </div>
-
-
     <div class="card text-white bg-dark mb-3"">
       <div class="card-header">INSTALAÇÃO</div>
       <div class="card-body">
@@ -329,7 +211,6 @@
         <a href="vendas/" class="btn btn-danger">Ver todos</a>
       </div>
     </div>
-    
   </div>
   {% elif request.user.groups.all.0.name == "Venda" %}
     <div class="card text-white bg-dark mb-3">
@@ -339,29 +220,14 @@
         <a href="vendas/" class="btn btn-danger">Ver todos</a>
       </div>
     </div>
-    
   </div>
          
     {% endif %}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!--
 --------------------------------------------------------------------------------------------------------------    
     INFORMAÇÕES DOS SERVIÇOS DIÁRIOS
 --------------------------------------------------------------------------------------------------------------  
-  
   -->  
   <!--
   <div class="card">
@@ -375,25 +241,7 @@
     </div>
   </div>
 -->
-  
-
-  <!-- Gráfico de Instalações diárias -->
-
-
-  <!-- Gráfico de Instalações diárias -->
-
-
-
     </div>
-
-
-
     </div>
-
-
-    <!---->
-
-
-  
   </div>
 {% endblock %}
