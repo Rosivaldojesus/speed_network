@@ -21,7 +21,7 @@
                     <div class="col-sm-4">
                       <div class="card shadow-lg bg-danger">
                         
-                          <h5 class="card-title text-white">Aguardando:( <strong>{{ quant_servico_aberto }}</strong> ) 
+                          <h5 class="card-title text-white">Aguardando: ( <strong>{{ quant_servico_aberto }}</strong> ) 
                              <a href="servicos/servicos-abertos/" class="btn btn-danger">Ver todos</a></h5>
                         
                       </div>
@@ -29,7 +29,7 @@
                     <div class="col-sm-4">
                       <div class="card bg-warning">
                         
-                          <h5 class="card-title text-white">Agendados: <strong>{{ quant_servico_agendado }}</strong>
+                          <h5 class="card-title text-white">Agendados: ( <strong>{{ quant_servico_agendado }}</strong> )
                             <a href="servicos/servicos-agendados/" class="btn btn-warning text-white">Ver todos</a>
                           </h5>
                         
@@ -38,7 +38,7 @@
                     <div class="col-sm-4">
                       <div class="card bg-success">
                         
-                          <h5 class="text-white">Finalizados: <strong>{{ quant_servico_agendado }}</strong>
+                          <h5 class="text-white">Finalizados: ( <strong>{{ quant_servico_agendado }}</strong> )
                             <a href="servicos/servicos-finalizados/" class="btn btn-success">Ver todos</a>
                           </h5>
                         
@@ -114,29 +114,29 @@
                   <div class="card-deck">
                     <div class="card border-danger" align="center">
                       <div class="card-group">
-                          <h5>Aberto</h5>
-                          <div class="display-4"><strong>{{ quant_instalacao_aberta }}</strong></div>
+                          <h6>Aberto: ( <strong>{{ quant_instalacao_aberta }}</strong> )</h6>
+                          
                           <a href="vendas/instalacao-aberta/" class="btn btn-danger w-100">Ver todos</a>
                       </div>
                     </div>
                     <div class="card border-warning" align="center">
                       <div class="card-group">
-                          <h5>Agendado</h5>
-                          <div class="display-4"><strong>{{ quant_instalacao_agendada }}</strong></div>
+                          <h6>Agendado: ( <strong>{{ quant_instalacao_agendada }}</strong> )</h6>
+                      
                           <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white w-100">Ver todos</a>
                       </div>
                     </div>
                     <div class="card border-dark" align="center">
                       <div class="card-group">
-                          <h6>Sem boletos</h6>
-                          <div class="display-4"><strong>{{ quant_instalacao_sem_boleto }}</strong></div>
+                          <h6>Boletos: ( <strong>{{ quant_instalacao_sem_boleto }}</strong> )</h6>
+                          
                           <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark w-100">Ver todos</a>                 
                       </div>
                     </div>  
                     <div class="card border-success" align="center">
                       <div class="card-group">
-                          <h5>Finalizados</h5>
-                          <div class="display-4"><strong>{{ quant_instalacao_concluida }}</strong></div>
+                          <h6>Finalizados: ( <strong>{{ quant_instalacao_concluida }}</strong> )</h6>
+                          
                           <a href="vendas/instalacao-concluida/" class="btn btn-success w-100">Ver todos</a>
                       </div>
                     </div>
