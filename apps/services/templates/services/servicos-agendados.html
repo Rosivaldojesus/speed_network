@@ -54,7 +54,7 @@
       <div align="right">
         <tr>
 
-          {% if request.user.groups.all.0.name == "adm" %}
+          {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Adm" %}
           <td>
               <a href="/servicos/editar-servico-agendado/{{ agendado.id }}" class="btn btn-warning">Editar</a>
           </td>
