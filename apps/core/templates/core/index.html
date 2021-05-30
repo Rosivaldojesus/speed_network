@@ -18,31 +18,31 @@
               <div class="card border-0">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-sm-4">
-                      <div class="card shadow-lg bg-danger">
+                    <div class="col-sm-4 bg-danger" align="center">
+                      
                         
                           <h5 class="card-title text-white">Aguardando: ( <strong>{{ quant_servico_aberto }}</strong> ) 
-                             <a href="servicos/servicos-abertos/" class="btn btn-danger">Ver todos</a></h5>
+                             <a href="servicos/servicos-abertos/" class="btn btn-danger w-100">Ver todos</a></h5>
                         
-                      </div>
+                      
                     </div>
-                    <div class="col-sm-4">
-                      <div class="card bg-warning">
+                    <div class="col-sm-4 bg-warning " align="center">
+                      
                         
                           <h5 class="card-title text-white">Agendados: ( <strong>{{ quant_servico_agendado }}</strong> )
-                            <a href="servicos/servicos-agendados/" class="btn btn-warning text-white">Ver todos</a>
+                            <a href="servicos/servicos-agendados/" class="btn btn-warning text-white w-100">Ver todos</a>
                           </h5>
                         
-                      </div>
+                      
                     </div>
-                    <div class="col-sm-4">
-                      <div class="card bg-success">
+                    <div class="col-sm-4 bg-success" align="center">
+                     
                         
                           <h5 class="text-white">Finalizados: ( <strong>{{ quant_servico_agendado }}</strong> )
                             <a href="servicos/servicos-finalizados/" class="btn btn-success">Ver todos</a>
                           </h5>
                         
-                      </div>
+                     
                     </div>
                   </div>                
                 </div>
@@ -55,10 +55,23 @@
 
                   <h5 class="card-title">Previsão de Serviços</h5>
                     <div>
-                            {% for previsaoServico in previsaoServico%}
-                                {{ previsaoServico.data_agendada }}: {{ previsaoServico.number }}<br>
-                            {% endfor %}
-                    </div>                  
+                      <table class="table table-striped table-hover">
+                        <thead>
+                          <tr>
+                            <th>Data</th>
+                            <th>Quantidade</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for previsaoServico in previsaoServico%}
+                          <tr>
+                            <td>{{ previsaoServico.data_agendada }}</th>
+                            <td>{{ previsaoServico.number }}</td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>                
                 </div>
               </div>
             </div>
