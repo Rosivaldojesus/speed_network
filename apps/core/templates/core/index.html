@@ -72,39 +72,8 @@
         </div>
       </div>
       <!--Fim Card dos status de Instalaçoes-->
-    </div>
-    <!--Fim quadro principal a esquerda-->
-    <!--Inicio quadro principal a direita-->
-    <div class="card col-sm-4">
-      <!-- Inicio Card para previsões de serviços-->
-      <div class="card-header bg-dark text-white">Previsões de Serviços</div>
-      <div class="card-body">
-        
-        <div>
-          {% for previsaoServico in previsaoServico%}
-            {{ previsaoServico.data_agendada }}: {{ previsaoServico.number }}<br>
-          {% endfor %}
-        </div>
 
-      </div>
-      <!-- Fim Card para previsões de serviços-->
-      <!-- Inicio Card para previsões de Instalações-->
-      <div class="card-header bg-dark text-white">Previsões de Instalações</div>
-      <div class="card-body">
-
-        <div>
-          {% for previsaoInstalacao in previsaoInstalacao%}
-            {{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}<br>
-          {% endfor %}
-        </div>
-
-      </div>
-      <!-- Fim Card para previsões de Instalações-->
-    </div>
-  </div>
-<!--Fim quadro principal a direita-->
-
-  <!--INICIO SERVIÇOS POR TÉCNICO-->
+       <!--INICIO SERVIÇOS POR TÉCNICO-->
 
   <div class="row mt-2">
     <!--Inicio quadro principal a esquerda-->
@@ -144,6 +113,47 @@
     </div>
   </div>
   <!--FIM SERVIÇOS POR TÉCNICO-->
+
+
+
+
+
+
+
+
+    </div>
+    <!--Fim quadro principal a esquerda-->
+    <!--Inicio quadro principal a direita-->
+    <div class="card col-sm-4">
+      <!-- Inicio Card para previsões de serviços-->
+      <div class="card-header bg-dark text-white">Previsões de Serviços</div>
+      <div class="card-body">
+        
+        <div>
+          {% for previsaoServico in previsaoServico%}
+            {{ previsaoServico.data_agendada }}: {{ previsaoServico.number }}<br>
+          {% endfor %}
+        </div>
+
+      </div>
+      <!-- Fim Card para previsões de serviços-->
+      <!-- Inicio Card para previsões de Instalações-->
+      <div class="card-header bg-dark text-white">Previsões de Instalações</div>
+      <div class="card-body">
+
+        <div>
+          {% for previsaoInstalacao in previsaoInstalacao%}
+            {{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}<br>
+          {% endfor %}
+        </div>
+
+      </div>
+      <!-- Fim Card para previsões de Instalações-->
+    </div>
+  </div>
+<!--Fim quadro principal a direita-->
+
+ 
 
   {% elif request.user.groups.all.0.name == "Tecnico" %}
   <div class="card-deck">
