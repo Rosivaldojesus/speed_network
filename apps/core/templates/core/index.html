@@ -8,157 +8,142 @@
 
   {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
   <!--Inicio da página inicial para ADM e Master-->
-  <div class="row">
-    
-    <div class="col-sm-8 ">
-      
-      <div class="card-body border-1">
-        <div class="card-header bg-dark text-white">Status Serviços</div>
-        <!--FIm dos números de serviços-->
-        <div class="card">
-          <div class="card border-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-4 bg-danger" align="center">                   
-                  <h5 class="card-title text-white">Aguardando: ( <strong>{{ quant_servico_aberto }}</strong> ) 
-                  <a href="servicos/servicos-abertos/" class="btn btn-danger w-100">Ver todos</a></h5>
-                </div>
-                <div class="col-sm-4 bg-warning " align="center">  
-                  <h5 class="card-title text-white">Agendados: ( <strong>{{ quant_servico_agendado }}</strong> )
-                  <a href="servicos/servicos-agendados/" class="btn btn-warning text-white w-100">Ver todos</a>
-                  </h5>                
-                </div>
-                <div class="col-sm-4 bg-success" align="center">  
-                  <h5 class="text-white">Finalizados: ( <strong>{{ quant_servico_agendado }}</strong> )
-                    <a href="servicos/servicos-finalizados/" class="btn btn-success">Ver todos</a>
-                  </h5>
-                </div>
-              </div>                
+  <div class="row mt-2">
+    <!--Inicio quadro principal a esquerda-->
+    <div class="card w-75">
+      <!--Inicio Card dos status de serviços-->
+      <div class="card-header bg-dark text-white">Status Serviços</div>
+      <div class="card-body">
+        <div class="row">
+          <div  class="col-sm-4 bg-danger text-white" align="center">
+            <h5 class="card-title">Aguardando: ( <strong>{{ quant_servico_aberto }}</strong> ) 
+              <a href="servicos/servicos-abertos/" class="btn btn-danger w-100">Ver todos</a>
+            </h5>
+          </div>
+          <div class="col-sm-4 bg-warning text-white" align="center">
+            <h5 class="card-title">Agendados: ( <strong>{{ quant_servico_agendado }}</strong> )
+              <a href="servicos/servicos-agendados/" class="btn btn-warning text-white w-100">Ver todos</a>
+            </h5>  
+          </div>
+          <div class="col-sm-4 bg-success text-white" align="center">
+            <h5 class="card-title">Finalizados: ( <strong>{{ quant_servico_agendado }}</strong> )
+              <a href="servicos/servicos-finalizados/" class="btn btn-success text-white w-100">Ver todos</a>
+            </h5> 
+          </div>
+        </div>
+      </div>
+      <!--Fim Card dos status de serviços-->
+      <!--Inicio Card dos status de Instalações-->
+      <div class="card-header bg-dark text-white">Status de Instalações</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="card border-danger" align="center">
+              <div class="card-group">
+                  <h6>Aberto: ( <strong>{{ quant_instalacao_aberta }}</strong> )</h6>
+                  <a href="vendas/instalacao-aberta/" class="btn btn-danger w-100">Ver todos</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card border-warning" align="center">
+              <div class="card-group">
+                  <h6>Agendado: ( <strong>{{ quant_instalacao_agendada }}</strong> )</h6>
+                  <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white w-100">Ver todos</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="card border-dark" align="center">
+              <div class="card-group">
+                  <h6>Boletos: ( <strong>{{ quant_instalacao_sem_boleto }}</strong> )</h6>
+                  <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark w-100">Ver todos</a>                 
+              </div>
+            </div> 
+          </div>
+          <div class="col-sm-3">
+            <div class="card border-success" align="center">
+              <div class="card-group">
+                  <h6>Finalizados: ( <strong>{{ quant_instalacao_concluida }}</strong> )</h6>
+                  <a href="vendas/instalacao-concluida/" class="btn btn-success w-100">Ver todos</a>
+              </div>
             </div>
           </div>
         </div>
-        <!-- FIm dos números de serviços--->
-        <!--Inicio do números de Instalaçoes-->
-        <div class="Card">
-          <div class="card">
-            <div class="card-header bg-dark text-white">Status Instalações</div>
-            <div class="card-body">
-              <div class="card-deck">
-                <div class="card border-danger" align="center">
-                  <div class="card-group">
-                      <h6>Aberto: ( <strong>{{ quant_instalacao_aberta }}</strong> )</h6>
-                      
-                      <a href="vendas/instalacao-aberta/" class="btn btn-danger w-100">Ver todos</a>
-                  </div>
-                </div>
-                <div class="card border-warning" align="center">
-                  <div class="card-group">
-                      <h6>Agendado: ( <strong>{{ quant_instalacao_agendada }}</strong> )</h6>
-                  
-                      <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white w-100">Ver todos</a>
-                  </div>
-                </div>
-                <div class="card border-dark" align="center">
-                  <div class="card-group">
-                      <h6>Boletos: ( <strong>{{ quant_instalacao_sem_boleto }}</strong> )</h6>
-                      
-                      <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark w-100">Ver todos</a>                 
-                  </div>
-                </div>  
-                <div class="card border-success" align="center">
-                  <div class="card-group">
-                      <h6>Finalizados: ( <strong>{{ quant_instalacao_concluida }}</strong> )</h6>
-                      
-                      <a href="vendas/instalacao-concluida/" class="btn btn-success w-100">Ver todos</a>
-                  </div>
-                </div>
-            </div>
-            </div>
-          </div>
-        </div>
-        <!--Fim dos numeros de instalações-->
-        <!--Inicio serviços agendados por Técnico-->
+      </div>
+      <!--Fim Card dos status de Instalaçoes-->
+    </div>
+    <!--Fim quadro principal a esquerda-->
+    <!--Inicio quadro principal a direita-->
+    <div class="card w-25">
+      <!-- Inicio Card para previsões de serviços-->
+      <div class="card-header bg-dark text-white">Previsões de Serviços</div>
+      <div class="card-body">
         
-        <!-- Fim dos serviços agendados por Técnico-->
-      </div>
-    </div>
-    <!-- Início de Levantamento de previsões -->
-    <div class="col-sm-4 border-1">
-      <div class="card-body">
-        <!--Inicio da jnaela a esquerda da tela-->
-          <!--Inicio da previsões de servições-->
-          <div>
-            <div class="card-header">Previsão de Serviços</div>
-            <div>
-              {% for previsaoServico in previsaoServico%}
-                {{ previsaoServico.data_agendada }}: {{ previsaoServico.number }}<br>
-              {% endfor %}
-            </div>
-          </div>      
-          <!--Fim das previsões de servições-->
-          <!--Inicio da previsões de instalações-->
-          <div>
-            <div class="card-header">Previsão de Instalação</div>
-            <div>
-              {% for previsaoInstalacao in previsaoInstalacao %}
-                {{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}<br>
-              {% endfor %}
-            </div>
-          </div> 
-          <!--Fim das previsões de instalaçoes-->
-        <!--Fim da janela a esquerda da tela-->
-      </div>
-    </div>
-    <!-- Fim de Levantamento de previsões -->
-  </div>
-  <!-- Fim da página inicial para ADM e Master-->
+        <div>
+          {% for previsaoServico in previsaoServico%}
+            {{ previsaoServico.data_agendada }}: {{ previsaoServico.number }}<br>
+          {% endfor %}
+        </div>
 
-  <!--Inicio servilos por técnicos-->
-  <div class="mt-3">
-    <div class="card">
-      <h5 class="card-header">Instalação agendadas por Técnico</h5>
+      </div>
+      <!-- Fim Card para previsões de serviços-->
+      <!-- Inicio Card para previsões de Instalações-->
+      <div class="card-header bg-dark text-white">Previsões de Instalações</div>
       <div class="card-body">
-        <div class="card-group">
-          <div class="card">
-            <h5 class="card-title">Eduardo</h5>
-            <div class="card-body">
-              {% for instalacaoEduardo in instalacaoEduardo %}
-                {{ instalacaoEduardo.nome_cliente }}: <small> ({{ instalacaoEduardo.data_instalacao }} - {{ instalacaoEduardo.hora_instalacao }})</small><br>
-                <hr>
-              {% endfor %}
-            </div>
+
+        <div>
+          {% for previsaoInstalacao in previsaoInstalacao%}
+            {{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}<br>
+          {% endfor %}
+        </div>
+
+      </div>
+      <!-- Fim Card para previsões de Instalações-->
+    </div>
+  </div>
+<!--Fim quadro principal a direita-->
+
+  <!--INICIO SERVIÇOS POR TÉCNICO-->
+
+  <div class="row mt-2">
+    <!--Inicio quadro principal a esquerda-->
+    <div class="card w-100">
+      <div class="card-header bg-dark text-white">Instalação agendadas por Técnico</div>
+
+      <div class="card-group">
+        <div class="card">
+          <h5 class="card-title">Eduardo</h5>
+          <div class="card-body">
+            {% for instalacaoEduardo in instalacaoEduardo %}
+              {{ instalacaoEduardo.nome_cliente }}: <small> ({{ instalacaoEduardo.data_instalacao }} - {{ instalacaoEduardo.hora_instalacao }})</small><br>
+              <hr>
+            {% endfor %}
           </div>
-          <div class="card">
-            <h5 class="card-title">Diego</h5>
-            <div class="card-body">
-              {% for instalacaoDiego in instalacaoDiego %}
-                {{ instalacaoDiego.nome_cliente }}<br>
-                <hr>
-              {% endfor %}           
-            </div>
+        </div>
+        <div class="card">
+          <h5 class="card-title">Diego</h5>
+          <div class="card-body">
+            {% for instalacaoDiego in instalacaoDiego %}
+              {{ instalacaoDiego.nome_cliente }}<br>
+              <hr>
+            {% endfor %}           
           </div>
-          <div class="card">
-            <h5 class="card-title">Paulo</h5>
-            <div class="card-body">
-              {% for instalacaoPaulo in instalacaoPaulo %}
-                {{ instalacaoPaulo.nome_cliente }}<br>
-                <hr>
-              {% endfor %}
-            </div>
+        </div>
+        <div class="card">
+          <h5 class="card-title">Paulo</h5>
+          <div class="card-body">
+            {% for instalacaoPaulo in instalacaoPaulo %}
+              {{ instalacaoPaulo.nome_cliente }}<br>
+              <hr>
+            {% endfor %}
           </div>
         </div>
       </div>
-      </div>
+
     </div>
   </div>
-  <!--Fim dos serviços agendados por Técnico-->
-  </div>
- 
-      
-  <div>
-    
- 
-</div>
+  <!--FIM SERVIÇOS POR TÉCNICO-->
 
   {% elif request.user.groups.all.0.name == "Tecnico" %}
   <div class="card-deck">
