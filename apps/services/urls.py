@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import Index, CadastroServico, AgendarServico, ServicosAbertos,\
     ServicosAgendados, ServicosFinalizados, EditarServico, RemoverServico,\
-    EditarServicoAgendado, FinalizarServico, ServicoVisualizar
+    EditarServicoAgendado, FinalizarServico, ServicoVisualizar, ServicosVoip,\
+    ServicosVoipDisponiveis, ReservarVoip
 
 
 urlpatterns = [
@@ -17,5 +18,8 @@ urlpatterns = [
     path('finalizar-servico/<int:id>', FinalizarServico),
     path('visualizar-servico/', ServicoVisualizar),
 
+    path('servicos-voip/', ServicosVoip),
+    path('servicos-voip-disponiveis/', ServicosVoipDisponiveis),
+    path('reservar-voip/<int:id>', ReservarVoip),
 
 ]

@@ -1,7 +1,7 @@
 
 from django import forms
 from django.contrib.auth.models import User
-from .models import Servico
+from .models import Servico, ServicoVoip
 
 
 class ServicoForm(forms.ModelForm):
@@ -44,9 +44,10 @@ class EditarAgendarServicoForm(forms.ModelForm):
         widgets = {
             'data_agendada': forms.DateInput(attrs={'type': 'date'}),
             'hora_agendada': forms.TimeInput(attrs={'type': 'time'}),
-            'data_finalizacao': forms.DateInput(attrs={'type': 'date'}),
-            'hora_instalacao': forms.TimeInput(attrs={'type': 'time'}),
-        }
+           }
+
+    data_agendada = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
+    hora_agendada = forms.TimeField(widget=forms.DateInput(attrs={"type": "time"}))
 
 
 
@@ -69,15 +70,6 @@ class FinalizarServicoForm(forms.ModelForm):
         widget=forms.DateInput(attrs={"type": "date"})
     )
 
-
-
-
-
-
-
-
-
-
     def clean_status_agendada(self):
         agendado = self.clean_status_agendada('agendado')
         if agendado == False:
@@ -85,8 +77,14 @@ class FinalizarServicoForm(forms.ModelForm):
         return agendado
 
 
+class ReservarVoipForm(forms.ModelForm):
+    class Meta:
+        model = ServicoVoip
+        fields = ['nome_usuario_voip',
+                  'cpf_usuario_voip',
+                  ]
 
-
+    reservado_voip = forms.BooleanField(label='Marque para reservar.')
 
 
 

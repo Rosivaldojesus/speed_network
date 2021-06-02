@@ -102,7 +102,7 @@ class InstalacaoFinalizarForm(forms.ModelForm):
             'concluido',
             'material_utilizado',
             'data_finalizacao',
-            'funcionario_instalacao',
+
             'observacao_instalacao',
                   ]
         widgets = {
@@ -112,9 +112,6 @@ class InstalacaoFinalizarForm(forms.ModelForm):
             'data_finalizacao': forms.DateInput(attrs={'type': 'date'}),
 
         }
-    funcionario_instalacao = forms.ModelChoiceField(
-        queryset=User.objects.filter(id__in=['12','13','14']),label='Funcionário instalação',
-        widget=forms.Select)
     data_finalizacao = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
     concluido = forms.BooleanField(label='Marque para finalizar instalação.')
 

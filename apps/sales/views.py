@@ -150,6 +150,8 @@ def InstalacaoFinalizar(request, id=None):
     insta = get_object_or_404(Instalacao, id=id)
     form = InstalacaoFinalizarForm(request.POST or None, instance=insta)
     if form.is_valid():
+        obj = form.save(commit=False)
+        obj.instalacao_finalizado_por = request.user
         obj = form.save()
         obj.save()
         messages.success(request, 'Instalação finalizada com sucesso.')

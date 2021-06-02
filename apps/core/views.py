@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Q, Count
 from django.shortcuts import render, redirect
 from ..sales.models import Instalacao
-from ..services.models import Servico
+from ..services.models import Servico, ServicoVoip
 from ..core.models import Manuais, SenhasEquipamentos, SenhasPorEquipamentos
 from django.db.models.functions import ExtractMonth
 from django.contrib.auth.decorators import login_required
@@ -64,6 +64,13 @@ def Index(request):
     instalacaoPorDia = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate(number=Count('id')).order_by('data_finalizacao')[:7]
     servicoPorDia = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('id'))[:7]
 
+    #STATUS DE VENDAS
+    vendasPorVendedor = Instalacao.objects.all().values('instalacao_criado_por').annotate(number=Count('instalacao_criado_por'))
+
+    #STATUS VOIP
+    voipDisponiveis = ServicoVoip.objects.filter(reservado_voip='False').filter(finalizado_voip='False').count()
+    voipReservados = ServicoVoip.objects.filter(reservado_voip='True').filter(finalizado_voip='False').count()
+
     return render(request, 'core/index.html',{'pendentes':pendentes,
                                             'quant_servico_aberto': quant_servico_aberto,
                                             'quant_servico_agendado': quant_servico_agendado,
@@ -78,8 +85,6 @@ def Index(request):
                                               'instalacaoDiego': instalacaoDiego,
                                               'instalacaoPaulo':instalacaoPaulo,
 
-
-
                                               'previsaoInstalacao': previsaoInstalacao,
 
                                               'instalacaoPorDia': instalacaoPorDia,
@@ -87,6 +92,13 @@ def Index(request):
 
                                               'servicosDiarios':servicosDiarios,
                                               'servicosMensais':servicosMensais,
+
+                                              #Status Vendas
+                                              'vendasPorVendedor':vendasPorVendedor,
+
+                                              #Status Voip
+                                              'voipDisponiveis':voipDisponiveis,
+                                              'voipReservados':voipReservados,
 
                                               })
 

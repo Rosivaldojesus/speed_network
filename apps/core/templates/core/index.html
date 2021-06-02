@@ -87,6 +87,75 @@
         </div>
       </div>
 
+
+
+
+      <!--
+        *************************************************************************************
+        ***************** INÍCIO  dos serviços VOIP  *******************************
+        *************************************************************************************
+      -->
+
+      <!--
+      <div class="card w-100">
+        <div class="card-header bg-dark text-white">Serviços VOIP</div>
+        <div class="card-body">
+         
+          <div class="card-group">
+            <div class="card">
+              <h5 class="card-title">Disponiveis</h5>
+              <div class="card-body">
+                {{ voipDisponiveis }}
+              </div>
+            </div>
+            <div class="card">
+              <h5 class="card-title">Reservados</h5>
+              <div class="card-body">
+                {{ voipReservados }}          
+              </div>
+            </div>
+            <div class="card">
+              <h5 class="card-title">Paulo</h5>
+              <div class="card-body">
+                {% for instalacaoPaulo in instalacaoPaulo %}
+                  {{ instalacaoPaulo.nome_cliente }}<br>
+                  <hr>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      -->
+
+           <!--
+        *************************************************************************************
+        *****************  FIM dos serviços VOIP  *******************************
+        *************************************************************************************
+      -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!--
+        *************************************************************************************
+        ***************** INÍCIO Instalações agendadas por Técnico  *******************************
+        *************************************************************************************
+      -->
       <div class="card w-100">
         <div class="card-header bg-dark text-white">Instalações agendadas por Técnico</div>
         <div class="card-body">
@@ -123,6 +192,71 @@
           <!-- FIM SERVIÇOS POR TECNICO-->
         </div>
       </div>
+
+           <!--
+        *************************************************************************************
+        *****************  FIM Instalações agendadas por Técnico  *******************************
+        *************************************************************************************
+      -->
+
+
+
+            <!--
+        *************************************************************************************
+        ***************** INÍCIO STATUS DE VENDAS  *******************************
+        *************************************************************************************
+      -->
+
+
+      
+      <!--
+
+      <div class="card w-100">
+        <div class="card-header bg-dark text-white">Status Vendas</div>
+        <div class="card-body">
+          
+          <div class="card-group">
+            <div class="card">
+              <h5 class="card-title">Eduardo</h5>
+              <div class="card-body">
+                {% for vendasPorVendedor in vendasPorVendedor %}
+                  {{ vendasPorVendedor.instalacao_criado_por }}: {{ vendasPorVendedor.number }}<br> 
+                {% endfor %}
+              </div>
+            </div>
+            <div class="card">
+              <h5 class="card-title">Diego</h5>
+              <div class="card-body">
+                {% for instalacaoDiego in instalacaoDiego %}
+                  {{ instalacaoDiego.nome_cliente }}<br>
+                  <hr>
+                {% endfor %}           
+              </div>
+            </div>
+            <div class="card">
+              <h5 class="card-title">Paulo</h5>
+              <div class="card-body">
+                {% for instalacaoPaulo in instalacaoPaulo %}
+                  {{ instalacaoPaulo.nome_cliente }}<br>
+                  <hr>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+
+
+      -->
+
+           <!--
+        *************************************************************************************
+        *****************  FIM STATUS DE VENDAS  *******************************
+        *************************************************************************************
+      -->
+
+
 
     </div>
     <!--

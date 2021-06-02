@@ -1,8 +1,10 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ServicoForm, AgendarServicoForm, EditarAgendarServicoForm, FinalizarServicoForm
+from .forms import ServicoForm, AgendarServicoForm, EditarAgendarServicoForm,\
+    FinalizarServicoForm
 
-from .models import Servico
+from .forms import ReservarVoipForm
+from .models import Servico, ServicoVoip
 
 # Create your views here.
 
@@ -122,3 +124,30 @@ def ServicoVisualizar(request):
     if servico:
         servico = Servico.objects.get(id=servico)
     return render(request, 'services/visualizar-servico.html', {'servico': servico})
+
+
+def ServicosVoip(request):
+    return render(request, 'services/servicos-voip.html')
+
+def ServicosVoipDisponiveis(request):
+    #voipDisponivel = ServicoVoip.objects.filter(data_reserva_voip='False').filter(finalizado_voip='False')
+
+    voipDisponivel = ServicoVoip.objects.all().filter(finalizado_voip='False')
+    return render(request, 'services/servicos-voip-disponiveis.html', {'voipDisponivel': voipDisponivel
+
+                                                                       })
+
+
+def ReservarVoip(request, id=None):
+    voip = get_object_or_404(ServicoVoip, id=id)
+    form = ReservarVoipForm(request.POST or None, instance=voip)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.funcionario_reserva_voip = request.user
+        obj = form.save()
+        obj.save()
+        messages.success(request, 'Voip reservado com sucesso!')
+        return redirect('/servicos/servicos-voip/')
+    return render(request, 'services/reservar-voip.html', {'form': form})
+
+
