@@ -6,22 +6,99 @@
 
 {% block main %}
 <div class="container">
-  <h5 class="mt-3 mb-3"><span class="badge badge-danger badge-pill">{{ qquant_aberto}}</span>  Serviços Voip</h5>
 
-<!-- Messagens -->
-  {% if messages %}
-    {% for message in messages %}
-        <div class="alert {{ message.tags }}" role="alert">
-            {{ message }}
-        </div>
-    {% endfor %}
-  {% endif %}
+   <!-- Messagens -->
+   {% if messages %}
+   {% for message in messages %}
+       <div class="alert {{ message.tags }}" role="alert">
+           {{ message }}
+       </div>
+   {% endfor %}
+ {% endif %}
+ <!--Fim das mensagens-->
+  <!--
+      ****************************************************************************
+      ************************INÍCIO VOIP DISPONÍVEIS*****************************
+      ****************************************************************************
+  -->
 
-  <div>
-    <a href="/servicos/servicos-voip-disponiveis/">Voip disponíveis</a>
+ <div class="card">
+    <h5 class="card-header">VOIP Disponíveis</h5>
+    <div class="card-body">
+
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Usuário</th>
+              <th scope="col">Senha</th>
+              <th scope="col">Nº Telefone</th>
+              <th>Opções</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for voipDisponivel in voipDisponivel %}
+            <tr>
+              <td>{{ voipDisponivel.usuario_voip }}</td>
+              <td>{{ voipDisponivel.senha_voip }}</td>
+              <td>{{ voipDisponivel.numero_telefone_voip }}</td>
+              <td>
+                <a href="/servicos/reservar-voip/{{ voipDisponivel.id }}">Reservar número</a>
+              </td>
+            </tr>
+          {% endfor %}
+  
+          </tbody>
+        </table>
+      </div>
+    
+    </div>
   </div>
+  <!--
+      ****************************************************************************
+      ************************INÍCIO VOIP DISPONÍVEIS*****************************
+      ****************************************************************************
+  -->
 
-</div>
-</div>
+
+
+  <!--
+      ****************************************************************************
+      ************************INÍCIO VOIP RESERVADOS*******************************
+      ****************************************************************************
+  -->
+    <div class="card">
+      <h5 class="card-header">Reservados</h5>
+      <div class="card-body">
+        <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Cliente</th>
+              <th scope="col">Usuário</th>
+              <th scope="col">Senha</th>
+              <th scope="col">Nº Telefone</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for voipReservado in voipReservado %}
+            <tr>
+              <td>{{ voipReservado.nome_usuario_voip }}</td>
+              <td>{{ voipReservado.usuario_voip }}</td>
+              <td>{{ voipReservado.senha_voip }}</td>
+              <td>{{ voipReservado.numero_telefone_voip }}</td>
+            </tr>
+          {% endfor %}
+  
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </div>
+  <!--
+      ****************************************************************************
+      ************************FIM VOIP RESERVADOS*******************************
+      ****************************************************************************
+  -->
 </div>
 {% endblock %}

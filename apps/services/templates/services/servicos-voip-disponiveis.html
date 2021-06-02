@@ -24,6 +24,7 @@
           <tr>
             <th scope="col">Usuário</th>
             <th scope="col">Senha</th>
+            <th scope="col">Nº Telefone</th>
             <th>Opções</th>
           </tr>
         </thead>
@@ -31,7 +32,8 @@
         {% for voipDisponivel in voipDisponivel %}
           <tr>
             <td>{{ voipDisponivel.usuario_voip }}</td>
-            <td>{{ voipDisponivel.Senha_voip }}</td>
+            <td>{{ voipDisponivel.senha_voip }}</td>
+            <td>{{ voipDisponivel.numero_telefone_voip }}</td>
             <td>
               <a href="/servicos/reservar-voip/{{ voipDisponivel.id }}">Reservar número</a>
             </td>

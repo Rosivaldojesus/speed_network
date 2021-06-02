@@ -77,11 +77,14 @@ class FinalizarServicoForm(forms.ModelForm):
         return agendado
 
 
+
+
 class ReservarVoipForm(forms.ModelForm):
     class Meta:
         model = ServicoVoip
         fields = ['nome_usuario_voip',
                   'cpf_usuario_voip',
+                  'reservado_voip',
                   ]
 
     reservado_voip = forms.BooleanField(label='Marque para reservar.')

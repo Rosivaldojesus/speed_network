@@ -88,67 +88,37 @@
       </div>
 
 
-
-
       <!--
         *************************************************************************************
         ***************** INÍCIO  dos serviços VOIP  *******************************
         *************************************************************************************
       -->
-
-      <!--
-      <div class="card w-100">
+      <div class="card">
         <div class="card-header bg-dark text-white">Serviços VOIP</div>
-        <div class="card-body">
-         
-          <div class="card-group">
-            <div class="card">
-              <h5 class="card-title">Disponiveis</h5>
-              <div class="card-body">
-                {{ voipDisponiveis }}
-              </div>
-            </div>
-            <div class="card">
-              <h5 class="card-title">Reservados</h5>
-              <div class="card-body">
-                {{ voipReservados }}          
-              </div>
-            </div>
-            <div class="card">
-              <h5 class="card-title">Paulo</h5>
-              <div class="card-body">
-                {% for instalacaoPaulo in instalacaoPaulo %}
-                  {{ instalacaoPaulo.nome_cliente }}<br>
-                  <hr>
-                {% endfor %}
-              </div>
+        <div class="card-group">
+          
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">VOIP Disponiveis ( {{ voipDisponiveis }} )</h5>
+              <a href="/servicos/servicos-voip/" class="btn btn-primary stretched-link">Ver todos</a>
             </div>
           </div>
-          
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Reservados ( {{ voipReservados }} )</h5>
+             <!-- <a href="/servicos/servicos-voip-disponiveis/" class="btn btn-primary stretched-link">Ver todos</a> -->
+            </div>
+          </div>
+
         </div>
       </div>
-      -->
 
-           <!--
+        <!--
         *************************************************************************************
         *****************  FIM dos serviços VOIP  *******************************
         *************************************************************************************
       -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
       <!--

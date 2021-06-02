@@ -12,6 +12,6 @@ class ServicoAdmin(admin.ModelAdmin):
 admin.site.register(Servico, ServicoAdmin)
 
 class ServicoVoipForm(admin.ModelAdmin):
-    list_display = ['nome_usuario_voip', 'usuario_voip', 'Senha_voip' ]
+    list_display = ['nome_usuario_voip', 'usuario_voip', 'senha_voip', 'numero_telefone_voip' ]
 
 admin.site.register(ServicoVoip, ServicoVoipForm)

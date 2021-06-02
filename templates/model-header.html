@@ -51,11 +51,20 @@
                       {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master"  %}
                         <li class="nav-item">
                            <a class="nav-link" href="/servicos/">Serviços</a>
-                        </li> 
+                        </li>
+
+
+
                         {% elif request.user.groups.all.0.name == "Tecnico" %}
                         <li class="nav-item">
                            <a class="nav-link" href="/servicos/">Serviços</a>
                         </li>   
+                      {% endif %}
+
+                   {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
+                        <li class="nav-item">
+                           <a class="nav-link" href="/servicos/servicos-voip/">Voip</a>
+                        </li>
                       {% endif %}
 
                     
