@@ -128,8 +128,11 @@ def ServicoVisualizar(request):
 
 def ServicosVoip(request):
     voipDisponivel = ServicoVoip.objects.all().filter(reservado_voip='False').filter(finalizado_voip='False')
+    quantDisponivel = ServicoVoip.objects.all().filter(reservado_voip='False').filter(finalizado_voip='False').count()
+
     voipReservado = ServicoVoip.objects.all().filter(reservado_voip='True').filter(finalizado_voip='False')
     return render(request, 'services/servicos-voip.html', {'voipDisponivel': voipDisponivel,
+                                                           'quantDisponivel': quantDisponivel,
                                                            'voipReservado': voipReservado
                                                                        })
 
