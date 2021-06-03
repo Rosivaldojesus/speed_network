@@ -144,9 +144,14 @@ def ServicosVoipDisponiveis(request):
 
     voipDisponivel = ServicoVoip.objects.all().filter(finalizado_voip='False')
     return render(request, 'services/servicos-voip-disponiveis.html', {'voipDisponivel': voipDisponivel
-
                                                                        })
 
+def ServicosVoipReservados(request):
+    voipReservados = ServicoVoip.objects.all().filter(finalizado_voip='False').filter(reservado_voip='True')
+    quant_Reservados = ServicoVoip.objects.all().filter(finalizado_voip='False').filter(reservado_voip='True').count()
+    return render(request, 'services/servicos-voip-reservados.html', {'voipReservados': voipReservados,
+                                                                      'quant_Reservados': quant_Reservados,
+                                                             })
 
 def ReservarVoip(request, id=None):
     voip = get_object_or_404(ServicoVoip, id=id)

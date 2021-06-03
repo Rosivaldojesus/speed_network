@@ -51,6 +51,9 @@ def Index(request):
     quant_instalacao_concluida = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='True').count()
     quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
     previsaoInstalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').values('data_instalacao').annotate(number=Count('id')).order_by('data_instalacao')
+    funcionarioinstalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False')
+
+
     instalacaoEduardo = Instalacao.objects.filter(funcionario_instalacao=12).filter(status_agendada='True').filter(concluido='False').order_by('data_instalacao')
     instalacaoDiego = Instalacao.objects.filter(funcionario_instalacao=14).filter(status_agendada='True').filter(concluido='False').order_by('data_instalacao')
     instalacaoPaulo = Instalacao.objects.filter(funcionario_instalacao=13).filter(status_agendada='True').filter(concluido='False').order_by('data_instalacao')
@@ -81,6 +84,7 @@ def Index(request):
                                               'quant_instalacao_agendada': quant_instalacao_agendada,
                                               'quant_instalacao_concluida': quant_instalacao_concluida,
                                               'quant_instalacao_sem_boleto': quant_instalacao_sem_boleto,
+                                              'funcionarioinstalacao': funcionarioinstalacao,
                                               'instalacaoEduardo': instalacaoEduardo,
                                               'instalacaoDiego': instalacaoDiego,
                                               'instalacaoPaulo':instalacaoPaulo,

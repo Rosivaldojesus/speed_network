@@ -6,6 +6,7 @@ from .models import Instalacao
 class InstalacaoAdmin(admin.ModelAdmin):
     list_display = ('id', 'nome_cliente','status_agendada' ,'boleto_entregue',
                     'data_instalacao','data_finalizacao','concluido','boleto_entregue',
+                    'funcionario_instalacao',
                     'instalacao_criado_por', 'instalacao_finalizado_por')
 
 

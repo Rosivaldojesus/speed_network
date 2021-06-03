@@ -107,6 +107,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Reservados ( {{ voipReservados }} )</h5>
+              <a href="/servicos/servicos-voip-reservados/" class="btn btn-primary stretched-link">Ver todos</a>
              <!-- <a href="/servicos/servicos-voip-disponiveis/" class="btn btn-primary stretched-link">Ver todos</a> -->
             </div>
           </div>
@@ -170,13 +171,73 @@
       -->
 
 
+            <!--
+        *************************************************************************************
+        ***************** INÍCIO SERVIÇOS POR TÉCNICO  *******************************
+        *************************************************************************************
+      -->
+
+
+      <div class="card">
+        <div class="card-header">
+          Featured
+        </div>
+
+
+
+   
+        {% regroup cities by country as funcionarioinstalacao %}
+
+        <ul>
+        {% for country in funcionarioinstalacao %}
+            <li>{{ country.funcionario_instalacao }}
+            <ul>
+                {% for city in funcionarioinstalacao %}
+                  <li>{{ city.name }}: {{ city.population }}</li>
+                {% endfor %}
+            </ul>
+            </li>
+        {% endfor %}
+        </ul>
+
+        <!--
+        <ul>
+          {% for install in funcionarioinstalacao %}
+              <li>{{ install.funcionario_instalacao }}
+                {% if install.funcionario_instalacao == install.funcionario_instalacao %}
+                  <ul>
+                    {% for install in funcionarioinstalacao %}
+                      <li>{{ install.nome_cliente }}: {{ city.population }}</li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+          {% endfor %}
+          </ul>
+        -->
+
+             <!--
+        {% regroup tecnico by instalacao as funcionarioinstalacao %}
+        -->
+
+
+
+
+      </div>
+
+         <!--
+        *************************************************************************************
+        ***************** FIM SERVIÇOS POR TÉCNICO  *******************************
+        *************************************************************************************
+      -->
+
+
 
             <!--
         *************************************************************************************
         ***************** INÍCIO STATUS DE VENDAS  *******************************
         *************************************************************************************
       -->
-
 
       
       <!--
