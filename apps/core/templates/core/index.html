@@ -327,7 +327,7 @@
             {% if previsaoServico.number <= 4 %}
             <p style="color:green;"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></p>
             {% elif previsaoServico.number > 4 and previsaoServico.number <= 6  %}
-            <p style="color:yellow;"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></p>
+            <p style="color:orange;"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></p>
             {% elif previsaoServico.number >= 7 %}
             <p style="color:red;"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></p>
 
@@ -353,7 +353,7 @@
             {% if previsaoInstalacao.number <= 6 %}
             <p style="color:green;"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></p>
             {% elif previsaoInstalacao.number > 6 and previsaoInstalacao.number <= 9  %}
-            <p style="color:yellow;"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></p>
+            <p style="color:orange;"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></p>
             {% elif previsaoInstalacao.number > 10  %}
             <p style="color:red;"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></p>
 
