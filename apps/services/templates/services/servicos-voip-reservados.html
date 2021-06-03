@@ -22,6 +22,8 @@
       <table class="table">
         <thead>
           <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col">CPF</th>
             <th scope="col">Usuário</th>
             <th scope="col">Senha</th>
             <th scope="col">Nº Telefone</th>
@@ -31,6 +33,8 @@
         <tbody>
         {% for voipReservados in voipReservados %}
           <tr>
+            <td>{{ voipReservados.nome_usuario_voip }}</td>
+            <td>{{ voipReservados.cpf_usuario_voip}}</td>
             <td>{{ voipReservados.usuario_voip }}</td>
             <td>{{ voipReservados.senha_voip }}</td>
             <td>{{ voipReservados.numero_telefone_voip }}</td>
