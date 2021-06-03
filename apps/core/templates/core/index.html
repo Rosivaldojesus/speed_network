@@ -244,9 +244,53 @@
       <div class="card w-100">
         <div class="card-header bg-dark text-white">Previsões de Serviços</div>
         <div class="card-body">
-          {% for previsaoServico in previsaoServico%}
-            {{ previsaoServico.data_agendada }}: {{ previsaoServico.number }}<br>
+
+          <!--
+          {% regroup cities by country as country_list %}
+
+            <ul>
+            {% for previsaoServico in previsaoServico %}
+                <li>{{ previsaoServico.data_agendada}}
+                <ul>
+                    {% for previsaoServico in previsaoServico %}
+                      <li>{{ previsaoServico.hora_agendada }}: {{ previsaoServico.number }}</li>
+                    {% endfor %}
+                </ul>
+                </li>
+            {% endfor %}
+            </ul>
+          -->         
+
+            
+      
+
+
+          
+
+          {% for previsaoServico in previsaoServico %}
+            {% if previsaoServico.number <= 4 %}
+            <p style="color:rgb(00, 128, 0);">{{ previsaoServico.data_agendada|date:"d M"  }}: {{ previsaoServico.number }}</p>
+            {% elif previsaoServico.number > 4 %}
+            <p style="color:rgb(255, 165, 0);">{{ previsaoServico.data_agendada|date:"d M"  }}: {{ previsaoServico.number }}</p>
+            {% elif previsaoServico.number > 4 %}
+            <p style="color:rgb(255, 0, 0);">{{ previsaoServico.data_agendada|date:"d M"  }}: {{ previsaoServico.number }}</p>
+
+            {% endif%} 
           {% endfor %}
+         
+
+
+
+
+          <!--
+          {% for previsaoServico in previsaoServico %}
+
+           <p style="color:red;">{{ previsaoServico.data_agendada }}: {{ previsaoServico.number }}</p>  
+           
+          {% endfor %}
+          -->
+
+
         </div>
       </div>
       
