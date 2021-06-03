@@ -8,6 +8,7 @@ class ServicoAdmin(admin.ModelAdmin):
     list_display = ['id','categoria', 'data_criacao',
                     'data_agendada','status_agendado',
                     'status_concluido','data_finalizacao',
+                    'agendado_por',
                     'criado_por', 'finalizado_por']
 admin.site.register(Servico, ServicoAdmin)
 

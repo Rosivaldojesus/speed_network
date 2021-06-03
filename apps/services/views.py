@@ -98,6 +98,8 @@ def AgendarServico(request, id=None):
     agendar = get_object_or_404(Servico, id=id)
     form = AgendarServicoForm(request.POST or None, instance=agendar)
     if form.is_valid():
+        obj = form.save(commit=False)
+        obj.agendado_por = request.user
         obj = form.save()
         obj.save()
         messages.success(request, 'Serviço agendado com sucesso!')
