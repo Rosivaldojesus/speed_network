@@ -269,11 +269,11 @@
 
           {% for previsaoServico in previsaoServico %}
             {% if previsaoServico.number <= 4 %}
-            <p style="color:rgb(00, 128, 0);">{{ previsaoServico.data_agendada|date:"d M"  }}: {{ previsaoServico.number }}</p>
-            {% elif previsaoServico.number > 4 %}
-            <p style="color:rgb(255, 165, 0);">{{ previsaoServico.data_agendada|date:"d M"  }}: {{ previsaoServico.number }}</p>
-            {% elif previsaoServico.number > 4 %}
-            <p style="color:rgb(255, 0, 0);">{{ previsaoServico.data_agendada|date:"d M"  }}: {{ previsaoServico.number }}</p>
+            <p style="color:rgb(00, 128, 0);">{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</p>
+            {% elif previsaoServico.number > 4 and previsaoServico.number <= 6  %}
+            <p style="color:rgb(255, 165, 0);">{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</p>
+            {% elif previsaoServico.number >= 7 %}
+            <p style="color:rgb(255, 0, 0);">{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</p>
 
             {% endif%} 
           {% endfor %}
