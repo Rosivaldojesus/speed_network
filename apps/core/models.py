@@ -38,6 +38,7 @@ class SenhasPorEquipamentos(models.Model):
     login = models.CharField(max_length=100, blank=True, null=True)
     senha = models.CharField(max_length=100, blank=True, null=True)
     fabricante = models.ForeignKey(FabricanteEquipamentos, on_delete=models.DO_NOTHING)
+    patrimonio_equipamento = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
     class Meta:
         verbose_name_plural = 'Senhas por Equipamentos'
