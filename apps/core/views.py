@@ -43,6 +43,10 @@ def Index(request):
     quant_servico_aberto = Servico.objects.filter(status_agendado='False').filter(status_concluido='False').count()
     quant_servico_agendado = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
     quant_servico_finalizados = Servico.objects.all().filter(status_concluido='True').count()
+
+    quant_servico_finalizados_mes = Servico.objects.annotate(month=ExtractMonth('data_finalizacao')).values(
+        'month').annotate(count=Count('data_finalizacao'))
+
     previsaoServico = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').values('data_agendada').annotate(number=Count('id')).order_by('data_agendada')
 
 
@@ -50,6 +54,8 @@ def Index(request):
     quant_instalacao_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
     quant_instalacao_concluida = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='True').count()
     quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
+    quant_instalacao_finalizados_mes = Instalacao.objects.annotate(month=ExtractMonth('data_concluido')).values(
+        'month').annotate(count=Count('data_concluido'))
     previsaoInstalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').values('data_instalacao').annotate(number=Count('id')).order_by('data_instalacao')
     funcionarioinstalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False')
 
@@ -78,12 +84,14 @@ def Index(request):
                                             'quant_servico_aberto': quant_servico_aberto,
                                             'quant_servico_agendado': quant_servico_agendado,
                                             'quant_servico_finalizados': quant_servico_finalizados,
+                                              'quant_servico_finalizados_mes':quant_servico_finalizados_mes,
                                               'previsaoServico': previsaoServico,
 
                                               'quant_instalacao_aberta': quant_instalacao_aberta,
                                               'quant_instalacao_agendada': quant_instalacao_agendada,
                                               'quant_instalacao_concluida': quant_instalacao_concluida,
                                               'quant_instalacao_sem_boleto': quant_instalacao_sem_boleto,
+                                              'quant_instalacao_finalizados_mes': quant_instalacao_finalizados_mes,
                                               'funcionarioinstalacao': funcionarioinstalacao,
                                               'instalacaoEduardo': instalacaoEduardo,
                                               'instalacaoDiego': instalacaoDiego,

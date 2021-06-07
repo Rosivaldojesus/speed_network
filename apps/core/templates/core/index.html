@@ -36,9 +36,16 @@
               </h5>  
             </div>
             <div class="col-sm-4 bg-success text-white" align="center">
-              <h5 class="card-title">Finalizados: ( <strong>{{ quant_servico_finalizados }}</strong> )
+              <h5 class="card-title">
+                Finalizados:
+                ( <strong>
+                  {% for mes in quant_servico_finalizados_mes %}
+                    {{ mes.count }}
+                  {% endfor %}
+                </strong> )
                 <a href="servicos/servicos-finalizados/" class="btn btn-success text-white w-100">Ver todos</a>
-              </h5> 
+
+              </h5>
             </div>
           </div>
           <!--fIM STATUS SERVIÇOS-->
@@ -70,14 +77,21 @@
               <div class="card border-dark" align="center">
                 <div class="card-group">
                     <h6>Boletos: ( <strong>{{ quant_instalacao_sem_boleto }}</strong> )</h6>
-                    <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark w-100">Ver todos</a>                 
+                    <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark w-100">Ver todos </a>
+
                 </div>
               </div> 
             </div>
             <div class="col-sm-3">
               <div class="card border-success" align="center">
                 <div class="card-group">
-                    <h6>Finalizados: ( <strong>{{ quant_instalacao_concluida }}</strong> )</h6>
+                    <h6>Finalizados
+                      ( <strong>
+                        {% for mes in quant_instalacao_finalizados_mes %}
+                          {{ mes.count }}
+                        {% endfor %}
+
+                      </strong> )</h6>
                     <a href="vendas/instalacao-concluida/" class="btn btn-success w-100">Ver todos</a>
                 </div>
               </div>
