@@ -37,7 +37,7 @@ def submit_login(request):
     return redirect('/')
 
 @login_required(login_url='/login/')
-def Index(request):
+def Index(request, aMonthAgo=None):
     user = request.user
     pendentes = Instalacao.objects.all().count()
     quant_servico_aberto = Servico.objects.filter(status_agendado='False').filter(status_concluido='False').count()
@@ -46,6 +46,8 @@ def Index(request):
 
     quant_servico_finalizados_mes = Servico.objects.annotate(month=ExtractMonth('data_finalizacao')).values(
         'month').annotate(count=Count('data_finalizacao'))
+
+
 
     #Previsões
     previsaoServico = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').values(
@@ -59,7 +61,6 @@ def Index(request):
     quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
     quant_instalacao_finalizados_mes = Instalacao.objects.annotate(month=ExtractMonth('data_concluido')).values(
         'month').annotate(count=Count('data_concluido'))
-
 
     funcionarioinstalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False')
 
@@ -115,6 +116,8 @@ def Index(request):
                                               #Status Voip
                                               'voipDisponiveis':voipDisponiveis,
                                               'voipReservados':voipReservados,
+
+
 
                                               })
 
