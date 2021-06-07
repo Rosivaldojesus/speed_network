@@ -45,7 +45,9 @@ def Index(request, aMonthAgo=None):
     quant_servico_finalizados = Servico.objects.all().filter(status_concluido='True').count()
 
     quant_servico_finalizados_mes = Servico.objects.annotate(month=ExtractMonth('data_finalizacao')).values(
-        'month').annotate(count=Count('data_finalizacao'))
+        'month').annotate(count=Count('data_finalizacao'))[1:]
+
+
 
 
 
@@ -60,7 +62,7 @@ def Index(request, aMonthAgo=None):
     quant_instalacao_concluida = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='True').count()
     quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
     quant_instalacao_finalizados_mes = Instalacao.objects.annotate(month=ExtractMonth('data_concluido')).values(
-        'month').annotate(count=Count('data_concluido'))
+        'month').annotate(count=Count('data_concluido'))[1]
 
     funcionarioinstalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False')
 
