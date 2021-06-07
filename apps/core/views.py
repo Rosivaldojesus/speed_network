@@ -1,3 +1,5 @@
+import datetime
+from datetime import datetime, date
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Q, Count
 from django.shortcuts import render, redirect
@@ -37,15 +39,26 @@ def submit_login(request):
     return redirect('/')
 
 @login_required(login_url='/login/')
-def Index(request, aMonthAgo=None):
+def Index(request):
     user = request.user
+
+
+    this_year = datetime.now().year
+    last_year = datetime.now().year - 1
+    this_month = date.today().month
+
+
+
+
+
+
+
     pendentes = Instalacao.objects.all().count()
     quant_servico_aberto = Servico.objects.filter(status_agendado='False').filter(status_concluido='False').count()
     quant_servico_agendado = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
     quant_servico_finalizados = Servico.objects.all().filter(status_concluido='True').count()
 
-    quant_servico_finalizados_mes = Servico.objects.annotate(month=ExtractMonth('data_finalizacao')).values(
-        'month').annotate(count=Count('data_finalizacao'))[1]
+    este_mes = Servico.objects.filter(data_finalizacao__month=this_month).count()
 
 
 
@@ -91,7 +104,8 @@ def Index(request, aMonthAgo=None):
                                             'quant_servico_aberto': quant_servico_aberto,
                                             'quant_servico_agendado': quant_servico_agendado,
                                             'quant_servico_finalizados': quant_servico_finalizados,
-                                              'quant_servico_finalizados_mes':quant_servico_finalizados_mes,
+                                              'este_mes': este_mes,
+
                                               'previsaoServico': previsaoServico,
 
                                               'quant_instalacao_aberta': quant_instalacao_aberta,
