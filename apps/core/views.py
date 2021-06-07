@@ -45,7 +45,7 @@ def Index(request, aMonthAgo=None):
     quant_servico_finalizados = Servico.objects.all().filter(status_concluido='True').count()
 
     quant_servico_finalizados_mes = Servico.objects.annotate(month=ExtractMonth('data_finalizacao')).values(
-        'month').annotate(count=Count('data_finalizacao'))[1:]
+        'month').annotate(count=Count('data_finalizacao'))[1]
 
 
 
