@@ -39,10 +39,17 @@
               <h5 class="card-title">
                 Finalizados:
                 ( <strong>
+                {{ quant_servico_finalizados }}
+                </strong> )
+                <!--
+                ( <strong>
                   {% for mes in quant_servico_finalizados_mes %}
                     {{ mes.count }}
                   {% endfor %}
                 </strong> )
+                -->
+
+
                 <a href="servicos/servicos-finalizados/" class="btn btn-success text-white w-100">Ver todos</a>
 
               </h5>
@@ -85,6 +92,15 @@
             <div class="col-sm-3">
               <div class="card border-success" align="center">
                 <div class="card-group">
+                  <h6>Finalizados
+                      ( <strong>
+                        {{ quant_instalacao_concluida }}
+
+                      </strong> )</h6>
+
+
+
+                  <!--
                     <h6>Finalizados
                       ( <strong>
                         {% for mes in quant_instalacao_finalizados_mes %}
@@ -92,6 +108,7 @@
                         {% endfor %}
 
                       </strong> )</h6>
+                    -->
                     <a href="vendas/instalacao-concluida/" class="btn btn-success w-100">Ver todos</a>
                 </div>
               </div>
