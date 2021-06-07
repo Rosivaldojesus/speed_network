@@ -388,7 +388,7 @@
             <p style="color:green;"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></p>
             {% elif previsaoInstalacao.number > 6 and previsaoInstalacao.number <= 9  %}
             <p style="color:orange;"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></p>
-            {% elif previsaoInstalacao.number > 10  %}
+            {% elif previsaoInstalacao.number >= 10  %}
             <p style="color:red;"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></p>
 
             {% endif %} 
