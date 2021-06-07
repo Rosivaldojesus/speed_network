@@ -16,14 +16,16 @@
   <div class="row mt-2">
     <!--
       **************************************************************************
+      **************************************************************************
       INICIO DO CARD A ESQUERDA
+      **************************************************************************
       **************************************************************************
      -->
     <div class="card col-sm-8">
+      <!--INICIO STATUS SERVIÇOS-->
       <div class="card w-100">
         <div class="card-header bg-dark text-white">Status Serviços</div>
         <div class="card-body">
-          <!--INICIO STATUS SERVIÇOS-->
           <div class="row">
             <div  class="col-sm-4 bg-danger text-white" align="center">
               <h5 class="card-title">Aguardando: ( <strong>{{ quant_servico_aberto }}</strong> ) 
@@ -38,24 +40,20 @@
             <div class="col-sm-4 bg-success text-white" align="center">
               <h5 class="card-title">
                 Finalizados:
-
                 ( <strong>
                 {{ quant_servicos_finalizados_mes }}
                 </strong> )
-
                 <a href="servicos/servicos-finalizados/" class="btn btn-success text-white w-100">Ver todos</a>
-
               </h5>
             </div>
           </div>
-          <!--fIM STATUS SERVIÇOS-->
         </div>
       </div>
+       <!--fIM STATUS SERVIÇOS-->
       
       <div class="card w-100">
         <div class="card-header bg-dark text-white">Status de Instalações</div>
         <div class="card-body">
-          <!--INICIO STATUS INSTALAÇOES-->
           <div class="row">
             <div class="col-sm-3">
               <div class="card border-danger" align="center">
@@ -78,7 +76,6 @@
                 <div class="card-group">
                     <h6>Boletos: ( <strong>{{ quant_instalacao_sem_boleto }}</strong> )</h6>
                     <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark w-100">Ver todos </a>
-
                 </div>
               </div> 
             </div>
@@ -86,20 +83,63 @@
               <div class="card border-success" align="center">
                 <div class="card-group">
                   <h6>Finalizados
-
                       ( <strong>
                         {{ quant_instalacao_finalizados_mes }}
                       </strong> )</h6>
-
                     <a href="vendas/instalacao-concluida/" class="btn btn-success w-100">Ver todos</a>
                 </div>
               </div>
             </div>
           </div>
-          <!--FIM STATUS INSTALAÇÕES-->
         </div>
       </div>
+            <!--
+        *************************************************************************************
+        ***************** INÍCIO  das últimas vendas   *******************************
+        *************************************************************************************
+      
+      -->
 
+      <style>
+        .table-condensed{
+                          font-size: 12px;
+                        }
+      </style>
+      <div class="card">
+        <div class="card-header bg-dark text-white">Últimadas vendas de instalações</div>
+        <div class="card-group">
+          <div class="card">
+            <div class="table-responsive-sm  table-condensed" style="line-height: 0.5">
+              <table class="table caption-top">
+                <caption>Últimos lançamentos</caption>
+                <thead>
+                  <tr>
+                    <th>Cliente</th>
+                    <th>Rua</th>
+                    <th>Bairro</th>
+                    <th>Vendedor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for venda in ultimas_vendas%}
+                  <tr>
+                    <td>{{ venda.nome_cliente }}</td>
+                    <td>{{ venda.rua_cliente }}</td>
+                    <td>{{ venda.bairro_cliente }}</td>
+                    <td>{{ venda.instalacao_criado_por }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!--
+        *************************************************************************************
+        *****************  FIM das últimas vendas  *******************************
+        *************************************************************************************
+      -->
 
       <!--
         *************************************************************************************
@@ -109,14 +149,12 @@
       <div class="card">
         <div class="card-header bg-dark text-white">Serviços VOIP</div>
         <div class="card-group">
-          
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">VOIP Disponiveis ( {{ voipDisponiveis }} )</h5>
               <a href="/servicos/servicos-voip/" class="btn btn-primary stretched-link">Ver todos</a>
             </div>
           </div>
-
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Reservados ( {{ voipReservados }} )</h5>
@@ -124,10 +162,8 @@
              <!-- <a href="/servicos/servicos-voip-disponiveis/" class="btn btn-primary stretched-link">Ver todos</a> -->
             </div>
           </div>
-
         </div>
       </div>
-
         <!--
         *************************************************************************************
         *****************  FIM dos serviços VOIP  *******************************
@@ -196,9 +232,7 @@
           Featured
         </div>
 
-
-
-   
+  
         {% regroup cities by country as funcionarioinstalacao %}
 
         <ul>

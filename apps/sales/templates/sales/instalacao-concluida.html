@@ -23,8 +23,8 @@
 
 
 
-    <div class="table-responsive-sm">
-        <table class="table">
+    <div class="table-responsive-sm " style="line-height: 0.2">
+        <table class="table table-sm">
           <thead>
             <tr>
                 <th scope="col">Nome</th>
@@ -33,10 +33,10 @@
                 <th scope="col">Técnico</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody style="line-height: 0.7">
           {% for concluida in concluidas %}
             <tr>
-                <td class="nav-link">
+                <td class="nav-link ">
                     <a class="nav-link" href="visualizar-instalacao/?id={{ concluida.id }}">{{ concluida.nome_cliente }}</a>
                 </td>
                 <td>{{ concluida.rua_cliente }}</td>

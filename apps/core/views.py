@@ -40,31 +40,29 @@ def submit_login(request):
 
 @login_required(login_url='/login/')
 def Index(request):
+    #Para pegar o usuário atual
     user = request.user
 
-
+    #Para filtar quantidade por período
     this_year = datetime.now().year
     last_year = datetime.now().year - 1
     this_month = date.today().month
 
-
-
-
-
-
-
+    #Query dos serviços
     pendentes = Instalacao.objects.all().count()
     quant_servico_aberto = Servico.objects.filter(status_agendado='False').filter(status_concluido='False').count()
     quant_servico_agendado = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
     quant_servico_finalizados = Servico.objects.all().filter(status_concluido='True').count()
-
-
-    #Serviços finalizados no último mês
     quant_servicos_finalizados_mes = Servico.objects.filter(data_finalizacao__month=this_month).count()
-
-    # Instalação finalizados no último mês
+  
+    # Query das Instalações
+    quant_instalacao_aberta = Instalacao.objects.filter(status_agendada='False').filter(concluido='False').count()
+    quant_instalacao_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
+    quant_instalacao_concluida = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='True').count()
+    quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
     quant_instalacao_finalizados_mes = Instalacao.objects.filter(data_finalizacao__month=this_month).count()
 
+    ultimas_vendas = Instalacao.objects.all()[:5]
 
     #Previsões
     previsaoServico = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').values(
@@ -72,18 +70,12 @@ def Index(request):
     previsaoInstalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').values(
         'data_instalacao').annotate(number=Count('id')).order_by('data_instalacao')
 
-    quant_instalacao_aberta = Instalacao.objects.filter(status_agendada='False').filter(concluido='False').count()
-    quant_instalacao_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
-    quant_instalacao_concluida = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='True').count()
-    quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
-
-
+    #Filter service by técnico
     funcionarioinstalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False')
-
-
     instalacaoEduardo = Instalacao.objects.filter(funcionario_instalacao=12).filter(status_agendada='True').filter(concluido='False').order_by('data_instalacao')
     instalacaoDiego = Instalacao.objects.filter(funcionario_instalacao=14).filter(status_agendada='True').filter(concluido='False').order_by('data_instalacao')
     instalacaoPaulo = Instalacao.objects.filter(funcionario_instalacao=13).filter(status_agendada='True').filter(concluido='False').order_by('data_instalacao')
+
 
 
     servicosDiarios = Servico.objects.filter(status_concluido='True').values('data_finalizacao')\
@@ -135,6 +127,9 @@ def Index(request):
                                               #Status Voip
                                               'voipDisponiveis':voipDisponiveis,
                                               'voipReservados':voipReservados,
+
+                                              #Últimas vendas
+                                              'ultimas_vendas': ultimas_vendas,
 
 
 
