@@ -62,7 +62,7 @@ def Index(request):
     quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
     quant_instalacao_finalizados_mes = Instalacao.objects.filter(data_finalizacao__month=this_month).count()
 
-    ultimas_vendas = Instalacao.objects.all()[:5]
+    ultimas_vendas = Instalacao.objects.filter().order_by('-id')[:5]
 
     #Previsões
     previsaoServico = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').values(
