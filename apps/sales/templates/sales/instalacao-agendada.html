@@ -49,7 +49,7 @@
               {% if agendada.funcionario_instalacao is null %}
               <p style="color:red;">Por favor, defina um responsável pela instalação.</p>
               {% else %}
-              <p>Responsável pela Instalação: <strong>{{ agendada.funcionario_instalacao }}</strong></p>
+              <p>Responsável pela Instalação: <strong>{{ agendada.funcionario_instalacao.get_full_name }}</strong></p>
               
               {% endif %}
 
