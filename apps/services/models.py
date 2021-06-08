@@ -51,8 +51,10 @@ class ServicoVoip(models.Model):
     numero_telefone_voip = models.CharField(max_length=50, blank=True, null=True, verbose_name='Telefone Voip')
     reservado_voip = models.BooleanField(default=False, verbose_name='Reservado')
     data_reserva_voip = models.DateField(blank=True, null=True, verbose_name='Data da Reserva')
+    portabilidade_voip = models.BooleanField(default=False, verbose_name='Portabilidade')
     finalizado_voip = models.BooleanField(default=False, verbose_name='Finalizado')
     funcionario_reserva_voip = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='funcionário_reserva_voip', blank=True, null=True)
+
 
     class Meta:
         verbose_name_plural = 'Serviço Voip'

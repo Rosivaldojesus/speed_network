@@ -121,7 +121,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for venda in ultimas_vendas%}
+                  {% for venda in ultimas_vendas %}
                   <tr>
                     <td>{{ venda.nome_cliente }}</td>
                     <td>{{ venda.rua_cliente }}</td>
@@ -162,6 +162,13 @@
              <!-- <a href="/servicos/servicos-voip-disponiveis/" class="btn btn-primary stretched-link">Ver todos</a> -->
             </div>
           </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Em portabilidade( {{ voipPortabilidade }} )</h5>
+              <a href="/servicos/servicos-voip-reservados/" class="btn btn-primary stretched-link">Ver todos</a>
+             <!-- <a href="/servicos/servicos-voip-disponiveis/" class="btn btn-primary stretched-link">Ver todos</a> -->
+            </div>
+          </div>
         </div>
       </div>
         <!--
@@ -188,6 +195,7 @@
                   <th>Cliente</th>
                   <th>Rua</th>
                   <th>Nº</th>
+                  <th>Data</th>
                 </tr>
               </thead>
               <tbody>
@@ -200,6 +208,7 @@
                       <td>{{ responsavel.nome_cliente }}</td>
                       <td>{{ responsavel.rua_cliente }}</td>
                       <td>{{ responsavel.numero_endereco_cliente }}</td>
+                      <td>{{ responsavel.data_instalacao|date:"D d"}} - {{ responsavel.hora_instalacao|time:"H:i"  }} </td>
                     </tr>
                     {% endif %}
                 {% endfor %}
@@ -216,11 +225,6 @@
         *****************  FIM Instalações agendadas por Técnico  *******************************
         *************************************************************************************
       -->
-
-
-
- 
-
 
     </div>
     <!--

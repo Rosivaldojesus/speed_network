@@ -62,7 +62,8 @@ def Index(request):
     quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
     quant_instalacao_finalizados_mes = Instalacao.objects.filter(data_finalizacao__month=this_month).count()
 
-    responsavel_instalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').order_by('funcionario_instalacao')
+    responsavel_instalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').\
+        order_by('funcionario_instalacao', 'data_instalacao', 'hora_instalacao')
 
 
     hora_instalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').values(
@@ -100,6 +101,7 @@ def Index(request):
     #STATUS VOIP
     voipDisponiveis = ServicoVoip.objects.filter(reservado_voip='False').filter(finalizado_voip='False').count()
     voipReservados = ServicoVoip.objects.filter(reservado_voip='True').filter(finalizado_voip='False').count()
+    voipPortabilidade = ServicoVoip.objects.filter(portabilidade_voip= 'True').filter(reservado_voip='True').filter(finalizado_voip='False').count()
 
 
     return render(request, 'core/index.html',{'pendentes':pendentes,
@@ -140,6 +142,7 @@ def Index(request):
                                               #Status Voip
                                               'voipDisponiveis':voipDisponiveis,
                                               'voipReservados':voipReservados,
+                                              'voipPortabilidade':voipPortabilidade,
 
                                               #Últimas vendas
                                               'ultimas_vendas': ultimas_vendas,

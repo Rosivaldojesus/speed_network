@@ -132,10 +132,12 @@ def ServicosVoip(request):
     voipDisponivel = ServicoVoip.objects.all().filter(reservado_voip='False').filter(finalizado_voip='False')
     quantDisponivel = ServicoVoip.objects.all().filter(reservado_voip='False').filter(finalizado_voip='False').count()
 
-    voipReservado = ServicoVoip.objects.all().filter(reservado_voip='True').filter(finalizado_voip='False')
+    voipReservado = ServicoVoip.objects.all().filter(portabilidade_voip='False').filter(reservado_voip='True').filter(finalizado_voip='False')
+    voipReservadoPortabilidade = ServicoVoip.objects.all().filter(portabilidade_voip='True').filter(reservado_voip='True').filter(finalizado_voip='False')
     return render(request, 'services/servicos-voip.html', {'voipDisponivel': voipDisponivel,
                                                            'quantDisponivel': quantDisponivel,
-                                                           'voipReservado': voipReservado
+                                                           'voipReservado': voipReservado,
+                                                           'voipReservadoPortabilidade':voipReservadoPortabilidade,
                                                                        })
 
 

@@ -17,7 +17,7 @@
  {% endif %}
  <!--Fim das mensagens-->
 
-  <div class="card">
+  <div class="card mt-3">
     <div class="card-header">
       <strong>URL do serviço de voip</strong>
     </div>
@@ -37,8 +37,8 @@
       ****************************************************************************
   -->
 
- <div class="card">
-    <h5 class="card-header"><span class="badge badge-success badge-pill">{{ quantDisponivel }} </span>  VOIP Disponíveis</h5>
+ <div class="card mt-3">
+    <h5 class="card-header bg-success"><span class="badge badge-success badge-pill">{{ quantDisponivel }} </span>  VOIP Disponíveis</h5>
     <div class="card-body">
 
       <div class="table-responsive">
@@ -77,13 +77,14 @@
 
 
 
+
   <!--
       ****************************************************************************
       ************************INÍCIO VOIP RESERVADOS*******************************
       ****************************************************************************
   -->
-    <div class="card">
-      <h5 class="card-header">Reservados</h5>
+    <div class="card mt-3 ">
+      <h5 class="card-header bg-danger">Reservados</h5>
       <div class="card-body">
         <div class="table-responsive">
         <table class="table">
@@ -115,5 +116,46 @@
       ************************FIM VOIP RESERVADOS*******************************
       ****************************************************************************
   -->
+
+    <!--
+      ****************************************************************************
+      ************************INÍCIO VOIP RESERVADOS PARA PORTABILIDADE *********
+      ****************************************************************************
+  -->
+    <div class="card mt-3">
+      <h5 class="card-header bg-warning">Reservados para portabilidade </h5>
+      <div class="card-body">
+        <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Cliente</th>
+              <th scope="col">Usuário</th>
+              <th scope="col">Senha</th>
+              <th scope="col">Nº Telefone</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for voipReservado in voipReservadoPortabilidade %}
+            <tr>
+              <td>{{ voipReservado.nome_usuario_voip }}</td>
+              <td>{{ voipReservado.usuario_voip }}</td>
+              <td>{{ voipReservado.senha_voip }}</td>
+              <td>{{ voipReservado.numero_telefone_voip }}</td>
+            </tr>
+          {% endfor %}
+
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </div>
+  <!--
+      ****************************************************************************
+      ********  FIM VOIP RESERVADOS PARA PORTABILIDADE   *************************
+      ****************************************************************************
+  -->
+
+
 </div>
 {% endblock %}
