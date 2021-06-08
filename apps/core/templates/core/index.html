@@ -114,7 +114,6 @@
                 <caption>Últimos lançamentos</caption>
                 <thead>
                   <tr>
-                    <th>id</th>
                     <th>Cliente</th>
                     <th>Rua</th>
                     <th>Bairro</th>
@@ -124,7 +123,6 @@
                 <tbody>
                   {% for venda in ultimas_vendas%}
                   <tr>
-                    <td>{{ venda.id }}</td>
                     <td>{{ venda.nome_cliente }}</td>
                     <td>{{ venda.rua_cliente }}</td>
                     <td>{{ venda.bairro_cliente }}</td>
