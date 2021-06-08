@@ -71,7 +71,7 @@ def Index(request):
 
 
 
-    ultimas_vendas = Instalacao.objects.filter().order_by('-id')[:7]
+    ultimas_vendas = Instalacao.objects.filter().order_by('-id')[:4]
 
     #Previsões
     previsaoServico = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').values(
@@ -178,7 +178,7 @@ def Senhas(request):
 
 @login_required(login_url='/login/')
 def SenhasPorEquipamento(request):
-    senhasPorEquipamentos = SenhasPorEquipamentos.objects.all().order_by('codigo_equipamento')[:2]
+    senhasPorEquipamentos = SenhasPorEquipamentos.objects.all().order_by('codigo_equipamento')[:10]
     queryset = request.GET.get('q')
     if queryset:
         senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(
