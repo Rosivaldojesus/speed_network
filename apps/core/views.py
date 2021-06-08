@@ -100,7 +100,7 @@ def Index(request):
 
     #STATUS VOIP
     voipDisponiveis = ServicoVoip.objects.filter(reservado_voip='False').filter(finalizado_voip='False').count()
-    voipReservados = ServicoVoip.objects.filter(reservado_voip='True').filter(finalizado_voip='False').count()
+    voipReservados = ServicoVoip.objects.filter(portabilidade_voip= 'False').filter(reservado_voip='True').filter(finalizado_voip='False').count()
     voipPortabilidade = ServicoVoip.objects.filter(portabilidade_voip= 'True').filter(reservado_voip='True').filter(finalizado_voip='False').count()
 
 
