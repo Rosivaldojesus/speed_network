@@ -62,6 +62,8 @@ def Index(request):
     quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
     quant_instalacao_finalizados_mes = Instalacao.objects.filter(data_finalizacao__month=this_month).count()
 
+    hora_instalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False')
+
     ultimas_vendas = Instalacao.objects.filter().order_by('-id')[:7]
 
     #Previsões
@@ -93,6 +95,7 @@ def Index(request):
     voipDisponiveis = ServicoVoip.objects.filter(reservado_voip='False').filter(finalizado_voip='False').count()
     voipReservados = ServicoVoip.objects.filter(reservado_voip='True').filter(finalizado_voip='False').count()
 
+
     return render(request, 'core/index.html',{'pendentes':pendentes,
                                             'quant_servico_aberto': quant_servico_aberto,
                                             'quant_servico_agendado': quant_servico_agendado,
@@ -107,6 +110,9 @@ def Index(request):
                                               'quant_instalacao_agendada': quant_instalacao_agendada,
                                               'quant_instalacao_concluida': quant_instalacao_concluida,
                                               'quant_instalacao_sem_boleto': quant_instalacao_sem_boleto,
+                                              'hora_instalacao':hora_instalacao,
+
+
 
                                               'funcionarioinstalacao': funcionarioinstalacao,
                                               'instalacaoEduardo': instalacaoEduardo,

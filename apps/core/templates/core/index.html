@@ -231,21 +231,23 @@
         <div class="card-header">
           Featured
         </div>
-
   
-        {% regroup cities by country as funcionarioinstalacao %}
 
-        <ul>
-        {% for country in funcionarioinstalacao %}
-            <li>{{ country.funcionario_instalacao }}
-            <ul>
-                {% for city in funcionarioinstalacao %}
-                  <li>{{ city.name }}: {{ city.population }}</li>
-                {% endfor %}
-            </ul>
-            </li>
-        {% endfor %}
-        </ul>
+        
+
+          <ul>
+          {% for data in hora_instalacao %}
+              <li>{{ data.data_instalacao }}
+              <ul>
+                  {% for hora in hora_instalacao %}
+                    {% if hora.hora_instalacao == data.hora_instalacao %}
+                      {{ hora.hora_instalacao }}<br>
+                    {% endif %}
+                  {% endfor %}
+              </ul>
+              </li>
+          {% endfor %}
+          </ul>
 
         <!--
         <ul>
