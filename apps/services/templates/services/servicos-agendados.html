@@ -44,9 +44,12 @@
         <tr>
 
           {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
+
+          <!--
           <td>
               <a href="/servicos/editar-servico-agendado/{{ agendado.id }}" class="btn btn-info">Definir Técnico</a>
           </td>
+          -->
 
           <td>
             <a href="/servicos/editar-servico-agendado/{{ agendado.id }}" class="btn btn-warning">Editar</a>

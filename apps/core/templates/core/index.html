@@ -120,7 +120,7 @@
                     <td>{{ venda.nome_cliente }}</td>
                     <td>{{ venda.rua_cliente }}</td>
                     <td>{{ venda.bairro_cliente }}</td>
-                    <td>{{ venda.instalacao_criado_por }}</td>
+                    <td>{{ venda.instalacao_criado_por.get_full_name }}</td>
                   </tr>
                   {% endfor %}
                 </tbody>
@@ -211,7 +211,7 @@
                     <p></p>
                     {% else %}
                     <tr>
-                      <td>{{ responsavel.funcionario_instalacao }}</td>
+                      <td>{{ responsavel.funcionario_instalacao.get_full_name }}</td>
                       <td>{{ responsavel.nome_cliente }}</td>
                       <td>{{ responsavel.rua_cliente }}</td>
                       <td>{{ responsavel.numero_endereco_cliente }}</td>
@@ -333,7 +333,7 @@
 
   {% elif request.user.groups.all.0.name == "Tecnico" %}
   <div class="card-deck">
-    <div class="card text-white bg-dark mb-3"">
+    <div class="card text-white bg-dark mb-3">
       <div class="card-header">SERVIÇOS</div>
       <div class="card-body">
         <h5 class="card-title">Clique abaixo</h5>
