@@ -3,7 +3,7 @@ from .views import Index
 from .views import CadastroInstalacao, InstalacaoVisualizacao, InstalacaoEditar,\
     InstalacaoAgendar, InstalacaoAberta, InstalacaoAgendada, InstalacaoFinalizar,\
     InstalacaoConcluida, InstalacaoSemBoleto, InstalacaoFinalizadaSemBoleto,\
-    FinalizarEntregaBoleto
+    FinalizarEntregaBoleto, InstalacaoDefinirTecnico
 
 
 urlpatterns = [
@@ -22,5 +22,6 @@ urlpatterns = [
     path('instalacao-sem-boleto/', InstalacaoSemBoleto),
     path('instalacao-finalizada-sem-boleto/', InstalacaoFinalizadaSemBoleto),
     path('finalizar-boleto/<int:id>', FinalizarEntregaBoleto),
+    path('definir-tecnico_instalacao/<int:id>', InstalacaoDefinirTecnico)
 
     ]

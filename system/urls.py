@@ -9,7 +9,8 @@ urlpatterns = [
     path('pagamentos/', include('apps.payment.urls')),
     path('vendas/', include('apps.sales.urls')),
     path('servicos/', include('apps.services.urls')),
-    path('cto/', include('apps.cto.urls'))
+    path('cto/', include('apps.cto.urls')),
+    path('componentes/', include('apps.components.urls'))
 
 
 ]

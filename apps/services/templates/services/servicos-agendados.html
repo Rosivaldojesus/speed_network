@@ -2,10 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-
 {% block title %}<title>Serviços em agendados</title>{% endblock %}
-
-
 
 {% block main %}
 <div class="container">
@@ -19,33 +16,25 @@
   {% endfor %}
 {% endif %}
 
-
-
-  {% for agendado in agendados %}
+{% for agendado in agendados %}
   <div class="card mt-3 shadow border-warning">
     <div class="card-header ">
-
         <div class="row">
           <div class="col-sm-6">
             <div class="card">
               <div class="card-body shadow-sm">
-
                 <strong>Data agendada: </strong>  {{ agendado.data_agendada | date:'d/m/Y' }} ás {{agendado.hora_agendada}}
-
               </div>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="card">
               <div class="card-body shadow-sm">
-
                 <strong>Setor:</strong> {{ agendado.categoria}}
-
               </div>
             </div>
           </div>
         </div>
-
     </div>
     <div class="card-body">
       <h6 class="card-title"><strong>Cliente: </strong> {{ agendado.contato_servico}}</h6>
@@ -56,8 +45,14 @@
 
           {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
           <td>
-              <a href="/servicos/editar-servico-agendado/{{ agendado.id }}" class="btn btn-warning">Editar</a>
+              <a href="/servicos/editar-servico-agendado/{{ agendado.id }}" class="btn btn-info">Definir Técnico</a>
           </td>
+
+          <td>
+            <a href="/servicos/editar-servico-agendado/{{ agendado.id }}" class="btn btn-warning">Editar</a>
+          </td>
+
+
           {% endif %}
 
           <td>

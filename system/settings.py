@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'apps.services',
     'apps.cto',
 
+
     'crispy_forms',
     'ckeditor',
     "bootstrap4",

@@ -180,35 +180,33 @@
         <div class="card-header bg-dark text-white">Instalações agendadas por Técnico</div>
         <div class="card-body">
           <!--SERVIÇOS POR CADA TÉCNICO-->
-          <div class="card-group">
-            <div class="card">
-              <h5 class="card-title">Eduardo</h5>
-              <div class="card-body">
-                {% for instalacaoEduardo in instalacaoEduardo %}
-                  {{ instalacaoEduardo.nome_cliente }}: <small> ({{ instalacaoEduardo.data_instalacao }} - {{ instalacaoEduardo.hora_instalacao }})</small><br>
-                  <hr>
+          <div class="table-responsive-sm  table-condensed" style="line-height: 0.5">
+            <table class="table caption-top">
+              <thead>
+                <tr>
+                  <th>Técnico</th>
+                  <th>Cliente</th>
+                  <th>Rua</th>
+                  <th>Nº</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for responsavel in responsavel_instalacao%}
+                    {% if responsavel.funcionario_instalacao is null %}
+                    <p></p>
+                    {% else %}
+                    <tr>
+                      <td>{{ responsavel.funcionario_instalacao }}</td>
+                      <td>{{ responsavel.nome_cliente }}</td>
+                      <td>{{ responsavel.rua_cliente }}</td>
+                      <td>{{ responsavel.numero_endereco_cliente }}</td>
+                    </tr>
+                    {% endif %}
                 {% endfor %}
-              </div>
-            </div>
-            <div class="card">
-              <h5 class="card-title">Diego</h5>
-              <div class="card-body">
-                {% for instalacaoDiego in instalacaoDiego %}
-                  {{ instalacaoDiego.nome_cliente }}<br>
-                  <hr>
-                {% endfor %}           
-              </div>
-            </div>
-            <div class="card">
-              <h5 class="card-title">Paulo</h5>
-              <div class="card-body">
-                {% for instalacaoPaulo in instalacaoPaulo %}
-                  {{ instalacaoPaulo.nome_cliente }}<br>
-                  <hr>
-                {% endfor %}
-              </div>
-            </div>
+              </tbody>
+            </table>
           </div>
+          
           <!-- FIM SERVIÇOS POR TECNICO-->
         </div>
       </div>
@@ -220,109 +218,8 @@
       -->
 
 
-            <!--
-        *************************************************************************************
-        ***************** INÍCIO SERVIÇOS POR TÉCNICO  *******************************
-        *************************************************************************************
-      -->
 
-
-      <div class="card">
-        <div class="card-header">
-          Featured
-        </div>
-  
-
-        
-
-    
-        <!--
-        <ul>
-          {% for install in funcionarioinstalacao %}
-              <li>{{ install.funcionario_instalacao }}
-                {% if install.funcionario_instalacao == install.funcionario_instalacao %}
-                  <ul>
-                    {% for install in funcionarioinstalacao %}
-                      <li>{{ install.nome_cliente }}: {{ city.population }}</li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
-              </li>
-          {% endfor %}
-          </ul>
-        -->
-
-             <!--
-        {% regroup tecnico by instalacao as funcionarioinstalacao %}
-        -->
-
-
-
-
-      </div>
-
-         <!--
-        *************************************************************************************
-        ***************** FIM SERVIÇOS POR TÉCNICO  *******************************
-        *************************************************************************************
-      -->
-
-
-
-            <!--
-        *************************************************************************************
-        ***************** INÍCIO STATUS DE VENDAS  *******************************
-        *************************************************************************************
-      -->
-
-      
-      <!--
-
-      <div class="card w-100">
-        <div class="card-header bg-dark text-white">Status Vendas</div>
-        <div class="card-body">
-          
-          <div class="card-group">
-            <div class="card">
-              <h5 class="card-title">Eduardo</h5>
-              <div class="card-body">
-                {% for vendasPorVendedor in vendasPorVendedor %}
-                  {{ vendasPorVendedor.instalacao_criado_por }}: {{ vendasPorVendedor.number }}<br> 
-                {% endfor %}
-              </div>
-            </div>
-            <div class="card">
-              <h5 class="card-title">Diego</h5>
-              <div class="card-body">
-                {% for instalacaoDiego in instalacaoDiego %}
-                  {{ instalacaoDiego.nome_cliente }}<br>
-                  <hr>
-                {% endfor %}           
-              </div>
-            </div>
-            <div class="card">
-              <h5 class="card-title">Paulo</h5>
-              <div class="card-body">
-                {% for instalacaoPaulo in instalacaoPaulo %}
-                  {{ instalacaoPaulo.nome_cliente }}<br>
-                  <hr>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-         
-        </div>
-      </div>
-
-
-      -->
-
-           <!--
-        *************************************************************************************
-        *****************  FIM STATUS DE VENDAS  *******************************
-        *************************************************************************************
-      -->
-
+ 
 
 
     </div>

@@ -13,4 +13,5 @@ urlpatterns = [
     path('login/submit', submit_login),
     path('senhas/', Senhas),
     path('senhas-por-equipamento/', SenhasPorEquipamento),
+
 ]

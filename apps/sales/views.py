@@ -6,7 +6,8 @@ from .models import PlanosInternet
 
 from .models import Instalacao
 from .forms import InstalacaoCreateForm, InstalacaoUpdateForm,\
-    InstalacaoAgendarForm, InstalacaoFinalizarForm, BoletoEntregueForm
+    InstalacaoAgendarForm, InstalacaoFinalizarForm, BoletoEntregueForm,\
+    InstalacaoDefinirTecnicoForm
 
 
 # Create your views here.
@@ -132,6 +133,21 @@ def InstalacaoAgendar(request, id=None):
     return render(request, 'sales/agendar-instalacao.html', {'form': form})
 
 
+
+@login_required(login_url='/login/')
+def InstalacaoDefinirTecnico(request, id=None):
+    defenir = get_object_or_404(Instalacao, id=id)
+    form = InstalacaoDefinirTecnicoForm(request.POST or None, instance=defenir)
+    if form.is_valid():
+        obj = form.save()
+        obj.save()
+        messages.success(request, 'Técnico defenido com sucesso.')
+        return redirect('/vendas/')
+    return render(request, 'sales/agendar-instalacao.html', {'form': form})
+
+
+
+
 @login_required(login_url='/login/')
 def InstalacaoSemBoleto(request):
     boletos = Instalacao.objects.filter(status_agendada='True')
@@ -169,6 +185,7 @@ def FinalizarEntregaBoleto(request, id=None):
         messages.success(request, 'Boleto finalizado com sucesso.')
         return redirect('/vendas/')
     return render(request, 'sales/finalizar-boleto.html', {'form': form})
+
 
 
 

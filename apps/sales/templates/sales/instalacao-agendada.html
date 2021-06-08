@@ -25,39 +25,39 @@
     <div class="card-group  border shadow-sm">
       <div class="card border-0 mt-2 ml-4 mb-2">
         
-
           <small><strong>Nome</strong></small>
             {{ agendada.nome_cliente }} {{ agendada.sobrenome_cliente }}
-
           <small><strong>Rua</strong></small>  
             {{ agendada.rua_cliente }}, {{ agendada.numero_endereco_cliente }}
-
-          
           <small><strong>Bairro</strong></small>
             Bairro: {{ agendada.bairro_cliente }} 
-
           <small><strong>Data Instalação</strong></small>  
             {{ agendada.data_instalacao }}  às {{ agendada.hora_instalacao }}
-          
           <small><strong>Observação</strong></small>  
-            {{ agendada.observacao_instalacao }} 
-
-          
+            {{ agendada.observacao_instalacao }}   
       </div>  
       <div class="card border-0 mt-4">
         <div>
-
+          <a href="/vendas/definir-tecnico_instalacao/{{ agendada.id }}" class="btn btn-secondary">Definir Técnico</a>
           <a href="editar-instalacao/{{ agendada.id }}" class="btn btn-primary">Editar</a>
-
           <a href="/vendas/finalizar-instalacao/{{ agendada.id }}" class="btn btn-success">Finalizar</a>
-          
           <a href="visualizar-instalacao/?id={{ agendada.id }}" class="btn btn-info">Detalhes</a>
+
+            <div class="mt-4">
+              
+
+              {% if agendada.funcionario_instalacao is null %}
+              <p style="color:red;">Por favor, defina um responsável pela instalação.</p>
+              {% else %}
+              <p>Responsável pela Instalação: <strong>{{ agendada.funcionario_instalacao }}</strong></p>
+              
+              {% endif %}
+
+            </div>
         </div>
       </div>
 
-
-
-
+    
     </div>
     {% endfor %}
     </div>

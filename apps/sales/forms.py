@@ -21,7 +21,6 @@ class InstalacaoCreateForm(forms.ModelForm):
                   'planos_instalacao',
                   'data_vencimento',
                   'observacao_instalacao',
-
                   ]
         widgets = {
             'nome_cliente': forms.TextInput(attrs={'class': 'form-control'}),
@@ -63,7 +62,6 @@ class InstalacaoUpdateForm(forms.ModelForm):
                   'data_vencimento',
                   'data_instalacao',
                   'hora_instalacao',
-                  'funcionario_instalacao',
                   'observacao_instalacao',
                   ]
         data_instalacao = forms.DateField(label='What is your birth date?', widget=forms.SelectDateWidget)
@@ -76,23 +74,27 @@ class InstalacaoUpdateForm(forms.ModelForm):
 class InstalacaoAgendarForm(forms.ModelForm):
     class Meta:
         model = Instalacao
-
         fields = [
                   'status_agendada',
                   'data_instalacao',
                   'hora_instalacao',
-
                   ]
-
         widgets = {
             'data_instalacao': forms.DateInput(attrs={'type': 'date'}),
             'hora_instalacao': forms.TimeInput(attrs={'type': 'time'}),
         }
-
     data_instalacao = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
     hora_instalacao = forms.TimeField(widget=forms.DateInput(attrs={"type": "time"}))
     status_agendada = forms.BooleanField(label='Marque para agendar instalação.')
 
+
+class InstalacaoDefinirTecnicoForm(forms.ModelForm):
+    class Meta:
+        model = Instalacao
+
+        fields = [
+                  'funcionario_instalacao',
+                  ]
 
 
 class InstalacaoFinalizarForm(forms.ModelForm):

@@ -62,7 +62,13 @@ def Index(request):
     quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
     quant_instalacao_finalizados_mes = Instalacao.objects.filter(data_finalizacao__month=this_month).count()
 
-    hora_instalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False')
+    responsavel_instalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').order_by('funcionario_instalacao')
+
+
+    hora_instalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').values(
+        'data_instalacao').annotate(number=Count('id')).order_by('data_instalacao')
+
+
 
     ultimas_vendas = Instalacao.objects.filter().order_by('-id')[:7]
 
@@ -110,6 +116,7 @@ def Index(request):
                                               'quant_instalacao_agendada': quant_instalacao_agendada,
                                               'quant_instalacao_concluida': quant_instalacao_concluida,
                                               'quant_instalacao_sem_boleto': quant_instalacao_sem_boleto,
+                                              'responsavel_instalacao': responsavel_instalacao,
                                               'hora_instalacao':hora_instalacao,
 
 
