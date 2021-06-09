@@ -183,7 +183,8 @@ def SenhasPorEquipamento(request):
     if queryset:
         senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(
             Q(codigo_equipamento__icontains=queryset) |
-            Q(sn_equipamento__icontains=queryset)
+            Q(sn_equipamento__icontains=queryset) |
+            Q(patrimonio_equipamento__icontains=queryset)
         )
     return render(request, 'core/senhas-por-equipamento.html', {'senhasPorEquipamentos': senhasPorEquipamentos})
 

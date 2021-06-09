@@ -1,3 +1,5 @@
+from datetime import datetime, date
+
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ServicoForm, AgendarServicoForm, EditarAgendarServicoForm,\
@@ -161,6 +163,7 @@ def ReservarVoip(request, id=None):
     if form.is_valid():
         obj = form.save(commit=False)
         obj.funcionario_reserva_voip = request.user
+        obj.data_reserva_voip = date.today()
         obj = form.save()
         obj.save()
         messages.success(request, 'Voip reservado com sucesso!')

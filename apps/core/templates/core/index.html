@@ -93,49 +93,11 @@
           </div>
         </div>
       </div>
-            <!--
-        *************************************************************************************
-        ***************** INÍCIO  das últimas vendas   *******************************
-        *************************************************************************************
-      
-      -->
-      <div class="card">
-        <div class="card-header bg-dark text-white">Últimadas vendas de instalações</div>
-        <div class="card-group">
-          <div class="card">
-            <div class="table-responsive table-striped table-sm">
-              <table class="table caption-top">
-                <caption>Últimos lançamentos</caption>
-                <thead>
-                  <tr>
-                    <th>Cliente</th>
-                    <th>Rua</th>
-                    <th>Bairro</th>
-                    <th>Vendedor</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for venda in ultimas_vendas %}
-                  <tr>
-                    <td>{{ venda.nome_cliente }}</td>
-                    <td>{{ venda.rua_cliente }}</td>
-                    <td>{{ venda.bairro_cliente }}</td>
-                    <td>{{ venda.instalacao_criado_por.get_full_name }}</td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-        <!--
-        *************************************************************************************
-        *****************  FIM das últimas vendas  *******************************
-        *************************************************************************************
-      -->
 
-      <!--
+
+
+
+            <!--
         *************************************************************************************
         ***************** INÍCIO  dos serviços VOIP  *******************************
         *************************************************************************************
@@ -185,7 +147,10 @@
       -->
 
 
-      <!--
+
+
+
+           <!--
         *************************************************************************************
         ***************** INÍCIO Instalações agendadas por Técnico  *******************************
         *************************************************************************************
@@ -232,6 +197,66 @@
         *****************  FIM Instalações agendadas por Técnico  *******************************
         *************************************************************************************
       -->
+
+
+      
+
+
+
+            <!--
+        *************************************************************************************
+        ***************** INÍCIO  das últimas vendas   *******************************
+        *************************************************************************************
+      
+      -->
+      <div class="card">
+        <div class="card-header bg-dark text-white">Últimadas vendas de instalações</div>
+        <div class="card-group">
+          <div class="card">
+            <div class="table-responsive table-striped table-sm">
+              <table class="table caption-top">
+                <caption>Últimos lançamentos</caption>
+                <thead>
+                  <tr>
+                    <th>Cliente</th>
+                    <th>Rua</th>
+                    <th>Bairro</th>
+                    <th>Vendedor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for venda in ultimas_vendas %}
+                  <tr>
+                    <td>{{ venda.nome_cliente }}</td>
+                    <td>{{ venda.rua_cliente }}</td>
+                    <td>{{ venda.bairro_cliente }}</td>
+                    <td>{{ venda.instalacao_criado_por.get_full_name }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!--
+        *************************************************************************************
+        *****************  FIM das últimas vendas  *******************************
+        *************************************************************************************
+      -->
+
+
+
+ 
+
+
+
+
+
+
+
+
+
 
     </div>
     <!--

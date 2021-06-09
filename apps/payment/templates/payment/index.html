@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
 {% block main %}
 <div class="container">
 
@@ -37,7 +38,7 @@
 <!-- Custos Mensais-->
 <h6> Custos Mensais </h6>
     {% for mes in mes %}
-      
+
       <!--Verificando mês de Abril-->
       {% if mes.month == 4 %}
         Abril R$: {{ mes.count }}
