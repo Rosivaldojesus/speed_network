@@ -9,6 +9,7 @@ class TerminaisOpticos(models.Model):
     bairro = models.CharField(max_length=100, blank=True, null=True)
     pon_cto = models.CharField(max_length=100, blank=True, null=True)
     conexoes_opticas_cto = models.DecimalField(max_digits=8, decimal_places=0, blank=True, null=True)
+    board_cto = models.DecimalField(max_digits=8, decimal_places=0, blank=True, null=True)
     quant_conexoes_usadas_cto =models.DecimalField(max_digits=8, decimal_places=0, blank=True, null=True)
     observacao_cto = models.TextField(blank=True, null=True)
 

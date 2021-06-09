@@ -12,7 +12,7 @@ from .models import TerminaisOpticos
 def Index(request):
     #ctos = TerminaisOpticos.objects.all()
     #ctos = TerminaisOpticos.objects.annotate(livre=F('quant_conexoes_usadas_cto') - F('conexoes_opticas_cto'),)
-    ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))
+    ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).order_by('rua_cto')
 
     caixa = request.GET.get('id')
     if caixa:
