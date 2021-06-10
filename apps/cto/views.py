@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.db.models import F
 from django.urls import reverse, reverse_lazy
+from django.db.models import Q, Count
 
 from .forms import CtoForm
 from django.contrib import messages
@@ -9,17 +10,17 @@ from .models import TerminaisOpticos
 
 # Create your views here
 
+
+
 def Index(request):
-    #ctos = TerminaisOpticos.objects.all()
-    #ctos = TerminaisOpticos.objects.annotate(livre=F('quant_conexoes_usadas_cto') - F('conexoes_opticas_cto'),)
+
     ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).order_by('rua_cto')
+    queryset = request.GET.get('q')
+    if queryset:
+        ctos = TerminaisOpticos.objects.filter(
+            Q(rua_cto__icontains=queryset))
 
-    caixa = request.GET.get('id')
-    if caixa:
-        caixa = TerminaisOpticos.objects.get(id=caixa)
-
-    return render(request, 'cto/terminais-opticos.html',{'ctos': ctos,
-                                                         'caixa':caixa,})
+    return render(request, 'cto/terminais-opticos.html',{'ctos': ctos})
 
 
 
