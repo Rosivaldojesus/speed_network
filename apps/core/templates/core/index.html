@@ -227,10 +227,10 @@
                 <tbody>
                   {% for venda in ultimas_vendas %}
                   <tr>
-                    <td>{{ venda.nome_cliente }}</td>
-                    <td>{{ venda.rua_cliente }}</td>
-                    <td>{{ venda.bairro_cliente }}</td>
-                    <td>{{ venda.instalacao_criado_por.get_full_name }}</td>
+                    <td><small>{{ venda.nome_cliente }}</small></td>
+                    <td><small>{{ venda.rua_cliente }}</small></td>
+                    <td><small>{{ venda.bairro_cliente }}</small></td>
+                    <td><small>{{ venda.instalacao_vendedor }}</small></td>
                   </tr>
                   {% endfor %}
                 </tbody>
