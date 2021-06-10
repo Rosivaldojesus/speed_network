@@ -58,3 +58,12 @@ class ModelosEquipamentos(models.Model):
     def __str__(self):
         return "{}".format(self.nome_modelo)
 
+
+class Vendedores(models.Model):
+    nome_vendedor = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name_plural = 'Vendedores'
+
+    def __str__(self):
+        return "{}".format(self.nome_vendedor)

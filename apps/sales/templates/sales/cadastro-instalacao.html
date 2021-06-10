@@ -5,7 +5,7 @@
 
 {% block main %}
 <div class="container">
-  <h5 class="mt-3 mb-3">Cadastro de Instalação</h5>
+  <h5 class="mt-3 mb-3">NOVO CLIENTE</h5>
 
      <!-- Messagens -->
       {% if messages %}
@@ -23,12 +23,11 @@
 
       <!-- DADOS PESSOAIS -->
       <div class="card">
-        <h5 class="card-header">Dados Pessoais</h5>
+        <h5 class="card-header p-3 mb-2 bg-secondary text-white">Dados Pessoais</h5>
         <div class="card-body">
-
           <div class="form-row">
             <div class="form-group col-md-4">
-              <label>Primeiro nome</label>
+              <label >Primeiro nome:</label>
                 {{form.nome_cliente}}
             </div>
             <div class="form-group col-md-8">
@@ -36,29 +35,18 @@
                 {{form.sobrenome_cliente}}
             </div>
           </div>
-
           <div class="form-row">
             <div class="form-group col-md-6">
               <label>CPF</label>
                 {{form.cpf_cliente}}
             </div>
-
           </div>
-
-
-
-
-
         </div>
       </div>
-
-      <br>
 <!-- ENDEREÇO-->
-      <div class="card">
-        <h5 class="card-header">Endereço</h5>
+      <div class="card mt-2">
+        <h5 class="card-header p-3 mb-2 bg-secondary text-white">Endereço</h5>
         <div class="card-body">
-
-
           <div class="form-row">
             <div class="form-group col-md-7">
               <label >Rua</label>
@@ -73,7 +61,6 @@
               {{form.numero_endereco_cliente}}
             </div>
           </div>
-
           <div class="form-row">
             <div class="form-group col-md-7">
               <label>Complemento</label>
@@ -88,18 +75,11 @@
                 {{form.cidade}}
             </div>
           </div>
-
-
-
-
         </div>
       </div>
-
-      <br>
-
       <!-- CONTATOS-->
-      <div class="card">
-        <h5 class="card-header">Contatos</h5>
+      <div class="card mt-2">
+        <h5 class="card-header p-3 mb-2 bg-secondary text-white">Contatos</h5>
         <div class="card-body">
           <div class="form-row">
             <div class="form-group col-md-6">
@@ -112,18 +92,16 @@
             </div>
           </div>
         </div>
-
         <div class="form-group col-md-12">
           <label>E-mail</label>
             {{form.email_cliente}}
         </div
-
       </div>
+    </div>
 
-      <br>
 <!-- SERVIÇOS-->
-      <div class="card">
-        <h5 class="card-header">Servicos</h5>
+      <div class="card mt-2">
+        <h5 class="card-header p-3 mb-2 bg-secondary text-white">Serviços</h5>
         <div class="card-body">
           <div class="form-row">
             <div class="form-group col-md-8">
@@ -137,10 +115,22 @@
           </div>
         </div>
       </div>
+      <!-- VENDEDOR-->
+      <div class="card mt-2">
+        <h5 class="card-header p-3 mb-2 bg-secondary text-white">Responsável pela venda</h5>
+        <div class="card-body">
+          <div class="form-row">
+            <div class="form-group col-md-8">
+              <label >Nome do vendedor</label>
+                {{form.instalacao_vendedor  }}
+            </div>
+          </div>
+        </div>
+      </div>      
 
       <!-- OBSERVAÇÃO-->
-      <div class="card">
-        <h5 class="card-header">Observação</h5>
+      <div class="card mt-2">
+        <h5 class="card-header p-3 mb-2 bg-secondary text-white">Observação</h5>
         <div class="card-body">
           <div class="form-row">
             <div class="form-group col-md-12">
@@ -150,18 +140,7 @@
           </div>
         </div>
       </div>
-
-
-
       <br>
-
-
-      
-
-      
-
-
-
         <input type="submit" class="btn btn-block btn-primary" value="Cadastrar">
     </form>
 

@@ -176,11 +176,11 @@
                     <p></p>
                     {% else %}
                     <tr>
-                      <td>{{ responsavel.funcionario_instalacao.get_full_name }}</td>
-                      <td>{{ responsavel.nome_cliente }}</td>
-                      <td>{{ responsavel.rua_cliente }}</td>
-                      <td>{{ responsavel.numero_endereco_cliente }}</td>
-                      <td>{{ responsavel.data_instalacao|date:"D d"}} - {{ responsavel.hora_instalacao|time:"H:i"  }} </td>
+                      <td><small>{{ responsavel.funcionario_instalacao.get_full_name }}</small></td>
+                      <td><small>{{ responsavel.nome_cliente }}</small></td>
+                      <td><small>{{ responsavel.rua_cliente }}</small></td>
+                      <td><small>{{ responsavel.numero_endereco_cliente }}</small></td>
+                      <td><small>{{ responsavel.data_instalacao|date:"D d"}} - {{ responsavel.hora_instalacao|time:"H:i"  }}</small></td>
                     </tr>
                     {% endif %}
                 {% endfor %}

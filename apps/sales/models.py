@@ -1,5 +1,5 @@
 from django.utils import timezone
-from ..components.models import PlanosInternet, Cidade, DataVencimento
+from ..components.models import PlanosInternet, Cidade, DataVencimento, Vendedores
 from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
@@ -35,6 +35,7 @@ class Instalacao(models.Model):
     observacao_instalacao = models.TextField(blank=True, null=True, verbose_name='Observação')
     instalacao_criado_por = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='instalacao_criado_por', blank=True, null=True)
     instalacao_finalizado_por = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='instalacao_finalizado_por', blank=True, null=True)
+    instalacao_vendedor = models.ForeignKey(Vendedores, on_delete=models.DO_NOTHING, verbose_name='Vendedores')
 
 
     class Meta:

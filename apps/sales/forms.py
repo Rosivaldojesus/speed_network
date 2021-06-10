@@ -20,6 +20,7 @@ class InstalacaoCreateForm(forms.ModelForm):
                   'email_cliente',
                   'planos_instalacao',
                   'data_vencimento',
+                  'instalacao_vendedor',
                   'observacao_instalacao',
                   ]
         widgets = {
@@ -40,7 +41,8 @@ class InstalacaoCreateForm(forms.ModelForm):
             'data_vencimento': forms.Select(attrs={'class': 'form-control'}),
             'data_instalacao': forms.DateInput(attrs={'type': 'date'}),
             'hora_instalacao': forms.TimeInput(attrs={'type': 'time'}),
-            'observacao_instalacao' : forms.Textarea(attrs={'class': 'form control'})
+            'instalacao_vendedor': forms.Select(attrs={'class': 'form-control'}),
+            'observacao_instalacao' : forms.Textarea(attrs={'class': 'form-control'}),
         }
 
 class InstalacaoUpdateForm(forms.ModelForm):
