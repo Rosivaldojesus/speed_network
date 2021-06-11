@@ -18,12 +18,13 @@ def Index(request):
     quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
     quant_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
     quant_concluida = Instalacao.objects.filter(concluido='True').count()
-
     #Filtrando instalação por Vendedor
     user = request.user
     instalacaoVendedor = Instalacao.objects.filter(instalacao_criado_por=user)
-    quant_aberta_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='False').filter(concluido='False').count()
-    quant_agendada_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='True').filter(concluido='False').count()
+    quant_aberta_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='False')\
+        .filter(concluido='False').count()
+    quant_agendada_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='True')\
+        .filter(concluido='False').count()
     return render(request, 'sales/instalacao.html', {'instalacoes': instalacoes,
                                                      'quant_aberta': quant_aberta,
                                                      'quant_agendada': quant_agendada,
@@ -42,15 +43,17 @@ def InstalacaoAberta(request):
     abertas = Instalacao.objects.filter(status_agendada='False').filter(concluido='False')
     quant_aberta = Instalacao.objects.filter(status_agendada='False').filter(concluido='False').count()
     #Filtro por vendedor logado
-    abertas_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='False').filter(concluido='False')
-    quant_aberta_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='False').filter(concluido='False').count()
-
+    abertas_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='False')\
+        .filter(concluido='False')
+    quant_aberta_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='False')\
+        .filter(concluido='False').count()
     return render(request, 'sales/instalacao-aberta.html', {'abertas': abertas,
                                                             'quant_aberta': quant_aberta,
                                                             #Filtro por vendedor
                                                             'abertas_vendedor':abertas_vendedor,
                                                             'quant_aberta_vendedor': quant_aberta_vendedor,
                                                         })
+
 @login_required(login_url='/login/')
 def InstalacaoAgendada(request):
     agendadas = Instalacao.objects.filter(status_agendada='True')\
@@ -68,13 +71,11 @@ def InstalacaoAgendada(request):
         .filter(concluido='False').order_by('data_instalacao', 'hora_instalacao')
     quant_agendada_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).\
         filter(status_agendada='True').filter(concluido='False').count()
-
     return render(request, 'sales/instalacao-agendada.html', {'agendadas':agendadas,
                                                               'quant_agendada':quant_agendada,
                                                               #Filtro por vendedor
                                                               'agendadas_vendedor':agendadas_vendedor,
                                                               'quant_agendada_vendedor':quant_agendada_vendedor,
-
                                                               })
 
 
@@ -90,7 +91,6 @@ def InstalacaoConcluida(request):
 @login_required(login_url='/login/')
 def CadastroInstalacao(request):
     form = InstalacaoCreateForm(request.POST)
-
     if form.is_valid():
         obj = form.save(commit=False)
         obj.instalacao_criado_por = request.user
@@ -102,14 +102,13 @@ def CadastroInstalacao(request):
     return render(request, 'sales/cadastro-instalacao.html', {'form': form})
 
 
-
-
 @login_required(login_url='/login/')
 def InstalacaoVisualizacao(request):
     install = request.GET.get('id')
     if install:
         install = Instalacao.objects.get(id=install)
     return render(request, 'sales/visualizar-instalacao.html',{'install': install})
+
 
 
 @login_required(login_url='/login/')
@@ -122,6 +121,7 @@ def InstalacaoEditar(request, id=None):
         messages.success(request, 'Instalação editada com sucesso.')
         return redirect('/vendas/')
     return render(request, 'sales/editar-instalacao.html', {'form': form})
+
 
 
 @login_required(login_url='/login/')
@@ -149,12 +149,11 @@ def InstalacaoDefinirTecnico(request, id=None):
     return render(request, 'sales/agendar-instalacao.html', {'form': form})
 
 
-
-
 @login_required(login_url='/login/')
 def InstalacaoSemBoleto(request):
     boletos = Instalacao.objects.filter(status_agendada='True')
     return render(request, 'sales/instalacao-sem-boleto.html')
+
 
 @login_required(login_url='/login/')
 def InstalacaoFinalizadaSemBoleto(request):
@@ -188,10 +187,3 @@ def FinalizarEntregaBoleto(request, id=None):
         messages.success(request, 'Boleto finalizado com sucesso.')
         return redirect('/vendas/')
     return render(request, 'sales/finalizar-boleto.html', {'form': form})
-
-
-
-
-
-
-

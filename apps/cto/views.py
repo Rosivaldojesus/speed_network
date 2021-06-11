@@ -15,9 +15,10 @@ def Index(request):
     if queryset:
         ctos = TerminaisOpticos.objects.filter(
             Q(rua_cto__icontains=queryset))
-    usadas = TerminaisOpticos.objects.filter(conexoes_opticas_cto=F("quant_conexoes_usadas_cto")).count()
-    return render(request, 'cto/terminais-opticos.html',{'ctos': ctos, 'usadas': usadas })
 
+    quant_cto_completas = TerminaisOpticos.objects.filter(conexoes_opticas_cto=F("quant_conexoes_usadas_cto")) \
+        .annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).count()
+    return render(request, 'cto/terminais-opticos.html',{'ctos': ctos, 'quant_cto_completas': quant_cto_completas})
 
 
 def CadastroCto(request):
@@ -43,8 +44,13 @@ def EditarCto(request, id=None):
     return render(request, 'cto/editar-terminais-opticos.html', {'form': form})
 
 
+def CtoCompletas(request):
+    cto_completas = TerminaisOpticos.objects.filter(conexoes_opticas_cto=F("quant_conexoes_usadas_cto"))\
+        .annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))
+    queryset = request.GET.get('q')
+    if queryset:
+        cto_completas = TerminaisOpticos.objects.filter(conexoes_opticas_cto=F("quant_conexoes_usadas_cto")) \
+            .annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).filter(
+            Q(rua_cto__icontains=queryset))
 
-
-
-
-
+    return render(request, 'cto/cto-completas.html', {'cto_completas': cto_completas})

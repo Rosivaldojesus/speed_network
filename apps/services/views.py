@@ -1,18 +1,18 @@
 from datetime import datetime, date
-
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ServicoForm, AgendarServicoForm, EditarAgendarServicoForm,\
     FinalizarServicoForm
-
 from .forms import ReservarVoipForm
 from .models import Servico, ServicoVoip
 
 # Create your views here.
 
 def Index(request):
-    contarAbertos = Servico.objects.all().filter().filter(status_agendado='False').filter(status_concluido='False').count()
-    contarAgendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
+    contarAbertos = Servico.objects.all().filter().filter(status_agendado='False')\
+    .filter(status_concluido='False').count()
+    contarAgendados = Servico.objects.filter(status_agendado='True')\
+    .filter(status_concluido='False').count()
     contarFinalizados = Servico.objects.all().filter(status_concluido='True').count()
     return render(request, 'services/index.html', {'contarAbertos': contarAbertos,
                                                    'contarFinalizados': contarFinalizados,
@@ -32,7 +32,6 @@ def CadastroServico(request):
     return render(request, 'services/cadastro-servico.html', {'form': form})
 
 
-
 def EditarServico(request, id=None):
     editar = get_object_or_404(Servico, id=id)
     form = ServicoForm(request.POST or None, instance=editar)
@@ -44,7 +43,6 @@ def EditarServico(request, id=None):
     return render(request, 'services/editar-servico.html', {'form': form})
 
 
-
 def RemoverServico(request, id=None):
     servico = get_object_or_404(Servico, id=id)
     if request.method == "POST":
@@ -52,8 +50,6 @@ def RemoverServico(request, id=None):
         messages.success(request, 'Serviço removido com sucesso!')
         return redirect('/servicos/')
     return render(request, 'services/remover-servico.html', {'servoco': servico})
-
-
 
 
 def ServicosAbertos(request):
@@ -67,9 +63,6 @@ def ServicosAbertos(request):
 
 
 
-
-
-
 def EditarServicoAgendado(request, id=None):
     editarAgendado = get_object_or_404(Servico, id=id)
     form = EditarAgendarServicoForm(request.POST or None, instance=editarAgendado)
@@ -79,6 +72,7 @@ def EditarServicoAgendado(request, id=None):
         messages.success(request, 'Serviço agendado, editado com sucesso!')
         return redirect('/servicos/')
     return render(request, 'services/editar-servico.html', {'form':form})
+
 
 
 def ServicosAgendados(request):
@@ -134,8 +128,10 @@ def ServicosVoip(request):
     voipDisponivel = ServicoVoip.objects.all().filter(reservado_voip='False').filter(finalizado_voip='False')
     quantDisponivel = ServicoVoip.objects.all().filter(reservado_voip='False').filter(finalizado_voip='False').count()
 
-    voipReservado = ServicoVoip.objects.all().filter(portabilidade_voip='False').filter(reservado_voip='True').filter(finalizado_voip='False')
-    voipReservadoPortabilidade = ServicoVoip.objects.all().filter(portabilidade_voip='True').filter(reservado_voip='True').filter(finalizado_voip='False')
+    voipReservado = ServicoVoip.objects.all().filter(portabilidade_voip='False').filter(reservado_voip='True')\
+    .filter(finalizado_voip='False')
+    voipReservadoPortabilidade = ServicoVoip.objects.all().filter(portabilidade_voip='True')\
+    .filter(reservado_voip='True').filter(finalizado_voip='False')
     return render(request, 'services/servicos-voip.html', {'voipDisponivel': voipDisponivel,
                                                            'quantDisponivel': quantDisponivel,
                                                            'voipReservado': voipReservado,
@@ -144,8 +140,6 @@ def ServicosVoip(request):
 
 
 def ServicosVoipDisponiveis(request):
-    #voipDisponivel = ServicoVoip.objects.filter(data_reserva_voip='False').filter(finalizado_voip='False')
-
     voipDisponivel = ServicoVoip.objects.all().filter(finalizado_voip='False')
     return render(request, 'services/servicos-voip-disponiveis.html', {'voipDisponivel': voipDisponivel
                                                                        })
