@@ -7,7 +7,7 @@ class InstalacaoAdmin(admin.ModelAdmin):
     list_display = ('id', 'nome_cliente','status_agendada',
                     'data_criacao',
                     'instalacao_vendedor')
-    list_filter = ('status_agendada','instalacao_vendedor')
+    list_filter = ('data_criacao','instalacao_vendedor')
 
 
 
