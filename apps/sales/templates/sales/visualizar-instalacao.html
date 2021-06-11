@@ -56,7 +56,17 @@
 		</div>
 	  </div> 
 	  
-	  <!-- ENDEREÇO DO CLIENTE-->
+	  <!-- VENDEDOR -->
+	 <div class="card mt-2">
+		<div class="card-header">
+		  <h6>Responsável pela venda</h6>
+		</div>
+		<div class="card-body">
+			<p><strong>Nome do vendedor:</strong> {{ install.instalacao_vendedor }}</p>
+		</div>
+	  </div>
+
+		<!-- ENDEREÇO DO CLIENTE-->
 	 <div class="card mt-2">
 		<div class="card-header">
 		  <h6>Observação</h6>
@@ -64,7 +74,7 @@
 		<div class="card-body">
 			<p>{{ install.observacao_instalacao }}</p>
 		</div>
-	  </div> 
+	  </div>
 	  
   </div>
 {% endblock %}
