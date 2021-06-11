@@ -2,14 +2,12 @@
 {% load crispy_forms_tags %}
 
 
-{% block title %}<title> Cadastro de CTO </title> {% endblock %}
+{% block title %}<title> Editar CTO </title> {% endblock %}
 
 {% block main %}
      <div class="container">
 
-         <h5 class="mt-2">Cadastro de CTO</h5>
-
-
+         <h5 class="mt-2">Editar CTO</h5>
 
         <!-- Messagens -->
       {% if messages %}
@@ -22,11 +20,10 @@
 
 
          <form action="" method="post"> {% csrf_token %}
-
             <div class="mt-10">
                 {{ form | crispy }}
             </div>
-				<input type="submit" class="btn btn-block btn-primary" value="Concluir Cadastro">
+				<input type="submit" class="btn btn-block btn-primary" value="Atualizar Informações">
 		 </form>
      </div>
 {% endblock %}

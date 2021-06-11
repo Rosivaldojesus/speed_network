@@ -28,64 +28,58 @@
 
         <div class="mt-2">
 			
-
-			<!--
-             <form method="GET">
-			<div class="row">
-				<div class="form-group col-10">
-					<input type="search" class="form-control"
-						   placeholder="Informe o material"
-						   name="q" value="{{ request.GET.q }}">
-				</div>
-				<div class="form-group">
-					<button class=" form-control btn-success">
-						<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-						  <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-						  <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-						</svg>
-					</button>
-				</div>
-			</div>
-		</form>
-		-->
-			<!--
-			<div>
-				<a href="/cto/cadastro-cto/" class="btn btn-primary">Cadastro de CTO</a>
-			</div>
-			-->
-
+		<div align="right">
+			<a href="/cto/cadastro-cto/" class="btn btn-primary">Adicionar CTO</a>
+		</div>
 
 
         </div>
 			<h5>Caixas de Terminais Ópticos</h5>
-		<div>
-			<table class="table">
-				<thead>
-				  <tr>
-					<th scope="col">Cód.</th>
-					<th scope="col">Rua</th>
-					<th scope="col">Nº</th>
-					<th scope="col">PON</th>
-					<th scope="col">Total</th>
-					<th scope="col">Usada</th>
-					<th scope="col">Livre</th>
-				  </tr>
-				</thead>
-				<tbody>
-					{% for cto in ctos %}
-				  <tr>
-					<th>{{cto.codigo_cto}}</th>
-
-					<td>{{cto.rua_cto}}</td>
-					<td>{{cto.numero_rua_cto}}</td>
-
-					<td>{{cto.pon_cto}}</td>
-					<td>{{cto.conexoes_opticas_cto}}</td>
-					<td>{{cto.quant_conexoes_usadas_cto}}</td>
-					<td>{{cto.livre}}</td>
-				  </tr>
-				  {% endfor %}
-				</tbody>
-			  </table>
-		</div>  	
+			<div>
+				<table class="table">
+					<thead>
+					  <tr>
+						<th scope="col">Cód.</th>
+						<th scope="col">Rua</th>
+						<th scope="col">Nº</th>
+						<th scope="col">PON</th>
+						<th scope="col">Total</th>
+						<th scope="col">Usada</th>
+						<th scope="col">Livre</th>
+						<th scope="col">Opções</th>
+					  </tr>
+					</thead>
+					<tbody>
+						{% for cto in ctos %}
+							{% if cto.livre == 0 %}
+								<tr>
+									<th style="color:red;">{{cto.codigo_cto}}</th>
+									<td style="color:red;">{{cto.rua_cto}}</td>
+									<td style="color:red;">{{cto.numero_rua_cto}}</td>
+									<td style="color:red;">{{cto.pon_cto}}</td>
+									<td style="color:red;">{{cto.conexoes_opticas_cto}}</td>
+									<td style="color:red;">{{cto.quant_conexoes_usadas_cto}}</td>
+									<td style="color:red;">{{cto.livre}}</td>
+									<td>
+										<a href="editar-terminais-opticos/{{ cto.id }}" ><i class="fas fa-edit"></i>Editar</a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<th>{{cto.codigo_cto}}</th>
+									<td>{{cto.rua_cto}}</td>
+									<td>{{cto.numero_rua_cto}}</td>
+									<td>{{cto.pon_cto}}</td>
+									<td>{{cto.conexoes_opticas_cto}}</td>
+									<td>{{cto.quant_conexoes_usadas_cto}}</td>
+									<td>{{cto.livre}}</td>
+									<td>
+										<a href="editar-terminais-opticos/{{ cto.id }}" ><i class="fas fa-edit"></i>Editar</a>
+									</td>
+								</tr>
+							{% endif %}						
+						{% endfor %}
+					</tbody>
+				  </table>
+			</div>  	
 {% endblock %}

@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.generic import UpdateView
 from .models import PlanosInternet
-
+from django.db.models import Q, Count
 from .models import Instalacao
 from .forms import InstalacaoCreateForm, InstalacaoUpdateForm,\
     InstalacaoAgendarForm, InstalacaoFinalizarForm, BoletoEntregueForm,\
@@ -24,8 +24,6 @@ def Index(request):
     instalacaoVendedor = Instalacao.objects.filter(instalacao_criado_por=user)
     quant_aberta_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='False').filter(concluido='False').count()
     quant_agendada_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='True').filter(concluido='False').count()
-
-
     return render(request, 'sales/instalacao.html', {'instalacoes': instalacoes,
                                                      'quant_aberta': quant_aberta,
                                                      'quant_agendada': quant_agendada,
@@ -35,7 +33,6 @@ def Index(request):
                                                      'instalacaoVendedor': instalacaoVendedor,
                                                      'quant_aberta_vendedor':quant_aberta_vendedor,
                                                      'quant_agendada_vendedor': quant_agendada_vendedor,
-
                                                      })
 
 
@@ -58,6 +55,12 @@ def InstalacaoAberta(request):
 def InstalacaoAgendada(request):
     agendadas = Instalacao.objects.filter(status_agendada='True')\
         .filter(concluido='False').order_by('data_instalacao', 'hora_instalacao')
+    queryset = request.GET.get('q')
+    if queryset:
+        agendadas = Instalacao.objects.filter(
+            Q(nome_cliente__icontains=queryset)|
+            Q(sobrenome_cliente__icontains=queryset)
+        )
     quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
     #Filtro por vendedor
     user = request.user
