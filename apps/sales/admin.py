@@ -8,7 +8,7 @@ class InstalacaoAdmin(admin.ModelAdmin):
                     'data_instalacao','data_finalizacao','concluido','boleto_entregue',
                     'funcionario_instalacao',
                     'instalacao_criado_por', 'instalacao_finalizado_por','instalacao_vendedor')
-    list_filter = ('instalacao_criado_por','instalacao_vendedor')
+    list_filter = ('status_agendada','instalacao_vendedor')
 
 
 
