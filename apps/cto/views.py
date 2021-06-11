@@ -15,7 +15,8 @@ def Index(request):
     if queryset:
         ctos = TerminaisOpticos.objects.filter(
             Q(rua_cto__icontains=queryset))
-    return render(request, 'cto/terminais-opticos.html',{'ctos': ctos})
+    usadas = TerminaisOpticos.objects.filter(conexoes_opticas_cto=F("quant_conexoes_usadas_cto")).count()
+    return render(request, 'cto/terminais-opticos.html',{'ctos': ctos, 'usadas': usadas })
 
 
 

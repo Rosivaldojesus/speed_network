@@ -42,6 +42,7 @@
                 <td>{{ concluida.bairro_cliente }}</td>
                 <td>{{ concluida.rua_cliente }}</td>
                 <td>{{ concluida.numero_endereco_cliente }}</td>
+                <td>{{ concluida.data_finalizacao|date:"d M  Y"  }}</td>
                 <td>
                     <a href="/vendas/finalizar-boleto/{{ concluida.id }}">Marcar Boleto</a>
                 </td>
