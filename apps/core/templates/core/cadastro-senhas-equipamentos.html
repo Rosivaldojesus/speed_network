@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}<title> Cadastro de Senhas por Equipamentos </title> {% endblock %}
+
+{% block main %}
+     <div class="container">
+
+         <h5 class="mt-2">Cadastro de Senhas por Equipamentos</h5>
+
+
+
+        <!-- Messagens -->
+      {% if messages %}
+      {% for message in messages %}
+          <div class="alert {{ message.tags }}" role="alert">
+              {{ message }}
+          </div>
+        {% endfor %}
+        {% endif %}
+
+
+         <form action="" method="post"> {% csrf_token %}
+
+            <div class="mt-10">
+                {{ form | crispy }}
+            </div>
+				<input type="submit" class="btn btn-block btn-primary" value="Concluir Cadastro">
+		 </form>
+     </div>
+{% endblock %}

@@ -1,7 +1,7 @@
 import datetime
 from datetime import datetime, date
 from django.db.models import Q, Count
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from ..sales.models import Instalacao
 from ..services.models import Servico, ServicoVoip
 from ..core.models import Manuais, SenhasEquipamentos, SenhasPorEquipamentos
@@ -10,6 +10,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.db.models import Count, Sum
+from .forms import SenhasPorEquipamentosForm
+
+
 
 
 # Create your views here.
@@ -143,7 +146,7 @@ def Senhas(request):
 
 @login_required(login_url='/login/')
 def SenhasPorEquipamento(request):
-    senhasPorEquipamentos = SenhasPorEquipamentos.objects.all().order_by('codigo_equipamento')[:10]
+    senhasPorEquipamentos = SenhasPorEquipamentos.objects.all().order_by('-id')[:10]
     queryset = request.GET.get('q')
     if queryset:
         senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(
@@ -152,6 +155,34 @@ def SenhasPorEquipamento(request):
             Q(patrimonio_equipamento__icontains=queryset)
         )
     return render(request, 'core/senhas-por-equipamento.html', {'senhasPorEquipamentos': senhasPorEquipamentos})
+
+
+
+def CadastroSenhasPorEquipamentos(request):
+    form = SenhasPorEquipamentosForm(request.POST)
+    if form.is_valid():
+        obj = form.save()
+        obj.save()
+        messages.success(request, 'Equipamento cadastrado com sucesso.')
+        return redirect('/senhas-por-equipamento/')
+    else:
+        form = SenhasPorEquipamentosForm()
+    return render(request, 'core/cadastro-senhas-equipamentos.html', {'form': form})
+
+
+
+
+@login_required(login_url='/login/')
+def EditarSenhasPorEquipamentos(request, id=None):
+    senha= get_object_or_404(SenhasPorEquipamentos, id=id)
+    form = SenhasPorEquipamentosForm(request.POST or None, instance=senha)
+    if form.is_valid():
+        obj = form.save()
+        obj.save()
+        messages.success(request, 'Equipamento modificado co sucesso.')
+        return redirect('/senhas-por-equipamento/')
+    return render(request, 'core/editar-senhas-equipamentos.html', {'form': form})
+
 
 
 @login_required(login_url='/login/')

@@ -13,12 +13,15 @@ def Index(request):
     ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).order_by('rua_cto')
     queryset = request.GET.get('q')
     if queryset:
-        ctos = TerminaisOpticos.objects.filter(
+        ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).order_by('rua_cto').filter(
             Q(rua_cto__icontains=queryset))
 
+    quant_cto_cadastradas = TerminaisOpticos.objects.all().count()
     quant_cto_completas = TerminaisOpticos.objects.filter(conexoes_opticas_cto=F("quant_conexoes_usadas_cto")) \
         .annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).count()
-    return render(request, 'cto/terminais-opticos.html',{'ctos': ctos, 'quant_cto_completas': quant_cto_completas})
+    return render(request, 'cto/terminais-opticos.html',{'ctos': ctos,
+                                                         'quant_cto_completas': quant_cto_completas,
+                                                         'quant_cto_cadastradas': quant_cto_cadastradas})
 
 
 def CadastroCto(request):
@@ -52,5 +55,4 @@ def CtoCompletas(request):
         cto_completas = TerminaisOpticos.objects.filter(conexoes_opticas_cto=F("quant_conexoes_usadas_cto")) \
             .annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).filter(
             Q(rua_cto__icontains=queryset))
-
     return render(request, 'cto/cto-completas.html', {'cto_completas': cto_completas})

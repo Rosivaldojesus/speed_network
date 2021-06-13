@@ -30,6 +30,10 @@
 
     	<h5>Senhas por equipamentos</h5>
 
+		<div align="right">
+			<a href="/cadastro-senhas-equipamentos/" class="btn btn-primary">Cadastrar Equipamento</a>
+		</div>
+
 		{% for senha in senhasPorEquipamentos %}
 		<div class="card mt-2">
 			<div class="card-header"><strong>Código:</strong> {{ senha.codigo_equipamento }} - <strong>S/N:</strong> {{ senha.sn_equipamento }}</div>
@@ -58,8 +62,15 @@
 					<small>Patrimônio</small>
 					<strong>{{ senha.patrimonio_equipamento }}</strong>
 				</div>
+				<div class="card border-0">
+					<small></small>
+					<a href="/editar-senhas-equipamentos/{{ senha.id }}">Editar</a>
+				</div>
 			</div>
 		</div>
 		{% endfor %}
+
+
+
     </div>
 {% endblock %}

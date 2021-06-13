@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import Index
 from .views import ManuaisServicos, login_user, submit_login, logout_user
-from .views import Senhas, SenhasPorEquipamento, ManuaisVisualizacao
+from .views import Senhas, SenhasPorEquipamento, ManuaisVisualizacao, \
+    CadastroSenhasPorEquipamentos, EditarSenhasPorEquipamentos
 
 urlpatterns = [
 
@@ -13,5 +14,8 @@ urlpatterns = [
     path('login/submit', submit_login),
     path('senhas/', Senhas),
     path('senhas-por-equipamento/', SenhasPorEquipamento),
+
+    path('cadastro-senhas-equipamentos/', CadastroSenhasPorEquipamentos),
+    path('editar-senhas-equipamentos/<int:id>', EditarSenhasPorEquipamentos),
 
 ]
