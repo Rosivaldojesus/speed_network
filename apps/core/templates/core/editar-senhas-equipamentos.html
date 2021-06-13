@@ -10,23 +10,12 @@
          <h5 class="mt-2">Editar de Senhas por Equipamentos</h5>
 
 
-
-        <!-- Messagens -->
-      {% if messages %}
-      {% for message in messages %}
-          <div class="alert {{ message.tags }}" role="alert">
-              {{ message }}
-          </div>
-        {% endfor %}
-        {% endif %}
-
-
          <form action="" method="post"> {% csrf_token %}
 
             <div class="mt-10">
                 {{ form | crispy }}
             </div>
-				<input type="submit" class="btn btn-block btn-primary" value="Concluir Cadastro">
+				<input type="submit" class="btn btn-block btn-primary" value="Atualizar Cadastro">
 		 </form>
      </div>
 {% endblock %}

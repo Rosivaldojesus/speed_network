@@ -30,6 +30,17 @@
 
     	<h5>Senhas por equipamentos</h5>
 
+		  <!-- Messagens -->
+      {% if messages %}
+      {% for message in messages %}
+          <div class="alert {{ message.tags }}" role="alert">
+              {{ message }}
+          </div>
+        {% endfor %}
+        {% endif %}
+
+
+
 		<div align="right">
 			<a href="/cadastro-senhas-equipamentos/" class="btn btn-primary">Cadastrar Equipamento</a>
 		</div>
