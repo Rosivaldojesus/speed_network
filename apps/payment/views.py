@@ -2,7 +2,7 @@ from datetime import date, datetime
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
 from .models import Pagamento, AgendaPagamento
-from .forms import CadastarPagamentoForm, AgendarPagamentoForm, ComfirmarPagamentoForm
+from .forms import CadastarPagamentoForm, AgendarPagamentoForm, ComfirmarPagamentoForm, EditarPagamentoForm
 from django.contrib import messages
 from django.db.models import Count, Sum
 from django.db.models.functions import ExtractMonth
@@ -79,6 +79,17 @@ def AgendarPagamento(request):
     else:
         form = AgendarPagamentoForm()
     return render(request, 'payment/agendar-pagamento.html',{'form': form})
+
+
+def EditarPagamento(request, id=None):
+    pagar = get_object_or_404(Pagamento, id=id)
+    form = EditarPagamentoForm(request.POST or None, instance=pagar)
+    if form.is_valid():
+        obj = form.save()
+        obj.save()
+        messages.success(request, 'Pagamento alterado com sucesso.')
+        return redirect('/pagamentos/')
+    return render(request, 'payment/editar-pagamento.html', {'form': form})
 
 
 def ConfirmarPagamento(request, id=None):

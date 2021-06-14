@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import Index, CadastrarPagamento
-from .views import DashboardPagamentos, ListaPagamentos, AgendamentosPagamentos, AgendarPagamento, ConfirmarPagamento
+from .views import DashboardPagamentos, ListaPagamentos, AgendamentosPagamentos,\
+    AgendarPagamento, ConfirmarPagamento, EditarPagamento
 
 urlpatterns = [
     path('', Index),
@@ -10,4 +11,5 @@ urlpatterns = [
     path('agendamentos-pagamentos/', AgendamentosPagamentos),
     path('agendar-pagamento/', AgendarPagamento),
     path('comfirmar-pagamento/<int:id>', ConfirmarPagamento),
+    path('editar-pagamento/<int:id>', EditarPagamento),
 ]

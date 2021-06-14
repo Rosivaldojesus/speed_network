@@ -46,7 +46,9 @@
           <tbody>
             {% for pagamento in pagamentos %}
             <tr>
-                <td>{{ pagamento.motivo_pagamento }}</td>
+                <td>
+                    <a href="/pagamentos/editar-pagamento/{{ pagamento.id }}">{{ pagamento.motivo_pagamento }}</a>
+                </td>
                 <td>{{ pagamento.valor_pagamento }}</td>
                 <td>R$: {{ pagamento.origem_valor_pagamento }}</td>
                 <td>{{ pagamento.tipo_custo_pagamento }}</td>
