@@ -179,7 +179,7 @@ def EditarSenhasPorEquipamentos(request, id=None):
     if form.is_valid():
         obj = form.save()
         obj.save()
-        messages.success(request, 'Equipamento modificado co sucesso.')
+        messages.success(request, 'Equipamento modificado com sucesso.')
         return redirect('/senhas-por-equipamento/')
     return render(request, 'core/editar-senhas-equipamentos.html', {'form': form})
 

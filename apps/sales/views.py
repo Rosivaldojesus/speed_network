@@ -82,6 +82,11 @@ def InstalacaoAgendada(request):
 @login_required(login_url='/login/')
 def InstalacaoConcluida(request):
     concluidas = Instalacao.objects.filter(concluido='True').order_by('-id')
+    queryset = request.GET.get('q')
+    if queryset:
+        concluidas = Instalacao.objects.filter(
+            Q(nome_cliente__icontains=queryset) |
+            Q(sobrenome_cliente__icontains=queryset))
     quant_concluida = Instalacao.objects.filter(concluido='True').count()
     return render(request, 'sales/instalacao-concluida.html', {'concluidas': concluidas,
                                                                'quant_concluida':quant_concluida

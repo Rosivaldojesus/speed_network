@@ -8,29 +8,25 @@
         <h5 class="mt-3 mb-3"><span class="badge badge-success badge-pill">{{quant_concluida}} </span> Instalações Concluida </h5>
     </div>
 
-
-         <!-- Messagens -->
-         {% if messages %}
-         {% for message in messages %}
-             <div class="alert {{ message.tags }}" role="alert">
-                 {{ message }}
-             </div>
-           {% endfor %}
-           {% endif %}
-   
+    <!-- Messagens -->
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+      {% endfor %}
+      {% endif %}
 
 
-
-
-
+         
     <div class="table-responsive-sm " style="line-height: 0.5">
         <table class="table table-sm " style="line-height: 0.5">
           <thead>
             <tr>
-                <th scope="col">Nome</th>
+                <th scope="col">Cliente</th>
                 <th scope="col">Rua</th>
                 <th scope="col">Nº</th>
-                <th scope="col">Técnico</th>
+                <th scope="col">Vendedor</th>
             </tr>
           </thead>
           <tbody>
@@ -38,11 +34,11 @@
 
             <tr>
                 <td class="nav-link ">
-                    <a class="nav-link" href="visualizar-instalacao/?id={{ concluida.id }}">{{ concluida.nome_cliente }}</a>
+                    <a class="nav-link" href="visualizar-instalacao/?id={{ concluida.id }}">{{ concluida.nome_cliente }} {{ concluida.sobrenome_cliente}}</a>
                 </td>
                 <td>{{ concluida.rua_cliente }}</td>
                 <td>{{ concluida.numero_endereco_cliente }}</td>
-                <td>{{ concluida.funcionario_instalacao }}</td>
+                <td>{{ concluida.instalacao_vendedor }}</td>
             </tr>
 
           {% endfor %}
