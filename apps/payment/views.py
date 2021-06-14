@@ -37,12 +37,16 @@ def DashboardPagamentos(request):
     return render(request, 'payment/dashboard-pagamentos.html')
 
 
-def TodosPagamentos(request):
-    pagamentos = Pagamento.objects.all()
+def ListaPagamentos(request):
     inicial = date(2021, 5, 20)
     final = date(2021, 5, 22)
     pagamentos = Pagamento.objects.filter(data_pagamento__range=[inicial, final])
-    return render(request, 'payment/todos_pagamentos.html', {'pagamentos': pagamentos})
+    pagamentos = Pagamento.objects.all()
+    queryset = request.GET.get('q')
+    if queryset:
+        pagamentos = Pagamento.objects.filter(
+            Q(data_pagamento__icontains=queryset))
+    return render(request, 'payment/lista_pagamentos.html', {'pagamentos': pagamentos})
 
 
 def AgendamentosPagamentos(request):
