@@ -46,6 +46,7 @@
                 <th scope="col">Cliente</th>
                 <th scope="col">Rua</th>
                 <th scope="col">Nº</th>
+                <th>Data Instalação</th>
                 <th scope="col">Vendedor</th>
             </tr>
           </thead>
@@ -58,6 +59,7 @@
                 </td>
                 <td>{{ concluida.rua_cliente }}</td>
                 <td>{{ concluida.numero_endereco_cliente }}</td>
+                <td>{{ concluida.data_instalacao|date:"d M, Y" }}</td>
                 <td>{{ concluida.instalacao_vendedor }}</td>
             </tr>
 
