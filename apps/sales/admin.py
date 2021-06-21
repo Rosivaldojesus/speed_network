@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Instalacao
+from .models import Instalacao, ClientesVoip
 
 
 # Register your models here.
@@ -8,7 +8,6 @@ class InstalacaoAdmin(admin.ModelAdmin):
                     'data_criacao',
                     'instalacao_vendedor')
     list_filter = ('data_criacao','instalacao_vendedor')
-
-
-
 admin.site.register(Instalacao, InstalacaoAdmin)
+
+admin.site.register(ClientesVoip)

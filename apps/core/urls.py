@@ -5,7 +5,6 @@ from .views import Senhas, SenhasPorEquipamento, ManuaisVisualizacao, \
     CadastroSenhasPorEquipamentos, EditarSenhasPorEquipamentos
 
 urlpatterns = [
-
     path('', Index),
     path('manuais/', ManuaisServicos),
     path('manuais/manuais-visualizacao/', ManuaisVisualizacao),
@@ -14,8 +13,6 @@ urlpatterns = [
     path('login/submit', submit_login),
     path('senhas/', Senhas),
     path('senhas-por-equipamento/', SenhasPorEquipamento),
-
     path('cadastro-senhas-equipamentos/', CadastroSenhasPorEquipamentos),
     path('editar-senhas-equipamentos/<int:id>', EditarSenhasPorEquipamentos),
-
 ]

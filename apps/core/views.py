@@ -13,8 +13,6 @@ from django.db.models import Count, Sum
 from .forms import SenhasPorEquipamentosForm
 
 
-
-
 # Create your views here.
 def login_user(request):
     return render(request, 'core/login.html')
@@ -32,9 +30,8 @@ def submit_login(request):
             login(request, usuario)
             return redirect('/')
         else:
-            messages.error(request, "Por favor, insira um usuário e senha corretos "
-                                    "para uma conta de equipe. Note que ambos campos"
-                                    " são sensíveis a maiúsculas e minúsculas.")
+            messages.error(request, "Por favor, insira um usuário e senha corretos para uma conta de equipe."
+             "Note que ambos campos são sensíveis a maiúsculas e minúsculas.")
     return redirect('/')
 
 
@@ -58,12 +55,10 @@ def Index(request):
     quant_instalacao_concluida = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='True').count()
     quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
     quant_instalacao_finalizados_mes = Instalacao.objects.filter(data_finalizacao__month=this_month).count()
-
     responsavel_instalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').\
         order_by('funcionario_instalacao', 'data_instalacao', 'hora_instalacao')
     hora_instalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').values(
         'data_instalacao').annotate(number=Count('id')).order_by('data_instalacao')
-
     ultimas_vendas = Instalacao.objects.filter().order_by('-id')[:4]
     #Previsões
     previsaoServico = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').values(
@@ -116,8 +111,8 @@ def Index(request):
                                               'voipReservados':voipReservados,
                                               'voipPortabilidade':voipPortabilidade,
                                               #Últimas vendas
-                                              'ultimas_vendas': ultimas_vendas,
-                                              })
+                                              'ultimas_vendas': ultimas_vendas,})
+
 
 @login_required(login_url='/login/')
 def ManuaisServicos(request):
@@ -157,7 +152,6 @@ def SenhasPorEquipamento(request):
     return render(request, 'core/senhas-por-equipamento.html', {'senhasPorEquipamentos': senhasPorEquipamentos})
 
 
-
 def CadastroSenhasPorEquipamentos(request):
     form = SenhasPorEquipamentosForm(request.POST)
     if form.is_valid():
@@ -170,8 +164,6 @@ def CadastroSenhasPorEquipamentos(request):
     return render(request, 'core/cadastro-senhas-equipamentos.html', {'form': form})
 
 
-
-
 @login_required(login_url='/login/')
 def EditarSenhasPorEquipamentos(request, id=None):
     senha= get_object_or_404(SenhasPorEquipamentos, id=id)
@@ -182,7 +174,6 @@ def EditarSenhasPorEquipamentos(request, id=None):
         messages.success(request, 'Equipamento modificado com sucesso.')
         return redirect('/senhas-por-equipamento/')
     return render(request, 'core/editar-senhas-equipamentos.html', {'form': form})
-
 
 
 @login_required(login_url='/login/')

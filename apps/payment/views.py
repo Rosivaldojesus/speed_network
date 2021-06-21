@@ -42,11 +42,20 @@ def ListaPagamentos(request):
     final = date(2021, 5, 22)
     pagamentos = Pagamento.objects.filter(data_pagamento__range=[inicial, final])
     pagamentos = Pagamento.objects.all()
+
+
+
+
     queryset = request.GET.get('q')
     if queryset:
         pagamentos = Pagamento.objects.filter(
             Q(data_pagamento__icontains=queryset))
-    return render(request, 'payment/lista_pagamentos.html', {'pagamentos': pagamentos})
+        dia = Pagamento.objects.values('data_pagamento').annotate(
+            number=Sum('valor_pagamento'))
+
+    return render(request, 'payment/lista_pagamentos.html', {'pagamentos': pagamentos,
+
+                                                             })
 
 
 def AgendamentosPagamentos(request):

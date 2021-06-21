@@ -2,8 +2,6 @@ from django import forms
 from .models import SenhasPorEquipamentos
 
 
-
-
 class SenhasPorEquipamentosForm(forms.ModelForm):
     class Meta:
         model = SenhasPorEquipamentos

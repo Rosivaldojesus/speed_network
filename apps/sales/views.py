@@ -8,6 +8,7 @@ from .models import Instalacao
 from .forms import InstalacaoCreateForm, InstalacaoUpdateForm,\
     InstalacaoAgendarForm, InstalacaoFinalizarForm, BoletoEntregueForm,\
     InstalacaoDefinirTecnicoForm
+from ..components.models import Vendedores
 
 
 # Create your views here.
@@ -36,6 +37,17 @@ def Index(request):
                                                      'quant_agendada_vendedor': quant_agendada_vendedor,
                                                      })
 
+@login_required(login_url='/login/')
+def VendasInstalacao(request):
+    vendedores = Vendedores.objects.all()
+    vendas = Instalacao.objects.all().order_by('-id')
+    queryset = request.GET.get('q')
+    if queryset:
+        vendas = Instalacao.objects.filter(
+            Q(instalacao_vendedor__icontains=queryset))
+
+    return render(request, 'sales/vendas-instalacao.html', {'vendas': vendas,
+                                                            'vendedores': vendedores})
 
 @login_required(login_url='/login/')
 def InstalacaoAberta(request):

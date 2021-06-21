@@ -11,7 +11,6 @@ admin.site.register(Manuais, ManuaisAdmin)
 class SenhasEquipamentosAdmin(admin.ModelAdmin):
     list_display = ('id', 'ip_equipamento','fabricante','equipamento', 'login', 'senha')
     list_editable = ('login', 'senha')
-
 admin.site.register(SenhasEquipamentos, SenhasEquipamentosAdmin)
 
 
