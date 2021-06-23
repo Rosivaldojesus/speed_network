@@ -12,7 +12,7 @@ def Index(request):
         number=Sum('valor_pagamento')).order_by('-data_pagamento')
     mes = Pagamento.objects.annotate(month=ExtractMonth('data_pagamento')).values(
         'month').annotate(count=Sum('valor_pagamento'))
-    pagamentos = Pagamento.objects.all()
+    pagamentos = Pagamento.objects.all().order_by('-data_pagamento')
     return render(request, 'payment/index.html', {'pagamentos':pagamentos,
                                                   'dia': dia,
                                                   'mes': mes,
