@@ -1,8 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.views.generic import UpdateView
-from .models import PlanosInternet
 from django.db.models import Q, Count
 from .models import Instalacao
 from .forms import InstalacaoCreateForm, InstalacaoUpdateForm,\
@@ -128,7 +126,6 @@ def InstalacaoVisualizacao(request):
     return render(request, 'sales/visualizar-instalacao.html',{'install': install})
 
 
-
 @login_required(login_url='/login/')
 def InstalacaoEditar(request, id=None):
     insta = get_object_or_404(Instalacao, id=id)
@@ -141,7 +138,6 @@ def InstalacaoEditar(request, id=None):
     return render(request, 'sales/editar-instalacao.html', {'form': form})
 
 
-
 @login_required(login_url='/login/')
 def InstalacaoAgendar(request, id=None):
     insta = get_object_or_404(Instalacao, id=id)
@@ -152,7 +148,6 @@ def InstalacaoAgendar(request, id=None):
         messages.success(request, 'Instalação agendada com sucesso.')
         return redirect('/vendas/')
     return render(request, 'sales/agendar-instalacao.html', {'form': form})
-
 
 
 @login_required(login_url='/login/')

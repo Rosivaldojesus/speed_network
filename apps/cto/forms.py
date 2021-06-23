@@ -2,6 +2,13 @@ from django import forms
 from .models import TerminaisOpticos
 
 
+class CadastroCtoForm(forms.ModelForm):
+    class Meta:
+        model = TerminaisOpticos
+        fields = '__all__'
+
+
+
 class CtoForm(forms.ModelForm):
     class Meta:
         model = TerminaisOpticos
