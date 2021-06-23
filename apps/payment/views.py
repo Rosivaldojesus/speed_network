@@ -39,7 +39,7 @@ def ListaPagamentos(request):
     inicial = date(2021, 5, 20)
     final = date(2021, 5, 22)
     pagamentos = Pagamento.objects.filter(data_pagamento__range=[inicial, final])
-    pagamentos = Pagamento.objects.all()
+    pagamentos = Pagamento.objects.all().order_by('-data_pagamento')
     queryset = request.GET.get('q')
     if queryset:
         pagamentos = Pagamento.objects.filter(
