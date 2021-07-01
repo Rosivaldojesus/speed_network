@@ -55,10 +55,10 @@
           {% for concluida in concluidas %}
 
             <tr>
+                <td>{{ concluida.id }}</td>
                 <td class="nav-link ">
                     <a class="nav-link" href="visualizar-instalacao/?id={{ concluida.id }}">{{ concluida.nome_cliente }} {{ concluida.sobrenome_cliente}}</a>
                 </td>
-                <td>{{ concluida.id }}</td>
                 <td>{{ concluida.rua_cliente }}</td>
                 <td>{{ concluida.numero_endereco_cliente }}</td>
                 <td>{{ concluida.data_finalizacao|date:"d M, Y" }}</td>
