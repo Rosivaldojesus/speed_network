@@ -3,7 +3,7 @@ from .views import Index
 from .views import CadastroInstalacao, InstalacaoVisualizacao, InstalacaoEditar,\
     InstalacaoAgendar, InstalacaoAberta, InstalacaoAgendada, InstalacaoFinalizar,\
     InstalacaoConcluida, InstalacaoSemBoleto, InstalacaoFinalizadaSemBoleto,\
-    FinalizarEntregaBoleto, InstalacaoDefinirTecnico, VendasInstalacao
+    FinalizarEntregaBoleto, InstalacaoDefinirTecnico, VendasInstalacao, InstalacaoConcluidaVendedores
 
 
 urlpatterns = [
@@ -17,6 +17,7 @@ urlpatterns = [
     path('agendar-instalacao/<int:id>', InstalacaoAgendar),
     path('finalizar-instalacao/<int:id>', InstalacaoFinalizar),
     path('instalacao-concluida/', InstalacaoConcluida),
+    path('instalacao-concluida-vendedores/', InstalacaoConcluidaVendedores),
     path('instalacao-aberta/', InstalacaoAberta),
     path('instalacao-agendada/', InstalacaoAgendada),
     path('instalacao-sem-boleto/', InstalacaoSemBoleto),
