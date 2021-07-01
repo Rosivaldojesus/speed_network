@@ -74,7 +74,9 @@ def InstalacaoAgendada(request):
             Q(nome_cliente__icontains=queryset)|
             Q(sobrenome_cliente__icontains=queryset)|
             Q(data_instalacao__icontains=queryset)
-        )
+        ).filter(status_agendada='True')\
+        .filter(concluido='False').order_by('data_instalacao', 'hora_instalacao')
+
     quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
     #Filtro por vendedor
     user = request.user
