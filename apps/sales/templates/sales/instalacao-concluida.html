@@ -43,6 +43,7 @@
         <table class="table table-sm " style="line-height: 0.5">
           <thead>
             <tr>
+                <th scope="col">ID</th>
                 <th scope="col">Cliente</th>
                 <th scope="col">Rua</th>
                 <th scope="col">Nº</th>
@@ -57,6 +58,7 @@
                 <td class="nav-link ">
                     <a class="nav-link" href="visualizar-instalacao/?id={{ concluida.id }}">{{ concluida.nome_cliente }} {{ concluida.sobrenome_cliente}}</a>
                 </td>
+                <td>{{ concluida.id }}</td>
                 <td>{{ concluida.rua_cliente }}</td>
                 <td>{{ concluida.numero_endereco_cliente }}</td>
                 <td>{{ concluida.data_finalizacao|date:"d M, Y" }}</td>

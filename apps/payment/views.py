@@ -43,7 +43,8 @@ def ListaPagamentos(request):
     queryset = request.GET.get('q')
     if queryset:
         pagamentos = Pagamento.objects.filter(
-            Q(data_pagamento__icontains=queryset))
+            Q(data_pagamento__icontains=queryset)|
+            Q(motivo_pagamento__icontains=queryset))
         dia = Pagamento.objects.values('data_pagamento').annotate(
             number=Sum('valor_pagamento'))
     return render(request, 'payment/lista_pagamentos.html', {'pagamentos': pagamentos})
