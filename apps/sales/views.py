@@ -109,9 +109,10 @@ def InstalacaoConcluida(request):
 @login_required(login_url='/login/')
 def InstalacaoConcluidaVendedores(request):
     concluidas = Instalacao.objects.filter(concluido='True').order_by('-id')
-    queryset = request.GET.get('q1')
+    queryset = request.GET.get('q')
+    queryset1 = request.GET.get('q1')
     if queryset:
-        concluidas = Instalacao.objects.filter(instalacao_vendedor__exact=queryset)
+        concluidas = Instalacao.objects.filter(Q(instalacao_vendedor__exact=queryset) & Q(nome_cliente__icontains=queryset1))
 
     quant_concluida = Instalacao.objects.filter(concluido='True').count()
     return render(request, 'sales/instalacao-concluida-vendedores.html', {'concluidas': concluidas,
