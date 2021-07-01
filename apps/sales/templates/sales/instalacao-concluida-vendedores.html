@@ -11,20 +11,25 @@
     <div>
         <form method="GET">
 			<div class="row">
-				<div class="form-group col-10">
-					<input type="search" class="form-control"
-						   placeholder="Informe nome do vendedor"
-						   name="q" value="{{ request.GET.q }}">
-				</div>
+
                 <div>
-                    <label for="cars">Choose a car:</label>
-                    <select name="q" id="cars">
-                      <option value="1">Volvo</option>
-                      <option value="2">Saab</option>
-                      <option value="3">Mercedes</option>
-                      <option value="4">Audi</option>
+                    <label>Vendedor:</label>
+                    <select name="q1" value="{{ request.GET.q1 }}">
+                      <option value="1">Speed Network</option>
+                      <option value="2">Ana Lúcia</option>
+                      <option value="3">Ricardo</option>
+                      <option value="4">Larissa</option>
+                      <option value="5">Hanna</option>
+                      <option value="6">Audrey</option>
+                      <option value="7">Paulo Alves</option>
                     </select>
                 </div>
+
+                <div class="form-group col-10">
+					<input type="search" class="form-control"
+						   placeholder="Informe nome do vendedor"
+						   name="q2" value="{{ request.GET.q2 }}">
+				</div>
 
 
 				<div class="form-group">

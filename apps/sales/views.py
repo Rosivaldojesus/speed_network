@@ -109,7 +109,7 @@ def InstalacaoConcluida(request):
 @login_required(login_url='/login/')
 def InstalacaoConcluidaVendedores(request):
     concluidas = Instalacao.objects.filter(concluido='True').order_by('-id')
-    queryset = request.GET.get('q')
+    queryset = request.GET.get('q1')
     if queryset:
         concluidas = Instalacao.objects.filter(instalacao_vendedor__exact=queryset)
 
