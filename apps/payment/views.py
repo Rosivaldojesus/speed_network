@@ -39,10 +39,11 @@ def ListaPagamentos(request):
     pagamentos = Pagamento.objects.all().order_by('-data_pagamento')
 
     queryset = request.GET.get('q')
+    motivoPagamento = request.GET.get('motivoPagamento')
     if queryset:
-        pagamentos = Pagamento.objects.filter(
-            Q(data_pagamento__icontains=queryset) or  Q(motivo_pagamento__icontains=queryset))
-
+        pagamentos = Pagamento.objects.filter(Q(data_pagamento__icontains=queryset))
+    elif motivoPagamento:
+        pagamentos = Pagamento.objects.filter(Q(motivo_pagamento__icontains=motivoPagamento))
 
 
 
