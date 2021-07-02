@@ -12,7 +12,31 @@
         <form method="GET">
 			<div class="row">
 
-                <div>
+
+<!--
+                <div class="form-group col-10">
+					<input type="search" class="form-control"
+						   placeholder="Informe nome do vendedor"
+						   name="q1" value="{{ request.GET.q1 }}">
+				</div>
+-->
+
+                <div class="form-group col-10">
+                    <label>Data inicial</label>
+					<input type="date" class="form-control"
+						   placeholder="Informe nome do vendedor"
+						   name="startdate" value="{{ request.GET.startdate }}">
+				</div>
+
+                 <div class="form-group col-10">
+					<input type="date" class="form-control"
+						   placeholder="Informe nome do vendedor"
+						   name="enddate" value="{{ request.GET.enddate}}">
+				</div>
+
+
+
+                 <div>
                     <label>Vendedor:</label>
                     <select name="q" value="{{ request.GET.q }}">
                       <option value="1">Speed Network</option>
@@ -24,12 +48,6 @@
                       <option value="7">Paulo Alves</option>
                     </select>
                 </div>
-
-                <div class="form-group col-10">
-					<input type="search" class="form-control"
-						   placeholder="Informe nome do vendedor"
-						   name="q1" value="{{ request.GET.q1 }}">
-				</div>
 
 
 				<div class="form-group">
@@ -63,6 +81,7 @@
                 <th scope="col">Rua</th>
                 <th scope="col">Nº</th>
                 <th>Data Instalação</th>
+                <th>Data Conluído</th>
                 <th scope="col">Vendedor</th>
             </tr>
           </thead>
@@ -72,11 +91,12 @@
             <tr>
                 <td>{{ concluida.id }}</td>
                 <td class="nav-link ">
-                    <a class="nav-link" href="visualizar-instalacao/?id={{ concluida.id }}">{{ concluida.nome_cliente }} {{ concluida.sobrenome_cliente}}</a>
+                    <a class="nav-link" href="/vendas/instalacao-concluida/visualizar-instalacao/?id={{ concluida.id }}">{{ concluida.nome_cliente }} {{ concluida.sobrenome_cliente}}</a>
                 </td>
                 <td>{{ concluida.rua_cliente }}</td>
                 <td>{{ concluida.numero_endereco_cliente }}</td>
                 <td>{{ concluida.data_finalizacao|date:"d M, Y" }}</td>
+                <td>{{ concluida.data_concluido|date:"d M, Y" }}</td>
                 <td>{{ concluida.instalacao_vendedor }}</td>
             </tr>
 

@@ -1,3 +1,5 @@
+import datetime
+from datetime import datetime, date
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -105,7 +107,7 @@ def InstalacaoConcluida(request):
     return render(request, 'sales/instalacao-concluida.html', {'concluidas': concluidas,
                                                                'quant_concluida':quant_concluida
                                                                })
-
+'''
 @login_required(login_url='/login/')
 def InstalacaoConcluidaVendedores(request):
     concluidas = Instalacao.objects.filter(concluido='True').order_by('-id')
@@ -118,6 +120,26 @@ def InstalacaoConcluidaVendedores(request):
     return render(request, 'sales/instalacao-concluida-vendedores.html', {'concluidas': concluidas,
                                                                'quant_concluida':quant_concluida
                                                                })
+
+'''
+
+
+@login_required(login_url='/login/')
+def InstalacaoConcluidaVendedores(request):
+    concluidas = Instalacao.objects.filter(concluido='True').order_by('-id')
+
+    startdate = request.GET.get('startdate')
+    enddate = request.GET.get('enddate')
+    queryset = request.GET.get('q')
+    if startdate and enddate and queryset:
+        concluidas = Instalacao.objects.filter(Q(data_instalacao__range=[startdate, enddate]) & Q(instalacao_vendedor__exact=queryset))
+
+
+    quant_concluida = Instalacao.objects.filter(concluido='True').count()
+    return render(request, 'sales/instalacao-concluida-vendedores.html', {'concluidas': concluidas,
+                                                               'quant_concluida':quant_concluida
+                                                               })
+
 
 
 @login_required(login_url='/login/')
