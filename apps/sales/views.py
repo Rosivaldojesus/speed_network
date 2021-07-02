@@ -127,15 +127,16 @@ def InstalacaoConcluidaVendedores(request):
 @login_required(login_url='/login/')
 def InstalacaoConcluidaVendedores(request):
     concluidas = Instalacao.objects.filter(concluido='True').order_by('-id')
-
+    quant_concluida = Instalacao.objects.filter(concluido='True').count()
     startdate = request.GET.get('startdate')
     enddate = request.GET.get('enddate')
     queryset = request.GET.get('q')
     if startdate and enddate and queryset:
-        concluidas = Instalacao.objects.filter(Q(data_instalacao__range=[startdate, enddate]) & Q(instalacao_vendedor__exact=queryset))
+        concluidas = Instalacao.objects.filter(Q(data_instalacao__range=[startdate, enddate])
+                                               & Q(instalacao_vendedor__exact=queryset))
+        quant_concluida = Instalacao.objects.filter(Q(data_instalacao__range=[startdate, enddate])
+                                               & Q(instalacao_vendedor__exact=queryset)).count()
 
-
-    quant_concluida = Instalacao.objects.filter(concluido='True').count()
     return render(request, 'sales/instalacao-concluida-vendedores.html', {'concluidas': concluidas,
                                                                'quant_concluida':quant_concluida
                                                                })
