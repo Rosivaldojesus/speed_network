@@ -3,6 +3,10 @@
 
 
 {% block main %}
+	<!-- ********************************************************************************************** -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<!-- ********************************************************************************************** -->
+
 <div class="container">
 
     <h2>Pagamentos</h2>
@@ -13,7 +17,6 @@
         </div>
     {% endfor %}
   {% endif %}
-
 
 
     <div align="right">
@@ -28,10 +31,53 @@
 <!-- Custos Diários-->
 <h6> Custos diários</h6>
 
-
+<!--
     {% for dia in dia %}
       {{ dia.data_pagamento | date:"d M Y"  }} - R$: {{ dia.number }}<br>
     {% endfor %}
+-->
+
+    <div>
+        Veiculos:
+        {% for veiculo in veiculos %}
+            {{ veiculo.total }}
+        {% endfor %}
+    </div>
+
+    <div>
+        <canvas id="quantidadeManuais" width="400" height="100"></canvas>
+						<script>
+							var ctxy = document.getElementById('quantidadeManuais').getContext('2d');
+							var myDoughnutChart = new Chart(ctxy, {
+								// The type of chart we want to create
+								type: 'pie',
+
+								// The data for our dataset
+								data: {
+									labels: ['Veículos', 'Funcionários', 'Alimentação', 'Links', 'Locação', 'Instalação'],
+									datasets: [{
+										label: 'Equipamentos nos clientes',
+										backgroundColor: '',
+										borderColor: 'white',
+										data: [10,10, 10, 10, 10, 10],
+
+										backgroundColor: [
+										'rgba(0,0,255)',
+										'rgba(79,79,79)',
+										'rgba(0,128,0)',
+										'rgba(255,215,0)',
+										'rgba(255,0,0)'
+										],
+									}]
+								},
+								// Configuration options go here
+								options: {}
+							});
+					</script>
+				</div>
+    </div>
+
+
 
 
 <hr>

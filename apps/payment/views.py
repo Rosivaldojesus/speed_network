@@ -13,9 +13,21 @@ def Index(request):
     mes = Pagamento.objects.annotate(month=ExtractMonth('data_pagamento')).values(
         'month').annotate(count=Sum('valor_pagamento'))
     pagamentos = Pagamento.objects.all().order_by('-data_pagamento')
+
+    #Contagem de gastos mensais por catergoria!!!
+
+    veiculos = Pagamento.objects.values('tipo_custo_pagamento').annotate(soma=Sum('valor_pagamento'))
+
+
+    veiculos = Pagamento.objects.annotate(total=Sum('valor_pagamento'))
+
+
+
     return render(request, 'payment/index.html', {'pagamentos':pagamentos,
                                                   'dia': dia,
                                                   'mes': mes,
+
+                                                  'veiculos':veiculos,
                                                   })
 
 

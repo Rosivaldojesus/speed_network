@@ -59,8 +59,7 @@
             <th scope="col">Cliente</th>
             <th scope="col">Rua</th>
             <th scope="col">Nº</th>
-            <th>Data Instalação</th>
-            <th>Data Conluído</th>
+            <th>Data Finalização</th>
             <th scope="col">Vendedor</th>
         </tr>
       </thead>
@@ -75,7 +74,6 @@
             <td>{{ concluida.rua_cliente }}</td>
             <td>{{ concluida.numero_endereco_cliente }}</td>
             <td>{{ concluida.data_finalizacao|date:"d M, Y" }}</td>
-            <td>{{ concluida.data_concluido|date:"d M, Y" }}</td>
             <td>{{ concluida.instalacao_vendedor }}</td>
         </tr>
 
