@@ -4,107 +4,85 @@
 {% block main %}
 <div class="container">
 
-    <div class="mt-4">
-        <h5 class="mt-3 mb-3"><span class="badge badge-success badge-pill">{{quant_concluida}} </span> Instalações Concluida Por vendedores </h5>
-    </div>
+  <div class="mt-4">
+    <h5 class="mt-3 mb-3"><span class="badge badge-success badge-pill">{{quant_concluida}} </span> Instalações Concluida Por vendedores </h5>
+  </div>
 
-    <div>
-        <form method="GET">
-			<div class="row">
+  <form method="GET" class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputState">Vendedor</label>
+      <select name="q" value="{{ request.GET.q }}" class="form-control">
+          <option selected value="0">Selecione...</option>
+            <option value="1">Speed Network</option>
+            <option value="2">Ana Lúcia</option>
+            <option value="3">Ricardo</option>
+            <option value="4">Larissa</option>
+            <option value="5">Hanna</option>
+            <option value="6">Audrey</option>
+            <option value="7">Paulo Alves</option>      
+      </select>
+      </div>
+           <div class="form-group col-md-3">
+             <label for="inputCity">Data Inicial</label>
+             <input type="date" class="form-control" name="startdate" value="{{ request.GET.startdate }}">
+      </div>
+      <div class="form-group col-md-3">
+             <label for="inputZip">Data Final</label>
+             <input type="date" class="form-control" name="enddate" value="{{ request.GET.enddate}}">
+      </div>
+    
+    
+    <button class=" form-control btn-success">
+      Buscar
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+             <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+             <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+      </svg>
+  </button>
+  </form>
+
+   <!-- Messagens -->
+   {% if messages %}
+   {% for message in messages %}
+       <div class="alert {{ message.tags }}" role="alert">
+           {{ message }}
+       </div>
+   {% endfor %}
+   {% endif %}
 
 
-<!--
-                <div class="form-group col-10">
-					<input type="search" class="form-control"
-						   placeholder="Informe nome do vendedor"
-						   name="q1" value="{{ request.GET.q1 }}">
-				</div>
--->
+   <div class="table-responsive-sm " style="line-height: 0.5">
+    <table class="table table-sm " style="line-height: 0.5">
+      <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Rua</th>
+            <th scope="col">Nº</th>
+            <th>Data Instalação</th>
+            <th>Data Conluído</th>
+            <th scope="col">Vendedor</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for concluida in concluidas %}
 
-                <div class="form-group col-10">
-                    <label>Data inicial</label>
-					<input type="date" class="form-control"
-						   placeholder="Informe nome do vendedor"
-						   name="startdate" value="{{ request.GET.startdate }}">
-				</div>
+        <tr>
+            <td>{{ concluida.id }}</td>
+            <td class="nav-link ">
+                <a class="nav-link" href="/vendas/instalacao-concluida/visualizar-instalacao/?id={{ concluida.id }}">{{ concluida.nome_cliente }} {{ concluida.sobrenome_cliente}}</a>
+            </td>
+            <td>{{ concluida.rua_cliente }}</td>
+            <td>{{ concluida.numero_endereco_cliente }}</td>
+            <td>{{ concluida.data_finalizacao|date:"d M, Y" }}</td>
+            <td>{{ concluida.data_concluido|date:"d M, Y" }}</td>
+            <td>{{ concluida.instalacao_vendedor }}</td>
+        </tr>
 
-                 <div class="form-group col-10">
-					<input type="date" class="form-control"
-						   placeholder="Informe nome do vendedor"
-						   name="enddate" value="{{ request.GET.enddate}}">
-				</div>
-
-
-
-                 <div>
-                    <label>Vendedor:</label>
-                    <select name="q" value="{{ request.GET.q }}">
-                      <option value="1">Speed Network</option>
-                      <option value="2">Ana Lúcia</option>
-                      <option value="3">Ricardo</option>
-                      <option value="4">Larissa</option>
-                      <option value="5">Hanna</option>
-                      <option value="6">Audrey</option>
-                      <option value="7">Paulo Alves</option>
-                    </select>
-                </div>
-
-
-				<div class="form-group">
-					<button class=" form-control btn-success">
-						<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-						  <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-						  <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-						</svg>
-					</button>
-				</div>
-			</div>
-		</form>
-    </div>
-
-    <!-- Messagens -->
-    {% if messages %}
-    {% for message in messages %}
-        <div class="alert {{ message.tags }}" role="alert">
-            {{ message }}
-        </div>
       {% endfor %}
-      {% endif %}
 
-
-    <div class="table-responsive-sm " style="line-height: 0.5">
-        <table class="table table-sm " style="line-height: 0.5">
-          <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Cliente</th>
-                <th scope="col">Rua</th>
-                <th scope="col">Nº</th>
-                <th>Data Instalação</th>
-                <th>Data Conluído</th>
-                <th scope="col">Vendedor</th>
-            </tr>
-          </thead>
-          <tbody>
-          {% for concluida in concluidas %}
-
-            <tr>
-                <td>{{ concluida.id }}</td>
-                <td class="nav-link ">
-                    <a class="nav-link" href="/vendas/instalacao-concluida/visualizar-instalacao/?id={{ concluida.id }}">{{ concluida.nome_cliente }} {{ concluida.sobrenome_cliente}}</a>
-                </td>
-                <td>{{ concluida.rua_cliente }}</td>
-                <td>{{ concluida.numero_endereco_cliente }}</td>
-                <td>{{ concluida.data_finalizacao|date:"d M, Y" }}</td>
-                <td>{{ concluida.data_concluido|date:"d M, Y" }}</td>
-                <td>{{ concluida.instalacao_vendedor }}</td>
-            </tr>
-
-          {% endfor %}
-
-          </tbody>
-        </table>
-    </div>
+      </tbody>
+    </table>
 </div>
 
 {% endblock %}
