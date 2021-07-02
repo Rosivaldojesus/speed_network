@@ -6,8 +6,7 @@
 <div class="container">
 
     <h2>Pagamentos</h2>
-
-     {% if messages %}
+  {% if messages %}
     {% for message in messages %}
         <div class="alert {{ message.tags }}" role="alert">
             {{ message }}
@@ -51,6 +50,7 @@
       <!--Verificando mês de Maio-->
       {% if mes.month == 6 %}
         Junho R$: {{ mes.count }}
+      {% endif %}
       {% if mes.month == 7 %}
         Julho R$: {{ mes.count }}
       {% endif %}
