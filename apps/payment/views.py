@@ -23,12 +23,14 @@ def Index(request):
     instalacao = Pagamento.objects.filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
     socios = Pagamento.objects.filter(categoria=7).aggregate(total=Sum('valor_pagamento'))
 
-
     return render(request, 'payment/index.html', {'pagamentos':pagamentos, 'dia': dia,'mes': mes,
-                                                  'veiculos':veiculos, 'funcionarios':funcionarios,
-                                                  'alimentacao': alimentacao,'links': links,
-                                                  'locacao': locacao, 'instalacao': instalacao,
-                                                  'socios': socios
+                                                  'veiculos':veiculos,
+                                                  'funcionarios':funcionarios,
+                                                  'alimentacao': alimentacao,
+                                                  'links': links,
+                                                  'locacao': locacao,
+                                                  'instalacao': instalacao,
+                                                  'socios': socios,
                                                   })
 
 
