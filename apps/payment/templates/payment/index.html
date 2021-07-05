@@ -37,12 +37,15 @@
     {% endfor %}
 -->
 
-    <div>
-        Veiculos:
-        {% for veiculo in veiculos %}
-            {{ veiculo.total }}
-        {% endfor %}
-    </div>
+  <div>
+    {{ veiculos.total }},
+    {{ funcionarios.total }},
+    {{ alimentacao.total }},
+    {{ links.total }},
+    {{ locacao.total }},
+    {{ instalacao.total }},
+    {{ socios.total }},
+  </div>
 
     <div>
         <canvas id="quantidadeManuais" width="400" height="100"></canvas>
@@ -54,12 +57,14 @@
 
 								// The data for our dataset
 								data: {
-									labels: ['Veículos', 'Funcionários', 'Alimentação', 'Links', 'Locação', 'Instalação'],
+									labels: ['Veículos', 'Funcionários', 'Alimentação', 'Links', 'Locação', 'Instalação', 'Sócios'],
 									datasets: [{
 										label: 'Equipamentos nos clientes',
 										backgroundColor: '',
 										borderColor: 'white',
-										data: [10,10, 10, 10, 10, 10],
+										data: [
+                      {{ veiculos.total }},{{ links.funcionarios }}
+                    ],
 
 										backgroundColor: [
 										'rgba(0,0,255)',

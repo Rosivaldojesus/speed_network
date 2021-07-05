@@ -15,19 +15,20 @@ def Index(request):
     pagamentos = Pagamento.objects.all().order_by('-data_pagamento')
 
     #Contagem de gastos mensais por catergoria!!!
+    veiculos = Pagamento.objects.filter(categoria=1).aggregate(total=Sum('valor_pagamento'))
+    funcionarios = Pagamento.objects.filter(categoria=2).aggregate(total=Sum('valor_pagamento'))
+    alimentacao = Pagamento.objects.filter(categoria=3).aggregate(tota=Sum('valor_pagamento'))
+    links = Pagamento.objects.filter(categoria=4).aggregate(total=Sum('valor_pagamento'))
+    locacao = Pagamento.objects.filter(categoria=5).aggregate(total=Sum('valor_pagamento'))
+    instalacao = Pagamento.objects.filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
+    socios = Pagamento.objects.filter(categoria=7).aggregate(total=Sum('valor_pagamento'))
 
-    veiculos = Pagamento.objects.values('tipo_custo_pagamento').annotate(soma=Sum('valor_pagamento'))
 
-
-    veiculos = Pagamento.objects.annotate(total=Sum('valor_pagamento'))
-
-
-
-    return render(request, 'payment/index.html', {'pagamentos':pagamentos,
-                                                  'dia': dia,
-                                                  'mes': mes,
-
-                                                  'veiculos':veiculos,
+    return render(request, 'payment/index.html', {'pagamentos':pagamentos, 'dia': dia,'mes': mes,
+                                                  'veiculos':veiculos, 'funcionarios':funcionarios,
+                                                  'alimentacao': alimentacao,'links': links,
+                                                  'locacao': locacao, 'instalacao': instalacao,
+                                                  'socios': socios
                                                   })
 
 
