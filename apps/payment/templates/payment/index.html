@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block main %}
 	<!-- ********************************************************************************************** -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<!-- ********************************************************************************************** -->
-
 <div class="container">
 
     <h2>Pagamentos</h2>
@@ -17,8 +15,8 @@
         </div>
     {% endfor %}
   {% endif %}
-
-
+    <hr>
+    <hr>
     <div align="right">
         <a href="lista-pagamentos/" class="btn btn-info">Ver todos pagamentos</a>
         <a href="agendar-pagamento/" class="btn btn-dark">Agendar um pagamento</a>
@@ -26,8 +24,8 @@
         <a href="cadastrar-pagamento/" class="btn btn-primary">+ Adicionar pagamento </a>
     </div>
 
-    <br>
-    <br>
+    <hr>
+    <hr>
 
 <!--
     {% for dia in dia %}
@@ -75,21 +73,14 @@
         
   
 										],
-
 										backgroundColor: [
 										'rgba(0,0,255)',
 										'rgba(79,10,79)',
-
                     'rgba(32,5,255)',
 										'rgba(7,10,79)',
-
                     'rgba(90,50,255)',
 										'rgba(79,10,79)',
-
                     'rgba(199,150,255)',
-									
-						
-
 										],
 									}]
 								},
@@ -98,96 +89,47 @@
 							});
 					</script>
 				</div>
+
+        <hr>
+        <hr>
+
+        <!-- Custos Mensais-->
+        <h6> Custos Mensais </h6>
+        {% for mes in mes %}
+
+          <!--Verificando mês de Abril-->
+          {% if mes.month == 4 %}
+            Abril R$: {{ mes.count }}
+          {% endif %}
+          <!--Verificando mês de Maio-->
+          {% if mes.month == 5 %}
+            Maio R$: {{ mes.count }}
+          {% endif %}
+          <!--Verificando mês de Maio-->
+          {% if mes.month == 6 %}
+            Junho R$: {{ mes.count }}
+          {% endif %}
+          {% if mes.month == 7 %}
+            Julho R$: {{ mes.count }}
+          {% endif %}
+
+          <br>
+
+        {% endfor %}
+
+
+
+
+
+
+
     </div>
 
 
-    <!--
-      labels: ['Veículos', 'Funcionários', 'Alimentação', 'Links', 'Locação', 'Instalação', 'Sócios'],
-    -->
-
-
+  
 <hr>
-<!-- Custos Mensais-->
-<h6> Custos Mensais </h6>
-    {% for mes in mes %}
-
-      <!--Verificando mês de Abril-->
-      {% if mes.month == 4 %}
-        Abril R$: {{ mes.count }}
-      {% endif %}
-      <!--Verificando mês de Maio-->
-      {% if mes.month == 5 %}
-        Maio R$: {{ mes.count }}
-      {% endif %}
-      <!--Verificando mês de Maio-->
-      {% if mes.month == 6 %}
-        Junho R$: {{ mes.count }}
-      {% endif %}
-      {% if mes.month == 7 %}
-        Julho R$: {{ mes.count }}
-      {% endif %}
-
-      <br>
-
-    {% endfor %}
 
 
-
-
-
-
-
-
-
-
-
-
-<!--
-
-    <div class="table-responsive-sm mt-2">
-        <table class="table table-sm">
-          <thead class="table-dark">
-            <tr>
-                <th>Motivo</th>
-                 <th>Valor</th>
-                <th scope="col">Origem</th>
-                <th scope="col">Tipo custo</th>
-                <th scope="col">Data</th>
-                <th scope="col">Categoria</th>
-                <th scope="col">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for pagamento in pagamentos %}
-              {% if pagamento.status_pago == True %}
-            <tr>
-                <td>{{ pagamento.motivo_pagamento }}</td>
-                <td>{{ pagamento.valor_pagamento }}</td>
-                <td>R$: {{ pagamento.origem_valor_pagamento }}</td>
-                <td>{{ pagamento.tipo_custo_pagamento }}</td>
-                <td>{{ pagamento.data_pagamento | date:" d/m/Y" }}</td>
-                <td>{{ pagamento.categoria }}</td>
-                <td style="color:green;">Pago</td>
-            </tr>
-              {% else%}
-            <tr>
-                <td>{{ pagamento.motivo_pagamento }}</td>
-                <td>{{ pagamento.valor_pagamento }}</td>
-                <td>R$: {{ pagamento.origem_valor_pagamento }}</td>
-                <td>{{ pagamento.tipo_custo_pagamento }}</td>
-                <td>{{ pagamento.data_pagamento | date:" d/m/Y" }}</td>
-                <td>{{ pagamento.categoria }}</td>
-                <td style="color:red;">Não Pago</td>
-            </tr>  
-
-
-              {% endif %}
-            {% endfor %}
-          </tbody>
-        </table>
-        </div>
-
--->
 </div>
 </div>
 {% endblock %}
