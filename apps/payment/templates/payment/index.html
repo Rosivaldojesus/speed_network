@@ -37,14 +37,15 @@
     {% endfor %}
 -->
 
+
   <div>
-    {{ veiculos.total }},
-    {{ funcionarios.total }},
-    {{ alimentacao.total }},
-    {{ links.total }},
-    {{ locacao.total }},
-    {{ instalacao.total }},
-    {{ socios.total }},
+   Veículos: {{ veiculos.total }}<br>
+      Funcionários: {{ funcionarios.total }}<br>
+    Alimentação: {{ alimentacao.total }}<br>
+    Links: {{ links.total }}<br>
+    Locação: {{ locacao.total }}<br>
+    Instalação: {{ instalacao.total }}<br>
+    Sócios: {{ socios.total }}<br>
   </div>
 
     <div>
@@ -62,7 +63,11 @@
 										label: 'Equipamentos nos clientes',
 										backgroundColor: '',
 										borderColor: 'white',
-										data: [{{veiculos.total}},{{funcionarios.total}},
+										data: [{{veiculos.total}},
+                    {{funcionarios.total}},
+                    {{alimentacao.total}},
+                    {{links.total}},
+                    {{locacao.total}},
 										],
 
 										backgroundColor: [
