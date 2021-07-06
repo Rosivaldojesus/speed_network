@@ -26,10 +26,8 @@
         <a href="cadastrar-pagamento/" class="btn btn-primary">+ Adicionar pagamento </a>
     </div>
 
-
-
-<!-- Custos Diários-->
-<h6> Custos diários</h6>
+    <br>
+    <br>
 
 <!--
     {% for dia in dia %}
@@ -37,7 +35,7 @@
     {% endfor %}
 -->
 
-
+<!--
   <div>
    Veículos: {{ veiculos.total }}<br>
       Funcionários: {{ funcionarios.total }}<br>
@@ -47,6 +45,7 @@
     Instalação: {{ instalacao.total }}<br>
     Sócios: {{ socios.total }}<br>
   </div>
+  -->
 
     <div>
         <canvas id="quantidadeManuais" width="400" height="100"></canvas>
@@ -63,11 +62,14 @@
 										label: 'Equipamentos nos clientes',
 										backgroundColor: '',
 										borderColor: 'white',
-										data: [{{veiculos.total}},
+										data: [
+                    {{veiculos.total}},
                     {{funcionarios.total}},
                     {{alimentacao.total}},
                     {{links.total}},
                     {{locacao.total}},
+                    {{instalacao.total}},
+                    {{socios.total}},
 										],
 
 										backgroundColor: [
@@ -75,7 +77,9 @@
 										'rgba(79,79,79)',
 										'rgba(0,128,0)',
 										'rgba(255,215,0)',
-										'rgba(255,0,0)'
+										'rgba(255,0,0)',
+                    'rgba(255,135,0)',
+                    'rgba(99,12,200)',
 										],
 									}]
 								},
@@ -171,5 +175,6 @@
         </div>
 
 -->
+</div>
 </div>
 {% endblock %}
