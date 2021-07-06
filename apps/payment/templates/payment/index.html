@@ -48,16 +48,16 @@
   -->
 
     <div>
-        <canvas id="quantidadeManuais" width="400" height="100"></canvas>
+        <canvas id="gastosMensais" width="400" height="100"></canvas>
 						<script>
-							var ctxy = document.getElementById('quantidadeManuais').getContext('2d');
+							var ctxy = document.getElementById('gastosMensais').getContext('2d');
 							var myDoughnutChart = new Chart(ctxy, {
 								// The type of chart we want to create
 								type: 'pie',
 
 								// The data for our dataset
 								data: {
-									labels: ['Veículos', 'Funcionários', 'Alimentação', ],
+									labels: ['Veículos', 'Funcionários' ],
 									datasets: [{
 										label: 'Equipamentos nos clientes',
 										backgroundColor: '',
@@ -65,14 +65,14 @@
 										data: [
                     {{veiculos.total}},
                     {{funcionarios.total}},
-                    {{alimentacao.total}},
+        
   
 										],
 
 										backgroundColor: [
 										'rgba(0,0,255)',
-										'rgba(79,10,79)',
-										'rgba(0,128,0)'
+										'rgba(79,10,79)'
+						
 
 										],
 									}]
