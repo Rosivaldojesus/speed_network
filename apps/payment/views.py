@@ -21,6 +21,7 @@ def Index(request):
     links = Pagamento.objects.filter(categoria=4).aggregate(total=Sum('valor_pagamento'))
     locacao = Pagamento.objects.filter(categoria=5).aggregate(total=Sum('valor_pagamento'))
     instalacao = Pagamento.objects.filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
+
     socios = Pagamento.objects.filter(categoria=7).aggregate(total=Sum('valor_pagamento'))
 
     return render(request, 'payment/index.html', {'pagamentos':pagamentos, 'dia': dia,'mes': mes,

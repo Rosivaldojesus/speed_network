@@ -3,12 +3,13 @@ from datetime import datetime, date
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q, Count
+from django.db.models import Q, Sum, Count
 from .models import Instalacao
 from .forms import InstalacaoCreateForm, InstalacaoUpdateForm,\
     InstalacaoAgendarForm, InstalacaoFinalizarForm, BoletoEntregueForm,\
     InstalacaoDefinirTecnicoForm
 from ..components.models import Vendedores
+from django.db.models.functions import ExtractMonth
 
 
 # Create your views here.
@@ -26,6 +27,12 @@ def Index(request):
         .filter(concluido='False').count()
     quant_agendada_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='True')\
         .filter(concluido='False').count()
+    #Instalações Mensais
+    instalacoesMensais = Instalacao.objects.annotate(month=ExtractMonth('data_finalizacao')).values(
+        'month').annotate(count=Count('data_finalizacao'))
+
+
+
     return render(request, 'sales/instalacao.html', {'instalacoes': instalacoes,
                                                      'quant_aberta': quant_aberta,
                                                      'quant_agendada': quant_agendada,
@@ -35,6 +42,8 @@ def Index(request):
                                                      'instalacaoVendedor': instalacaoVendedor,
                                                      'quant_aberta_vendedor':quant_aberta_vendedor,
                                                      'quant_agendada_vendedor': quant_agendada_vendedor,
+
+                                                     'instalacoesMensais': instalacoesMensais
                                                      })
 
 @login_required(login_url='/login/')
