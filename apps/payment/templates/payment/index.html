@@ -48,36 +48,43 @@
 
     <div>
         
-      <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
-
-
-      <div id="chart">
-        <script>
-          var options = {
-          series: [{{ veiculos.total }}, {{ funcionarios.total }}, {{ alimentacao.total }}, 43, 22],
-          chart: {
-          width: 380,
+      <canvas id="quantidadeManuais" width="400" height="100"></canvas>
+      <script>
+        var ctxy = document.getElementById('quantidadeManuais').getContext('2d');
+        var myDoughnutChart = new Chart(ctxy, {
+          // The type of chart we want to create
           type: 'pie',
-        },
-        labels: ['Veículos', '', 'Funcionários', 'Team D', 'Alimentação'],
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: 'bottom'
-            }
-          }
-        }]
-        };
 
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
-      
-        </script>
+          // The data for our dataset
+          data: {
+            labels: ['Veículos', 'FuncionáriosI', 'Alimentação', 'Links', 'Locação', 'Instalação', 'Sócios'],
+            datasets: [{
+              label: 'Equipamentos nos clientes',
+              backgroundColor: '',
+              borderColor: 'white',
+              data: [{{ veiculos.total }},
+              {{ funcionarios.total }},
+              {{ alimentacao.total }},
+              {{ links.total }},
+              {{ locacao.total }},
+              {{ instalacao.total }},
+              {{ socios.total }},
+            
+            ],
+
+              backgroundColor: [
+              'rgba(0,0,255)',
+              'rgba(79,79,79)',
+              'rgba(0,128,0)',
+              'rgba(255,215,0)',
+              'rgba(255,0,0)'
+              ],
+            }]
+          },
+          // Configuration options go here
+          options: {}
+        });
+    </script>
       </div>
 
 
