@@ -51,34 +51,16 @@
       <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 
-      <style>
-        
 
-      body {
-        font-family: Roboto, sans-serif;
-      }
-
-      #chart {
-        max-width: 650px;
-        margin: 35px auto;
-      }
-
-      </style>
-
-      <div id="chart"></div>
-
-
-      <script>
-      var options = {
-          series: [1,2,3,4,5,6,7
-
-           
-            ],
+      <div id="chart">
+        <script>
+          var options = {
+          series: [{{ socios.total }}, 55, 13, 43, 22],
           chart: {
           width: 380,
           type: 'pie',
         },
-        labels: ['Veículos', 'Funcionários', 'Alimentação', 'Links', 'Locação', 'Instalação', 'Sócios'],
+        labels: ['Veículos', 'Team B', 'Team C', 'Team D', 'Team E'],
         responsive: [{
           breakpoint: 480,
           options: {
@@ -95,7 +77,11 @@
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
       
-      </script>
+        </script>
+      </div>
+
+
+      
 
 
 
