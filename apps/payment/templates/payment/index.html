@@ -48,39 +48,51 @@
 
     <div>
         
+      <!DOCTYPE HTML>
       <html>
-        <head>
-          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-          <script type="text/javascript">
-            google.charts.load('current', {'packages':['corechart']});
-            google.charts.setOnLoadCallback(drawChart);
-      
-            function drawChart() {
-      
-              var data = google.visualization.arrayToDataTable([
-                ['Task', 'Hours per Day'],
-                ['Veículos',     {{ veiculos.total }}],
-                ['Funcionários',      {{ funcionarios.total }}],
-                ['Alimentação',  {{ alimentacao.total }}],
-                ['Watch TV', 2],
-                ['Sleep',    7]
-              ]);
-      
-              var options = {
-                title: 'My Daily Activities'
-              };
-      
-              var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-      
-              chart.draw(data, options);
-            }
-          </script>
-        </head>
-        <body>
-          <div id="piechart" style="width: 900px; height: 500px;"></div>
-        </body>
-      </html>
+      <head>
+      <script>
+      window.onload = function () {
 
+      var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        title: {
+          text: "GDP Growth Rate - 2016"
+        },
+        axisY: {
+          title: "Growth Rate (in %)",
+          suffix: "%"
+        },
+        axisX: {
+          title: "Countries"
+        },
+        data: [{
+          type: "column",
+          yValueFormatString: "#,##0.0#\"%\"",
+          dataPoints: [
+            { label: "India", y: {{ veiculos.total }} },	
+            { label: "China", y: {{ funcionarios.total }} },	
+            { label: "Indonesia", y: {{ alimentacao.total }}< },
+            { label: "Australia", y: {{ links.total }}},	
+            { label: "Mexico", y: 2.30 },
+            { label: "UK", y: 1.80 },
+            { label: "United States", y: 1.60 },
+            { label: "Japan", y: 1.60 }
+            
+          ]
+        }]
+      });
+      chart.render();
+
+      }
+      </script>
+      </head>
+      <body>
+      <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+      <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+      </body>
+      </html>
 
 
 				</div>
