@@ -329,6 +329,8 @@
         <div class="card-header bg-dark text-white">Previsões de Instalações</div>
         <div class="card-body">
           {% for previsaoInstalacao in previsaoInstalacao%}
+
+
             {% if previsaoInstalacao.number <= 6 %}
             <p style="color:green;"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></p>
             {% elif previsaoInstalacao.number > 6 and previsaoInstalacao.number <= 9  %}

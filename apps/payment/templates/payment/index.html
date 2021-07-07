@@ -47,48 +47,64 @@
 
 
     <div>
-        <canvas id="gastosMensais" width="400" height="100"></canvas>
-						<script>
-							var ctxy = document.getElementById('gastosMensais').getContext('2d');
-							var myDoughnutChart = new Chart(ctxy, {
-								// The type of chart we want to create
-								type: 'line',
-
-								// The data for our dataset
-								data: {
-									labels: ['Veículos', 'Funcionários', 'Alimentação', 'Links', 'Locação', 'Instalação', 'Sócios'],
-									datasets: [{
-										label: 'Gastos por grupo',
-										backgroundColor: '',
-										borderColor: 'white',
-										data: [
-                    {{veiculos.total}},
-                    {{funcionarios.total}},
-                    {{alimentacao.total}},
-
-                    {{links.total}},
-                    {{locacao.total}},
-                    {{instalacao.total}},
-
-                    {{socios.total}},
         
-  
-										],
-										backgroundColor: [
-										'rgba(0,0,255)',
-										'rgba(79,10,79)',
-                    'rgba(32,5,255)',
-										'rgba(7,10,79)',
-                    'rgba(90,50,255)',
-										'rgba(79,10,79)',
-                    'rgba(199,150,255)',
-										],
-									}]
-								},
-								// Configuration options go here
-								options: {}
-							});
-					</script>
+      <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+
+      <style>
+        
+
+      body {
+        font-family: Roboto, sans-serif;
+      }
+
+      #chart {
+        max-width: 650px;
+        margin: 35px auto;
+      }
+
+      </style>
+
+      <div id="chart"></div>
+
+
+      <script>
+      var options = {
+          series: [
+
+           {{veiculos.total}},
+            {{funcionarios.total}},
+             {{alimentacao.total}},
+             {{links.total}},
+             {{locacao.total}},
+             {{instalacao.total}},
+             {{socios.total}}
+            ],
+          chart: {
+          width: 380,
+          type: 'pie',
+        },
+        labels: ['Veículos', 'Funcionários', 'Alimentação', 'Links', 'Locação', 'Instalação', 'Sócios'],
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }]
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+      
+      </script>
+
+
+
 				</div>
 
         <hr>
