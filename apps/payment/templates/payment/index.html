@@ -95,61 +95,60 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-                    <!DOCTYPE HTML>
-                    <html>
-                    <head>
-                    <script type="text/javascript">
-                    window.onload = function () {
-
-                    var chart = new CanvasJS.Chart("chartContainer", {
-                      theme: "light1", // "light2", "dark1", "dark2"
-                      animationEnabled: false, // change to true		
-                      title:{
-                        text: "Basic Column Chart"
-                      },
-                      data: [
-                      {
-                        // Change type to "bar", "area", "spline", "pie",etc.
-                        type: "column",
-                        dataPoints: [
-                          { label: "apple",  y: {{ veiculos.total }} },
-                          { label: "orange", y: {{ funcionarios.total }}  },
-                          { label: "banana", y: 25  },
-                          { label: "mango",  y: 30  },
-                          { label: "grape",  y: 28  }
-                        ]
-                      }
-                      ]
-                    });
-                    chart.render();
-
-                    }
-                    </script>
-                    </head>
-                    <body>
-                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
-                    </body>
-                    </html>
-
-
-
-
-
-
-				</div>
+<canvas id="myChart" width="400" height="200"></canvas>
+					<script>
+						var ctx = document.getElementById('myChart').getContext('2d');
+						var chart = new Chart(ctx, {
+							// The type of chart we want to create
+							type: 'bar',
+							// The data for our dataset
+							data: {
+								labels: [
+                  'Veículos',
+									'BIRMANN 31',
+									'CAPITAL CENTER',
+									'E-TOWER',
+									'EENU',
+									'HL FARIA LIMA',
+									'JARDIM PAMPLONA',
+									'JK 360',
+									'MORUMBI PLAZA',
+									'PAULISTA 1100',
+									'PINACOTECA',
+									'SHOPPING GRAND PLAZA',
+									'SHOPPING GRANJA VIANNA',
+									'SHOPPING IGUATEMI ALPHAVILLE',
+									'SKY CORPORATE',
+									'VISTA FARIA LIMA',
+									'WORK BELA CINTRA'],
+								datasets: [{
+									label: 'Equipamentos nos clientes',
+									backgroundColor: 'rgb(0,0,128)',
+									borderColor: 'rgb(0,0,128)',
+									data: [
+                    {{ veiculos.total }},
+										{{ birmann31 }},
+										{{ capitalCenter }},
+										{{ eTower }},
+										{{ eenu }},
+										{{ hlFariaLima }},
+										{{ jardimPamplonaShopping }},
+										{{ jk360 }},
+										{{ morumbiPlaza }},
+									    {{ paulista1100 }},
+									    {{ pinacoteca }},
+										{{ shoppingGrandPlaza }},
+										{{ shoppingGranjaViana }},
+									    {{ iguatemiAlphaville }},
+									    {{ skyCorporate }},
+										{{ vistaFariaLima }},
+									    {{ workBelaCintra }}]
+								}]
+							},
+							// Configuration options go here
+							options: {}
+						});
+					</script>
 
         <hr>
         <hr>
