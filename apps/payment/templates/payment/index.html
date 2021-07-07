@@ -55,12 +55,12 @@
       <div id="chart">
         <script>
           var options = {
-          series: [{{ veiculos.total }}, {{ funcionarios.total }}, 13, 43, 22],
+          series: [{{ veiculos.total }}, {{ funcionarios.total }}, {{ alimentacao.total }}, 43, 22],
           chart: {
           width: 380,
           type: 'pie',
         },
-        labels: ['Veículos', 'Funcionários', 'Funcionários', 'Team D', 'Team E'],
+        labels: ['Veículos', '', 'Funcionários', 'Team D', 'Alimentação'],
         responsive: [{
           breakpoint: 480,
           options: {
