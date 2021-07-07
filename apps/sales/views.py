@@ -29,7 +29,7 @@ def Index(request):
         .filter(concluido='False').count()
     #Instalações Mensais
     instalacoesMensais = Instalacao.objects.annotate(month=ExtractMonth('data_finalizacao')).values(
-        'month').annotate(count=Count('data_finalizacao'))
+        'month').annotate(count=Count('id'))
 
 
 
