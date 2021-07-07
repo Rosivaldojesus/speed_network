@@ -34,6 +34,8 @@
 -->
 
 
+<!--
+
   <div>
    Veículos: {{ veiculos.total }}<br>
     Funcionários: {{ funcionarios.total }}<br>
@@ -43,6 +45,8 @@
     Instalação: {{ instalacao.total }}<br>
     Sócios: {{ socios.total }}<br>
   </div>
+
+  -->
 
 <!--
 
@@ -95,7 +99,7 @@
 -->
 
 
-<canvas id="myChart" width="400" height="200"></canvas>
+<canvas id="myChart" width="400" height="70"></canvas>
 					<script>
 						var ctx = document.getElementById('myChart').getContext('2d');
 						var chart = new Chart(ctx, {
@@ -119,7 +123,7 @@
 									'Sócios'
 		          ],
 								datasets: [{
-									label: 'Equipamentos nos clientes',
+									label: 'Custos por grupo',
 									backgroundColor: 'rgb(0,0,128)',
 									borderColor: 'rgb(0,0,128)',
 									data: [
