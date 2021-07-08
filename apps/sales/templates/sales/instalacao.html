@@ -164,6 +164,63 @@
           {% endfor %}
     </div>
 
+      <!-- ********************************************************************************************** -->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+      <!-- ********************************************************************************************** -->
+        <section>
+          <div class="card-deck mt-4">
+            <div class="card border-0">
+              <div style="color: purple">
+                <h4>Instalaçãoes por dia </h4>
+                <hr>
+                  </a>
+                </h2>
+              </div>
+              <div class="card-body border-0" align="center">
+        
+                <canvas id="myCharts" width="400" height="80"></canvas>
+                  <script>
+                    var ctx = document.getElementById('myCharts').getContext('2d');
+                    var chart = new Chart(ctx, {
+                      // The type of chart we want to create
+                      type: 'bar',
+                      // The data for our dataset
+                      data: {
+                        labels: [
+                          {% for mensal in mensalInstalacao %}
+                          '{{ mensal.month|date:"F Y"  }}',
+                          {% endfor %}
+                          ],
+                        datasets: [{
+                          label: 'Instalaçoes por dia',
+                          backgroundColor: 'rgb(0,0,128)',
+                          borderColor: 'rgb(0,0,128)',
+                          data: [
+                          {% for mensal in mensalInstalacao %}
+                          '{{ mensal.c }}',
+                          {% endfor %}
+                            ]
+                        }]
+                      },
+                      // Configuration options go here
+                      options: {}
+                    });
+                  </script>
+            </div>
+          </div>
+        </section>
+  
+  
+  
+
+
+
+
+
+
+
+
+
     <!--Total de instalações por dia -->
     <hr>
     <hr>
@@ -173,6 +230,7 @@
         {{ diario.data_finalizacao}}: {{ diario.number}} <br>
       {% endfor %}
     </div>
+    
 
 
 
@@ -307,55 +365,7 @@
 
 
 
-    <!-- ********************************************************************************************** -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-    <!-- ********************************************************************************************** -->
-
-      
-      <section>
-        <div class="card-deck mt-4">
-          <div class="card border-0">
-            <div style="color: purple">
-              <h4>Instalaçãoes por dia </h4>
-              <hr>
-                </a>
-              </h2>
-            </div>
-            <div class="card-body border-0" align="center">
-      
-              <canvas id="myChart" width="400" height="80"></canvas>
-                <script>
-                  var ctx = document.getElementById('myChart').getContext('2d');
-                  var chart = new Chart(ctx, {
-                    // The type of chart we want to create
-                    type: 'bar',
-                    // The data for our dataset
-                    data: {
-                      labels: [
-                        {% for diario in diarioInstalaçao  %}
-                        '{{ diario.data_finalizacao }}',
-                        {% endfor %}
-                        ],
-                      datasets: [{
-                        label: 'Instalaçoes por dia',
-                        backgroundColor: 'rgb(0,0,128)',
-                        borderColor: 'rgb(0,0,128)',
-                        data: [
-                        {% for diario in diarioInstalaçao %}
-                        '{{ diario.number }}',
-                        {% endfor %}
-                          ]
-                      }]
-                    },
-                    // Configuration options go here
-                    options: {}
-                  });
-                </script>
-          </div>
-        </div>
-      </section>
-
-
+  
 
 
 
