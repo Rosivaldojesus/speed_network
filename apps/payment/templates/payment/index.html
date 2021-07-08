@@ -75,7 +75,12 @@
 
                       var dataSecond = {
                           label: "Car B - Speed (mph)",
-                          data: [20, 15, 60, 60, 65, 30, 70],
+                          data: [
+                          {% for veiculos in mensalVeiculos %}
+                          '{{ veiculos.c }}',
+                          {% endfor %}
+                          
+                          ],
                           lineTension: 0,
                           fill: false,
                         borderColor: 'blue'
