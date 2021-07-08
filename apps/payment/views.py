@@ -23,12 +23,10 @@ def Index(request):
     instalacao = Pagamento.objects.filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
     socios = Pagamento.objects.filter(categoria=7).aggregate(total=Sum('valor_pagamento'))
 
-    from django.db.models.functions import TruncMonth
-    from django.db.models import Count
 
     mensalVeiculos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=1).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     mensalFuncionarios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=2).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
-    mensalAlimentacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=3).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    mensalAlimentacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter().filter(categoria=3).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     mensalLinks = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=4).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     mensalLocacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=5).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     mensalInstalacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=6).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')

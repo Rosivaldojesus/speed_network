@@ -10,6 +10,7 @@ from .forms import InstalacaoCreateForm, InstalacaoUpdateForm,\
     InstalacaoDefinirTecnicoForm
 from ..components.models import Vendedores
 from django.db.models.functions import ExtractMonth
+from django.db.models.functions import TruncMonth
 
 
 # Create your views here.
@@ -31,6 +32,7 @@ def Index(request):
     instalacoesMensais = Instalacao.objects.annotate(month=ExtractMonth('data_finalizacao')).values(
         'month').annotate(count=Count('id'))
 
+    mensalInstalacao = Instalacao.objects.annotate(month=TruncMonth('data_finalizacao')).filter(concluido='True').values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
 
 
     return render(request, 'sales/instalacao.html', {'instalacoes': instalacoes,
@@ -43,7 +45,9 @@ def Index(request):
                                                      'quant_aberta_vendedor':quant_aberta_vendedor,
                                                      'quant_agendada_vendedor': quant_agendada_vendedor,
 
-                                                     'instalacoesMensais': instalacoesMensais
+                                                     'instalacoesMensais': instalacoesMensais,
+
+                                                     'mensalInstalacao':mensalInstalacao,
                                                      })
 
 @login_required(login_url='/login/')

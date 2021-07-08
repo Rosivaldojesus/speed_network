@@ -163,8 +163,8 @@
         <div>
           <h5>Instalações Mensais</h5>
 
-          {% for mensal in instalacoesMensais %}
-            {{ mensal.month }}: {{ mensal.count }}<br>
+          {% for mensal in mensalInstalacao %}
+            {{ mensal.month|date:"M Y"  }}: {{ mensal.c }}<br>
           {% endfor %}
         </div>
 
