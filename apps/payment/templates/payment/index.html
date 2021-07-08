@@ -208,7 +208,11 @@
 
           var densityData = {
             label: 'Density of Planet (kg/m3)',
-            data: [5427, 5243, 5514, 3933, 1326, 687, 1271, 1638],
+            data: [
+            {% for veiculos in mensalVeiculos %}
+              '{{ veiculos.c }}',
+            {% endfor %}
+            ],
             backgroundColor: 'rgba(0, 99, 132, 0.6)',
             borderWidth: 0,
             yAxisID: "y-axis-density"
