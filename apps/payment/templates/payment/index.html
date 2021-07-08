@@ -62,7 +62,7 @@
                           label: "Car A - Speed (mph)",
                           data: [
                             
-                          {% for veiculos in mensalVeiculos %}
+                          {% for veiculos in mensalAlimentacao %}
                           '{{ veiculos.c }}',
                           {% endfor %}
                         
@@ -88,7 +88,7 @@
 
                       var speedData = {
                         labels: [
-                          {% for veiculos in mensalVeiculos %}
+                          {% for veiculos in mensalAlimentacao %}
                           '{{ veiculos.month|date:'F Y' }}',
                           {% endfor %}
                           ],
