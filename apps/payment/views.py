@@ -5,6 +5,7 @@ from .models import Pagamento, AgendaPagamento
 from .forms import CadastarPagamentoForm, AgendarPagamentoForm, ComfirmarPagamentoForm, EditarPagamentoForm
 from django.contrib import messages
 from django.db.models.functions import ExtractMonth
+from django.db.models.functions import TruncMonth
 
 # Create your views here.
 def Index(request):
