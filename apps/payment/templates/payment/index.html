@@ -28,107 +28,66 @@
     <hr>
 
     <!-- CUSTOS MENSAIS TOTAIS-->
+    <!--
     <div>
       <h6>Valores de custos Mensais</h6>
       {% for mes in mes %}
         {{ mes.month|date:'F Y' }}: {{ mes.c }}<br>
       {% endfor %}
-
+    
     </div>
+    -->
+        <!-- ********************************************************************************************** -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <!-- ********************************************************************************************** -->
+          <section>
+            <div class="card-deck mt-4">
+              <div class="card border-0">
+                <div>
+                  <h4>Valores de custos Mensais</h4>
+                  <hr>
+                    </a>
+                  </h2>
+                </div>
+                <div class="card-body border-0" align="center">
+          
+                  <canvas id="myCharts" width="400" height="80"></canvas>
+                    <script>
+                      var ctx = document.getElementById('myCharts').getContext('2d');
+                      var chart = new Chart(ctx, {
+                        // The type of chart we want to create
+                        type: 'bar',
+                        // The data for our dataset
+                        data: {
+                          labels: [
+                            {% for mes in mes %}
+                            '{{ mes.month|date:'F Y'  }}',
+                            {% endfor %}
+                            ],
+                          datasets: [{
+                            label: 'Valores de custos Mensais',
+                            backgroundColor: 'rgb(255,0,0)',
+                            borderColor: 'rgb(255,0,0)',
+                            data: [
+                            {% for mes in mes %}
+                            '{{ mes.c}}',
+                            {% endfor %}
+                              ]
+                          }]
+                        },
+                        // Configuration options go here
+                        options: {}
+                      });
+                    </script>
+              </div>
+            </div>
+          </section>
+  
+          
+
+
         
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-    {% for dia in dia %}
-      {{ dia.data_pagamento | date:"d M Y"  }} - R$: {{ dia.number }}<br>
-    {% endfor %}
--->
-
-
-<!--
-
-  <div>
-   Veículos: {{ veiculos.total }}<br>
-    Funcionários: {{ funcionarios.total }}<br>
-    Alimentação: {{ alimentacao.total }}<br>
-    Links: {{ links.total }}<br>
-    Locação: {{ locacao.total }}<br>
-    Instalação: {{ instalacao.total }}<br>
-    Sócios: {{ socios.total }}<br>
-  </div>
-
-  -->
-
-<!--
-
-    <div>
-        
-      <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
-
-      <style>
-        
-
-      body {
-        font-family: Roboto, sans-serif;
-      }
-
-      #chart {
-        max-width: 650px;
-        margin: 35px auto;
-      }
-
-      </style>
-
-      <div id="chart"></div>
-      <script>
-      var options = {
-          series: [4, 5, 1, 4, 22],
-          chart: {
-          width: 380,
-          type: 'pie',
-        },
-        labels: ['Veículos', 'Funcionários', 'Alimentação', 'Links', 'Locação'],
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: 'bottom'
-            }
-          }
-        }]
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
-      
-      </script>
-
--->
-
-
-
-    {% for teste in teste %}
-        {{ teste.month|date:'F'}}: {{ teste.c }}<br>
-    {% endfor %}
 
 
 
@@ -241,73 +200,6 @@
     
 
          
-
-    <!--      
-
-    <div>
-      <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-      <style>
-
-      body {
-        font-family: Roboto, sans-serif;
-      }
-      #chart {
-        max-width: 650px;
-        margin: 35px auto;
-      }
-
-      </style>
-      <div id="chart"></div>
-      <script>
-      var options = {
-          series: [{
-            name: "Desktops",
-            data: [
-              
-            for (var i = 0; i < 9; i++) {
-              console.log(i);
- 
-            }
-          
-          ]
-        }],
-          chart: {
-          height: 350,
-          type: 'line',
-          zoom: {
-            enabled: false
-          }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          curve: 'straight'
-        },
-        title: {
-          text: 'Product Trends by Month',
-          align: 'left'
-        },
-        grid: {
-          row: {
-            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-            opacity: 0.5
-          },
-        },
-        xaxis: {
-          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-        }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
-      
-      
-      
-      </script>
-
-
--->
 
 
 
