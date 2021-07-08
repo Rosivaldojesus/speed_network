@@ -23,6 +23,11 @@ def Index(request):
     instalacao = Pagamento.objects.filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
     socios = Pagamento.objects.filter(categoria=7).aggregate(total=Sum('valor_pagamento'))
 
+    from django.db.models.functions import TruncMonth
+    from django.db.models import Count
+
+    teste = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=1).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c')
+
     return render(request, 'payment/index.html', {'pagamentos':pagamentos, 'dia': dia,'mes': mes,
                                                   'veiculos':veiculos,
                                                   'funcionarios':funcionarios,
@@ -31,6 +36,9 @@ def Index(request):
                                                   'locacao': locacao,
                                                   'instalacao': instalacao,
                                                   'socios': socios,
+
+                                                  'teste':teste,
+
                                                   })
 
 
