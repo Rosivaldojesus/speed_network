@@ -164,7 +164,7 @@
           <h5>Instalações Mensais</h5>
 
           {% for mensal in mensalInstalacao %}
-            {{ mensal.month|date:"M Y"  }}: {{ mensal.c }}<br>
+            {{ mensal.month|date:"F Y"  }}: {{ mensal.c }}<br>
           {% endfor %}
         </div>
 

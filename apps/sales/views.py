@@ -31,9 +31,7 @@ def Index(request):
     #Instalações Mensais
     instalacoesMensais = Instalacao.objects.annotate(month=ExtractMonth('data_finalizacao')).values(
         'month').annotate(count=Count('id'))
-
     mensalInstalacao = Instalacao.objects.annotate(month=TruncMonth('data_finalizacao')).filter(concluido='True').values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
-
 
     return render(request, 'sales/instalacao.html', {'instalacoes': instalacoes,
                                                      'quant_aberta': quant_aberta,

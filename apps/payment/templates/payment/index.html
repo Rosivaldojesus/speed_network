@@ -122,40 +122,40 @@
     <tr>
       <td>1
       {% for veiculos in mensalVeiculos %}
-        {{ veiculos.month|date:'F'}}: {{ veiculos.c }}<br>
+        {{ veiculos.month|date:'F Y'}}: {{ veiculos.c }}<br>
       {% endfor %}
       </td>
 
       <td>
       {% for veiculos in mensalFuncionarios %}
-        {{ veiculos.month|date:'F'}}: {{ veiculos.c }}<br>
+        {{ veiculos.month|date:'F Y'}}: {{ veiculos.c }}<br>
       {% endfor %}
       </td>
 
       <td>
         {% for veiculos in mensalAlimentacao %}
-        {{ veiculos.month|date:'F'}}: {{ veiculos.c }}<br>
+        {{ veiculos.month|date:'F Y'}}: {{ veiculos.c }}<br>
       {% endfor %}
       </td>
 
       <td>{% for veiculos in mensalLinks %}
-        {{ veiculos.month|date:'F'}}: {{ veiculos.c }}<br>
+        {{ veiculos.month|date:'F Y'}}: {{ veiculos.c }}<br>
       {% endfor %}
     </td>
 
       <td>
         {% for veiculos in mensalLocacao %}
-        {{ veiculos.month|date:'F'}}: {{ veiculos.c }}<br>
+        {{ veiculos.month|date:'F Y'}}: {{ veiculos.c }}<br>
       {% endfor %}
       </td>
 
       <td>{% for veiculos in mensalInstalacao %}
-        {{ veiculos.month|date:'F'}}: {{ veiculos.c }}<br>
+        {{ veiculos.month|date:'F Y'}}: {{ veiculos.c }}<br>
       {% endfor %}
     </td>
 
       <td>{% for veiculos in mensalSocios %}
-        {{ veiculos.month|date:'F'}}: {{ veiculos.c }}<br>
+        {{ veiculos.month|date:'F Y'}}: {{ veiculos.c }}<br>
       {% endfor %}
     </td>
     </tr>
@@ -213,28 +213,14 @@
         <hr>
 
         <!-- Custos Mensais-->
-        <h6> Custos Mensais </h6>
-        {% for mes in mes %}
+        <h6>Valores de custos Mensais</h6>
+          {% for mes in mes %}
+            {{ mes.month|date:'F Y' }}: {{ mes.c }}<br>
+          {% endfor %}
 
-          <!--Verificando mês de Abril-->
-          {% if mes.month == 4 %}
-            Abril R$: {{ mes.count }}
-          {% endif %}
-          <!--Verificando mês de Maio-->
-          {% if mes.month == 5 %}
-            Maio R$: {{ mes.count }}
-          {% endif %}
-          <!--Verificando mês de Maio-->
-          {% if mes.month == 6 %}
-            Junho R$: {{ mes.count }}
-          {% endif %}
-          {% if mes.month == 7 %}
-            Julho R$: {{ mes.count }}
-          {% endif %}
 
-          <br>
 
-        {% endfor %}
+
 
 
 

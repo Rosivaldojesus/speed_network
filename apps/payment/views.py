@@ -1,6 +1,6 @@
 from datetime import date, datetime
 from django.shortcuts import render, redirect, get_object_or_404
-from django.db.models import Q, Sum
+from django.db.models import Q, Sum, Count
 from .models import Pagamento, AgendaPagamento
 from .forms import CadastarPagamentoForm, AgendarPagamentoForm, ComfirmarPagamentoForm, EditarPagamentoForm
 from django.contrib import messages
@@ -11,8 +11,9 @@ from django.db.models.functions import TruncMonth
 def Index(request):
     dia = Pagamento.objects.values('data_pagamento').annotate(
         number=Sum('valor_pagamento')).order_by('-data_pagamento')
-    mes = Pagamento.objects.annotate(month=ExtractMonth('data_pagamento')).values(
-        'month').annotate(count=Sum('valor_pagamento'))
+    mes = Pagamento.objects.annotate(month=ExtractMonth('data_pagamento')).values('month').annotate(count=Sum('valor_pagamento'))
+    mes =  Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter().values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+
     pagamentos = Pagamento.objects.all().order_by('-data_pagamento')
 
     #Contagem de gastos mensais por catergoria!!!
