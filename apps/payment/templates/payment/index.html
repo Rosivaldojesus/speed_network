@@ -50,35 +50,68 @@
                   </h2>
                 </div>
                 <div class="card-body border-0" align="center">
-          
-                  <canvas id="myCharts" width="400" height="80"></canvas>
+
+                  <canvas id="speedChart" width="600" height="100">
                     <script>
-                      var ctx = document.getElementById('myCharts').getContext('2d');
-                      var chart = new Chart(ctx, {
-                        // The type of chart we want to create
-                        type: 'bar',
-                        // The data for our dataset
-                        data: {
-                          labels: [
-                            {% for mes in mes %}
-                            '{{ mes.month|date:'F Y'  }}',
-                            {% endfor %}
-                            ],
-                          datasets: [{
-                            label: 'Valores de custos Mensais',
-                            backgroundColor: 'rgb(255,0,0)',
-                            borderColor: 'rgb(255,0,0)',
-                            data: [
-                            {% for mes in mes %}
-                            '{{ mes.c }}',
-                            {% endfor %}
-                              ]
-                          }]
-                        },
-                        // Configuration options go here
-                        options: {}
+                      var speedCanvas = document.getElementById("speedChart");
+
+                      Chart.defaults.global.defaultFontFamily = "Lato";
+                      Chart.defaults.global.defaultFontSize = 18;
+
+                      var dataFirst = {
+                          label: "Car A - Speed (mph)",
+                          data: [
+                            
+                          {% for veiculos in mensalVeiculos %}
+                          '{{ veiculos.c }}',
+                          {% endfor %}
+                        
+                        
+                        ],
+                          lineTension: 0,
+                          fill: false,
+                          borderColor: 'red'
+                        };
+
+                      var dataSecond = {
+                          label: "Car B - Speed (mph)",
+                          data: [20, 15, 60, 60, 65, 30, 70],
+                          lineTension: 0,
+                          fill: false,
+                        borderColor: 'blue'
+                        };
+
+                      var speedData = {
+                        labels: [
+                          {% for veiculos in mensalVeiculos %}
+                          '{{ veiculos.month|date:"F Y"  }}',
+                          {% endfor %}
+                          ],
+
+
+                        datasets: [dataFirst, dataSecond]
+                      };
+
+                      var chartOptions = {
+                        legend: {
+                          display: true,
+                          position: 'top',
+                          labels: {
+                            boxWidth: 80,
+                            fontColor: 'black'
+                          }
+                        }
+                      };
+
+                      var lineChart = new Chart(speedCanvas, {
+                        type: 'line',
+                        data: speedData,
+                        options: chartOptions
                       });
                     </script>
+                  </canvas>
+          
+               
               </div>
             </div>
           </section>
