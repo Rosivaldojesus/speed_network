@@ -105,6 +105,66 @@
     {% endfor %}
 
 
+
+    <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Veiculos</th>
+      <th scope="col">Funcionários</th>
+      <th scope="col">Alimentação</th>
+      <th scope="col">Links</th>
+      <th scope="col">Locação</th>
+      <th scope="col">Instalaçao</th>
+      <th scope="col">Sócios</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1
+      {% for veiculos in mensalVeiculos %}
+        {{ veiculos.month|date:'F'}}: {{ veiculos.c }}<br>
+      {% endfor %}
+      </th>
+
+      <td>
+      {% for veiculos in mensalFuncionarios %}
+        {{ veiculos.month|date:'F'}}: {{ veiculos.c }}<br>
+      {% endfor %}
+      </td>
+
+      <td>
+        {% for veiculos in mensalAlimentacao %}
+        {{ veiculos.month|date:'F'}}: {{ veiculos.c }}<br>
+      {% endfor %}
+      </td>
+
+      <td>{% for veiculos in mensalLinks %}
+        {{ veiculos.month|date:'F'}}: {{ veiculos.c }}<br>
+      {% endfor %}
+    </td>
+
+      <td>
+        {% for veiculos in mensalLocacao %}
+        {{ veiculos.month|date:'F'}}: {{ veiculos.c }}<br>
+      {% endfor %}
+      </td>
+
+      <td>{% for veiculos in mensalInstalacao %}
+        {{ veiculos.month|date:'F'}}: {{ veiculos.c }}<br>
+      {% endfor %}
+    </td>
+
+      <td>{% for veiculos in mensalSocios %}
+        {{ veiculos.month|date:'F'}}: {{ veiculos.c }}<br>
+      {% endfor %}
+    </td>
+    </tr>
+
+
+  </tbody>
+</table>
+
+
 <canvas id="myChart" width="400" height="70"></canvas>
 					<script>
 						var ctx = document.getElementById('myChart').getContext('2d');

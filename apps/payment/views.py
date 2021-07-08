@@ -26,7 +26,13 @@ def Index(request):
     from django.db.models.functions import TruncMonth
     from django.db.models import Count
 
-    teste = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=1).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c')
+    mensalVeiculos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=1).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c')
+    mensalFuncionarios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=2).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c')
+    mensalAlimentacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=3).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c')
+    mensalLinks = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=4).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c')
+    mensalLocacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=5).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c')
+    mensalInstalacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=6).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c')
+    mensalSocios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=7).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c')
 
     return render(request, 'payment/index.html', {'pagamentos':pagamentos, 'dia': dia,'mes': mes,
                                                   'veiculos':veiculos,
@@ -37,7 +43,14 @@ def Index(request):
                                                   'instalacao': instalacao,
                                                   'socios': socios,
 
-                                                  'teste':teste,
+                                                  'mensalVeiculos':mensalVeiculos,
+                                                  'mensalFuncionarios':mensalFuncionarios,
+                                                  'mensalAlimentacao':mensalAlimentacao,
+                                                  'mensalLinks':mensalLinks,
+                                                  'mensalLocacao':mensalLocacao,
+                                                  'mensalInstalacao':mensalInstalacao,
+                                                  'mensalSocios':mensalSocios,
+
 
                                                   })
 
