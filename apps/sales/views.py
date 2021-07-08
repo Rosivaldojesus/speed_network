@@ -31,7 +31,7 @@ def Index(request):
     #Instalações Mensais
     instalacoesMensais = Instalacao.objects.annotate(month=ExtractMonth('data_finalizacao')).values('month').annotate(count=Count('id'))
     mensalInstalacao = Instalacao.objects.annotate(month=TruncMonth('data_finalizacao')).filter(concluido='True').values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
-    diarioInstalaçao = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate( number=Count('data_finalizacao')).order_by('-data_finalizacao')
+    diarioInstalaçao = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate( number=Count('data_finalizacao')).order_by('data_finalizacao')
 
     return render(request, 'sales/instalacao.html', {'instalacoes': instalacoes,
                                                      'quant_aberta': quant_aberta,
@@ -58,7 +58,7 @@ def VendasInstalacao(request):
         vendas = Instalacao.objects.filter(
             Q(instalacao_vendedor__icontains=queryset))
 
-    return render(request, 'sales/vendas-instalacao.html', {'vendas': vendas,
+    return render(request, 'sales/vendas-instalacao.htyml', {'vendas': vendas,
                                                             'vendedores': vendedores})
 
 @login_required(login_url='/login/')
