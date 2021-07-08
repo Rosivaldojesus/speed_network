@@ -9,8 +9,7 @@ from django.db.models.functions import TruncMonth
 
 # Create your views here.
 def Index(request):
-    dia = Pagamento.objects.values('data_pagamento').annotate(
-        number=Sum('valor_pagamento')).order_by('-data_pagamento')
+    dia = Pagamento.objects.values('data_pagamento').annotate(number=Sum('valor_pagamento')).order_by('-data_pagamento')
     mes = Pagamento.objects.annotate(month=ExtractMonth('data_pagamento')).values('month').annotate(count=Sum('valor_pagamento'))
     mes =  Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter().values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
 

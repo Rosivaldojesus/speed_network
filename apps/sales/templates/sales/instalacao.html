@@ -142,12 +142,7 @@
             <a href="instalacao-agendada/" class="btn btn-warning text-white">Ver todos</a>
           </div>
         </div>
-
-
-       
       </div> 
-      
-     
       <hr>
       <hr> 
       <!--
@@ -155,18 +150,40 @@
         {{ instalacaoVendedor.nome_cliente }} <br>
       {% endfor %}
       -->  
-        {% endif %}
+    {% endif %}
       </div>
         <hr>
         <hr>
 
-        <div>
-          <h5>Instalações Mensais</h5>
 
+      <!--Total de instalaçãoes mensais-->  
+    <div>
+      <h5>Instalações Mensais</h5>
           {% for mensal in mensalInstalacao %}
             {{ mensal.month|date:"F Y"  }}: {{ mensal.c }}<br>
           {% endfor %}
-        </div>
+    </div>
+
+    <!--Total de instalações por dia -->
+    <hr>
+        <hr>
+    <div>
+      <h5>Instalações Diárias</h5>
+      {% for diario in diarioInstalaçao %}
+        {{ diario.data_finalizacao}}: {{ diario.number}} <br>
+      {% endfor %}
+    </div>
+
+
+
+
+
+
+
+
+
+
+
 
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
