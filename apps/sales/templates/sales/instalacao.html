@@ -164,7 +164,27 @@
             {{ mensal.month|date:"F Y"  }}: {{ mensal.c }}<br>
           {% endfor %}
     </div>
-    -->
+
+  -->
+
+
+    
+    <div>
+      <h5>Instalações Mensais</h5>
+          {% for mensal in mensalInstalacao %}
+            {{ mensal.data_finalizacao|date:"F Y"  }}<br>
+          {% endfor %}
+    </div>
+
+
+
+
+
+
+
+
+
+    
       <!-- ********************************************************************************************** -->
       <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
       <!-- ********************************************************************************************** -->
@@ -227,9 +247,8 @@
     -->
     <h4>Instalaçãoes por dia  </h4>
     
-
     <canvas id="speedChart" width="400" height="100"></canvas>
-<script>
+    <script>
         var speedCanvas = document.getElementById("speedChart");
         var speedCanvas = document.getElementById("speedChart");
 
@@ -251,11 +270,11 @@
           ],
             lineTension: 0,
             fill: false,
-            borderColor: 'orange',
+            borderColor: 'blue',
             backgroundColor: 'transparent',
             borderDash: [5, 5],
-            pointBorderColor: 'orange',
-            pointBackgroundColor: 'rgba(255,150,0,0.5)',
+            pointBorderColor: 'blue',
+            pointBackgroundColor: 'blue',
             pointRadius: 5,
             pointHoverRadius: 10,
             pointHitRadius: 30,

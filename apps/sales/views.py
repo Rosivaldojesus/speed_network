@@ -33,6 +33,8 @@ def Index(request):
     mensalInstalacao = Instalacao.objects.annotate(month=TruncMonth('data_finalizacao')).filter(concluido='True').values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
     diarioInstalaçao = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate( number=Count('data_finalizacao')).order_by('data_finalizacao')
 
+
+
     return render(request, 'sales/instalacao.html', {'instalacoes': instalacoes,
                                                      'quant_aberta': quant_aberta,
                                                      'quant_agendada': quant_agendada,
