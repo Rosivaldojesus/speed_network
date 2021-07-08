@@ -172,7 +172,7 @@
           <div class="card-deck mt-4">
             <div class="card border-0">
               <div>
-                <h4>Instalaçãoes por dia </h4>
+                <h4>Instalaçãoes por mês </h4>
                 <hr>
                   </a>
                 </h2>
@@ -217,12 +217,15 @@
     <!--Total de instalações por dia -->
     <hr>
     <hr>
+    <!--
     <div>
       <h5>Instalações Diárias</h5>
       {% for diario in diarioInstalaçao %}
         {{ diario.data_finalizacao}}: {{ diario.number}} <br>
       {% endfor %}
     </div>
+    -->
+    <h4>Instalaçãoes por dia  </h4>
     
 
     <canvas id="speedChart" width="400" height="100"></canvas>
@@ -235,22 +238,16 @@
 
         var speedData = {
           labels: [
-            
-          {% for mensal in mensalInstalacao %}
-            '{{ mensal.month|date:"F Y"  }}',
+          {% for diario in diarioInstalaçao %}
+            '{{ diario.data_finalizacao }}',
           {% endfor %}
-        
         ],
           datasets: [{
-            label: "Car Speed (mph)",
+            label: "Instalação (dia)",
             data: [
-              
-            {% for mensal in mensalInstalacao %}
-              '{{ mensal.c }}',
+            {% for diario in diarioInstalaçao  %}
+              '{{ diario.number}}',
             {% endfor %}
-          
-          
-          
           ],
             lineTension: 0,
             fill: false,
