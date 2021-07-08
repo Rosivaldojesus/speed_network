@@ -28,7 +28,7 @@
     <hr>
 
     <!-- CUSTOS MENSAIS TOTAIS-->
-    <!--
+    
     <div>
       <h6>Valores de custos Mensais</h6>
       {% for mes in mes %}
@@ -36,7 +36,7 @@
       {% endfor %}
     
     </div>
-    -->
+    
         <!-- ********************************************************************************************** -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <!-- ********************************************************************************************** -->
@@ -70,7 +70,7 @@
                             borderColor: 'rgb(255,0,0)',
                             data: [
                             {% for mes in mes %}
-                            '{{ mes.c}}',
+                            '{{ mes.c }}',
                             {% endfor %}
                               ]
                           }]
