@@ -141,6 +141,52 @@
         <hr>
         <hr>
 
+
+
+
+        <div id="chart">
+          <div id="timeline-chart">
+            <script>
+            var options = {
+                      series: [{
+                        name: "Veículos",
+                        data: [{% for veiculos in mensalVeiculos %} '{{ veiculos.c }}', {% endfor %}]
+                    }],
+                      chart: {
+                      height: 200,
+                      type: 'line',
+                      zoom: {
+                        enabled: false
+                      }
+                    },
+                    dataLabels: {
+                      enabled: false
+                    },
+                    stroke: {
+                      curve: 'straight'
+                    },
+                    title: {
+                      text: 'Custos com os veículos',
+                      align: 'left'
+                    },
+                    grid: {
+                      row: {
+                        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                        opacity: 0.5
+                      },
+                    },
+                    xaxis: {
+                      categories: [{% for veiculos in mensalVeiculos %} '{{ veiculos.month|date:'F Y'  }}', {% endfor %}],
+                    }
+                    };
+                    var chart = new ApexCharts(document.querySelector("#chart"), options);
+                    chart.render();
+          
+            </script>
+          </div>
+        </div>
+    
+
     </div>
 
 
@@ -148,56 +194,12 @@
 
 
 
+<hr>
+<hr>
 
 
 
-
-    <div id="chart">
-      <div id="timeline-chart">
-        <script>
-
-
-
-var options = {
-          series: [{
-            name: "Desktops",
-            data: [{% for veiculos in mensalVeiculos %} '{{ veiculos.c }}', {% endfor %}]
-        }],
-          chart: {
-          height: 350,
-          type: 'line',
-          zoom: {
-            enabled: false
-          }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          curve: 'straight'
-        },
-        title: {
-          text: 'Product Trends by Month',
-          align: 'left'
-        },
-        grid: {
-          row: {
-            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-            opacity: 0.5
-          },
-        },
-        xaxis: {
-          categories: [{% for veiculos in mensalVeiculos %} '{{ veiculos.month|date:'F Y'  }}', {% endfor %}],
-        }
-        };
-
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
-      
-        </script>
-      </div>
-    </div>
-
+    
 
 
 
