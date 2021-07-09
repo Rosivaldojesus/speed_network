@@ -280,6 +280,54 @@
   </div>
 </div>
 
+ <!--
+  ********************************************************************************************************
+                                  CUSTOS COM LINKS
+  ********************************************************************************************************
+-->
+<div id="chart">
+  <div id="timeline-chartA">
+    <script>
+    var options = {
+              series: [{
+                name: "Veículos",
+                data: [{% for veiculos in mensalLinks %} '{{ veiculos.c }}', {% endfor %}]
+            }],
+              chart: {
+              height: 200,
+              type: 'line',
+              zoom: {
+                enabled: false
+              }
+            },
+            dataLabels: {
+              enabled: false
+            },
+            stroke: {
+              curve: 'straight'
+            },
+            title: {
+              text: 'Custos com os link',
+              align: 'left'
+            },
+            grid: {
+              row: {
+                colors: ['#f3f3f3', 'transparent'],
+                opacity: 0.5
+              },
+            },
+            xaxis: {
+              categories: [{% for veiculos in mensalVeiculos %} '{{ veiculos.month|date:'F Y'  }}', {% endfor %}],
+            }
+            };
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render();
+
+    </script>
+  </div>
+</div>
+
+
 
 
 
