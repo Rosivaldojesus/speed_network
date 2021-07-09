@@ -196,39 +196,74 @@
       <div id="timeline-chartB">
         <script>
         var options = {
-                  series: [{
-                    name: "Veículos",
-                    data: [{% for funcionarios in mensalFuncionarios %} '{{ funcionarios.c }}', {% endfor %}]
-                }],
-                  chart: {
-                  height: 200,
-                  type: 'line',
-                  zoom: {
-                    enabled: false
-                  }
-                },
-                dataLabels: {
-                  enabled: false
-                },
-                stroke: {
-                  curve: 'straight'
-                },
-                title: {
-                  text: 'Custos com os Funcionários',
-                  align: 'left'
-                },
-                grid: {
-                  row: {
-                    colors: ['#f3f3f3', 'transparent'],
-                    opacity: 0.5
-                  },
-                },
-                xaxis: {
-                  categories: [{% for funcionarios in mensalFuncionarios %} '{{ funcionarios.month|date:'F Y'  }}', {% endfor %}],
-                }
-                };
-                var chart = new ApexCharts(document.querySelector("#chart"), options);
-                chart.render();
+          series: [
+          {
+            name: "High - 2013",
+            data: [{% for veiculos in mensalVeiculos %} '{{ veiculos.c }}', {% endfor %}]
+          },
+     
+        ],
+          chart: {
+          height: 350,
+          type: 'line',
+          dropShadow: {
+            enabled: true,
+            color: '#000',
+            top: 18,
+            left: 7,
+            blur: 10,
+            opacity: 0.2
+          },
+          toolbar: {
+            show: false
+          }
+        },
+        colors: ['#77B6EA', '#545454'],
+        dataLabels: {
+          enabled: true,
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        title: {
+          text: 'Average High & Low Temperature',
+          align: 'left'
+        },
+        grid: {
+          borderColor: '#e7e7e7',
+          row: {
+            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.5
+          },
+        },
+        markers: {
+          size: 1
+        },
+        xaxis: {
+          categories: [{% for veiculos in mensalVeiculos %} '{{ veiculos.month|date:'F Y'  }}', {% endfor %}],
+          title: {
+            text: 'Month'
+          }
+        },
+        yaxis: {
+          title: {
+            text: 'Temperature'
+          },
+          min: 5,
+          max: 40
+        },
+        legend: {
+          position: 'top',
+          horizontalAlign: 'right',
+          floating: true,
+          offsetY: -25,
+          offsetX: -5
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+      
 
         </script>
       </div>
