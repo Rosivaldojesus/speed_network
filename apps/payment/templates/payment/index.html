@@ -202,7 +202,7 @@
           },
           {
             name: "Page Views",
-            data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35]
+            data: [{% for veiculos in mensalFuncionarios %} '{{ veiculos.c }}', {% endfor %}]
           },
           {
             name: 'Total Visits',
