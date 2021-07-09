@@ -9,6 +9,7 @@ from django.db.models.functions import TruncMonth
 
 # Create your views here.
 def Index(request):
+    this_month = date.today().month
     dia = Pagamento.objects.values('data_pagamento').annotate(number=Sum('valor_pagamento')).order_by('-data_pagamento')
     mes = Pagamento.objects.annotate(month=ExtractMonth('data_pagamento')).values('month').annotate(count=Sum('valor_pagamento'))
     mes =  Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter().values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
@@ -26,6 +27,8 @@ def Index(request):
 
 
     mensalVeiculos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=1).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    atualMensalVeiculos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__month=this_month).filter(categoria=1).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+
     mensalFuncionarios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=2).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     mensalAlimentacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter().filter(categoria=3).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     mensalLinks = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=4).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
@@ -41,6 +44,8 @@ def Index(request):
                                                   'locacao': locacao,
                                                   'instalacao': instalacao,
                                                   'socios': socios,
+
+                                                  'atualMensalVeiculos':atualMensalVeiculos,
 
                                                   'mensalVeiculos':mensalVeiculos,
                                                   'mensalFuncionarios':mensalFuncionarios,

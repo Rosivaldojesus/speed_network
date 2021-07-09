@@ -33,6 +33,15 @@
         {{ mes.month|date:'F Y' }}: {{ mes.c }}<br>
       {% endfor %}
     </div>
+
+    atualMensalVeiculos
+
+    <div>
+      <h6>Mes atual</h6>
+      {% for mes in atualMensalVeiculos %}
+        {{ mes.month|date:'F Y' }}: {{ mes.c }}<br>
+      {% endfor %}
+    </div>
     
 
     <table class="table table-bordered">
