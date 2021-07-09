@@ -23,71 +23,17 @@
         <a href="agendamentos-pagamentos/" class="btn btn-primary">Agenda de pagamentos </a>
         <a href="cadastrar-pagamento/" class="btn btn-primary">+ Adicionar pagamento </a>
     </div>
-
     <hr>
     <hr>
 
     <!-- CUSTOS MENSAIS TOTAIS-->
-    
     <div>
       <h6>Valores de custos Mensais</h6>
       {% for mes in mes %}
         {{ mes.month|date:'F Y' }}: {{ mes.c }}<br>
       {% endfor %}
-    
     </div>
     
-  
-          <section>
-            <div class="card-deck mt-4">
-              <div class="card border-0">
-                <div>
-                  <h4>Valores de custos Mensais</h4>
-                  <hr>
-                    </a>
-                  </h2>
-                </div>
-                <div class="card-body border-0" align="center">
-          
-                  <canvas id="myChartB" width="400" height="80"></canvas>
-                    <script>
-                      var ctx = document.getElementById('myChartB').getContext('2d');
-                      var chart = new Chart(ctx, {
-                        // The type of chart we want to create
-                        type: 'bar',
-                        // The data for our dataset
-                        data: {
-                          labels: [
-                            {% for mes in mes %}
-                            '{{ mes.month|date:"F Y" }}',
-                            {% endfor %}
-                            ],
-                          datasets: [{
-                            label: 'Valores de custos Mensais',
-                            backgroundColor: 'rgb(255,0,0)',
-                            borderColor: 'rgb(255,0,0)',
-                            data: [
-                            {% for mes in mes %}
-                            '{{ mes.c }}',
-                            {% endfor %}
-                              ]
-                          }]
-                        },
-                        // Configuration options go here
-                        options: {}
-                      });
-                    </script>
-              </div>
-            </div>
-          </section>
-  
-          
-
-
-        
-
-
-
 
     <table class="table table-bordered">
   <thead>
@@ -197,72 +143,7 @@
 
     </div>
 
-    <canvas id="densityChart" width="600" height="200">
-      <script>
-        var densityCanvas = document.getElementById("densityChart");
-
-          Chart.defaults.global.defaultFontFamily = "Lato";
-          Chart.defaults.global.defaultFontSize = 18;
-
-          var densityData = {
-            label: 'Density of Planet (kg/m3)',
-            data: [
-            {% for veiculos in mensalVeiculos %}
-              '{{ veiculos.c }}',
-            {% endfor %}
-            ],
-            backgroundColor: 'rgba(0, 99, 132, 0.6)',
-            borderWidth: 0,
-            yAxisID: "y-axis-density"
-          };
-
-          var gravityData = {
-            label: 'Gravity of Planet (m/s2)',
-            data: [
-              {% for veiculos in mensalVeiculos %}
-              '{{ veiculos.c }}',
-            {% endfor %}
-          ],
-            backgroundColor: 'rgba(99, 132, 0, 0.6)',
-            borderWidth: 0,
-            yAxisID: "y-axis-gravity"
-          };
-
-          var planetData = {
-            labels: [
-              
-            {% for veiculos in mensalVeiculos %}
-              '{{ veiculos.month|date:"F Y" }}',
-            {% endfor %}
-          
-          
-          ],
-            datasets: [densityData, gravityData]
-          };
-
-          var chartOptions = {
-            scales: {
-              xAxes: [{
-                barPercentage: 1,
-                categoryPercentage: 0.6
-              }],
-              yAxes: [{
-                id: "y-axis-density"
-              }, {
-                id: "y-axis-gravity"
-              }]
-            }
-          };
-
-          var barChart = new Chart(densityCanvas, {
-            type: 'bar',
-            data: planetData,
-            options: chartOptions
-          });
-      </script>
-    </canvas>
   
-
 
 
 
