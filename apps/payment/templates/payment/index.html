@@ -160,9 +160,9 @@
 
 
 <div>
-  <canvas id="quantidadeManuais" width="400" height="250"></canvas>
+  <canvas id="quantidadeManuaiss" width="400" height="250"></canvas>
     <script>
-      var ctxy = document.getElementById('quantidadeManuais').getContext('2d');
+      var ctxy = document.getElementById('quantidadeManuaiss').getContext('2d');
       var myDoughnutChart = new Chart(ctxy, {
         // The type of chart we want to create
         type: 'pie',
@@ -174,7 +174,7 @@
             label: 'Equipamentos nos clientes',
             backgroundColor: '',
             borderColor: 'white',
-            data: [{{ veiculosMesAtual}},{{ veiculosMesAtual}}, {{ veiculosMesAtual}}, {{ veiculosMesAtual}}, {{ veiculosMesAtual}}],
+            data: [{{ veiculosMesAtual.total}}, 10, 10],
 
             backgroundColor: [
             'rgba(0,0,255)',
