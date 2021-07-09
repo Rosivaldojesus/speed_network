@@ -141,11 +141,13 @@
         <hr>
         <hr>
 
-
-
-
+<!--
+  ********************************************************************************************************
+                                  CUSTOS COM VEÍCULOS
+  ********************************************************************************************************
+-->
         <div id="chart">
-          <div id="timeline-chart">
+          <div id="timeline-chartA">
             <script>
             var options = {
                       series: [{
@@ -171,7 +173,7 @@
                     },
                     grid: {
                       row: {
-                        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                        colors: ['#f3f3f3', 'transparent'],
                         opacity: 0.5
                       },
                     },
@@ -181,11 +183,61 @@
                     };
                     var chart = new ApexCharts(document.querySelector("#chart"), options);
                     chart.render();
-          
+
             </script>
           </div>
         </div>
-    
+    <!--
+  ********************************************************************************************************
+                                  CUSTOS COM FUNCIONÁRIOS
+  ********************************************************************************************************
+-->
+    <div id="chart">
+      <div id="timeline-chartB">
+        <script>
+        var options = {
+                  series: [{
+                    name: "Veículos",
+                    data: [{% for funcionarios in mensalFuncionarios %} '{{ funcionarios.c }}', {% endfor %}]
+                }],
+                  chart: {
+                  height: 200,
+                  type: 'line',
+                  zoom: {
+                    enabled: false
+                  }
+                },
+                dataLabels: {
+                  enabled: false
+                },
+                stroke: {
+                  curve: 'straight'
+                },
+                title: {
+                  text: 'Custos com os Funcionários',
+                  align: 'left'
+                },
+                grid: {
+                  row: {
+                    colors: ['#f3f3f3', 'transparent'],
+                    opacity: 0.5
+                  },
+                },
+                xaxis: {
+                  categories: [{% for funcionarios in mensalFuncionarios %} '{{ funcionarios.month|date:'F Y'  }}', {% endfor %}],
+                }
+                };
+                var chart = new ApexCharts(document.querySelector("#chart"), options);
+                chart.render();
+
+        </script>
+      </div>
+    </div>
+
+
+
+
+
 
     </div>
 
