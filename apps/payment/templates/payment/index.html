@@ -155,61 +155,45 @@
     <div id="chart">
       <div id="timeline-chart">
         <script>
-          var options = {
+
+
+
+var options = {
           series: [{
-          name: 'VEÍCULOS',
-          data: [{% for veiculos in mensalVeiculos %} '{{ veiculos.c }}', {% endfor %}]
-        }, {
-          name: 'PRODUCT C',
-          data: [{% for veiculos in mensalAlimentacao %} '{{ veiculos.c }}', {% endfor %}]
-        }
-      
-      ],
+            name: "Desktops",
+            data: [{% for veiculos in mensalVeiculos %} '{{ veiculos.c }}', {% endfor %}]
+        }],
           chart: {
-          type: 'bar',
           height: 350,
-          stacked: true,
-          toolbar: {
-            show: true
-          },
+          type: 'line',
           zoom: {
-            enabled: true
+            enabled: false
           }
         },
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            legend: {
-              position: 'bottom',
-              offsetX: -10,
-              offsetY: 0
-            }
-          }
-        }],
-        plotOptions: {
-          bar: {
-            horizontal: false,
-            borderRadius: 10
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: 'straight'
+        },
+        title: {
+          text: 'Product Trends by Month',
+          align: 'left'
+        },
+        grid: {
+          row: {
+            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.5
           },
         },
         xaxis: {
-          
-          categories: [{% for veiculos in mensalAlimentacao %} '{{ veiculos.month|date:'F Y' }}', {% endfor %}],
-        },
-        legend: {
-          position: 'right',
-          offsetY: 40
-        },
-        fill: {
-          opacity: 1
+          categories: [{% for veiculos in mensalVeiculos %} '{{ veiculos.month|date:'F Y'  }}', {% endfor %}],
         }
         };
 
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
       
-      
-    
         </script>
       </div>
     </div>
