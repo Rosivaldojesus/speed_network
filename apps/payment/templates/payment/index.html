@@ -198,16 +198,9 @@
         var options = {
           series: [{
             name: "Session Duration",
-            data: [{% for veiculos in mensalVeiculos %} '{{ veiculos.c }}', {% endfor %}]
-          },
-          {
-            name: "Page Views",
             data: [{% for veiculos in mensalFuncionarios %} '{{ veiculos.c }}', {% endfor %}]
           },
-          {
-            name: 'Total Visits',
-            data: [{% for veiculos in mensalAlimentacao %} '{{ veiculos.c }}', {% endfor %}]
-          }
+         
         ],
           chart: {
           height: 350,
