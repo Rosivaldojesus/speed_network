@@ -38,16 +38,10 @@
 
     <div>
       <h6>Mes atual</h6>
-      {% for mes in atualMensalVeiculos %}
-        {{ mes.month|date:'F Y' }}: {{ mes.c }}<br>
-      {% endfor %}
+      {{ veiculosMesAtual.total}}
     </div>
 
-    ----------------
-    {% for mensal in atualMensalAlimentacao %}
-      {{ mensal.c}}
-    {% endfor %}
-    
+
 
     <table class="table table-bordered">
   <thead>
@@ -136,13 +130,8 @@
 									backgroundColor: 'rgb(0,0,128)',
 									borderColor: 'rgb(0,0,128)',
 									data: [
-                    {{ veiculos.total }},
-										{{ funcionarios.total }},
-										{{ alimentacao.total }},
-										{{ links.total }},
-										{{ locacao.total }},
-										{{ instalacao.total }},
-										{{ socios.total }}
+                  {{ veiculosMesAtual.total}},
+                  {{ funcionariosMesAtual.total}},
 										
                   ]
 								}]
