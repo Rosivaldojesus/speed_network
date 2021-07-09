@@ -206,7 +206,7 @@
           },
           {
             name: 'Total Visits',
-            data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47]
+            data: [{% for veiculos in mensalAlimentacao %} '{{ veiculos.c }}', {% endfor %}]
           }
         ],
           chart: {
