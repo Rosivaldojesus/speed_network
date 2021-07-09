@@ -192,87 +192,106 @@
                                   CUSTOS COM FUNCIONÁRIOS
   ********************************************************************************************************
 -->
-    <div id="chart">
-      <div id="timeline-chartB">
-        <script>
-        var options = {
-          series: [{
-            name: "Session Duration",
-            data: [{% for veiculos in mensalFuncionarios %} '{{ veiculos.c }}', {% endfor %}]
-          },
-         
-        ],
-          chart: {
-          height: 350,
-          type: 'line',
-          zoom: {
-            enabled: false
-          },
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          width: [5, 7, 5],
-          curve: 'straight',
-          dashArray: [0, 8, 5]
-        },
-        title: {
-          text: 'Page Statistics',
-          align: 'left'
-        },
-        legend: {
-          tooltipHoverFormatter: function(val, opts) {
-            return val + ' - ' + opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] + ''
-          }
-        },
-        markers: {
-          size: 0,
-          hover: {
-            sizeOffset: 6
-          }
-        },
-        xaxis: {
-          categories: [{% for veiculos in mensalVeiculos %} '{{ veiculos.month|date:'F Y'  }}', {% endfor %}],
-        },
-        tooltip: {
-          y: [
-            {
-              title: {
-                formatter: function (val) {
-                  return val + " (mins)"
-                }
+<div id="chart">
+  <div id="timeline-chartA">
+    <script>
+    var options = {
+              series: [{
+                name: "Veículos",
+                data: [{% for veiculos in mensalFuncionarios %} '{{ veiculos.c }}', {% endfor %}]
+            }],
+              chart: {
+              height: 200,
+              type: 'line',
+              zoom: {
+                enabled: false
               }
             },
-            {
-              title: {
-                formatter: function (val) {
-                  return val + " per session"
-                }
-              }
+            dataLabels: {
+              enabled: false
             },
-            {
-              title: {
-                formatter: function (val) {
-                  return val;
-                }
-              }
+            stroke: {
+              curve: 'straight'
+            },
+            title: {
+              text: 'Custos com os funcionários',
+              align: 'left'
+            },
+            grid: {
+              row: {
+                colors: ['#f3f3f3', 'transparent'],
+                opacity: 0.5
+              },
+            },
+            xaxis: {
+              categories: [{% for veiculos in mensalVeiculos %} '{{ veiculos.month|date:'F Y'  }}', {% endfor %}],
             }
-          ]
-        },
-        grid: {
-          borderColor: '#f1f1f1',
-        }
-        };
+            };
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render();
 
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
-      
-      
+    </script>
+  </div>
+</div>
+ <!--
+  ********************************************************************************************************
+                                  CUSTOS COM ALIMENTAÇÃO
+  ********************************************************************************************************
+-->
+<div id="chart">
+  <div id="timeline-chartA">
+    <script>
+    var options = {
+              series: [{
+                name: "Veículos",
+                data: [{% for veiculos in mensalAlimentacao %} '{{ veiculos.c }}', {% endfor %}]
+            }],
+              chart: {
+              height: 200,
+              type: 'line',
+              zoom: {
+                enabled: false
+              }
+            },
+            dataLabels: {
+              enabled: false
+            },
+            stroke: {
+              curve: 'straight'
+            },
+            title: {
+              text: 'Custos com os alimentação',
+              align: 'left'
+            },
+            grid: {
+              row: {
+                colors: ['#f3f3f3', 'transparent'],
+                opacity: 0.5
+              },
+            },
+            xaxis: {
+              categories: [{% for veiculos in mensalVeiculos %} '{{ veiculos.month|date:'F Y'  }}', {% endfor %}],
+            }
+            };
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render();
 
-        </script>
-      </div>
-    </div>
+    </script>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 
 
 
