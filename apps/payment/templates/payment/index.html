@@ -159,47 +159,37 @@
 -->
 
 
+<div>
+  <canvas id="quantidadeManuais" width="400" height="250"></canvas>
+    <script>
+      var ctxy = document.getElementById('quantidadeManuais').getContext('2d');
+      var myDoughnutChart = new Chart(ctxy, {
+        // The type of chart we want to create
+        type: 'pie',
 
+        // The data for our dataset
+        data: {
+          labels: ['CFTV', 'SAI', 'SAP', 'SCA', 'SDAI'],
+          datasets: [{
+            label: 'Equipamentos nos clientes',
+            backgroundColor: '',
+            borderColor: 'white',
+            data: [{{ veiculosMesAtual}},{{ veiculosMesAtual}}, {{ veiculosMesAtual}}, {{ veiculosMesAtual}}, {{ veiculosMesAtual}}],
 
-        <div>
-					<canvas id="quantidadeManuais" width="400" height="250"></canvas>
-						<script>
-							var ctxy = document.getElementById('quantidadeManuais').getContext('2d');
-							var myDoughnutChart = new Chart(ctxy, {
-								// The type of chart we want to create
-								type: 'pie',
-
-								// The data for our dataset
-								data: {
-									labels: ['Veículos','Funcionários','Alimentação'],
-									datasets: [{
-										label: 'Custos por grupo',
-										backgroundColor: '',
-										borderColor: 'white',
-										data: [ 
-                      
-                    {{ veiculosMesAtual.total}},
-                    {{ funcionariosMesAtual.total}},
-                    {{ alimentacaoMesAtual.total}},
-                  
-
-                  ],
-
-										backgroundColor: [
-										'rgba(0,0,128)',
-										'rgba(255,25,255)',
-										'rgba(100,100,0)',
-										
-										
-										],
-									}]
-								},
-								// Configuration options go here
-								options: {}
-							});
-					</script>
-				</div>
-
+            backgroundColor: [
+            'rgba(0,0,255)',
+            'rgba(79,79,79)',
+            'rgba(0,128,0)',
+            'rgba(255,215,0)',
+            'rgba(255,0,0)'
+            ],
+          }]
+        },
+        // Configuration options go here
+        options: {}
+      });
+  </script>
+</div>
 <!--
   ********************************************************************************************************
                                   CUSTOS COM VEÍCULOS
