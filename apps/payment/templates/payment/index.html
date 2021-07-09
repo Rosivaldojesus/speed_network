@@ -162,19 +162,23 @@
 
 								// The data for our dataset
 								data: {
-									labels: ['Veículos','','Funcionários','','Alimentação','','Links','','Locação'],
+									labels: ['Veículos','','Funcionários','','Alimentação','','Links','','Locação','','Instalação',,'','Sócios'],
 									datasets: [{
 										label: 'Custos por grupo',
 										backgroundColor: '',
 										borderColor: 'white',
-										data: [ {{ veiculos.total }},{{ funcionarios.total }},{{ links.total }},{{ locacao.total }}],
+										data: [ {{ veiculos.total }},{{ funcionarios.total }},{{ links.total }},{{ locacao.total }},{{ instalacao.total }},{{ socios.total }}],
 
 										backgroundColor: [
 										'rgba(0,0,255)',
 										'rgba(79,79,79)',
 										'rgba(0,128,0)',
 										'rgba(255,215,0)',
-										'rgba(255,0,0)'
+										'rgba(255,0,0)',
+                    'rgba(79,79,79)',
+										'rgba(0,128,0)',
+										'rgba(255,215,0)',
+										'rgba(255,0,0)',
 										],
 									}]
 								},
