@@ -154,7 +154,7 @@
 
           var densityData = {
             label: 'Density of Planet (kg/m3)',
-            data: [5427, 5243, 5514, 3933, 1326, 687, 1271, 1638],
+            data: [{% for mes in mes %} '{{ mes.c }}', {% endfor %}],
             backgroundColor: 'rgba(0, 99, 132, 0.6)',
             borderWidth: 0,
             yAxisID: "y-axis-density"
@@ -169,11 +169,7 @@
           };
 
           var planetData = {
-            labels: [
-            {% for mes in mes %}
-            '{{ mes.month|date:'F Y' }}',
-          {% endfor %}
-            ],
+            labels: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
             datasets: [densityData, gravityData]
           };
 
