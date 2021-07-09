@@ -25,16 +25,32 @@ def Index(request):
     instalacao = Pagamento.objects.filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
     socios = Pagamento.objects.filter(categoria=7).aggregate(total=Sum('valor_pagamento'))
 
+    veiculosMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(categoria=1).aggregate(total=Sum('valor_pagamento'))
+    funcionariosMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(categoria=2).aggregate(total=Sum('valor_pagamento'))
+    alimentacaoMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(categoria=3).aggregate(total=Sum('valor_pagamento'))
+    linksMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(categoria=4).aggregate(total=Sum('valor_pagamento'))
+    locacaoMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(categoria=5).aggregate(total=Sum('valor_pagamento'))
+    instalacaoMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
+    sociosMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(categoria=7).aggregate(total=Sum('valor_pagamento'))
+
 
     mensalVeiculos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=1).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
-    atualMensalVeiculos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__month=this_month).filter(categoria=1).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
-
     mensalFuncionarios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=2).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     mensalAlimentacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter().filter(categoria=3).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     mensalLinks = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=4).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     mensalLocacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=5).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     mensalInstalacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=6).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     mensalSocios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=7).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+
+
+    atualMensalVeiculos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__month=this_month).filter(categoria=1).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    atualMensalFuncionarios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__month=this_month).filter(categoria=2).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    atualMensalAlimentacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__month=this_month).filter(categoria=3).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    atualMensalLinks = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__month=this_month).filter(categoria=4).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    atualMensalLocacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__month=this_month).filter(categoria=5).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    atualmensalInstalacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__month=this_month).filter(categoria=6).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    atualMensalSocios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__month=this_month).filter(categoria=7).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+
 
     return render(request, 'payment/index.html', {'pagamentos':pagamentos, 'dia': dia,'mes': mes,
                                                   'veiculos':veiculos,
@@ -46,6 +62,22 @@ def Index(request):
                                                   'socios': socios,
 
                                                   'atualMensalVeiculos':atualMensalVeiculos,
+                                                  'atualMensalFuncionarios':atualMensalFuncionarios,
+                                                  'atualMensalAlimentacao': atualMensalAlimentacao,
+                                                  'atualMensalLinks':atualMensalLinks,
+                                                  'atualMensalLocacao':atualMensalLocacao,
+                                                  'atualmensalInstalacao':atualmensalInstalacao,
+                                                  'atualMensalSocios':atualMensalSocios,
+
+                                                  'veiculosMesAtual':veiculosMesAtual,
+                                                  'funcionariosMesAtual':funcionariosMesAtual,
+                                                  'alimentacaoMesAtual':alimentacaoMesAtual,
+                                                  'linksMesAtual':linksMesAtual,
+                                                  'locacaoMesAtual':locacaoMesAtual,
+                                                  'instalacaoMesAtual':instalacaoMesAtual,
+                                                  'sociosMesAtual':sociosMesAtual,
+
+
 
                                                   'mensalVeiculos':mensalVeiculos,
                                                   'mensalFuncionarios':mensalFuncionarios,

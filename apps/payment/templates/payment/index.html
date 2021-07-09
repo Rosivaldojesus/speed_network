@@ -34,7 +34,7 @@
       {% endfor %}
     </div>
 
-    atualMensalVeiculos
+    --------------
 
     <div>
       <h6>Mes atual</h6>
@@ -42,6 +42,11 @@
         {{ mes.month|date:'F Y' }}: {{ mes.c }}<br>
       {% endfor %}
     </div>
+
+    ----------------
+    {% for mensal in atualMensalAlimentacao %}
+      {{ mensal.c}}
+    {% endfor %}
     
 
     <table class="table table-bordered">
@@ -176,7 +181,21 @@
 										label: 'Custos por grupo',
 										backgroundColor: '',
 										borderColor: 'white',
-										data: [ {{ veiculos.total }},{{ funcionarios.total }},{{ links.total }},{{ locacao.total }},{{ instalacao.total }},{{ socios.total }}],
+										data: [ 
+                      
+                    {% for mensal in atualMensalVeiculos %}
+                      {{ mensal.c}}
+                    {% endfor %},
+                    {% for mensal in atualMensalFuncionarios %}
+                      {{ mensal.c}}
+                    {% endfor %}
+                                    
+ 
+                    {{ funcionarios.total }},
+                    
+                    
+                    
+                    {{ links.total }},{{ locacao.total }},{{ instalacao.total }},{{ socios.total }}],
 
 										backgroundColor: [
 										'rgba(0,0,128)',
