@@ -158,8 +158,13 @@
           var options = {
           series: [{
           name: 'VEÍCULOS',
+          data: [{% for veiculos in mensalVeiculos %} '{{ veiculos.c }}', {% endfor %}]
+        }, {
+          name: 'PRODUCT C',
           data: [{% for veiculos in mensalAlimentacao %} '{{ veiculos.c }}', {% endfor %}]
-        }],
+        }
+      
+      ],
           chart: {
           type: 'bar',
           height: 350,
