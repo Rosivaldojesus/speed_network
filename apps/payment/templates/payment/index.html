@@ -206,7 +206,7 @@
           var options = {
           series: [{
           name: 'VEÍCULOS',
-          data: [{% for mes in mes %} '{{ mes.c }}', {% endfor %}]
+          data: [{% for veiculos in mensalAlimentacao %} '{{ mes.c }}', {% endfor %}]
         }],
           chart: {
           type: 'bar',
@@ -237,7 +237,7 @@
         },
         xaxis: {
           
-          categories: [{% for veiculos in mensalAlimentacao %} '{{ veiculos.month|date:'F Y' }}', {% endfor %}],
+          categories: [{% for veiculos in mensalAlimentacao %} '{{ veiculos.c }}', {% endfor %}],
         },
         legend: {
           position: 'right',
