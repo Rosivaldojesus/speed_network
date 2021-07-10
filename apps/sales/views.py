@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Sum, Count
 from .models import Instalacao
+from ..services.models import ServicoVoip
 from .forms import InstalacaoCreateForm, InstalacaoUpdateForm,\
     InstalacaoAgendarForm, InstalacaoFinalizarForm, BoletoEntregueForm,\
     InstalacaoDefinirTecnicoForm
@@ -253,3 +254,10 @@ def FinalizarEntregaBoleto(request, id=None):
         messages.success(request, 'Boleto finalizado com sucesso.')
         return redirect('/vendas/')
     return render(request, 'sales/finalizar-boleto.html', {'form': form})
+
+#------------------------------------  SERVIÇOS VOIP  -------------------------------------
+
+def ClientesVoip(request):
+    clientes = ServicoVoip.objects.all()
+    return render(request, 'sales/clientes-voip.html', {'clientes':clientes,
+                                                        })
