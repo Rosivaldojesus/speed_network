@@ -43,7 +43,6 @@
         <table class="table table-sm " style="line-height: 0.5">
           <thead>
             <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Cliente</th>
                 <th scope="col">Usuário</th>
                 <th>Data Venda</th>
@@ -54,10 +53,6 @@
           {% for concluida in clientes %}
 
             <tr>
-                <td>{{ concluida.id }}</td>
-                <td class="nav-link ">
-                    <a class="nav-link" href="visualizar-instalacao/?id={{ concluida.id }}">{{ concluida.nome_cliente }} {{ concluida.sobrenome_cliente}}</a>
-                </td>
                 <td>{{ concluida.nome_usuario_voip }}</td>
                 <td>{{ concluida.usuario_voip }}</td>
                 <td>{{ concluida.data_reserva_voip|date:"d M, Y" }}</td>
