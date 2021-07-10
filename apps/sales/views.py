@@ -257,9 +257,21 @@ def FinalizarEntregaBoleto(request, id=None):
 
 #------------------------------------  SERVIÇOS VOIP  -------------------------------------
 
+def Voip(request):
+    quant_numeros_novos = ServicoVoip.objects.filter(portabilidade_voip='False').count()
+    quant_numeros_portabilidade = ServicoVoip.objects.filter(portabilidade_voip='True').count()
+    return render(request, 'sales/voip.html', {'quant_numeros_novos':quant_numeros_novos,
+                                               'quant_numeros_portabilidade':quant_numeros_portabilidade,
+                                               })
+
 def ClientesVoip(request):
     clientes = ServicoVoip.objects.filter(reservado_voip='True')
     quant_clientes_ativo = ServicoVoip.objects.filter(reservado_voip='True').count()
+
+
     return render(request, 'sales/clientes-voip.html', {'clientes':clientes,
                                                         'quant_clientes_ativo':quant_clientes_ativo,
+
+                                                        'quant_numeros_novos':quant_numeros_novos,
+                                                        'quant_numeros_portabilidade':quant_numeros_portabilidade,
                                                         })

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<div class="container">
+
+    <div class="mt-4">
+        <h5 class="mt-3 mb-3"><span class="badge badge-success badge-pill">{{quant_clientes_ativo}} </span> Serviço de Voip </h5>
+    </div>
+
+    <div>
+
+    </div>
+
+    <!-- Messagens -->
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+      {% endfor %}
+      {% endif %}
+
+
+
+    <div>
+        <div class="card">
+            <div class="card-header">
+              Números novos x Portabilidade
+            </div>
+            <div class="card-body">
+              
+              <p class="card-text">Representação de clientes que pediram números novos e clinetes que fizeram portabilidade</p>
+              
+              <div>
+                <canvas id="quantidadeManuais" width="400" height="250"></canvas>
+                    <script>
+                        var ctxy = document.getElementById('quantidadeManuais').getContext('2d');
+                        var myDoughnutChart = new Chart(ctxy, {
+                            // The type of chart we want to create
+                            type: 'pie',
+
+                            // The data for our dataset
+                            data: {
+                                labels: ['Novos', 'Portabilidade',],
+                                datasets: [{
+                                    label: 'Equipamentos nos clientes',
+                                    backgroundColor: '',
+                                    borderColor: 'white',
+                                    data: [{{ quant_numeros_novos }},{{ quant_numeros_portabilidade }}, ],
+
+                                    backgroundColor: [
+                                    'rgba(0,0,255)',
+                                    'rgba(79,79,79)',
+
+                                    ],
+                                }]
+                            },
+                            // Configuration options go here
+                            options: {}
+                        });
+                </script>
+            </div>
+
+
+            </div>
+          </div>
+
+    </div>
+</div>
+
+{% endblock %}
