@@ -258,6 +258,8 @@ def FinalizarEntregaBoleto(request, id=None):
 #------------------------------------  SERVIÇOS VOIP  -------------------------------------
 
 def ClientesVoip(request):
-    clientes = ServicoVoip.objects.all()
+    clientes = ServicoVoip.objects.filter(finalizado_voip='True')
+    quant_clientes_ativo = ServicoVoip.objects.all().count()
     return render(request, 'sales/clientes-voip.html', {'clientes':clientes,
+                                                        'quant_clientes_ativo':quant_clientes_ativo,
                                                         })
