@@ -35,7 +35,7 @@
             Chart.defaults.global.defaultFontSize = 18;
 
             var speedData = {
-            labels: [ {% for veiculos in VendaMes %} '{{ veiculos.month }}', {% endfor %}],
+            labels: [ {% for veiculos in VendaMes %} '{{ veiculos.month|date:'F Y'  }}', {% endfor %}],
             datasets: [{
                 label: "Vendas (mês)",
                 data: [{% for veiculos in VendaMes %} '{{ veiculos.c }}', {% endfor %}],
