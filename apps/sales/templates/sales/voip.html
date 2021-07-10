@@ -22,7 +22,49 @@
       {% endif %}
 
 
+<!-- Comparação de números novos X Portabilidade-->
+   <div>
 
+      <!-- {% for mes in VendaMes %}{{ mes.month }}: {{ mes.c }}  {% endfor %}-->
+    <canvas id="speedChart" width="600" height="100">
+        <script>
+            
+            var speedCanvas = document.getElementById("speedChart");
+
+            Chart.defaults.global.defaultFontFamily = "Lato";
+            Chart.defaults.global.defaultFontSize = 18;
+
+            var speedData = {
+            labels: [ {% for veiculos in VendaMes %} '{{ veiculos.month }}', {% endfor %}],
+            datasets: [{
+                label: "Vendas (mês)",
+                data: [{% for veiculos in VendaMes %} '{{ veiculos.c }}', {% endfor %}],
+            }]
+            };
+
+            var chartOptions = {
+            legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                boxWidth: 80,
+                fontColor: 'black'
+                }
+            }
+            };
+
+            var lineChart = new Chart(speedCanvas, {
+            type: 'line',
+            data: speedData,
+            options: chartOptions
+            });
+        </script>
+    </canvas>
+   </div>
+
+
+
+    <!-- Comparação de números novos X Portabilidade-->
     <div>
         <div class="card">
             <div class="card-header">
@@ -33,9 +75,9 @@
               <p class="card-text">Representação de clientes que pediram números novos e clinetes que fizeram portabilidade</p>
               
               <div>
-                <canvas id="quantidadeManuais" width="400" height="150"></canvas>
+                <canvas id="portabilidade" width="400" height="150"></canvas>
                     <script>
-                        var ctxy = document.getElementById('quantidadeManuais').getContext('2d');
+                        var ctxy = document.getElementById('portabilidade').getContext('2d');
                         var myDoughnutChart = new Chart(ctxy, {
                             // The type of chart we want to create
                             type: 'pie',
@@ -52,7 +94,6 @@
                                     backgroundColor: [
                                     'rgba(0,0,255)',
                                     'rgba(79,79,79)',
-
                                     ],
                                 }]
                             },
@@ -61,12 +102,13 @@
                         });
                 </script>
             </div>
-
-
             </div>
           </div>
-
     </div>
+
+
+
+
 </div>
 
 {% endblock %}

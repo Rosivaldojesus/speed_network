@@ -258,10 +258,12 @@ def FinalizarEntregaBoleto(request, id=None):
 #------------------------------------  SERVIÇOS VOIP  -------------------------------------
 
 def Voip(request):
+    VendaMes =  ServicoVoip.objects.annotate(month=TruncMonth('data_reserva_voip')).filter().values('month').annotate(c=Count('data_reserva_voip')).values('month', 'c').order_by('month')
     quant_numeros_novos = ServicoVoip.objects.filter(portabilidade_voip='False').count()
     quant_numeros_portabilidade = ServicoVoip.objects.filter(portabilidade_voip='True').count()
     return render(request, 'sales/voip.html', {'quant_numeros_novos':quant_numeros_novos,
                                                'quant_numeros_portabilidade':quant_numeros_portabilidade,
+                                               'VendaMes':VendaMes,
                                                })
 
 def ClientesVoip(request):
@@ -272,6 +274,5 @@ def ClientesVoip(request):
     return render(request, 'sales/clientes-voip.html', {'clientes':clientes,
                                                         'quant_clientes_ativo':quant_clientes_ativo,
 
-                                                        'quant_numeros_novos':quant_numeros_novos,
-                                                        'quant_numeros_portabilidade':quant_numeros_portabilidade,
+
                                                         })
