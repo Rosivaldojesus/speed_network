@@ -281,16 +281,16 @@
   -----------------------------  Gráfico de Instalação por Dia  ---------------------------------
 -->
 <div>
-    <canvas id="speedChart" width="600" height="100">
+    <canvas id="speedChartA" width="600" height="100">
         <script>
             
-            var speedCanvas = document.getElementById("speedChart");
+            var speedCanvas = document.getElementById("speedChartA");
 
             Chart.defaults.global.defaultFontFamily = "Lato";
             Chart.defaults.global.defaultFontSize = 18;
 
             var speedData = {
-            labels: [ % for diario in diarioInstalaçao %} '{{ diario.data_finalizacao|date:'F Y'  }}', {% endfor %} ],
+            labels: [ {% for diario in diarioInstalaçao %} '{{ diario.data_finalizacao|date:'F Y'  }}', {% endfor %} ],
             datasets: [{
                 label: "Vendas (mês)",
                 data: [{% for diario in diarioInstalaçao %} '{{ diario.number}}', {% endfor %}],
