@@ -178,7 +178,7 @@
           var speedCanvas = document.getElementById("speedChartA");
 
           Chart.defaults.global.defaultFontFamily = "Lato";
-          Chart.defaults.global.defaultFontSize = 18;
+          Chart.defaults.global.defaultFontSize = 16;
 
           var speedData = {
           labels: [ {% for mensal in mensalInstalacao %}'{{ mensal.month|date:"F Y"  }}',{% endfor %} ],
@@ -287,7 +287,7 @@
             fill: false,
             borderColor: 'blue',
             backgroundColor: 'transparent',
-            borderDash: [5, 5],
+            borderDash: [3, 3],
             pointBorderColor: 'blue',
             pointBackgroundColor: 'blue',
             pointRadius: 5,
