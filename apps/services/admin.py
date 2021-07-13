@@ -1,15 +1,17 @@
 from django.contrib import admin
 from .models import CategoriaServico, Servico, ServicoVoip
 
+
 # Register your models here.
 admin.site.register(CategoriaServico)
 
 class ServicoAdmin(admin.ModelAdmin):
-    list_display = ['id','categoria', 'data_criacao',
+    list_display = ['id','contato_servico', 'data_criacao',
                     'data_agendada','status_agendado',
                     'status_concluido','data_finalizacao',
                     'agendado_por',
                     'criado_por', 'finalizado_por']
+    search_fields = ['contato_servico']
 admin.site.register(Servico, ServicoAdmin)
 
 class ServicoVoipForm(admin.ModelAdmin):

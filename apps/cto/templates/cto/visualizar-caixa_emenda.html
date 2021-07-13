@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}<title>Informações da Caixa de Emenda</title>{% endblock %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% block main %}
+<div class="container">
+
+	<div class="mt-4">
+		<h4>{{caixa.codigo_caixa}} - {{caixa.rua_caixa_emenda}}, {{caixa.numero_rua_cto}}</h4>
+	</div>
+	<hr>
+	<hr>
+
+
+
+	<h4>Lista de PON´s</h4>
+
+	{% for pon in pons %}
+		Borda: {{pon.board_pon}} Porta: {{pon.pon_pon}}<br>
+	{% endfor %}
+
+
+
+</div>
+{% endblock %}
+

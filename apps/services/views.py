@@ -5,6 +5,7 @@ from .forms import ServicoForm, AgendarServicoForm, EditarAgendarServicoForm,\
     FinalizarServicoForm
 from .forms import ReservarVoipForm
 from .models import Servico, ServicoVoip
+from django.db.models import Q, Sum, Count
 
 # Create your views here.
 
@@ -85,6 +86,10 @@ def ServicosAgendados(request):
 
 def ServicosFinalizados(request):
     finalizados = Servico.objects.filter(status_concluido='True').order_by('-id')
+    queryset = request.GET.get('q')
+    if queryset:
+        finalizados = Servico.objects.filter(
+            Q(contato_servico__icontains=queryset))
     quant_finalizados = Servico.objects.filter(status_concluido='True').count()
     return render(request, 'services/servicos-finalizados.html', {'finalizados':finalizados,
                                                                   'quant_finalizados':quant_finalizados})
