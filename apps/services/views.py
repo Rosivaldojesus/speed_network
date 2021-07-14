@@ -50,7 +50,7 @@ def RemoverServico(request, id=None):
         servico.delete()
         messages.success(request, 'Serviço removido com sucesso!')
         return redirect('/servicos/')
-    return render(request, 'services/remover-servico.html', {'servoco': servico})
+    return render(request, 'services/deletar-servico.html', {'servoco': servico})
 
 
 def ServicosAbertos(request):
@@ -127,6 +127,15 @@ def ServicoVisualizar(request):
     if servico:
         servico = Servico.objects.get(id=servico)
     return render(request, 'services/visualizar-servico.html', {'servico': servico})
+
+
+def DeletarServico(request, id=None):
+    servico = get_object_or_404(Servico, id=id)
+    if request.method == "POST":
+        servico.delete()
+        return redirect('/servicos/')
+    return render(request, 'services/deletar-servico.html', {'servico': servico})
+
 
 
 def ServicosVoip(request):

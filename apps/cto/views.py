@@ -74,6 +74,15 @@ def CaixaEmendaVisualizacao(request):
                                                                'pons':pons})
 
 #---------------------- Caixas de Emenda ---------------------------------------
+class CaixaEmendaCreate(CreateView):
+    model = CaixasDeEmenda
+    fields = ['codigo_caixa',
+              'rua_caixa_emenda',
+              'numero_rua_cto',
+             ]
+    success_url = '/cto/'
+
+
 @login_required(login_url='/login/')
 def CadastrarCaixaEmenda (request):
     form = CaixasDeEmendaForm(request.POST)
