@@ -4,7 +4,7 @@ from .views import CadastroInstalacao, InstalacaoVisualizacao, InstalacaoEditar,
     InstalacaoAgendar, InstalacaoAberta, InstalacaoAgendada, InstalacaoFinalizar,\
     InstalacaoConcluida, InstalacaoSemBoleto, InstalacaoFinalizadaSemBoleto,\
     FinalizarEntregaBoleto, InstalacaoDefinirTecnico, VendasInstalacao, \
-    InstalacaoConcluidaVendedores, ClientesVoip, Voip
+    InstalacaoConcluidaVendedores, DeletarInstalacaoAgendada, ClientesVoip, Voip
 
 
 urlpatterns = [
@@ -30,5 +30,6 @@ urlpatterns = [
 
     path('clientes-voip/', ClientesVoip),
     path('voip/', Voip),
+    path('deletar-instalacao-agendada/<int:id>', DeletarInstalacaoAgendada),
 
     ]

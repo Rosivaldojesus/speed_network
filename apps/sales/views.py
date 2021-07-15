@@ -200,8 +200,16 @@ def InstalacaoAgendar(request, id=None):
         obj = form.save()
         obj.save()
         messages.success(request, 'Instalação agendada com sucesso.')
-        return redirect('/vendas/')
+        return redirect('/vendas/instalacao-agendada/')
     return render(request, 'sales/agendar-instalacao.html', {'form': form})
+
+
+def DeletarInstalacaoAgendada(request, id=None):
+    install = get_object_or_404(Instalacao, id=id)
+    if request.method == "POST":
+        install.delete()
+        return redirect('/vendas/')
+    return render(request, 'sales/deletar-instalacao-agendada.html', {'install': install})
 
 
 @login_required(login_url='/login/')
