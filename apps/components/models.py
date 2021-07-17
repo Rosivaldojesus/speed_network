@@ -67,3 +67,17 @@ class Vendedores(models.Model):
 
     def __str__(self):
         return "{}".format(self.nome_vendedor)
+
+
+class Ruas(models.Model):
+    logradouro = models.CharField(max_length=255)
+    bairro = models.CharField(max_length=100)
+    cep = models.CharField(max_length=100)
+    numero_baixo = models.CharField(max_length=20)
+    numero_alto = models.CharField(max_length=20)
+
+    class Meta:
+        verbose_name_plural = 'Ruas'
+
+    def __str__(self):
+        return "{}".format(self.logradouro)
