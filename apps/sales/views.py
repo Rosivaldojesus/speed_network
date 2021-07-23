@@ -34,8 +34,6 @@ def Index(request):
     mensalInstalacao = Instalacao.objects.annotate(month=TruncMonth('data_finalizacao')).filter(concluido='True').values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
     diarioInstalaçao = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate( number=Count('data_finalizacao')).order_by('data_finalizacao')[40:]
 
-
-
     return render(request, 'sales/instalacao.html', {'instalacoes': instalacoes,
                                                      'quant_aberta': quant_aberta,
                                                      'quant_agendada': quant_agendada,
@@ -108,7 +106,6 @@ def InstalacaoAgendada(request):
                                                               'quant_agendada_vendedor':quant_agendada_vendedor,
                                                               })
 
-
 @login_required(login_url='/login/')
 def InstalacaoConcluida(request):
     concluidas = Instalacao.objects.filter(concluido='True').order_by('-id')
@@ -137,8 +134,6 @@ def InstalacaoConcluidaVendedores(request):
                                                                })
 
 '''
-
-
 @login_required(login_url='/login/')
 def InstalacaoConcluidaVendedores(request):
     concluidas = Instalacao.objects.filter(concluido='True').order_by('-id')
@@ -155,8 +150,6 @@ def InstalacaoConcluidaVendedores(request):
     return render(request, 'sales/instalacao-concluida-vendedores.html', {'concluidas': concluidas,
                                                                'quant_concluida':quant_concluida
                                                                })
-
-
 
 @login_required(login_url='/login/')
 def CadastroInstalacao(request):
