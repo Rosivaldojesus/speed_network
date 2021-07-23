@@ -16,7 +16,7 @@ def Index(request):
     queryset = request.GET.get('q')
     if queryset:
         ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))\
-            .order_by('rua_cto').filter(Q(rua_cto__icontains=queryset)|Q(codigo_caixa__icontains=queryset))
+            .order_by('rua_cto').filter(Q(rua_cto__icontains=queryset))
     quant_cto_cadastradas = TerminaisOpticos.objects.all().count()
     quant_cto_completas = TerminaisOpticos.objects.filter(conexoes_opticas_cto=F("quant_conexoes_usadas_cto")) \
         .annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).count()
