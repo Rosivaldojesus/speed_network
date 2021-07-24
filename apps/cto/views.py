@@ -1,12 +1,11 @@
 from django.db.models import F, Q
 from django.contrib import messages
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import CtoForm, InsertCtoForm, CaixasDeEmendaForm
-from .models import TerminaisOpticos
+from .models import TerminaisOpticos, Primarias, CaixasDasPrimarias
 from .models import CaixasDeEmenda, PonPorCaixaEmenda
-from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.edit import CreateView
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 # Create your views here
@@ -107,3 +106,15 @@ def EditarCaixasEmendas(request, id=None):
         messages.success(request, 'Caixa atualizada com sucesso')
         return redirect('/cto/')
     return render(request, 'cto/editar-caixas-emenda.html', {'form': form})
+
+
+def Primaria(request):
+    primarias = Primarias.objects.all()
+    return render(request, 'cto/primarias.html', {'primarias': primarias})
+
+
+def VisualizarCaixasPrimarias(request):
+    caixas = request.GET.get('id')
+    if caixas:
+        caixas = CaixasDasPrimarias.objects.filter(primaria=caixas)
+    return render(request, 'cto/caixas-primarias.html', {'caixas':caixas})

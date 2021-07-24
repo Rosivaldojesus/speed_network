@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}<title>Caixas das Primárias </title>{% endblock %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% block main %}
+<div class="container">
+
+	<div class="mt-4">
+		<h4>Caixa da Primária</h4>
+	</div>
+	<hr>
+	<hr>
+
+			<div>
+		<table class="table">
+		  <thead>
+			<tr>
+			  <th scope="col">Primária</th>
+			  <th scope="col">logradouro</th>
+			  <th scope="col">logradouro_numero</th>
+			  <th scope="col">codigo_caixa</th>
+			</tr>
+		  </thead>
+		  <tbody>
+
+		  {% for caixa in caixas %}
+			<tr>
+			  <th scope="row">{{ caixa.primaria}}</th>
+			  <td>{{ caixa.logradouro}}</td>
+			  <td>{{ caixa.logradouro_numero}}</td>
+			  <td>{{ caixa.codigo_caixa}}</td>
+			</tr>
+		  {% endfor %}
+		  </tbody>
+		</table>
+	</div>
+
+
+
+
+</div>
+{% endblock %}
+

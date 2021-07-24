@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import TerminaisOpticos, CaixasDeEmenda, PonPorCaixaEmenda, NumeroPon
+from .models import TerminaisOpticos, CaixasDeEmenda, PonPorCaixaEmenda, NumeroPon,\
+    Primarias, CaixasDasPrimarias
 
 # Register your models here.
 
@@ -14,3 +15,13 @@ admin.site.register(CaixasDeEmenda, CaxasDeEmendaAdmin)
 admin.site.register(PonPorCaixaEmenda)
 
 admin.site.register(NumeroPon)
+
+class PrimariasAdmin(admin.ModelAdmin):
+    list_display = ('board', 'pon', 'localizacao', 'quant_caixas')
+admin.site.register(Primarias, PrimariasAdmin )
+
+
+class CaixasDasPrimariasAdmin(admin.ModelAdmin):
+    list_display = ('primaria', 'logradouro', 'logradouro_numero')
+admin.site.register(CaixasDasPrimarias, CaixasDasPrimariasAdmin)
+

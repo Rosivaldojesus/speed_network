@@ -50,3 +50,31 @@ class PonPorCaixaEmenda(models.Model):
         verbose_name_plural = 'Pon por caixa'
     def __str__(self):
         return "{} - {}".format(self.board_pon, self.pon_pon )
+
+
+
+class Primarias(models.Model):
+    board = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
+    pon = models.CharField(max_length=10, blank=True, null=True)
+    localizacao = models.CharField(max_length=255, blank=True, null=True)
+    quant_caixas = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Primárias"
+
+    def __str__(self):
+        return "{}".format(self.localizacao)
+
+
+class CaixasDasPrimarias(models.Model):
+    primaria = models.ForeignKey(Primarias, on_delete=models.DO_NOTHING)
+    logradouro = models.CharField(max_length=255, blank=True, null=True)
+    logradouro_numero = models.CharField(max_length=50, blank=True, null=True)
+    codigo_caixa = models.CharField(max_length=100, blank=True, null=True)
+
+
+    class Meta:
+        verbose_name_plural = "Caixas das Primarias"
+
+    def __str__(self):
+        return "{}".format(self.logradouro)
