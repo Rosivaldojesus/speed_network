@@ -57,7 +57,7 @@ class CTOCreate(CreateView):
     success_url = '/cto/'
 
 
-def ExportarCSV(request):
+def ExportarCSVCTO(request):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="lista-CTO.csv"'
@@ -89,6 +89,20 @@ def CaixaEmendaVisualizacao(request):
         pons = PonPorCaixaEmenda.objects.filter(caixa_emenda=caixa)
     return render(request, 'cto/visualizar-caixa_emenda.html',{'caixa': caixa,
                                                                'pons':pons})
+
+
+def ExportarCSVCaixasEmenda(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="caixas-emenda.csv"'
+
+    caixas_emenda = CaixasDeEmenda.objects.all()
+
+    writer = csv.writer(response)
+    writer.writerow(['id', 'codigo_caixa','rua_caixa_emenda','numero_rua_cto',])
+    for caixa in caixas_emenda:
+        writer.writerow([caixa.id, caixa.codigo_caixa,caixa.rua_caixa_emenda,caixa.numero_rua_cto,])
+    return response
 
 #---------------------- Caixas de Emenda ---------------------------------------
 class CaixasEmendaCreate(CreateView):

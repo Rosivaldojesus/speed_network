@@ -1,9 +1,11 @@
 from django.urls import path
 from .views import Index, EditarCto, CtoCompletas,  CaixasEmenda,\
     CaixaEmendaVisualizacao, CadastrarCaixaEmenda, EditarCaixasEmendas, \
-    Primaria, VisualizarCaixasPrimarias, ExportarCSV
+    Primaria, VisualizarCaixasPrimarias
 
 from .views import PrimariasCreate, CTOCreate, CaixasEmendaCreate
+
+from .views import ExportarCSVCTO, ExportarCSVCaixasEmenda
 
 urlpatterns = [
     path('', Index),
@@ -11,7 +13,9 @@ urlpatterns = [
     path('cto-completas/', CtoCompletas),
     path('adicionar-cto/', CTOCreate.as_view(), name='adicionar-cto'),
 
-    path('exportar-csv/', ExportarCSV),
+    path('exportar-csv-cto/', ExportarCSVCTO),
+    path('exportar-csv-caixas-emenda/', ExportarCSVCaixasEmenda),
+
     path('caixas-emenda/', CaixasEmenda),
     path('visualizar-caixa_emenda/', CaixaEmendaVisualizacao),
     path('cadastrar-caixas-emenda/', CadastrarCaixaEmenda),
