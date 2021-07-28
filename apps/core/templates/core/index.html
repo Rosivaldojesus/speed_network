@@ -1,156 +1,87 @@
 {% extends 'base.html' %}
 
-{% block main %}
-  <div class="container-xl">
-    <!-- ********************************************************************************************** -->
+  <!-- ********************************************************************************************** -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<!-- ********************************************************************************************** -->
 
-  {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
-  <!--Inicio da página inicial para ADM e Master-->
-  <!--
-    --------------------------------------------------------------------------------------------
-    --------------------------------------------------------------------------------------------
-    --------------------------------------------------------------------------------------------
-  -->
-  <div class="row mt-2 border-0">
-    <!--
-      **************************************************************************
-      **************************************************************************
-      INICIO DO CARD A ESQUERDA
-      **************************************************************************
-      **************************************************************************
-     -->
-    <div class="card col-sm-9 border-0 ">
-      <!--INICIO STATUS SERVIÇOS-->
-      <div class="card w-100 border-0 shadow p-2 mb-3">
-        <div class="card-header bg-dark text-white">Status Serviços</div>
-        <div class="card-body">
-          <div class="row">
-            <div  class="col-sm-4 bg-danger text-white" align="center">
-              <h5 class="card-title">Aguardando: ( <strong>{{ quant_servico_aberto }}</strong> ) 
-                <a href="servicos/servicos-abertos/" class="btn btn-danger w-100">Ver todos</a>
-              </h5>
-            </div>
-            <div class="col-sm-4 bg-warning text-white" align="center">
-              <h5 class="card-title">Agendados: ( <strong>{{ quant_servico_agendado }}</strong> )
-                <a href="servicos/servicos-agendados/" class="btn btn-warning text-white w-100">Ver todos</a>
-              </h5>  
-            </div>
-            <div class="col-sm-4 bg-success text-white" align="center">
-              <h5 class="card-title">
-                Finalizados:
-                ( <strong>
-                {{ quant_servicos_finalizados_mes }}
-                </strong> )
-                <a href="servicos/servicos-finalizados/" class="btn btn-success text-white w-100">Ver todos</a>
-              </h5>
-            </div>
-          </div>
+{% block main %}
+
+<div class="container-xl">
+  
+  <div class="card-group mt-2">
+    <!-- INÍCIO LADO ESQUERDO -->
+    <div class="card col-sm-9 border-0">
+      <!-- INÍCIO Status Serviços-->
+      <h5 class="card-title">Status Serviços</h5>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col shadow">
+          <h5 class="card-title">Aguardando: ( <strong>{{ quant_servico_aberto }}</strong> ) 
+            <a href="servicos/servicos-abertos/" class="btn btn-danger w-100">Ver todos</a>
+        </div>
+        <div class="col shadow">
+          <h5 class="card-title">Agendados: ( <strong>{{ quant_servico_agendado }}</strong> )
+            <a href="servicos/servicos-agendados/" class="btn btn-warning text-white w-100">Ver todos</a>
+        </div>
+        <div class="col shadow">
+          <h5 class="card-title">Finalizados:( <strong> {{ quant_servicos_finalizados_mes }}</strong> )
+            <a href="servicos/servicos-finalizados/" class="btn btn-success text-white w-100">Ver todos</a>
         </div>
       </div>
-       <!--fIM STATUS SERVIÇOS-->
-      
-      <div class="card w-100 border-0 shadow p-2 mb-3">
-        <div class="card-header bg-dark text-white">Status de Instalações</div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-sm-3">
-              <div class="card border-danger" align="center">
-                <div class="card-group">
-                    <h6>Aberto: ( <strong>{{ quant_instalacao_aberta }}</strong> )</h6>
-                    <a href="vendas/instalacao-aberta/" class="btn btn-danger w-100">Ver todos</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="card border-warning" align="center">
-                <div class="card-group">
-                    <h6>Agendado: ( <strong>{{ quant_instalacao_agendada }}</strong> )</h6>
-                    <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white w-100">Ver todos</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="card border-dark" align="center">
-                <div class="card-group">
-                    <h6>Boletos: ( <strong>{{ quant_instalacao_sem_boleto }}</strong> )</h6>
-                    <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark w-100">Ver todos </a>
-                </div>
-              </div> 
-            </div>
-            <div class="col-sm-3">
-              <div class="card border-success" align="center">
-                <div class="card-group">
-                  <h6>Finalizados
-                      ( <strong>
-                        {{ quant_instalacao_finalizados_mes }}
-                      </strong> )</h6>
-                    <a href="vendas/instalacao-concluida/" class="btn btn-success w-100">Ver todos</a>
-                </div>
-              </div>
-            </div>
-          </div>
+      <!-- FIM Status Serviços-->
+        <hr><hr>
+      <!-- INÍCIO Status Instalações-->
+      <h5 class="card-title">Status Instalaçoes</h5>
+      <div class="row">
+        <div class="col shadow">
+          <h6>Aberto: ( <strong>{{ quant_instalacao_aberta }}</strong> )</h6>
+          <a href="vendas/instalacao-aberta/" class="btn btn-danger w-100">Ver todos</a>
+        </div>
+        <div class="col shadow">
+          <h6>Agendado: ( <strong>{{ quant_instalacao_agendada }}</strong> )</h6>
+          <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white w-100">Ver todos</a>
+        </div>
+        <div class="col shadow">
+          <h6>Boletos: ( <strong>{{ quant_instalacao_sem_boleto }}</strong> )</h6>
+          <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark w-100">Ver todos </a>
+        </div>
+        <div class="col shadow">
+          <h6>Finalizados( <strong>{{ quant_instalacao_finalizados_mes }}</strong> )</h6>
+          <a href="vendas/instalacao-concluida/" class="btn btn-success w-100">Ver todos</a>
         </div>
       </div>
-
-
-
-
-            <!--
-        *************************************************************************************
-        ***************** INÍCIO  dos serviços VOIP  *******************************
-        *************************************************************************************
-      -->
-      <div class="card border-0 shadow p-2 mb-3">
-        <div class="card-header bg-dark text-white">Serviços VOIP</div>
-        <div class="card-group">
-          <div class="card border-0 ">
-            <div class="card-body">
-
-              <nav class="nav nav-pills flex-column flex-sm-row">
-                <a class="flex-sm-fill text-sm-center nav-link active" href="/servicos/servicos-voip/">
-                  VOIP Disponiveis ( {{ voipDisponiveis }} )
-                </a>
-              </nav>
-
-            </div>
-          </div>
-          <div class="card border-0">
-            <div class="card-body">
-
-              <nav class="nav nav-pills flex-column flex-sm-row">
-                <a class="flex-sm-fill text-sm-center nav-link active" href="/servicos/servicos-voip/">
-                  Reservados ( {{ voipReservados }} )
-                </a>
-              </nav>
-
-            </div>
-          </div>
-          <div class="card border-0">
-            <div class="card-body">
-
-              <nav class="nav nav-pills flex-column flex-sm-row">
-                <a class="flex-sm-fill text-sm-center nav-link active" href="/servicos/servicos-voip/">
-                  Em portabilidade( {{ voipPortabilidade }} )
-                </a>
-              </nav>
-
-            </div>
-          </div>
+      <!-- FIM Status Instalações-->
+      <hr><hr>
+      <!-- INÍCIO Serviços de Voip-->
+      <h5 class="card-title">Serviços VOIP</h5>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col shadow" >
+          <nav class="nav nav-pills flex-column flex-sm-row">
+            <a class="flex-sm-fill text-sm-center nav-link active" href="/servicos/servicos-voip/">
+              VOIP Disponiveis ( {{ voipDisponiveis }} )
+            </a>
+          </nav>
+        </div>
+        <div class="col shadow">
+          <nav class="nav nav-pills flex-column flex-sm-row">
+            <a class="flex-sm-fill text-sm-center nav-link active" href="/servicos/servicos-voip/">
+              Reservados ( {{ voipReservados }} )
+            </a>
+          </nav>
+        </div>
+        <div class="col shadow">
+          <nav class="nav nav-pills flex-column flex-sm-row">
+            <a class="flex-sm-fill text-sm-center nav-link active" href="/servicos/servicos-voip/">
+              Em portabilidade( {{ voipPortabilidade }} )
+            </a>
+          </nav>
         </div>
       </div>
-        <!--
-        *************************************************************************************
-        *****************  FIM dos serviços VOIP  *******************************
-        *************************************************************************************
-      -->
+       <!-- FIM Serviços de Voip-->
+
+       <hr><hr>
 
 
-
-
-
-           <!--
+                  <!--
         *************************************************************************************
         ***************** INÍCIO Instalações agendadas por Técnico  *******************************
         *************************************************************************************
@@ -198,12 +129,7 @@
         *************************************************************************************
       -->
 
-
-      
-
-
-
-            <!--
+                  <!--
         *************************************************************************************
         ***************** INÍCIO  das últimas vendas   *******************************
         *************************************************************************************
@@ -246,117 +172,77 @@
       -->
 
 
+    </div>
+    <!-- FIM LADO ESQUERDO -->
+    <!--
+      ********************************************************************************************************
+    -->
+    <!-- INÍCIO LADO DIREITO -->
+    <div class="card col-sm-3 border-0" style="background-color:Gainsboro;">
+      <!-- INÍCIO Status dos Serviços -->
+      <div class="card shadow-sm border-0 mt-2">
+        <h5 class="card-title ml-2">Serviços</h5>
+        {% for previsaoServico in previsaoServico %}
+            {% if previsaoServico.number <= 4 %}
+            <h6 href="#" style="color:green;" class="ml-2"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></h6>
+            {% elif previsaoServico.number > 4 and previsaoServico.number <= 6  %}
+            <h6 style="color:orange;" class="ml-2"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></h6>
+            {% elif previsaoServico.number >= 7 %}
+            <h6 style="color:red;" class="ml-2"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></h6>
+            {% endif%} 
+          {% endfor %}
+      </div>
+      <!-- FIM Status dos Serviços -->
+      <hr>
+      <!-- INÍCIO Status das Instalações -->
+      <div class="card shadow-sm border-0 mb-2">
+        <h5 class="card-title ml-2">Instalações</h5>
+        {% for previsaoInstalacao in previsaoInstalacao%}
+            {% if previsaoInstalacao.number <= 6 %}
+            <h6 style="color:green;" class="ml-2"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></h6>
+            {% elif previsaoInstalacao.number > 6 and previsaoInstalacao.number <= 9  %}
+            <h6 style="color:orange;" class="ml-2"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></h6>
+            {% elif previsaoInstalacao.number >= 10  %}
+            <h6 style="color:red;" class="ml-2"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></h6>
+            {% endif %}
+      </div>
+      <!-- FIM Status das Instalações -->
+    </div>
+    <!-- FIM LADO DIREITO -->
+  </div>
 
+</div>
+
+
+
+
+
+
+  <div class="container-xl">
+
+
+  {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
+  <!--Inicio da página inicial para ADM e Master-->
+  <div class="row mt-2 border-0">
+    <!--
+      **************************************************************************
+      **************************************************************************
+      INICIO DO CARD A ESQUERDA
+      **************************************************************************
+      **************************************************************************
  
 
 
 
 
-
-
-
-
+    
 
 
     </div>
-    <!--
-      **************************************************************************
-      ESQUERDADO CARD A DIREITA
-      **************************************************************************
-     -->
-
-    <!--
-      **************************************************************************
-      INICIO DO CARD A DIREITA
-      **************************************************************************
-     -->
-    <div class="card col-sm-3 border-0 shadow p-2 mb-3">
-      <div class="card w-100 border-0 shadow-sm p-2 mb-3">
-        <div class="card-header bg-dark text-white">Previsões de Serviços</div>
-        <div class="card-body">
-
-          <!--
-          {% regroup cities by country as country_list %}
-
-            <ul>
-            {% for previsaoServico in previsaoServico %}
-                <li>{{ previsaoServico.data_agendada}}
-                <ul>
-                    {% for previsaoServico in previsaoServico %}
-                      <li>{{ previsaoServico.hora_agendada }}: {{ previsaoServico.number }}</li>
-                    {% endfor %}
-                </ul>
-                </li>
-            {% endfor %}
-            </ul>
-          -->   
 
 
-
-
-
-          
-          
-
-
-          {% for previsaoServico in previsaoServico %}
-            {% if previsaoServico.number <= 4 %}
-            <h6 href="#" style="color:green;"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></h6>
-            {% elif previsaoServico.number > 4 and previsaoServico.number <= 6  %}
-            <h6 style="color:orange;"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></h6>
-            {% elif previsaoServico.number >= 7 %}
-            <h6 style="color:red;"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></h6>
-
-            {% endif%} 
-          {% endfor %}
-         
-
-
-
-          <!--
-          {% for previsaoServico in previsaoServico %}
-
-           <p style="color:red;">{{ previsaoServico.data_agendada }}: {{ previsaoServico.number }}</p>  
-           
-          {% endfor %}
-          -->
-
-
-        </div>
-      </div>
-      
-      <div class="card w-100 border-0 shadow-sm p-2 mb-3">
-        <div class="card-header bg-dark text-white">Previsões de Instalações</div>
-        <div class="card-body">
-          {% for previsaoInstalacao in previsaoInstalacao%}
-
-
-            {% if previsaoInstalacao.number <= 6 %}
-            <h6 style="color:green;"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></h6>
-            {% elif previsaoInstalacao.number > 6 and previsaoInstalacao.number <= 9  %}
-            <h6 style="color:orange;"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></h6>
-            {% elif previsaoInstalacao.number >= 10  %}
-            <h6 style="color:red;"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></h6>
-
-            {% endif %} 
-          {% endfor %}
-        </div>
-      </div>
-
-      </div>
-    <!--
-      **************************************************************************
-      FIM DO CARD A DIREITA
-      **************************************************************************
-     -->
   </div>
-  <!--
-    --------------------------------------------------------------------------------------------
-    --------------------------------------------------------------------------------------------
-    --------------------------------------------------------------------------------------------
-  -->
-
- 
+  <!--   --------------------------------------------------------------------------------------------  -->
 
   {% elif request.user.groups.all.0.name == "Tecnico" %}
   <div class="card-deck border-0">
@@ -399,45 +285,12 @@
           {% endfor %}
       </div>
     </div>
-
-
-
-  </div>
-
-
-   
-
-
-
-
-
-
-
-
-
-
-         
+  </div>  
     {% endif %}
     
 
-<!--
---------------------------------------------------------------------------------------------------------------    
-    INFORMAÇÕES DOS SERVIÇOS DIÁRIOS
---------------------------------------------------------------------------------------------------------------  
-  -->  
-  <!--
-  <div class="card">
-    <div class="card-body">
-      {% for servicosDiarios in servicosDiarios %}
-        {{ servicosDiarios.data_finalizacao | date:'d-m-Y' }}: {{ servicosDiarios.number }}<br>
-
-      {% endfor %}
-      <hr>
-      {{ servicosMensais.month }}: {{ servicosMensais.count }}<br>
-    </div>
-  </div>
--->
     </div>
     </div>
   </div>
+  {% endfor %}
 {% endblock %}
