@@ -61,6 +61,13 @@
 	</div>
 	<!-- FIM Campo de Pesquisas-->
 
+	<hr><hr>
+	<!--INÍCIO botões-->
+	<div class="mt-4" align="right">
+		<a href="adicionar-cto/" class="btn btn-primary">Adicionar CTO</a>
+	</div>
+	<!--FIM botões -->
+
 	<!--INÍCIO do Titulo da tabela -->
 	<div class="mt-2">
 		<hr><hr>
@@ -73,6 +80,7 @@
 		<table class="table">
 			<thead>
 			  <tr>
+				<th scope="col">ID</th>
 				<th scope="col">Cód.</th>
 				<th scope="col">Rua</th>
 				<th scope="col">Nº</th>
@@ -88,6 +96,7 @@
 				{% for cto in ctos %}
 					{% if cto.livre == 0 %}
 						<tr>
+							<th style="color:red;">{{cto.id}}</th>
 							<th style="color:red;">{{cto.codigo_cto}}</th>
 							<td style="color:red;">{{cto.rua_cto}}</td>
 							<td style="color:red;">{{cto.numero_rua_cto}}</td>
@@ -102,6 +111,7 @@
 						</tr>
 					{% else %}
 						<tr>
+							<th>{{cto.id}}</th>
 							<th>{{cto.codigo_cto}}</th>
 							<td>{{cto.rua_cto}}</td>
 							<td>{{cto.numero_rua_cto}}</td>

@@ -1,13 +1,15 @@
 from django.urls import path
-from .views import Index, EditarCto, CtoCompletas, InsertCto, CaixasEmenda,\
+from .views import Index, EditarCto, CtoCompletas, CTOCreate, CaixasEmenda,\
     CaixaEmendaVisualizacao, CadastrarCaixaEmenda, EditarCaixasEmendas, CaixaEmendaCreate,\
     Primaria, VisualizarCaixasPrimarias
+
+from .views import PrimariasCreate
 
 urlpatterns = [
     path('', Index),
     path('editar-terminais-opticos/<int:id>', EditarCto),
     path('cto-completas/', CtoCompletas),
-    path('add-cto/', InsertCto),
+    path('adicionar-cto/', CTOCreate.as_view(), name='adicionar-cto'),
     path('caixas-emenda/', CaixasEmenda),
     path('visualizar-caixa_emenda/', CaixaEmendaVisualizacao),
     path('cadastrar-caixas-emenda/', CadastrarCaixaEmenda),
@@ -16,7 +18,9 @@ urlpatterns = [
     path('cadastrar-caixa-emenda', CaixaEmendaCreate.as_view(), name='caixa-emenda-create'),
 
     path('primarias/', Primaria),
-    path('caixas-primarias/', VisualizarCaixasPrimarias)
+
+    path('adicionar-primaria/', PrimariasCreate.as_view(), name='adicionar-primaria'),
+    path('caixas-primarias/', VisualizarCaixasPrimarias),
 
 
 

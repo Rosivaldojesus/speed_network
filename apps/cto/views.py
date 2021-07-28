@@ -1,12 +1,14 @@
 from django.db.models import F, Q
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
+
 from .forms import CtoForm, InsertCtoForm, CaixasDeEmendaForm
 from .models import TerminaisOpticos, Primarias, CaixasDasPrimarias
 from .models import CaixasDeEmenda, PonPorCaixaEmenda
 from django.views.generic.edit import CreateView
 from django.shortcuts import render, redirect, get_object_or_404
-
+from .forms import PrimariasForm
 
 # Create your views here
 def Index(request):
@@ -47,15 +49,13 @@ def CtoCompletas(request):
             Q(rua_cto__icontains=queryset))
     return render(request, 'cto/cto-completas.html', {'cto_completas': cto_completas})
 
-def InsertCto(request):
-    form = InsertCtoForm(request.POST)
-    if form.is_valid():
-        obj = form.save(commit=False)
-        obj.save()
-        messages.success(request, 'CTO Inserida')
-    else:
-        form = InsertCtoForm()
-    return render(request, 'cto/add-cto.html', {'form':form})
+
+class CTOCreate(CreateView):
+    model = TerminaisOpticos
+    fields = ['codigo_cto', 'rua_cto','numero_rua_cto', 'bairro', 'pon_cto', 'conexoes_opticas_cto', 'board_cto', 'quant_conexoes_usadas_cto', 'observacao_cto']
+    success_url = '/cto/'
+
+
 
 # ------------------------- Caixas de Emenda ----------------
 def CaixasEmenda(request):
@@ -108,9 +108,25 @@ def EditarCaixasEmendas(request, id=None):
     return render(request, 'cto/editar-caixas-emenda.html', {'form': form})
 
 
+#---------------------- Primárias ---------------------------------------
+
 def Primaria(request):
     primarias = Primarias.objects.all()
+    queryset = request.GET.get('q')
+    if queryset:
+        primarias = Primarias.objects.filter(Q(pon__icontains=queryset))
+
     return render(request, 'cto/primarias.html', {'primarias': primarias})
+
+
+
+class PrimariasCreate(CreateView):
+    model = Primarias
+    fields = ['board', 'pon','localizacao', 'quant_caixas']
+    success_url = '/cto/primarias/'
+
+
+
 
 
 def VisualizarCaixasPrimarias(request):
@@ -118,3 +134,5 @@ def VisualizarCaixasPrimarias(request):
     if caixas:
         caixas = CaixasDasPrimarias.objects.filter(primaria=caixas)
     return render(request, 'cto/caixas-primarias.html', {'caixas':caixas})
+
+
