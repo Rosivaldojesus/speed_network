@@ -197,7 +197,7 @@
       <!-- INÍCIO Status das Instalações -->
       <div class="card shadow-sm border-0 mb-2">
         <h5 class="card-title ml-2">Instalações</h5>
-        {% for previsaoInstalacao in previsaoInstalacao%}
+        {% for previsaoInstalacao in previsaoInstalacao %}
             {% if previsaoInstalacao.number <= 6 %}
             <h6 style="color:green;" class="ml-2"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></h6>
             {% elif previsaoInstalacao.number > 6 and previsaoInstalacao.number <= 9  %}
@@ -205,6 +205,7 @@
             {% elif previsaoInstalacao.number >= 10  %}
             <h6 style="color:red;" class="ml-2"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></h6>
             {% endif %}
+        {% endfor %}   
       </div>
       <!-- FIM Status das Instalações -->
     </div>
@@ -216,81 +217,5 @@
 
 
 
-
-
-  <div class="container-xl">
-
-
-  {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
-  <!--Inicio da página inicial para ADM e Master-->
-  <div class="row mt-2 border-0">
-    <!--
-      **************************************************************************
-      **************************************************************************
-      INICIO DO CARD A ESQUERDA
-      **************************************************************************
-      **************************************************************************
  
-
-
-
-
-    
-
-
-    </div>
-
-
-  </div>
-  <!--   --------------------------------------------------------------------------------------------  -->
-
-  {% elif request.user.groups.all.0.name == "Tecnico" %}
-  <div class="card-deck border-0">
-    <div class="card text-white bg-dark mb-3">
-      <div class="card-header">SERVIÇOS</div>
-      <div class="card-body">
-        <h5 class="card-title">Clique abaixo</h5>
-        <a href="servicos/" class="btn btn-danger">Ver todos</a>
-      </div>
-    </div>
-    <div class="card text-white bg-dark mb-3"">
-      <div class="card-header">INSTALAÇÃO</div>
-      <div class="card-body">
-        <h5 class="card-title">Clique abaixo</h5>
-        <a href="vendas/" class="btn btn-danger">Ver todos</a>
-      </div>
-    </div>
-  </div>
-  {% elif request.user.groups.all.0.name == "Venda" %}
-    <div class="card text-white bg-dark mb-3">
-      <div class="card-header">INSTALAÇÃO</div>
-      <div class="card-body">
-        <h5 class="card-title">Clique abaixo</h5>
-        <a href="vendas/" class="btn btn-danger">Ver todos</a>
-      </div>
-    </div>
-
-    <div class="card text-dark  mb-3">
-      <div class="card-header">Previsão de Instalação</div>
-      <div class="card-body">
-        {% for previsaoInstalacao in previsaoInstalacao%}
-            {% if previsaoInstalacao.number <= 6 %}
-            <p style="color:green;"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></p>
-            {% elif previsaoInstalacao.number > 6 and previsaoInstalacao.number <= 9  %}
-            <p style="color:orange;"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></p>
-            {% elif previsaoInstalacao.number >= 10  %}
-            <p style="color:red;"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></p>
-
-            {% endif %} 
-          {% endfor %}
-      </div>
-    </div>
-  </div>  
-    {% endif %}
-    
-
-    </div>
-    </div>
-  </div>
-  {% endfor %}
 {% endblock %}
