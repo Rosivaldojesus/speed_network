@@ -4,18 +4,19 @@
 {% block title %}<title> CTO Completas </title> {% endblock %}
 
 {% block main %}
-    <div class="container">
-
-		<div class="mt-2">
+<div class="container-xl">
+		<!-- INÍCIO  Campo de Pesquisas-->
+	<div class="mt-3">
 		<form method="GET">
 		   <div class="row">
 			   <div class="form-group col-10">
 				   <input type="search" class="form-control"
-						  placeholder="Informe o nome da rua"
+						  placeholder="Informe a caixa"
 						  name="q" value="{{ request.GET.q }}">
 			   </div>
-			   <div class="form-group">
+			   <div class="form-group col-2">
 				   <button class=" form-control btn-success">
+					   Pesquisar
 					   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 						 <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
 						 <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
@@ -25,48 +26,44 @@
 		   </div>
 	   </form>
 	</div>
+	<!-- FIM Campo de Pesquisas-->
 
+	<!--INÍCIO Titulo da página -->
+	<div>
+		<h5>Caixas Cheias</h5>
+	</div>
+	<!--FIM Titulo da página -->
+	<div class="table-responsive-sm shadow">
+		<table class="table">
+			<thead>
+			  <tr>
+				<th scope="col">Cód.</th>
+				<th scope="col">Rua</th>
+				<th scope="col">Nº</th>
+				<th scope="col">PON</th>
+				<th scope="col">Total</th>
+				<th scope="col">Usada</th>
+				<th scope="col">Livre</th>
+				<th scope="col">Opções</th>
+			  </tr>
+			</thead>
+			<tbody>
+				{% for completa in cto_completas %}
+				<tr>
+					<th style="color:red;">{{completa.codigo_cto}}</th>
+					<td style="color:red;">{{completa.rua_cto}}</td>
+					<td style="color:red;">{{completa.numero_rua_cto}}</td>
+					<td style="color:red;">{{completa.pon_cto}}</td>
+					<td style="color:red;">{{completa.conexoes_opticas_cto}}</td>
+					<td style="color:red;">{{completa.quant_conexoes_usadas_cto}}</td>
+					<td style="color:red;">{{completa.livre}}</td>
+					<td>
+						<a href="/cto/editar-terminais-opticos/{{ completa.id }}" ><i class="fas fa-edit"></i>Editar</a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		  </table>
 
-			<h5>Caixas Cheias</h5>
-			<div>
-				<table class="table">
-					<thead>
-					  <tr>
-						<th scope="col">Cód.</th>
-						<th scope="col">Rua</th>
-						<th scope="col">Nº</th>
-						<th scope="col">PON</th>
-						<th scope="col">Total</th>
-						<th scope="col">Usada</th>
-						<th scope="col">Livre</th>
-						<th scope="col">Opções</th>
-					  </tr>
-					</thead>
-					<tbody>
-						{% for completa in cto_completas %}
-
-
-								<tr>
-									<th style="color:red;">{{completa.codigo_cto}}</th>
-									<td style="color:red;">{{completa.rua_cto}}</td>
-									<td style="color:red;">{{completa.numero_rua_cto}}</td>
-									<td style="color:red;">{{completa.pon_cto}}</td>
-									<td style="color:red;">{{completa.conexoes_opticas_cto}}</td>
-									<td style="color:red;">{{completa.quant_conexoes_usadas_cto}}</td>
-									<td style="color:red;">{{completa.livre}}</td>
-									<td>
-										<a href="/cto/editar-terminais-opticos/{{ completa.id }}" ><i class="fas fa-edit"></i>Editar</a>
-									</td>
-								</tr>
-
-						{% endfor %}
-					</tbody>
-				  </table>
-
-
-
-				Números de ocupadas: {{ usadas }}
-
-
-			</div>  	
+</div>  	
 {% endblock %}
