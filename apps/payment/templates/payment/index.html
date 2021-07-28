@@ -8,6 +8,7 @@
 <div class="container-xl">
 
     <h2>Pagamentos</h2>
+    <hr>
   {% if messages %}
     {% for message in messages %}
         <div class="alert {{ message.tags }}" role="alert">
@@ -15,29 +16,97 @@
         </div>
     {% endfor %}
   {% endif %}
-    <hr>
-    <hr>
-    <div align="right">
-        <a href="lista-pagamentos/" class="btn btn-info">Ver todos pagamentos</a>
-        <a href="agendar-pagamento/" class="btn btn-dark">Agendar um pagamento</a>
-        <a href="agendamentos-pagamentos/" class="btn btn-primary">Agenda de pagamentos </a>
-        <a href="cadastrar-pagamento/" class="btn btn-primary">+ Adicionar pagamento </a>
-        <a href="exportar-csv/" class="btn btn-primary">Exportar para CSV </a>
+
+  <!--INÍCIO dos Botões -->
+  <div>
+    <div class="card shadow border-0">
+      <div class="card-body">
+        <div align="right">
+          <a href="lista-pagamentos/" class="btn btn-info">Ver todos pagamentos</a>
+          <a href="agendar-pagamento/" class="btn btn-dark">Agendar um pagamento</a>
+          <a href="agendamentos-pagamentos/" class="btn btn-primary">Agenda de pagamentos </a>
+          <a href="cadastrar-pagamento/" class="btn btn-primary">+ Adicionar pagamento </a>
+          <a href="exportar-csv/" class="btn btn-info" title="Exportar CSV"><i class="fas fa-file-csv"></i></a>
+      </div>
+      </div>
     </div>
+  </div>
+  <!--INÍCIO dos Botões -->
+
+      <!--INÍCIO Custos mês atual -->
+      <div class="card shadow  border-0 mt-4">
+        <div class="card-body">
+          <h5 class="card-title">Custos mês atual </h5>
+          <div class="row">
+            <div class="col shadow">
+              Veículos
+              <h6>R$: {{ veiculosMesAtual.total}}</h6>
+            </div>
+            <div class="col shadow">
+              Funcionários
+              <h6>R$: {{ funcionariosMesAtual.total}}</h6>
+            </div>
+            <div class="col shadow">
+              Alimentação
+              <h6>R$: {{ alimentacaoMesAtual.total}}</h6>
+            </div>
+            <div class="col shadow">
+              Links
+              <h6>R$: {{ linksMesAtual.total}}</h6>
+            </div>
+            <div class="col shadow">
+              Locação
+              <h6>R$: {{ locacaoMesAtual.total}}</h6>
+            </div>
+            <div class="col shadow">
+              Instalação
+              <h6>R$: {{ instalacaoMesAtual.total}}</h6>
+            </div>
+            <div class="col shadow">
+              Sócios
+              <h6>R$: {{ sociosMesAtual.total}}</h6>
+            </div>
+            <div class="col shadow">
+              Impostos
+              <h6>R$: {{ ImpostosMesAtual.total}}</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--FIM Custos mês atual -->
+
+
+
+
+  <!--INÍCIO Custos total mensais-->
+  <div class="card shadow  border-0 mt-4">
+    <div class="card-body">
+      <h5 class="card-title">Custos Total por Mês</h5>
+      {% for mes in mes %}
+        {{ mes.month|date:'F Y' }}: {{ mes.c }}<br>
+      {% endfor %}
+    </div>
+  </div>
+  <!--FIM Custos total mensais-->
+
+
+
+
+
+
     <hr>
+
+    
+
     <hr>
 
     <!-- CUSTOS MENSAIS TOTAIS-->
     <div>
       <h6>Valores de custos Mensais</h6>
-      {% for mes in mes %}
-        {{ mes.month|date:'F Y' }}: {{ mes.c }}<br>
-      {% endfor %}
+      
     </div>
 
-    
-
-
+  
     <div class="table-responsive">
       <table class="table table-bordered">
         <thead>
@@ -160,16 +229,7 @@
                                   labels: ['Veículos','Funcionários','Alimentação','Links','','Locação','','Instalação','','Sócios'],
   ********************************************************************************************************
 -->
-<div>
-  <h6>Mes atual</h6>
- Veículos: {{ veiculosMesAtual.total}}<br>
-  Funcionários: {{ funcionariosMesAtual.total}}<br>
-  Alimentação:{{ alimentacaoMesAtual.total}}<br>
-  Links: {{ linksMesAtual.total}}<br>
-  Locação: {{ locacaoMesAtual.total}}<br>
-  Instalação: {{ instalacaoMesAtual.total}}<br>
-  Sócios: {{ sociosMesAtual.total}}<br>
-</div>
+
 <!--
   ********************************************************************************************************
                                   CUSTOS COM VEÍCULOS

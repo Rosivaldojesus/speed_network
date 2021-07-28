@@ -34,6 +34,7 @@ def Index(request):
     locacaoMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(categoria=5).aggregate(total=Sum('valor_pagamento'))
     instalacaoMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
     sociosMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(categoria=7).aggregate(total=Sum('valor_pagamento'))
+    ImpostosMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(categoria=8).aggregate(total=Sum('valor_pagamento'))
 
 
 
@@ -80,8 +81,7 @@ def Index(request):
                                                   'locacaoMesAtual':locacaoMesAtual,
                                                   'instalacaoMesAtual':instalacaoMesAtual,
                                                   'sociosMesAtual':sociosMesAtual,
-
-
+                                                  'ImpostosMesAtual':ImpostosMesAtual,
 
 
                                                   'mensalVeiculos':mensalVeiculos,
