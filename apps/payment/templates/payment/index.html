@@ -79,15 +79,78 @@
 
 
   <!--INÍCIO Custos total mensais-->
+  <!--
   <div class="card shadow  border-0 mt-4">
     <div class="card-body">
       <h5 class="card-title">Custos Total por Mês</h5>
-      {% for mes in mes %}
-        {{ mes.month|date:'F Y' }}: {{ mes.c }}<br>
-      {% endfor %}
+      {% for mes in mes %} {{ mes.month|date:'F Y' }}: {{ mes.c }}  {% endfor %}
+    </div>
+  </div>
+  -->
+  <!--FIM Custos total mensais-->
+
+  <!---->
+  <!--INÍCIO Custos total mensais-->
+  <div class="card shadow  border-0 mt-4">
+    <div class="card-body">
+      <h5 class="card-title">Custos Total por Mês</h5>
+      <canvas id="speedChart" width="400" height="100"></canvas>
+        <script>
+            var speedCanvas = document.getElementById("speedChart");
+            var speedCanvas = document.getElementById("speedChart");
+
+            Chart.defaults.global.defaultFontFamily = "Lato";
+            Chart.defaults.global.defaultFontSize = 18;
+
+            var speedData = {
+              labels: [
+              {% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}
+            ],
+              datasets: [{
+                label: "Custos (Mensais)",
+                data: [
+                {% for mes in mes %} '{{ mes.c }}', {% endfor %}
+              ],
+                lineTension: 0,
+                fill: false,
+                borderColor: 'blue',
+                backgroundColor: 'transparent',
+                borderDash: [3, 3],
+                pointBorderColor: 'blue',
+                pointBackgroundColor: 'blue',
+                pointRadius: 5,
+                pointHoverRadius: 10,
+                pointHitRadius: 30,
+                pointBorderWidth: 2,
+                pointStyle: 'rectRounded'
+              }]
+            };
+
+            var chartOptions = {
+              legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                  boxWidth: 80,
+                  fontColor: 'black'
+                }
+              }
+            };
+
+            var lineChart = new Chart(speedCanvas, {
+              type: 'line',
+              data: speedData,
+              options: chartOptions
+            });
+    </script>
     </div>
   </div>
   <!--FIM Custos total mensais-->
+  
+
+
+
+  <!---->
 
 
 
