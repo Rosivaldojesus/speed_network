@@ -185,8 +185,8 @@ def ConfirmarPagamento(request, id=None):
 
 
 
-from django.http import HttpResponse
-from django.template import loader
+
+
 
 def ExportarCSV(request):
     # Create the HttpResponse object with the appropriate CSV header.

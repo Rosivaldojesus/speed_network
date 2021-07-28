@@ -20,7 +20,7 @@ def Index(request):
     quant_cto_cadastradas = TerminaisOpticos.objects.all().count()
     quant_cto_completas = TerminaisOpticos.objects.filter(conexoes_opticas_cto=F("quant_conexoes_usadas_cto")) \
         .annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).count()
-    return render(request, 'cto/terminais-opticos.html',{'ctos': ctos,
+    return render(request, 'cto/index.html',{'ctos': ctos,
                                                          'quant_cto_completas': quant_cto_completas,
                                                          'quant_cto_cadastradas': quant_cto_cadastradas,
                                                          })
