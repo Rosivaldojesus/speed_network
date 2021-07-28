@@ -8,7 +8,8 @@ from .models import TerminaisOpticos, Primarias, CaixasDasPrimarias
 from .models import CaixasDeEmenda, PonPorCaixaEmenda
 from django.views.generic.edit import CreateView
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import PrimariasForm
+import csv
+
 
 # Create your views here
 def Index(request):
@@ -56,6 +57,22 @@ class CTOCreate(CreateView):
     success_url = '/cto/'
 
 
+def ExportarCSV(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="lista-CTO.csv"'
+
+    ctos = TerminaisOpticos.objects.all()
+
+    writer = csv.writer(response)
+    writer.writerow(['id', 'codigo_cto', 'rua_cto', 'numero_rua_cto', 'bairro', 'pon_cto', 'conexoes_opticas_cto',
+                     'board_cto', 'quant_conexoes_usadas_cto',
+                     ])
+    for cto in ctos:
+        writer.writerow([cto.id, cto.codigo_cto, cto.rua_cto, cto.numero_rua_cto, cto.bairro, cto.pon_cto,
+                         cto.conexoes_opticas_cto,cto.board_cto, cto.quant_conexoes_usadas_cto,
+                         ])
+    return response
 
 # ------------------------- Caixas de Emenda ----------------
 def CaixasEmenda(request):
