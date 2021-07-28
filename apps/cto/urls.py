@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import Index, EditarCto, CtoCompletas, CTOCreate, CaixasEmenda,\
-    CaixaEmendaVisualizacao, CadastrarCaixaEmenda, EditarCaixasEmendas, CaixaEmendaCreate,\
+from .views import Index, EditarCto, CtoCompletas,  CaixasEmenda,\
+    CaixaEmendaVisualizacao, CadastrarCaixaEmenda, EditarCaixasEmendas, \
     Primaria, VisualizarCaixasPrimarias
 
-from .views import PrimariasCreate
+from .views import PrimariasCreate, CTOCreate, CaixasEmendaCreate
 
 urlpatterns = [
     path('', Index),
@@ -15,9 +15,12 @@ urlpatterns = [
     path('cadastrar-caixas-emenda/', CadastrarCaixaEmenda),
     path('editar-caixas-emenda/<int:id>', EditarCaixasEmendas),
 
-    path('cadastrar-caixa-emenda', CaixaEmendaCreate.as_view(), name='caixa-emenda-create'),
+    path('criar-caixas-emenda/', CaixasEmendaCreate.as_view(), name='criar-caixas-emenda'),
 
     path('primarias/', Primaria),
+
+
+
 
     path('adicionar-primaria/', PrimariasCreate.as_view(), name='adicionar-primaria'),
     path('caixas-primarias/', VisualizarCaixasPrimarias),

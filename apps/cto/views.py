@@ -74,13 +74,11 @@ def CaixaEmendaVisualizacao(request):
                                                                'pons':pons})
 
 #---------------------- Caixas de Emenda ---------------------------------------
-class CaixaEmendaCreate(CreateView):
+class CaixasEmendaCreate(CreateView):
     model = CaixasDeEmenda
-    fields = ['codigo_caixa',
-              'rua_caixa_emenda',
-              'numero_rua_cto',
-             ]
-    success_url = '/cto/'
+    fields = ['codigo_caixa', 'rua_caixa_emenda','numero_rua_cto']
+    success_url = '/cto/caixas-emenda/'
+
 
 
 @login_required(login_url='/login/')
@@ -93,7 +91,7 @@ def CadastrarCaixaEmenda (request):
         #return redirect('/cto/caixas-emenda/')
     else:
         form = CaixasDeEmendaForm()
-    return render(request, 'cto/cadastrar-caixas-emenda.html',{'form':form})
+    return render(request, 'cto/caixasdeemenda_form.html',{'form':form})
 
 
 @login_required(login_url='/login/')
@@ -124,9 +122,6 @@ class PrimariasCreate(CreateView):
     model = Primarias
     fields = ['board', 'pon','localizacao', 'quant_caixas']
     success_url = '/cto/primarias/'
-
-
-
 
 
 def VisualizarCaixasPrimarias(request):
