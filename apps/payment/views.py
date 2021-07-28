@@ -6,6 +6,8 @@ from .forms import CadastarPagamentoForm, AgendarPagamentoForm, ComfirmarPagamen
 from django.contrib import messages
 from django.db.models.functions import ExtractMonth
 from django.db.models.functions import TruncMonth
+import csv
+from django.http import HttpResponse
 
 # Create your views here.
 def Index(request):
@@ -180,3 +182,26 @@ def ConfirmarPagamento(request, id=None):
         messages.success(request, 'Pagamento comfirmado com sucesso.')
         return redirect('/pagamentos/')
     return render(request, 'payment/comfirmar-pagamento.html', {'form': form})
+
+
+
+from django.http import HttpResponse
+from django.template import loader
+
+def ExportarCSV(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="relatorio-pagamentos.csv"'
+
+    pagamentos = Pagamento.objects.all()
+
+    writer = csv.writer(response)
+    writer.writerow(['id', 'data_pagamento', 'motivo_pagamento', 'valor_pagamento', 'origem_valor_pagamento',
+                     'tipo_custo_pagamento', 'categoria', 'status_pago'
+                     ])
+    for pag in pagamentos:
+        writer.writerow([pag.id, pag.data_pagamento, pag.motivo_pagamento, pag.valor_pagamento,
+                         pag.origem_valor_pagamento, pag.tipo_custo_pagamento,  pag.categoria , pag.status_pago
+                         ])
+
+    return response
