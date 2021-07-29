@@ -83,7 +83,9 @@
   <div class="card shadow  border-0 mt-4">
     <div class="card-body">
       <h5 class="card-title">Custos Total por Mês</h5>
-      {% for mes in mes %} {{ mes.month|date:'F Y' }}: {{ mes.c }}  {% endfor %}
+      {% for mes in mes %}
+       {{ mes.month|date:'F Y' }}: {{ mes.c }} <br> 
+       {% endfor %}
     </div>
   </div>
   
