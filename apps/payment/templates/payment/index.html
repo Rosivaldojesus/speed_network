@@ -144,72 +144,7 @@
   </div>
 
   <!--FIM Custos total mensais-->
-
-
-
-
-  <!--INÍCIO Custos total mensais-->
-  <div class="card shadow  border-0 mt-4">
-    <div class="card-body">
-      <h5 class="card-title">Custos Total por Mês</h5>
-      <canvas id="line-chart" width="800" height="450"></canvas>
-      <script>
-                new Chart(document.getElementById("line-chart"), {
-          type: 'line',
-          data: {
-            labels: [{% for veiculos in mensalVeiculos %} '{{ veiculos.month|date:'F Y'}}', {% endfor %}],
-            datasets: [{ 
-                data: [{% for veiculos in mensalVeiculos %} '{{ veiculos.c }}', {% endfor %}],
-                label: "Africa",
-                borderColor: "#3e95cd",
-                fill: false
-              }, { 
-                data: [{% for veiculos in mensalFuncionarios %} '{{ veiculos.c }}', {% endfor %}],
-                label: "Asia",
-                borderColor: "#8e5ea2",
-                fill: false
-              }, { 
-                data: [168,170,178,190,203,276,408,547,675,734],
-                label: "Europe",
-                borderColor: "#3cba9f",
-                fill: false
-              }, { 
-                data: [40,20,10,16,24,38,74,167,508,784],
-                label: "Latin America",
-                borderColor: "#e8c3b9",
-                fill: false
-              }, { 
-                data: [6,3,2,2,7,26,82,172,312,433],
-                label: "North America",
-                borderColor: "#c45850",
-                fill: false
-              }
-            ]
-          },
-          options: {
-            title: {
-              display: true,
-              text: 'World population per region (in millions)'
-            }
-          }
-        });
-      </script>
- 
-    </div>
-  </div>
-
-  <!--FIM Custos total mensais-->
-
-
-
-
-
-
-
-    <hr>
-
-    
-
+    <hr>  
     <hr>
 
     <!-- CUSTOS MENSAIS TOTAIS-->
