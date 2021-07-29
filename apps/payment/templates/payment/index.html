@@ -91,6 +91,56 @@
   
   <!--FIM Custos total mensais-->
 
+
+
+  <!--sdddddddddd-->
+  <div id="chart">
+    <div id="timeline-chartMensais">
+      <script>
+      var options = {
+                series: [{
+                  name: "Veículos",
+                  data: [{% for mes in mes %} '{{ mes.c }}', {% endfor %}]
+
+                  
+              }],
+                chart: {
+                height: 200,
+                type: 'line',
+                zoom: {
+                  enabled: false
+                }
+              },
+              dataLabels: {
+                enabled: false
+              },
+              stroke: {
+                curve: 'straight'
+              },
+              title: {
+                text: 'Custos Mensais',
+                align: 'left'
+              },
+              grid: {
+                row: {
+                  colors: ['#f5f5f5', 'transparent'],
+                  opacity: 0.5
+                },
+              },
+              xaxis: {
+                categories: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
+              }
+              };
+              var chart = new ApexCharts(document.querySelector("#chart"), options);
+              chart.render();
+  
+      </script>
+    </div>
+  </div>
+  
+
+  <!--sdddddddddd-->
+
   <!---->
   <!--INÍCIO Custos total mensais-->
   <div class="card shadow  border-0 mt-4">
