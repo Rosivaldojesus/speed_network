@@ -1,5 +1,3 @@
-import datetime
-from datetime import datetime, date
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect, get_object_or_404
@@ -7,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Sum, Count
 from .models import Instalacao, ValeRefeicao
 from ..components.models import FuncionariosParaVale
-
 from ..services.models import ServicoVoip
 from .forms import InstalacaoCreateForm, InstalacaoUpdateForm,\
     InstalacaoAgendarForm, InstalacaoFinalizarForm, BoletoEntregueForm,\
@@ -288,10 +285,10 @@ def ValeRefeicoes(request):
 
     startdate = request.GET.get('startdate')
     enddate = request.GET.get('enddate')
-
     queryset = request.GET.get('q')
     if startdate and enddate and queryset:
-        vales_com_valor = ValeRefeicao.objects.filter(Q(nome_funcionario__icontains=queryset) & Q(nome_funcionario__range=['startdate', 'enddate']) )
+        vales_com_valor = ValeRefeicao.objects.filter(Q(data_vale__range=[startdate, enddate])
+                                                      & Q(nome_funcionario__icontains=queryset))
 
     return render(request, 'sales/vale-refeicao.html', {'vales_sem_valor': vales_sem_valor,
                                                         'vales_com_valor':vales_com_valor})
