@@ -51,8 +51,13 @@
                       {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master"  %}
                         <li class="nav-item">
                            <a class="nav-link" href="/componentes/ruas/">Ruas</a>
+                        </li>
 
-                        </li><li class="nav-item">
+                        <li class="nav-item">
+                           <a class="nav-link" href="/vendas/vale-refeicao/">Refeições</a>
+                        </li>
+
+                        <li class="nav-item">
                            <a class="nav-link" href="/servicos/">Serviços</a>
                         </li>
 
@@ -68,6 +73,8 @@
                         <li class="nav-item">
                            <a class="nav-link" href="/servicos/servicos-voip/">Voip</a>
                         </li>
+
+
                       {% endif %}
 
                     

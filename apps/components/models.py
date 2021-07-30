@@ -11,7 +11,6 @@ class PlanosInternet(models.Model):
         return "{}".format(self.nome_plano)
 
 
-
 class DataVencimento(models.Model):
     data = models.CharField(max_length=100)
     class Meta:
@@ -81,3 +80,15 @@ class Ruas(models.Model):
 
     def __str__(self):
         return "{}".format(self.logradouro)
+
+
+
+
+class FuncionariosParaVale(models.Model):
+    nome_funcionario = models.CharField(max_length=255, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'Funcionarios Para Vale'
+
+    def __str__(self):
+        return "{}".format(self.nome_funcionario)

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}<title>Adicionar nome de Funcionário para o vale</title>{% endblock %}
+
+{% block main %}
+<div class="container">
+  <h5 class="mt-3 mb-3">Adicionar nome de Funcionário</h5>
+
+
+    <form action="" method="post"> {% csrf_token %}
+        {{ form | crispy }}
+	    {{ form.media }}
+	    <input type="submit" class="btn btn-block btn-primary" value="Cadastrar">
+	</form>
+
+
+</div>
+{% endblock %}

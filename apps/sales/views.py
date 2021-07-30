@@ -1,17 +1,21 @@
 import datetime
 from datetime import datetime, date
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Sum, Count
-from .models import Instalacao
+from .models import Instalacao, ValeRefeicao
+from ..components.models import FuncionariosParaVale
+
 from ..services.models import ServicoVoip
 from .forms import InstalacaoCreateForm, InstalacaoUpdateForm,\
     InstalacaoAgendarForm, InstalacaoFinalizarForm, BoletoEntregueForm,\
-    InstalacaoDefinirTecnicoForm
+    InstalacaoDefinirTecnicoForm, EmitirValeRefeicaoForm, AdicionarValorValeRefeicaoForm
 from ..components.models import Vendedores
 from django.db.models.functions import ExtractMonth
 from django.db.models.functions import TruncMonth
+from django.views.generic.edit import CreateView
 
 
 # Create your views here.
@@ -274,6 +278,53 @@ def ClientesVoip(request):
 
     return render(request, 'sales/clientes-voip.html', {'clientes':clientes,
                                                         'quant_clientes_ativo':quant_clientes_ativo,
-
-
                                                         })
+
+#------------------------------------  VALES  -------------------------------------
+
+def ValeRefeicoes(request):
+    vales_sem_valor = ValeRefeicao.objects.filter(valor_vale__isnull=True)
+    vales_com_valor = ValeRefeicao.objects.filter(valor_vale__isnull=False)
+
+    startdate = request.GET.get('startdate')
+    enddate = request.GET.get('enddate')
+
+    queryset = request.GET.get('q')
+    if startdate and enddate and queryset:
+        vales_com_valor = ValeRefeicao.objects.filter(Q(nome_funcionario__icontains=queryset) & Q(nome_funcionario__range=['startdate', 'enddate']) )
+
+    return render(request, 'sales/vale-refeicao.html', {'vales_sem_valor': vales_sem_valor,
+                                                        'vales_com_valor':vales_com_valor})
+
+
+
+class EmitirValeRefeicaoCreate(SuccessMessageMixin, CreateView):
+    model = ValeRefeicao
+    form_class = EmitirValeRefeicaoForm
+    success_url = '/vendas/vale-refeicao/'
+    success_message = 'Vale emitido com sucesso!!!!'
+
+class AdicionarNomeParaValeCreate(CreateView):
+    model = FuncionariosParaVale
+    fields = ['nome_funcionario']
+    success_url = '/vendas/vale-refeicao/'
+    success_message = 'Nome adicionado com sucesso!!!!'
+
+
+
+
+
+
+@login_required(login_url='/login/')
+def AdicionarValorVale(request, id=None):
+    vale = get_object_or_404(ValeRefeicao, id=id)
+    form = AdicionarValorValeRefeicaoForm(request.POST or None, instance=vale)
+    if form.is_valid():
+        obj = form.save()
+        obj.save()
+        messages.success(request, 'Valor adicionado com sucesso.')
+        return redirect('/vendas/vale-refeicao/')
+    return render(request, 'sales/adicionar-valor-vale.html', {'form': form})
+
+
+

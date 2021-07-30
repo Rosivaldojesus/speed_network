@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}<title>Vale Refeição</title>{% endblock %}
+
+{% block main %}
+<div class="container-xl">
+
+		<!-- INÍCIO Vale Refeição -->
+	<div>
+		<h4>Vale Refeição</h4>
+	</div>
+	<!-- FIM Vale Refeição -->
+
+	<!-- INÍCIO  Messagens -->
+    {% if messages %}
+      {% for message in messages %}
+          <div class="alert {{ message.tags }}" role="alert">
+              {{ message }}
+          </div>
+      {% endfor %}
+    {% endif %}
+	<!-- FIM  Messagens -->
+
+	<!-- INÍCIO Vale Refeição -->
+	<div align="right">
+		<a href="/vendas/emitir-vale-refeicao/" class="btn btn-primary mb-2">Emitir vale</a>
+		<a href="/vendas/adicionar_nome-para-vale/" class="btn btn-info mb-2">Adicionar nome</a>
+	</div>
+	<hr>
+	<hr>
+	<!-- FIM Vale Refeição -->
+
+	<!-- INÍCIO  Campo de Pesquisas -->
+	<form method="GET" class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputNomeFuncionario">Nome do funcionário</label>
+      <input type="search" class="form-control" placeholder="Informe nome do funcionário"  name="q" value="{{ request.GET.q }}">
+      </div>
+           <div class="form-group col-md-3">
+             <label for="inputDataInicial">Data Inicial</label>
+             <input type="date" class="form-control" name="startdate" value="{{ request.GET.startdate }}">
+      </div>
+      <div class="form-group col-md-3">
+             <label for="inputDataFinal">Data Final</label>
+             <input type="date" class="form-control" name="enddate" value="{{ request.GET.enddate}}">
+      </div>
+
+
+    <button class=" form-control btn-success">
+      Buscar
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+             <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+             <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+      </svg>
+  </button>
+  </form>
+	<!-- FIM Campo de Pesquisas -->
+
+
+	<!-- INÍCIO do Corpo da página -->
+	<div class="row">
+		<!-- INÍCIO Tabela com os vales lançados -->
+		<div class="card col-sm-8 mt-4 shadow border-0">
+			<div class="table-responsive-sm">
+				<table class="table">
+				  <thead>
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Nome Funcionário</th>
+						<th scope="col">Valor R$</th>
+						<th scope="col">Data</th>
+					</tr>
+				  </thead>
+				  <tbody>
+				  {% for vale in vales_com_valor %}
+					<tr>
+						<td>{{ vale.id }}</td>
+						<td>{{ vale.nome_funcionario }}</td>
+						<td>R$: {{ vale.valor_vale }}</td>
+						<td>{{ vale.data_vale }}</td>
+					</tr>
+				  {% endfor %}
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		<!-- FIM Tabela com os vales lançados -->  
+		<!-- INÍCIO Tabela com os vales não lançados -->
+		<div class="card col-sm-4 mt-4 shadow border-0">
+			<div align="center">
+				<h4> Vales </h4>
+				<hr>
+				<hr>
+			</div>
+			{% for vale in vales_sem_valor %}
+			<div class="card shadow mt-2 mb-2 border-0">
+				<div class=" ml-2">
+					<strong>{{ vale.nome_funcionario }}</strong><br>
+					Data: {{ vale.data_vale }}<br>
+					<a href="/vendas/adicionar-valor-vale/{{ vale.id }}">Add Valor</a>
+					</div>
+			</div>		
+			{% endfor %}
+		</div>
+		<!-- FIM Tabela com os vales não lançados -->
+	</div>
+
+	<!-- FIM do Corpo da página -->
+  </div>
+{% endblock %}

@@ -2,6 +2,7 @@ from django.utils import timezone
 from ..components.models import PlanosInternet, Cidade, DataVencimento, Vendedores
 from django.db import models
 from django.contrib.auth.models import User
+from ..components.models import FuncionariosParaVale
 from ckeditor.fields import RichTextField
 
 
@@ -63,3 +64,17 @@ class ClientesVoip(models.Model):
 
     def __str__(self):
         return "{}".format(self.nome_usuario_voip)
+
+
+
+class ValeRefeicao(models.Model):
+    nome_funcionario = models.CharField(max_length=255)
+    valor_vale = models.DecimalField(max_digits=8, decimal_places=0, blank=True, null=True)
+    data_criacao = models.DateTimeField(default=timezone.now)
+    data_vale = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = " Vale Refeição"
+
+    def __str__(self):
+        return "{}".format(self.nome_funcionario)

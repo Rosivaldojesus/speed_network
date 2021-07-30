@@ -1,5 +1,7 @@
 from django import forms
-from .models import Instalacao
+from .models import Instalacao, ValeRefeicao
+from ..components.models import FuncionariosParaVale
+from django.forms.widgets import NumberInput
 from django.contrib.auth.models import User
 
 
@@ -129,6 +131,27 @@ class BoletoEntregueForm(forms.ModelForm):
     boleto_entregue = forms.BooleanField(label='Marque para finalizar boleto.')
 
     
+#---------------------------------------------------------------------------------------
+
+class EmitirValeRefeicaoForm(forms.ModelForm):
+    class Meta:
+        model = ValeRefeicao
+        fields = ['nome_funcionario','data_vale']
+        widgets = {
+
+            'data_vale': forms.DateInput(attrs={'type': 'date'}),
+        }
+    nome_funcionario = forms.ModelChoiceField(queryset=FuncionariosParaVale.objects.all().order_by('nome_funcionario'))
+    data_vale = forms.DateField(widget=NumberInput(attrs={'type': 'date'}))
+    valor_vale = forms.DecimalField(required=False)
+
+
+
+class AdicionarValorValeRefeicaoForm(forms.ModelForm):
+    class Meta:
+        model = ValeRefeicao
+        fields = ['valor_vale']
+    valor_vale = forms.DecimalField(required=True)
 
 
 
