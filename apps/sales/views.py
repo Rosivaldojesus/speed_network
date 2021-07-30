@@ -282,16 +282,22 @@ def ClientesVoip(request):
 def ValeRefeicoes(request):
     vales_sem_valor = ValeRefeicao.objects.filter(valor_vale__isnull=True)
     vales_com_valor = ValeRefeicao.objects.filter(valor_vale__isnull=False)
+    valor_pagar = ValeRefeicao.objects.filter().aggregate(total=Sum('valor_vale'))
 
     startdate = request.GET.get('startdate')
     enddate = request.GET.get('enddate')
     queryset = request.GET.get('q')
-    if startdate and enddate and queryset:
+    if startdate and enddate and queryset :
         vales_com_valor = ValeRefeicao.objects.filter(Q(data_vale__range=[startdate, enddate])
                                                       & Q(nome_funcionario__icontains=queryset))
 
+    elif queryset:
+        vales_com_valor = ValeRefeicao.objects.filter(Q(nome_funcionario__icontains=queryset))
+
     return render(request, 'sales/vale-refeicao.html', {'vales_sem_valor': vales_sem_valor,
-                                                        'vales_com_valor':vales_com_valor})
+                                                        'vales_com_valor':vales_com_valor,
+                                                        'valor_pagar':valor_pagar
+                                                        })
 
 
 
