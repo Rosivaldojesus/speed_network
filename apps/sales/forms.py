@@ -143,7 +143,7 @@ class EmitirValeRefeicaoForm(forms.ModelForm):
         }
     nome_funcionario = forms.ModelChoiceField(queryset=FuncionariosParaVale.objects.all().order_by('nome_funcionario'))
     data_vale = forms.DateField(widget=NumberInput(attrs={'type': 'date'}))
-    valor_vale = forms.DecimalField(required=False)
+    #valor_vale = forms.DecimalField(required=False)
 
 
 
