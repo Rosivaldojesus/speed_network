@@ -5,6 +5,7 @@ from .views import Index, CadastroServico, AgendarServico, ServicosAbertos,\
     ServicosVoipDisponiveis, ReservarVoip, ServicosVoipReservados, DeletarServico
 
 
+
 urlpatterns = [
     path('', Index),
     path('cadastro-servico/', CadastroServico),

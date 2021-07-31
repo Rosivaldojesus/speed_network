@@ -7,6 +7,7 @@ from .forms import ReservarVoipForm
 from .models import Servico, ServicoVoip
 from django.db.models import Q, Sum, Count
 
+
 # Create your views here.
 
 def Index(request):
@@ -77,8 +78,17 @@ def EditarServicoAgendado(request, id=None):
 
 
 def ServicosAgendados(request):
-    agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False')\
-        .order_by('data_agendada','hora_agendada')
+    today = date.today()
+    agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').order_by('data_agendada','hora_agendada')
+    queryset = request.GET.get('q')
+    startdate = request.GET.get('startdate')
+    if queryset:
+        agendados = Servico.objects.filter(
+            Q(contato_servico=queryset) |
+            Q(endereco_servico__icontains=queryset))
+    if startdate:
+        agendados = Servico.objects.filter( Q(data_agendada__exact=startdate))
+
     quant_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
     return render(request, 'services/servicos-agendados.html', {'agendados': agendados,
                                                                 'quant_agendados':quant_agendados})
@@ -177,5 +187,6 @@ def ReservarVoip(request, id=None):
         messages.success(request, 'Voip reservado com sucesso!')
         return redirect('/servicos/servicos-voip/')
     return render(request, 'services/reservar-voip.html', {'form': form})
+
 
 
