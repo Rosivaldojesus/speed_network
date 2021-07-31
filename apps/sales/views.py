@@ -8,7 +8,8 @@ from ..components.models import FuncionariosParaVale
 from ..services.models import ServicoVoip
 from .forms import InstalacaoCreateForm, InstalacaoUpdateForm,\
     InstalacaoAgendarForm, InstalacaoFinalizarForm, BoletoEntregueForm,\
-    InstalacaoDefinirTecnicoForm, EmitirValeRefeicaoForm, AdicionarValorValeRefeicaoForm
+    InstalacaoDefinirTecnicoForm, EmitirValeRefeicaoForm,\
+    AdicionarValorValeRefeicaoForm, AdicionarPagamentoValeRefeicaoForm
 from ..components.models import Vendedores
 from django.db.models.functions import ExtractMonth
 from django.db.models.functions import TruncMonth
@@ -197,7 +198,7 @@ def InstalacaoAgendar(request, id=None):
         return redirect('/vendas/instalacao-agendada/')
     return render(request, 'sales/agendar-instalacao.html', {'form': form})
 
-
+@login_required(login_url='/login/')
 def DeletarInstalacaoAgendada(request, id=None):
     install = get_object_or_404(Instalacao, id=id)
     if request.method == "POST":
@@ -258,7 +259,7 @@ def FinalizarEntregaBoleto(request, id=None):
     return render(request, 'sales/finalizar-boleto.html', {'form': form})
 
 #------------------------------------  SERVIÇOS VOIP  -------------------------------------
-
+@login_required(login_url='/login/')
 def Voip(request):
     VendaMes =  ServicoVoip.objects.annotate(month=TruncMonth('data_reserva_voip')).filter().values('month').annotate(c=Count('data_reserva_voip')).values('month', 'c').order_by('month')
     quant_numeros_novos = ServicoVoip.objects.filter(portabilidade_voip='False').count()
@@ -267,7 +268,7 @@ def Voip(request):
                                                'quant_numeros_portabilidade':quant_numeros_portabilidade,
                                                'VendaMes':VendaMes,
                                                })
-
+@login_required(login_url='/login/')
 def ClientesVoip(request):
     clientes = ServicoVoip.objects.filter(reservado_voip='True')
     quant_clientes_ativo = ServicoVoip.objects.filter(reservado_voip='True').count()
@@ -281,7 +282,7 @@ def ClientesVoip(request):
 
 def ValeRefeicoes(request):
     vales_sem_valor = ValeRefeicao.objects.filter(valor_vale__isnull=True)
-    vales_com_valor = ValeRefeicao.objects.filter(valor_vale__isnull=False)
+    vales_com_valor = ValeRefeicao.objects.filter(valor_vale__isnull=False).filter(status_pago=False)
 
     valor_pagar = ValeRefeicao.objects.filter().aggregate(Sum('valor_vale')).get('valor_vale__sum')
 
@@ -312,6 +313,8 @@ class EmitirValeRefeicaoCreate(SuccessMessageMixin, CreateView):
     success_url = '/vendas/vale-refeicao/'
     success_message = 'Vale emitido com sucesso!!!!'
 
+
+
 class AdicionarNomeParaValeCreate(CreateView):
     model = FuncionariosParaVale
     fields = ['nome_funcionario']
@@ -321,9 +324,6 @@ class AdicionarNomeParaValeCreate(CreateView):
 
 
 
-
-
-@login_required(login_url='/login/')
 def AdicionarValorVale(request, id=None):
     vale = get_object_or_404(ValeRefeicao, id=id)
     form = AdicionarValorValeRefeicaoForm(request.POST or None, instance=vale)
@@ -336,3 +336,12 @@ def AdicionarValorVale(request, id=None):
 
 
 
+def AdicionarPagamentoVale(request, id=None):
+    vale = get_object_or_404(Instalacao, id=id)
+    form = AdicionarPagamentoValeRefeicaoForm(request.POST or None, instance=vale)
+    if form.is_valid():
+        obj = form.save()
+        obj.save()
+        messages.success(request, 'Pagamento concluído.')
+        return redirect('/vendas/vale-refeicao/')
+    return render(request, 'sales/adicionar-pagamento-vale.html', {'form': form})

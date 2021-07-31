@@ -5,11 +5,12 @@ from .views import CadastroInstalacao, InstalacaoVisualizacao, InstalacaoEditar,
     InstalacaoConcluida, InstalacaoSemBoleto, InstalacaoFinalizadaSemBoleto,\
     FinalizarEntregaBoleto, InstalacaoDefinirTecnico, VendasInstalacao, \
     InstalacaoConcluidaVendedores, DeletarInstalacaoAgendada, ClientesVoip,\
-    Voip, ValeRefeicoes, EmitirValeRefeicaoCreate, AdicionarValorVale, AdicionarNomeParaValeCreate
+    Voip, ValeRefeicoes, EmitirValeRefeicaoCreate, AdicionarValorVale, \
+    AdicionarNomeParaValeCreate, AdicionarPagamentoVale
 
 
 urlpatterns = [
-      path('', Index),
+    path('', Index),
     path('cadastro-instalacao/', CadastroInstalacao),
     path('instalacao-aberta/visualizar-instalacao/', InstalacaoVisualizacao),
     path('instalacao-agendada/visualizar-instalacao/', InstalacaoVisualizacao),
@@ -35,6 +36,7 @@ urlpatterns = [
 
     path('vale-refeicao/', ValeRefeicoes),
     path('adicionar-valor-vale/<int:id>', AdicionarValorVale),
+    path('adicionar-pagamento-vale/<int:id>', AdicionarPagamentoVale),
 
     path('emitir-vale-refeicao/', EmitirValeRefeicaoCreate.as_view(), name='emitir-vale-refeicao'),
     path('adicionar_nome-para-vale/', AdicionarNomeParaValeCreate.as_view(), name='adicionar_nome-para-vale'),

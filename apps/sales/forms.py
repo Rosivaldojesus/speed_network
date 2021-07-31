@@ -154,6 +154,13 @@ class AdicionarValorValeRefeicaoForm(forms.ModelForm):
     valor_vale = forms.DecimalField(required=True)
 
 
+class AdicionarPagamentoValeRefeicaoForm(forms.ModelForm):
+    class Meta:
+        model = ValeRefeicao
+        fields = ['status_pago']
+    status_pago = forms.BooleanField()
+
+
 
 
 

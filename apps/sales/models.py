@@ -72,6 +72,7 @@ class ValeRefeicao(models.Model):
     valor_vale = models.DecimalField(max_digits=8, decimal_places=0, blank=True, null=True)
     data_criacao = models.DateTimeField(default=timezone.now)
     data_vale = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True)
+    status_pago = models.BooleanField(default=False, verbose_name='Pago')
 
     class Meta:
         verbose_name_plural = " Vale Refeição"

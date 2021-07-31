@@ -16,5 +16,5 @@ admin.site.register(ClientesVoip)
 
 
 class ValeRefeicaoAdmin(admin.ModelAdmin):
-    list_display = ('id','nome_funcionario','valor_vale','data_vale')
+    list_display = ('id','nome_funcionario','data_criacao','data_vale','valor_vale','status_pago')
 admin.site.register(ValeRefeicao, ValeRefeicaoAdmin)
