@@ -24,7 +24,8 @@
 
 	<!-- INÍCIO Vale Refeição -->
 	<div align="right">
-		<a href="#">A pagar ( {{valor_pagar}} ) </a>
+
+		<a href="#" class="btn btn-danger mb-2">A pagar ( R$: {{ valor_pagar }} ) </a>
 		<a href="/vendas/emitir-vale-refeicao/" class="btn btn-primary mb-2">Emitir vale</a>
 		<a href="/vendas/adicionar_nome-para-vale/" class="btn btn-info mb-2">Adicionar nome</a>
 	</div>
@@ -69,6 +70,7 @@
 						<th scope="col">Nome Funcionário</th>
 						<th scope="col">Valor R$</th>
 						<th scope="col">Data</th>
+						<th scope="col">Finalizar</th>
 					</tr>
 				  </thead>
 				  <tbody>
@@ -78,6 +80,9 @@
 						<td>{{ vale.nome_funcionario }}</td>
 						<td>R$: {{ vale.valor_vale }}</td>
 						<td>{{ vale.data_vale }}</td>
+						<td>
+							<a href="#"><i class="fas fa-hand-holding-usd fa-2x color: red;"></i></a>
+						</td>
 					</tr>
 				  {% endfor %}
 				  </tbody>
