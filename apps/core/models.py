@@ -3,6 +3,7 @@ from django.db import models
 from ..components.models import FabricanteEquipamentos, ModelosEquipamentos
 from ..sales.models import Instalacao
 from ..services.models import Servico
+from django.utils import timezone
 
 # Create your models here.
 class Manuais(models.Model):
@@ -40,6 +41,7 @@ class SenhasPorEquipamentos(models.Model):
     senha = models.CharField(max_length=100, blank=True, null=True)
     fabricante = models.ForeignKey(FabricanteEquipamentos, on_delete=models.DO_NOTHING)
     patrimonio_equipamento = models.DecimalField(max_digits=8, decimal_places=0, default=0)
+    data_cadastro = models.DecimalField(default=timezone.now)
 
     class Meta:
         verbose_name_plural = 'Senhas por Equipamentos'
