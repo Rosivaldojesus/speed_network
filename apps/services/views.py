@@ -80,6 +80,7 @@ def EditarServicoAgendado(request, id=None):
 def ServicosAgendados(request):
     today = date.today()
     agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').order_by('data_agendada','hora_agendada')
+    quant_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
     queryset = request.GET.get('q')
     startdate = request.GET.get('startdate')
     if queryset:
@@ -88,10 +89,10 @@ def ServicosAgendados(request):
             Q(endereco_servico__icontains=queryset)).filter(status_concluido='False')
         quant_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
     if startdate:
-        agendados = Servico.objects.filter( Q(data_agendada__exact=startdate)).filter(status_concluido='False')
+        agendados = Servico.objects.filter(Q(data_agendada__exact=startdate)).filter(status_concluido='False')
         quant_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
 
-    quant_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
+
     return render(request, 'services/servicos-agendados.html', {'agendados': agendados,
                                                                 'quant_agendados':quant_agendados})
 
