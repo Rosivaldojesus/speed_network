@@ -132,7 +132,9 @@ def ManuaisVisualizacao(request):
         manual = Manuais.objects.get(id=manual)
     return render(request, 'core/manuais-visualizacao.html',{'manual': manual})
 
-
+#-----------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
 @login_required(login_url='/login/')
 def Senhas(request):
     senhas = SenhasEquipamentos.objects.all()
@@ -143,9 +145,9 @@ def Senhas(request):
 def SenhasPorEquipamento(request):
     senhasPorEquipamentos = SenhasPorEquipamentos.objects.all().order_by('-id')[:15]
 
-    quant_6t = SenhasPorEquipamentos.objects.filter(equipamento=1).count()
-    quant_v5 = SenhasPorEquipamentos.objects.filter(equipamento=2).count()
-    quant_q2 = SenhasPorEquipamentos.objects.filter(equipamento=3).count()
+    quant_6t = SenhasPorEquipamentos.objects.filter(fabricante=1).count()
+    quant_v5 = SenhasPorEquipamentos.objects.filter(fabricante=2).count()
+    quant_q2 = SenhasPorEquipamentos.objects.filter(fabricante=3).count()
 
     queryset = request.GET.get('q')
     if queryset:
@@ -154,6 +156,7 @@ def SenhasPorEquipamento(request):
             Q(sn_equipamento__icontains=queryset) |
             Q(patrimonio_equipamento__icontains=queryset)
         )
+
     return render(request, 'core/senhas-por-equipamento.html', {'senhasPorEquipamentos': senhasPorEquipamentos,
                                                                 'quant_v5':quant_v5,
                                                                 'quant_6t':quant_6t,
