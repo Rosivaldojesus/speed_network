@@ -24,7 +24,7 @@
 {% for aberto in abertos %}
   <div class="card shadow mt-2">
     <div class="mt-2 ml-2 mb-2 mr-2">
-      <h6>Cliente: </h6><hr><p>{{ aberto.contato_servico}}</p>
+      <h6>Cliente: <strong>{{ aberto.contato_servico}}</strong></h6>
       <h6>O que: </h6><p>{{ aberto.servico_para_executar}}</p>
       <h6>Onde: </h6><p>{{ aberto.endereco_servico}}</p>
 
