@@ -143,9 +143,9 @@ def Senhas(request):
 def SenhasPorEquipamento(request):
     senhasPorEquipamentos = SenhasPorEquipamentos.objects.all().order_by('-id')[:15]
 
-    quant_6t = SenhasPorEquipamentos.objects.filter(fabricante=1).count()
-    quant_v5 = SenhasPorEquipamentos.objects.filter(fabricante=2).count()
-    quant_q2 = SenhasPorEquipamentos.objects.filter(fabricante=3).count()
+    quant_6t = SenhasPorEquipamentos.objects.filter(equipamento=1).count()
+    quant_v5 = SenhasPorEquipamentos.objects.filter(equipamento=2).count()
+    quant_q2 = SenhasPorEquipamentos.objects.filter(equipamento=3).count()
 
     queryset = request.GET.get('q')
     if queryset:
