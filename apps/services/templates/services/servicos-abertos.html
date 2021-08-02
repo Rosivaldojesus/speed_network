@@ -18,6 +18,33 @@
   {% endif %}
 
 
+
+
+<!-- INICIO-->
+{% for aberto in abertos %}
+  <div class="card shadow mt-2">
+    <div class="mt-2 ml-2 mb-2 mr-2">
+      <h6>Cliente: </h6><hr><p>{{ aberto.contato_servico}}</p>
+      <h6>O que: </h6><p>{{ aberto.servico_para_executar}}</p>
+      <h6>Onde: </h6><p>{{ aberto.endereco_servico}}</p>
+
+      <div align="right">
+        <a href="/servicos/editar-servico/{{ aberto.id }}" class="btn btn-outline-primary">Editar</a>
+        <a href="/servicos/agendar-servico/{{ aberto.id }}" class="btn btn-outline-success">Agendar</a>
+        <a href="/servicos/remover-servico/{{ aberto.id }}" class="btn btn-outline-danger">Excluir</a>
+      </div>
+    </div>
+
+  </div>
+{% endfor %}
+
+<!--FIM-->
+
+
+
+
+
+<!--
   {% for aberto in abertos %}
   <div class="card mt-3 shadow border-danger">
     <div class="card-header ">
@@ -67,6 +94,8 @@
     </div>
   </div>
   {% endfor %}
+
+-->
 </div>
 </div>
 </div>

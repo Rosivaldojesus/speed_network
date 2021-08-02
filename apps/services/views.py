@@ -1,15 +1,13 @@
 from datetime import datetime, date
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ServicoForm, AgendarServicoForm, EditarAgendarServicoForm,\
-    FinalizarServicoForm
+from .forms import ServicoForm, AgendarServicoForm, EditarAgendarServicoForm, FinalizarServicoForm
 from .forms import ReservarVoipForm
 from .models import Servico, ServicoVoip
 from django.db.models import Q, Sum, Count
 
 
 # Create your views here.
-
 def Index(request):
     contarAbertos = Servico.objects.all().filter().filter(status_agendado='False')\
     .filter(status_concluido='False').count()
@@ -18,7 +16,8 @@ def Index(request):
     contarFinalizados = Servico.objects.all().filter(status_concluido='True').count()
     return render(request, 'services/index.html', {'contarAbertos': contarAbertos,
                                                    'contarFinalizados': contarFinalizados,
-                                                   'contarAgendados': contarAgendados})
+                                                   'contarAgendados': contarAgendados
+                                                   })
 
 def CadastroServico(request):
     form = ServicoForm(request.POST)
@@ -64,7 +63,6 @@ def ServicosAbertos(request):
                                                               })
 
 
-
 def EditarServicoAgendado(request, id=None):
     editarAgendado = get_object_or_404(Servico, id=id)
     form = EditarAgendarServicoForm(request.POST or None, instance=editarAgendado)
@@ -79,7 +77,8 @@ def EditarServicoAgendado(request, id=None):
 
 def ServicosAgendados(request):
     today = date.today()
-    agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').order_by('data_agendada','hora_agendada')
+    agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').\
+        order_by('data_agendada','hora_agendada')
     quant_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
     queryset = request.GET.get('q')
     startdate = request.GET.get('startdate')
@@ -95,10 +94,9 @@ def ServicosAgendados(request):
         quant_agendados = Servico.objects.filter(
             Q(contato_servico=queryset) |
             Q(data_agendada__icontains=startdate)).filter(status_concluido='False').count()
-
     return render(request, 'services/servicos-agendados.html', {'agendados': agendados,
-                                                                'quant_agendados':quant_agendados})
-
+                                                                'quant_agendados':quant_agendados
+                                                                })
 
 def ServicosFinalizados(request):
     finalizados = Servico.objects.filter(status_concluido='True').order_by('-id')
@@ -108,8 +106,8 @@ def ServicosFinalizados(request):
             Q(contato_servico__icontains=queryset))
     quant_finalizados = Servico.objects.filter(status_concluido='True').count()
     return render(request, 'services/servicos-finalizados.html', {'finalizados':finalizados,
-                                                                  'quant_finalizados':quant_finalizados})
-
+                                                                  'quant_finalizados':quant_finalizados
+                                                                  })
 
 def AgendarServico(request, id=None):
     agendar = get_object_or_404(Servico, id=id)
@@ -137,14 +135,14 @@ def FinalizarServico(request, id=None):
     return render(request, 'services/finalizar-servico.html', {'form': form})
 
 
-
 def ServicoVisualizar(request):
     servico = request.GET.get('id')
     if servico:
         servico = Servico.objects.get(id=servico)
     return render(request, 'services/visualizar-servico.html', {'servico': servico})
-
-
+#-----------------------------------------------------------------------------------------------------------------------
+#----------------------------------- SERVIÇOS DE VOIP ------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
 def DeletarServico(request, id=None):
     servico = get_object_or_404(Servico, id=id)
     if request.method == "POST":
@@ -157,7 +155,6 @@ def DeletarServico(request, id=None):
 def ServicosVoip(request):
     voipDisponivel = ServicoVoip.objects.all().filter(reservado_voip='False').filter(finalizado_voip='False')
     quantDisponivel = ServicoVoip.objects.all().filter(reservado_voip='False').filter(finalizado_voip='False').count()
-
     voipReservado = ServicoVoip.objects.all().filter(portabilidade_voip='False').filter(reservado_voip='True')\
     .filter(finalizado_voip='False')
     voipReservadoPortabilidade = ServicoVoip.objects.all().filter(portabilidade_voip='True')\
@@ -165,21 +162,19 @@ def ServicosVoip(request):
     return render(request, 'services/servicos-voip.html', {'voipDisponivel': voipDisponivel,
                                                            'quantDisponivel': quantDisponivel,
                                                            'voipReservado': voipReservado,
-                                                           'voipReservadoPortabilidade':voipReservadoPortabilidade,
-                                                                       })
-
+                                                           'voipReservadoPortabilidade':voipReservadoPortabilidade
+                                                           })
 
 def ServicosVoipDisponiveis(request):
     voipDisponivel = ServicoVoip.objects.all().filter(finalizado_voip='False')
-    return render(request, 'services/servicos-voip-disponiveis.html', {'voipDisponivel': voipDisponivel
-                                                                       })
+    return render(request, 'services/servicos-voip-disponiveis.html', {'voipDisponivel': voipDisponivel})
 
 def ServicosVoipReservados(request):
     voipReservados = ServicoVoip.objects.all().filter(finalizado_voip='False').filter(reservado_voip='True')
     quant_Reservados = ServicoVoip.objects.all().filter(finalizado_voip='False').filter(reservado_voip='True').count()
     return render(request, 'services/servicos-voip-reservados.html', {'voipReservados': voipReservados,
-                                                                      'quant_Reservados': quant_Reservados,
-                                                             })
+                                                                      'quant_Reservados': quant_Reservados
+                                                                      })
 
 def ReservarVoip(request, id=None):
     voip = get_object_or_404(ServicoVoip, id=id)
@@ -193,6 +188,3 @@ def ReservarVoip(request, id=None):
         messages.success(request, 'Voip reservado com sucesso!')
         return redirect('/servicos/servicos-voip/')
     return render(request, 'services/reservar-voip.html', {'form': form})
-
-
-
