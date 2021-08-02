@@ -41,7 +41,7 @@ class SenhasPorEquipamentos(models.Model):
     senha = models.CharField(max_length=100, blank=True, null=True)
     fabricante = models.ForeignKey(FabricanteEquipamentos, on_delete=models.DO_NOTHING)
     patrimonio_equipamento = models.DecimalField(max_digits=8, decimal_places=0, default=0)
-    data_cadastro = models.DecimalField(default=timezone.now)
+    data_cadastro = models.DateTimeField(default=timezone.now)
 
     class Meta:
         verbose_name_plural = 'Senhas por Equipamentos'
