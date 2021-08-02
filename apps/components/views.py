@@ -11,6 +11,7 @@ def Index(request):
 def DirecionamentoServicos(request):
     return render(request, 'components/direcionamento-servicos.html')
 
+
 def RuasAtendidas(request):
     ruas = Ruas.objects.all()
     queryset = request.GET.get('q')

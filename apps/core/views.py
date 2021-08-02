@@ -142,6 +142,11 @@ def Senhas(request):
 @login_required(login_url='/login/')
 def SenhasPorEquipamento(request):
     senhasPorEquipamentos = SenhasPorEquipamentos.objects.all().order_by('-id')[:10]
+
+    quant_6t = SenhasPorEquipamentos.objects.filter(fabricante=1).count()
+    quant_v5 = SenhasPorEquipamentos.objects.filter(fabricante=2).count()
+    quant_q2 = SenhasPorEquipamentos.objects.filter(fabricante=3).count()
+
     queryset = request.GET.get('q')
     if queryset:
         senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(
@@ -149,7 +154,11 @@ def SenhasPorEquipamento(request):
             Q(sn_equipamento__icontains=queryset) |
             Q(patrimonio_equipamento__icontains=queryset)
         )
-    return render(request, 'core/senhas-por-equipamento.html', {'senhasPorEquipamentos': senhasPorEquipamentos})
+    return render(request, 'core/senhas-por-equipamento.html', {'senhasPorEquipamentos': senhasPorEquipamentos,
+                                                                'quant_v5':quant_v5,
+                                                                'quant_6t':quant_6t,
+                                                                'quant_q2':quant_q2,
+                                                                })
 
 
 def CadastroSenhasPorEquipamentos(request):
