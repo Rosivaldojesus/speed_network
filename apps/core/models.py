@@ -21,6 +21,7 @@ class SenhasEquipamentos(models.Model):
     ip_equipamento = models.CharField(max_length=100, blank=True, null=True)
     login = models.CharField(max_length=100, blank=True, null=True)
     senha = models.CharField(max_length=100, blank=True, null=True)
+
     fabricante = models.ForeignKey(FabricanteEquipamentos, on_delete=models.DO_NOTHING)
 
     class Meta:

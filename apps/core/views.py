@@ -141,7 +141,7 @@ def Senhas(request):
 
 @login_required(login_url='/login/')
 def SenhasPorEquipamento(request):
-    senhasPorEquipamentos = SenhasPorEquipamentos.objects.all().order_by('-id')[:10]
+    senhasPorEquipamentos = SenhasPorEquipamentos.objects.all().order_by('-id')[:15]
 
     quant_6t = SenhasPorEquipamentos.objects.filter(fabricante=1).count()
     quant_v5 = SenhasPorEquipamentos.objects.filter(fabricante=2).count()
