@@ -6,11 +6,38 @@
 {% block main %}
 <div class="container">
 
+	<!-- INÍCIO dados dos modens -->
 	{% if request.user.groups.all.0.name == "Master" %}
-		<h6>6T = {{ quant_6t }}</h6>
-		<h6>V5 = {{ quant_v5 }}</h6>
-		<h6>Q2 = {{ quant_q2 }}</h6>
+	<div class="card shadow mt-3 border-0">
+		<div class="row">
+			<div class="col-sm-4">
+			  <div class="card shadow-sm border-0">
+				<div class="card-body">
+				  <h5 class="card-title">6T = {{ quant_6t }}</h5>
+
+				</div>
+			  </div>
+			</div>
+			<div class="col-sm-4">
+			  <div class="card shadow-sm border-0">
+				<div class="card-body">
+				  <h5 class="card-title">V5 = {{ quant_v5 }}</h5>
+
+				</div>
+			  </div>
+			</div>
+			<div class="col-sm-4">
+				<div class="card shadow-sm border-0">
+				  <div class="card-body">
+					<h5 class="card-title">Q2 = {{ quant_q2 }}</h5>
+
+				  </div>
+				</div>
+			  </div>
+		  </div>
+	</div>
 	{% endif %}
+	<!-- FIM dados dos modens -->
 
 
 	<!-- INÍCIO  Campo de Pesquisas-->
