@@ -15,7 +15,7 @@ admin.site.register(SenhasEquipamentos, SenhasEquipamentosAdmin)
 
 
 class SenhasPorEquipamentosAdmin(admin.ModelAdmin):
-    list_display = ('id', 'codigo_equipamento','sn_equipamento', 'equipamento', 'ip_equipamento','login','senha', 'patrimonio_equipamento' )
+    list_display = ('id', 'codigo_equipamento','sn_equipamento', 'equipamento', 'ip_equipamento','login','senha', 'patrimonio_equipamento','data_cadastro' )
     list_display_links = ('id','codigo_equipamento','sn_equipamento')
     search_fields = ('codigo_equipamento',)
     list_filter = ('codigo_equipamento',)

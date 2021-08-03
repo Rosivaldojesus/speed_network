@@ -12,4 +12,4 @@ class SenhasPorEquipamentosForm(forms.ModelForm):
                   'login',
                   'senha',
                   'fabricante',
-                  'patrimonio_equipamento' ]
+                  'patrimonio_equipamento']

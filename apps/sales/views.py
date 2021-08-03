@@ -14,16 +14,18 @@ from ..components.models import Vendedores
 from django.db.models.functions import ExtractMonth
 from django.db.models.functions import TruncMonth
 from django.views.generic.edit import CreateView
+from datetime import datetime, date
 
 
 # Create your views here.
 @login_required(login_url='/login/')
 def Index(request):
+    this_month = date.today().month
     instalacoes = Instalacao.objects.all().order_by('data_instalacao', 'data_instalacao')
     quant_aberta = Instalacao.objects.filter(status_agendada='False').filter(concluido='False').count()
     quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
     quant_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
-    quant_concluida = Instalacao.objects.filter(concluido='True').count()
+    quant_concluida = Instalacao.objects.filter(concluido='True').filter(data_finalizacao__month=this_month).count()
     #Filtrando instalação por Vendedor
     user = request.user
     instalacaoVendedor = Instalacao.objects.filter(instalacao_criado_por=user)
