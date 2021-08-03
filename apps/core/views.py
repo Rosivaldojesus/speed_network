@@ -148,7 +148,7 @@ def SenhasPorEquipamento(request):
     quant_6t = SenhasPorEquipamentos.objects.filter(equipamento=1).count()
     quant_v5 = SenhasPorEquipamentos.objects.filter(equipamento=2).count()
     quant_q2 = SenhasPorEquipamentos.objects.filter(equipamento=3).count()
-    quant_modens = SenhasPorEquipamentos.objects.all().count()
+    quant_modens = SenhasPorEquipamentos.objects.filter().count()
 
     queryset = request.GET.get('q')
     if queryset:
