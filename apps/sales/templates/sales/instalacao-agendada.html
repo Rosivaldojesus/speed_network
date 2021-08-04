@@ -24,10 +24,6 @@
 	</div>
 	<!-- FIM Campo de Pesquisas-->
 
-  <div>
-    <h5 class="mt-3 mb-3"><span class="badge badge-warning badge-pill">{{quant_agendada}} </span> Instalações Agendadas </h5>
-  </div>
-
   <!-- INÍCIO Messagens -->
   {% if messages %}
     {% for message in messages %}
@@ -37,6 +33,14 @@
     {% endfor %}
   {% endif %}      
   <!-- FIM Messagens -->
+  <hr>
+  <hr>
+
+  <div>
+    <h5 class="mt-3 mb-3"><span class="badge badge-warning badge-pill">{{quant_agendada}} </span> Instalações Agendadas </h5>
+  </div>
+
+  
   
   <!-- INÍCIO da lista de instalaçoes agendas-->
   {% for agendada in agendadas %} 
@@ -50,7 +54,7 @@
               <small><strong>Rua:</strong></small>  
                 {{ agendada.rua_cliente }}, {{ agendada.numero_endereco_cliente }}<br>
               <small><strong>Bairro:</strong></small>
-                Bairro: {{ agendada.bairro_cliente }}<br> 
+                {{ agendada.bairro_cliente }}<br> 
               <small><strong>Data Instalação:</strong></small>  
                 {{ agendada.data_instalacao }}  às {{ agendada.hora_instalacao }}<br>
               <small><strong>Observação:</strong></small>  
