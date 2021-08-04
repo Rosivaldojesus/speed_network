@@ -1,210 +1,90 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}<title>:: Instalações  agendadas </title> {% endblock %}
 
 {% block main %}
-<div class="container">
-
-   {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
-
-   <!-- Campo de Pesquisa   -->
-   <div class="mt-2">
+<div class="container-xl">
+  {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
+  <!-- INÍCIO  Campo de Pesquisas-->
+	<div class="mt-3">
 		<form method="GET">
 		   <div class="row">
 			   <div class="form-group col-10">
-                   Por nome de cliente:
-				   <input type="search" class="form-control"
-						  placeholder="Informe o nome do cliente"
+				   <input type="search" class="form-control" placeholder="Informe o nome do cliente"
 						  name="q" value="{{ request.GET.q }}">
 			   </div>
-			   <br><div class="form-group">
+			   <div class="form-group col-2">
 				   <button class=" form-control btn-success">
-					   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-						 <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-						 <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-					   </svg>
+						<i class="fas fa-search"></i>
+						Pesquisar
 				   </button>
 			   </div>
 		   </div>
 	   </form>
-   </div>
-   <!-- Fim do Campo de Pesquisa -->
+	</div>
+	<!-- FIM Campo de Pesquisas-->
 
-    <div>
-        <h5 class="mt-3 mb-3"><span class="badge badge-warning badge-pill">{{quant_agendada}} </span> Instalações Agendadas </h5>
-    </div>
+  <div>
+    <h5 class="mt-3 mb-3"><span class="badge badge-warning badge-pill">{{quant_agendada}} </span> Instalações Agendadas </h5>
+  </div>
 
-    <!-- Messagens -->
-      {% if messages %}
-        {% for message in messages %}
-          <div class="alert {{ message.tags }}" role="alert">
-            {{ message }}
+  <!-- INÍCIO Messagens -->
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert {{ message.tags }}" role="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}      
+  <!-- FIM Messagens -->
+  
+  <!-- INÍCIO da lista de instalaçoes agendas-->
+  {% for agendada in agendadas %} 
+  <div class="card shadow mt-2">
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="card border-0">
+          <div>
+            <small><strong>Nome:</strong></small>
+                {{ agendada.nome_cliente }} {{ agendada.sobrenome_cliente }}<br>
+              <small><strong>Rua:</strong></small>  
+                {{ agendada.rua_cliente }}, {{ agendada.numero_endereco_cliente }}<br>
+              <small><strong>Bairro:</strong></small>
+                Bairro: {{ agendada.bairro_cliente }}<br> 
+              <small><strong>Data Instalação:</strong></small>  
+                {{ agendada.data_instalacao }}  às {{ agendada.hora_instalacao }}<br>
+              <small><strong>Observação:</strong></small>  
+                {{ agendada.observacao_instalacao }}<br> 
           </div>
-        {% endfor %}
-      {% endif %} 
-
-
-    {% for agendada in agendadas %}
-    <div class="card-group  border shadow-sm mt-2">
-      <div class="card border-0 mt-2 ml-4 mb-2">
-        
-          <small><strong>Nome</strong></small>
-            {{ agendada.nome_cliente }} {{ agendada.sobrenome_cliente }}
-          <small><strong>Rua</strong></small>  
-            {{ agendada.rua_cliente }}, {{ agendada.numero_endereco_cliente }}
-          <small><strong>Bairro</strong></small>
-            Bairro: {{ agendada.bairro_cliente }} 
-          <small><strong>Data Instalação</strong></small>  
-            {{ agendada.data_instalacao }}  às {{ agendada.hora_instalacao }}
-          <small><strong>Observação</strong></small>  
-            {{ agendada.observacao_instalacao }}   
-      </div>  
-      <div class="card border-0 mt-4">
-        <div>
-          <a href="/vendas/deletar-instalacao-agendada/{{ agendada.id }}" class="btn btn-danger">Excluir</a>
-          <a href="/vendas/definir-tecnico_instalacao/{{ agendada.id }}" class="btn btn-secondary">Definir Técnico</a>
-          <a href="editar-instalacao/{{ agendada.id }}" class="btn btn-primary">Editar</a>
-          <a href="/vendas/finalizar-instalacao/{{ agendada.id }}" class="btn btn-success">Finalizar</a>
-          <a href="visualizar-instalacao/?id={{ agendada.id }}" class="btn btn-info">Detalhes</a>
-
-            <div class="mt-4">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card border-0">
+          <div>
+            <div>
               
-
-              {% if agendada.funcionario_instalacao is null %}
-              <p style="color:red;">Por favor, defina um responsável pela instalação.</p>
-              {% else %}
-              <p>Responsável pela Instalação: <strong>{{ agendada.funcionario_instalacao.get_full_name }}</strong></p>
-              {% endif %}
-
+              <a href="/vendas/definir-tecnico_instalacao/{{ agendada.id }}" class="btn btn-secondary">Definir Técnico</a>
+              
+              <a href="/vendas/finalizar-instalacao/{{ agendada.id }}" class="btn btn-success">Finalizar</a>
+              <a href="editar-instalacao/{{ agendada.id }}" title="Editar"><i class="fas fa-edit fa-2x"></i></a>
+              <a href="visualizar-instalacao/?id={{ agendada.id }}" title="Visualizar"><i class="fas fa-eye fa-2x"></i></a>
+              <a href="/vendas/deletar-instalacao-agendada/{{ agendada.id }}" title="Excluir" style="color:tomato;"><i class="fas fa-trash-alt fa-2x"></i></a>
+                <div>
+                  {% if agendada.funcionario_instalacao is null %}
+                  <p style="color:red;">Por favor, defina um responsável pela instalação.</p>
+                  {% else %}
+                  <p>Responsável pela Instalação: <strong>{{ agendada.funcionario_instalacao.get_full_name }}</strong></p>
+                  {% endif %}
+                </div>
             </div>
-        </div>
-      </div>
-
-    
-    </div>
-    {% endfor %}
-    </div>
-
-
-    {% elif request.user.groups.all.0.name == "Tecnico" %}
-
-    <div class="mt-4">
-        <h5 class="mt-3 mb-3"><span class="badge badge-warning badge-pill">{{quant_agendada}} </span> Instalações Agendadas </h5>
-    </div>
-
-    <!-- Messagens -->
-      {% if messages %}
-        {% for message in messages %}
-          <div class="alert {{ message.tags }}" role="alert">
-            {{ message }}
           </div>
-        {% endfor %}
-      {% endif %} 
-
-
-    {% for agendada in agendadas %}
-    <div class="card-group  border shadow-sm">
-      <div class="card border-0 mt-2 ml-4 mb-2">
-        
-
-          <small><strong>Nome</strong></small>
-            {{ agendada.nome_cliente }} {{ agendada.sobrenome_cliente }}
-
-          <small><strong>Rua</strong></small>  
-            {{ agendada.rua_cliente }}, {{ agendada.numero_endereco_cliente }}
-
-          
-          <small><strong>Bairro</strong></small>
-            Bairro: {{ agendada.bairro_cliente }} 
-
-          <small><strong>Data Instalação</strong></small>  
-            {{ agendada.data_instalacao }}  às {{ agendada.hora_instalacao }}
-          
-          <small><strong>Observação</strong></small>  
-            {{ agendada.observacao_instalacao }} 
-
-          
-      </div>  
-      <div class="card border-0 mt-4">
-        <div>
-
-          <a href="editar-instalacao/{{ agendada.id }}" class="btn btn-primary">Editar</a>
-
-          <a href="/vendas/finalizar-instalacao/{{ agendada.id }}" class="btn btn-success">Finalizar</a>
-          
-          <a href="visualizar-instalacao/?id={{ agendada.id }}" class="btn btn-info">Detalhes</a>
         </div>
       </div>
-
-
-
-
     </div>
-    {% endfor %}
-    </div>
-
-
-  {% elif request.user.groups.all.0.name == "Venda" %}
-
-    <div class="mt-4">
-        <h5 class="mt-3 mb-3"><span class="badge badge-warning badge-pill">{{quant_agendada_vendedor}} </span> Instalações Agendadas </h5>
-    </div>
-
-    <!-- Messagens -->
-      {% if messages %}
-        {% for message in messages %}
-          <div class="alert {{ message.tags }}" role="alert">
-            {{ message }}
-          </div>
-        {% endfor %}
-      {% endif %}
-
-
-    {% for agendada in agendadas_vendedor %}
-    <div class="card-group  border shadow-sm">
-      <div class="card border-0 mt-2 ml-4 mb-2">
-
-
-          <small><strong>Nome</strong></small>
-            {{ agendada.nome_cliente }} {{ agendada.sobrenome_cliente }}
-
-          <small><strong>Rua</strong></small>
-            {{ agendada.rua_cliente }}, {{ agendada.numero_endereco_cliente }}
-
-
-          <small><strong>Bairro</strong></small>
-            Bairro: {{ agendada.bairro_cliente }}
-
-          <small><strong>Data Instalação</strong></small>
-            {{ agendada.data_instalacao }}  às {{ agendada.hora_instalacao }}
-
-          <small><strong>Observação</strong></small>
-            {{ agendada.observacao_instalacao }}
-
-
-      </div>
-      <div class="card border-0 mt-4">
-        <div>
-
-          <a href="editar-instalacao/{{ agendada.id }}" class="btn btn-primary">Editar</a>
-
-          <a href="/vendas/finalizar-instalacao/{{ agendada.id }}" class="btn btn-success">Finalizar</a>
-
-          <a href="visualizar-instalacao/?id={{ agendada.id }}" class="btn btn-info">Detalhes</a>
-        </div>
-      </div>
+  </div>
+  {% endfor %} 
+  <!-- FIM da lista de instalaçoes agendas-->
       
-    </div>
-    {% endfor %}
-    </div>
-
-
-
-
-
-
-
-
   {%endif %}    
 </div>
-
 {% endblock %}
