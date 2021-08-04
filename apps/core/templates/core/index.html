@@ -15,7 +15,6 @@
  
       <!--INÍCIO das informações de Pagamentos -->
       {% if request.user.groups.all.0.name == "Master" %}
-     
       <h5 class="card-title">Pagamentos</h5>
       <div class="card shadow">
         <div class="row">
@@ -23,7 +22,9 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Atrasadas ( {{ pagamentos_atrasados }} )</h5>
-                <a href="/pagamentos/agendamentos-pagamentos/" class="btn btn-primary">Go somewhere</a>
+                <div align="right">
+                  <a href="/pagamentos/agendamentos-pagamentos/"><i class="fas fa-eye fa-2x"></i></a>
+                </div>
               </div>
             </div>
           </div>
@@ -31,7 +32,9 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Para hoje ( {{pagamentos_para_hoje}} )</h5>
-                <a href="/pagamentos/agendamentos-pagamentos/" class="btn btn-primary">Go somewhere</a>
+                <div align="right">
+                  <a href="/pagamentos/agendamentos-pagamentos/"><i class="fas fa-eye fa-2x"></i></a>
+                </div>
               </div>
             </div>
           </div>
@@ -39,7 +42,9 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Para vencer ( {{pagamentos_para_vencer}} )</h5>
-                <a href="/pagamentos/agendamentos-pagamentos/" class="btn btn-primary">Go somewhere</a>
+                <div align="right">
+                  <a href="/pagamentos/agendamentos-pagamentos/"><i class="fas fa-eye fa-2x"></i></a>
+                </div>
               </div>
             </div>
           </div>
