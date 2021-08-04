@@ -1,74 +1,30 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}<title>:: Instalações em Aberto </title> {% endblock %}
 
 {% block main %}
-  <div class="container">
-
+<div class="container">
+  <!-- INÍCIO Messagens -->
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert {{ message.tags }}" role="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+  <!-- FIM Messagens -->  
+  
     {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
-
+    <hr>
+    <hr>
     <div class="mt-4">
       <h5 class="mt-3 mb-3"><span class="badge badge-danger badge-pill">{{ quant_aberta }} </span> Instalações aberta </h5>
     </div>
-
-         <!-- Messagens -->
-         {% if messages %}
-         {% for message in messages %}
-             <div class="alert {{ message.tags }}" role="alert">
-                 {{ message }}
-             </div>
-           {% endfor %}
-           {% endif %}
-   
-    {% for aberta in abertas %}
     
-    <div class="card-group mt-2 shadow border ">
-      <div class="card border-0 ml-4 mt-2 mb-2">
-
-        <small><strong>Nome: </strong></small>
-          {{ aberta.nome_cliente }} {{ aberta.sobrenome_cliente}}
-          <br>
-          <small><strong>Rua:</strong></small>
-          {{ aberta.rua_cliente }}, {{ aberta.numero_endereco_cliente }}
-          <br>
-          <small><strong>Bairro:</strong></small>
-          {{ aberta.bairro_cliente }}
-      </div>
-
-      <div class="card border-0">
-        <div align="right">
-          {% if request.user.groups.all.0.name == "Adm" %}
-          <a href="/vendas/editar-instalacao/{{ aberta.id }}" class="btn btn-primary">Editar</a>
-          {% endif %}
-        
-          <a href="/vendas/agendar-instalacao/{{ aberta.id }}" class="btn btn-warning">Agendar</a>
-          
-          <a href="visualizar-instalacao/?id={{ aberta.id }}" class="btn btn btn-info">Detalhes</a>
-      </div>
-      </div>
-    </div>
-    <hr>
-    {% endfor %}
-
-    {% elif request.user.groups.all.0.name == "Tecnico" %}
-
-    <div class="mt-4">
-      <h5 class="mt-3 mb-3"><span class="badge badge-danger badge-pill">{{ quant_aberta }} </span> Instalações aberta </h5>
-    </div>
-
-         <!-- Messagens -->
-         {% if messages %}
-         {% for message in messages %}
-             <div class="alert {{ message.tags }}" role="alert">
-                 {{ message }}
-             </div>
-           {% endfor %}
-           {% endif %}
-   
+  <!-- INÍCIO da lista de serviçoes em aberto -->
     {% for aberta in abertas %}
-    
     <div class="card-group mt-2 shadow border ">
       <div class="card border-0 ml-4 mt-2 mb-2">
-
         <small><strong>Nome: </strong></small>
           {{ aberta.nome_cliente }} {{ aberta.sobrenome_cliente}}
           <br>
@@ -78,65 +34,18 @@
           <small><strong>Bairro:</strong></small>
           {{ aberta.bairro_cliente }}
       </div>
-
-      <div class="card border-0">
+      <div class="card border-0 mt-2 ml-2 mr-2">
         <div align="right">
-          {% if request.user.groups.all.0.name == "Adm" %}
           <a href="/vendas/editar-instalacao/{{ aberta.id }}" class="btn btn-primary">Editar</a>
-          {% endif %}
-        
           <a href="/vendas/agendar-instalacao/{{ aberta.id }}" class="btn btn-warning">Agendar</a>
-          
           <a href="visualizar-instalacao/?id={{ aberta.id }}" class="btn btn btn-info">Detalhes</a>
       </div>
       </div>
     </div>
     <hr>
     {% endfor %}
-
-    {% elif request.user.groups.all.0.name == "Venda" %}
-
-    <div class="mt-4">
-      <h5 class="mt-3 mb-3"><span class="badge badge-danger badge-pill">{{ quant_aberta_vendedor }} </span> Instalações aberta </h5>
-  </div>
-
-         <!-- Messagens -->
-         {% if messages %}
-         {% for message in messages %}
-             <div class="alert {{ message.tags }}" role="alert">
-                 {{ message }}
-             </div>
-           {% endfor %}
-           {% endif %}
-
-    {% for aberta in abertas_vendedor %}
-
-    <div class="card-group mt-2 shadow border ">
-      <div class="card border-0 ml-4 mt-2 mb-2">
-
-        <small><strong>Nome: </strong></small>
-          {{ aberta.nome_cliente }} {{ aberta.sobrenome_cliente}}
-          <br>
-          <small><strong>Rua:</strong></small>
-          {{ aberta.rua_cliente }}, {{ aberta.numero_endereco_cliente }}
-          <br>
-          <small><strong>Bairro:</strong></small>
-          {{ aberta.bairro_cliente }}
-      </div>
-
-      <div class="card border-0">
-        <div align="right">
-
-          <a href="/vendas/agendar-instalacao/{{ aberta.id }}" class="btn btn-warning">Agendar</a>
-
-          <a href="visualizar-instalacao/?id={{ aberta.id }}" class="btn btn btn-info">Detalhes</a>
-      </div>
-      </div>
-    </div>
-    <hr>
-    {% endfor %}
-
-    {%endif %}
+  <!-- INÍCIO da lista de serviçoes em aberto -->
+  {% endif %}
       
-  </div>
+</div>
 {% endblock %}
