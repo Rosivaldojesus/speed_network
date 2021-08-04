@@ -15,7 +15,9 @@ def Index(request):
     this_month = date.today().month
     dia = Pagamento.objects.values('data_pagamento').annotate(number=Sum('valor_pagamento')).order_by('-data_pagamento')
     mes = Pagamento.objects.annotate(month=ExtractMonth('data_pagamento')).values('month').annotate(count=Sum('valor_pagamento'))
-    mes =  Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter().values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+
+    #Query para o total de gatos de cada mês
+    mes =  Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__lt=data_atual).filter().values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
 
     pagamentos = Pagamento.objects.all().order_by('-data_pagamento')
 
@@ -38,7 +40,7 @@ def Index(request):
     ImpostosMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(categoria=8).aggregate(total=Sum('valor_pagamento'))
 
 
-
+    #Query para total por mês de custo das categorias
     mensalVeiculos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=1).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     mensalFuncionarios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=2).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     mensalAlimentacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter().filter(categoria=3).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
@@ -48,7 +50,7 @@ def Index(request):
     mensalSocios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=7).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     mensalImpostos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=8).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
 
-
+    #Query para o mês atual das categorias de custos
     atualMensalVeiculos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__month=this_month).filter(categoria=1).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     atualMensalFuncionarios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__month=this_month).filter(categoria=2).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     atualMensalAlimentacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__month=this_month).filter(categoria=3).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
