@@ -40,10 +40,10 @@
   
   <!-- INÍCIO da lista de instalaçoes agendas-->
   {% for agendada in agendadas %} 
-  <div class="card shadow mt-2">
+  <div class="card shadow mt-2 border border-warning">
     <div class="row">
       <div class="col-sm-8">
-        <div class="card border-0">
+        <div class="card border-0 mt-2 mb-2 ml-2">
           <div>
             <small><strong>Nome:</strong></small>
                 {{ agendada.nome_cliente }} {{ agendada.sobrenome_cliente }}<br>
@@ -59,7 +59,7 @@
         </div>
       </div>
       <div class="col-sm-4">
-        <div class="card border-0">
+        <div class="card border-0 mt-2 mb-2 ml-2">
           <div>
             <div>
               
