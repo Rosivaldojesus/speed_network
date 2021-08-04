@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
   <!-- ********************************************************************************************** -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -12,6 +12,43 @@
   <div class="card-group mt-2">
     <!-- INÍCIO LADO ESQUERDO -->
     <div class="card col-sm-9 border-0">
+ 
+      <!--INÍCIO das informações de Pagamentos -->
+      {% if request.user.groups.all.0.name == "Master" %}
+     
+      <h5 class="card-title">Pagamentos</h5>
+      <div class="card shadow">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Atrasadas ( {{ pagamentos_atrasados }} )</h5>
+                <a href="/pagamentos/agendamentos-pagamentos/" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Para hoje ( {{pagamentos_para_hoje}} )</h5>
+                <a href="/pagamentos/agendamentos-pagamentos/" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Para vencer ( {{pagamentos_para_vencer}} )</h5>
+                <a href="/pagamentos/agendamentos-pagamentos/" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      <!--FIM das informações de Pagamentos -->
+      <hr>
+      <hr>
       <!-- INÍCIO Status Serviços-->
       <h5 class="card-title">Status Serviços</h5>
       <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -30,6 +67,7 @@
       </div>
       <!-- FIM Status Serviços-->
         <hr><hr>
+      
       <!-- INÍCIO Status Instalações-->
       <h5 class="card-title">Status Instalaçoes</h5>
       <div class="row">

@@ -14,6 +14,7 @@
 			  <div class="card shadow-sm border-0">
 				<div class="card-body">
 				  <h5 class="card-title">6T = {{ quant_6t }}</h5>
+				  
 
 				</div>
 			  </div>
@@ -44,6 +45,7 @@
 			  </div>
 		  </div>
 	</div>
+	<hr>
 	{% endif %}
 	<!-- FIM dados dos modens -->
 
@@ -91,11 +93,11 @@
 	{% for senha in senhasPorEquipamentos %}
 	<div class="card mt-2 shadow">
 		<div class="card-header">
-			<strong>ID:</strong> ( {{ senha.id }} ) -
+			<strong>ID:</strong>  {{ senha.id }}  -
 			<strong>Código:</strong> {{ senha.codigo_equipamento }} - 
 			<strong>S/N:</strong> {{ senha.sn_equipamento }}</div>
 		<div class="card-group">
-			<div class="card border-0">
+			<div class="card ml-2 border-0">
 				<Small>Fabricante</Small>
 				<strong>{{ senha.fabricante }}</strong>
 			</div>
