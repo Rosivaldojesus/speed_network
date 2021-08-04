@@ -11,6 +11,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 def Index(request):
+    data_atual = datetime.now()
     this_month = date.today().month
     dia = Pagamento.objects.values('data_pagamento').annotate(number=Sum('valor_pagamento')).order_by('-data_pagamento')
     mes = Pagamento.objects.annotate(month=ExtractMonth('data_pagamento')).values('month').annotate(count=Sum('valor_pagamento'))
@@ -23,7 +24,7 @@ def Index(request):
     funcionarios = Pagamento.objects.filter(categoria=2).aggregate(total=Sum('valor_pagamento'))
     alimentacao = Pagamento.objects.filter(categoria=3).aggregate(total=Sum('valor_pagamento'))
     links = Pagamento.objects.filter(categoria=4).aggregate(total=Sum('valor_pagamento'))
-    locacao = Pagamento.objects.filter(categoria=5).aggregate(total=Sum('valor_pagamento'))
+    locacao = Pagamento.objects.filter(data_pagamento__lt=data_atual).filter(categoria=5).aggregate(total=Sum('valor_pagamento'))
     instalacao = Pagamento.objects.filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
     socios = Pagamento.objects.filter(categoria=7).aggregate(total=Sum('valor_pagamento'))
 

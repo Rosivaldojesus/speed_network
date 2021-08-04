@@ -41,6 +41,7 @@ def Index(request):
     #Para pegar o usuário atual
     user = request.user
     #Para filtar quantidade por período
+    data_atual = datetime.now()
     this_year = datetime.now().year
     last_year = datetime.now().year - 1
     this_month = date.today().month
