@@ -279,14 +279,11 @@ def Voip(request):
 def ClientesVoip(request):
     clientes = ServicoVoip.objects.filter(reservado_voip='True')
     quant_clientes_ativo = ServicoVoip.objects.filter(reservado_voip='True').count()
-
-
     return render(request, 'sales/clientes-voip.html', {'clientes':clientes,
                                                         'quant_clientes_ativo':quant_clientes_ativo,
                                                         })
 
 #------------------------------------  VALES  -------------------------------------
-
 def ValeRefeicoes(request):
     vales_sem_valor = ValeRefeicao.objects.filter(valor_vale__isnull=True)
     vales_com_valor = ValeRefeicao.objects.filter(valor_vale__isnull=False).filter(status_pago=False)
@@ -313,7 +310,6 @@ def ValeRefeicoes(request):
                                                         })
 
 
-
 class EmitirValeRefeicaoCreate(SuccessMessageMixin, CreateView):
     model = ValeRefeicao
     form_class = EmitirValeRefeicaoForm
@@ -321,14 +317,11 @@ class EmitirValeRefeicaoCreate(SuccessMessageMixin, CreateView):
     success_message = 'Vale emitido com sucesso!!!!'
 
 
-
 class AdicionarNomeParaValeCreate(CreateView):
     model = FuncionariosParaVale
     fields = ['nome_funcionario']
     success_url = '/vendas/vale-refeicao/'
     success_message = 'Nome adicionado com sucesso!!!!'
-
-
 
 
 def AdicionarValorVale(request, id=None):
@@ -340,7 +333,6 @@ def AdicionarValorVale(request, id=None):
         messages.success(request, 'Valor adicionado com sucesso.')
         return redirect('/vendas/vale-refeicao/')
     return render(request, 'sales/adicionar-valor-vale.html', {'form': form})
-
 
 
 def AdicionarPagamentoVale(request, id=None):

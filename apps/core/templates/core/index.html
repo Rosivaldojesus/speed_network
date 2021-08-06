@@ -16,38 +16,52 @@
       <!--INÍCIO das informações de Pagamentos -->
       {% if request.user.groups.all.0.name == "Master" %}
       <h5 class="card-title">Pagamentos</h5>
-      <div class="card shadow">
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Atrasadas ( {{ pagamentos_atrasados }} )</h5>
-                <div align="right">
-                  <a href="/pagamentos/agendamentos-pagamentos/"><i class="fas fa-eye fa-2x"></i></a>
+        <div>
+          <div class="card shadow">
+            {% if pagamentos_para_hoje >= 1 or pagamentos_atrasados >= 1  %}
+            <div class="row" style="background-color: red;">
+            {% elif pagamentos_para_hoje == 0 %}  
+            <div class="row">
+            {% endif %}
+              <div class="col-sm-4">
+                {% if pagamentos_atrasados >= 1 %}
+                <div class="card" style="background-color: red;">
+                {% elif pagamentos_atrasados >= 0 %}
+                <div class="card border-0 shadow-sm">  
+                {% endif %}  
+                  <div class="card-body">
+                    <h5 class="card-title">Atrasadas ( {{ pagamentos_atrasados }} )</h5>
+                    <div align="right">
+                      <a href="/pagamentos/agendamentos-pagamentos/"><i class="fas fa-eye fa-2x"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                {% if pagamentos_para_hoje >= 1 %}
+                <div class="card" style="background-color: red;">
+                {% elif pagamentos_para_hoje == 0 %}
+                <div class="card border-0 shadow-sm">  
+                {% endif %}  
+                  <div class="card-body">
+                    <h5 class="card-title">Para hoje ( {{pagamentos_para_hoje}} )</h5>
+                    <div align="right">
+                      <a href="/pagamentos/agendamentos-pagamentos/"><i class="fas fa-eye fa-2x"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card border-0 shadow-sm">
+                  <div class="card-body ">
+                    <h5 class="card-title " >Para vencer ( {{pagamentos_para_vencer}} )</h5>
+                    <div align="right">
+                      <a href="/pagamentos/agendamentos-pagamentos/"><i class="fas fa-eye fa-2x"></i></a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Para hoje ( {{pagamentos_para_hoje}} )</h5>
-                <div align="right">
-                  <a href="/pagamentos/agendamentos-pagamentos/"><i class="fas fa-eye fa-2x"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Para vencer ( {{pagamentos_para_vencer}} )</h5>
-                <div align="right">
-                  <a href="/pagamentos/agendamentos-pagamentos/"><i class="fas fa-eye fa-2x"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       {% endif %}
@@ -57,17 +71,26 @@
       <!-- INÍCIO Status Serviços-->
       <h5 class="card-title">Status Serviços</h5>
       <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col shadow">
-          <h5 class="card-title">Aguardando: ( <strong>{{ quant_servico_aberto }}</strong> ) 
-            <a href="servicos/servicos-abertos/" class="btn btn-danger w-100">Ver todos</a>
+        <div class="col">
+          <div class="card h-100 shadow">
+            <div class="card-body">
+              <a href="servicos/servicos-abertos/" class="btn btn-danger w-100">Aguardando: ( <strong>{{ quant_servico_aberto }}</strong> )</a>
+            </div>
+          </div>
         </div>
-        <div class="col shadow">
-          <h5 class="card-title">Agendados: ( <strong>{{ quant_servico_agendado }}</strong> )
-            <a href="servicos/servicos-agendados/" class="btn btn-warning text-white w-100">Ver todos</a>
+        <div class="col">
+          <div class="card h-100 shadow">
+            <div class="card-body">
+              <a href="servicos/servicos-agendados/" class="btn btn-warning text-white w-100">Agendados: ( <strong>{{ quant_servico_agendado }}</strong> )</a>
+            </div>
+          </div>
         </div>
-        <div class="col shadow">
-          <h5 class="card-title">Finalizados:( <strong> {{ quant_servicos_finalizados_mes }}</strong> )
-            <a href="servicos/servicos-finalizados/" class="btn btn-success text-white w-100">Ver todos</a>
+        <div class="col">
+          <div class="card h-100 shadow">
+            <div class="card-body">
+              <a href="servicos/servicos-finalizados/" class="btn btn-success text-white w-100">Finalizados: ( <strong> {{ quant_servicos_finalizados_mes }}</strong> )</a>
+            </div>
+          </div>
         </div>
       </div>
       <!-- FIM Status Serviços-->
@@ -77,20 +100,16 @@
       <h5 class="card-title">Status Instalaçoes</h5>
       <div class="row">
         <div class="col shadow">
-          <h6>Aberto: ( <strong>{{ quant_instalacao_aberta }}</strong> )</h6>
-          <a href="vendas/instalacao-aberta/" class="btn btn-danger w-100">Ver todos</a>
+          <a href="vendas/instalacao-aberta/" class="btn btn-danger w-100"><h6>Aberto: ( <strong>{{ quant_instalacao_aberta }}</strong> )</h6></a>
         </div>
         <div class="col shadow">
-          <h6>Agendado: ( <strong>{{ quant_instalacao_agendada }}</strong> )</h6>
-          <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white w-100">Ver todos</a>
+          <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white w-100"><h6>Agendado: ( <strong>{{ quant_instalacao_agendada }}</strong> )</h6></a>
         </div>
         <div class="col shadow">
-          <h6>Boletos: ( <strong>{{ quant_instalacao_sem_boleto }}</strong> )</h6>
-          <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark w-100">Ver todos </a>
+          <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark w-100"><h6>Boletos: ( <strong>{{ quant_instalacao_sem_boleto }}</strong> )</h6></a>
         </div>
         <div class="col shadow">
-          <h6>Finalizados( <strong>{{ quant_instalacao_finalizados_mes }}</strong> )</h6>
-          <a href="vendas/instalacao-concluida/" class="btn btn-success w-100">Ver todos</a>
+          <a href="vendas/instalacao-concluida/" class="btn btn-success w-100"><h6>Finalizados( <strong>{{ quant_instalacao_finalizados_mes }}</strong> )</h6></a>
         </div>
       </div>
       <!-- FIM Status Instalações-->
