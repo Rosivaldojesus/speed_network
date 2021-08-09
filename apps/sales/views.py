@@ -336,7 +336,7 @@ def AdicionarValorVale(request, id=None):
 
 
 def AdicionarPagamentoVale(request, id=None):
-    vale = get_object_or_404(Instalacao, id=id)
+    vale = get_object_or_404(ValeRefeicao, id=id)
     form = AdicionarPagamentoValeRefeicaoForm(request.POST or None, instance=vale)
     if form.is_valid():
         obj = form.save()
