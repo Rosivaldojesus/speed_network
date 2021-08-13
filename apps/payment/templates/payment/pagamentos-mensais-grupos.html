@@ -7,49 +7,28 @@
         <h4>Grupos de Pagamentos Mensais</h4>
     </div>
 
-    <canvas id="speedChart" width="600" height="400"></canvas>
+    <canvas id="densityChart" width="600" height="400">
 
     <script>
-        var speedCanvas = document.getElementById("speedChart");
+        var densityCanvas = document.getElementById("densityChart");
 
             Chart.defaults.global.defaultFontFamily = "Lato";
             Chart.defaults.global.defaultFontSize = 18;
 
-            var dataFirst = {
-                label: "Car A - Speed (mph)",
-                data: [{% for veiculos in mensalVeiculos %} '{{ veiculos.c }}', {% endfor %}],
-                lineTension: 0,
-                fill: false,
-                borderColor: 'red'
+            var densityData = {
+            label: 'Density of Planets (kg/m3)',
+            data: [{% for veiculos in mensalVeiculos %} '{{ veiculos.c }}', {% endfor %}]
             };
 
-            var dataSecond = {
-    
-            };
-
-            var speedData = {
-            labels: [{% for veiculos in mensalVeiculos %} '{{ veiculos.month|date:'F Y' }}', {% endfor %}],
-            datasets: [dataFirst, dataSecond]
-            };
-
-            var chartOptions = {
-            legend: {
-                display: true,
-                position: 'top',
-                labels: {
-                boxWidth: 80,
-                fontColor: 'black'
-                }
+            var barChart = new Chart(densityCanvas, {
+            type: 'bar',
+            data: {
+                labels: [{% for veiculos in mensalVeiculos %} '{{ veiculos.month|date:'F Y' }}', {% endfor %}],
+                datasets: [densityData]
             }
-            };
-
-            var lineChart = new Chart(speedCanvas, {
-            type: 'line',
-            data: speedData,
-            options: chartOptions
             });
     </script>
-
+</canvas>
 
 
 
