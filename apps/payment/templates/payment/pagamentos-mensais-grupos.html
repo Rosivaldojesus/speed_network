@@ -9,43 +9,55 @@
 
 
 
-<div>
-  <canvas id="speedChartA" width="600" height="100">
-      <script>
+    <canvas id="speedChart" width="400" height="100"></canvas>
+    <script>
+        var speedCanvas = document.getElementById("speedChart");
+        var speedCanvas = document.getElementById("speedChart");
 
-          var speedCanvas = document.getElementById("speedChartA");
+        Chart.defaults.global.defaultFontFamily = "Lato";
+        Chart.defaults.global.defaultFontSize = 18;
 
-          Chart.defaults.global.defaultFontFamily = "Lato";
-          Chart.defaults.global.defaultFontSize = 16;
-
-          var speedData = {
-          labels: [ {% for mensal in mensalVeiculos %}'{{ mensal.month|date:"F Y"  }}',{% endfor %} ],
+        var speedData = {
+          labels: [
+          {% for diario in mensalVeiculos %} '{{ diario.data_finalizacao }}', {% endfor %}
+        ],
           datasets: [{
-              label: "Instalações (mês)",
-              data: [{% for mensal in mensalVeiculos %} '{{ mensal.c }}', {% endfor %}],
+            label: "Instalação (dia)",
+            data: [
+            {% for diario in mensalVeiculos %} '{{ diario.number}}', {% endfor %}
+          ],
+            lineTension: 0,
+            fill: false,
+            borderColor: 'blue',
+            backgroundColor: 'transparent',
+            borderDash: [3, 3],
+            pointBorderColor: 'blue',
+            pointBackgroundColor: 'blue',
+            pointRadius: 5,
+            pointHoverRadius: 10,
+            pointHitRadius: 30,
+            pointBorderWidth: 2,
+            pointStyle: 'rectRounded'
           }]
-          };
+        };
 
-          var chartOptions = {
+        var chartOptions = {
           legend: {
-              display: true,
-              position: 'top',
-              labels: {
+            display: true,
+            position: 'top',
+            labels: {
               boxWidth: 80,
               fontColor: 'black'
-              }
+            }
           }
-          };
+        };
 
-          var lineChart = new Chart(speedCanvas, {
+        var lineChart = new Chart(speedCanvas, {
           type: 'line',
           data: speedData,
           options: chartOptions
-          });
-      </script>
-  </canvas>
-</div>
-
+        });
+</script>
 
 
 
