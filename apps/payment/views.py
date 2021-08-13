@@ -152,6 +152,11 @@ def AgendamentosPagamentos(request):
                                                                      'totalPagarNaoVencidas': totalPagarNaoVencidas,
                                                                      })
 
+def PagamentosFuturos(request):
+    data_atual = datetime.now()
+    naoVencidas = Pagamento.objects.filter(status_pago='False').filter(data_pagamento__gt=data_atual)
+    return render(request, 'payment/pagamentos-futuros.html',{'naoVencidas':naoVencidas})
+
 
 def AgendarPagamento(request):
     form = AgendarPagamentoForm(request.POST)

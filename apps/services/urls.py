@@ -2,7 +2,8 @@ from django.urls import path
 from .views import Index, CadastroServico, AgendarServico, ServicosAbertos,\
     ServicosAgendados, ServicosFinalizados, EditarServico, RemoverServico,\
     EditarServicoAgendado, FinalizarServico, ServicoVisualizar, ServicosVoip,\
-    ServicosVoipDisponiveis, ReservarVoip, ServicosVoipReservados, DeletarServico
+    ServicosVoipDisponiveis, ReservarVoip, ServicosVoipReservados,\
+    DeletarServico, ReservarVoipPortabilidadeCreate
 
 
 
@@ -23,6 +24,10 @@ urlpatterns = [
     path('servicos-voip-disponiveis/', ServicosVoipDisponiveis),
     path('reservar-voip/<int:id>', ReservarVoip),
     path('servicos-voip-reservados/', ServicosVoipReservados),
+
+
     path('deletar-servico/<int:id>', DeletarServico),
+
+    path('reservar-voip-portabilidade/', ReservarVoipPortabilidadeCreate.as_view(), name='reservar-voip-portabilidade'),
 
 ]

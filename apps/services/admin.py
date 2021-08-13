@@ -14,8 +14,11 @@ class ServicoAdmin(admin.ModelAdmin):
     search_fields = ['contato_servico']
 admin.site.register(Servico, ServicoAdmin)
 
+
+
+
 class ServicoVoipForm(admin.ModelAdmin):
-    list_display = ['nome_usuario_voip', 'usuario_voip', 'senha_voip', 'numero_telefone_voip' ]
+    list_display = ['nome_usuario_voip','cpf_usuario_voip', 'usuario_voip', 'senha_voip', 'numero_telefone_voip' ]
     search_fields = ['nome_usuario_voip', 'usuario_voip']
 
 admin.site.register(ServicoVoip, ServicoVoipForm)

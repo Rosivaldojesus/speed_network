@@ -1,10 +1,12 @@
 from datetime import datetime, date
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ServicoForm, AgendarServicoForm, EditarAgendarServicoForm, FinalizarServicoForm
+from .forms import ServicoForm, AgendarServicoForm, EditarAgendarServicoForm,\
+    FinalizarServicoForm, ReservarVoipPortabilidadeForm
 from .forms import ReservarVoipForm
 from .models import Servico, ServicoVoip
 from django.db.models import Q, Sum, Count
+from django.views.generic.edit import CreateView
 
 
 # Create your views here.
@@ -140,15 +142,17 @@ def ServicoVisualizar(request):
     if servico:
         servico = Servico.objects.get(id=servico)
     return render(request, 'services/visualizar-servico.html', {'servico': servico})
-#-----------------------------------------------------------------------------------------------------------------------
-#----------------------------------- SERVIÇOS DE VOIP ------------------------------------------------------------------
-#-----------------------------------------------------------------------------------------------------------------------
+
 def DeletarServico(request, id=None):
     servico = get_object_or_404(Servico, id=id)
     if request.method == "POST":
         servico.delete()
         return redirect('/servicos/')
     return render(request, 'services/deletar-servico.html', {'servico': servico})
+#-----------------------------------------------------------------------------------------------------------------------
+#----------------------------------- SERVIÇOS DE VOIP ------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+
 
 
 
@@ -188,3 +192,13 @@ def ReservarVoip(request, id=None):
         messages.success(request, 'Voip reservado com sucesso!')
         return redirect('/servicos/servicos-voip/')
     return render(request, 'services/reservar-voip.html', {'form': form})
+
+
+class ReservarVoipPortabilidadeCreate(CreateView):
+    model = ServicoVoip
+    fields = ['nome_usuario_voip', 'cpf_usuario_voip']
+    success_url = '/servicos/'
+
+
+
+

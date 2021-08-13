@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<div class="container-xl">
+
+    <div class="mt-4">
+        <h4>Pagamentos Futuros</h4>
+    </div>
+    
+    <hr>
+
+    
+    <hr>           
+    <hr>
+    <!-- CONTAS NÃO VENCIDAS-->
+    <div class="card">
+        <div class="card-header bg-success">
+            Contas Não vencidas
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <th scope="col">Motivo</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">categoria</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Opções</th>
+                </thead>
+                <tbody>
+                    {% for naoVencidas in naoVencidas %}
+                    {% if naoVencidas.status_pago == False %}
+                  <tr>
+                    <td>{{ naoVencidas.motivo_pagamento }}</td>  
+                    <td>{{ naoVencidas.valor_pagamento }}</td>
+                    <td>{{ naoVencidas.data_pagamento | date:" d/m/Y" }}</td>
+                    <td>{{ naoVencidas.categoria }}</td>
+                    <td style="color:red;" title="Não Pago"><i class="fas fa-comments-dollar fa-lg"></i></td>
+                    <td>
+                        <a href="/pagamentos/comfirmar-pagamento/{{ naoVencidas.id }}" title="Pagar"><i class="fas fa-money-check-alt"></i></a>
+                    </td>
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

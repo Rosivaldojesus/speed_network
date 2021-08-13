@@ -85,10 +85,16 @@ class ReservarVoipForm(forms.ModelForm):
         fields = ['nome_usuario_voip',
                   'cpf_usuario_voip',
                   'reservado_voip',
-
                   ]
-
     reservado_voip = forms.BooleanField(label='Marque para reservar.')
 
 
 
+class ReservarVoipPortabilidadeForm(forms.ModelForm):
+    class Meta:
+        model = ServicoVoip
+        fields = ['nome_usuario_voip',
+              'cpf_usuario_voip',
+              'reservado_voip',
+              'portabilidade_voip'
+              ]
