@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<div class="container-xl">
+    <div>
+        <h4>Grupos de Pagamentos Mensais</h4>
+    </div>
+
+
+
+    <div class="card text-dark bg-light mb-3" style="max-width: 100rem;">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+            <div>
+
+                <canvas id="speedChart" width="400" height="100"></canvas>
+                <script>
+                    var speedCanvas = document.getElementById("speedChart");
+                    var speedCanvas = document.getElementById("speedChart");
+
+                    Chart.defaults.global.defaultFontFamily = "Lato";
+                    Chart.defaults.global.defaultFontSize = 18;
+
+                    var speedData = {
+                    labels: [
+                    {% for mensal in mensalVeiculos %} '{{ mensal.month }}', {% endfor %}
+                    ],
+                    datasets: [{
+                        label: "Instalação (dia)",
+                        data: [
+                        {% for mensal in mensalVeiculos %} '{{ mensal.c}}', {% endfor %}
+                    ],
+                        lineTension: 0,
+                        fill: false,
+                        borderColor: 'blue',
+                        backgroundColor: 'transparent',
+                        borderDash: [3, 3],
+                        pointBorderColor: 'blue',
+                        pointBackgroundColor: 'blue',
+                        pointRadius: 5,
+                        pointHoverRadius: 10,
+                        pointHitRadius: 30,
+                        pointBorderWidth: 2,
+                        pointStyle: 'rectRounded'
+                    }]
+                    };
+
+                    var chartOptions = {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                        boxWidth: 80,
+                        fontColor: 'black'
+                        }
+                    }
+                    };
+
+                    var lineChart = new Chart(speedCanvas, {
+                    type: 'line',
+                    data: speedData,
+                    options: chartOptions
+                    });
+            </script> 
+        </div>
+      </div>
+
+
+
+  
+
+
+
+
+</div>
+{% endblock %}

@@ -158,6 +158,30 @@ def PagamentosFuturos(request):
     return render(request, 'payment/pagamentos-futuros.html',{'naoVencidas':naoVencidas})
 
 
+def PagamentosMensaisGrupos(request):
+    data_atual = datetime.now()
+    # Query para total por mês de custo das categorias
+    mensalVeiculos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=1).values(
+        'month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    mensalFuncionarios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=2).values(
+        'month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    mensalAlimentacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter().filter(
+        categoria=3).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    mensalLinks = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=4).values(
+        'month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    mensalLocacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(
+        data_pagamento__lt=data_atual).filter(categoria=5).values('month').annotate(c=Sum('valor_pagamento')).values(
+        'month', 'c').order_by('month')
+    mensalInstalacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=6).values(
+        'month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    mensalSocios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=7).values(
+        'month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    mensalImpostos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=8).values(
+        'month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+
+    return render(request, 'payment/pagamentos-mensais-grupos.html', {'mensalVeiculos':mensalVeiculos})
+
+
 def AgendarPagamento(request):
     form = AgendarPagamentoForm(request.POST)
     if form.is_valid():
