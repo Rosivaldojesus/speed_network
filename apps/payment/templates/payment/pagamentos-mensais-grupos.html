@@ -19,12 +19,12 @@
 
         var speedData = {
           labels: [
-          {% for diario in mensalVeiculos %} '{{ diario.data_finalizacao }}', {% endfor %}
+          {% for veiculos in mensalVeiculos %} '{{ dveiculos.month|date:'F Y' }}', {% endfor %}
         ],
           datasets: [{
             label: "Instalação (dia)",
             data: [
-            {% for diario in mensalVeiculos %} '{{ diario.number}}', {% endfor %}
+            {% for veiculos in mensalVeiculos %} '{{ veiculos.c }}', {% endfor %}
           ],
             lineTension: 0,
             fill: false,
