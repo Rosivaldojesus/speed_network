@@ -158,11 +158,32 @@ def PagamentosFuturos(request):
     return render(request, 'payment/pagamentos-futuros.html',{'naoVencidas':naoVencidas})
 
 
+from django.http import JsonResponse
+
+"""
+   for entry in mensalVeiculos:
+        labels.append(entry['month'])
+        data.append(entry['c'])
+    return JsonResponse(data={
+        'labels': labels,
+        'data': data,
+    })
+"""
 def PagamentosMensaisGrupos(request):
     data_atual = datetime.now()
-    # Query para total por mês de custo das categorias
+
+    labels = []
+    data = []
+
     mensalVeiculos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=1).values(
         'month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    for entry in mensalVeiculos:
+
+
+        labels.append(entry['month'])
+        data.append(entry['c'])
+
+
     mensalFuncionarios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=2).values(
         'month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
     mensalAlimentacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter().filter(
@@ -179,7 +200,10 @@ def PagamentosMensaisGrupos(request):
     mensalImpostos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=8).values(
         'month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
 
-    return render(request, 'payment/pagamentos-mensais-grupos.html', {'mensalVeiculos':mensalVeiculos})
+    return render(request, 'payment/pagamentos-mensais-grupos.html', {
+        'data': data,
+        'labels': labels,
+    })
 
 
 def AgendarPagamento(request):
@@ -217,11 +241,8 @@ def ConfirmarPagamento(request, id=None):
 
 
 
-
-
-
+#Exportando os dados para CSV
 def ExportarCSV(request):
-    # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="relatorio-pagamentos.csv"'
 
@@ -229,11 +250,9 @@ def ExportarCSV(request):
 
     writer = csv.writer(response)
     writer.writerow(['id', 'data_pagamento', 'motivo_pagamento', 'valor_pagamento', 'origem_valor_pagamento',
-                     'tipo_custo_pagamento', 'categoria', 'status_pago'
-                     ])
+                     'tipo_custo_pagamento', 'categoria', 'status_pago'])
     for pag in pagamentos:
         writer.writerow([pag.id, pag.data_pagamento, pag.motivo_pagamento, pag.valor_pagamento,
                          pag.origem_valor_pagamento, pag.tipo_custo_pagamento,  pag.categoria , pag.status_pago
                          ])
-
     return response
