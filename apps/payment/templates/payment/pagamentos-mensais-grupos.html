@@ -7,58 +7,42 @@
         <h4>Grupos de Pagamentos Mensais</h4>
     </div>
 
-    {% for veiculos in mensalVeiculos %}
-              {{ veiculos.month|date:'F Y'}}: {{ veiculos.c }}<br>
+      {% for veiculos in mensalVeiculos %}
+              {{ veiculos.month|date:'F Y'}} : {{ veiculos.c }}<br>
       {% endfor %}
 
-    <canvas id="myChartB" width="400" height="100"></canvas>
-      <script>
-      var ctx = document.getElementById('myChartB');
-      var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-              labels: [
-              {% for veiculos in mensalVeiculos %} '{{ veiculos.month|date:'F Y' }}', {% endfor %}
-                ],
-              datasets: [{
-                  label: '# of Votes',
-                  data: [{% for veiculos in mensalVeiculos %} '{{ veiculos.c }}', {% endfor %}],
-                  backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
-                  ],
-                  borderColor: [
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                  ],
-                  borderWidth: 1
-              }]
-          },
-          options: {
-              scales: {
-                  y: {
-                      beginAtZero: true
-                  }
-              }
-          }
-      });
-      </script>
- 
+  <hr>
 
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <html>
+<head>
+  <meta charset="utf-8">
+  <title>Django Highcharts Example</title>
+</head>
+<body>
+  <div id="container"></div>
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Historic World Population by Region'
+        },
+        xAxis: {
+            categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
+        },
+        series: [  {
+            name: 'Year 2012',
+            data: [{% for veiculos in mensalVeiculos %} {{ veiculos.c }}, {% endfor %}]
+        }]
+    });
+  </script>
+</body>
+</html>
 
-
-   
-
-    {{ labels|date:"M d, Y" }}
-
+    
 
 
     

@@ -172,8 +172,6 @@ from django.http import JsonResponse
 def PagamentosMensaisGrupos(request):
     data_atual = datetime.now()
 
-
-
     mensalVeiculos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=1).values(
         'month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
 
