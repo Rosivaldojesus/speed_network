@@ -31,7 +31,7 @@
             text: 'Historic World Population by Region'
         },
         xAxis: {
-            categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
+            categories: [{% for veiculos in mensalVeiculos %} '{{ veiculos.month|date:'F Y' }}', {% endfor %}]
         },
         series: [  {
             name: 'Year 2012',
