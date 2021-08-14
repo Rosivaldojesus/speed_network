@@ -7,13 +7,26 @@
         <h4>Grupos de Pagamentos Mensais</h4>
     </div>
 
-    <canvas id="myChart" width="400" height="100"></canvas>
+    {% for veiculos in mensalVeiculos %}
+              {{ veiculos.month|date:'F Y'}}: {{ veiculos.c }}<br>
+      {% endfor %}
+
+    <canvas id="myChartB" width="400" height="100"></canvas>
       <script>
-      var ctx = document.getElementById('myChart');
+      var ctx = document.getElementById('myChartB');
       var myChart = new Chart(ctx, {
           type: 'bar',
           data: {
-              labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+              labels: [
+              {% for veiculos in mensalVeiculos %} '{{ veiculos.month|date:'F Y' }}', {% endfor %}
+
+              
+                
+                
+                
+                
+                
+                ],
               datasets: [{
                   label: '# of Votes',
                   data: [12, 19, 3, 5, 2, 3],

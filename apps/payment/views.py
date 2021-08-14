@@ -172,16 +172,13 @@ from django.http import JsonResponse
 def PagamentosMensaisGrupos(request):
     data_atual = datetime.now()
 
-    labels = []
-    data = []
+
 
     mensalVeiculos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=1).values(
         'month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
-    for entry in mensalVeiculos:
 
 
-        labels.append(entry['month'])
-        data.append(entry['c'])
+
 
 
     mensalFuncionarios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=2).values(
@@ -200,10 +197,7 @@ def PagamentosMensaisGrupos(request):
     mensalImpostos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=8).values(
         'month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
 
-    return render(request, 'payment/pagamentos-mensais-grupos.html', {
-        'data': data,
-        'labels': labels,
-    })
+    return render(request, 'payment/pagamentos-mensais-grupos.html',{'mensalVeiculos':mensalVeiculos})
 
 
 def AgendarPagamento(request):
