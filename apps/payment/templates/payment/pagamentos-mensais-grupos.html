@@ -23,21 +23,40 @@
   <div id="container"></div>
   <script src="https://code.highcharts.com/highcharts.src.js"></script>
   <script>
-    Highcharts.chart('container', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Historic World Population by Region'
-        },
-        xAxis: {
-            categories: [{% for veiculos in mensalVeiculos %} '{{ veiculos.month|date:'F Y' }}', {% endfor %}]
-        },
-        series: [  {
-            name: 'Year 2012',
-            data: [{% for veiculos in mensalVeiculos %} {{ veiculos.c }}, {% endfor %}]
-        }]
-    });
+      Highcharts.chart('container', {
+      chart: {
+          type: 'line'
+      },
+      title: {
+          text: 'Monthly Average Temperature'
+      },
+      subtitle: {
+          text: 'Source: WorldClimate.com'
+      },
+      xAxis: {
+          categories: [{% for veiculos in mensalVeiculos %} '{{ veiculos.month|date:'F Y' }}', {% endfor %}]
+      },
+      yAxis: {
+          title: {
+              text: 'Temperature (°C)'
+          }
+      },
+      plotOptions: {
+          line: {
+              dataLabels: {
+                  enabled: true
+              },
+              enableMouseTracking: false
+          }
+      },
+      series: [{
+          name: 'Tokyo',
+          data: [{% for veiculos in mensalVeiculos %} {{ veiculos.c }}, {% endfor %}]
+      }, {
+          name: 'London',
+          data: [3.9, 4.2, 5.7]
+      }]
+  });
   </script>
 </body>
 </html>
