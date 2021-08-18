@@ -11,6 +11,7 @@ urlpatterns = [
     path('servicos/', include('apps.services.urls')),
     path('componentes/', include('apps.components.urls')),
     path('cto/', include('apps.cto.urls')),
+    path('voip/', include('apps.voip.urls')),
 
 
 ]

@@ -1,5 +1,6 @@
 from django import forms
 from .models import Instalacao, ValeRefeicao
+from ..services.models import ServicoVoip
 from ..components.models import FuncionariosParaVale
 from django.forms.widgets import NumberInput
 from django.contrib.auth.models import User
@@ -127,6 +128,13 @@ class InstalacaoFinalizarForm(forms.ModelForm):
 class BoletoEntregueForm(forms.ModelForm):
     class Meta:
         model = Instalacao
+        fields = ['boleto_entregue']
+    boleto_entregue = forms.BooleanField(label='Marque para finalizar boleto.')
+
+#------------------------------ VOIP -------------------------------------------------
+class BoletoVoipEntregueForm(forms.ModelForm):
+    class Meta:
+        model = ServicoVoip
         fields = ['boleto_entregue']
     boleto_entregue = forms.BooleanField(label='Marque para finalizar boleto.')
 

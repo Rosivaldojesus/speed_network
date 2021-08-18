@@ -283,6 +283,13 @@ def ClientesVoip(request):
                                                         'quant_clientes_ativo':quant_clientes_ativo,
                                                         })
 
+def VoipFinalizadoSemBoleto(request):
+    quant_sem_boleto = ServicoVoip.objects.filter(boleto_entregue='False').count()
+    concluidos = ServicoVoip.objects.all()
+    return render(request, 'sales/voip-finalizado-sem-boleto.html', {'quant_sem_boleto':quant_sem_boleto,
+                                                                     'concluidos':concluidos})
+
+
 #------------------------------------  VALES  -------------------------------------
 def ValeRefeicoes(request):
     vales_sem_valor = ValeRefeicao.objects.filter(valor_vale__isnull=True)

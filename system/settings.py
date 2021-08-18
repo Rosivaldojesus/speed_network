@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'apps.payment',
     'apps.services',
     'apps.cto',
+    'apps.voip',
 
 
     'crispy_forms',

@@ -54,7 +54,7 @@ class ServicoVoip(models.Model):
     portabilidade_voip = models.BooleanField(default=False, verbose_name='Portabilidade')
     finalizado_voip = models.BooleanField(default=False, verbose_name='Finalizado')
     funcionario_reserva_voip = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='funcionário_reserva_voip', blank=True, null=True)
-
+    boleto_entregue = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = 'Serviço Voip'

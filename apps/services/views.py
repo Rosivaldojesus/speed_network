@@ -155,7 +155,6 @@ def DeletarServico(request, id=None):
 
 
 
-
 def ServicosVoip(request):
     voipDisponivel = ServicoVoip.objects.all().filter(reservado_voip='False').filter(finalizado_voip='False')
     quantDisponivel = ServicoVoip.objects.all().filter(reservado_voip='False').filter(finalizado_voip='False').count()
