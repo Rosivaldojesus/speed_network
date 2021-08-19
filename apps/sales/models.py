@@ -11,7 +11,7 @@ from ckeditor.fields import RichTextField
 class Instalacao(models.Model):
     nome_cliente = models.CharField(max_length=255, blank=True, null=True, verbose_name='Primeiro nome')
     sobrenome_cliente = models.CharField(max_length=255, blank=True, null=True, verbose_name='Sobrenome')
-    cpf_cliente = models.CharField(max_length=14, blank=True, null=True, verbose_name='CPF')
+    cpf_cliente = models.CharField(max_length=20, blank=True, null=True, verbose_name='CPF')
     cep_cliente = models.CharField(max_length=20, blank=True, null=True, verbose_name='CEP')
     rua_cliente = models.CharField(max_length=100, blank=True, null=True, verbose_name='Rua')
     bairro_cliente = models.CharField(max_length=100, blank=True, null=True, verbose_name='Bairro')

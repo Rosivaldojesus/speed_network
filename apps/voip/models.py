@@ -11,6 +11,7 @@ class ServicoVoip(models.Model):
     reservado_voip = models.BooleanField(default=False, verbose_name='Reservado')
     data_reserva_voip = models.DateField(blank=True, null=True, verbose_name='Data da Reserva')
     portabilidade_voip = models.BooleanField(default=False, verbose_name='Portabilidade')
+    portabilidade_analise = models.BooleanField(default=False, verbose_name='Portabilidade em Análise')
     finalizado_voip = models.BooleanField(default=False, verbose_name='Finalizado')
     funcionario_reserva_voip = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='funcionário_reserva', blank=True, null=True)
     boleto_entregue = models.BooleanField(default=False)

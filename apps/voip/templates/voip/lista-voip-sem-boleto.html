@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<div class="container">
+    <div class="mt-4">
+        <h5 class="mt-3 mb-3">Lista de Voip´s Sem Boleto</h5>
+    </div>
+
+
+    <div>
+        <div class="row">
+            {% for boleto in voip_sem_boleto %}
+            <div class="col-sm-3 mt-2 mb-4">
+              <div class="card shadow">
+                <div class="card-body">
+                    <div class="ml-2">
+                        <p><strong>Cliente:</strong> {{ boleto.nome_usuario_voip }}</p>
+                        <p><strong>Usuário:</strong> {{ boleto.usuario_voip }}</p>
+                        <p><strong>Senha:</strong> {{ boleto.senha_voip }} </p>
+                        <p><strong>Tel.:</strong> {{ boleto.numero_telefone_voip }}</p>
+                        <div class="card-footer bg-transparent border-success">
+                            <div align="right">
+                                <a href="/voip/finalizar-numero-voip-sem-boleto/{{ boleto.id }}" class="btn">Finalizar Boleto</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+    </div>
+
+    
+ 
+
+
+
+
+</div>    
+
+    
+
+
+{% endblock %}

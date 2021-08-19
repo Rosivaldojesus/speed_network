@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<div class="container">
+    <div class="mt-4">
+        <h5 class="mt-3 mb-3">Lista de Portabiliade Aguardando </h5>
+    </div>
+
+
+    <div>
+        <div class="row">
+            {% for aguardando in portabilidade_aguardando %}
+            <div class="col-sm-3 mt-2 mb-4">
+              <div class="card shadow">
+                <div class="card-body">
+                    <div class="ml-2">
+                        <p><strong>Cliente:</strong> {{ aguardando.nome_usuario_voip }}</p>
+                        <p><strong>CPF:</strong> {{ aguardando.cpf_usuario_voip }} </p>
+                        <p><strong>Tel.:</strong> {{ aguardando.numero_telefone_voip}}</p>
+                        <div class="card-footer bg-transparent border-success">
+                            <div align="right">
+                                <a href="/voip/portabilidade-enviar-analise/{{ aguardando.id }}" class="btn">Enviar para análise</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+    </div>
+
+    
+ 
+
+
+
+
+</div>    
+
+    
+
+
+{% endblock %}

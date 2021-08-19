@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .models import ServicoVoip
 
 
+
 class AdicionarNumeroVoipForm(forms.ModelForm):
     class Meta:
         model = ServicoVoip
@@ -11,6 +12,16 @@ class AdicionarNumeroVoipForm(forms.ModelForm):
                   'senha_voip',
                   'numero_telefone_voip'
                ]
+
+
+class SolicitarPortabilidadeVoipForm(forms.ModelForm):
+    class Meta:
+        model = ServicoVoip
+        fields = ['nome_usuario_voip',
+                  'cpf_usuario_voip',
+                  'numero_telefone_voip'
+               ]
+
 
 class ReservarNumeroVoipForm(forms.ModelForm):
     class Meta:
@@ -26,4 +37,16 @@ class FinalizarNumeroVoipForm(forms.ModelForm):
         fields = ['finalizado_voip']
 
 
+#Finaliza o Voip, que ainda não tiveram os beletos conferidos
+class FinalizarNumeroVoipSemBoletoForm(forms.ModelForm):
+    class Meta:
+        model = ServicoVoip
+        fields = ['boleto_entregue']
 
+
+
+
+class PortabilidadeEnviarAnaliseForm(forms.ModelForm):
+    class Meta:
+        model = ServicoVoip
+        fields = ['portabilidade_analise']

@@ -16,11 +16,20 @@
     {% endfor %}
     {% endif %}
     <!-- FIM Messagens -->
+  
 
+    <!--INÍCIO dos botões -->
     <div class="mt-2 mb-2" align="right">
+        <a href="/voip/solicitar-portabilidade-voip/" class="btn btn-primary">Solicitar Portabilidade</a>
         <a href="/voip/adicionar-numero-voip/" class="btn btn-primary">Adicionar número</a>
     </div>
+    <!--FIM dos botões -->
+    <hr>
+    <hr>
 
+
+
+    <!-- INÍCIO dos status dos serviços de Voip -->
     <div>
         <div class="row">
             <div class="col-sm-3">
@@ -28,49 +37,81 @@
                 <div class="card-body">
                   <h5 class="card-title">Disponíveis ( {{ quantidade_voip_disponiveis }} )</h5>
                   <p class="card-text">Lista de números disponíveis.</p>
-                  <a href="/voip/lista-voip-disponiveis/" class="btn btn-primary">Go somewhere</a>
+                  <a href="/voip/lista-voip-disponiveis/" class="btn btn-primary">Ver Todos</a>
                 </div>
               </div>
             </div>
-
             <div class="col-sm-3">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Reservados ( {{ quantidade_voip_reservados }} )</h5>
                   <p class="card-text">Lista de números reservados.</p>
-                  <a href="/voip/lista-voip-reservados/" class="btn btn-primary">Go somewhere</a>
+                  <a href="/voip/lista-voip-reservados/" class="btn btn-primary">Ver Todos</a>
                 </div>
               </div>
             </div>
-
+            <div class="col-sm-3">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Sem Boletos ({{ quantidade_voip_sem_boleto }})</h5>
+                  <p class="card-text">Lista de Clientes sem Boleto.</p>
+                  <a href="/voip/lista-voip-sem-boleto/" class="btn btn-primary">Ver Todos</a>
+                </div>
+              </div>
+          </div>
             <div class="col-sm-3">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">Finalizados</h5>
+                    <h5 class="card-title">Finalizados ( {{ quantidade_voip_finalizados }} )</h5>
                     <p class="card-text">Lista de Voip, finalizados!.</p>
-                    <a href="/voip/lista-voip-finalizados/" class="btn btn-primary">Go somewhere</a>
+                    <a href="/voip/lista-voip-finalizados/" class="btn btn-primary">Ver Todos</a>
                   </div>
                 </div>
             </div>
-
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-            </div>
-
-
-
           </div>
     </div>
+    <!-- INÍCIO dos status dos serviços de Voip -->
+    <hr>
+    <hr>
+    <!-- INICIO Fluxo da Portabiliade -->
+    <div>
+      <div>
+        <h4>Portabilidade</h4>
+      </div>
+      <hr>
 
+      <div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Aguardando ({{ quantidade_portabilidade_aguardando }})</h5>
+                <p class="card-text">Lista de portabilidade aguardando entrada no processo.</p>
+                <a href="/voip/lista-portabilidade-aguardando/" class="btn btn-primary">Ver todos</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Em Análise ({{ quantidade_portabilidade_analise }})</h5>
+                <p class="card-text">Lista de Portabilidade em Análise.</p>
+                <a href="/voip/lista-portabilidade-analise/" class="btn btn-primary">Ver todos</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Concluído</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- INICIO Fluxo da Portabiliade -->
 </div>    
-
-    
-
-
 {% endblock %}
