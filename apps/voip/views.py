@@ -79,7 +79,7 @@ def ListaPortabilidadeAguardando(request):
 
 
 def ListaPortabilidadeAnalise(request):
-    portabilidade_analise = ServicoVoip.objects.filter(reservado_voip='False').filter(portabilidade_voip='True').filter(finalizado_voip='False').filter(boleto_entregue='False')
+    portabilidade_analise  = ServicoVoip.objects.filter(reservado_voip='False').filter(portabilidade_voip='True').filter(portabilidade_analise='True').filter(finalizado_voip='False').filter(boleto_entregue='False')
     return render(request, 'voip/lista-portabilidade-analise.html', {
         'portabilidade_analise':portabilidade_analise})
 

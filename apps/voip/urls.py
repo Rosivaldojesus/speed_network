@@ -23,7 +23,7 @@ urlpatterns = [
     path('solicitar-portabilidade-voip/', SolicitarPortabilidadeVoip.as_view(), name='solicitar-portabilidade-voip'),
 
     path('lista-portabilidade-aguardando/', ListaPortabilidadeAguardando),
-    path('lista-portabilidade-analise', ListaPortabilidadeAnalise),
+    path('lista-portabilidade-analise/', ListaPortabilidadeAnalise),
 
     path('portabilidade-enviar-analise/<int:id>', PortabilidadeEnviarAnalise),
 
