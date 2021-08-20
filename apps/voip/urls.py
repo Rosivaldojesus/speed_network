@@ -6,7 +6,8 @@ from .views import Index, AdicionarNumeroVoip, ListaVoipDisponiveis,\
 from .views import FinalizarNumeroVoipSemBoleto
 
 
-from .views import ListaPortabilidadeAguardando, PortabilidadeEnviarAnalise, ListaPortabilidadeAnalise
+from .views import ListaPortabilidadeAguardando, PortabilidadeEnviarAnalise,\
+    ListaPortabilidadeAnalise, FinalizarPortabiliadeVoip, ListaPortabilidadeFinalizados
 
 urlpatterns = [
     path('', Index),
@@ -24,8 +25,9 @@ urlpatterns = [
 
     path('lista-portabilidade-aguardando/', ListaPortabilidadeAguardando),
     path('lista-portabilidade-analise/', ListaPortabilidadeAnalise),
-
     path('portabilidade-enviar-analise/<int:id>', PortabilidadeEnviarAnalise),
+    path('finalizar-portabilidade-voip/<int:id>', FinalizarPortabiliadeVoip),
+    path('lista-portabilidade-finalizados/', ListaPortabilidadeFinalizados),
 
 
     ]
