@@ -56,7 +56,7 @@ def ListaVoipDisponiveis(request):
     return render(request, 'voip/lista-voip-disponiveis.html', {'voip_disponiveis': voip_disponiveis})
 
 def ListaVoipReservados(request):
-    voip_reservados = ServicoVoip.objects.filter(reservado_voip='True').filter(boleto_entregue='False').filter(finalizado_voip='False')
+    voip_reservados = ServicoVoip.objects.filter(reservado_voip='True').filter(portabilidade_voip='False').filter(boleto_entregue='False').filter(finalizado_voip='False')
     return render(request, 'voip/lista-voip-reservados.html', {'voip_reservados': voip_reservados})
 
 
