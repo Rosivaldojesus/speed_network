@@ -9,11 +9,22 @@ from django.contrib import messages
 
 # Create your views here.
 def Index(request):
-    quantidade_voip_disponiveis = ServicoVoip.objects.filter(reservado_voip='False').filter(finalizado_voip='False').filter(boleto_entregue='False').count()
-    quantidade_voip_reservados = ServicoVoip.objects.filter(reservado_voip='True').filter(finalizado_voip='False').filter(boleto_entregue='False').count()
-    quantidade_voip_sem_boleto = ServicoVoip.objects.filter(reservado_voip='True').filter(finalizado_voip='True').filter(boleto_entregue='False').count()
-    quantidade_voip_finalizados = ServicoVoip.objects.filter(reservado_voip='True').filter(finalizado_voip='True').filter(boleto_entregue='True').count()
+    #Contagem referentes ao números novos
+    quantidade_voip_disponiveis = ServicoVoip.objects.filter(reservado_voip='False').\
+        filter(finalizado_voip='False').\
+        filter(boleto_entregue='False').count()
+    quantidade_voip_reservados = ServicoVoip.objects.filter(reservado_voip='True').\
+        filter(portabilidade_voip='False').\
+        filter(finalizado_voip='False').\
+        filter(boleto_entregue='False').count()
+    quantidade_voip_sem_boleto = ServicoVoip.objects.filter(reservado_voip='True').\
+        filter(finalizado_voip='True').filter(boleto_entregue='False').count()
+    quantidade_voip_finalizados = ServicoVoip.objects.\
+        filter(reservado_voip='True').\
+        filter(finalizado_voip='True').\
+        filter(boleto_entregue='True').count()
 
+    # Contagem referentes ao números de portabiliade
     quantidade_portabilidade_aguardando = ServicoVoip.objects.filter(reservado_voip='True').\
         filter(portabilidade_voip='True'). \
         filter(portabilidade_analise='False').\
@@ -180,4 +191,3 @@ def FinalizarNumeroVoipSemBoleto(request, id=None):
         messages.success(request, 'Boleto verificado!')
         return redirect('/voip/')
     return render(request, 'voip/finalizar-numero-voip-sem-boleto.html', {'form': form})
-
