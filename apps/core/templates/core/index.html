@@ -98,26 +98,29 @@
       <hr>
       <hr>
       <!-- INÍCIO Status Serviços-->
-      <h5 class="card-title">Status Serviços</h5>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-          <div class="card h-100 shadow">
-            <div class="card-body">
-              <a href="servicos/servicos-abertos/" class="btn btn-danger w-100">Aguardando: ( <strong>{{ quant_servico_aberto }}</strong> )</a>
+      
+      <div class="shadow">
+        <h5 class="card-title ml-2 mt-2">Status Serviços</h5>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col">
+            <div class="card border-0">
+              <div class="card-body">
+                <a href="servicos/servicos-abertos/" class="btn btn-danger w-100">Aguardando: ( <strong>{{ quant_servico_aberto }}</strong> )</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="card h-100 shadow">
-            <div class="card-body">
-              <a href="servicos/servicos-agendados/" class="btn btn-warning text-white w-100">Agendados: ( <strong>{{ quant_servico_agendado }}</strong> )</a>
+          <div class="col">
+            <div class="card border-0">
+              <div class="card-body">
+                <a href="servicos/servicos-agendados/" class="btn btn-warning text-white w-100">Agendados: ( <strong>{{ quant_servico_agendado }}</strong> )</a>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="card h-100 shadow">
-            <div class="card-body">
-              <a href="servicos/servicos-finalizados/" class="btn btn-success text-white w-100">Finalizados: ( <strong> {{ quant_servicos_finalizados_mes }}</strong> )</a>
+          <div class="col">
+            <div class="card border-0">
+              <div class="card-body">
+                <a href="servicos/servicos-finalizados/" class="btn btn-success text-white w-100">Finalizados: ( <strong> {{ quant_servicos_finalizados_mes }}</strong> )</a>
+              </div>
             </div>
           </div>
         </div>
@@ -126,19 +129,21 @@
         <hr><hr>
       
       <!-- INÍCIO Status Instalações-->
-      <h5 class="card-title">Status Instalaçoes</h5>
-      <div class="row">
-        <div class="col shadow">
-          <a href="vendas/instalacao-aberta/" class="btn btn-danger w-100"><h6>Aberto: ( <strong>{{ quant_instalacao_aberta }}</strong> )</h6></a>
-        </div>
-        <div class="col shadow">
-          <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white w-100"><h6>Agendado: ( <strong>{{ quant_instalacao_agendada }}</strong> )</h6></a>
-        </div>
-        <div class="col shadow">
-          <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark w-100"><h6>Boletos: ( <strong>{{ quant_instalacao_sem_boleto }}</strong> )</h6></a>
-        </div>
-        <div class="col shadow">
-          <a href="vendas/instalacao-concluida/" class="btn btn-success w-100"><h6>Finalizados( <strong>{{ quant_instalacao_finalizados_mes }}</strong> )</h6></a>
+      <div class="shadow">
+        <h5 class="card-title ml-2 mt-2">Status Instalaçoes</h5>
+        <div class="row mb-2 mr-2 ml-2">
+          <div class="col">
+            <a href="vendas/instalacao-aberta/" class="btn btn-danger w-100"><h6>Aberto: ( <strong>{{ quant_instalacao_aberta }}</strong> )</h6></a>
+          </div>
+          <div class="col">
+            <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white w-100"><h6>Agendado: ( <strong>{{ quant_instalacao_agendada }}</strong> )</h6></a>
+          </div>
+          <div class="col">
+            <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark w-100"><h6>Boletos: ( <strong>{{ quant_instalacao_sem_boleto }}</strong> )</h6></a>
+          </div>
+          <div class="col">
+            <a href="vendas/instalacao-concluida/" class="btn btn-success w-100"><h6>Finalizados( <strong>{{ quant_instalacao_finalizados_mes }}</strong> )</h6></a>
+          </div>
         </div>
       </div>
       <!-- FIM Status Instalações-->
@@ -146,10 +151,12 @@
 
 
       <!-- INÍCIO Serviços de Voip-->
-      <div>
+      
+      <div class="shadow">
+        <h5 class="card-title ml-2 mt-2">Serviços VOIP</h5>
         <div class="row">
             <div class="col-sm-4">
-              <div class="card">
+              <div class="card border-0">
                 <div class="card-body">
   
                   <a href="/voip/lista-voip-disponiveis/" class="btn btn-primary w-100" >Disponíveis ( {{ quantidade_voip_disponiveis }}</a>
@@ -157,7 +164,7 @@
               </div>
             </div>
             <div class="col-sm-4">
-              <div class="card">
+              <div class="card border-0">
                 <div class="card-body">
 
                   <a href="/voip/lista-voip-reservados/" class="btn btn-primary w-100">Reservados ( {{ quantidade_voip_reservados }} )</a>
@@ -165,26 +172,21 @@
               </div>
             </div>
             <div class="col-sm-4">
-              <div class="card">
+              <div class="card border-0">
                 <div class="card-body">
 
                   <a href="/voip/lista-voip-sem-boleto/" class="btn btn-primary w-100">Sem Boletos ({{ quantidade_voip_sem_boleto }})</a>
                 </div>
               </div>
-          </div>
-              </div>
+            </div>
+        </div>
     </div>
 
 
       <!-- FIM Serviços de Voip-->
 
 
-
-
-
-
-
-
+      
       <!-- 
       <h5 class="card-title">Serviços VOIP</h5>
       <div class="row row-cols-1 row-cols-md-3 g-4">
