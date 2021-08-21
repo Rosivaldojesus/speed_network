@@ -4,7 +4,8 @@ from django.db.models import Q, Count
 from django.shortcuts import render, redirect,get_object_or_404
 from ..sales.models import Instalacao
 from ..payment.models import Pagamento
-from ..services.models import Servico, ServicoVoip
+from ..services.models import Servico
+from ..voip.models import ServicoVoip
 from ..core.models import Manuais, SenhasEquipamentos, SenhasPorEquipamentos
 from django.db.models.functions import ExtractMonth
 from django.contrib.auth.decorators import login_required
@@ -90,6 +91,42 @@ def Index(request):
 
     pagamentos_para_hoje = Pagamento.objects.filter(status_pago= 'False').filter(data_pagamento=data_atual).count()
 
+    #---------------------------- SERVIÇOS DE VOIP ---------------------------------------------
+    # Contagem referentes ao números novos voip
+    quantidade_voip_disponiveis = ServicoVoip.objects.filter(reservado_voip='False'). \
+        filter(finalizado_voip='False'). \
+        filter(boleto_entregue='False').count()
+    quantidade_voip_reservados = ServicoVoip.objects.filter(reservado_voip='True'). \
+        filter(portabilidade_voip='False'). \
+        filter(finalizado_voip='False'). \
+        filter(boleto_entregue='False').count()
+    quantidade_voip_sem_boleto = ServicoVoip.objects.filter(reservado_voip='True'). \
+        filter(finalizado_voip='True').filter(boleto_entregue='False').count()
+    quantidade_voip_finalizados = ServicoVoip.objects. \
+        filter(reservado_voip='True'). \
+        filter(finalizado_voip='True'). \
+        filter(boleto_entregue='True').count()
+
+    # Contagem referentes ao números de portabiliade
+    quantidade_portabilidade_aguardando = ServicoVoip.objects.filter(reservado_voip='True'). \
+        filter(portabilidade_voip='True'). \
+        filter(portabilidade_analise='False'). \
+        filter(finalizado_voip='False'). \
+        filter(boleto_entregue='False').count()
+    quantidade_portabilidade_analise = ServicoVoip.objects.filter(reservado_voip='True'). \
+        filter(portabilidade_voip='True'). \
+        filter(portabilidade_analise='True'). \
+        filter(finalizado_voip='False'). \
+        filter(boleto_entregue='False').count()
+    quantidade_portabilidade_finalizados = ServicoVoip.objects.filter(reservado_voip='True'). \
+        filter(portabilidade_voip='True'). \
+        filter(portabilidade_analise='True'). \
+        filter(finalizado_voip='True'). \
+        filter(boleto_entregue='False').count()
+
+
+
+
     
     
     return render(request, 'core/index.html',{'pendentes':pendentes,
@@ -126,7 +163,21 @@ def Index(request):
                                               #Pagamentos
                                               'pagamentos_atrasados':pagamentos_atrasados,
                                               'pagamentos_para_vencer':pagamentos_para_vencer,
-                                              'pagamentos_para_hoje':pagamentos_para_hoje
+                                              'pagamentos_para_hoje':pagamentos_para_hoje,
+
+                                              #Voips
+                                              'quantidade_voip_disponiveis':quantidade_voip_disponiveis,
+                                              'quantidade_voip_reservados':quantidade_voip_reservados,
+                                              'quantidade_voip_sem_boleto':quantidade_voip_sem_boleto,
+                                              'quantidade_voip_finalizados':quantidade_voip_finalizados,
+
+                                              'quantidade_portabilidade_aguardando':quantidade_portabilidade_aguardando,
+                                              'quantidade_portabilidade_analise':quantidade_portabilidade_analise,
+                                              'quantidade_portabilidade_finalizados':quantidade_portabilidade_finalizados,
+
+
+
+
                                               })
 
 
