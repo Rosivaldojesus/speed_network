@@ -46,52 +46,69 @@ def Index(request):
     this_year = datetime.now().year
     last_year = datetime.now().year - 1
     this_month = date.today().month
-    #Query dos serviços
+
+    #------------------------------------ Query dos serviços -----------------------------------------------------------
     pendentes = Instalacao.objects.all().count()
     quant_servico_aberto = Servico.objects.filter(status_agendado='False').filter(status_concluido='False').count()
     quant_servico_agendado = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
     quant_servico_finalizados = Servico.objects.all().filter(status_concluido='True').count()
     quant_servicos_finalizados_mes = Servico.objects.filter(data_finalizacao__month=this_month).count()
-    # Query das Instalações
+
+    #------------------------------------- Query das Instalações -------------------------------------------------------
     quant_instalacao_aberta = Instalacao.objects.filter(status_agendada='False').filter(concluido='False').count()
     quant_instalacao_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
     quant_instalacao_concluida = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='True').count()
     quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
     quant_instalacao_finalizados_mes = Instalacao.objects.filter(data_finalizacao__month=this_month).count()
-    responsavel_instalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').order_by('funcionario_instalacao', 'data_instalacao', 'hora_instalacao')
-    hora_instalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').values('data_instalacao').annotate(number=Count('id')).order_by('data_instalacao')
+    responsavel_instalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').\
+        order_by('funcionario_instalacao', 'data_instalacao', 'hora_instalacao')
+    hora_instalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').\
+        values('data_instalacao').annotate(number=Count('id')).order_by('data_instalacao')
     ultimas_vendas = Instalacao.objects.filter().order_by('-id')[:6]
-    #Query das Previsões de serviços e Instalaçãoes
+
+    #-------------------------------------- Query das Previsões de serviços e Instalaçãoes -----------------------------
     previsaoServico = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').values(
         'data_agendada').annotate(number=Count('id')).order_by('data_agendada')
     previsaoInstalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').values(
         'data_instalacao').annotate(number=Count('id')).order_by('data_instalacao')
-    #Filter service by técnico (Estudar como retirar)
-    
+
+    # -------------------------------------- Filter service by técnico (Estudar como retirar) --------------------------
     funcionarioinstalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False')
-    instalacaoEduardo = Instalacao.objects.filter(funcionario_instalacao=12).filter(status_agendada='True').filter(concluido='False').order_by('data_instalacao')
-    instalacaoDiego = Instalacao.objects.filter(funcionario_instalacao=14).filter(status_agendada='True').filter(concluido='False').order_by('data_instalacao')
-    instalacaoPaulo = Instalacao.objects.filter(funcionario_instalacao=13).filter(status_agendada='True').filter(concluido='False').order_by('data_instalacao')
+    instalacaoEduardo = Instalacao.objects.filter(funcionario_instalacao=12).filter(status_agendada='True').\
+        filter(concluido='False').order_by('data_instalacao')
+    instalacaoDiego = Instalacao.objects.filter(funcionario_instalacao=14).filter(status_agendada='True').\
+        filter(concluido='False').order_by('data_instalacao')
+    instalacaoPaulo = Instalacao.objects.filter(funcionario_instalacao=13).filter(status_agendada='True').\
+        filter(concluido='False').order_by('data_instalacao')
     
-    #Query de Serviços
-    servicosDiarios = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('id')).order_by('data_finalizacao')[:7]
-    servicosMensais = Servico.objects.annotate(month=ExtractMonth('data_finalizacao')).values('month').annotate(count=Count('id')).values('month', 'count')[:7]
-    instalacaoPorDia = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate(number=Count('id')).order_by('data_finalizacao')[:7]
-    servicoPorDia = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('id'))[:7]
-    #STATUS DE VENDAS
-    vendasPorVendedor = Instalacao.objects.all().values('instalacao_criado_por').annotate(number=Count('instalacao_criado_por'))
-    #STATUS VOIP
+    #---------------------------------------- Query de Serviços --------------------------------------------------------
+    servicosDiarios = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(
+        number=Count('id')).order_by('data_finalizacao')[:7]
+    servicosMensais = Servico.objects.annotate(month=ExtractMonth('data_finalizacao')).values('month').annotate(
+        count=Count('id')).values('month', 'count')[:7]
+    instalacaoPorDia = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate(
+        number=Count('id')).order_by('data_finalizacao')[:7]
+    servicoPorDia = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(
+        number=Count('id'))[:7]
+
+    # --------------------------------------- STATUS DE VENDAS ---------------------------------------------------------
+    vendasPorVendedor = Instalacao.objects.all().values('instalacao_criado_por').annotate(
+        number=Count('instalacao_criado_por'))
+
+    #---------------------------------------- STATUS VOIP --------------------------------------------------------------
     voipDisponiveis = ServicoVoip.objects.filter(reservado_voip='False').filter(finalizado_voip='False').count()
-    voipReservados = ServicoVoip.objects.filter(portabilidade_voip= 'False').filter(reservado_voip='True').filter(finalizado_voip='False').count()
-    voipPortabilidade = ServicoVoip.objects.filter(portabilidade_voip= 'True').filter(reservado_voip='True').filter(finalizado_voip='False').count()
-    #Query para Pagamentos
+    voipReservados = ServicoVoip.objects.filter(portabilidade_voip= 'False').filter(reservado_voip='True').\
+        filter(finalizado_voip='False').count()
+    voipPortabilidade = ServicoVoip.objects.filter(portabilidade_voip= 'True').filter(reservado_voip='True').\
+        filter(finalizado_voip='False').count()
+    #--------------------------------------- Query para Pagamentos ------------      -----------------------------------
     data_atual = datetime.now()
     pagamentos_atrasados = Pagamento.objects.filter(status_pago= 'False').filter(data_pagamento__lt=data_atual).count()
     pagamentos_para_vencer = Pagamento.objects.filter(status_pago= 'False').filter(data_pagamento__gt=data_atual).count()
 
     pagamentos_para_hoje = Pagamento.objects.filter(status_pago= 'False').filter(data_pagamento=data_atual).count()
 
-    #---------------------------- SERVIÇOS DE VOIP ---------------------------------------------
+    #------------------------------------------ SERVIÇOS DE VOIP -------------------------------------------------------
     # Contagem referentes ao números novos voip
     quantidade_voip_disponiveis = ServicoVoip.objects.filter(reservado_voip='False'). \
         filter(finalizado_voip='False'). \

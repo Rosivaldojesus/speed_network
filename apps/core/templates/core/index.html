@@ -12,7 +12,7 @@
   <div class="card-group mt-2">
     <!-- INÍCIO LADO ESQUERDO -->
     <div class="card col-sm-9 border-0">
- 
+     
       <!--INÍCIO das informações de Pagamentos -->
       {% if request.user.groups.all.0.name == "Master" %}
       <h5 class="card-title">Pagamentos</h5>
@@ -66,38 +66,32 @@
       </div>
       {% endif %}
       <!--FIM das informações de Pagamentos -->
-      <!-- 
-      <h5 class="card-title">Controle Financeiro</h5>
-        <div>
-          <div class="card shadow">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Boletos Instalação ( <strong>{{ quant_instalacao_sem_boleto }}</strong> )</h5>
-                    <p class="card-text">Lista de boletos referentes a instalação de internet.</p>
-                    <a href="vendas/instalacao-finalizada-sem-boleto/" class="btn btn-primary">Visualizar</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Boletos Voip</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="servicos/voip-finalizado-sem-boleto/" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <hr><hr>
+      <!-- INÍCIO do controle boletos -->
 
+     <div class="card shadow">
+      <h5 class="card-title ml-2 mt-2">Controle Financeiro</h5>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+           
+              <a href="/vendas/instalacao-finalizada-sem-boleto/" class="btn btn-primary">({{ quant_instalacao_sem_boleto }}) Boletos Internet</a>
+          
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+              <a href="/voip/lista-voip-sem-boleto/" class="btn btn-primary">({{ quantidade_voip_sem_boleto }}) Boletos Voip</a>       
+          </div>
         </div>
       </div>
-     -->
+     </div>
+
+    <!-- INÍCIO do controle boletos -->
 
       <hr>
       <hr>
-      <!-- INÍCIO Status Serviços-->
+    <!-- INÍCIO Status Serviços-->
       
       <div class="shadow">
         <h5 class="card-title ml-2 mt-2">Status Serviços</h5>
@@ -180,39 +174,14 @@
               </div>
             </div>
         </div>
-    </div>
+      </div>
 
 
       <!-- FIM Serviços de Voip-->
 
 
       
-      <!-- 
-      <h5 class="card-title">Serviços VOIP</h5>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col shadow" >
-          <nav class="nav nav-pills flex-column flex-sm-row">
-            <a class="flex-sm-fill text-sm-center nav-link active btn-success" href="/servicos/servicos-voip/">
-              VOIP Disponiveis ( {{ voipDisponiveis }} )
-            </a>
-          </nav>
-        </div>
-        <div class="col shadow">
-          <nav class="nav nav-pills flex-column flex-sm-row">
-            <a class="flex-sm-fill text-sm-center nav-link active btn-warning" href="/servicos/servicos-voip/">
-              Reservados ( {{ voipReservados }} )
-            </a>
-          </nav>
-        </div>
-        <div class="col shadow">
-          <nav class="nav nav-pills flex-column flex-sm-row">
-            <a class="flex-sm-fill text-sm-center nav-link active btn-secondary" href="/servicos/servicos-voip/">
-              Em portabilidade( {{ voipPortabilidade }} )
-            </a>
-          </nav>
-        </div>
-      </div>
-  -->
+
 
        <hr><hr>
 
