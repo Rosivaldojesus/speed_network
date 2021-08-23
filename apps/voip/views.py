@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.views.generic.edit import CreateView
 from .models import ServicoVoip
 from .forms import AdicionarNumeroVoipForm, ReservarNumeroVoipForm, FinalizarNumeroVoipForm,\
-    SolicitarPortabilidadeVoipForm, FinalizarNumeroVoipSemBoletoForm
+    SolicitarPortabilidadeVoipForm, FinalizarNumeroVoipSemBoletoForm, SolicitarNumeroVoipForm
 
 from .forms import PortabilidadeEnviarAnaliseForm
 from django.contrib import messages
@@ -62,9 +62,21 @@ class AdicionarNumeroVoip(CreateView):
     template_name = 'voip/adicionar-numero-voip.html'
 
 
+class SolicitarNumeroVoip(CreateView):
+    model = ServicoVoip
+    form_class = SolicitarNumeroVoipForm
+    success_url = '/voip/'
+    template_name = 'voip/solicitar-numero-voip.html'
+
+
 def ListaVoipDisponiveis(request):
     voip_disponiveis = ServicoVoip.objects.filter(reservado_voip='False').filter(boleto_entregue='False').filter(finalizado_voip='False')
     return render(request, 'voip/lista-voip-disponiveis.html', {'voip_disponiveis': voip_disponiveis})
+
+def ListaVoipSolicitados(request):
+    voip_solicitados = ServicoVoip.objects.filter(reservado_voip='False').filter(boleto_entregue='False').filter(finalizado_voip='False')
+    return render(request, 'voip/lista-voip-solicitados.html', {'voip_solicitados': voip_solicitados})
+
 
 def ListaVoipReservados(request):
     voip_reservados = ServicoVoip.objects.filter(reservado_voip='True').filter(portabilidade_voip='False').filter(boleto_entregue='False').filter(finalizado_voip='False')

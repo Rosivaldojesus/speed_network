@@ -15,6 +15,7 @@ class ServicoVoip(models.Model):
     finalizado_voip = models.BooleanField(default=False, verbose_name='Finalizado')
     funcionario_reserva_voip = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='funcionário_reserva', blank=True, null=True)
     boleto_entregue = models.BooleanField(default=False)
+    observacao_voip = models.TextField(blank=True, null=True, verbose_name='Observação')
 
     class Meta:
         verbose_name_plural = 'Serviço Voip'

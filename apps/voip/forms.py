@@ -22,12 +22,20 @@ class SolicitarPortabilidadeVoipForm(forms.ModelForm):
                   'numero_telefone_voip'
                ]
 
-
-class ReservarNumeroVoipForm(forms.ModelForm):
+class SolicitarNumeroVoipForm(forms.ModelForm):
     class Meta:
         model = ServicoVoip
         fields = ['nome_usuario_voip',
                   'cpf_usuario_voip',
+                  'observacao_voip'
+               ]
+
+
+class ReservarNumeroVoipForm(forms.ModelForm):
+    class Meta:
+        model = ServicoVoip
+        fields = ['usuario_voip',
+                  'senha_voip',
                ]
 
 
