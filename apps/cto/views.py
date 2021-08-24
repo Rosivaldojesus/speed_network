@@ -15,17 +15,42 @@ import csv
 def Index(request):
     ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))\
         .order_by('rua_cto')
+
+    
+    board = request.GET.get('board')
+    pon = request.GET.get('pon')
     queryset = request.GET.get('q')
-    if queryset:
+
+    if board and pon:
+        ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))\
+            .order_by('rua_cto').filter(Q(board_cto__icontains=queryset)|
+                                        Q(pon_cto__icontains=queryset))
+    elif queryset:
         ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))\
             .order_by('rua_cto').filter(Q(rua_cto__icontains=queryset)|
                                         Q(codigo_cto__icontains=queryset))
+    
+
+
+
+
+
     quant_cto_cadastradas = TerminaisOpticos.objects.all().count()
     quant_cto_completas = TerminaisOpticos.objects.filter(conexoes_opticas_cto=F("quant_conexoes_usadas_cto")) \
         .annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).count()
-    return render(request, 'cto/index.html',{'ctos': ctos,
-                                                         'quant_cto_completas': quant_cto_completas,
-                                                         'quant_cto_cadastradas': quant_cto_cadastradas,
+
+
+
+    boards = TerminaisOpticos.objects.all()
+    pons = TerminaisOpticos.objects.all()
+    return render(request, 'cto/index.html',{
+        'ctos': ctos,
+        'quant_cto_completas': quant_cto_completas,
+        'quant_cto_cadastradas': quant_cto_cadastradas,
+        'boards': boards,
+        'pons': pons,
+
+
                                                          })
 
 @login_required(login_url='/login/')
