@@ -23,8 +23,8 @@ def Index(request):
 
     if board and pon:
         ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))\
-            .order_by('rua_cto').filter(Q(board_cto__iexact=queryset)|
-                                        Q(pon_cto__iexact=queryset))
+            .order_by('rua_cto').filter(Q(board_cto__exact=board)|
+                                        Q(pon_cto__exact=pon))
     elif queryset:
         ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))\
             .order_by('rua_cto').filter(Q(rua_cto__icontains=queryset)|
