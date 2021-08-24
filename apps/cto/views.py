@@ -16,16 +16,15 @@ def Index(request):
     ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))\
         .order_by('rua_cto')
 
-    
     board = request.GET.get('board')
     pon = request.GET.get('pon')
     queryset = request.GET.get('q')
 
     if board and pon:
         ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))\
-            .order_by('rua_cto').filter(Q(board_cto__iexact='board')|
-                                        Q(pon_cto__iexact='pon')
-                                        )
+            .order_by('rua_cto').filter(board_cto__exact=board,
+                                        pon_cto__exact=pon)
+
     elif queryset:
         ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))\
             .order_by('rua_cto').filter(Q(rua_cto__icontains=queryset)|
