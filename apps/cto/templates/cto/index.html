@@ -44,10 +44,25 @@
 		<form method="GET">
 		   <div class="row">
 			<div class="form-group col-8">
-				<label for="cars">Pesquisa:</label>
+				<label for="ruas">Pesquisa:</label>
 				<input type="search" class="form-control"  placeholder="Informe o código da caixa ou o nome da rua"
 					   name="q" value="{{ request.GET.q }}">
 			</div>
+
+			<div class="form-group col-2">
+				<label for="board">Pesquisa:</label>
+				<input type="search" class="form-control"  placeholder="Borda"
+					   name="board" value="{{ request.GET.board }}">
+			</div>
+
+			<div class="form-group col-2">
+				<label for="pon">Pesquisa:</label>
+				<input type="search" class="form-control"  placeholder="PON"
+					   name="pon" value="{{ request.GET.pon }}">
+			</div>
+
+
+			<!--
 
 			<div class="form-group col-2">
 				<label for="cars">BOARD:</label>
@@ -80,7 +95,8 @@
 																			<option value="115">
 																				<option value="116">
 				</datalist>
-			</div>   
+			</div> 
+			-->  
 
 
 		   
