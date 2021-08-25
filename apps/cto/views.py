@@ -12,30 +12,37 @@ import csv
 
 
 # Create your views here
+@login_required(login_url='/login/')
 def Index(request):
     ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))\
         .order_by('rua_cto')
+    # Verifica a quantidade de Ctos Filtradas
+    quant_cto_filtradas = TerminaisOpticos.objects.all().count()
+    quant_cto_cadastradas = TerminaisOpticos.objects.all().count()
 
     board = request.GET.get('board')
     pon = request.GET.get('pon')
     queryset = request.GET.get('q')
 
     if board and pon:
-        ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))\
-            .order_by('rua_cto').filter(board_cto__exact=board,
-                                        pon_cto__exact=pon)
+        ctos = TerminaisOpticos.objects.annotate(
+            livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).order_by('rua_cto')\
+            .filter(board_cto__exact=board, pon_cto__exact=pon)
+        quant_cto_filtradas = TerminaisOpticos.objects.annotate(
+            livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))\
+            .order_by('rua_cto').filter(board_cto__exact=board, pon_cto__exact=pon).count()
+
+
     elif queryset:
-        ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))\
-            .order_by('rua_cto').filter(Q(rua_cto__icontains=queryset)|
-                                        Q(codigo_cto__icontains=queryset))
+        ctos = TerminaisOpticos.objects.annotate(livre=F(
+            'conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).order_by('rua_cto')\
+            .filter(Q(rua_cto__icontains=queryset)| Q(codigo_cto__icontains=queryset))
+        quant_cto_filtradas = TerminaisOpticos.objects.annotate(
+            livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).order_by('rua_cto')\
+            .filter(Q(rua_cto__icontains=queryset)| Q(codigo_cto__icontains=queryset)).count()
 
-
-
-    quant_cto_cadastradas = TerminaisOpticos.objects.all().count()
     quant_cto_completas = TerminaisOpticos.objects.filter(conexoes_opticas_cto=F("quant_conexoes_usadas_cto")) \
         .annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).count()
-
-
 
     boards = TerminaisOpticos.objects.all()
     pons = TerminaisOpticos.objects.all()
@@ -45,9 +52,10 @@ def Index(request):
         'quant_cto_cadastradas': quant_cto_cadastradas,
         'boards': boards,
         'pons': pons,
+        'quant_cto_filtradas': quant_cto_filtradas,
+        })
 
 
-                                                         })
 
 @login_required(login_url='/login/')
 def EditarCto(request, id=None):
