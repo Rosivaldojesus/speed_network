@@ -295,7 +295,7 @@ def ValeRefeicoes(request):
     vales_sem_valor = ValeRefeicao.objects.filter(valor_vale__isnull=True)
     vales_com_valor = ValeRefeicao.objects.filter(valor_vale__isnull=False).filter(status_pago=False)
 
-    valor_pagar = ValeRefeicao.objects.filter().aggregate(Sum('valor_vale')).get('valor_vale__sum')
+    valor_pagar = ValeRefeicao.objects.filter(status_pago=False).filter().aggregate(Sum('valor_vale')).get('valor_vale__sum')
 
     startdate = request.GET.get('startdate')
     enddate = request.GET.get('enddate')
