@@ -12,6 +12,7 @@ urlpatterns = [
     path('componentes/', include('apps.components.urls')),
     path('cto/', include('apps.cto.urls')),
     path('voip/', include('apps.voip.urls')),
+    path('tarefas/', include('apps.tasks.urls')),
 
 
 ]

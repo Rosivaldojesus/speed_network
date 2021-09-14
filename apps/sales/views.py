@@ -301,14 +301,14 @@ def ValeRefeicoes(request):
     enddate = request.GET.get('enddate')
     queryset = request.GET.get('q')
     if startdate and enddate and queryset :
-        vales_com_valor = ValeRefeicao.objects.filter(Q(data_vale__range=[startdate, enddate])
+        vales_com_valor = ValeRefeicao.objects.filter(status_pago=False).filter(Q(data_vale__range=[startdate, enddate])
                                                       & Q(nome_funcionario__icontains=queryset))
-        valor_pagar = ValeRefeicao.objects.filter(Q(nome_funcionario__icontains=queryset)).aggregate(Sum('valor_vale')).get('valor_vale__sum')
+        valor_pagar = ValeRefeicao.objects.filter(status_pago=False).filter(Q(nome_funcionario__icontains=queryset)).aggregate(Sum('valor_vale')).get('valor_vale__sum')
 
 
     elif queryset:
-        vales_com_valor = ValeRefeicao.objects.filter(Q(nome_funcionario__icontains=queryset))
-        valor_pagar = ValeRefeicao.objects.filter(Q(nome_funcionario__icontains=queryset)).aggregate(Sum('valor_vale')).get('valor_vale__sum')
+        vales_com_valor = ValeRefeicao.objects.filter(status_pago=False).filter(Q(nome_funcionario__icontains=queryset))
+        valor_pagar = ValeRefeicao.objects.filter(status_pago=False).filter(Q(nome_funcionario__icontains=queryset)).aggregate(Sum('valor_vale')).get('valor_vale__sum')
 
 
     return render(request, 'sales/vale-refeicao.html', {'vales_sem_valor': vales_sem_valor,
