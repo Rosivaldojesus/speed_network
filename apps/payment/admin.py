@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import CategoriaPagamento, Pagamento, TipoCusto, OrigemValores
-from .models import AgendaPagamento
+from .models import AgendaPagamento, FluxoEntradasSaidas
 
 # Register your models here.
 
@@ -36,3 +36,5 @@ class PagamentoAdmin(admin.ModelAdmin):
                     'valor_pagamento',
                     ]
 admin.site.register(Pagamento, PagamentoAdmin)
+
+admin.site.register(FluxoEntradasSaidas)

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<div class="container">
+
+    {% for mensal in fluxo_mensal %}
+        {{ mensal.month|date:'F Y' }}: R$: {{ mensal.total }} <br>
+    {% endfor %}
+
+    <hr>
+    <hr>
+    <div>
+        <h3>Fluxo de entradas e Saídas</h3>
+    </div>
+
+    <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Data</th>
+              <th scope="col">Banco</th>
+              <th scope="col">Saldo Inicial</th>
+              <th scope="col">Entrada do dia</th>
+              <th scope="col">Saída do dia </th>
+              <th scope="col">Saldo Final </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for fluxo in fluxos %}
+            <tr>
+              <td>{{ fluxo.fluxo_data }}</td>
+              <td>{{ fluxo.banco}}</td>
+              <td>R$: {{ fluxo.saldoInicial }}</td>
+              <td>R$: {{ fluxo.entradaDia }}</td>
+              <td>R$: {{ fluxo.SaidaDia }}</td>
+              <td>R$: {{ fluxo.SaidaDia}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

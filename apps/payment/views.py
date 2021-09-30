@@ -1,7 +1,8 @@
 from datetime import date, datetime
+from django.db.models import F, Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q, Sum, Count
-from .models import Pagamento, AgendaPagamento
+from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas
 from .forms import CadastarPagamentoForm, AgendarPagamentoForm, ComfirmarPagamentoForm, EditarPagamentoForm
 from django.contrib import messages
 from django.db.models.functions import ExtractMonth
@@ -231,7 +232,14 @@ def ConfirmarPagamento(request, id=None):
         return redirect('/pagamentos/')
     return render(request, 'payment/comfirmar-pagamento.html', {'form': form})
 
+def FluxoEntradaSaida(request):
+    data_atual = datetime.now()
+    this_month = date.today().month
+    fluxos = FluxoEntradasSaidas.objects.all()
 
+
+
+    return render(request, 'payment/fluxo-entradas-saidas.html', {'fluxos': fluxos})
 
 #Exportando os dados para CSV
 def ExportarCSV(request):

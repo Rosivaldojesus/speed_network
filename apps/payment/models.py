@@ -64,3 +64,16 @@ class AgendaPagamento(models.Model):
     def __str__(self):
         return "{}".format(self.motivo_pagamento)
 
+
+class FluxoEntradasSaidas(models.Model):
+    banco = models.ForeignKey(OrigemValores, on_delete=models.DO_NOTHING)
+    saldoInicial = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    entradaDia = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    fluxo_data = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True)
+    SaidaDia = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+
+    class Meta:
+        verbose_name_plural = 'Fluxo Entradas e Saídas'
+
+    def __str__(self):
+        return "{}".format(self.saldoInicial)
