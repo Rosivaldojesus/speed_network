@@ -36,6 +36,7 @@ class ReservarNumeroVoipForm(forms.ModelForm):
         model = ServicoVoip
         fields = ['usuario_voip',
                   'senha_voip',
+                  'numero_telefone_voip',
                ]
 
 
