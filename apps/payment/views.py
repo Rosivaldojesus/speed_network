@@ -2,6 +2,8 @@ from datetime import date, datetime
 from django.db.models import F, Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q, Sum, Count
+from django.views.generic import CreateView
+
 from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas
 from .forms import CadastarPagamentoForm, AgendarPagamentoForm, ComfirmarPagamentoForm, EditarPagamentoForm
 from django.contrib import messages
@@ -9,6 +11,7 @@ from django.db.models.functions import ExtractMonth
 from django.db.models.functions import TruncMonth
 import csv
 from django.http import HttpResponse
+from .forms import CadastrarFluxoForm
 
 # Create your views here.
 def Index(request):
@@ -236,10 +239,15 @@ def FluxoEntradaSaida(request):
     data_atual = datetime.now()
     this_month = date.today().month
     fluxos = FluxoEntradasSaidas.objects.all()
-
-
-
     return render(request, 'payment/fluxo-entradas-saidas.html', {'fluxos': fluxos})
+
+class FluxoCreate(CreateView):
+    model = FluxoEntradasSaidas
+    form_class = CadastrarFluxoForm
+
+    template_name = 'payment/cadastrar-fluxo-entradas-saidas.html'
+    success_url = '/pagamentos/fluxo-entradas-saidas/'
+
 
 #Exportando os dados para CSV
 def ExportarCSV(request):

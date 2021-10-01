@@ -1,5 +1,5 @@
 from django import forms
-from .models import Pagamento, AgendaPagamento
+from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas
 
 class CadastarPagamentoForm(forms.ModelForm):
     class Meta:
@@ -59,3 +59,17 @@ class ComfirmarPagamentoForm(forms.ModelForm):
         fields = ['status_pago']
 
     status_pago = forms.BooleanField(required=True, initial=False, label='Comfirmar pagamento')
+
+
+
+class CadastrarFluxoForm(forms.ModelForm):
+    class Meta:
+        model = FluxoEntradasSaidas
+        fields = ['fluxo_data','banco', 'saldoInicial','entradaDia',  'SaidaDia', 'SaldoDia']
+
+    saldoInicial = forms.DecimalField(label='Saldo do início do dia R$:')
+    entradaDia = forms.DecimalField(label='Total de entradas do dia R$:')
+    fluxo_data = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), required=False)
+    SaidaDia = forms.DecimalField(label='Total de saídas do dia R$:')
+    SaldoDia = forms.DecimalField(label='Saldo do final do dia R$:')
+

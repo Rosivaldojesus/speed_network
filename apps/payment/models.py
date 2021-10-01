@@ -71,6 +71,7 @@ class FluxoEntradasSaidas(models.Model):
     entradaDia = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     fluxo_data = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True)
     SaidaDia = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    SaldoDia = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
     class Meta:
         verbose_name_plural = 'Fluxo Entradas e Saídas'

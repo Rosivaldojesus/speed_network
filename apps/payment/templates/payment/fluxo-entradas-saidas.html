@@ -14,6 +14,10 @@
         <h3>Fluxo de entradas e Saídas</h3>
     </div>
 
+    <div class="mt-2 mb-2" align="right">
+        <a href="/pagamentos/cadastrar-fluxo-entradas-saidas/" class="btn btn-primary">Cadastrar</a>
+    </div>
+
     <div>
         <table class="table">
           <thead>
@@ -34,7 +38,7 @@
               <td>R$: {{ fluxo.saldoInicial }}</td>
               <td>R$: {{ fluxo.entradaDia }}</td>
               <td>R$: {{ fluxo.SaidaDia }}</td>
-              <td>R$: {{ fluxo.SaidaDia}}</td>
+              <td>R$: {{ fluxo.SaldoDia}}</td>
             </tr>
             {% endfor %}
           </tbody>
