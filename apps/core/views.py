@@ -235,7 +235,6 @@ def SenhasPorEquipamento(request):
             Q(sn_equipamento__icontains=queryset) |
             Q(patrimonio_equipamento__icontains=queryset)
         )
-
     return render(request, 'core/senhas-por-equipamento.html', {'senhasPorEquipamentos': senhasPorEquipamentos,
                                                                 'quant_v5':quant_v5,
                                                                 'quant_6t':quant_6t,
@@ -273,9 +272,6 @@ def EditarSenhasPorEquipamentos(request, id=None):
 @login_required(login_url='/login/')
 def InstalacoesDiarias(request):
     return render(request, 'instalacoes-diarias.html')
-
-
-
 
 
 #Exportando os dados para CSV
