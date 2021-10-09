@@ -22,7 +22,12 @@ def RuasAtendidas(request):
             Q(bairro__icontains=queryset)|
             Q(cep__icontains=queryset)|
             Q(logradouro__icontains=queryset))
-        quant_ruas = Ruas.objects.all().count()
+        quant_ruas = Ruas.objects.filter(
+            Q(logradouro__icontains=queryset)|
+            Q(bairro__icontains=queryset)|
+            Q(cep__icontains=queryset)|
+            Q(logradouro__icontains=queryset)).count()
+
 
     return render(request, 'components/ruas.html', {'ruas': ruas,
                                                     'quant_ruas':quant_ruas
