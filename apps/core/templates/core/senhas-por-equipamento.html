@@ -10,40 +10,56 @@
 	{% if request.user.groups.all.0.name == "Master" %}
 	<div class="card shadow mt-3 border-0">
 		<div class="row">
-			<div class="col-sm-3">
+
+			<div class="col-sm-2">
 			  <div class="card shadow-sm border-0">
 				<div class="card-body">
-				  <h5 class="card-title">6T = {{ quant_6t }}</h5>
-				  
-
+				  <h6 class="card-title">6T = {{ quant_6t }}</h6>
 				</div>
 			  </div>
 			</div>
-			<div class="col-sm-3">
+
+			<div class="col-sm-2">
 			  <div class="card shadow-sm border-0">
 				<div class="card-body">
-				  <h5 class="card-title">V5 = {{ quant_v5 }}</h5>
-
+				  <h6 class="card-title">V5 = {{ quant_v5 }}</h6>
 				</div>
 			  </div>
 			</div>
-			<div class="col-sm-3">
+
+			<div class="col-sm-2">
 				<div class="card shadow-sm border-0">
 				  <div class="card-body">
-					<h5 class="card-title">Q2 = {{ quant_q2 }}</h5>
+					<h6 class="card-title">Q2 = {{ quant_q2 }}</h6>
+				  </div>
+				</div>
+			</div>
 
+			<div class="col-sm-2">
+				<div class="card shadow-sm border-0">
+				  <div class="card-body">
+					<h6 class="card-title">Nokia 140 = {{ quant_nokia_140 }}</h6>
+				  </div>
+				</div>
+			</div>
+
+			<div class="col-sm-2">
+				<div class="card shadow-sm border-0">
+				  <div class="card-body">
+					<h6 class="card-title">Nokia 240 = {{ quant_nokia_240 }}</h6>
+				  </div>
+				</div>
+			</div>
+
+
+			<div class="col-sm-2">
+				<div class="card shadow-sm border-0">
+				  <div class="card-body">
+					<h6 class="card-title">Total = {{ quant_modens }}</h6>
 				  </div>
 				</div>
 			  </div>
-			  <div class="col-sm-3">
-				<div class="card shadow-sm border-0">
-				  <div class="card-body">
-					<h5 class="card-title">Total = {{ quant_modens }}</h5>
-
-				  </div>
-				</div>
-			  </div>
-		  </div>
+		  	</div>
 	</div>
 	<hr>
 	{% endif %}

@@ -142,11 +142,6 @@ def Index(request):
         filter(finalizado_voip='True'). \
         filter(boleto_entregue='False').count()
 
-
-
-
-    
-    
     return render(request, 'core/index.html',{'pendentes':pendentes,
                                               'quant_servico_aberto': quant_servico_aberto,
                                               'quant_servico_agendado': quant_servico_agendado,
@@ -192,10 +187,6 @@ def Index(request):
                                               'quantidade_portabilidade_aguardando':quantidade_portabilidade_aguardando,
                                               'quantidade_portabilidade_analise':quantidade_portabilidade_analise,
                                               'quantidade_portabilidade_finalizados':quantidade_portabilidade_finalizados,
-
-
-
-
                                               })
 
 
@@ -233,6 +224,8 @@ def SenhasPorEquipamento(request):
     quant_6t = SenhasPorEquipamentos.objects.filter(equipamento=1).count()
     quant_v5 = SenhasPorEquipamentos.objects.filter(equipamento=2).count()
     quant_q2 = SenhasPorEquipamentos.objects.filter(equipamento=3).count()
+    quant_nokia_140 = SenhasPorEquipamentos.objects.filter(equipamento=6).count()
+    quant_nokia_240 = SenhasPorEquipamentos.objects.filter(equipamento=5).count()
     quant_modens = SenhasPorEquipamentos.objects.filter().count()
 
     queryset = request.GET.get('q')
@@ -247,6 +240,8 @@ def SenhasPorEquipamento(request):
                                                                 'quant_v5':quant_v5,
                                                                 'quant_6t':quant_6t,
                                                                 'quant_q2':quant_q2,
+                                                                'quant_nokia_140':quant_nokia_140,
+                                                                'quant_nokia_240':quant_nokia_240,
                                                                 'quant_modens':quant_modens
                                                                 })
 
