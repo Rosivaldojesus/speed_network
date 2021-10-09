@@ -14,6 +14,7 @@ def DirecionamentoServicos(request):
 
 def RuasAtendidas(request):
     ruas = Ruas.objects.all()
+    quant_ruas = Ruas.objects.all().count()
     queryset = request.GET.get('q')
     if queryset:
         ruas = Ruas.objects.filter(
@@ -21,7 +22,11 @@ def RuasAtendidas(request):
             Q(bairro__icontains=queryset)|
             Q(cep__icontains=queryset)|
             Q(logradouro__icontains=queryset))
-    return render(request, 'components/ruas.html', {'ruas': ruas})
+        quant_ruas = Ruas.objects.all().count()
+
+    return render(request, 'components/ruas.html', {'ruas': ruas,
+                                                    'quant_ruas':quant_ruas
+                                                    })
 
 
 
