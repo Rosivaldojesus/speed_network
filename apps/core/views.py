@@ -13,7 +13,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.db.models import Count, Sum
 from .forms import SenhasPorEquipamentosForm
-
+from django.http import HttpResponse
+import csv
 
 # Create your views here.
 def login_user(request):
@@ -277,3 +278,23 @@ def EditarSenhasPorEquipamentos(request, id=None):
 @login_required(login_url='/login/')
 def InstalacoesDiarias(request):
     return render(request, 'instalacoes-diarias.html')
+
+
+
+
+
+#Exportando os dados para CSV
+def ExportarSenhasCSV(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="lista-senhas.csv"'
+
+    senhas = SenhasPorEquipamentos.objects.all()
+
+    writer = csv.writer(response)
+    writer.writerow(['codigo_equipamento', 'sn_equipamento', 'equipamento', 'ip_equipamento', 'login',
+                     'senha', 'fabricante', 'patrimonio_equipamento', 'data_cadastro'])
+    for senha in senhas:
+        writer.writerow([senha.codigo_equipamento, senha.sn_equipamento, senha.equipamento, senha.ip_equipamento,
+                         senha.login, senha.senha, senha.fabricante, senha.patrimonio_equipamento, senha.data_cadastro,
+                         ])
+    return response

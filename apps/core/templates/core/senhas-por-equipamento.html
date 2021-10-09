@@ -82,6 +82,9 @@
 	<!-- INÍCIO Botões -->
 	<div align="right">
 		<a href="/cadastro-senhas-equipamentos/" class="btn btn-primary">Cadastrar Equipamento</a>
+		{% if request.user.groups.all.0.name == "Master" %}
+		<a href="/exportar-senhas-csv/" class="btn btn-info" title="Exportar CSV"><i class="fas fa-file-csv"></i></a>
+		{% endif %}
 	</div>	
 	<!-- FIM Botões -->
 	<hr>

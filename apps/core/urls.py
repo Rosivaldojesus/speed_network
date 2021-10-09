@@ -2,7 +2,7 @@ from django.urls import path
 from .views import Index
 from .views import ManuaisServicos, login_user, submit_login, logout_user
 from .views import Senhas, SenhasPorEquipamento, ManuaisVisualizacao, \
-    CadastroSenhasPorEquipamentos, EditarSenhasPorEquipamentos
+    CadastroSenhasPorEquipamentos, EditarSenhasPorEquipamentos, ExportarSenhasCSV
 
 urlpatterns = [
     path('', Index),
@@ -15,4 +15,6 @@ urlpatterns = [
     path('senhas-por-equipamento/', SenhasPorEquipamento),
     path('cadastro-senhas-equipamentos/', CadastroSenhasPorEquipamentos),
     path('editar-senhas-equipamentos/<int:id>', EditarSenhasPorEquipamentos),
+
+    path('exportar-senhas-csv/', ExportarSenhasCSV),
 ]

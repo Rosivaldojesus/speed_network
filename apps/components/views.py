@@ -28,7 +28,6 @@ def RuasAtendidas(request):
             Q(cep__icontains=queryset)|
             Q(logradouro__icontains=queryset)).count()
 
-
     return render(request, 'components/ruas.html', {'ruas': ruas,
                                                     'quant_ruas':quant_ruas
                                                     })
