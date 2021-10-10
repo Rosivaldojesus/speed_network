@@ -23,8 +23,15 @@
     </form>
   </div>
   <!-- FIM Campo de Pesquisas-->
+
     <h3>Listas das Ruas - ( {{ quant_ruas }} )</h3>
     <hr>
+
+    {% if request.user.groups.all.0.name == "Master" %}
+    <div align="right" class="mb-2">
+      <a href="/componentes/exportar-ruas-csv/" class="btn btn-info" title="Exportar CSV"><i class="fas fa-file-csv"></i></a>
+    </div>
+    {% endif %}
   <!-- INICIO da tabla das Ruas -->
     <div class="table-responsive shadow">
       <table class="table table-sm">

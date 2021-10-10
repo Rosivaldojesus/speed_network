@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.db.models import F, Q
 from .models import Ruas
+import csv
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -33,4 +35,15 @@ def RuasAtendidas(request):
                                                     })
 
 
+#Exportando os dados para CSV
+def ExportarRuasCSV(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="listagem-ruas.csv"'
 
+    ruas = Ruas.objects.all()
+
+    writer = csv.writer(response)
+    writer.writerow(['id', 'logradouro', 'bairro', 'cep', 'numero_baixo', 'numero_alto',])
+    for rua in ruas:
+        writer.writerow([rua.id, rua.logradouro, rua.bairro, rua.cep, rua.numero_baixo, rua.numero_alto])
+    return response
