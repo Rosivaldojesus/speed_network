@@ -65,6 +65,30 @@
             {% endfor %}
           </tbody>
         </table>
+
+
+
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if pagamentos.has_previous %}
+                    <a href="?page=1">&laquo; Primeiro</a>
+                    <a href="?page={{ pagamentos.previous_page_number }}">Anterior</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ pagamentos.number }} of {{ pagamentos.paginator.num_pages }}.
+                </span>
+
+                {% if pagamentos.has_next %}
+                    <a href="?page={{ pagamentos.next_page_number }}">Próximo</a>
+                    <a href="?page={{ pagamentos.paginator.num_pages }}">Último &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+
+
+
         </div>
 
 </div>

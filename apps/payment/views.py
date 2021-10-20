@@ -12,6 +12,7 @@ from django.db.models.functions import TruncMonth
 import csv
 from django.http import HttpResponse
 from .forms import CadastrarFluxoForm
+from django.core.paginator import Paginator
 
 # Create your views here.
 def Index(request):
@@ -130,10 +131,17 @@ def ListaPagamentos(request):
     elif motivoPagamento:
         pagamentos = Pagamento.objects.filter(Q(motivo_pagamento__icontains=motivoPagamento))
 
-
-
         dia = Pagamento.objects.values('data_pagamento').annotate(
             number=Sum('valor_pagamento'))
+
+
+
+
+    paginator = Paginator(pagamentos, 25)  # Show 25 contacts per page.
+
+    page_number = request.GET.get('page')
+    pagamentos = paginator.get_page(page_number)
+
     return render(request, 'payment/lista_pagamentos.html', {'pagamentos': pagamentos})
 
 
