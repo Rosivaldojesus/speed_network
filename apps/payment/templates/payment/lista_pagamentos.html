@@ -124,15 +124,15 @@
       <ul class="pagination justify-content-center">
         <li class="page-item disabled">
           {% if pagamentos.has_previous %}
-            <a href="?page=1">&laquo; Primeiro</a>
-            <a href="?page={{ pagamentos.previous_page_number }}">Anterior</a>
+            <a href="?page=1" class="page-link">&laquo; Primeiro</a>
+            <a href="?page={{ pagamentos.previous_page_number }}" class="page-link">Anterior</a>
           {% endif %}
         </li>
           Página {{ pagamentos.number }} de {{ pagamentos.paginator.num_pages }}
         <li class="page-item">
           {% if pagamentos.has_next %}
-            <a href="?page={{ pagamentos.next_page_number }}">Próximo</a>
-            <a href="?page={{ pagamentos.paginator.num_pages }}">Último &raquo;</a>
+            <a href="?page={{ pagamentos.next_page_number }}" class="page-link">Próximo</a>
+            <a href="?page={{ pagamentos.paginator.num_pages }}" class="page-link">Último &raquo;</a>
           {% endif %}
         </li>
       </ul>
