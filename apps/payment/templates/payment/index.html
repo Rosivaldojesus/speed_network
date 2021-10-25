@@ -90,10 +90,10 @@
       <h5 class="card-title">Custos Total por Mês</h5>
       <div class="row">
         {% for mes in mes %}
-        <div class="col-2.8 border border-danger mr-1 mb-1 rounded">
+        <div class="col-2 border border-danger mr-1 mb-1 rounded">
           <div class="card border-0 mt-1  " align="center">
             
-              <h6>{{ mes.month|date:'M(Y)' }}: R$: ({{ mes.c }}) </h6>
+              <h6>{{ mes.month|date:'M(Y)' }}<br> R$: ({{ mes.c }}) </h6>
             
           </div>
         </div>
