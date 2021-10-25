@@ -6,6 +6,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from ..components.models import FuncionariosParaVale
 from ckeditor.fields import RichTextField
+from django.urls import reverse
 
 
 # Create your models here.
@@ -99,6 +100,10 @@ class Cancelamentos(models.Model):
     motivo = models.CharField(max_length=255, blank=True, null=True)
     data = models.DateField(blank=True, null=True, verbose_name='Data do serviço')
     data_criacao = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse('detalhes-detail', kwargs={'pk': self.pk})
+
 
     class Meta:
         verbose_name_plural = "Cancelamentos"

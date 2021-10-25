@@ -9,13 +9,17 @@ from ..services.models import ServicoVoip
 from .forms import InstalacaoCreateForm, InstalacaoUpdateForm,\
     InstalacaoAgendarForm, InstalacaoFinalizarForm, BoletoEntregueForm,\
     InstalacaoDefinirTecnicoForm, EmitirValeRefeicaoForm,\
-    AdicionarValorValeRefeicaoForm, AdicionarPagamentoValeRefeicaoForm, CadastrarCancelamentosForm
+    AdicionarValorValeRefeicaoForm, AdicionarPagamentoValeRefeicaoForm, \
+    CadastrarCancelamentosForm, EditarCancelamentosForm
 from ..components.models import Vendedores
 from django.db.models.functions import ExtractMonth
 from django.db.models.functions import TruncMonth
 from datetime import datetime, date
 from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse
+from django.views.generic.edit import UpdateView
 
 
 # Create your views here.
@@ -365,7 +369,24 @@ class CancelamentosCreateView(CreateView, SuccessMessageMixin):
     def get_success_message(self, cleaned_data):
         return self.success_message % dict(cleaned_data, nome=self.object.nome)
 
-
     def form_valid(self, form):
         form.instance.atendente = self.request.user
         return super().form_valid(form)
+
+
+class CancelamentosListView(ListView):
+    model = Cancelamentos
+    template_name = 'sales/lista-cancelamentos.html'
+
+    def get_queryset(self):
+        return Cancelamentos.objects.all()
+    context_object_name = 'cancelamentos'
+
+
+
+class CancelamentosUpdateView(UpdateView):
+    model = Cancelamentos
+    form_class = EditarCancelamentosForm
+    template_name = 'sales/editar-cancelamento.html'
+    template_name_suffix = 'editar-cancelamento'
+    success_url = '/vendas/lista-cancelamentos/'

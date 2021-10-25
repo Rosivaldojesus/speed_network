@@ -6,8 +6,11 @@ from .views import CadastroInstalacao, InstalacaoVisualizacao, InstalacaoEditar,
     FinalizarEntregaBoleto, InstalacaoDefinirTecnico, VendasInstalacao, \
     InstalacaoConcluidaVendedores, DeletarInstalacaoAgendada, ClientesVoip,\
     Voip, ValeRefeicoes, EmitirValeRefeicaoCreate, AdicionarValorVale, \
-    AdicionarNomeParaValeCreate, AdicionarPagamentoVale, VoipFinalizadoSemBoleto,\
-    CancelamentosCreateView
+    AdicionarNomeParaValeCreate, AdicionarPagamentoVale,\
+    VoipFinalizadoSemBoleto, CancelamentosUpdateView
+
+
+from .views import CancelamentosCreateView, CancelamentosListView
 
 
 urlpatterns = [
@@ -46,6 +49,9 @@ urlpatterns = [
 
     # ------------- Cancellations ----------------
     path('criar-cancelamento/', CancelamentosCreateView.as_view(), name='criar-cancelamento'),
+    path('lista-cancelamentos/', CancelamentosListView.as_view(), name='lista-cancelamentos'),
+    # UpdateView
+    path('editar-cancelamento/<int:pk>', CancelamentosUpdateView.as_view(), name='editar-cancelamento'),
 
 
 
