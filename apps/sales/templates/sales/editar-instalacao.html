@@ -11,12 +11,12 @@
          
         <!-- Messagens -->
       {% if messages %}
-      {% for message in messages %}
+        {% for message in messages %}
           <div class="alert {{ message.tags }}" role="alert">
               {{ message }}
           </div>
-        {% endfor %}
-        {% endif %}
+         {% endfor %}
+      {% endif %}
 
 
          <form action="" method="post"> {% csrf_token %}
