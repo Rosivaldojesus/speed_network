@@ -164,13 +164,17 @@
         <a class="page-link" href="?page=1" tabindex="-1">Anterior</a>
         {% endif %}
       </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
       <li class="page-item active">
         <a class="page-link" href="#">{{ pagamentos.number }}<span class="sr-only">(atual)</span></a>
       </li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
+
       <li class="page-item">
-        <a class="page-link" href="#">Próximo</a>
+        {% if pagamentos.has_next %}
+          <a class="page-link" href="?page={{ pagamentos.next_page_number }}">Próximo</a>
+          <a class="page-link" href="?page={{ pagamentos.paginator.num_pages }}">Último</a>
+        {% endif %}
+
+        
       </li>
     </ul>
   </nav>
