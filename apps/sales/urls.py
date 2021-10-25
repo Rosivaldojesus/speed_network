@@ -6,7 +6,8 @@ from .views import CadastroInstalacao, InstalacaoVisualizacao, InstalacaoEditar,
     FinalizarEntregaBoleto, InstalacaoDefinirTecnico, VendasInstalacao, \
     InstalacaoConcluidaVendedores, DeletarInstalacaoAgendada, ClientesVoip,\
     Voip, ValeRefeicoes, EmitirValeRefeicaoCreate, AdicionarValorVale, \
-    AdicionarNomeParaValeCreate, AdicionarPagamentoVale, VoipFinalizadoSemBoleto
+    AdicionarNomeParaValeCreate, AdicionarPagamentoVale, VoipFinalizadoSemBoleto,\
+    CancelamentosCreateView
 
 
 urlpatterns = [
@@ -42,6 +43,9 @@ urlpatterns = [
 
     path('emitir-vale-refeicao/', EmitirValeRefeicaoCreate.as_view(), name='emitir-vale-refeicao'),
     path('adicionar_nome-para-vale/', AdicionarNomeParaValeCreate.as_view(), name='adicionar_nome-para-vale'),
+
+    # ------------- Cancellations ----------------
+    path('criar-cancelamento/', CancelamentosCreateView.as_view(), name='criar-cancelamento'),
 
 
 

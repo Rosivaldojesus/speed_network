@@ -122,23 +122,29 @@ def DashboardPagamentos(request):
 
 
 def ListaPagamentos(request):
-    pagamentos = Pagamento.objects.all().order_by('-data_pagamento')
+    pagamentos = Pagamento.objects.all().order_by('-data_pagamento') # Show all payment
+    data = request.GET.get('data') 
+    motivoPagamento = request.GET.get('motivoPagamento') 
+    banco = request.GET.get('banco')
 
-    queryset = request.GET.get('q')
-    motivoPagamento = request.GET.get('motivoPagamento')
-    if queryset:
-        pagamentos = Pagamento.objects.filter(Q(data_pagamento__icontains=queryset))
+    # Show payment per bank
+    if data:
+        pagamentos = Pagamento.objects.filter(Q(data_pagamento__icontains=data))
+    
+
+    # Show payment per reason
     elif motivoPagamento:
         pagamentos = Pagamento.objects.filter(Q(motivo_pagamento__icontains=motivoPagamento))
 
         dia = Pagamento.objects.values('data_pagamento').annotate(
             number=Sum('valor_pagamento'))
 
+    # Show payment per bank
+    elif banco:
+        pagamentos = Pagamento.objects.filter(Q(origem_valor_pagamento__exact=banco))
+    
 
-
-
-    paginator = Paginator(pagamentos, 25)  # Show 25 contacts per page.
-
+    paginator = Paginator(pagamentos, 25)  # Show 25 payment per page.
     page_number = request.GET.get('page')
     pagamentos = paginator.get_page(page_number)
 
@@ -186,10 +192,6 @@ def PagamentosMensaisGrupos(request):
 
     mensalVeiculos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=1).values(
         'month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
-
-
-
-
 
     mensalFuncionarios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=2).values(
         'month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')

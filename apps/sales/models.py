@@ -1,3 +1,5 @@
+from datetime import datetime, date
+
 from django.utils import timezone
 from ..components.models import PlanosInternet, Cidade, DataVencimento, Vendedores
 from django.db import models
@@ -79,3 +81,27 @@ class ValeRefeicao(models.Model):
 
     def __str__(self):
         return "{}".format(self.nome_funcionario)
+
+
+
+
+class Cancelamentos(models.Model):
+    nome = models.CharField(max_length=255, blank=True, null=True, verbose_name='Nome Cliente')
+    cpf = models.CharField(max_length=30, verbose_name='CPF do Cliente')
+    endereco = models.CharField(max_length=255, verbose_name='Rua do Cliente')
+    cep = models.CharField(max_length=255, verbose_name='CEP do Cliente')
+    bairro = models.CharField(max_length=255, verbose_name='Bairro do Cliente')
+    numero = models.CharField(max_length=255, verbose_name='Número do Cliente')
+
+
+    atendente = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True, verbose_name='Atendente')
+    plano_internet = models.CharField(max_length=255, blank=True, null=True)
+    motivo = models.CharField(max_length=255, blank=True, null=True)
+    data = models.DateField(blank=True, null=True, verbose_name='Data do serviço')
+    data_criacao = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "Cancelamentos"
+
+    def __str__(self):
+        return "{}".format(self.nome)

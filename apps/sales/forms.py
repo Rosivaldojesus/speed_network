@@ -1,5 +1,5 @@
 from django import forms
-from .models import Instalacao, ValeRefeicao
+from .models import Instalacao, ValeRefeicao, Cancelamentos
 from ..services.models import ServicoVoip
 from ..components.models import FuncionariosParaVale
 from django.forms.widgets import NumberInput
@@ -171,9 +171,39 @@ class AdicionarPagamentoValeRefeicaoForm(forms.ModelForm):
 
 
 
+# -------------- Cancellatios -------------------
+class CadastrarCancelamentosForm(forms.ModelForm):
+    class Meta:
+        required_css_class = 'required'
+        model = Cancelamentos
+        fields = ['nome','cpf','endereco','numero' ,'cep','bairro','plano_internet','motivo','data' ]
 
+    nome = forms.CharField()
 
+    cpf = forms.CharField(widget=forms.TextInput, label='CPF:', required=True)
+    endereco = forms.CharField(widget=forms.TextInput, label='Endereço:', required=True)
+    numero = forms.CharField(widget=forms.TextInput, label='Nº:', required=True)
+    cep = forms.CharField(widget=forms.TextInput, label='CEP:', required=True)
+    bairro = forms.CharField(widget=forms.TextInput, label='Bairro:', required=True)
 
+    PLANO_INTERNET = (
+        ('69,90', '69,90'),
+        ('89,90', '89,90'),
+        ('99,90', '99,90'),
+        ('119,90', '119,90'),
+        ('149,90', '149,90'),
+        ('Voip', 'Voip'),
+    )
+    plano_internet = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
+                                          choices=PLANO_INTERNET)
+    motivo = forms.CharField(widget=forms.Textarea(attrs={'rows': 3, 'cols': 40}), label='Motivo do cancelamento:', required=True)
+    data = forms.DateField(widget = forms.DateInput(attrs={"type": "date"}), label='Informe a data do cancelamento:')
 
-
-
+    def clean(self):
+        cleaned_data = super().clean()
+        nome = cleaned_data.get("nome")
+        cpf = cleaned_data.get("cpf")
+        if not (nome or cpf):
+            raise forms.ValidationError(
+                "You must enter either a phone number or an email, or both."
+            )

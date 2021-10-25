@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Instalacao, ClientesVoip, ValeRefeicao
+from .models import Instalacao, ClientesVoip, ValeRefeicao, Cancelamentos
 
 
 # Register your models here.
@@ -18,3 +18,9 @@ admin.site.register(ClientesVoip)
 class ValeRefeicaoAdmin(admin.ModelAdmin):
     list_display = ('id','nome_funcionario','data_criacao','data_vale','valor_vale','status_pago')
 admin.site.register(ValeRefeicao, ValeRefeicaoAdmin)
+
+
+
+class CancelamentosAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nome', 'plano_internet','data_criacao','atendente')
+admin.site.register(Cancelamentos, CancelamentosAdmin)

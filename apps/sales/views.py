@@ -3,18 +3,19 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Sum, Count
-from .models import Instalacao, ValeRefeicao
+from .models import Instalacao, ValeRefeicao, Cancelamentos
 from ..components.models import FuncionariosParaVale
 from ..services.models import ServicoVoip
 from .forms import InstalacaoCreateForm, InstalacaoUpdateForm,\
     InstalacaoAgendarForm, InstalacaoFinalizarForm, BoletoEntregueForm,\
     InstalacaoDefinirTecnicoForm, EmitirValeRefeicaoForm,\
-    AdicionarValorValeRefeicaoForm, AdicionarPagamentoValeRefeicaoForm
+    AdicionarValorValeRefeicaoForm, AdicionarPagamentoValeRefeicaoForm, CadastrarCancelamentosForm
 from ..components.models import Vendedores
 from django.db.models.functions import ExtractMonth
 from django.db.models.functions import TruncMonth
-from django.views.generic.edit import CreateView
 from datetime import datetime, date
+from django.views.generic.edit import CreateView
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 # Create your views here.
@@ -351,3 +352,20 @@ def AdicionarPagamentoVale(request, id=None):
         messages.success(request, 'Pagamento concluído.')
         return redirect('/vendas/vale-refeicao/')
     return render(request, 'sales/adicionar-pagamento-vale.html', {'form': form})
+
+#--------------------- Cancellations -------------------------------------------------
+
+class CancelamentosCreateView(CreateView, SuccessMessageMixin):
+    model = Cancelamentos
+    form_class = CadastrarCancelamentosForm
+    template_name = 'sales/cadastrar-cancelamentos.html'
+    success_url = '/vendas/'
+    success_message = "%(nome), foi cancelado corretamente."
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message % dict(cleaned_data, nome=self.object.nome)
+
+
+    def form_valid(self, form):
+        form.instance.atendente = self.request.user
+        return super().form_valid(form)
