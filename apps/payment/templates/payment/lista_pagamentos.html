@@ -123,12 +123,12 @@
 <div>
   <nav aria-label="...">
     <ul class="pagination">
-      <li class="page-item disabled">
+      <li class="page-item">
         {% if pagamentos.has_previous %}
         <a class="page-link" href="?page=1">Primeiro</a>
         {% endif %}
       </li>
-      <li class="page-item disabled">
+      <li class="page-item">
         {% if pagamentos.has_previous %}
         <a class="page-link" href="?page={{ pagamentos.previous_page_number }}">Anterior</a>
         {% endif %}
