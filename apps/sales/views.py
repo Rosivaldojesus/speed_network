@@ -373,14 +373,28 @@ class CancelamentosCreateView(CreateView, SuccessMessageMixin):
         form.instance.atendente = self.request.user
         return super().form_valid(form)
 
-
+from itertools import chain
 class CancelamentosListView(ListView):
     model = Cancelamentos
     template_name = 'sales/lista-cancelamentos.html'
 
-    def get_queryset(self):
-        return Cancelamentos.objects.all()
-    context_object_name = 'cancelamentos'
+    def get_context_data(self, **kwargs):
+        context = super(CancelamentosListView, self).get_context_data(**kwargs)
+        context.update({
+            'mes': Cancelamentos.objects.annotate(month=TruncMonth('data')).filter().values('month').annotate(c=Count('id')).values('month', 'c').order_by('-month'),
+            'cancelamentos': Cancelamentos.objects.all(),
+        })
+        return context
+
+
+
+    #def get_queryset(self):
+        #return Cancelamentos.objects.all()
+    #context_object_name = 'cancelamentos'
+
+
+
+
 
 
 

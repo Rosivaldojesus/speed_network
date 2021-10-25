@@ -18,6 +18,27 @@
     {% endif %}
     <!-- Messagens -->
 
+
+    
+    Cancelamentos mensal:
+    <!-- Inicio -->
+    <!--
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      {% for mes in mes %}
+      <div class="col mt-2" >
+        <div class="card h-100">
+          <div class="card-body" align="center">
+            {{ mes.month|date:'M Y' }}: {{ mes.c }}
+           
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  -->
+    <!-- Fim-->
+
+    <!-- TABELA com os nomes dos cancelados -->
     <div>
         <table class="table">
             <thead>
@@ -42,6 +63,7 @@
             </tbody>
           </table>
     </div>
+    <!-- TABELA com os nomes dos cancelados -->
 
 </div>
 {% endblock %}

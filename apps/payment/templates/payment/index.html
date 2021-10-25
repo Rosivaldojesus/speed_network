@@ -83,18 +83,18 @@
 
 
   <!--INÍCIO Custos total mensais-->
-
   
   <div class="card shadow  border-0 mt-4">
     <div class="card-body">
       <h5 class="card-title">Custos Total por Mês</h5>
-      <div class="row">
+      <div class="row row-cols-1 row-cols-md-4 g-4">
         {% for mes in mes %}
-        <div class="col-2 border border-danger mr-1 mb-1 rounded">
-          <div class="card border-0 mt-1  " align="center">
-            
-              <h6>{{ mes.month|date:'M(Y)' }}<br> R$: ({{ mes.c }}) </h6>
-            
+        <div class="col mt-2" >
+          <div class="card h-100">
+            <div class="card-body" align="center">
+              {{ mes.month|date:'M Y' }}: {{ mes.c }}
+             
+            </div>
           </div>
         </div>
         {% endfor %}
