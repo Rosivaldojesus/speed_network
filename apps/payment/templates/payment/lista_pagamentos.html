@@ -10,18 +10,27 @@
           
 
           <div class="form-group col-12">
-          <label>Por motivo</label>
+          <label>Por motivo:</label>
 					<input type="text" class="form-control" placeholder="Data do pagamento" name="motivoPagamento" value="{{ request.GET.motivoPagamento }}">
           </div>
 
           <div class="form-group col-10">
-            <label>Por data</label>
+            <label>Por data:</label>
             <input type="date" class="form-control" placeholder="Data do pagamento" name="data" value="{{ request.GET.data }}">
 
-            <label>Banco</label>
-            <select class="form-control" name="banco" value="{{ request.GET.banco }}">
-              <option value="1">Bradesco</option>
-              <option value="2" selected>Itaú</option>
+            <label>Banco:</label>
+            <select class="form-control" size="7" name="banco" value="{{ request.GET.banco }}">
+              <optgroup label="Banco">
+                <option value="1">Bradesco</option>
+                <option value="valor2">Itaú</option>
+              </optgroup>
+             
+              <optgroup label="Meios">
+                <option value="3">cartao de debito bradesco</option>
+                <option value="4">cartao de credito Bradesco</option>
+                <option value="3">cartao de debito Itau</option>
+                <option value="4">Dinheiro</option>
+              </optgroup>
             </select>
 
             <!--
