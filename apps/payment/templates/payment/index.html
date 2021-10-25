@@ -186,7 +186,7 @@
   
             <td>
               {% for veiculos in mensalFuncionarios %}
-                <div class="card mt-1" align="center">
+                <div class="card mt-1 border border-danger border-start-0" align="center">
                   {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
                 </div>
               {% endfor %}
@@ -194,7 +194,7 @@
   
             <td>
               {% for veiculos in mensalAlimentacao %}
-              <div class="card mt-1" align="center">
+              <div class="card mt-1 border border-danger border-start-0" align="center">
                 {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
               </div>
               {% endfor %}
@@ -202,7 +202,7 @@
   
             <td>
               {% for veiculos in mensalLinks %}
-                <div class="card mt-1" align="center">
+                <div class="card mt-1 border border-danger border-start-0" align="center">
                   {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
                 </div>
               {% endfor %}
@@ -210,7 +210,7 @@
   
             <td>
               {% for veiculos in mensalLocacao %}
-              <div class="card mt-1" align="center">
+              <div class="card mt-1 border border-danger border-start-0" align="center">
                 {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
               </div>
               {% endfor %}
@@ -218,7 +218,7 @@
   
             <td>
               {% for veiculos in mensalInstalacao %}
-              <div class="card mt-1" align="center">
+              <div class="card mt-1 border border-danger border-start-0" align="center">
                 {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
               </div>
               {% endfor %}
@@ -226,7 +226,7 @@
   
             <td>
               {% for veiculos in mensalSocios %}
-              <div class="card mt-1" align="center">
+              <div class="card mt-1 border border-danger border-start-0" align="center">
                 {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
               </div>
               {% endfor %}
@@ -234,7 +234,7 @@
 
             <td>
               {% for veiculos in mensalImpostos %}
-              <div class="card mt-1" align="center">
+              <div class="card mt-1 border border-danger border-start-0" align="center">
                 {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
               </div>
               {% endfor %}
