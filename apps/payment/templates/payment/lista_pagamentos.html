@@ -3,28 +3,29 @@
 
 {% block main %}
 <div class="container">
-  <!-- Filtros -->
+  <!-- INÍCIO dos campos de Filtros -->
     <div class="mt-2">
       <form method="GET">
 			  <div class="row">
-          
-
-          <div class="form-group col-12">
-          <label>Por motivo:</label>
-					<input type="text" class="form-control" placeholder="Data do pagamento" name="motivoPagamento" value="{{ request.GET.motivoPagamento }}">
+          <div class="form-group col-8">
+            <label>Por motivo:</label>
+            <input type="text" class="form-control" placeholder="Motivo do pagamento" name="motivoPagamento" value="{{ request.GET.motivoPagamento }}">
           </div>
+  
+          <div class="form-group col-2">
+              <label>Valor:</label>
+              <input type="text" class="form-control" placeholder="R$" name="valor" value="{{ request.GET.valor }}">
+          </div>
+  
+          <div class="form-group col-2">
+              <label>Por data:</label>
+              <input type="date" class="form-control" placeholder="Data do pagamento" name="data" value="{{ request.GET.data }}">
+          </div>  
 
+        </div>
+
+        <div class="row">
           <div class="form-group col-12">
-            <label>Valor:</label>
-            <input type="text" class="form-control" placeholder="Valor do pagamento" name="valor" value="{{ request.GET.valor }}">
-            </div>
-
-          
-
-          <div class="form-group col-10">
-            <label>Por data:</label>
-            <input type="date" class="form-control" placeholder="Data do pagamento" name="data" value="{{ request.GET.data }}">
-
             <label>Banco:</label>
             <select class="form-control" size="7" name="banco" value="{{ request.GET.banco }}">
               <optgroup label="Banco">
@@ -39,24 +40,22 @@
                 <option value="4">Dinheiro</option>
               </optgroup>
             </select>
-
-            <!--
-            <input type="text" class="form-control" placeholder="Data do pagamento" name="banco" value="{{ request.GET.banco }}">
-            -->
           </div>
+        </div>
 
-
-
-
+        <div class="row">
+          <div class="form-group col-12">
             <button class=" form-control btn-success">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
                 <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
               </svg>
             </button>
+          </div>
         </div>
 		  </form>
     </div>
+    <!-- FIM dos campos de Filtros -->
 
     <!-- Gráficos de gastos do mês atual -->
     <div>
