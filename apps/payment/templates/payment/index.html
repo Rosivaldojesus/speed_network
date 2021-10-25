@@ -178,7 +178,10 @@
           <tr>
             <td>
             {% for veiculos in mensalVeiculos %}
-              {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong><br>
+              <div class="card" align="center">
+                {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
+              </div>
+              
             {% endfor %}
             </td>
   
