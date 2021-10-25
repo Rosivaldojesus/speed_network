@@ -95,9 +95,9 @@
 
 
 
-
+<!--
         <div class="pagination">
-            <span class="step-links">
+            <span class="step-links" align="center">
                 {% if pagamentos.has_previous %}
                     <a href="?page=1">&laquo; Primeiro</a>
                     <a href="?page={{ pagamentos.previous_page_number }}">Anterior</a>
@@ -113,6 +113,47 @@
                 {% endif %}
             </span>
         </div>
+
+
+-->
+
+
+
+
+        <div class="pagination">
+            <ul class="pagination justify-content-end">
+              <span class="step-links" align="center">
+
+                <li class="page-item disabled">
+                {% if pagamentos.has_previous %}
+                    <a href="?page=1" class="page-link">&laquo; Primeiro</a>
+                    <a href="?page={{ pagamentos.previous_page_number }}" class="page-link">Anterior</a>
+                {% endif %}
+                </li>
+
+                <span class="current">
+                    Página {{ pagamentos.number }} de {{ pagamentos.paginator.num_pages }}.
+                </span>
+
+                <li class="page-item">
+                {% if pagamentos.has_next %}
+                    <a href="?page={{ pagamentos.next_page_number }}" class="page-link">Próximo</a>
+                    <a href="?page={{ pagamentos.paginator.num_pages }}" class="page-link">Último &raquo;</a>
+                {% endif %}
+                </li>
+            </span>
+            </ul>
+        </div>
+
+
+
+
+
+
+
+
+
+
 
 
 
