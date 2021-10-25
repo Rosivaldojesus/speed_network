@@ -126,6 +126,7 @@ def ListaPagamentos(request):
     data = request.GET.get('data') 
     motivoPagamento = request.GET.get('motivoPagamento') 
     banco = request.GET.get('banco')
+    valor = request.GET.get('valor')
 
     # Show payment per bank
     if data:
@@ -142,6 +143,10 @@ def ListaPagamentos(request):
     # Show payment per bank
     elif banco:
         pagamentos = Pagamento.objects.filter(Q(origem_valor_pagamento__exact=banco))
+
+    # Show payment per bank
+    elif valor:
+        pagamentos = Pagamento.objects.filter(Q(valor_pagamento__icontains=valor))
     
 
     paginator = Paginator(pagamentos, 25)  # Show 25 payment per page.
