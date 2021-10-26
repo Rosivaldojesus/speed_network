@@ -79,7 +79,19 @@
 
     <!-- INICIO -->
     <div align="center">
-      <h4>Serviços por dia  </h4>
+      <h4>Serviços por dia </h4>
+
+
+      {% for diario in diarios %}
+        Quantidade: {{diarios.number }}
+      {% endfor %}
+
+      <hr>
+      <hr>
+      {% for mensal in servicosMensal %}
+        Mês: {{ mensal.month }}: {{ mensal.c }} <br>
+      {% endfor %}
+      
     </div>
 
     <div>
