@@ -43,6 +43,21 @@
           </div>
         </div>
 
+        <div>
+          <div class="form-group col-md-3">
+            <label for="inputCity">Data Inicial</label>
+            <input type="date" class="form-control" name="startdate" value="{{ request.GET.startdate }}">
+          </div>
+
+          <div class="form-group col-md-3">
+            <label for="inputZip">Data Final</label>
+            <input type="date" class="form-control" name="enddate" value="{{ request.GET.enddate}}">
+          </div>
+
+
+
+        </div>
+
         <div class="row">
           <div class="form-group col-12">
             <button class=" form-control btn-success">

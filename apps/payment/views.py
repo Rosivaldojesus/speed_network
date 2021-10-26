@@ -128,10 +128,16 @@ def ListaPagamentos(request):
     motivoPagamento = request.GET.get('motivoPagamento') 
     banco = request.GET.get('banco')
     valor = request.GET.get('valor')
+    startdate = request.GET.get('startdate')
+    enddate = request.GET.get('enddate')
 
     # Show payment per bank
     if data:
         pagamentos = Pagamento.objects.filter(Q(data_pagamento__icontains=data))
+
+    # Show payment per time course
+    elif startdate and enddate:
+        pagamentos = Pagamento.objects.filter(Q(data_pagamento__range=[startdate, enddate]))
     
 
     # Show payment per reason
@@ -154,12 +160,14 @@ def ListaPagamentos(request):
         pagamentos = Pagamento.objects.filter(Q(valor_pagamento__icontains=valor)|
                                               Q(data_pagamento__icontains=data))
 
-
     paginator = Paginator(pagamentos, 25)  # Show 25 payment per page.
     page_number = request.GET.get('page')
     pagamentos = paginator.get_page(page_number)
 
     return render(request, 'payment/lista_pagamentos.html', {'pagamentos': pagamentos})
+
+
+
 
 
 def AgendamentosPagamentos(request):

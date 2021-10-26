@@ -5,12 +5,25 @@
 
 {% block main %}
 <div class="container">
-
-<!-- INÍCIO Botões com as opções da página -->
-  <div align="right" class="p-3">
-    <a href="cadastro-servico/" class="btn btn-primary"><h4>Abrir serviço</h4></a>
+  <div class="mt-2 mb-2">
+    <!-- INÍCIO Botões com as opções da página -->
+      <div align="right" class="p-3">
+        <a href="cadastro-servico/" class="btn btn-primary"><h4>Abrir serviço</h4></a>
+      </div>
+    <!-- FIM Botões com as opções da página -->
   </div>
-<!-- FIM Botões com as opções da página -->
+
+</div>
+
+
+
+
+
+
+
+<div class="container">
+
+
 
 <!-- INICIO Campo que mostrar as mensagens da página -->
   <div>
@@ -25,54 +38,58 @@
 <!-- FIM Campo que mostrar as mensagens da página -->
 
 <!-- INÍCIO com as opções de processos dos serviços -->
-  <div>
-    <div class="card-deck">
-      <div class="card shadow-lg">
-        <div class="media">
-          <h5 class="p-2">Abertos</h5>
-          <div class="media-body">
-            <div align="right">
-              <h3 class="p-2"></h3>
-              <h1 class="p-2"><span class="badge badge-danger badge-pill">{{ contarAbertos }}</span></h1>
-              <a href="servicos-abertos/" class="btn btn-outline-danger">+ Ver todos</a>
+  <div class="card">
+    <div class="card-header">
+      <strong>Status dos Serviços</strong>
+    </div>
+    <div class="card-body">
+      <div class="card-deck">
+        <div class="card shadow-lg">
+          <div class="media">
+            <h5 class="p-2">Abertos</h5>
+            <div class="media-body">
+              <div align="right">
+                <h3 class="p-2"></h3>
+                <h1 class="p-2"><span class="badge badge-danger badge-pill">{{ contarAbertos }}</span></h1>
+                <a href="servicos-abertos/" class="btn btn-outline-danger">+ Ver todos</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="card shadow-lg">
-        <div class="media">
-          <h5 class="p-2">Agendados</h5>
-          <div class="media-body">
-            <div align="right">
-              <h1 class="p-2"><span class="badge badge-warning badge-pill">{{contarAgendados}}</span></h1>
-              <a href="servicos-agendados/" class="btn btn-outline-warning">+ Ver todos</a>
+        <div class="card shadow-lg">
+          <div class="media">
+            <h5 class="p-2">Agendados</h5>
+            <div class="media-body">
+              <div align="right">
+                <h1 class="p-2"><span class="badge badge-warning badge-pill">{{contarAgendados}}</span></h1>
+                <a href="servicos-agendados/" class="btn btn-outline-warning">+ Ver todos</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="card shadow-lg">
-        <div class="media">
-          <h5 class="p-2">Finalizados</h5>
-          <div class="media-body">
-            <div align="right">
-            <div align="right">
-              <h1 class="p-2"><span class="badge badge-success badge-pill">{{contarFinalizados}}</span></h1>
-            <a href="servicos-finalizados/" class="btn btn-outline-success">+ Ver todos</a>
+        <div class="card shadow-lg">
+          <div class="media">
+            <h5 class="p-2">Finalizados</h5>
+            <div class="media-body">
+              <div align="right">
+              <div align="right">
+                <h1 class="p-2"><span class="badge badge-success badge-pill">{{contarFinalizados}}</span></h1>
+              <a href="servicos-finalizados/" class="btn btn-outline-success">+ Ver todos</a>
+              </div>
             </div>
-          </div>
+        </div>
+        </div>
       </div>
-      </div>
-    </div>s
+    </div>
   </div>
+
 <!-- FIM com as opções de processos dos serviços -->
 
-    <hr>
-    <hr>
 
 <!-- INICIO Gráfico com o serviços Mensal  -->
   <div class="card">
     <div class="card-header">
-      Serviços Mensais
+      <strong>Serviços Mensais</strong>
     </div>
     <div class="card-body">
       <canvas id="speedChartA" width="600" height="100">
@@ -113,64 +130,64 @@
 <!-- INICIO Gráfico com o serviços Mensal  -->    
 
 
-  <hr>
-  <hr>
 
  <!-- INICIO Gráfico com o serviços diários  -->  
-  <div class="card">
-      <div class="card-header">
-        Serviços Diários
-      </div>
-      <div class="card-body">
-        <canvas id="speedChart" width="400" height="100"></canvas>
-        <script>
-            var speedCanvas = document.getElementById("speedChart");
-            var speedCanvas = document.getElementById("speedChart");
+  <div class="mt-2 mb-2">
+      <div class="card">
+        <div class="card-header">
+          <strong>Serviços Diários</strong>
+        </div>
+        <div class="card-body">
+          <canvas id="speedChart" width="400" height="100"></canvas>
+          <script>
+              var speedCanvas = document.getElementById("speedChart");
+              var speedCanvas = document.getElementById("speedChart");
 
-            Chart.defaults.global.defaultFontFamily = "Lato";
-            Chart.defaults.global.defaultFontSize = 18;
+              Chart.defaults.global.defaultFontFamily = "Lato";
+              Chart.defaults.global.defaultFontSize = 18;
 
-            var speedData = {
-              labels: [
-              {% for diario in diarioServicos %} '{{ diario.data_finalizacao }}', {% endfor %}
-            ],
-              datasets: [{
-                label: "Serviços (dia)",
-                data: [
-                {% for diario in diarioServicos %} '{{ diario.number}}', {% endfor %}
+              var speedData = {
+                labels: [
+                {% for diario in diarioServicos %} '{{ diario.data_finalizacao }}', {% endfor %}
               ],
-                lineTension: 0,
-                fill: false,
-                borderColor: 'blue',
-                backgroundColor: 'transparent',
-                borderDash: [3, 3],
-                pointBorderColor: 'blue',
-                pointBackgroundColor: 'blue',
-                pointRadius: 5,
-                pointHoverRadius: 10,
-                pointHitRadius: 30,
-                pointBorderWidth: 2,
-                pointStyle: 'rectRounded'
-              }]
-            };
-            var chartOptions = {
-              legend: {
-                display: true,
-                position: 'top',
-                labels: {
-                  boxWidth: 80,
-                  fontColor: 'black'
+                datasets: [{
+                  label: "Serviços (dia)",
+                  data: [
+                  {% for diario in diarioServicos %} '{{ diario.number}}', {% endfor %}
+                ],
+                  lineTension: 0,
+                  fill: false,
+                  borderColor: 'blue',
+                  backgroundColor: 'transparent',
+                  borderDash: [3, 3],
+                  pointBorderColor: 'blue',
+                  pointBackgroundColor: 'blue',
+                  pointRadius: 5,
+                  pointHoverRadius: 10,
+                  pointHitRadius: 30,
+                  pointBorderWidth: 2,
+                  pointStyle: 'rectRounded'
+                }]
+              };
+              var chartOptions = {
+                legend: {
+                  display: true,
+                  position: 'top',
+                  labels: {
+                    boxWidth: 80,
+                    fontColor: 'black'
+                  }
                 }
-              }
-            };
-            var lineChart = new Chart(speedCanvas, {
-              type: 'line',
-              data: speedData,
-              options: chartOptions
-            });
-        </script>
-      </div>
+              };
+              var lineChart = new Chart(speedCanvas, {
+                type: 'line',
+                data: speedData,
+                options: chartOptions
+              });
+          </script>
+        </div>
+    </div>
   </div>
 <!-- FIM Gráfico com o serviços diários  -->
-  </div>
+</div>
 {% endblock %}
