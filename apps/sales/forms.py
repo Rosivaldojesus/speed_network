@@ -56,7 +56,6 @@ class InstalacaoCreateForm(forms.ModelForm):
         ('Site', 'Site'),
         ('Redes Socias', 'Redes Socias'),
         ('Outros', 'Outros'),
-
     )
     como_conheceu_empresa = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
                                         choices=COMO_CONHECEU_EMPRESA, required=True)
