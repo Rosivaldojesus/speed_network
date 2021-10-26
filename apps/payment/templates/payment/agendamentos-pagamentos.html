@@ -4,69 +4,112 @@
 {% block main %}
 <div class="container-xl">
 
-    <div class="mt-4">
-        <h4>Agendamentos Pagamentos</h4>
+<!-- INÍCIO do título da página -->
+<div class="mt-4">
+    <h4>Agenda de  Pagamentos</h4>
+</div>
+<!-- INÍCIO do título da página -->
+
+<!-- INICIO da página Principal -->
+<div class="row">
+    <!-- INÍCIO da campo da esquerda -->
+    <div class="col-sm-8">
+        <div class="card">
+            <h5 class="card-header">Featured</h5>
+            <div class="card-body">
+              <h5 class="card-title">Resumo Pagamentos</h5>
+              <div class="row">
+                
+                <div class="col-sm-4">
+                  <div class="card shadow border-0">
+                    <div class="card-body">
+                      <p class="card-title">Atrasadas</p>
+                        <div align="center">
+                            {% if totalPagarAtrasadas.total is null %}
+                                <h3>R$: 0</h3>
+                            {% else %}
+                                <h3>R$: {{ totalPagarAtrasadas.total }}</h3>    
+                            {% endif %}  
+                        </div>
+                        <div align="right">
+                             <a>Ver todos</a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card shadow border-0">
+                      <div class="card-body">
+                          <p class="card-title">Hoje</p>
+                          <div align="center">
+                              {% if totalPagarHoje.total is null %}
+                                  <h3>R$: 0</h3>
+                              {% else %}
+                                  <h3>R$: {{ totalPagarHoje.total }}</h3>    
+                              {% endif %}                      
+                          </div>
+                          <div align="right">
+                              <a>Ver todos</a>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card shadow border-0">
+                        <div class="card-body">
+                          <p class="card-title">Futuros</p>
+                            <div align="center">
+                            {% if totalPagarNaoVencidas.total is null %}
+                                <h3>R$: 0</h3>
+                            {% else %}
+                                <h3>R$: {{ totalPagarNaoVencidas.total }}</h3>    
+                            {% endif %}  
+                            </div>
+                            <div align="right">
+                                <a href="/pagamentos/pagamentos-futuros/">Ver todos</a>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
     </div>
+    <!-- FIM da campo da esquerda -->
+    <!-- INÍCIO da campo da direita -->
+    <div class="col-sm-4">
+        <div class="card">
+            <h5 class="card-header">Pagamentos Futuros</h5>
+            <div class="card-body">
+                {% for pagamento in pagamentosFuturos %}
+                    <li>{{ pagamento.month|date:"F Y" }}: R$: {{ pagamento.c }}</li><br>
+                {% endfor %}
+            </div>
+          </div>
+    </div>
+    <!-- FIM da campo da direita -->
+</div>
+<!-- FIM da página Principal -->
+
+</div>
+<!-- FIM do container-->
+
+
+
+
+
+
+<div class="container-xl">
+
+    
     
     <hr>
 
     <div class="card shadow">
         <div class="mt-2 mb-2 ml-2 mr-2">
-            <h4>Resumo Pagamentos</h4>
+            <h4></h4>
         </div>
-        <div class="row">
-            <div class="col-sm-4">
-              <div class="card shadow border-0">
-                <div class="card-body">
-                    <h5 class="card-title">Valor a pagar hoje</h5>
-                    <div align="center">
-                        {% if totalPagarHoje.total is null %}
-                            <h3>R$: 0</h3>
-                        {% else %}
-                            <h3>R$: {{ totalPagarHoje.total }}</h3>    
-                        {% endif %}                      
-                    </div>
-                    <div align="right">
-                        <a>Ver todos</a>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="card shadow border-0">
-                <div class="card-body">
-                  <h5 class="card-title">Valor a pagar Atrasadas</h5>
-                    <div align="center">
-                        {% if totalPagarAtrasadas.total is null %}
-                            <h3>R$: 0</h3>
-                        {% else %}
-                            <h3>R$: {{ totalPagarAtrasadas.total }}</h3>    
-                        {% endif %}  
-                    </div>
-                    <div align="right">
-                         <a>Ver todos</a>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card shadow border-0">
-                    <div class="card-body">
-                      <h5 class="card-title">Valor a pagar não vencidas</h5>
-                        <div align="center">
-                        {% if totalPagarNaoVencidas.total is null %}
-                            <h3>R$: 0</h3>
-                        {% else %}
-                            <h3>R$: {{ totalPagarNaoVencidas.total }}</h3>    
-                        {% endif %}  
-                        </div>
-                        <div align="right">
-                            <a href="/pagamentos/pagamentos-futuros/">Ver todos</a>
-                        </div>
-                    </div>
-                </div>
-              </div>
-          </div>
+        
     </div>
 
     <hr>
