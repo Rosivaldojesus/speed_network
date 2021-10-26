@@ -40,7 +40,7 @@ class Instalacao(models.Model):
     instalacao_criado_por = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='instalacao_criado_por', blank=True, null=True)
     instalacao_finalizado_por = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='instalacao_finalizado_por', blank=True, null=True)
     instalacao_vendedor = models.ForeignKey(Vendedores, on_delete=models.DO_NOTHING, verbose_name='Vendedores')
-
+    como_conheceu_empresa = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = 'Instalação'

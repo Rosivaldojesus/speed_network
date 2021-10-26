@@ -24,6 +24,7 @@ class InstalacaoCreateForm(forms.ModelForm):
                   'planos_instalacao',
                   'data_vencimento',
                   'instalacao_vendedor',
+                  'como_conheceu_empresa',
                   'observacao_instalacao',
                   ]
         widgets = {
@@ -45,8 +46,22 @@ class InstalacaoCreateForm(forms.ModelForm):
             'data_instalacao': forms.DateInput(attrs={'type': 'date'}),
             'hora_instalacao': forms.TimeInput(attrs={'type': 'time'}),
             'instalacao_vendedor': forms.Select(attrs={'class': 'form-control'}),
+            'como_conheceu_empresa': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
             'observacao_instalacao' : forms.Textarea(attrs={'class': 'form-control'}),
         }
+
+    COMO_CONHECEU_EMPRESA = (
+        ('Panfleto', 'Panfleto'),
+        ('Indicação', 'Indicação'),
+        ('Site', 'Site'),
+        ('Redes Socias', 'Redes Socias'),
+        ('Outros', 'Outros'),
+
+    )
+    como_conheceu_empresa = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
+                                        choices=COMO_CONHECEU_EMPRESA, required=True)
+
+
 
 class InstalacaoUpdateForm(forms.ModelForm):
     class Meta:
