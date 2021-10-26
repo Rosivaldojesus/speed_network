@@ -75,22 +75,64 @@
     <hr>
     <hr>
 
+    {% for mensal in servicosMensal %}
+    dia: {{ mensal.month }}: {{ mensal.c }} <br>
+    {% endfor %}
 
 
-    <!-- INICIO -->
+
+    <div>
+      <canvas id="speedChartA" width="600" height="100">
+          <script>
+              
+              var speedCanvas = document.getElementById("speedChartA");
+    
+              Chart.defaults.global.defaultFontFamily = "Lato";
+              Chart.defaults.global.defaultFontSize = 16;
+    
+              var speedData = {
+              labels: [ {% for mensal in servicosMensal %}'{{ mensal.month|date:"F Y"  }}',{% endfor %} ],
+              datasets: [{
+                  label: "Instalações (mês)",
+                  data: [{% for mensal in servicosMensal %} '{{ mensal.c }}', {% endfor %}],
+              }]
+              };
+    
+              var chartOptions = {
+              legend: {
+                  display: true,
+                  position: 'top',
+                  labels: {
+                  boxWidth: 80,
+                  fontColor: 'black'
+                  }
+              }
+              };
+    
+              var lineChart = new Chart(speedCanvas, {
+              type: 'line',
+              data: speedData,
+              options: chartOptions
+              });
+          </script>
+      </canvas>
+    </div> 
+
+
+
+
+    <hr>
+    <hr>
+
+
+
+    <!-- INICIO Gráfico com o serviços diários  -->
     <div align="center">
       <h4>Serviços por dia </h4>
 
-
-      {% for diario in diarios %}
-        Quantidade: {{diarios.number }}
-      {% endfor %}
-
       <hr>
       <hr>
-      {% for mensal in servicosMensal %}
-        Mês: {{ mensal.month }}: {{ mensal.c }} <br>
-      {% endfor %}
+ 
       
     </div>
 
@@ -108,7 +150,7 @@
               {% for diario in diarioServicos %} '{{ diario.data_finalizacao }}', {% endfor %}
             ],
               datasets: [{
-                label: "Instalação (dia)",
+                label: "Serviços (dia)",
                 data: [
                 {% for diario in diarioServicos %} '{{ diario.number}}', {% endfor %}
               ],
@@ -142,12 +184,8 @@
               options: chartOptions
             });
         </script>
-
     </div>
-    
-    
-
-    <!-- -->
+    <!-- FIM Gráfico com o serviços diários  -->
 
 
 
