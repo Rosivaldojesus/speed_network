@@ -44,7 +44,7 @@
                         {% endif %}  
                     </div>
                     <div align="right">
-                        <a>Ver todos</a>
+                         <a>Ver todos</a>
                     </div>
                 </div>
               </div>
@@ -67,6 +67,17 @@
                 </div>
               </div>
           </div>
+    </div>
+
+    <hr>
+    <hr>
+
+    <h4>Agendamentos</h4>
+
+    <div>
+        {% for pagamento in pagamentosFuturos %}
+            {{ pagamento.month }}: R$: {{ pagamento.c }}<br>
+        {% endfor %}
     </div>
 
     

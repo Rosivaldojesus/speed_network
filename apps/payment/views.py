@@ -181,12 +181,16 @@ def AgendamentosPagamentos(request):
         .aggregate(total=Sum('valor_pagamento'))
     totalPagarNaoVencidas = Pagamento.objects.filter(status_pago= 'False').filter(data_pagamento__gt=data_atual)\
         .aggregate(total=Sum('valor_pagamento'))
+
+    pagamentosFuturos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__gt=data_atual).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+
     return render(request, 'payment/agendamentos-pagamentos.html', { 'vencerHoje': vencerHoje,
                                                                      'atrasadas': atrasadas,
                                                                      'naoVencidas': naoVencidas,
                                                                      'totalPagarHoje': totalPagarHoje,
                                                                      'totalPagarAtrasadas': totalPagarAtrasadas,
                                                                      'totalPagarNaoVencidas': totalPagarNaoVencidas,
+                                                                     'pagamentosFuturos':pagamentosFuturos,
                                                                      })
 
 def PagamentosFuturos(request):
