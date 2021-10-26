@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.db.models.functions import ExtractMonth
 from django.db.models.functions import TruncMonth
 import csv
+import xlwt # Biblioteca Excel
 from django.http import HttpResponse
 from .forms import CadastrarFluxoForm
 from django.core.paginator import Paginator
@@ -277,4 +278,42 @@ def ExportarCSV(request):
         writer.writerow([pag.id, pag.data_pagamento, pag.motivo_pagamento, pag.valor_pagamento,
                          pag.origem_valor_pagamento, pag.tipo_custo_pagamento,  pag.categoria , pag.status_pago
                          ])
+    return response
+
+
+def ExportParaExcel(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="users.xls"'
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('Users')
+
+    # Sheet header, first row
+    row_num = 0
+
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['motivo_pagamento','valor_pagamento', 'origem_valor_pagamento', 'tipo_custo_pagamento', 'categoria', 'status_pago']
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    # Sheet body, remaining rows
+    font_style = xlwt.XFStyle()
+
+    rows = Pagamento.objects.all()#.values_list('username', 'first_name', 'last_name', 'email')
+
+    for row in rows:
+        row_num += 1
+
+        ws.write(row_num,0,row.motivo_pagamento , font_style)
+        ws.write(row_num,1,row.valor_pagamento , font_style)
+        ws.write(row_num,2,row.origem_valor_pagamento.origem_valor , font_style)
+        ws.write(row_num,3,row.tipo_custo_pagamento.tipo_custo , font_style)
+        ws.write(row_num,4,row.data_pagamento , font_style)
+        ws.write(row_num,5,row.categoria.nome_categoria , font_style)
+        ws.write(row_num,6,row.status_pago , font_style)
+
+    wb.save(response)
     return response
