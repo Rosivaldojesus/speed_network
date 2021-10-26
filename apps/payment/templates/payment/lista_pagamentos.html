@@ -157,7 +157,7 @@
             <span class="step-links" align="center">
                 {% if pagamentos.has_previous %}
                     <a href="?page=1">&laquo; Primeiro</a>
-                    <a href="?page={{ pagamentos.previous_page_number }}&q={{ banco }}">Anterior</a>
+                    <a href="?page={{ pagamentos.previous_page_number }}{% if request.GET.banco %}&q={{ request.GET.banco }}{% endif %}">Anterior</a>
                 {% endif %}
 
                 <span class="current">
@@ -165,17 +165,11 @@
                 </span>
 
                 {% if pagamentos.has_next %}
-                    <a href="?page={{ pagamentos.next_page_number }}&q={{ banco }}">Próximo</a>
-                    <a href="?page={{ pagamentos.paginator.num_pages }}&q={{ banco }}">Último &raquo;</a>
+                    <a href="?page={{ pagamentos.next_page_number }}&q={{ banco }}{% if request.GET.banco %}&q={{ request.GET.banco }}{% endif %}">Próximo</a>
+                    <a href="?page={{ pagamentos.paginator.num_pages }}&q={{ banco }}{% if request.GET.banco %}&q={{ request.GET.banco }}{% endif %}">Último &raquo;</a>
                 {% endif %}
             </span>
         </div>
-
-
-
-
-
-
 
 
 
