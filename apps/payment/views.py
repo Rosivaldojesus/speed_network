@@ -145,9 +145,11 @@ def ListaPagamentos(request):
     elif banco:
         pagamentos = Pagamento.objects.filter(Q(origem_valor_pagamento__exact=banco))
 
-    # Show payment per bank
+
     elif valor:
         pagamentos = Pagamento.objects.filter(Q(valor_pagamento__icontains=valor))
+
+    # Show payment per value and date
     elif valor and data:
         pagamentos = Pagamento.objects.filter(Q(valor_pagamento__icontains=valor)|
                                               Q(data_pagamento__icontains=data))

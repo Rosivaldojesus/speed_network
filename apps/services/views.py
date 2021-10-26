@@ -16,9 +16,12 @@ def Index(request):
     contarAgendados = Servico.objects.filter(status_agendado='True')\
     .filter(status_concluido='False').count()
     contarFinalizados = Servico.objects.all().filter(status_concluido='True').count()
+    diarioServicos = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate( number=Count('data_finalizacao')).order_by('data_finalizacao')[90:]
+
     return render(request, 'services/index.html', {'contarAbertos': contarAbertos,
                                                    'contarFinalizados': contarFinalizados,
-                                                   'contarAgendados': contarAgendados
+                                                   'contarAgendados': contarAgendados,
+                                                   'diarioServicos': diarioServicos,
                                                    })
 
 def CadastroServico(request):
