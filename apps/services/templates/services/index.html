@@ -6,14 +6,13 @@
 {% block main %}
 <div class="container">
 
-  <!-- INÍCIO Botões com as opções da página -->
-    <div align="right" class="p-3">
-      <a href="cadastro-servico/" class="btn btn-primary"><h4>Abrir serviço</h4></a>
-    </div>
-  <!-- FIM Botões com as opções da página -->
+<!-- INÍCIO Botões com as opções da página -->
+  <div align="right" class="p-3">
+    <a href="cadastro-servico/" class="btn btn-primary"><h4>Abrir serviço</h4></a>
+  </div>
+<!-- FIM Botões com as opções da página -->
 
-
-  <!-- INICIO Campo que mostrar as mensagens da página -->
+<!-- INICIO Campo que mostrar as mensagens da página -->
   <div>
     {% if messages %}
       {% for message in messages %}
@@ -23,13 +22,11 @@
       {% endfor %}
     {% endif %}
   </div>
-  <!-- FIM Campo que mostrar as mensagens da página -->
+<!-- FIM Campo que mostrar as mensagens da página -->
 
-
-  <!-- INÍCIO com as opções de processos dos serviços -->
+<!-- INÍCIO com as opções de processos dos serviços -->
   <div>
     <div class="card-deck">
-
       <div class="card shadow-lg">
         <div class="media">
           <h5 class="p-2">Abertos</h5>
@@ -42,7 +39,6 @@
           </div>
         </div>
       </div>
-    
       <div class="card shadow-lg">
         <div class="media">
           <h5 class="p-2">Agendados</h5>
@@ -54,7 +50,6 @@
           </div>
         </div>
       </div>
-      
       <div class="card shadow-lg">
         <div class="media">
           <h5 class="p-2">Finalizados</h5>
@@ -66,77 +61,64 @@
             </div>
           </div>
       </div>
-    
       </div>
     </div>s
   </div>
-  <!-- FIM com as opções de processos dos serviços -->
+<!-- FIM com as opções de processos dos serviços -->
 
     <hr>
     <hr>
 
-    {% for mensal in servicosMensal %}
-    dia: {{ mensal.month }}: {{ mensal.c }} <br>
-    {% endfor %}
+<!-- INICIO Gráfico com o serviços Mensal  -->
+  <div>
+    <canvas id="speedChartA" width="600" height="100">
+        <script>
+            
+            var speedCanvas = document.getElementById("speedChartA");
 
+            Chart.defaults.global.defaultFontFamily = "Lato";
+            Chart.defaults.global.defaultFontSize = 16;
 
+            var speedData = {
+            labels: [ {% for mensal in servicosMensal %}'{{ mensal.month|date:"F Y"  }}',{% endfor %} ],
+            datasets: [{
+                label: "Instalações (mês)",
+                data: [{% for mensal in servicosMensal %} '{{ mensal.c }}', {% endfor %}],
+            }]
+            };
 
-    <div>
-      <canvas id="speedChartA" width="600" height="100">
-          <script>
-              
-              var speedCanvas = document.getElementById("speedChartA");
-    
-              Chart.defaults.global.defaultFontFamily = "Lato";
-              Chart.defaults.global.defaultFontSize = 16;
-    
-              var speedData = {
-              labels: [ {% for mensal in servicosMensal %}'{{ mensal.month|date:"F Y"  }}',{% endfor %} ],
-              datasets: [{
-                  label: "Instalações (mês)",
-                  data: [{% for mensal in servicosMensal %} '{{ mensal.c }}', {% endfor %}],
-              }]
-              };
-    
-              var chartOptions = {
-              legend: {
-                  display: true,
-                  position: 'top',
-                  labels: {
-                  boxWidth: 80,
-                  fontColor: 'black'
-                  }
-              }
-              };
-    
-              var lineChart = new Chart(speedCanvas, {
-              type: 'line',
-              data: speedData,
-              options: chartOptions
-              });
-          </script>
-      </canvas>
-    </div> 
-
-
-
+            var chartOptions = {
+            legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                boxWidth: 80,
+                fontColor: 'black'
+                }
+            }
+            };
+            var lineChart = new Chart(speedCanvas, {
+            type: 'line',
+            data: speedData,
+            options: chartOptions
+            });
+        </script>
+    </canvas>
+  </div> 
+<!-- INICIO Gráfico com o serviços Mensal  -->    
 
     <hr>
     <hr>
 
-
-
-    <!-- INICIO Gráfico com o serviços diários  -->
-    <div align="center">
+  <div align="center">
       <h4>Serviços por dia </h4>
+  </div>
 
-      <hr>
-      <hr>
- 
-      
-    </div>
+  <hr>
+  <hr>
 
-    <div>
+ <!-- INICIO Gráfico com o serviços diários  -->
+  <div>
       <canvas id="speedChart" width="400" height="100"></canvas>
         <script>
             var speedCanvas = document.getElementById("speedChart");
@@ -185,10 +167,6 @@
             });
         </script>
     </div>
-    <!-- FIM Gráfico com o serviços diários  -->
-
-
-
-
+<!-- FIM Gráfico com o serviços diários  -->
   </div>
 {% endblock %}
