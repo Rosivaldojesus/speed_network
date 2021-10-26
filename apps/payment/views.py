@@ -160,7 +160,7 @@ def ListaPagamentos(request):
         pagamentos = Pagamento.objects.filter(Q(valor_pagamento__icontains=valor)|
                                               Q(data_pagamento__icontains=data))
 
-    paginator = Paginator(pagamentos, 2)  # Show 25 payment per page.
+    paginator = Paginator(pagamentos, 50)  # Show 25 payment per page.
     page_number = request.GET.get('page')
     pagamentos = paginator.get_page(page_number)
 
