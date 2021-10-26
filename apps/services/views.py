@@ -21,7 +21,7 @@ def Index(request):
    # diarioInstalaçao = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate( number=Count('data_finalizacao')).order_by('data_finalizacao')[90:]
     servicosMensal = Servico.objects.annotate(month=TruncMonth('data_finalizacao')).filter(status_concluido='True').values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
 
-    diarioServicos = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('data_finalizacao')).order_by('data_finalizacao')
+    diarioServicos = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('data_finalizacao')).order_by('data_finalizacao')[90:]
 
 
 
