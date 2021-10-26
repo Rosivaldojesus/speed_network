@@ -76,7 +76,7 @@
 
     <div>
         {% for pagamento in pagamentosFuturos %}
-            {{ pagamento.month }}: R$: {{ pagamento.c }}<br>
+            {{ pagamento.month|date:"F Y" }}: R$: {{ pagamento.c }}<br>
         {% endfor %}
     </div>
 
