@@ -70,8 +70,12 @@
     <hr>
 
 <!-- INICIO Gráfico com o serviços Mensal  -->
-  <div>
-    <canvas id="speedChartA" width="600" height="100">
+  <div class="card">
+    <div class="card-header">
+      Serviços Mensais
+    </div>
+    <div class="card-body">
+      <canvas id="speedChartA" width="600" height="100">
         <script>
             
             var speedCanvas = document.getElementById("speedChartA");
@@ -82,7 +86,7 @@
             var speedData = {
             labels: [ {% for mensal in servicosMensal %}'{{ mensal.month|date:"F Y"  }}',{% endfor %} ],
             datasets: [{
-                label: "Instalações (mês)",
+                label: "Serviços (mês)",
                 data: [{% for mensal in servicosMensal %} '{{ mensal.c }}', {% endfor %}],
             }]
             };
@@ -104,22 +108,21 @@
             });
         </script>
     </canvas>
-  </div> 
+    </div>
+  </div>
 <!-- INICIO Gráfico com o serviços Mensal  -->    
 
-    <hr>
-    <hr>
-
-  <div align="center">
-      <h4>Serviços por dia </h4>
-  </div>
 
   <hr>
   <hr>
 
- <!-- INICIO Gráfico com o serviços diários  -->
-  <div>
-      <canvas id="speedChart" width="400" height="100"></canvas>
+ <!-- INICIO Gráfico com o serviços diários  -->  
+  <div class="card">
+      <div class="card-header">
+        Serviços Diários
+      </div>
+      <div class="card-body">
+        <canvas id="speedChart" width="400" height="100"></canvas>
         <script>
             var speedCanvas = document.getElementById("speedChart");
             var speedCanvas = document.getElementById("speedChart");
@@ -166,7 +169,8 @@
               options: chartOptions
             });
         </script>
-    </div>
+      </div>
+  </div>
 <!-- FIM Gráfico com o serviços diários  -->
   </div>
 {% endblock %}
