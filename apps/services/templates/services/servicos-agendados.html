@@ -5,6 +5,9 @@
 {% block title %}<title>Serviços em agendados</title>{% endblock %}
 
 {% block main %}
+<body style="background-color: lightgrey;">
+
+</body>
 <div class="container">
   <h5 class="mt-3 mb-3"><span class="badge badge-warning badge-pill">{{quant_agendados}} </span> Serviços Agendados</h5>
 
@@ -17,12 +20,34 @@
 {% endif %}
 
 
+<!-- INÍCIO  Campo de Pesquisas-->
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="form-group col-8">
+        <label for="inputCity">Nome do cliente</label>
+        <input type="search" class="form-control" placeholder="Informe o nome do cliente" name="q" value="{{ request.GET.q }}">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputCity">Escolha uma data</label>
+        <input type="date" class="form-control" name="startdate" value="{{ request.GET.startdate }}">
+      </div>
+    </div>
+
+    <button class=" form-control btn-success">
+      <i class="fas fa-search"></i>
+      Pesquisar
+    </button>
+
+  </div>
+</div>
+
+<!-- FIM Campo de Pesquisas-->
 
 
 
 
-
-  <!-- INÍCIO  Campo de Pesquisas-->
+  <!-- INÍCIO  Campo de Pesquisas
 	<div class="mt-3">
 		<form method="GET">
 		   <div class="row">
@@ -44,7 +69,7 @@
 		   </div>
 	   </form>
 	</div>
-	<!-- FIM Campo de Pesquisas-->
+	 FIM Campo de Pesquisas-->
   <hr>
   <hr>
 
@@ -54,7 +79,7 @@
 
 
 {% for agendado in agendados %}
-  <div class="card mt-3 shadow border-warning">
+  <div class="card mt-2 mb-2 shadow border-warning">
     <div class="card-header ">
         <div class="row">
           <div class="col-sm-6">

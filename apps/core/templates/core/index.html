@@ -7,12 +7,25 @@
 
 {% block main %}
 
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="container-xl">
-  
-  <div class="card-group mt-2">
+  <!--INÍCIO das informações de Pagamentos -->
+  <div class="card-group mt-4">
     <!-- INÍCIO LADO ESQUERDO -->
     <div class="card col-sm-9 border-0">
-     
+
+           
       <!--INÍCIO das informações de Pagamentos -->
       {% if request.user.groups.all.0.name == "Master" %}
       <h5 class="card-title">Pagamentos</h5>

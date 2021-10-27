@@ -139,11 +139,19 @@ def ListaPagamentos(request):
     elif startdate and enddate:
         pagamentos = Pagamento.objects.filter(Q(data_pagamento__range=[startdate, enddate]))
 
-        # Show payment per time course
+        # Show payment per time, course and value
     elif startdate and enddate and valor:
         pagamentos = Pagamento.objects.filter(Q(data_pagamento__range=[startdate, enddate])|
                                               Q(valor_pagamento__icontains=valor))
-    
+
+
+
+    # Show payment per time, course and value
+    elif startdate and enddate and banco:
+        pagamentos = Pagamento.objects.filter(Q(data_pagamento__range=[startdate, enddate])|
+                                              Q(origem_valor_pagamento__exact=banco))
+
+
 
     # Show payment per reason
     elif motivoPagamento:
