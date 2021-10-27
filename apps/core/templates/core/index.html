@@ -6,197 +6,157 @@
 	<!-- ********************************************************************************************** -->
 
 {% block main %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="container-xl">
-  <!--INÍCIO das informações de Pagamentos -->
-  <div class="card-group mt-4">
-    <!-- INÍCIO LADO ESQUERDO -->
+<div class="container-xl"> 
+  <div class="row mt-4">
+    <!-- INÍCIO do campo principal a esquerda -->
     <div class="card col-sm-9 border-0">
-
-           
-      <!--INÍCIO das informações de Pagamentos -->
+      
+      <!-- INÍCIO Card de Pagamentos -->
       {% if request.user.groups.all.0.name == "Master" %}
-      <h5 class="card-title">Pagamentos</h5>
-        <div>
+      <div class="card">
+        <div class="card-header">
+          <h5>Pagamentos</h5>
+        </div>
+        {% if pagamentos_para_hoje >= 1 or pagamentos_atrasados >= 1  %}
+        <div class="card-body" style="background-color: red;">
+        {% elif pagamentos_para_hoje == 0 %} 
+        <div class="card-body">
+        {% endif %}
+         <div>
           <div class="card shadow">
-            {% if pagamentos_para_hoje >= 1 or pagamentos_atrasados >= 1  %}
-            <div class="row" style="background-color: red;">
-            {% elif pagamentos_para_hoje == 0 %}  
+           
             <div class="row">
-            {% endif %}
+              <!-- Card de contas atrasadas -->
               <div class="col-sm-4">
                 {% if pagamentos_atrasados >= 1 %}
-                <div class="card" style="background-color: red;">
+                <div class="card" align="center" style="background-color: red;">
                 {% elif pagamentos_atrasados >= 0 %}
-                <div class="card border-0 shadow-sm">  
-                {% endif %}  
-                  <div class="card-body">
-                    <h5 class="card-title">Atrasadas ( {{ pagamentos_atrasados }} )</h5>
-                    <div align="right">
-                      <a href="/pagamentos/agendamentos-pagamentos/"><i class="fas fa-eye fa-2x"></i></a>
-                    </div>
-                  </div>
+                <div class="card" align="center">
+                {% endif %}
+                  <a href="/pagamentos/agendamentos-pagamentos/" class="nav-link">Atrasadas ( {{ pagamentos_atrasados }} )</a>
                 </div>
               </div>
+            <!-- Card de contas para hoje -->
               <div class="col-sm-4">
                 {% if pagamentos_para_hoje >= 1 %}
-                <div class="card" style="background-color: red;">
+                <div class="card" align="center" style="background-color: red;">
                 {% elif pagamentos_para_hoje == 0 %}
-                <div class="card border-0 shadow-sm">  
-                {% endif %}  
+                <div class="card" align="center">
+                {% endif %}
+                  <a href="/pagamentos/agendamentos-pagamentos/" class="nav-link">Hoje ( {{pagamentos_para_hoje}} )</a>
+                </div>
+              </div>
+            <!-- Card de contas futuras -->
+              <div class="col-sm-4">
+                <div class="card" align="center"> 
+                  <a href="/pagamentos/agendamentos-pagamentos/" class="nav-link">Futuros ( {{pagamentos_para_vencer}} )</a>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>     
+  {% endif %}
+  <!-- FIM Card de Pagamentos -->
+
+  <!-- INÍCIO Card de Controle de Boletos -->
+  <div class="card mt-4">
+    <div class="card-header">
+      <h5>Controle de Boletos</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">   
+              <a href="/vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark">({{ quant_instalacao_sem_boleto }}) Boletos Internet</a>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+              <a href="/voip/lista-voip-sem-boleto/" class="btn btn-dark">({{ quantidade_voip_sem_boleto }}) Boletos Voip</a> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+  <!-- FIM Card de Controle de boletos  -->
+
+  <!-- INÍCIO dos Status de Serviços -->
+  <div class="row mt-4">
+    <!-- INICIO Status Serviços -->
+    <div class="col-sm-6">
+      <div class="card">
+        <h5 class="card-header">Status Serviços</h5>
+        <div class="card-body row" align="center">
+
+          <a href="servicos/servicos-abertos/" class="btn btn-danger w-33">Espera: ( <strong>{{ quant_servico_aberto }}</strong> )</a>
+          <a href="servicos/servicos-agendados/" class="btn btn-warning text-white w-33">Agenda: ( <strong>{{ quant_servico_agendado }}</strong> )</a>
+          <a href="servicos/servicos-finalizados/" class="btn btn-success text-white w-33">Conluído: ( <strong> {{ quant_servicos_finalizados_mes }}</strong> )</a>
+
+        </div>
+      </div>
+    </div>
+    <!-- FIM Status Serviços -->
+
+    <!-- INICIO Status Instalaçaoes -->
+    <div class="col-sm-6">
+      <div class="card">
+        <h5 class="card-header">Status Instalações</h5>
+        <div class="card-body row">
+          <a href="vendas/instalacao-aberta/" class="btn btn-danger w-33"><h6>Aberto: ( <strong>{{ quant_instalacao_aberta }}</strong> )</h6></a>
+          <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white w-33"><h6>Agenda: ( <strong>{{ quant_instalacao_agendada }}</strong> )</h6></a>
+          <a href="vendas/instalacao-concluida/" class="btn btn-success w-33"><h6>Finalizados( <strong>{{ quant_instalacao_finalizados_mes }}</strong> )</h6></a>
+        </div>
+      </div>
+    </div>
+    <!-- FIM Status Instalaçaoes -->
+  </div>
+
+  <!-- INÍCIO dos Serviços Voip -->
+    <div class="card mt-4">
+        <h5 class="card-header">Status dos Serviços Voip</h5>
+      
+
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="card border-0">
                   <div class="card-body">
-                    <h5 class="card-title">Para hoje ( {{pagamentos_para_hoje}} )</h5>
-                    <div align="right">
-                      <a href="/pagamentos/agendamentos-pagamentos/"><i class="fas fa-eye fa-2x"></i></a>
-                    </div>
+    
+                    <a href="/voip/lista-voip-solicitados/" class="btn btn-primary w-100" >Solicitado ( {{ quantidade_voip_disponiveis }}</a>
                   </div>
                 </div>
               </div>
               <div class="col-sm-4">
-                <div class="card border-0 shadow-sm">
-                  <div class="card-body ">
-                    <h5 class="card-title " >Para vencer ( {{pagamentos_para_vencer}} )</h5>
-                    <div align="right">
-                      <a href="/pagamentos/agendamentos-pagamentos/"><i class="fas fa-eye fa-2x"></i></a>
-                    </div>
+                <div class="card border-0">
+                  <div class="card-body">
+
+                    <a href="/voip/lista-voip-reservados/" class="btn btn-primary w-100">Reservados ( {{ quantidade_voip_reservados }} )</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card border-0">
+                  <div class="card-body">
+
+                    <a href="/voip/lista-voip-sem-boleto/" class="btn btn-primary w-100">Sem Boletos ({{ quantidade_voip_sem_boleto }})</a>
                   </div>
                 </div>
               </div>
             </div>
+       
+        <!--
+        <div class="card-body">
+          <h5 class="card-title">Portabilidade</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
-      </div>
-      {% endif %}
-      <!--FIM das informações de Pagamentos -->
-      <hr><hr>
-      <!-- INÍCIO do controle boletos -->
+        -->
+    </div>
+  <!-- FIM dos Serviços Voip -->
 
-     <div class="card shadow">
-      <h5 class="card-title ml-2 mt-2">Controle Financeiro</h5>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="card">
-           
-              <a href="/vendas/instalacao-finalizada-sem-boleto/" class="btn btn-primary">({{ quant_instalacao_sem_boleto }}) Boletos Internet</a>
-
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card">
-              <a href="/voip/lista-voip-sem-boleto/" class="btn btn-primary">({{ quantidade_voip_sem_boleto }}) Boletos Voip</a>       
-          </div>
-        </div>
-      </div>
-     </div>
-
-    <!-- INÍCIO do controle boletos -->
-
-      <hr>
-      <hr>
-    <!-- INÍCIO Status Serviços-->
-      
-      <div class="shadow">
-        <h5 class="card-title ml-2 mt-2">Status Serviços</h5>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col">
-            <div class="card border-0">
-              <div class="card-body">
-                <a href="servicos/servicos-abertos/" class="btn btn-danger w-100">Aguardando: ( <strong>{{ quant_servico_aberto }}</strong> )</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card border-0">
-              <div class="card-body">
-                <a href="servicos/servicos-agendados/" class="btn btn-warning text-white w-100">Agendados: ( <strong>{{ quant_servico_agendado }}</strong> )</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card border-0">
-              <div class="card-body">
-                <a href="servicos/servicos-finalizados/" class="btn btn-success text-white w-100">Finalizados: ( <strong> {{ quant_servicos_finalizados_mes }}</strong> )</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- FIM Status Serviços-->
-        <hr><hr>
-      
-      <!-- INÍCIO Status Instalações-->
-      <div class="shadow">
-        <h5 class="card-title ml-2 mt-2">Status Instalaçoes</h5>
-        <div class="row mb-2 mr-2 ml-2">
-          <div class="col">
-            <a href="vendas/instalacao-aberta/" class="btn btn-danger w-100"><h6>Aberto: ( <strong>{{ quant_instalacao_aberta }}</strong> )</h6></a>
-          </div>
-          <div class="col">
-            <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white w-100"><h6>Agendado: ( <strong>{{ quant_instalacao_agendada }}</strong> )</h6></a>
-          </div>
-          <div class="col">
-            <a href="vendas/instalacao-concluida/" class="btn btn-success w-100"><h6>Finalizados( <strong>{{ quant_instalacao_finalizados_mes }}</strong> )</h6></a>
-          </div>
-        </div>
-      </div>
-      <!-- FIM Status Instalações-->
-      <hr><hr>
-
-
-      <!-- INÍCIO Serviços de Voip-->
-      
-      <div class="shadow">
-        <h5 class="card-title ml-2 mt-2">Serviços VOIP</h5>
-        <div class="row">
-            <div class="col-sm-4">
-              <div class="card border-0">
-                <div class="card-body">
-  
-                  <a href="/voip/lista-voip-solicitados/" class="btn btn-primary w-100" >Solicitado ( {{ quantidade_voip_disponiveis }}</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="card border-0">
-                <div class="card-body">
-
-                  <a href="/voip/lista-voip-reservados/" class="btn btn-primary w-100">Reservados ( {{ quantidade_voip_reservados }} )</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="card border-0">
-                <div class="card-body">
-
-                  <a href="/voip/lista-voip-sem-boleto/" class="btn btn-primary w-100">Sem Boletos ({{ quantidade_voip_sem_boleto }})</a>
-                </div>
-              </div>
-            </div>
-        </div>
-      </div>
-
-
-      <!-- FIM Serviços de Voip-->
-
-
-      
-
-
-       <hr><hr>
-
-    <!-- INÍCIO Instalações agendadas por Técnico  -->
-      <div class="card w-100 border-0 shadow p-2 mb-3">
+  <!-- INICIO - Instalaçãoes por técnico -->
+      <div class="card w-100 border-0 shadow p-2 mb-3 mt-4">
         <div class="card-header bg-dark text-white">Instalações agendadas por Técnico</div>
         <div class="card-body">
           <!--SERVIÇOS POR CADA TÉCNICO-->
@@ -230,51 +190,53 @@
           </div>
         </div>
       </div>
-    <!-- FIM Instalações agendadas por Técnico  -->
+  <!-- FIM - Instalaçãoes por técnico -->
 
-    <!-- INÍCIO  das últimas vendas-->
-      <div class="card border-0 shadow p-2 mb-3">
-        <div class="card-header bg-dark text-white">Últimas vendas de instalações</div>
-        <div class="card-group">
-          <div class="card">
-            <div class="table-responsive table-striped table-sm">
-              <table class="table caption-top">
-                <caption>Últimos lançamentos</caption>
-                <thead>
-                  <tr>
-                    <th>Cliente</th>
-                    <th>Rua</th>
-                    <th>Bairro</th>
-                    <th>Vendedor</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for venda in ultimas_vendas %}
-                  <tr>
-                    <td><small>{{ venda.nome_cliente }}</small></td>
-                    <td><small>{{ venda.rua_cliente }}</small></td>
-                    <td><small>{{ venda.bairro_cliente }}</small></td>
-                    <td><small>{{ venda.instalacao_vendedor }}</small></td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
-          </div>
+  <!-- INÍCIO  das últimas vendas-->
+  <div class="card border-0 shadow p-2 mb-3">
+    <div class="card-header bg-dark text-white">Últimas vendas de instalações</div>
+    <div class="card-group">
+      <div class="card">
+        <div class="table-responsive table-striped table-sm">
+          <table class="table caption-top">
+            <caption>Últimos lançamentos</caption>
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Rua</th>
+                <th>Bairro</th>
+                <th>Vendedor</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for venda in ultimas_vendas %}
+              <tr>
+                <td><small>{{ venda.nome_cliente }}</small></td>
+                <td><small>{{ venda.rua_cliente }}</small></td>
+                <td><small>{{ venda.bairro_cliente }}</small></td>
+                <td><small>{{ venda.instalacao_vendedor }}</small></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
-  <!-- FIM das últimas vendas  -->
     </div>
-    <!-- FIM LADO ESQUERDO -->
-    <!--
-      ********************************************************************************************************
-    -->
-    <!-- INÍCIO LADO DIREITO -->
-    <div class="card col-sm-3 border-0" style="background-color:Gainsboro;">
-      <!-- INÍCIO Status dos Serviços -->
-      <div class="card shadow-sm border-0 mt-2">
-        <h5 class="card-title ml-2">Serviços</h5>
-        {% for previsaoServico in previsaoServico %}
+  </div>
+  <!-- FIM das últimas vendas  -->
+
+  </div>
+  <!-- FIM do campo principal a esquerda -->
+      
+  <!-- INÍCIO do campo principal a direita -->
+    <div class="card col-sm-3 border-0">
+      <!-- INÍCIO Lista de serviços por dia -->
+      <div class="card">
+        <div class="card-header">
+          Serviços
+        </div>
+        <div class="card-body">
+          {% for previsaoServico in previsaoServico %}
             {% if previsaoServico.number <= 4 %}
             <h6 href="#" style="color:green;" class="ml-2"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></h6>
             {% elif previsaoServico.number > 4 and previsaoServico.number <= 6  %}
@@ -283,25 +245,30 @@
             <h6 style="color:red;" class="ml-2"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></h6>
             {% endif%} 
           {% endfor %}
+        </div>
       </div>
-      <!-- FIM Status dos Serviços -->
-      <hr>
-      <!-- INÍCIO Status das Instalações -->
-      <div class="card shadow-sm border-0 mb-2">
-        <h5 class="card-title ml-2">Instalações</h5>
-        {% for previsaoInstalacao in previsaoInstalacao %}
-            {% if previsaoInstalacao.number <= 6 %}
-            <h6 style="color:green;" class="ml-2"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></h6>
-            {% elif previsaoInstalacao.number > 6 and previsaoInstalacao.number <= 9  %}
-            <h6 style="color:orange;" class="ml-2"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></h6>
-            {% elif previsaoInstalacao.number >= 10  %}
-            <h6 style="color:red;" class="ml-2"><strong>{{ previsaoInstalacao.data_instalacao }}: {{ previsaoInstalacao.number }}</strong></h6>
-            {% endif %}
-        {% endfor %}   
+      <!-- INÍCIO Lista de serviços por dia -->
+      <!-- *********************************************************************************************************  -->
+      <!-- INÍCIO Lista de serviços por dia -->
+      <div class="card mt-4">
+        <div class="card-header">
+          Instalações
+        </div>
+        <div class="card-body">
+          {% for previsaoServico in previsaoServico %}
+            {% if previsaoServico.number <= 4 %}
+            <h6 href="#" style="color:green;" class="ml-2"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></h6>
+            {% elif previsaoServico.number > 4 and previsaoServico.number <= 6  %}
+            <h6 style="color:orange;" class="ml-2"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></h6>
+            {% elif previsaoServico.number >= 7 %}
+            <h6 style="color:red;" class="ml-2"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></h6>
+            {% endif%} 
+          {% endfor %}
+        </div>
       </div>
-      <!-- FIM Status das Instalações -->
+      <!-- INÍCIO Lista de serviços por dia -->
     </div>
-    <!-- FIM LADO DIREITO -->
+    <!-- FIM do campo principal a direita -->
   </div>
 </div>
 {% endblock %}
