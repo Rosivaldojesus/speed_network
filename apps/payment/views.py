@@ -135,6 +135,8 @@ def ListaPagamentos(request):
     if data:
         pagamentos = Pagamento.objects.filter(Q(data_pagamento__icontains=data))
 
+
+
     # Show payment per time course
     elif startdate and enddate:
         pagamentos = Pagamento.objects.filter(Q(data_pagamento__range=[startdate, enddate]))
@@ -145,13 +147,10 @@ def ListaPagamentos(request):
                                               Q(valor_pagamento__icontains=valor))
 
 
-
     # Show payment per time, course and value
     elif startdate and enddate and banco:
         pagamentos = Pagamento.objects.filter(Q(data_pagamento__range=[startdate, enddate])|
                                               Q(origem_valor_pagamento__exact=banco))
-
-
 
     # Show payment per reason
     elif motivoPagamento:
@@ -164,7 +163,7 @@ def ListaPagamentos(request):
     elif banco:
         pagamentos = Pagamento.objects.filter(Q(origem_valor_pagamento__exact=banco))
 
-
+    # Show payment per bank
     elif valor:
         pagamentos = Pagamento.objects.filter(Q(valor_pagamento__icontains=valor))
 
@@ -178,6 +177,11 @@ def ListaPagamentos(request):
     pagamentos = paginator.get_page(page_number)
 
     return render(request, 'payment/lista_pagamentos.html', {'pagamentos': pagamentos})
+
+
+
+
+
 
 
 
@@ -197,6 +201,9 @@ def AgendamentosPagamentos(request):
 
     pagamentosFuturos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__gt=data_atual).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
 
+    pagamentosFuturosDiarios = Pagamento.objects.filter(data_pagamento__gt=data_atual).filter().values(
+        'data_pagamento').annotate(number=Sum('valor_pagamento')).order_by('data_pagamento')
+
     return render(request, 'payment/agendamentos-pagamentos.html', { 'vencerHoje': vencerHoje,
                                                                      'atrasadas': atrasadas,
                                                                      'naoVencidas': naoVencidas,
@@ -204,7 +211,10 @@ def AgendamentosPagamentos(request):
                                                                      'totalPagarAtrasadas': totalPagarAtrasadas,
                                                                      'totalPagarNaoVencidas': totalPagarNaoVencidas,
                                                                      'pagamentosFuturos':pagamentosFuturos,
+
+                                                                     'pagamentosFuturosDiarios': pagamentosFuturosDiarios,
                                                                      })
+
 
 def PagamentosFuturos(request):
     data_atual = datetime.now()
@@ -212,17 +222,7 @@ def PagamentosFuturos(request):
     return render(request, 'payment/pagamentos-futuros.html',{'naoVencidas':naoVencidas})
 
 
-from django.http import JsonResponse
 
-"""
-   for entry in mensalVeiculos:
-        labels.append(entry['month'])
-        data.append(entry['c'])
-    return JsonResponse(data={
-        'labels': labels,
-        'data': data,
-    })
-"""
 def PagamentosMensaisGrupos(request):
     data_atual = datetime.now()
 
@@ -325,7 +325,7 @@ def ExportParaExcel(request):
     font_style = xlwt.XFStyle()
     font_style.font.bold = True
 
-    columns = ['motivo_pagamento','valor_pagamento', 'origem_valor_pagamento', 'tipo_custo_pagamento', 'categoria', 'status_pago']
+    columns = ['motivo_pagamento','data_pagamento','valor_pagamento', 'origem_valor_pagamento', 'tipo_custo_pagamento', 'categoria', 'status_pago']
 
     for col_num in range(len(columns)):
         ws.write(row_num, col_num, columns[col_num], font_style)
@@ -339,12 +339,13 @@ def ExportParaExcel(request):
         row_num += 1
 
         ws.write(row_num,0,row.motivo_pagamento , font_style)
-        ws.write(row_num,1,row.valor_pagamento , font_style)
-        ws.write(row_num,2,row.origem_valor_pagamento.origem_valor , font_style)
-        ws.write(row_num,3,row.tipo_custo_pagamento.tipo_custo , font_style)
-        ws.write(row_num,4,row.data_pagamento , font_style)
-        ws.write(row_num,5,row.categoria.nome_categoria , font_style)
-        ws.write(row_num,6,row.status_pago , font_style)
+        ws.write(row_num,1,row.data_pagamento , font_style)
+        ws.write(row_num,2,row.valor_pagamento , font_style)
+        ws.write(row_num,3,row.origem_valor_pagamento.origem_valor , font_style)
+        ws.write(row_num,4,row.tipo_custo_pagamento.tipo_custo , font_style)
+        ws.write(row_num,5,row.data_pagamento , font_style)
+        ws.write(row_num,6,row.categoria.nome_categoria , font_style)
+        ws.write(row_num,7,row.status_pago , font_style)
 
     wb.save(response)
     return response

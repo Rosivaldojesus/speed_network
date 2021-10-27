@@ -13,17 +13,30 @@
 <!-- INICIO da página Principal -->
 <div class="row">
 
-     <!-- INÍCIO da campo da Esquerda -->
+    <!-- INÍCIO da campo da Esquerda -->
      <div class="col-sm-4">
         <div class="card">
-            <h5 class="card-header">Pagamentos Futuros</h5>
+            <h5 class="card-header">(Mês) Pagamentos Futuros</h5>
             <div class="card-body">
                 {% for pagamento in pagamentosFuturos %}
                     <li>{{ pagamento.month|date:"F Y" }}: R$: {{ pagamento.c }}</li><br>
                 {% endfor %}
             </div>
           </div>
+
+          <div class="card mt-4">
+            <h5 class="card-header">(Dia) Pagamentos Futuros</h5>
+            <div class="card-body">
+                {% for pagamento in pagamentosFuturosDiarios %}
+                    {{ pagamento.data_pagamento }}: R$: {{ pagamento.number }}<br>
+                {% endfor %}
+            </div>
+          </div>
+
+
     </div>
+
+    
     <!-- FIM da campo da Esquerda -->
 
     <!-- INÍCIO da campo da Direita -->
