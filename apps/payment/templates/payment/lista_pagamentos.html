@@ -128,7 +128,7 @@
       </li>
       <li class="page-item">
         {% if pagamentos.has_previous %}
-        <a class="page-link" href="?page={{ pagamentos.previous_page_number }}">Anterior</a>
+        <a class="page-link" href="?page={{ pagamentos.previous_page_number }}&banco={% if request.GET.banco %} {{ request.GET.banco }} {% endif %}">Anterior</a>
         {% endif %}
       </li>
       <li class="page-item active">
@@ -137,12 +137,12 @@
 
       <li class="page-item">
         {% if pagamentos.has_next %}
-          <a class="page-link" href="?page={{ pagamentos.next_page_number }}">Próximo</a>
+          <a class="page-link" href="?page={{ pagamentos.next_page_number }}&banco={% if request.GET.banco %} {{ request.GET.banco }} {% endif %}">Próximo</a>
         {% endif %}
       </li>
       <li class="page-item">
         {% if pagamentos.has_next %}
-          <a class="page-link" href="?page={{ pagamentos.paginator.num_pages }}">Último</a>
+          <a class="page-link" href="?page={{ pagamentos.paginator.num_pages }}&banco={% if request.GET.banco %} {{ request.GET.banco }} {% endif %}">Último</a>
         {% endif %}
       </li>
 
