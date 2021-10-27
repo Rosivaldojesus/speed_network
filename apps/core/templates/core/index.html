@@ -29,7 +29,7 @@
               <!-- Card de contas atrasadas -->
               <div class="col-sm-4">
                 {% if pagamentos_atrasados >= 1 %}
-                <div class="card" align="center" style="background-color: red;">
+                <div class="card border-0" align="center" style="background-color: red;">
                 {% elif pagamentos_atrasados >= 0 %}
                 <div class="card" align="center">
                 {% endif %}
@@ -39,7 +39,7 @@
             <!-- Card de contas para hoje -->
               <div class="col-sm-4">
                 {% if pagamentos_para_hoje >= 1 %}
-                <div class="card" align="center" style="background-color: red;">
+                <div class="card border-0" align="center" style="background-color: red;">
                 {% elif pagamentos_para_hoje == 0 %}
                 <div class="card" align="center">
                 {% endif %}
@@ -48,7 +48,7 @@
               </div>
             <!-- Card de contas futuras -->
               <div class="col-sm-4">
-                <div class="card" align="center"> 
+                <div class="card border-0" align="center"> 
                   <a href="/pagamentos/agendamentos-pagamentos/" class="nav-link">Futuros ( {{pagamentos_para_vencer}} )</a>
                 </div>
               </div>
