@@ -4,15 +4,18 @@
 {% block title %}<title> Status dos Serviços </title> {% endblock %}
 
 {% block main %}
+<body style="background-color:lightgray;">
+
+</body>
 <div class="container">
   <!-- INÍCIO Botões com as opções da página -->
-  <div class="mt-2 mb-2">
-    <div align="right" class="p-3">
-      <a href="cadastro-servico/" class="btn btn-primary"><h4>Abrir serviço</h4></a>
+  <div class="mt-4 mb-2">
+    <div align="right">
+      <a href="cadastro-servico/" class="btn btn-primary">Abrir serviço</a>
     </div>
   </div>
   <!-- FIM Botões com as opções da página -->
-
+  <hr>
   <!-- INICIO Campo que mostrar as mensagens da página -->
   <div>
     {% if messages %}

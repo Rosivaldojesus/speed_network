@@ -5,15 +5,14 @@
 {% block main %}
 <div class="container">
     
-
   <!-- INÍCIO Messagens -->
     {% if messages %}
-    {% for message in messages %}
+      {% for message in messages %}
         <div class="alert {{ message.tags }}" role="alert">
             {{ message }}
         </div>
       {% endfor %}
-      {% endif %}
+    {% endif %}
   <!-- FIM Messagens -->   
 
   <div class="mt-2" align="right">
@@ -24,6 +23,16 @@
   <hr>
   <hr>
 
+
+  <!-- 
+
+ {% for dias in mediaDiarioInstalacao %}
+  Quantidade: {{ dias.month|date:"F Y" }}: {{ dias.c }}<br>
+ {% endfor %}
+-->
+
+  <hr>
+  <hr>
      
 
        <!-- STATUS DOS INSTALAÇÃO -->

@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q, Sum, Count
+from django.db.models import Q, Sum, Count, Avg
 from .models import Instalacao, ValeRefeicao, Cancelamentos
 from ..components.models import FuncionariosParaVale
 from ..services.models import ServicoVoip
@@ -43,6 +43,11 @@ def Index(request):
     mensalInstalacao = Instalacao.objects.annotate(month=TruncMonth('data_finalizacao')).filter(concluido='True').values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
     diarioInstalaçao = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate( number=Count('data_finalizacao')).order_by('data_finalizacao')[90:]
 
+    mediaDiarioInstalacao = Instalacao.objects.annotate(month=TruncMonth('data_finalizacao')).filter(concluido='True').values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
+
+    #Filtro por médias
+
+
     return render(request, 'sales/instalacao.html', {'instalacoes': instalacoes,
                                                      'quant_aberta': quant_aberta,
                                                      'quant_agendada': quant_agendada,
@@ -57,6 +62,9 @@ def Index(request):
 
                                                      'mensalInstalacao':mensalInstalacao,
                                                      'diarioInstalaçao':diarioInstalaçao,
+
+                                                     'mediaDiarioInstalacao':mediaDiarioInstalacao,
+
                                                      })
 
 @login_required(login_url='/login/')
