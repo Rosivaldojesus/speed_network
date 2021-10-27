@@ -219,6 +219,18 @@ def AgendamentosPagamentos(request):
 def PagamentosFuturos(request):
     data_atual = datetime.now()
     naoVencidas = Pagamento.objects.filter(status_pago='False').filter(data_pagamento__gt=data_atual)
+
+    data = request.GET.get('data')
+    motivoPagamento = request.GET.get('motivoPagamento')
+
+    if data and motivoPagamento:
+        naoVencidas = Pagamento.objects.filter(status_pago='False').\
+            filter(data_pagamento__gt=data_atual).filter(Q(valor_pagamento__icontains=motivoPagamento)|
+                                                            Q(data_pagamento__icontains=data))
+
+
+
+
     return render(request, 'payment/pagamentos-futuros.html',{'naoVencidas':naoVencidas})
 
 
