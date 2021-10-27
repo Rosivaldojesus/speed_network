@@ -223,10 +223,13 @@ def PagamentosFuturos(request):
     data = request.GET.get('data')
     motivoPagamento = request.GET.get('motivoPagamento')
 
+
+
+
     if data and motivoPagamento:
         naoVencidas = Pagamento.objects.filter(status_pago='False').\
             filter(data_pagamento__gt=data_atual).filter(Q(valor_pagamento__icontains=motivoPagamento)|
-                                                            Q(data_pagamento__icontains=data))
+                                                            Q(data_pagamento__exact=data))
 
 
 
