@@ -236,17 +236,17 @@
           Serviços
         </div>
         <div class="card-body">
-          <ul class="list-group list-group-flush">
+        
           {% for previsaoServico in previsaoServico %}
             {% if previsaoServico.number <= 4 %}
-            <li class="list-group-item"><h6 href="#" style="color:green;" class="ml-2"><strong>{{ previsaoServico.data_agendada|date:"d M  Y"  }}: {{ previsaoServico.number }}</strong></h6></li>
+           <p href="#" style="color:green;" class="ml-2"><strong>:: {{ previsaoServico.data_agendada|date:"d M  Y"  }}: {{ previsaoServico.number }}</strong><p>
             {% elif previsaoServico.number > 4 and previsaoServico.number <= 6  %}
-            <li class="list-group-item"><h6 style="color:orange;" class="ml-2"><strong>{{ previsaoServico.data_agendada|date:"d M  Y"  }}: {{ previsaoServico.number }}</strong></h6></li>
+            <p style="color:orange;" class="ml-2"><strong>:: {{ previsaoServico.data_agendada|date:"d M  Y"  }}: {{ previsaoServico.number }}</strong><p>
             {% elif previsaoServico.number >= 7 %}
-            <li class="list-group-item"><h6 style="color:red;" class="ml-2"><strong>{{ previsaoServico.data_agendada|date:"d M  Y"  }}: {{ previsaoServico.number }}</strong></h6></li>
+            <p style="color:red;" class="ml-2"><strong>:: {{ previsaoServico.data_agendada|date:"d M  Y"  }}: {{ previsaoServico.number }}</strong><p>
             {% endif%} 
           {% endfor %}
-          </ul>
+         
         </div>
       </div>
       <!-- INÍCIO Lista de serviços por dia -->
@@ -257,17 +257,17 @@
           Instalações
         </div>
         <div class="card-body">
-          <ul class="list-group list-group-flush">
+
             {% for previsaoInstalacao in previsaoInstalacao %}
               {% if previsaoInstalacao.number <= 6 %}
-              <li class="list-group-item"><h6 style="color:green;" class="ml-2"><strong>{{ previsaoInstalacao.data_instalacao|date:"d M  Y" }}: {{ previsaoInstalacao.number }}</strong></h6></li>
+              <p style="color:green;" class="ml-2"><strong>:: {{ previsaoInstalacao.data_instalacao|date:"d M  Y" }}: {{ previsaoInstalacao.number }}</strong></p>
               {% elif previsaoInstalacao.number > 6 and previsaoInstalacao.number <= 9  %}
-              <li class="list-group-item"><h6 style="color:orange;" class="ml-2"><strong>{{ previsaoInstalacao.data_instalacao|date:"d M  Y" }}: {{ previsaoInstalacao.number }}</strong></h6></li>
+              <p style="color:orange;" class="ml-2"><strong>:: {{ previsaoInstalacao.data_instalacao|date:"d M  Y" }}: {{ previsaoInstalacao.number }}</strong></p>
               {% elif previsaoInstalacao.number >= 10  %}
-              <li class="list-group-item"><h6 style="color:red;" class="ml-2"><strong>{{ previsaoInstalacao.data_instalacao|date:"d M  Y" }}: {{ previsaoInstalacao.number }}</strong></h6></li>
+              <p style="color:red;" class="ml-2"><strong>:: {{ previsaoInstalacao.data_instalacao|date:"d M  Y" }}: {{ previsaoInstalacao.number }}</strong></p>
               {% endif %}
             {% endfor %}   
-          </ul>
+
         </div>
       </div>
       <!-- INÍCIO Lista de serviços por dia -->
