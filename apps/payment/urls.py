@@ -4,6 +4,8 @@ from .views import DashboardPagamentos, ListaPagamentos, AgendamentosPagamentos,
     AgendarPagamento, ConfirmarPagamento, EditarPagamento, ExportarCSV,\
     PagamentosFuturos, PagamentosMensaisGrupos, FluxoEntradaSaida, FluxoCreate, ExportParaExcel
 
+from .views import SalvarPagamento
+
 urlpatterns = [
     path('', Index),
     path('cadastrar-pagamento/', CadastrarPagamento),
@@ -18,7 +20,9 @@ urlpatterns = [
     path('fluxo-entradas-saidas/', FluxoEntradaSaida),
     path('cadastrar-fluxo-entradas-saidas/', FluxoCreate.as_view(), name='cadastrar-fluxo-entradas-saidas'),
 
-    path('exportar-csv/', ExportarCSV),
+    path('salvar-pahemnto/', SalvarPagamento),
+
+     path('exportar-csv/', ExportarCSV),
     path('exportar-excel/', ExportParaExcel),
     #path('exportar-excel/', ExportParaExcel().as_view(), name='exportar-excel'),
 ]

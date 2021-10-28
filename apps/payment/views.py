@@ -370,3 +370,17 @@ def ExportParaExcel(request):
 
     wb.save(response)
     return response
+
+
+
+
+def SalvarPagamento(request):
+    form = CadastarPagamentoForm(request.POST)
+    if form.is_valid():
+        obj = form.save()
+        obj.save()
+        messages.success(request, 'Pagamento adicionado com sucesso!')
+        return redirect('/pagamentos/')
+    else:
+        form = CadastarPagamentoForm()
+    return render(request, 'payment/salvar-pagamento.html', {'form': form})
