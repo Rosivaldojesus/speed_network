@@ -236,15 +236,17 @@
           Serviços
         </div>
         <div class="card-body">
+          <ul class="list-group list-group-flush">
           {% for previsaoServico in previsaoServico %}
             {% if previsaoServico.number <= 4 %}
-            <h6 href="#" style="color:green;" class="ml-2"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></h6>
+            <li class="list-group-item"><h6 href="#" style="color:green;" class="ml-2"><strong>{{ previsaoServico.data_agendada|date:"d M  Y"  }}: {{ previsaoServico.number }}</strong></h6></li>
             {% elif previsaoServico.number > 4 and previsaoServico.number <= 6  %}
-            <h6 style="color:orange;" class="ml-2"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></h6>
+            <li class="list-group-item"><h6 style="color:orange;" class="ml-2"><strong>{{ previsaoServico.data_agendada|date:"d M  Y"  }}: {{ previsaoServico.number }}</strong></h6></li>
             {% elif previsaoServico.number >= 7 %}
-            <h6 style="color:red;" class="ml-2"><strong>{{ previsaoServico.data_agendada  }}: {{ previsaoServico.number }}</strong></h6>
+            <li class="list-group-item"><h6 style="color:red;" class="ml-2"><strong>{{ previsaoServico.data_agendada|date:"d M  Y"  }}: {{ previsaoServico.number }}</strong></h6></li>
             {% endif%} 
           {% endfor %}
+          </ul>
         </div>
       </div>
       <!-- INÍCIO Lista de serviços por dia -->
