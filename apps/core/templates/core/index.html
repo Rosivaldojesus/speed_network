@@ -240,11 +240,11 @@
         
           {% for previsaoServico in previsaoServico %}
             {% if previsaoServico.number <= 4 %}
-           <p href="#" style="color:green;" class="ml-2"><strong>:: {{ previsaoServico.data_agendada|naturalday|title  }}: {{ previsaoServico.number }}</strong><p>
+           <p href="#" style="color:green;" class="ml-2">:: {{ previsaoServico.data_agendada|naturalday|title  }}: {{ previsaoServico.number }}<p>
             {% elif previsaoServico.number > 4 and previsaoServico.number <= 6  %}
-            <p style="color:orange;" class="ml-2"><strong>:: {{ previsaoServico.data_agendada|naturalday|title  }}: {{ previsaoServico.number }}</strong><p>
+            <p style="color:orange;" class="ml-2">:: {{ previsaoServico.data_agendada|naturalday|title  }}: {{ previsaoServico.number }}<p>
             {% elif previsaoServico.number >= 7 %}
-            <p style="color:red;" class="ml-2"><strong>:: {{ previsaoServico.data_agendada|naturalday|title  }}: {{ previsaoServico.number }}</strong><p>
+            <p style="color:red;" class="ml-2">:: {{ previsaoServico.data_agendada|naturalday|title  }}: {{ previsaoServico.number }}<p>
             {% endif%} 
           {% endfor %}
          
