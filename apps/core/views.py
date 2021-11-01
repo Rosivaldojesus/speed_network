@@ -229,18 +229,13 @@ def SenhasPorEquipamento(request):
     quant_modens = SenhasPorEquipamentos.objects.filter().count()
 
     queryset = request.GET.get('q')
-    queryset1 = request.GET.get('q1')
     if queryset:
         senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(
             Q(
                 patrimonio_equipamento__icontains=queryset
             )
         )
-    if queryset1:
-        senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(sn_equipamento__icontains=queryset1)|
-        Q(codigo_equipamento__icontains = queryset1))
-
-
+        
     return render(request, 'core/senhas-por-equipamento.html', {'senhasPorEquipamentos': senhasPorEquipamentos,
                                                                 'quant_v5':quant_v5,
                                                                 'quant_6t':quant_6t,
