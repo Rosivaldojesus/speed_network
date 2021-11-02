@@ -118,6 +118,69 @@
 	<h5>Senhas por equipamentos</h5>
 	<!-- Fim Titulo da página -->
 
+
+
+	<!-- INÍCIO da tabela dos equipamento s-->
+	{% for senha in senhasPorEquipamentos %}
+	<div class="card border-info mb-3 shadow">
+		<div class="card-header bg-transparent border-info">
+			<div class="card-group row">
+				<div class="card border-0">Fabricante: {{ senha.fabricante }}</div>
+				<div class="card border-0">Modelo: {{ senha.equipamento }}</div>
+			</div>
+		</div>
+		<div class="card-body text-info">
+		  <div class="card-group">
+
+			<div class="card border-0">
+				<small>Patrimônio:</small>
+				<strong>{{ senha.patrimonio_equipamento }}</strong>
+			</div>
+
+			<div class="card border-0">
+				<small>IP:</small>
+				<strong>{{ senha.ip_equipamento }}</strong>
+			</div>
+
+			<div class="card border-0">
+				<small>Login:</small>
+				<strong>{{ senha.login }}</strong>
+			</div>
+
+			<div class="card border-0">
+				<small>Senha:</small>
+				<strong>{{ senha.senha }}</strong>
+			</div>
+
+
+
+		  </div>
+		</div>
+	</div>
+	<hr>
+	{% empty %}
+
+		<div class="mt-4">
+			<h4>Sua pesquisa: {{ request.GET.q}} {{ request.GET.p}}</h4>
+			<h6 style="color: red;">Não há resultados para essa pesquisa!!! </h6>
+		</div>
+
+	{% endfor %}
+	<!-- FIM da tabela dos equipamentos -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<!-- INÍCIO da tabela dos equipamento s-->
 	{% for senha in senhasPorEquipamentos %}
 	<div class="card mt-2 shadow">
@@ -127,27 +190,27 @@
 			<strong>S/N:</strong> {{ senha.sn_equipamento }}</div>
 		<div class="card-group">
 			<div class="card ml-2 border-0">
-				<Small>Fabricante</Small>
+				<Small>Fabricante:</Small>
 				<strong>{{ senha.fabricante }}</strong>
 			</div>
 			<div class="card border-0">
-				<small>Modelo</small>
+				<small>Modelo:</small>
 				<strong>{{ senha.equipamento }}</strong>
 			</div>
 			<div class="card border-0">
-				<small>IP</small>
+				<small>IP:</small>
 				<strong>{{ senha.ip_equipamento }}</strong>
 			</div>
 			<div class="card border-0">
-				<small>Login</small>
+				<small>Login:</small>
 				<strong>{{ senha.login }}</strong>
 			</div>
 			<div class="card border-0">
-				<small>Senha</small>
+				<small>Senha:</small>
 				<strong>{{ senha.senha }}</strong>
 			</div>
 			<div class="card border-0">
-				<small>Patrimônio</small>
+				<small>Patrimônio:</small>
 				<strong>{{ senha.patrimonio_equipamento }}</strong>
 			</div>
 			<div class="card border-0">

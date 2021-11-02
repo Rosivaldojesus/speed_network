@@ -143,10 +143,10 @@ def Index(request):
         filter(boleto_entregue='False').count()
 
     return render(request, 'core/index.html',{'pendentes':pendentes,
-                                              'quant_servico_aberto': quant_servico_aberto,
-                                              'quant_servico_agendado': quant_servico_agendado,
-                                              'quant_servico_finalizados': quant_servico_finalizados,
-                                              'quant_servicos_finalizados_mes':quant_servicos_finalizados_mes,
+                                            'quant_servico_aberto': quant_servico_aberto,
+                                            'quant_servico_agendado': quant_servico_agendado,
+                                            'quant_servico_finalizados': quant_servico_finalizados,
+                                            'quant_servicos_finalizados_mes':quant_servicos_finalizados_mes,
                                               'quant_instalacao_finalizados_mes':quant_instalacao_finalizados_mes,
                                               'previsaoServico': previsaoServico,
                                               'quant_instalacao_aberta': quant_instalacao_aberta,
