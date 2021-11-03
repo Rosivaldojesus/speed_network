@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block main %}
 <div class="container">
@@ -141,8 +142,8 @@
                 <td>
                     <a href="/pagamentos/editar-pagamento/{{ pagamento.id }}">{{ pagamento.motivo_pagamento }}</a>
                 </td>
-                <td>{{ pagamento.valor_pagamento }}</td>
-                <td>R$: {{ pagamento.origem_valor_pagamento }}</td>
+                <td>R$: {{ pagamento.valor_pagamento|gitintcomma }}</td>
+                <td>{{ pagamento.origem_valor_pagamento }}</td>
                 <td>{{ pagamento.tipo_custo_pagamento }}</td>
                 <td>{{ pagamento.data_pagamento | date:" d/m/Y" }}</td>
                 <td>{{ pagamento.categoria }}</td>

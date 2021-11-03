@@ -9,48 +9,103 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-    <title>AUTENTICAÇÃO</title>
+    <!-- Materialize -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Fontawsone -->
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    
+    
+    <title>SPEED NETWORK TELECOM</title>
   </head>
-  <body>
-      
-        <div class="container"> 
-            <div align="center">
-                <div class="card w-99 mt-5">
-                    <div class="card-header">
-                        <div class="mt-10" align="center">
-                            <h4>Autenticação</h4>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <form action="submit" method="POST">{% csrf_token %}
-                            <div>
-                                <label class="form-label">Usuário:</label>
-                                <input type="text" class="form-control" name="username">
-    
-                                <label class="form-label">Password</label>
-                                <input type="password" class="form-control" name="password">
-    
-                                <button type="submit" class="btn btn-primary mt-2"> Entrar</button>
-    
-                                <div id="passwordHelpBlock" class="form-text" style="color:red;">
-                                    {% for message in messages %}
-                                        {{ message }}
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </form>
+  <body style="background-color: SteelBlue;">
+
+    <div class="container mt-5">
+        <div class="row">
+
+            <div class="col-sm-6">
+            <div class="card border-0">
+                <div class="card-body" style="background-color: SteelBlue;">
+                    <div class="mt-5" align="center">                       
+                        <h1 class="text-dark"><strong>SPEED</strong></h1>
+                        <h3 class="text-dark"><strong>NETWORK TELECOM</strong></h3>
                     </div>
                 </div>
             </div>
+            </div>
+
+            <div class="col-sm-6">
+            <div class="card border-0">
+                <div class="card-body" style="background-color: SteelBlue;">
+                <div>
+                    <form action="submit" method="POST">{% csrf_token %}
+                        <div>
+                            <div align="center">
+                                <i class=" large material-icons">security</i>
+                            </div>
+
+                            <div class="col-auto">
+                                <label class="sr-only" for="inlineFormInputGroup">Usuário</label>
+                                <div class="input-group mb-2">
+                                  <div class="input-group-prepend">
+                                    <div class="input-group-text"> <i class="material-icons">account_box</i></div>
+                                  </div>
+                                  <input type="text" class="form-control" name="username" placeholder="Usuário">
+                                </div>
+                            </div>
+
+                            <div class="col-auto">
+                                <label class="sr-only" for="inlineFormInputGroup"></label>
+                                <div class="input-group mb-2">
+                                  <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="material-icons">vpn_key</i></div>
+                                  </div>
+                                  <input type="password" class="form-control" name="password" placeholder="Senha">
+                                </div>
+                            </div>
+
+
+
+
+                            <button type="submit" class="btn btn-dark mt-2"> Acessar </button>
+
+                            <div id="passwordHelpBlock" class="form-text" style="color:red;">
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                </div>
+            </div>
+            </div>
         </div>
+    </div>
 
 
-        
+    <div>
+        <hr>
+        <hr>
+        <hr>
 
+    </div>
 
-
-
-      
+    <div class="container">
+        <div>
+            <div class="col-sm-12">
+                <div class="card border-0 " style="background-color: SteelBlue;">
+                <div class="card-body"  style="background-color: SteelBlue;">
+                    <div class="mt-5" align="center">
+                        <small>Rosivaldo de Jesus</small> <br>
+                        <small>@2021</small>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

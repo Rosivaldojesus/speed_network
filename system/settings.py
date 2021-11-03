@@ -39,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.humanize',
 
+    "django.contrib.humanize",
+
+    #APP´s criados para o sistema
     'apps.core',
     'apps.stock',
     'apps.components',
@@ -51,11 +53,12 @@ INSTALLED_APPS = [
     'apps.voip',
     'apps.tasks',
 
-
+    #Bibliotecas
     'crispy_forms',
     'ckeditor',
     "bootstrap4",
     'widget_tweaks',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
