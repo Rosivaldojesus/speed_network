@@ -142,7 +142,7 @@
                 <td>
                     <a href="/pagamentos/editar-pagamento/{{ pagamento.id }}">{{ pagamento.motivo_pagamento }}</a>
                 </td>
-                <td>R$: {{ pagamento.valor_pagamento|gitintcomma }}</td>
+                <td>R$: {{ pagamento.valor_pagamento|intcomma }}</td>
                 <td>{{ pagamento.origem_valor_pagamento }}</td>
                 <td>{{ pagamento.tipo_custo_pagamento }}</td>
                 <td>{{ pagamento.data_pagamento | date:" d/m/Y" }}</td>
