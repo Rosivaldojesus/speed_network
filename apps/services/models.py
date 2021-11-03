@@ -14,13 +14,12 @@ class CategoriaServico(models.Model):
 
     def __str__(self):
         return "{}".format(self.nome_categoria)
-        
 
-class TipoServico(models.Model):
+
+class TipoDeServico(models.Model):
     nome_tipo = models.CharField(max_length=100, verbose_name='Tipo de Serviço')
 
     class Meta:
-        verbose_name = 'Tipo de Servico'
         verbose_name_plural = 'Tipos de Serviços'
 
     def __str__(self):

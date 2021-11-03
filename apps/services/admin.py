@@ -1,12 +1,12 @@
 from django.contrib import admin
-from .models import CategoriaServico, Servico, ServicoVoip, TipoServico
+from .models import CategoriaServico, Servico, ServicoVoip, TipoDeServico
 
 
 # Register your models here.
 admin.site.register(CategoriaServico)
 
 
-admin.site.register(TipoServico)
+admin.site.register(TipoDeServico)
 
 class ServicoAdmin(admin.ModelAdmin):
     list_display = ['id','contato_servico', 'data_criacao',
