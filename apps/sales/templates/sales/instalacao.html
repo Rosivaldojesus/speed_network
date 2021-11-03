@@ -142,7 +142,7 @@
 
           var speedData = {
             labels: [
-            {% for diario in diarioInstalaçao %} '{{ diario.data_finalizacao|date:"F Y" }}', {% endfor %}
+            {% for diario in diarioInstalaçao %} '{{ diario.data_finalizacao|date:"d M, Y" }}', {% endfor %}
           ],
             datasets: [{
               label: "Instalação (dia)",
