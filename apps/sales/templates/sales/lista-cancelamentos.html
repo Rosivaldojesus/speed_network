@@ -119,7 +119,7 @@
             {% for cancelamento in cancelamentos %}    
               <tr>
                 <th>{{ cancelamento.nome }}</th>
-                <td>{{ cancelamento.plano_internet }}</td>
+                <td>{{ cancelamento.plano_internet|linebreaks  }}</td>
                 <td>{{ cancelamento.bairro }}</td>
                 <td>{{ cancelamento.atendente }}</td>
                 <td>{{ cancelamento.motivo }}</td>
