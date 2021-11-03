@@ -46,6 +46,7 @@ def Index(request):
     mediaDiarioInstalacao = Instalacao.objects.annotate(month=TruncMonth('data_finalizacao')).filter(concluido='True').values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
 
     # Filtros de como o cliente conheceu a empresa
+    conheceu_empresa_count = Instalacao.objects.filter(como_conheceu_empresa__isnull=True).count()
     panfletos_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Panfleto')).count()
     redes_sociais_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Redes Socias')).count()
     site_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Site')).count()
@@ -70,6 +71,7 @@ def Index(request):
                                                      'mediaDiarioInstalacao':mediaDiarioInstalacao,
 
                                                     # Filtros de como o cliente conheceu a empresa
+                                                    'conheceu_empresa_count': conheceu_empresa_count,
                                                      'panfletos_count':panfletos_count,
                                                      'redes_sociais_count': redes_sociais_count,
                                                      'site_count': site_count,
