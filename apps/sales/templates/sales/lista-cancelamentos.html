@@ -5,7 +5,7 @@
 <div class="container">
 
     <div class="mt-4">
-        <h5 class="mt-3 mb-3"> Lista de cancelamentos </h5>
+        <h5 class="mt-3 mb-3"> Cancelamentos ( {{ count_cancelamentos}} )</h5>
     </div>
 
     <!-- Messagens -->
@@ -18,28 +18,92 @@
     {% endif %}
     <!-- Messagens -->
 
+    	<!-- INÍCIO  Campo de Pesquisas-->
+      <div class="mt-3">
+        <form method="GET">
+          <div class="row">
+            <!-- Campo do formulário de pesquisa da data inicial -->
+            <div class="form-group col-4">
+              <label>Início: </label>
+              <input type="date" class="form-control"  placeholder="Data inicial"
+                name="startdate" value="{{ request.GET.startdate }}">
+            </div>
+            <!-- Campo do formulário de pesquisa da data final -->
+              <div class="form-group col-4">
+                <label>Início: </label>
+                <input type="date" class="form-control"  placeholder="Data final"
+                  name="enddate" value="{{ request.GET.endtdate }}">
+              </div>
 
-    
-    Cancelamentos mensal:
-    <!-- Inicio -->
-    <!--
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-      {% for mes in mes %}
-      <div class="col mt-2" >
-        <div class="card h-100">
-          <div class="card-body" align="center">
-            {{ mes.month|date:'M Y' }}: {{ mes.c }}
-           
+            <!-- Botão de pesquisar -->
+            <div class="form-group col-12">
+              <button class=" form-control btn-success">
+              <i class="fas fa-search"></i>
+              Pesquisar
+              </button>
+            </div>
+
           </div>
-        </div>
+        </form>
       </div>
-      {% endfor %}
-    </div>
-  -->
-    <!-- Fim-->
+	<!-- FIM Campo de Pesquisas-->
+
+  <!-- INICIO - Gráfico com o motivos de cancelamentos -->
+ <div class="card shadow">
+   <div class="card-header" align="center">
+     Gráficos
+   </div>
+  <canvas id="myChart" width="400" height="100">
+    <script>
+      const ctx = document.getElementById('myChart').getContext('2d');
+      const myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: ['R$: 69,90', 'R$: 89,90', 'R$: 99,90', 'R$: 119,90', 'R$: 149,90'],
+              datasets: [{
+                  label: '{{ count_cancelamentos}} Cancelamentos',
+                  data: ['{{ plano_69}}', '{{ plano_89}}', '{{ plano_99}}', '{{ plano_119}}', '{{ plano_149}}'],
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+          }
+      });
+      </script>
+  </canvas>
+ </div>
+
+ <!-- INICIO - Gráfico com o motivos de cancelamentos -->
+    
+
+
 
     <!-- TABELA com os nomes dos cancelados -->
-    <div>
+    <div class="card shadow mt-4">
+      <div class="card-header">
+        Listagem de cancelamentos
+      </div>
         <table class="table">
             <thead>
               <tr>
@@ -47,6 +111,7 @@
                 <th scope="col">Plano</th>
                 <th scope="col">Bairro</th>
                 <th scope="col">Atendente</th>
+                <th scope="col">Motivo</th>
                 <th scope="col">Editar</th>
               </tr>
             </thead>
@@ -57,7 +122,8 @@
                 <td>{{ cancelamento.plano_internet }}</td>
                 <td>{{ cancelamento.bairro }}</td>
                 <td>{{ cancelamento.atendente }}</td>
-                <td><a href="{% url 'editar-cancelamento' cancelamento.pk %}"> Editar</a></td>
+                <td>{{ cancelamento.motivo }}</td>
+                <td><a href="{% url 'editar-cancelamento' cancelamento.pk %}"> <i class="material-icons" style="color:gold;">edit</i></a></td>
               </tr>
             {% endfor %}
             </tbody>

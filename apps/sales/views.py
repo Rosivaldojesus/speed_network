@@ -381,6 +381,9 @@ class CancelamentosCreateView(CreateView, SuccessMessageMixin):
         form.instance.atendente = self.request.user
         return super().form_valid(form)
 
+
+
+
 from itertools import chain
 class CancelamentosListView(ListView):
     model = Cancelamentos
@@ -388,17 +391,64 @@ class CancelamentosListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(CancelamentosListView, self).get_context_data(**kwargs)
+        cancelamentos = Cancelamentos.objects.all()
+        count_cancelamentos = Cancelamentos.objects.all().count()
+
+        
+        # Cancelamentos por plano
+        plano_69 = Cancelamentos.objects.filter(plano_internet='69,90').count(),
+        plano_89 = Cancelamentos.objects.filter(plano_internet='89,90').count(),
+        plano_99 = Cancelamentos.objects.filter(plano_internet='99,90').count(),
+        plano_119 = Cancelamentos.objects.filter(plano_internet='119,90').count(),
+        plano_149 = Cancelamentos.objects.filter(plano_internet='149,90').count(), 
+
+        context['cancelamentos'] = cancelamentos
+        context['count_cancelamentos'] = count_cancelamentos
+
+
+        # Cancelamentos por plano
+        context['plano_69'] = plano_69
+        context['plano_89'] = plano_89
+        context['plano_99'] = plano_99
+        context['plano_119'] = plano_119
+        context['plano_149'] = plano_149
+
+        
+
+        return context
+
+
+
+
         context.update({
             'mes': Cancelamentos.objects.annotate(month=TruncMonth('data')).filter().values('month').annotate(c=Count('id')).values('month', 'c').order_by('-month'),
             'cancelamentos': Cancelamentos.objects.all(),
+            'count_cancelamentos': Cancelamentos.objects.all().count(),
+
+            # Análise por planos
+
+            'plano_69' : Cancelamentos.objects.filter(plano_internet='69,90').count(),
+            'plano_89' : Cancelamentos.objects.filter(plano_internet='89,90').count(),
+            'plano_99' : Cancelamentos.objects.filter(plano_internet='99,90').count(),
+            'plano_119' : Cancelamentos.objects.filter(plano_internet='119,90').count(),
+            'plano_149' : Cancelamentos.objects.filter(plano_internet='149,90').count(), 
         })
-        return context
+
+
+        
 
 
 
     #def get_queryset(self):
         #return Cancelamentos.objects.all()
     #context_object_name = 'cancelamentos'
+def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            posts = Post.objects.filter(titulo_post__icontains=query)
+        else:
+            posts = Post.objects.filter()
+        return posts
 
 
 
