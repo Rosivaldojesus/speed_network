@@ -391,23 +391,16 @@ class CancelamentosListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(CancelamentosListView, self).get_context_data(**kwargs)
-        cancelamentos = Cancelamentos.objects.all()
-        count_cancelamentos = Cancelamentos.objects.all().count()
-
         
-
-        context['cancelamentos'] = cancelamentos
-        context['count_cancelamentos'] = count_cancelamentos
-
+        context['cancelamentos'] = Cancelamentos.objects.all()
+        context['count_cancelamentos'] = Cancelamentos.objects.all().count()
 
         # Cancelamentos por plano
-        context['plano_69'] = Cancelamentos.objects.filter(plano_internet='69,90').count()
-        context['plano_89'] = Cancelamentos.objects.filter(plano_internet='89,90').count()
-        context['plano_99'] = Cancelamentos.objects.filter(plano_internet='99,90').count()
-        context['plano_119'] = Cancelamentos.objects.filter(plano_internet='119,90').count()
-        context['plano_149'] = Cancelamentos.objects.filter(plano_internet='149,90').count()
-
-        
+        context['plano_69'] = Cancelamentos.objects.filter(plano_internet__icontains='69,90').count()
+        context['plano_89'] = Cancelamentos.objects.filter(plano_internet__icontains='89,90').count()
+        context['plano_99'] = Cancelamentos.objects.filter(plano_internet__icontains='99,90').count()
+        context['plano_119'] = Cancelamentos.objects.filter(plano_internet__icontains='119,90').count()
+        context['plano_149'] = Cancelamentos.objects.filter(plano_internet__icontains='149,90').count()
 
         return context
 
