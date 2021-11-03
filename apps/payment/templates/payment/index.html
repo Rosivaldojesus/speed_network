@@ -105,6 +105,12 @@
     </div>
   </div>
 
+  <div>
+    {% for custo in custo_mes %}
+        {{ custo.month }}: R$: {{ custo.c }}
+    {% endfor %}
+  </div>
+
   
   <!--
   <div class="card shadow  border-0 mt-4">

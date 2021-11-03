@@ -24,6 +24,7 @@ def Index(request):
 
     #Query para o total de gastos de cada mês
     mes =  Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__lt=data_atual).filter().values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    custo_mes =  Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__lt=data_atual).filter().values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
 
     pagamentos = Pagamento.objects.all().order_by('-data_pagamento')
 
@@ -101,6 +102,8 @@ def Index(request):
                                                   'mensalInstalacao':mensalInstalacao,
                                                   'mensalSocios':mensalSocios,
                                                   'mensalImpostos':mensalImpostos,
+
+                                                  'custo_mes':custo_mes,
 
 
                                                   })
