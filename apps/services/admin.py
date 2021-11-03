@@ -8,6 +8,7 @@ admin.site.register(CategoriaServico)
 
 admin.site.register(TipoDeServico)
 
+
 class ServicoAdmin(admin.ModelAdmin):
     list_display = ['id','contato_servico', 'data_criacao',
                     'data_agendada','status_agendado',
