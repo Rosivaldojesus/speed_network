@@ -23,8 +23,8 @@ def Index(request):
     mes = Pagamento.objects.annotate(month=ExtractMonth('data_pagamento')).values('month').annotate(count=Sum('valor_pagamento'))
 
     #Query para o total de gastos de cada mês
-    mes =  Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__lt=data_atual).filter().values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
-    custo_mes =  Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter().values('month').annotate(c=Sum('valor_pagamento')).filter(data_pagamento__lte=data_atual).filter().values('month', 'c').order_by('month')
+    mes =  Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__lte=data_atual).filter().values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    custo_mes =  Pagamento.objects.annotate(month=TruncMonth('data_pagamento'),c=Sum('valor_pagamento')).filter().values('month').annotate(c=Sum('valor_pagamento')).filter(data_pagamento__lte=data_atual).filter().values('month', 'c').order_by('month')
 
     pagamentos = Pagamento.objects.all().order_by('-data_pagamento')
 
