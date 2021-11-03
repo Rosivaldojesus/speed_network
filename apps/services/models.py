@@ -46,6 +46,7 @@ class Servico(models.Model):
                                        null=True)
     agendado_por = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='agendado_por', blank=True,
                                        null=True)
+    tipo_servico = models.ForeignKey(TipoDeServico, on_delete=models.DO_NOTHING, blank=True, null=True)
 
 
     class Meta:
