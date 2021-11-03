@@ -51,6 +51,7 @@ def Index(request):
     redes_sociais_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Redes Socias')).count()
     site_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Site')).count()
     indicacao_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Indicação')).count()
+    outros_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Outros')).count()
 
 
     return render(request, 'sales/instalacao.html', {'instalacoes': instalacoes,
@@ -76,6 +77,7 @@ def Index(request):
                                                      'redes_sociais_count': redes_sociais_count,
                                                      'site_count': site_count,
                                                      'indicacao_count': indicacao_count,
+                                                     'outros_count': outros_count,
 
                                                      
 
