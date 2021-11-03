@@ -186,5 +186,61 @@
   </div>
   <!-- FIM Gráfico de instações diárias -->
 
+
+
+  <!-- INICIO Gráfico de como os clientes conheceram a empresa -->
+  <div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Como conheceu a empresa</h5>
+            <canvas id="quantidadeManuais" width="400" height="200"></canvas>
+						<script>
+							var ctxy = document.getElementById('quantidadeManuais').getContext('2d');
+							var myDoughnutChart = new Chart(ctxy, {
+								// The type of chart we want to create
+								type: 'pie',
+
+								// The data for our dataset
+								data: {
+									labels: ['Panfleto', 'Redes Sociais', 'Site', 'Indicação' ],
+									datasets: [{
+										label: 'Equipamentos nos clientes',
+										backgroundColor: '',
+										borderColor: 'white',
+										data: [{{ panfletos_count }},{{ redes_sociais_count }}, {{ site_count }}, {{ indicacao_count }}],
+
+										backgroundColor: [
+										'rgba(0,0,255)',
+										'rgba(79,79,79)',
+										'rgba(0,128,0)',
+										'rgba(255,215,0)',
+										'rgba(255,0,0)'
+										],
+									}]
+								},
+								// Configuration options go here
+								options: {}
+							});
+					</script>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  <!-- INICIO Gráfico de como os clientes conheceram a empresa -->
+
 </div>
 {% endblock %}
