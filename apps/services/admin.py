@@ -5,6 +5,7 @@ from .models import CategoriaServico, Servico, ServicoVoip, TipoServico
 # Register your models here.
 admin.site.register(CategoriaServico)
 
+
 admin.site.register(TipoServico)
 
 class ServicoAdmin(admin.ModelAdmin):
