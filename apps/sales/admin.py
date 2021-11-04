@@ -4,7 +4,7 @@ from .models import Instalacao, ClientesVoip, ValeRefeicao, Cancelamentos
 
 # Register your models here.
 class InstalacaoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nome_cliente','sobrenome_cliente',
+    list_display = ('id', 'nome_cliente','planos_instalacao','sobrenome_cliente',
                     'data_finalizacao',
                     'instalacao_vendedor', 'como_conheceu_empresa')
     list_filter = ('data_criacao','instalacao_vendedor')
