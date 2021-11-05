@@ -124,48 +124,58 @@
 	{% for senha in senhasPorEquipamentos %}
 	<div class="card border-info mb-3 shadow">
 		<div class="card-header bg-transparent border-info">
-			<div class="card-group row">
-				<div class="card border-0">Fabricante: {{ senha.fabricante }}</div>
-				<div class="card border-0">Modelo: {{ senha.equipamento }}</div>
+
+			<div class="row">
+				<div class="col-sm-3 row">
+					<div class="mr-1"><small><strong>#ID:</strong></small></div>
+					<div><small>{{ senha.id }}</small></div>
+				</div>
+				<div class="col-sm-3 row">
+					<div class="mr-1"><small><strong>Código:</strong></small> </div>
+					<div><small>{{ senha.codigo_equipamento }}</small></div>
+				</div>
+				<div class="col-sm-3 row">
+					<div class="mr-1"><small><strong>Fabricante:</strong></small> </div>
+					<div><small>{{ senha.fabricante }}</small></div>
+				</div>
+				<div class="col-sm-3 row">
+					<div class="mr-1"><small><strong>Modelo:</strong></small> </div>
+					<div><small>{{ senha.equipamento }}</small></div>
+				</div>
 			</div>
 		</div>
 		<div class="card-body text-info">
 		  <div class="card-group row">
 
-			<div class="col-sm-2">
-				<div class="card border-0">
-					<small>Patrimônio:</small>
-					<strong>{{ senha.patrimonio_equipamento }}</strong>
-				</div>
+
+			<div class="col-sm-2 row">
+				<div class="mr-1"><small><strong>Patrimônio:</strong></small> </div>
+				<div><small>{{ senha.patrimonio_equipamento }}</small></div>
 			</div>
 
-			<div class="col-sm-3">
-				<div class="card border-0">
-					<small>IP:</small>
-					<strong>{{ senha.ip_equipamento }}</strong>
-				</div>
+			<div class="col-sm-2 row">
+				<div class="mr-1"><small><strong>IP:</strong></small> </div>
+				<div><small>{{ senha.ip_equipamento }}</small></div>
 			</div>
 
-			<div class="col-sm-2">
-				<div class="card border-0">
-					<small>Login:</small>
-					<strong>{{ senha.login }}</strong>
-				</div>
+			<div class="col-sm-2 row">
+				<div class="mr-1"><small><strong>S/N:</strong></small> </div>
+				<div><small>{{ senha.sn_equipamento }}</small></div>
 			</div>
 
-			<div class="col-sm-2">
-				<div class="card border-0">
-					<small>Senha:</small>
-					<strong>{{ senha.senha }}</strong>
-				</div>
+			<div class="col-sm-2 row">
+				<div class="mr-1"><small><strong>Login:</strong></small> </div>
+				<div><small>{{ senha.login }}</small></div>
 			</div>
 
-			<div class="col-sm-2">
-				<div class="card border-0">
-					<a href="/editar-senhas-equipamentos/{{ senha.id }}" style="color: gold;"><i class="fas fa-edit"></i></a>
-				</div>
+			<div class="col-sm-2 row">
+				<div class="mr-1"><small><strong>Senha:</strong></small> </div>
+				<div><small>{{ senha.senha }}</small></div>
 			</div>
 
+			<div class="col-sm-1 row">
+				<a href="/editar-senhas-equipamentos/{{ senha.id }}" style="color: gold;"><i class="fas fa-edit"></i></a>
+			</div>
 
 
 		  </div>
