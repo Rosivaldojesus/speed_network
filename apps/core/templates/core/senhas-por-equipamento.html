@@ -130,26 +130,40 @@
 			</div>
 		</div>
 		<div class="card-body text-info">
-		  <div class="card-group">
+		  <div class="card-group row">
 
-			<div class="card border-0">
-				<small>Patrimônio:</small>
-				<strong>{{ senha.patrimonio_equipamento }}</strong>
+			<div class="col-sm-2">
+				<div class="card border-0">
+					<small>Patrimônio:</small>
+					<strong>{{ senha.patrimonio_equipamento }}</strong>
+				</div>
 			</div>
 
-			<div class="card border-0">
-				<small>IP:</small>
-				<strong>{{ senha.ip_equipamento }}</strong>
+			<div class="col-sm-3">
+				<div class="card border-0">
+					<small>IP:</small>
+					<strong>{{ senha.ip_equipamento }}</strong>
+				</div>
 			</div>
 
-			<div class="card border-0">
-				<small>Login:</small>
-				<strong>{{ senha.login }}</strong>
+			<div class="col-sm-2">
+				<div class="card border-0">
+					<small>Login:</small>
+					<strong>{{ senha.login }}</strong>
+				</div>
 			</div>
 
-			<div class="card border-0">
-				<small>Senha:</small>
-				<strong>{{ senha.senha }}</strong>
+			<div class="col-sm-2">
+				<div class="card border-0">
+					<small>Senha:</small>
+					<strong>{{ senha.senha }}</strong>
+				</div>
+			</div>
+
+			<div class="col-sm-2">
+				<div class="card border-0">
+					<a href="/editar-senhas-equipamentos/{{ senha.id }}" style="color: gold;"><i class="fas fa-edit"></i></a>
+				</div>
 			</div>
 
 
