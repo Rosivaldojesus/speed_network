@@ -192,58 +192,5 @@
 	{% endfor %}
 	<!-- FIM da tabela dos equipamentos -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<!-- INÍCIO da tabela dos equipamento s-->
-	{% for senha in senhasPorEquipamentos %}
-	<div class="card mt-2 shadow">
-		<div class="card-header">
-			<strong>ID:</strong>  {{ senha.id }}  -
-			<strong>Código:</strong> {{ senha.codigo_equipamento }} - 
-			<strong>S/N:</strong> {{ senha.sn_equipamento }}</div>
-		<div class="card-group">
-			<div class="card ml-2 border-0">
-				<Small>Fabricante:</Small>
-				<strong>{{ senha.fabricante }}</strong>
-			</div>
-			<div class="card border-0">
-				<small>Modelo:</small>
-				<strong>{{ senha.equipamento }}</strong>
-			</div>
-			<div class="card border-0">
-				<small>IP:</small>
-				<strong>{{ senha.ip_equipamento }}</strong>
-			</div>
-			<div class="card border-0">
-				<small>Login:</small>
-				<strong>{{ senha.login }}</strong>
-			</div>
-			<div class="card border-0">
-				<small>Senha:</small>
-				<strong>{{ senha.senha }}</strong>
-			</div>
-			<div class="card border-0">
-				<small>Patrimônio:</small>
-				<strong>{{ senha.patrimonio_equipamento }}</strong>
-			</div>
-			<div class="card border-0">
-				<small></small>
-				<a href="/editar-senhas-equipamentos/{{ senha.id }}"><i class="fas fa-edit"></i></a>
-			</div>
-		</div>
-	</div>
-	{% endfor %}
-	<!-- FIM da tabela dos equipamento s-->
 </div>
 {% endblock %}
