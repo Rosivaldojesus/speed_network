@@ -196,7 +196,7 @@ def AgendamentosPagamentos(request):
     atrasadas = Pagamento.objects.filter(status_pago= 'False').filter(data_pagamento__lt=data_atual)
 
 
-    naoVencidas = Pagamento. objects.filter()
+    naoVencidas = Pagamento. objects.filter().order_by('-data_pagamento')
 
     totalPagarHoje = Pagamento.objects.filter(status_pago= 'False').filter(data_pagamento=data_atual)\
         .aggregate(total=Sum('valor_pagamento'))
