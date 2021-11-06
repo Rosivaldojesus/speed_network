@@ -137,13 +137,13 @@ def ListaPagamentos(request):
 
     # Show payment per bank
     if data:
-        pagamentos = Pagamento.objects.filter(Q(data_pagamento__icontains=data))
+        pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(Q(data_pagamento__icontains=data))
 
 
 
     # Show payment per time course
     elif startdate and enddate:
-        pagamentos = Pagamento.objects.filter(Q(data_pagamento__range=[startdate, enddate]))
+        pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(Q(data_pagamento__range=[startdate, enddate]))
 
         # Show payment per time, course and value
     elif startdate and enddate and valor:
@@ -153,27 +153,27 @@ def ListaPagamentos(request):
 
     # Show payment per time, course and value
     elif startdate and enddate and banco:
-        pagamentos = Pagamento.objects.filter(Q(data_pagamento__range=[startdate, enddate])|
+        pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(Q(data_pagamento__range=[startdate, enddate])|
                                               Q(origem_valor_pagamento__exact=banco))
 
     # Show payment per reason
     elif motivoPagamento:
-        pagamentos = Pagamento.objects.filter(Q(motivo_pagamento__icontains=motivoPagamento))
+        pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(Q(motivo_pagamento__icontains=motivoPagamento))
 
         dia = Pagamento.objects.values('data_pagamento').annotate(
             number=Sum('valor_pagamento'))
 
     # Show payment per bank
     elif banco:
-        pagamentos = Pagamento.objects.filter(Q(origem_valor_pagamento__exact=banco))
+        pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(Q(origem_valor_pagamento__exact=banco))
 
     # Show payment per bank
     elif valor:
-        pagamentos = Pagamento.objects.filter(Q(valor_pagamento__icontains=valor))
+        pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(Q(valor_pagamento__icontains=valor))
 
     # Show payment per value and date
     elif valor and data:
-        pagamentos = Pagamento.objects.filter(Q(valor_pagamento__icontains=valor)|
+        pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(Q(valor_pagamento__icontains=valor)|
                                               Q(data_pagamento__icontains=data))
 
     paginator = Paginator(pagamentos, 50)  # Show 25 payment per page.
@@ -181,13 +181,6 @@ def ListaPagamentos(request):
     pagamentos = paginator.get_page(page_number)
 
     return render(request, 'payment/lista_pagamentos.html', {'pagamentos': pagamentos})
-
-
-
-
-
-
-
 
 
 
