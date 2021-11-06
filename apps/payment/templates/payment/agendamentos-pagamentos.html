@@ -26,7 +26,7 @@
 
 
 <!-- INICIO da página Principal -->
-<div class="row">
+<div class="row mt-4">
 
     <!-- INÍCIO da campo da Esquerda -->
      <div class="col-sm-4">
@@ -62,23 +62,22 @@
             <div class="card-body">
               <h5 class="card-title"></h5>
               <div class="row">
-                <div class="col-sm-4">
-                  <div class="card shadow border-0">
-                    <div class="card-body">
-                      <p class="card-title">Atrasadas</p>
-                        <div align="center">
-                            {% if totalPagarAtrasadas.total is null %}
-                                <h3>R$: 0</h3>
-                            {% else %}
-                                <h3>R$: {{ totalPagarAtrasadas.total }}</h3>    
-                            {% endif %}  
-                        </div>
-                        <div align="right">
-                             <a>Ver todos</a>
-                        </div>
+                {% if totalPagarAtrasadas.total is null %}
+
+                {% else %}
+                <div class="col-sm-4" >
+                    <div class="card shadow border-0" style="background-color: red;" >
+                      <div class="card-body" style="color: white;">
+                        <p class="card-title">Atrasadas</p>
+                          <div align="center">                        
+                              <h3><strong>R$: {{ totalPagarAtrasadas.total }}</strong></h3>    
+                          </div>
+  
+                      </div>
                     </div>
-                  </div>
                 </div>
+                {% endif %}  
+
                 <div class="col-sm-4">
                     <div class="card shadow border-0">
                       <div class="card-body">
@@ -129,7 +128,7 @@
                         </div>
                         <div class="card-body">
                             <div class="card-body">
-                                <table class="table">
+                                <table class="table table-responsive-sm">
                                     <thead>
                                       <tr>
                                         <th scope="col">Motivo</th>
@@ -170,7 +169,7 @@
                         </div>
                         <div class="card-body">
                             <div class="card-body">
-                                <table class="table">
+                                <table class="table table-responsive-sm">
                                     <thead>
                                         <th scope="col">Motivo</th>
                                         <th scope="col">Valor</th>
