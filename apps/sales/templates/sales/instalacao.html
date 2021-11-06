@@ -2,7 +2,13 @@
 {% load static %}
 {% block title %}<title> :: Instalações </title> {% endblock %}
 
+
 {% block main %}
+<body style="background-color: lightgrey;">
+
+</body>
+
+
 <div class="container">
     
   <!-- INÍCIO Messagens -->
@@ -16,7 +22,7 @@
   <!-- FIM Messagens -->   
   
   <!-- INiCIO dos botões de opções -->
-  <div class="card shadow mt-4 border-0">
+  <div class="card shadow mt-4 border-0 p-2">
     <div align="right">
       <a class="btn btn-primary" href="cadastro-instalacao/">Adicionar Instalação</a>
       <a class="btn btn-danger" href="criar-cancelamento/">Cancelamento</a>
@@ -27,7 +33,7 @@
 
 
   <!--INICIO dos status de instalações -->
-  <div class="card shadow mt-4">
+  <div class="card shadow mt-4 p-2">
     <div class="card-deck">
       
       <div class="card border-danger" align="center">
@@ -91,7 +97,7 @@
 
   <!-- INICIO Gráfico de instalações por mês -->
   {% if request.user.groups.all.0.name == "Master" %}
-  <div class="card shadow mt-5">
+  <div class="card shadow mt-4 p-2">
     <canvas id="speedChartA" width="600" height="100">
         <script>
             
@@ -131,7 +137,7 @@
   <!-- FIM Gráfico de instalações por mês -->
 
   <!-- INICIO Gráfico de instações diárias -->
-  <div class="card shadow mt-5 mb-4">
+  <div class="card shadow mt-4 mb-4 p-2">
     <canvas id="speedChart" width="400" height="100">
         <script>
           var speedCanvas = document.getElementById("speedChart");
@@ -189,7 +195,7 @@
 
 
   <!-- INICIO Gráfico de como os clientes conheceram a empresa -->
-  <div>
+  <div class="mb-2">
 
     <div class="row">
       <div class="col-sm-6">
@@ -230,11 +236,7 @@
       </div>
       <div class="col-sm-6">
         <div class="card border-0">
-          <div class="card-body">
-            <h5 class="card-title"></h5>
-            <p class="card-text"></p>
-            <a href="#" class="#"></a>
-          </div>
+   
         </div>
       </div>
     </div>
