@@ -60,7 +60,7 @@
                 </thead>
                 <tbody>
                     {% for naoVencidas in naoVencidas %}
-                    {% if naoVencidas.status_pago == False %}
+
                   <tr>
                     <td>{{ naoVencidas.motivo_pagamento }}</td>  
                     <td>{{ naoVencidas.valor_pagamento }}</td>
@@ -71,7 +71,7 @@
                         <a href="/pagamentos/comfirmar-pagamento/{{ naoVencidas.id }}" title="Pagar"><i class="fas fa-money-check-alt"></i></a>
                     </td>
                   </tr>
-                  {% endif %}
+
                   {% endfor %}
                 </tbody>
             </table>
