@@ -126,7 +126,8 @@ def DashboardPagamentos(request):
 
 
 def ListaPagamentos(request):
-    pagamentos = Pagamento.objects.all().order_by('-data_pagamento') # Show all payment
+    data_atual = datetime.now()
+    pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).order_by('-data_pagamento') # Show all payment
     data = request.GET.get('data') 
     motivoPagamento = request.GET.get('motivoPagamento') 
     banco = request.GET.get('banco')
