@@ -18,27 +18,48 @@
   {% endif %}
 
   <!--INÍCIO dos Botões -->
-  <div>
-    <div class="card shadow border-0">
+
+  <!-- INICIO de contas a Pagar -->
+  <div class="mt-4">
+    <div class="card" align="right">
+      <h5 class="card-header">Contas A pagar</h5>
+      <div class="card-body" align="right">
+        <a href="agendar-pagamento/" class="btn btn-dark">Agendar um pagamento</a>
+        <a href="agendamentos-pagamentos/" class="btn btn-primary">Agenda de pagamentos </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- INICIO de contas a Pagar -->
+
+
+  <!-- INICIO botões de pagamentos  -->
+  <div class="mt-4">
+    <div class="card">
+      <h5 class="card-header">Contas</h5>
       <div class="card-body">
-        <div align="right">
-          <!--
-          <a href="pagamentos-mensais-grupos/" class="btn btn-info">Grupos Pagamentos</a>
-          -->
-          <a href="lista-pagamentos/" class="btn btn-info">Ver todos pagamentos</a>
+        <a href="lista-pagamentos/" class="btn btn-info">Ver todos pagamentos</a>
           <a href="/pagamentos/fluxo-entradas-saidas/" class="btn btn-info">Fluxo</a>
-          <a href="agendar-pagamento/" class="btn btn-dark">Agendar um pagamento</a>
-          <a href="agendamentos-pagamentos/" class="btn btn-primary">Agenda de pagamentos </a>
+
           <a href="cadastrar-pagamento/" class="btn btn-primary">+ Adicionar pagamento </a>
           <a href="exportar-csv/" class="btn btn-info" title="Exportar CSV"><i class="fas fa-file-csv"></i></a>
 
           <a href="exportar-excel/">Exportar Excel</a>
-
-      </div>
       </div>
     </div>
   </div>
-  <!--INÍCIO dos Botões -->
+  <!-- INICIO botões de pagamentos  -->
+
+
+
+
+
+
+
+
+
+
+
 
       <!--INÍCIO Custos mês atual -->
       <div class="card shadow  border-0 mt-4">
