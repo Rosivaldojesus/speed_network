@@ -1,5 +1,11 @@
 from django import forms
-from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas
+from django.db import models
+from django.forms import fields
+from ..components.models import Bancos
+
+from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas, DestinoValoresBoletos
+from .models import DestinoValoresBoletos
+from django.forms.widgets import SplitDateTimeWidget
 
 class CadastarPagamentoForm(forms.ModelForm):
     class Meta:
@@ -72,4 +78,25 @@ class CadastrarFluxoForm(forms.ModelForm):
     fluxo_data = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), required=False)
     SaidaDia = forms.DecimalField(label='Total de saídas do dia R$:')
     SaldoDia = forms.DecimalField(label='Saldo do final do dia R$:')
+
+
+class CadastarDestinoValoresBoletosForm(forms.ModelForm):
+    class Meta:
+        model = DestinoValoresBoletos
+        fields = ['valor', 'destino', 'data_transacao']
+
+    valor = forms.DecimalField(label="Valor transferido")
+    destino = forms.ModelChoiceField(queryset=Bancos.objects.all().order_by('nome_banco'), label="Banco de destino")
+    data_transacao = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), label="Data da transação")
+
+
+
+class EditarDestinoValoresBoletosForm(forms.ModelForm):
+    class Meta:
+        model = DestinoValoresBoletos
+        fields = ['valor', 'destino', 'data_transacao']
+
+    valor = forms.DecimalField(label="Valor transferido")
+    destino = forms.ModelChoiceField(queryset=Bancos.objects.all().order_by('nome_banco'), label="Banco de destino")
+    #data_transacao = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), label="Data da transação")
 

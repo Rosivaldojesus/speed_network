@@ -4,6 +4,8 @@ from .views import DashboardPagamentos, ListaPagamentos, AgendamentosPagamentos,
     AgendarPagamento, ConfirmarPagamento, EditarPagamento, ExportarCSV,\
     PagamentosFuturos, PagamentosMensaisGrupos, FluxoEntradaSaida, FluxoCreate, ExportParaExcel
 
+from .views import RetiradasGerencianetListView, RetiradasGerencianetCreateView, RetiradasGerencianetUpdateView
+
 from .views import SalvarPagamento
 
 urlpatterns = [
@@ -18,6 +20,14 @@ urlpatterns = [
     path('pagamentos-futuros/', PagamentosFuturos),
     path('pagamentos-mensais-grupos/', PagamentosMensaisGrupos),
     path('fluxo-entradas-saidas/', FluxoEntradaSaida),
+
+    path('retiradas-gerencianet/', RetiradasGerencianetListView.as_view(), name='retiradas-gerencianet'),
+    path('cadastrar-valores-receitanet/', RetiradasGerencianetCreateView.as_view(), name='cadastrar-valores-receitanet'),
+
+     # UpdateView
+    path('retiradas-gerencianet/<slug:pk>/', RetiradasGerencianetUpdateView.as_view(), name='editar-valores-receitanet'),
+
+
     path('cadastrar-fluxo-entradas-saidas/', FluxoCreate.as_view(), name='cadastrar-fluxo-entradas-saidas'),
 
     path('salvar-pahemnto/', SalvarPagamento),

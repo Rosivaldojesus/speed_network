@@ -92,3 +92,15 @@ class FuncionariosParaVale(models.Model):
 
     def __str__(self):
         return "{}".format(self.nome_funcionario)
+
+
+
+
+class Bancos(models.Model):
+    nome_banco = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "Banco"
+    
+    def __str__(self) -> str:
+        return "{}".format(self.nome_banco)

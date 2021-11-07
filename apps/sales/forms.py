@@ -1,9 +1,10 @@
 from django import forms
 from .models import Instalacao, ValeRefeicao, Cancelamentos
 from ..services.models import ServicoVoip
-from ..components.models import FuncionariosParaVale
+from ..components.models import FuncionariosParaVale, Bancos
 from django.forms.widgets import NumberInput
 from django.contrib.auth.models import User
+
 
 
 class InstalacaoCreateForm(forms.ModelForm):

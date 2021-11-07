@@ -1,10 +1,14 @@
 from datetime import date, datetime
+from re import I
+
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import F, Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q, Sum, Count
-from django.views.generic import CreateView
-
-from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas
+from django.views.generic import CreateView, UpdateView
+from django.views.generic.list import ListView
+from .forms import CadastarDestinoValoresBoletosForm, EditarDestinoValoresBoletosForm
+from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas, DestinoValoresBoletos
 from .forms import CadastarPagamentoForm, AgendarPagamentoForm, ComfirmarPagamentoForm, EditarPagamentoForm
 from django.contrib import messages
 from django.db.models.functions import ExtractMonth
@@ -310,6 +314,9 @@ def FluxoEntradaSaida(request):
     fluxos = FluxoEntradasSaidas.objects.all()
     return render(request, 'payment/fluxo-entradas-saidas.html', {'fluxos': fluxos})
 
+
+
+
 class FluxoCreate(CreateView):
     model = FluxoEntradasSaidas
     form_class = CadastrarFluxoForm
@@ -386,3 +393,55 @@ def SalvarPagamento(request):
     else:
         form = CadastarPagamentoForm()
     return render(request, 'payment/salvar-pagamento.html', {'form': form})
+
+
+# ----------------------------- Movimentações do ReceitaNET -------------------------------------------------
+
+class RetiradasGerencianetListView(ListView):
+    model = DestinoValoresBoletos
+    template_name = 'payment/lista-retiradas-gerencianet.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(RetiradasGerencianetListView, self).get_context_data(**kwargs)
+
+        startdate = self.request.GET.get('startdate')
+        enddate = self.request.GET.get('enddate')
+
+        if startdate and enddate:
+            context['retiradas'] = DestinoValoresBoletos.objects.filter(data_transacao__range=[startdate, enddate])
+        else:
+            context['retiradas'] = DestinoValoresBoletos.objects.all()
+        return context
+
+
+class RetiradasGerencianetCreateView(SuccessMessageMixin, CreateView):
+    model = DestinoValoresBoletos
+    template_name = "payment/cadastrar-valores-receitanet.html"
+    form_class = CadastarDestinoValoresBoletosForm
+    success_url = '/pagamentos/retiradas-gerencianet/'
+    success_message = "R$: %(valor)s, foi cadastrado com sucesso!!!"
+    
+
+
+class RetiradasGerencianetUpdateView(UpdateView):
+    model = DestinoValoresBoletos # A tabela do banco de dados
+    form_class = EditarDestinoValoresBoletosForm # Form for Update
+    template_name = 'payment/editar-valores-receitanet.html'  # templete for updating
+    template_name_suffix = 'editar-valores-receitanet'
+    success_url = "/pagamentos/retiradas-gerencianet/"  # return após atualizar
+
+
+#Exportando os dados para CSV
+def ExportarRetiradasReceitanetCSV(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="relatorio-retiradas-receitanet.csv"'
+
+    retiradas = DestinoValoresBoletos.objects.all()
+
+    writer = csv.writer(response)
+    writer.writerow(['id', 'valor', 'destino', 'data_transacao'])
+    for pag in pagamentos:
+        writer.writerow([pag.id, pag.data_pagamento, pag.motivo_pagamento, pag.valor_pagamento,
+                         pag.origem_valor_pagamento, pag.tipo_custo_pagamento,  pag.categoria , pag.status_pago
+                         ])
+    return response

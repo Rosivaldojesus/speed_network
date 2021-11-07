@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import CategoriaPagamento, Pagamento, TipoCusto, OrigemValores
-from .models import AgendaPagamento, FluxoEntradasSaidas
+from .models import AgendaPagamento, FluxoEntradasSaidas, DestinoValoresBoletos
 
 # Register your models here.
 
@@ -38,3 +38,8 @@ class PagamentoAdmin(admin.ModelAdmin):
 admin.site.register(Pagamento, PagamentoAdmin)
 
 admin.site.register(FluxoEntradasSaidas)
+
+
+class DestinoValoresBoletosAdmin(admin.ModelAdmin):
+    list_display = ('id', 'valor', 'destino', 'data_transacao')
+admin.site.register(DestinoValoresBoletos, DestinoValoresBoletosAdmin)

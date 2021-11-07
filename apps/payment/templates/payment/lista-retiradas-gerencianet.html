@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+
+{% block main %}
+<body style="background-color: lightgray;"></body>
+<div class="container">
+
+  <div class="card shadow mt-4 mb-4 p-2">
+  <!-- INÍCIO dos campos de Filtros -->
+  <div class="mt-2">
+    <form method="GET">
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card border-0">
+            <div class="row">
+              <div class="form-group col-6">
+                <label>Data Inicial:</label>
+                <input type="date" class="form-control" placeholder="Data Inicial" name="startdate" value="{{ request.GET.startdate }}">
+              </div>
+
+              <div class="form-group col-6">
+                <label>Data Final:</label>
+                <input type="date" class="form-control" placeholder="Data Final" name="enddate" value="{{ request.GET.enddate }}">
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-sm-6">
+          <!--
+          <div class="card border-0">
+            <div class="row">
+              <div class="form-group col-6">
+                <label>Data Inicial:</label>
+                <input type="date" class="form-control" placeholder="Data Inicial" name="startdate" value="{{ request.GET.startdate }}">
+              </div>
+
+              <div class="form-group col-6">
+                <label>Data Final:</label>
+                <input type="date" class="form-control" placeholder="Data Final" name="enddate" value="{{ request.GET.enddate }}">
+              </div>
+            </div>
+          </div>
+          -->
+        </div>
+      </div>
+
+
+
+      <div class="row">
+
+        
+
+      </div>
+      <div class="row">
+        <div class="form-group col-12">
+          <button class=" form-control btn-success">
+           <i class="fas fa-search"></i>
+           Pesquisar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- FIM dos campos de Filtros -->
+  <!-- INÍCIO Messagens -->
+  <div>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+  </div>
+  <!-- FIM Messagens -->
+  <!-- INICIO do botão de adicionar valores retirados -->
+  <div align="right">
+    <a href="/pagamentos/cadastrar-valores-receitanet/" class="btn btn-primary"><i class="far fa-plus-square"></i> Valor</a>
+  </div>
+  <!-- FIM do botão de adicionar valores retirados-->
+
+  </div>
+
+  <!-- INICIO Tabela com os valores movimentados -->
+  <div class="card shadow mt-4 mb-4">
+    <table class="table table-sm">
+      <caption>Lista de valores retirados do ReceitaNET</caption>
+      <thead>
+        <tr>
+          <th>Valor</th>
+          <th>Banco</th>
+          <th>Data</th>
+          <th>Opções</th>
+      </tr>
+      </thead>
+      <tbody>
+        {% for retirada in retiradas %}
+          <tr>
+              <td>R$: {{ retirada.valor|intcomma }}</td>
+              <td>{{ retirada.destino }}</td>
+              <td>{{ retirada.data_transacao | date:" d/m/Y" }}</td>
+              <td>
+                <a href="/pagamentos/retiradas-gerencianet/{{ retirada.id }}"><i class="far fa-edit text-warning"></i></a>
+              </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <!-- FIM Tabela com os valores movimentados -->
+</div>
+{% endblock %}
