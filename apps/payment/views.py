@@ -232,7 +232,7 @@ def PagamentosFuturos(request):
 
     if date and motivoPagamento:
         naoVencidas = Pagamento.objects.filter(status_pago='False').\
-            filter(data_pagamento__gt=data_atual).filter(Q(valor_pagamento__icontains=motivoPagamento)|
+            filter(data_pagamento__gt=data_atual).filter(Q(motivo_pagamento__icontains=motivoPagamento)|
                                                             Q(data_pagamento__exact=date))
 
     elif date:
@@ -241,10 +241,7 @@ def PagamentosFuturos(request):
 
     elif motivoPagamento:
         naoVencidas = Pagamento.objects.filter(status_pago='False').\
-            filter(data_pagamento__gt=data_atual).filter(Q(valor_pagamento__icontains=motivoPagamento))
-
-
-
+            filter(data_pagamento__gt=data_atual).filter(Q(motivo_pagamento__icontains=motivoPagamento))
 
     return render(request, 'payment/pagamentos-futuros.html',{'naoVencidas':naoVencidas})
 
