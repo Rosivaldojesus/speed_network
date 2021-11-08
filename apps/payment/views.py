@@ -420,34 +420,7 @@ class RetiradasGerencianetListView(ListView):
             context['retiradas'] = DestinoValoresBoletos.objects.all()
 
 
-        x = [-2,0,4,6,7]
-        y = [4,0,7,6,7]
-        trace1 = go.Scatter(x=x, y=y, mode="lines",  name='1st Trace')
-        data=go.Data([trace1])
-        layout=go.Layout(title="Meine Daten", xaxis={'title':'x1'}, yaxis={'title':'x2'})
-        figure=go.Figure(data=data,layout=layout)
-        div = opy.plot(figure, auto_open=False, output_type='div')
-
-
-        from plotly.offline import plot
-        import plotly.graph_objs as ga
-
-        
-        def get_year_dict():
-            year_dict = dict()
-
-            for dia in valor_teste:
-                year_dict[dia] = 0
-
-            return year_dict
-
-        fig = ga.Figure()
-        scatter = ga.Scatter(x= [ 0,1,2,3] , y=[0,1,2,3],
-                            mode='lines', name='test',
-                            opacity=0.8, marker_color='green')
-        fig.add_trace(scatter)
-        plt_div = plot(fig, output_type='div')
-
+ 
         context['valor_acumulado'] = DestinoValoresBoletos.objects.all().aggregate(total=Sum('valor'))
         #context['valor_acumulado'] = DestinoValoresBoletos.objects.filter().aggregate(total=Sum('valor'))
         context['graph'] = div
