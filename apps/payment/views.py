@@ -421,8 +421,6 @@ class RetiradasGerencianetListView(ListView):
  
         context['valor_acumulado'] = DestinoValoresBoletos.objects.all().aggregate(total=Sum('valor'))
         #context['valor_acumulado'] = DestinoValoresBoletos.objects.filter().aggregate(total=Sum('valor'))
-        context['graph'] = div
-        context['figura'] = plt_div
 
         return context
 
