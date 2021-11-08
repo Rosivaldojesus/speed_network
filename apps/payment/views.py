@@ -20,8 +20,6 @@ from .forms import CadastrarFluxoForm
 from django.core.paginator import Paginator
 
 
-import plotly.offline as opy
-import plotly.graph_objs as go
 
 
 
