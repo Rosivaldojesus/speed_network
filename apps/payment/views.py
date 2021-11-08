@@ -467,6 +467,8 @@ class RetiradasGerencianetCreateView(SuccessMessageMixin, CreateView):
     
 
 
+
+
 class RetiradasGerencianetUpdateView(UpdateView):
     model = DestinoValoresBoletos # A tabela do banco de dados
     form_class = EditarDestinoValoresBoletosForm # Form for Update
