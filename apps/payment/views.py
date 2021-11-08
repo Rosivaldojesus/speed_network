@@ -19,6 +19,13 @@ from django.http import HttpResponse
 from .forms import CadastrarFluxoForm
 from django.core.paginator import Paginator
 
+
+import plotly.offline as opy
+import plotly.graph_objs as go
+
+
+
+
 # Create your views here.
 def Index(request):
     data_atual = datetime.now()
@@ -245,6 +252,8 @@ def PagamentosFuturos(request):
 
     return render(request, 'payment/pagamentos-futuros.html',{'naoVencidas':naoVencidas})
 
+    
+
 
 
 def PagamentosMensaisGrupos(request):
@@ -400,15 +409,53 @@ class RetiradasGerencianetListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(RetiradasGerencianetListView, self).get_context_data(**kwargs)
+        context['valor_dia'] = DestinoValoresBoletos.objects.filter().values('data_transacao').annotate( number=Count('data_transacao'))
+
 
         startdate = self.request.GET.get('startdate')
         enddate = self.request.GET.get('enddate')
-
         if startdate and enddate:
             context['retiradas'] = DestinoValoresBoletos.objects.filter(data_transacao__range=[startdate, enddate])
         else:
             context['retiradas'] = DestinoValoresBoletos.objects.all()
+
+
+        x = [-2,0,4,6,7]
+        y = [4,0,7,6,7]
+        trace1 = go.Scatter(x=x, y=y, mode="lines",  name='1st Trace')
+        data=go.Data([trace1])
+        layout=go.Layout(title="Meine Daten", xaxis={'title':'x1'}, yaxis={'title':'x2'})
+        figure=go.Figure(data=data,layout=layout)
+        div = opy.plot(figure, auto_open=False, output_type='div')
+
+
+        from plotly.offline import plot
+        import plotly.graph_objs as ga
+
+        
+        def get_year_dict():
+            year_dict = dict()
+
+            for dia in valor_teste:
+                year_dict[dia] = 0
+
+            return year_dict
+
+        fig = ga.Figure()
+        scatter = ga.Scatter(x= [ 0,1,2,3] , y=[0,1,2,3],
+                            mode='lines', name='test',
+                            opacity=0.8, marker_color='green')
+        fig.add_trace(scatter)
+        plt_div = plot(fig, output_type='div')
+
+        context['valor_acumulado'] = DestinoValoresBoletos.objects.all().aggregate(total=Sum('valor'))
+        #context['valor_acumulado'] = DestinoValoresBoletos.objects.filter().aggregate(total=Sum('valor'))
+        context['graph'] = div
+        context['figura'] = plt_div
+
         return context
+
+
 
 
 class RetiradasGerencianetCreateView(SuccessMessageMixin, CreateView):
@@ -437,7 +484,7 @@ def ExportarRetiradasReceitanetCSV(request):
 
     writer = csv.writer(response)
     writer.writerow(['id', 'valor', 'destino', 'data_transacao'])
-    for pag in pagamentos:
+    for pag in retiradas:
         writer.writerow([pag.id, pag.data_pagamento, pag.motivo_pagamento, pag.valor_pagamento,
                          pag.origem_valor_pagamento, pag.tipo_custo_pagamento,  pag.categoria , pag.status_pago
                          ])

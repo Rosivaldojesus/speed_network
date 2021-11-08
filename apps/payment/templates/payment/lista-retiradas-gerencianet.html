@@ -12,14 +12,21 @@
   <div class="mt-2">
     <form method="GET">
 
+
       <div class="row">
+
+
+
+        
         <div class="col-sm-6">
-          <div class="card border-0">
+          <div class="card shadow mb-2 p-2">
             <div class="row">
               <div class="form-group col-6">
                 <label>Data Inicial:</label>
                 <input type="date" class="form-control" placeholder="Data Inicial" name="startdate" value="{{ request.GET.startdate }}">
               </div>
+
+
 
               <div class="form-group col-6">
                 <label>Data Final:</label>
@@ -29,6 +36,9 @@
           </div>
         </div>
 
+
+
+      
 
         <div class="col-sm-6">
           <!--
@@ -79,8 +89,19 @@
   </div>
   <!-- FIM Messagens -->
   <!-- INICIO do botão de adicionar valores retirados -->
-  <div align="right">
-    <a href="/pagamentos/cadastrar-valores-receitanet/" class="btn btn-primary"><i class="far fa-plus-square"></i> Valor</a>
+  <div>
+    <div class="row">
+      <div class="col-sm-6">
+        {% for acumulado in valor_acumulado%}
+          value {{ acumulado.total }}
+        {% endfor %}
+        
+      </div>
+      <div class="col-sm-6" align="right">
+        <a href="/pagamentos/cadastrar-valores-receitanet/" class="btn btn-primary"><i class="far fa-plus-square"></i> Valor</a>
+
+      </div>
+    </div>
   </div>
   <!-- FIM do botão de adicionar valores retirados-->
 
@@ -113,5 +134,30 @@
     </table>
   </div>
   <!-- FIM Tabela com os valores movimentados -->
+
+
+
+<!--
+
+  {% if graph %}
+  <div style="width:600;height:500">
+  {{ graph|safe }}
+  </div>
+  {% endif %}
+
+
+
+  {% if figura %}
+  <div style="width:600;height:500">
+  {{ figura|safe }}
+  </div>
+  {% endif %}
+
+
+  -->
+
+
+
+
 </div>
 {% endblock %}
