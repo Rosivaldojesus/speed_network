@@ -2,11 +2,15 @@ from django.contrib import admin
 from .models import CategoriaPagamento, Pagamento, TipoCusto, OrigemValores
 from .models import AgendaPagamento, FluxoEntradasSaidas, DestinoValoresBoletos
 
+from .models import FormasEntregaBoletos, EntregaBoletos
+
 # Register your models here.
 
 admin.site.register(CategoriaPagamento)
 admin.site.register(TipoCusto)
 admin.site.register(OrigemValores)
+admin.site.register(FormasEntregaBoletos)
+admin.site.register(EntregaBoletos)
 
 
 class AgendaPagamentoForm(admin.ModelAdmin):
