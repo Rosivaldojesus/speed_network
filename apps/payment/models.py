@@ -122,8 +122,8 @@ class EntregaBoletos(models.Model):
 
 
 # ----------------------------- BOLETOS-------------------------------------------------
-class FormasEntregaBoletos(models.Model):
-    forma_entrega = models.CharField(max_length=100, blank=True, null=True)
+class FormasDeEntregaBoletos(models.Model):
+    forma_entrega = models.CharField(max_length=100)
 
     class Meta:
         verbose_name_plural = "Formas Entrega Boletos"
