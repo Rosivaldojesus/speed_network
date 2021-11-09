@@ -2,7 +2,7 @@ from datetime import date, datetime
 from re import I
 
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import F, Q
+from django.db.models import F, Q, Avg
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q, Sum, Count
 from django.views.generic import CreateView, UpdateView
@@ -113,8 +113,6 @@ def Index(request):
                                                   'mensalImpostos':mensalImpostos,
 
                                                   'custo_mes':custo_mes,
-
-
                                                   })
 
 
@@ -148,8 +146,6 @@ def ListaPagamentos(request):
     if data:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(Q(data_pagamento__icontains=data))
 
-
-
     # Show payment per time course
     elif startdate and enddate:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(Q(data_pagamento__range=[startdate, enddate]))
@@ -158,13 +154,10 @@ def ListaPagamentos(request):
     elif startdate and enddate and valor:
         pagamentos = Pagamento.objects.filter(Q(data_pagamento__range=[startdate, enddate])|
                                               Q(valor_pagamento__icontains=valor))
-
-
     # Show payment per time, course and value
     elif startdate and enddate and banco:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(Q(data_pagamento__range=[startdate, enddate])|
                                               Q(origem_valor_pagamento__exact=banco))
-
     # Show payment per reason
     elif motivoPagamento:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(Q(motivo_pagamento__icontains=motivoPagamento))
@@ -302,6 +295,8 @@ def EditarPagamento(request, id=None):
     return render(request, 'payment/editar-pagamento.html', {'form': form})
 
 
+
+
 def ConfirmarPagamento(request, id=None):
     pagar = get_object_or_404(Pagamento, id=id)
     form = ComfirmarPagamentoForm(request.POST or None, instance=pagar)
@@ -311,6 +306,9 @@ def ConfirmarPagamento(request, id=None):
         messages.success(request, 'Pagamento comfirmado com sucesso.')
         return redirect('/pagamentos/')
     return render(request, 'payment/comfirmar-pagamento.html', {'form': form})
+
+
+
 
 def FluxoEntradaSaida(request):
     data_atual = datetime.now()
@@ -324,7 +322,6 @@ def FluxoEntradaSaida(request):
 class FluxoCreate(CreateView):
     model = FluxoEntradasSaidas
     form_class = CadastrarFluxoForm
-
     template_name = 'payment/cadastrar-fluxo-entradas-saidas.html'
     success_url = '/pagamentos/fluxo-entradas-saidas/'
 
@@ -405,9 +402,20 @@ class RetiradasGerencianetListView(ListView):
     model = DestinoValoresBoletos
     template_name = 'payment/lista-retiradas-gerencianet.html'
 
+    total = (DestinoValoresBoletos.objects
+        .filter()
+        .aggregate(
+        total=Sum('valor')
+    )['total']
+        )
+
     def get_context_data(self, **kwargs):
         context = super(RetiradasGerencianetListView, self).get_context_data(**kwargs)
         context['valor_dia'] = DestinoValoresBoletos.objects.filter().values('data_transacao').annotate( number=Count('data_transacao'))
+
+        context["valor_acumulado"] = DestinoValoresBoletos.objects.all().aggregate(tot=Sum('valor'))
+
+
 
 
         startdate = self.request.GET.get('startdate')
@@ -418,8 +426,6 @@ class RetiradasGerencianetListView(ListView):
             context['retiradas'] = DestinoValoresBoletos.objects.all()
 
 
- 
-        context['valor_acumulado'] = DestinoValoresBoletos.objects.all().aggregate(total=Sum('valor'))
         #context['valor_acumulado'] = DestinoValoresBoletos.objects.filter().aggregate(total=Sum('valor'))
 
         return context
@@ -460,3 +466,8 @@ def ExportarRetiradasReceitanetCSV(request):
                          pag.origem_valor_pagamento, pag.tipo_custo_pagamento,  pag.categoria , pag.status_pago
                          ])
     return response
+
+
+
+# ----------------------------- BOLETOS-------------------------------------------------
+
