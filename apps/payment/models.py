@@ -108,3 +108,14 @@ class FormasEntregaBoletos(models.Model):
         return "{}".format(self.forma_entrega)
 
 
+class EntregaBoletos(models.Model):
+    nome_cliente = models.CharField(max_length=255, blank=True, null=True)
+    cpf_cliente = models.CharField(max_length=50, blank=True, null=True)
+    forma_entrega_boleto = models.ForeignKey(FormasEntregaBoletos, on_delete=models.DO_NOTHING)
+    data_cadastro = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "Entrega de boletos "
+
+    def __str__(self) -> str:
+        return "{}".format(self.nome_cliente)
