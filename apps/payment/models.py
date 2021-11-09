@@ -119,3 +119,14 @@ class EntregaBoletos(models.Model):
 
     def __str__(self) -> str:
         return "{}".format(self.nome_cliente)
+
+
+# ----------------------------- BOLETOS-------------------------------------------------
+class FormasEntregaBoletos(models.Model):
+    forma_entrega = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Formas Entrega Boletos"
+    
+    def __str__(self):
+        return "{}".format(self.forma_entrega)
