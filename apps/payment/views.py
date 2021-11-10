@@ -456,9 +456,7 @@ class EntregaBoletosListView(ListView):
                 Q(nome_cliente__icontains=queryset),
                 Q(cpf_cliente__icontains=queryset)
             )
-            context['count_boletos_entregue'] = EntregaDosBoletos.objects.filter(
-                Q(nome_cliente__icontains=queryset)
-            ).count()
+
         else:
             context['lista_boletos_entregue'] = EntregaDosBoletos.objects.all()
 
