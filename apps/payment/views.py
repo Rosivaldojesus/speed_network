@@ -8,9 +8,9 @@ from django.views.generic import CreateView, UpdateView
 from django.views.generic.list import ListView
 from .forms import CadastarDestinoValoresBoletosForm, EditarDestinoValoresBoletosForm
 from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas, DestinoValoresBoletos
-from .models import EntregaDosBoletos
+
 from .forms import CadastarPagamentoForm, AgendarPagamentoForm, ComfirmarPagamentoForm, EditarPagamentoForm
-from .forms import EntregaBoletosForm
+
 from django.contrib import messages
 from django.db.models.functions import ExtractMonth
 from django.db.models.functions import TruncMonth
