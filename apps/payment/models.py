@@ -116,7 +116,7 @@ class ClientesEntregaDosBoletos(models.Model):
     data_cadastro = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name_plural = "Entrega de boletos "
+        verbose_name_plural = "Boletos de clientes "
 
     def __str__(self) -> str:
         return "{}".format(self.nome_cliente)
