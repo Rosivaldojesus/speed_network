@@ -98,3 +98,26 @@ class DestinoValoresBoletos(models.Model):
 
 
 
+# ----------------------------- BOLETOS-------------------------------------------------
+class MeiosEntregaDosBoletos(models.Model):
+    forma_entrega = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Meios Entrega Boletos"
+
+    def __str__(self):
+        return "{}".format(self.forma_entrega)
+
+
+class ClientesEntregaDosBoletos(models.Model):
+    nome_cliente = models.CharField(max_length=255, blank=True, null=True)
+    cpf_cliente = models.CharField(max_length=50, blank=True, null=True)
+    meio_entrega = models.ForeignKey(MeiosEntregaDosBoletos, on_delete=models.DO_NOTHING)
+    data_cadastro = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "Entrega de boletos "
+
+    def __str__(self) -> str:
+        return "{}".format(self.nome_cliente)
+

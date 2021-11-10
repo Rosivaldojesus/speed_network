@@ -1,8 +1,9 @@
 from django.contrib import admin
+from django.db import models
 from .models import CategoriaPagamento, Pagamento, TipoCusto, OrigemValores
 from .models import AgendaPagamento, FluxoEntradasSaidas, DestinoValoresBoletos
 
-
+from .models import MeiosEntregaDosBoletos, ClientesEntregaDosBoletos
 
 
 # Register your models here.
@@ -13,6 +14,14 @@ admin.site.register(OrigemValores)
 
 
 
+class MeiosEntregaDosBoletosAdmin(admin.ModelAdmin):
+    list_display = ('id', 'forma_entrega')
+admin.site.register(MeiosEntregaDosBoletos, MeiosEntregaDosBoletosAdmin)
+
+
+class ClientesEntregaDosBoletosAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nome_cliente', 'cpf_cliente', 'meio_entrega')
+admin.site.register(ClientesEntregaDosBoletos, ClientesEntregaDosBoletosAdmin)
 
 
 class AgendaPagamentoForm(admin.ModelAdmin):
