@@ -5,6 +5,7 @@ from ..components.models import Bancos
 
 from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas, DestinoValoresBoletos
 from .models import DestinoValoresBoletos
+from .models import ClientesEntregaBoletos
 
 
 
@@ -104,3 +105,7 @@ class EditarDestinoValoresBoletosForm(forms.ModelForm):
     #data_transacao = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), label="Data da transação")
 
 
+class ClientesEntregaBoletosForm(forms.ModelForm):
+    class Meta:
+        model = ClientesEntregaBoletos
+        fields = ['nome_cliente', 'cpf_cliente', 'forma_entrega']

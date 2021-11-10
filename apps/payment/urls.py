@@ -6,7 +6,7 @@ from .views import DashboardPagamentos, ListaPagamentos, AgendamentosPagamentos,
 
 from .views import RetiradasGerencianetListView, RetiradasGerencianetCreateView, RetiradasGerencianetUpdateView
 
-
+from .views import EntregaBoletosListView, EntregaBoletosCreateView
 from .views import SalvarPagamento
 
 urlpatterns = [
@@ -23,7 +23,11 @@ urlpatterns = [
     path('fluxo-entradas-saidas/', FluxoEntradaSaida),
 
 
+    #ListView
+    path('lista-entrega-boletos/', EntregaBoletosListView.as_view(), name='lista-entrega-boletos'),
 
+    #CreateView
+    path('cadastrar-entrega-boletos/', EntregaBoletosCreateView.as_view(), name='cadastrar-entrega-boletos'),
 
 
     path('retiradas-gerencianet/', RetiradasGerencianetListView.as_view(), name='retiradas-gerencianet'),
