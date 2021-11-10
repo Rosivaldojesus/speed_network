@@ -20,7 +20,7 @@ admin.site.register(MeiosEntregaDosBoletos, MeiosEntregaDosBoletosAdmin)
 
 
 class ClientesEntregaDosBoletosAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nome_cliente', 'cpf_cliente', 'meio_entrega')
+    list_display = ('id', 'nome_cliente', 'cpf_cliente',)
 admin.site.register(ClientesEntregaDosBoletos, ClientesEntregaDosBoletosAdmin)
 
 

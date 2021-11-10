@@ -112,7 +112,7 @@ class MeiosEntregaDosBoletos(models.Model):
 class ClientesEntregaDosBoletos(models.Model):
     nome_cliente = models.CharField(max_length=255, blank=True, null=True)
     cpf_cliente = models.CharField(max_length=50, blank=True, null=True)
-    meio_entrega = models.ForeignKey(MeiosEntregaDosBoletos, on_delete=models.DO_NOTHING, blank=True, null=True)
+    
     data_cadastro = models.DateTimeField(auto_now=True)
 
     class Meta:
