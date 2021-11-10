@@ -442,32 +442,3 @@ def ExportarRetiradasReceitanetCSV(request):
 
 
 
-# ----------------------------- BOLETOS-------------------------------------------------
-class EntregaBoletosListView(ListView):
-    model = EntregaDosBoletos
-    template_name = 'payment/lista-entrega-boletos.html'  # templete for updating
-
-    def get_context_data(self, **kwargs):
-        context = super(EntregaBoletosListView, self).get_context_data(**kwargs)
-
-        queryset = self.request.GET.get('q')
-        if queryset:
-            context['lista_boletos_entregue'] = EntregaDosBoletos.objects.filter(
-                Q(nome_cliente__icontains=queryset),
-                Q(cpf_cliente__icontains=queryset)
-            )
-
-        else:
-            context['lista_boletos_entregue'] = EntregaDosBoletos.objects.all()
-
-        return context
-
-
-
-
-class EntregaBoletosCreateView(SuccessMessageMixin, CreateView):
-    model = EntregaDosBoletos
-    template_name = "payment/cadastrar-entrega-boletos.html"
-    form_class = EntregaBoletosForm
-    success_url = '/pagamentos/lista-entrega-boletos/'
-    success_message = "%(nome_cliente)s, foi cadastrado com sucesso!!!"

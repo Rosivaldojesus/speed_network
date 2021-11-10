@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import CategoriaPagamento, Pagamento, TipoCusto, OrigemValores
 from .models import AgendaPagamento, FluxoEntradasSaidas, DestinoValoresBoletos
 
-from .models import FormasDeEntregaDosBoletos,EntregaDosBoletos
+
 
 
 # Register your models here.
@@ -10,8 +10,6 @@ from .models import FormasDeEntregaDosBoletos,EntregaDosBoletos
 admin.site.register(CategoriaPagamento)
 admin.site.register(TipoCusto)
 admin.site.register(OrigemValores)
-admin.site.register(FormasDeEntregaDosBoletos)
-admin.site.register(EntregaDosBoletos)
 
 
 
