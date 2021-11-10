@@ -97,4 +97,12 @@ class DestinoValoresBoletos(models.Model):
 
 
 
+class MeiosEntregaBoletos(models.Model):
+    meio_entrega = models.CharField(max_length=100, blank=True, null=True, verbose_name='Meio de entrega')
+
+    class Meta:
+        verbose_name_plural = "Meio Entrega Boletos"
+
+    def __str__(self):
+        return "{}".format(self.meio_entrega)
 
