@@ -446,22 +446,16 @@ def ExportarRetiradasReceitanetCSV(request):
 class EntregaBoletosListView(ListView):
     model = ClientesEntregaBoletos
     template_name = 'payment/lista-entrega-boletos.html'  # templete for updating
-
     def get_context_data(self, **kwargs):
         context = super(EntregaBoletosListView, self).get_context_data(**kwargs)
-
         queryset = self.request.GET.get('q')
         if queryset:
-            context['lista_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(Q(nome_cliente__icontains=queryset),Q(cpf_cliente__icontains=queryset))
-            context['count_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(Q(nome_cliente__icontains=queryset), Q(cpf_cliente__icontains=queryset)).count()
-
+            context['lista_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(Q(nome_cliente__icontains=queryset))
+            context['count_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(Q(nome_cliente__icontains=queryset)).count()
         else:
             context['lista_boletos_entregue'] = ClientesEntregaBoletos.objects.all()
             context['count_boletos_entregue'] = ClientesEntregaBoletos.objects.all().count()
-
         return context
-
-
 
 
 class EntregaBoletosCreateView(SuccessMessageMixin, CreateView):
