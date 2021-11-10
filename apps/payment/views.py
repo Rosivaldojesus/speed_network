@@ -451,9 +451,9 @@ class EntregaBoletosListView(ListView):
 
         context['count_via_fisica'] = ClientesEntregaBoletos.objects.filter(forma_entrega=1).count()
         context['count_email_whatsapp']  = ClientesEntregaBoletos.objects.filter(forma_entrega=2).count()
-        context['count_app'] = ClientesEntregaBoletos.objects.filter(forma_entrega=1).count()
-        context['count_whatsapp']  = ClientesEntregaBoletos.objects.filter(forma_entrega=2).count()
-        context['count_email']  = ClientesEntregaBoletos.objects.filter(forma_entrega=2).count()
+        context['count_app'] = ClientesEntregaBoletos.objects.filter(forma_entrega=3).count()
+        context['count_whatsapp']  = ClientesEntregaBoletos.objects.filter(forma_entrega=4).count()
+        context['count_email']  = ClientesEntregaBoletos.objects.filter(forma_entrega=5).count()
 
 
         queryset = self.request.GET.get('q')
