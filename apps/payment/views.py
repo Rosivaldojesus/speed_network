@@ -461,7 +461,7 @@ class EntregaBoletosListView(ListView):
             ).count()
         else:
             context['lista_boletos_entregue'] = EntregaDosBoletos.objects.all()
-            context['count_boletos_entregue'] = EntregaDosBoletos.objects.all().count()
+
         return context
 
 
