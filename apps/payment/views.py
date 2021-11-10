@@ -452,14 +452,8 @@ class EntregaBoletosListView(ListView):
 
         queryset = self.request.GET.get('q')
         if queryset:
-            context['lista_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(
-                Q(nome_cliente__icontains=queryset),
-                Q(cpf_cliente__icontains=queryset)
-            )
-            context['count_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(
-                Q(nome_cliente__icontains=queryset),
-                Q(cpf_cliente__icontains=queryset)
-            ).count()
+            context['lista_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(Q(nome_cliente__icontains=queryset),Q(cpf_cliente__icontains=queryset))
+            context['count_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(Q(nome_cliente__icontains=queryset), Q(cpf_cliente__icontains=queryset)).count()
 
         else:
             context['lista_boletos_entregue'] = ClientesEntregaBoletos.objects.all()
