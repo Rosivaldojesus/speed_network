@@ -1,6 +1,5 @@
 from datetime import date, datetime
 from re import I
-
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import F, Q, Avg
 from django.shortcuts import render, redirect, get_object_or_404
@@ -9,7 +8,9 @@ from django.views.generic import CreateView, UpdateView
 from django.views.generic.list import ListView
 from .forms import CadastarDestinoValoresBoletosForm, EditarDestinoValoresBoletosForm
 from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas, DestinoValoresBoletos
+from .models import EntregaDosBoletos
 from .forms import CadastarPagamentoForm, AgendarPagamentoForm, ComfirmarPagamentoForm, EditarPagamentoForm
+from .forms import EntregaBoletosForm
 from django.contrib import messages
 from django.db.models.functions import ExtractMonth
 from django.db.models.functions import TruncMonth
@@ -18,9 +19,6 @@ import xlwt # Biblioteca Excel
 from django.http import HttpResponse
 from .forms import CadastrarFluxoForm
 from django.core.paginator import Paginator
-
-
-
 
 
 
@@ -102,7 +100,6 @@ def Index(request):
                                                   'sociosMesAtual':sociosMesAtual,
                                                   'ImpostosMesAtual':ImpostosMesAtual,
 
-
                                                   'mensalVeiculos':mensalVeiculos,
                                                   'mensalFuncionarios':mensalFuncionarios,
                                                   'mensalAlimentacao':mensalAlimentacao,
@@ -111,7 +108,6 @@ def Index(request):
                                                   'mensalInstalacao':mensalInstalacao,
                                                   'mensalSocios':mensalSocios,
                                                   'mensalImpostos':mensalImpostos,
-
                                                   'custo_mes':custo_mes,
                                                   })
 
@@ -128,12 +124,14 @@ def CadastrarPagamento(request):
     return render(request, 'payment/cadastrar-pagamento.html',{'form': form})
 
 
+
 def DashboardPagamentos(request):
     return render(request, 'payment/dashboard-pagamentos.html')
 
 
 def ListaPagamentos(request):
     data_atual = datetime.now()
+    
     pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).order_by('-data_pagamento') # Show all payment
     data = request.GET.get('data') 
     motivoPagamento = request.GET.get('motivoPagamento') 
@@ -191,7 +189,6 @@ def AgendamentosPagamentos(request):
     vencerHoje = Pagamento.objects.filter(status_pago= 'False').filter(data_pagamento = data_atual)
     atrasadas = Pagamento.objects.filter(status_pago= 'False').filter(data_pagamento__lt=data_atual)
 
-
     naoVencidas = Pagamento. objects.filter().order_by('-data_pagamento')
 
     totalPagarHoje = Pagamento.objects.filter(status_pago= 'False').filter(data_pagamento=data_atual)\
@@ -206,8 +203,6 @@ def AgendamentosPagamentos(request):
     pagamentosFuturosDiarios = Pagamento.objects.filter(data_pagamento__gte=data_atual).filter().values(
         'data_pagamento').annotate(number=Sum('valor_pagamento')).order_by('data_pagamento')
 
-
-
     return render(request, 'payment/agendamentos-pagamentos.html', { 'vencerHoje': vencerHoje,
                                                                      'atrasadas': atrasadas,
                                                                      'naoVencidas': naoVencidas,
@@ -215,7 +210,6 @@ def AgendamentosPagamentos(request):
                                                                      'totalPagarAtrasadas': totalPagarAtrasadas,
                                                                      'totalPagarNaoVencidas': totalPagarNaoVencidas,
                                                                      'pagamentosFuturos':pagamentosFuturos,
-
                                                                      'pagamentosFuturosDiarios': pagamentosFuturosDiarios,
                                                                      })
 
@@ -226,7 +220,6 @@ def PagamentosFuturos(request):
 
     date = request.GET.get('date')
     motivoPagamento = request.GET.get('motivoPagamento')
-
 
     if date and motivoPagamento:
         naoVencidas = Pagamento.objects.filter(status_pago='False').\
@@ -308,15 +301,11 @@ def ConfirmarPagamento(request, id=None):
     return render(request, 'payment/comfirmar-pagamento.html', {'form': form})
 
 
-
-
 def FluxoEntradaSaida(request):
     data_atual = datetime.now()
     this_month = date.today().month
     fluxos = FluxoEntradasSaidas.objects.all()
     return render(request, 'payment/fluxo-entradas-saidas.html', {'fluxos': fluxos})
-
-
 
 
 class FluxoCreate(CreateView):
@@ -368,7 +357,6 @@ def ExportParaExcel(request):
 
     for row in rows:
         row_num += 1
-
         ws.write(row_num,0,row.motivo_pagamento , font_style)
         ws.write(row_num,1,row.data_pagamento , font_style)
         ws.write(row_num,2,row.valor_pagamento , font_style)
@@ -380,8 +368,6 @@ def ExportParaExcel(request):
 
     wb.save(response)
     return response
-
-
 
 
 def SalvarPagamento(request):
@@ -397,7 +383,6 @@ def SalvarPagamento(request):
 
 
 # ----------------------------- Movimentações do ReceitaNET -------------------------------------------------
-
 class RetiradasGerencianetListView(ListView):
     model = DestinoValoresBoletos
     template_name = 'payment/lista-retiradas-gerencianet.html'
@@ -415,22 +400,14 @@ class RetiradasGerencianetListView(ListView):
 
         context["valor_acumulado"] = DestinoValoresBoletos.objects.all().aggregate(tot=Sum('valor'))
 
-
-
-
         startdate = self.request.GET.get('startdate')
         enddate = self.request.GET.get('enddate')
         if startdate and enddate:
             context['retiradas'] = DestinoValoresBoletos.objects.filter(data_transacao__range=[startdate, enddate])
         else:
             context['retiradas'] = DestinoValoresBoletos.objects.all()
-
-
         #context['valor_acumulado'] = DestinoValoresBoletos.objects.filter().aggregate(total=Sum('valor'))
-
         return context
-
-
 
 
 class RetiradasGerencianetCreateView(SuccessMessageMixin, CreateView):
@@ -440,8 +417,6 @@ class RetiradasGerencianetCreateView(SuccessMessageMixin, CreateView):
     success_url = '/pagamentos/retiradas-gerencianet/'
     success_message = "R$: %(valor)s, foi cadastrado com sucesso!!!"
     
-
-
 
 
 class RetiradasGerencianetUpdateView(UpdateView):
@@ -456,9 +431,7 @@ class RetiradasGerencianetUpdateView(UpdateView):
 def ExportarRetiradasReceitanetCSV(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="relatorio-retiradas-receitanet.csv"'
-
     retiradas = DestinoValoresBoletos.objects.all()
-
     writer = csv.writer(response)
     writer.writerow(['id', 'valor', 'destino', 'data_transacao'])
     for pag in retiradas:
@@ -470,4 +443,28 @@ def ExportarRetiradasReceitanetCSV(request):
 
 
 # ----------------------------- BOLETOS-------------------------------------------------
+class EntregaBoletosListView(ListView):
+    model = EntregaDosBoletos
+    template_name = 'payment/lista-entrega-boletos.html'  # templete for updating
 
+    def get_context_data(self, **kwargs):
+        context = super(EntregaBoletosListView, self).get_context_data(**kwargs)
+
+        queryset = self.request.GET.get('q')
+        if queryset:
+            context['lista_boletos_entregue'] = EntregaDosBoletos.objects.filter(Q(nome_cliente__icontains=queryset))
+            context['count_boletos_entregue'] = EntregaDosBoletos.objects.filter(Q(nome_cliente__icontains=queryset)).count()
+        else:
+            context['lista_boletos_entregue'] = EntregaDosBoletos.objects.all()
+            context['count_boletos_entregue'] = EntregaDosBoletos.objects.all().count()
+        return context
+
+
+
+
+class EntregaBoletosCreateView(SuccessMessageMixin, CreateView):
+    model = EntregaDosBoletos
+    template_name = "payment/cadastrar-entrega-boletos.html"
+    form_class = EntregaBoletosForm
+    success_url = '/pagamentos/lista-entrega-boletos/'
+    success_message = "%(nome_cliente)s, foi cadastrado com sucesso!!!"

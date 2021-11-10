@@ -122,20 +122,20 @@ class EntregaBoletos(models.Model):
 
 
 # ----------------------------- BOLETOS-------------------------------------------------
-class FormasDeEntregaBoletos(models.Model):
+class FormasDeEntregaDosBoletos(models.Model):
     forma_entrega = models.CharField(max_length=100)
 
     class Meta:
         verbose_name_plural = "Formas Entrega Boletos"
-    
+
     def __str__(self):
         return "{}".format(self.forma_entrega)
 
 
-class EntregaBoletos(models.Model):
+class EntregaDosBoletos(models.Model):
     nome_cliente = models.CharField(max_length=255, blank=True, null=True)
     cpf_cliente = models.CharField(max_length=50, blank=True, null=True)
-    forma_entrega_boleto = models.ForeignKey(FormasDeEntregaBoletos, on_delete=models.DO_NOTHING)
+    forma_entrega_boleto = models.ForeignKey(FormasDeEntregaDosBoletos, on_delete=models.DO_NOTHING)
     data_cadastro = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -143,3 +143,5 @@ class EntregaBoletos(models.Model):
 
     def __str__(self) -> str:
         return "{}".format(self.nome_cliente)
+
+

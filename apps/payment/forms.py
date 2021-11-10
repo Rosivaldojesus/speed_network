@@ -5,7 +5,10 @@ from ..components.models import Bancos
 
 from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas, DestinoValoresBoletos
 from .models import DestinoValoresBoletos
-from django.forms.widgets import SplitDateTimeWidget
+from .models import EntregaDosBoletos
+
+
+
 
 class CadastarPagamentoForm(forms.ModelForm):
     class Meta:
@@ -100,3 +103,8 @@ class EditarDestinoValoresBoletosForm(forms.ModelForm):
     destino = forms.ModelChoiceField(queryset=Bancos.objects.all().order_by('nome_banco'), label="Banco de destino")
     #data_transacao = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), label="Data da transação")
 
+
+class EntregaBoletosForm(forms.ModelForm):
+    class Meta:
+        model = EntregaDosBoletos
+        fields = ['nome_cliente', 'cpf_cliente','forma_entrega_boleto']

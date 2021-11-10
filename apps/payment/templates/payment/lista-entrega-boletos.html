@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+
+{% block title %}
+    <title>.:: Spe</title>
+{% endblock %}
+
+{% block main %}
+<body style="background-color: lightgray;"></body>
+<div class="container">
+
+    <!--INICIO título da página -->
+    <div class="mt-4 mb-2">
+        <h3 style="color: navy;">( {{ count_boletos_entregue }} )- Boletos Entregue </h3>
+    </div>
+    <!--INICIO título da página -->
+
+    <!-- INÍCIO  Campo de Pesquisas-->
+	<div class="mt-1">
+		<form method="GET">
+		   <div class="row">
+			   <div class="form-group col-10">
+				   <input type="search" class="form-control"
+						  placeholder="Informe nome ou cpf do cliente"
+						  name="q" value="{{ request.GET.q }}">
+			   </div>
+			   <div class="form-group col-2">
+				   <button class=" form-control btn-success">
+					<i class="fas fa-search"></i>
+					Pesquisar
+				   </button>
+			   </div>
+		   </div>
+	   </form>
+	</div>
+	<!-- FIM Campo de Pesquisas-->
+    
+
+    <!-- INÍCIO Messagens -->
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <!-- FIM Messagens -->
+
+    <!-- INÍCIO botões -->
+    <div align="right">
+        <a href="/pagamentos/cadastrar-entrega-boletos/" class="mt-2 mb-2 btn btn-primary">Add</a>
+    </div>
+    <!-- FIM botões -->
+
+
+    <!-- INICIO Tabela dos boletos -->
+    <div class="card shadow mb-4">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">Nome Completo</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Forma de entrega</th>
+                <th scope="col">Data de cadastro</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for boletos in lista_boletos_entregue %}
+              <tr>
+                <th scope="row">{{ boletos.id }}</th>
+                <td>{{ boletos.nome_cliente }}</td>
+                <td>{{ boletos.cpf_cliente}}</td>
+                <td>{{ boletos.forma_entrega_boleto }}</td>
+                <td>{{ boletos.data_cadastro }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+    </div>
+    <!-- FIM Tabela dos boletos -->
+
+</div>
+{% endblock %}

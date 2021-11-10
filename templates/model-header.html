@@ -15,7 +15,21 @@
 
                 
                       {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
-                        <li class="nav-item">
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Boletos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="/pagamentos/lista-entrega-boletos/">Boletos entregue</a>
+                          <a class="dropdown-item" href="/vendas/instalacao-finalizada-sem-boleto/">Boletos Instalação</a>
+                          <a class="dropdown-item" href="/voip/lista-voip-sem-boleto/">Boletos Voip</a>
+                        </div>
+                    </li>  
+                      
+                      
+                      
+                      
+                      <li class="nav-item">
                           <a class="nav-link" href="/cto/">CTO</a>
                        </li>
                       {% endif %}
@@ -42,7 +56,7 @@
                     
                                           
                       {% if request.user.groups.all.0.name == "Master" %}
-                                           <li class="nav-item dropdown">
+                      <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Financeiro
                           </a>
