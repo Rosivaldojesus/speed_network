@@ -107,4 +107,4 @@ class EditarDestinoValoresBoletosForm(forms.ModelForm):
 class EntregaBoletosForm(forms.ModelForm):
     class Meta:
         model = EntregaDosBoletos
-        fields = ['nome_cliente', 'cpf_cliente','forma_entrega_boleto']
+        fields = ['nome_cliente', 'cpf_cliente',]

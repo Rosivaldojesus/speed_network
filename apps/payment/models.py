@@ -135,7 +135,7 @@ class FormasDeEntregaDosBoletos(models.Model):
 class EntregaDosBoletos(models.Model):
     nome_cliente = models.CharField(max_length=255, blank=True, null=True)
     cpf_cliente = models.CharField(max_length=50, blank=True, null=True)
-    forma_entrega_boleto = models.ForeignKey(FormasDeEntregaDosBoletos, on_delete=models.DO_NOTHING)
+
     data_cadastro = models.DateTimeField(auto_now=True)
 
     class Meta:
