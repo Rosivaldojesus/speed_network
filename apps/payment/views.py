@@ -448,6 +448,14 @@ class EntregaBoletosListView(ListView):
     template_name = 'payment/lista-entrega-boletos.html'  # templete for updating
     def get_context_data(self, **kwargs):
         context = super(EntregaBoletosListView, self).get_context_data(**kwargs)
+
+        context['count_via_fisica'] = ClientesEntregaBoletos.objects.filter(forma_entrega=1).count()
+        context['count_email_whatsapp']  = ClientesEntregaBoletos.objects.filter(forma_entrega=2).count()
+        context['count_app'] = ClientesEntregaBoletos.objects.filter(forma_entrega=1).count()
+        context['count_whatsapp']  = ClientesEntregaBoletos.objects.filter(forma_entrega=2).count()
+        context['count_email']  = ClientesEntregaBoletos.objects.filter(forma_entrega=2).count()
+
+
         queryset = self.request.GET.get('q')
         if queryset:
             context['lista_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(Q(nome_cliente__icontains=queryset))
