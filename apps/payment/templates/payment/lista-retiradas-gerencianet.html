@@ -92,10 +92,7 @@
   <div>
     <div class="row">
       <div class="col-sm-6">
-        {% for valor_acumulado in valor_acumulado %}
-          Value R$: {{ total }}
-        {% endfor %}
-        
+      
       </div>
       <div class="col-sm-6" align="right">
         <a href="/pagamentos/cadastrar-valores-receitanet/" class="btn btn-primary"><i class="far fa-plus-square"></i> Valor</a>
@@ -105,35 +102,61 @@
   </div>
   <!-- FIM do botão de adicionar valores retirados-->
 
+</div>
+
+
+  <!-- INICIO do corpo principal da página -->
+  <div class="mb-4">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="card" style="height: 100%;">
+          <div class="card-body">
+            {% for mes in valor_mes%}
+
+              {{ mes.month|date:'F Y' }} R$: {{ mes.c }}
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <div class="card">
+          <!-- INICIO Tabela com os valores movimentados -->
+          <div class="card-body">
+            <table class="table table-sm">
+              <caption>Lista de valores retirados do ReceitaNET</caption>
+              <thead>
+                <tr>
+                  <th>Valor</th>
+                  <th>Banco</th>
+                  <th>Data</th>
+                  <th>Opções</th>
+              </tr>
+              </thead>
+              <tbody>
+                {% for retirada in retiradas %}
+                  <tr>
+                      <td>R$: {{ retirada.valor|intcomma }}</td>
+                      <td>{{ retirada.destino }}</td>
+                      <td>{{ retirada.data_transacao | date:" d/m/Y" }}</td>
+                      <td>
+                        <a href="/pagamentos/retiradas-gerencianet/{{ retirada.id }}"><i class="far fa-edit text-warning"></i></a>
+                      </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- FIM Tabela com os valores movimentados -->
+      </div>
+    </div>
+
   </div>
 
-  <!-- INICIO Tabela com os valores movimentados -->
-  <div class="card shadow mt-4 mb-4">
-    <table class="table table-sm">
-      <caption>Lista de valores retirados do ReceitaNET</caption>
-      <thead>
-        <tr>
-          <th>Valor</th>
-          <th>Banco</th>
-          <th>Data</th>
-          <th>Opções</th>
-      </tr>
-      </thead>
-      <tbody>
-        {% for retirada in retiradas %}
-          <tr>
-              <td>R$: {{ retirada.valor|intcomma }}</td>
-              <td>{{ retirada.destino }}</td>
-              <td>{{ retirada.data_transacao | date:" d/m/Y" }}</td>
-              <td>
-                <a href="/pagamentos/retiradas-gerencianet/{{ retirada.id }}"><i class="far fa-edit text-warning"></i></a>
-              </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  <!-- FIM Tabela com os valores movimentados -->
+  <!-- FIM do corpo principal da página -->
+
+
 
 
 

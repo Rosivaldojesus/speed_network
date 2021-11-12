@@ -1,5 +1,4 @@
 from datetime import date, datetime
-from re import I
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import F, Q, Avg
 from django.shortcuts import render, redirect, get_object_or_404
@@ -383,31 +382,29 @@ def SalvarPagamento(request):
 
 
 # ----------------------------- Movimentações do ReceitaNET -------------------------------------------------
-class RetiradasGerencianetListView(ListView):
-    model = DestinoValoresBoletos
-    template_name = 'payment/lista-retiradas-gerencianet.html'
+def RetiradasGerencianet(request):
 
-    total = (DestinoValoresBoletos.objects
-        .filter()
-        .aggregate(
-        total=Sum('valor')
-    )['total']
-        )
 
-    def get_context_data(self, **kwargs):
-        context = super(RetiradasGerencianetListView, self).get_context_data(**kwargs)
-        context['valor_dia'] = DestinoValoresBoletos.objects.filter().values('data_transacao').annotate( number=Count('data_transacao'))
+    startdate = request.GET.get('startdate')
+    enddate = request.GET.get('enddate')
 
-        context["valor_acumulado"] = DestinoValoresBoletos.objects.all().aggregate(tot=Sum('valor'))
+    if startdate and enddate:
+        retiradas = DestinoValoresBoletos.objects.filter(data_transacao__range=[startdate, enddate]).order_by('-data_transacao')
+    else:
+        retiradas = DestinoValoresBoletos.objects.all().order_by('-data_transacao')
 
-        startdate = self.request.GET.get('startdate')
-        enddate = self.request.GET.get('enddate')
-        if startdate and enddate:
-            context['retiradas'] = DestinoValoresBoletos.objects.filter(data_transacao__range=[startdate, enddate]).order_by('-data_transacao')
-        else:
-            context['retiradas'] = DestinoValoresBoletos.objects.all().order_by('-data_transacao')
-        #context['valor_acumulado'] = DestinoValoresBoletos.objects.filter().aggregate(total=Sum('valor'))
-        return context
+    valor_mes =  DestinoValoresBoletos.objects.annotate(month=TruncMonth('data_transacao')).filter().filter().values('month').annotate(c=Sum('valor')).values('month', 'c').order_by('month')
+
+
+
+    context = {
+        'retiradas':retiradas,
+        'valor_mes': valor_mes,
+    }
+    return render(request, 'payment/lista-retiradas-gerencianet.html', context)
+
+
+
 
 
 class RetiradasGerencianetCreateView(SuccessMessageMixin, CreateView):
