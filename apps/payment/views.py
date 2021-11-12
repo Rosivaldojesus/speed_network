@@ -403,9 +403,9 @@ class RetiradasGerencianetListView(ListView):
         startdate = self.request.GET.get('startdate')
         enddate = self.request.GET.get('enddate')
         if startdate and enddate:
-            context['retiradas'] = DestinoValoresBoletos.objects.filter(data_transacao__range=[startdate, enddate])
+            context['retiradas'] = DestinoValoresBoletos.objects.filter(data_transacao__range=[startdate, enddate]).order_by('data_transacao')
         else:
-            context['retiradas'] = DestinoValoresBoletos.objects.all()
+            context['retiradas'] = DestinoValoresBoletos.objects.all().order_by('data_transacao')
         #context['valor_acumulado'] = DestinoValoresBoletos.objects.filter().aggregate(total=Sum('valor'))
         return context
 
