@@ -2,6 +2,7 @@ from django import forms
 from django.db import models
 from django.forms import fields
 from ..components.models import Bancos
+from django.core.exceptions import ValidationError
 
 from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas, DestinoValoresBoletos
 from .models import DestinoValoresBoletos
@@ -106,6 +107,34 @@ class EditarDestinoValoresBoletosForm(forms.ModelForm):
 
 
 class ClientesEntregaBoletosForm(forms.ModelForm):
+
+    # meta data for displaying a form
     class Meta:
+        # model
         model = ClientesEntregaBoletos
-        fields = ['nome_cliente', 'cpf_cliente', 'forma_entrega']
+
+        # displaying fields
+        filds= ['nome_cliente', 'cpf_cliente', 'data_transacao']
+
+        #Exclude
+        exclude = ['',]
+
+
+    # method for cleaning the data
+    def clean(self):
+      super(ClientesEntregaBoletosForm, self).clean()
+
+      # getting username and password from cleaned_data
+      nome_cliente = self.cleaned_data.get('nome_cliente')
+      cpf_cliente = self.cleaned_data.get('cpf_cliente')
+
+      # validating the username and password
+      if len(nome_cliente) > 50:
+         self._errors['nome_cliente'] = self.error_class(['A minimum of 5 characters is required'])
+
+      if len(cpf_cliente) > 80:
+         self._errors['cpf_cliente'] = self.error_class(['Password length should not be less than 8 characters'])
+
+      return self.cleaned_data
+
+

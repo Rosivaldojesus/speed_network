@@ -29,6 +29,8 @@ urlpatterns = [
 
     path('retiradas-gerencianet/', RetiradasGerencianet),
 
+
+
     #CreateView
     path('cadastrar-entrega-boletos/', EntregaBoletosCreateView.as_view(), name='cadastrar-entrega-boletos'),
 

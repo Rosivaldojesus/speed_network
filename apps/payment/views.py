@@ -1,4 +1,6 @@
 from datetime import date, datetime
+
+from django.contrib.auth import authenticate
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import F, Q, Avg
 from django.shortcuts import render, redirect, get_object_or_404
@@ -393,7 +395,7 @@ def RetiradasGerencianet(request):
     else:
         retiradas = DestinoValoresBoletos.objects.all().order_by('-data_transacao')
 
-    valor_mes =  DestinoValoresBoletos.objects.annotate(month=TruncMonth('data_transacao')).filter().filter().values('month').annotate(c=Sum('valor')).values('month', 'c').order_by('month')
+    valor_mes =  DestinoValoresBoletos.objects.annotate(month=TruncMonth('data_transacao')).filter().filter().values('month').annotate(c=Sum('valor')).values('month', 'c').order_by('-month')
 
 
 
