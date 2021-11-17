@@ -113,7 +113,7 @@
           <div class="card-body">
             {% for mes in valor_mes%}
 
-              {{ mes.month|date:'F Y' }} R$: {{ mes.c|intcomma }} <br>
+              {{ mes.month|date:'F Y' }} <strong>R$: {{ mes.c|intcomma }}</strong> <hr><br>
 
             {% endfor %}
           </div>
