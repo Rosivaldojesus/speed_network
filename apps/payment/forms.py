@@ -138,3 +138,19 @@ class ClientesEntregaBoletosForm(forms.ModelForm):
       return self.cleaned_data
 
 
+class EditarClientesEntregaBoletosForm(forms.ModelForm):
+
+    # meta data for displaying a form
+    class Meta:
+        # model
+        model = ClientesEntregaBoletos
+
+        # displaying fields
+        filds= ['nome_cliente', 'cpf_cliente','forma_entrega', 'data_transacao']
+
+        #Exclude
+        exclude = ['',]
+
+
+
+

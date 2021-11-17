@@ -94,6 +94,7 @@
                 <th scope="col">CPF</th>
                 <th scope="col">Forma de entrega</th>
                 <th scope="col">Data de cadastro</th>
+                <th scope="col">Opções</th>
               </tr>
             </thead>
             <tbody>
@@ -104,6 +105,9 @@
                 <td>{{ boletos.cpf_cliente}}</td>
                 <td>{{ boletos.forma_entrega }}</td>
                 <td>{{ boletos.data_cadastro }}</td>
+                <td>
+                    <a href="/pagamentos/editar-entrega-boletos/{{ boletos.id }}"><i class="far fa-edit text-warning"></i></a>
+                </td>
               </tr>
             {% endfor %}
             </tbody>
