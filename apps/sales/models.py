@@ -15,6 +15,8 @@ class Instalacao(models.Model):
     nome_cliente = models.CharField(max_length=255, blank=True, null=True, verbose_name='Primeiro nome')
     sobrenome_cliente = models.CharField(max_length=255, blank=True, null=True, verbose_name='Sobrenome')
     cpf_cliente = models.CharField(max_length=20, blank=True, null=True, verbose_name='CPF')
+    rg_cliente = models.CharField(max_length=20, blank=True, null=True, verbose_name='RG')
+    data_nascimento_cliente = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True, verbose_name='Data de Nascimento')
     cep_cliente = models.CharField(max_length=20, blank=True, null=True, verbose_name='CEP')
     rua_cliente = models.CharField(max_length=100, blank=True, null=True, verbose_name='Rua')
     bairro_cliente = models.CharField(max_length=100, blank=True, null=True, verbose_name='Bairro')

@@ -57,6 +57,7 @@
                     <th scope="col">categoria</th>
                     <th scope="col">Status</th>
                     <th scope="col">Opções</th>
+                    <th scope="col">Editar</th>
                 </thead>
                 <tbody>
                     {% for naoVencidas in naoVencidas %}
@@ -69,6 +70,10 @@
                     <td style="color:red;" title="Não Pago"><i class="fas fa-comments-dollar fa-lg"></i></td>
                     <td>
                         <a href="/pagamentos/comfirmar-pagamento/{{ naoVencidas.id }}" title="Pagar"><i class="fas fa-money-check-alt"></i></a>
+                        
+                    </td>
+                    <td>
+                        <a href="/pagamentos/editar-pagamento/{{ naoVencidas.id }}"><i class="far fa-edit text-warning"></i></a>
                     </td>
                   </tr>
                   {% endif %}
