@@ -9,9 +9,6 @@ from .models import DestinoValoresBoletos
 from .models import ClientesEntregaBoletos
 
 
-
-
-
 class CadastarPagamentoForm(forms.ModelForm):
     class Meta:
         model = Pagamento
@@ -36,9 +33,10 @@ class EditarPagamentoForm(forms.ModelForm):
                  'tipo_custo_pagamento',
                  'data_pagamento',
                  'categoria',
-                 'status_pago',
+               
                  ]
-    status_pago = forms.BooleanField(required=True, initial=True, label='Comfirmar pagamento')
+ 
+
 
 
 class AgendarPagamentoForm(forms.ModelForm):
