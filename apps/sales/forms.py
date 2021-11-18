@@ -110,23 +110,6 @@ class InstalacaoUpdateForm(forms.ModelForm):
         data_instalacao = forms.DateField(label='What is your birth date?', widget=forms.SelectDateWidget)
 
 
-#Method for cleaning data
-    def clean(self):
-        super(InstalacaoCreateForm, self).clean()
-
-        nome_cliente = self.cleaned_data.get('nome_cliente')
-
-        if len(nome_cliente) < 5:
-            self._errors['nome_cliente'] = self.error_class(['Preencha o nome!!!'])
-
-        return self.cleaned_data
-
-    def clean_nome_cliente(self):
-	    nome_cliente = self.cleaned_data.get('nome_cliente')
-
-	    if len(nome_cliente) < 5:
-		    raise forms.ValidationError('O campo não pode ficar em branco')
-	    return nome_cliente
 
 
 
