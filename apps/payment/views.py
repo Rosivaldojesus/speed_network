@@ -218,7 +218,7 @@ def AgendamentosPagamentos(request):
 
 def PagamentosFuturos(request):
     data_atual = datetime.now()
-    naoVencidas = Pagamento.objects.filter(status_pago='False').filter(data_pagamento__gte=data_atual)
+    naoVencidas = Pagamento.objects.filter(status_pago='False').filter(data_pagamento__gte=data_atual).order_by('-data_pagamento')
 
     date = request.GET.get('date')
     motivoPagamento = request.GET.get('motivoPagamento')
