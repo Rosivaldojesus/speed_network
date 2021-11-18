@@ -106,6 +106,10 @@ class EditarDestinoValoresBoletosForm(forms.ModelForm):
     #data_transacao = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), label="Data da transação")
 
 
+
+
+
+
 class ClientesEntregaBoletosForm(forms.ModelForm):
 
     # meta data for displaying a form
@@ -114,28 +118,33 @@ class ClientesEntregaBoletosForm(forms.ModelForm):
         model = ClientesEntregaBoletos
 
         # displaying fields
-        filds= ['nome_cliente', 'cpf_cliente', 'data_transacao']
+        filds= ['nome_cliente', 'cpf_cliente', 'forma_entrega']
 
         #Exclude
         exclude = ['',]
 
-
     # method for cleaning the data
     def clean(self):
-      super(ClientesEntregaBoletosForm, self).clean()
+        super(ClientesEntregaBoletosForm, self).clean()
 
       # getting username and password from cleaned_data
-      nome_cliente = self.cleaned_data.get('nome_cliente')
-      cpf_cliente = self.cleaned_data.get('cpf_cliente')
+        nome_cliente = self.cleaned_data.get('nome_cliente')
+        cpf_cliente = self.cleaned_data.get('cpf_cliente')
+        forma_entrega = self.cleaned_data.get('forma_entrega')
 
       # validating the username and password
-      if len(nome_cliente) > 50:
-         self._errors['nome_cliente'] = self.error_class(['A minimum of 5 characters is required'])
+        if not nome_cliente:
+            self._errors['nome_cliente'] = self.error_class(['O campo não pode ficar em branco'])
+         
+        if not cpf_cliente:
+            self._errors['cpf_cliente'] = self.error_class(['O campo não pode ficar em branco'])
 
-      if len(cpf_cliente) > 80:
-         self._errors['cpf_cliente'] = self.error_class(['Password length should not be less than 8 characters'])
+        if not forma_entrega:
+            self._errors['forma_entrega'] = self.error_class(['O campo não pode ficar em branco'])
 
-      return self.cleaned_data
+        return self.cleaned_data
+
+
 
 
 class EditarClientesEntregaBoletosForm(forms.ModelForm):

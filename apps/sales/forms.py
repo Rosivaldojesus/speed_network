@@ -4,10 +4,27 @@ from ..services.models import ServicoVoip
 from ..components.models import FuncionariosParaVale, Bancos
 from django.forms.widgets import NumberInput
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 
 
 class InstalacaoCreateForm(forms.ModelForm):
+
+    # method for cleaning the data
+    def clean(self):
+        super(InstalacaoCreateForm, self).clean()
+
+        # getting username and password from cleaned_data
+        nome_cliente = self.cleaned_data.get('nome_cliente')
+
+        # validating the username and password
+        if not nome_cliente:
+            self._errors['nome_cliente'] = self.error_class(['O campo não pode ficar em branco'])
+         
+        return self.cleaned_data
+
+
+        
     class Meta:
         model = Instalacao
         fields = ['nome_cliente',
@@ -65,6 +82,9 @@ class InstalacaoCreateForm(forms.ModelForm):
                                         choices=COMO_CONHECEU_EMPRESA, required=True)
 
 
+    
+
+
 
 class InstalacaoUpdateForm(forms.ModelForm):
     class Meta:
@@ -90,7 +110,23 @@ class InstalacaoUpdateForm(forms.ModelForm):
         data_instalacao = forms.DateField(label='What is your birth date?', widget=forms.SelectDateWidget)
 
 
+#Method for cleaning data
+    def clean(self):
+        super(InstalacaoCreateForm, self).clean()
 
+        nome_cliente = self.cleaned_data.get('nome_cliente')
+
+        if len(nome_cliente) < 5:
+            self._errors['nome_cliente'] = self.error_class(['Preencha o nome!!!'])
+
+        return self.cleaned_data
+
+    def clean_nome_cliente(self):
+	    nome_cliente = self.cleaned_data.get('nome_cliente')
+
+	    if len(nome_cliente) < 5:
+		    raise forms.ValidationError('O campo não pode ficar em branco')
+	    return nome_cliente
 
 
 

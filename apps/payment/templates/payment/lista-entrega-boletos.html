@@ -8,80 +8,94 @@
 {% endblock %}
 
 {% block main %}
-<body style="background-color: lightgray;"></body>
+
 <div class="container">
 
-    <!--INICIO título da página -->
-    <div class="mt-4 mb-2">
-        <h3 style="color: navy;">( {{ count_boletos_entregue }} )- Boletos Entregue </h3>
-    </div>
-    <!--INICIO título da página -->
+    <!-- INCIO -->
+    <div class="mt-4 mb-4 shadow">
+        <!--INICIO título da página -->
+        <div class="mt-4 mb-2 p-2">
+            <h4 class="text-primary">( {{ count_boletos_entregue }} )- Boletos Entregue </h4>
+        </div>
+        <!--INICIO título da página -->
 
-    <!-- INÍCIO  Campo de Pesquisas-->
-	<div class="mt-1">
-		<form method="GET">
-		   <div class="row">
-			   <div class="form-group col-12">
-				   <input type="search" class="form-control" placeholder="Informe nome do cliente"
-						  name="q" value="{{ request.GET.q }}">
-			   </div>
-			   <div class="form-group col-12">
-				   <button class=" form-control btn-success">
-					<i class="fas fa-search"></i>
-					Pesquisar
-				   </button>
-			   </div>
-		   </div>
-	   </form>
-	</div>
-	<!-- FIM Campo de Pesquisas-->
+        <!-- INÍCIO  Campo de Pesquisas-->
+        <div class="mt-1 p-2">
+            <form method="GET">
+                <div class="row">
+                    <div class="form-group col-12">
+                        <input type="search" class="form-control" placeholder="Informe nome do cliente"
+                                name="q" value="{{ request.GET.q }}">
+                    </div>
+                    <div class="form-group col-12">
+                        <button class=" form-control btn-success">
+                            <i class="fas fa-search"></i>
+                            Pesquisar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- FIM Campo de Pesquisas-->
+
+        <!-- INÍCIO Messagens -->
+        <div>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <!-- FIM Messagens -->
+
+        
+
+        <!-- INICIO quantidade de clientes por forma de boleto -->
+        <div class="table-responsive-sm p-2">
+            <div class="card-group">
+
+                <div class="card p-2 mr-2 ml-2">
+                Boletos Físicos: {{ count_via_fisica }}
+                </div>
+
+                <div class="card p-2 mr-2 ml-2">
+                    E-mail e WhatsApp: {{ count_email_whatsapp }}
+                </div>
+
+                <div class="card p-2 mr-2 ml-2">
+                    App: {{ count_app }}
+                </div>
+
+                <div class="card p-2 mr-2 ml-2">
+                    WhatsApp: {{ count_whatsapp }}
+                </div>
+
+                <div class="card p-2 mr-2 ml-2">
+                    E-mail: {{ count_email }}
+                </div>
+
+            </div>
+        </div>
+        <!-- FIM quantidade de clientes por forma de boleto -->
+
+        <!-- INÍCIO botões -->
+        <div class="p-2" align="right">
+            <a href="/pagamentos/cadastrar-entrega-boletos/" class="mt-2 mb-2 btn btn-primary"><i class="fas fa-user-plus"></i> Adicionar</a>
+        </div>
+        <!-- FIM botões -->
+    </div>
+    <!-- FIM -->
+
+    
     
 
-    <!-- INÍCIO Messagens -->
-    <div>
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert {{ message.tags }}" role="alert">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <!-- FIM Messagens -->
+    
 
-    <!-- INICIO quantidade de clientes por forma de boleto -->
-    <div class="card shadow mb-1 table-responsive-sm">
-        <div class="card-group">
+    
 
-            <div class="card p-2">
-              Boletos Físicos: {{ count_via_fisica }}
-            </div>
-
-            <div class="card p-2">
-                E-mail e WhatsApp: {{ count_email_whatsapp }}
-            </div>
-
-            <div class="card p-2">
-                App: {{ count_app }}
-            </div>
-
-            <div class="card p-2">
-                 WhatsApp: {{ count_whatsapp }}
-            </div>
-
-            <div class="card p-2">
-                E-mail: {{ count_email }}
-            </div>
-
-          </div>
-    </div>
-    <!-- FIM quantidade de clientes por forma de boleto -->
-
-    <!-- INÍCIO botões -->
-    <div align="right">
-        <a href="/pagamentos/cadastrar-entrega-boletos/" class="mt-2 mb-2 btn btn-primary"><i class="fas fa-user-plus"></i> Adicionar</a>
-    </div>
-    <!-- FIM botões -->
+    
 
 
     <!-- INICIO Tabela dos boletos -->
