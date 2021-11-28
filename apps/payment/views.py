@@ -20,7 +20,8 @@ import xlwt # Biblioteca Excel
 from django.http import HttpResponse
 from .forms import CadastrarFluxoForm
 from django.core.paginator import Paginator
-from .forms import EditarClientesEntregaBoletosForm
+#from .forms import EditarClientesEntregaBoletosForm
+from django.http import HttpResponseRedirect
 
 
 
@@ -474,6 +475,12 @@ class EntregaBoletosCreateView(SuccessMessageMixin, CreateView):
     form_class = ClientesEntregaBoletosForm
     success_url = '/pagamentos/lista-entrega-boletos/'
     success_message = "%(nome_cliente)s, foi cadastrado com sucesso!!!"
+
+
+ 
+
+
+
 
 
 

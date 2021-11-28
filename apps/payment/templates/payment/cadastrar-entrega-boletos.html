@@ -5,16 +5,43 @@
 {% block main %}
 <div class="container">
     <div class="mt-4 mb-4">
-        <h2>Cadastrar Boletos entregue</h2>
+        <h2 class="ui dividing header">Cadastrar Boletos Entregue<a class="anchor" id="content"></a></h2>
     </div>
 
-    <form action="" method="post"> {% csrf_token %}
+    <div class="mb-4">
+        <form class="ui form" action="" method="POST">{% csrf_token %}
+            <div class="field">
+              <label>Nome do Cliente</label>
+                {{form.nome_cliente}}
+                    {% if form.nome_cliente.errors %}
+                        <div class="ui pointing red basic label">
+                            <div class="text-danger" role="alert">{{form.nome_cliente.errors }}</div>
+                        </div>
+                    {% endif %}
+            </div>
 
-        {{ form | crispy }}
-	    {{ form.media }}
+            <div class="field">
+              <label>CPF do Cliente</label>
+              {{form.cpf_cliente}}
+                {% if form.cpf_cliente.errors %}
+                    <div class="ui pointing red basic label">
+                            <div class="text-danger" role="alert">{{form.cpf_cliente.errors }}</div>
+                    </div>
+                {% endif %}
+            </div>
 
+            <div class="field">
+                <label>Forma de entrega do boleto</label>
+                {{form.forma_entrega}}
+                    {% if form.forma_entrega.errors %}
+                        <div class="ui pointing red basic label">
+                            <div class="text-danger" role="alert">{{form.forma_entrega.errors }}</div>
+                        </div>
+                    {% endif %}
+            </div>
 
-	    <input type="submit" class="btn btn-block btn-primary" value="Cadastrar">
-	</form>
+            <button class="ui button" type="submit">Cadastar</button>
+        </form>
+    </div>
 </div>
 {% endblock %}

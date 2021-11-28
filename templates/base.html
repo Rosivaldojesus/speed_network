@@ -27,10 +27,17 @@
     <!-- Materializer -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+             
 
     <!-- JQuery -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
+
+
+    <!-- Semantic UI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
 
 
 
@@ -54,14 +61,16 @@
         {% endblock %}
     </div>
 
+    <div>
+        {% block footer %}
+        {% include "model-footer.html" %}
+        {% endblock %}
+    </div>
+
     
 </body>
 
-<div>
-    {% block footer %}
-    {% include "model-footer.html" %}
-    {% endblock %}
-</div>
+
 
 
 
@@ -74,6 +83,9 @@
 <!-- JQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+
+<!-- Semantic UI -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
 
 
 <script>

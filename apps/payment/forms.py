@@ -4,7 +4,7 @@ from django.forms import fields
 from ..components.models import Bancos
 from django.core.exceptions import ValidationError
 
-from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas, DestinoValoresBoletos
+from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas, DestinoValoresBoletos, MeiosEntregaBoletos
 from .models import DestinoValoresBoletos
 from .models import ClientesEntregaBoletos
 
@@ -109,36 +109,28 @@ class EditarDestinoValoresBoletosForm(forms.ModelForm):
 
 
 class ClientesEntregaBoletosForm(forms.ModelForm):
-
-    # meta data for displaying a form
     class Meta:
-        # model
         model = ClientesEntregaBoletos
-
-        # displaying fields
-        filds= ['nome_cliente', 'cpf_cliente', 'forma_entrega']
-
+        fields= ['nome_cliente', 'cpf_cliente', 'forma_entrega']
+        nome_cliente = forms.CharField(label='Group', help_text='Some text')
         #Exclude
         exclude = ['',]
 
-    # method for cleaning the data
     def clean(self):
         super(ClientesEntregaBoletosForm, self).clean()
 
-      # getting username and password from cleaned_data
         nome_cliente = self.cleaned_data.get('nome_cliente')
         cpf_cliente = self.cleaned_data.get('cpf_cliente')
         forma_entrega = self.cleaned_data.get('forma_entrega')
 
-      # validating the username and password
         if not nome_cliente:
-            self._errors['nome_cliente'] = self.error_class(['O campo não pode ficar em branco'])
+            self._errors['nome_cliente'] = self.error_class(['Informe o nome do cliente'])
          
         if not cpf_cliente:
-            self._errors['cpf_cliente'] = self.error_class(['O campo não pode ficar em branco'])
+            self._errors['cpf_cliente'] = self.error_class(['Preencha o cpf do cliente'])
 
         if not forma_entrega:
-            self._errors['forma_entrega'] = self.error_class(['O campo não pode ficar em branco'])
+            self._errors['forma_entrega'] = self.error_class(['Informe como o boleto foi entregue ao cliente'])
 
         return self.cleaned_data
 
@@ -146,18 +138,16 @@ class ClientesEntregaBoletosForm(forms.ModelForm):
 
 
 class EditarClientesEntregaBoletosForm(forms.ModelForm):
-
-    # meta data for displaying a form
     class Meta:
-        # model
         model = ClientesEntregaBoletos
-
-        # displaying fields
-        filds= ['nome_cliente', 'cpf_cliente','forma_entrega', 'data_transacao']
-
-        #Exclude
-        exclude = ['',]
-
+        fields = [
+            'nome_cliente',
+            'cpf_cliente',
+            'forma_entrega',
+        ]
+    nome_cliente = forms.CharField()
+    cpf_cliente = forms.CharField()
+    forma_entrega = forms.ModelChoiceField(queryset=MeiosEntregaBoletos.objects.all())
 
 
 

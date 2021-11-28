@@ -7,113 +7,158 @@
 	<!-- ********************************************************************************************** -->
 
 {% block main %}
-<div class="container-xl"> 
-  <div class="row mt-4">
+<div class="container-xl">   
+
+  <div class="row mt-4 mb-2">
     <!-- INÍCIO do campo principal a esquerda -->
     <div class="card col-sm-9 border-0">
-      
-      <!-- INÍCIO Card de Pagamentos -->
-      {% if request.user.groups.all.0.name == "Master" %}
-      <div class="card">
-        <div class="card-header">
-          <h5>Pagamentos</h5>
+      <!-- ------------------------------------------------------------------------------------------- -->
+      <!-- INÍCIO Card de financeiro -->
+      <div class="ui link cards">
+        <div class="card w-100">
+          <div class="content" 
+          {% if pagamentos_para_hoje >= 1 or pagamentos_atrasados >= 1  %}"
+          style="background-color: red;" 
+          {% endif %} 
+        >
+            <div class="header">
+              Financeiro
+            </div>
+            <div class="meta">
+              Financeiro da Speed Network Telecom
+            </div>
+            <div class="description">
+              Informações referentes as contas a pagar
+            </div>
+          </div>
+          <div class="extra content">
+            <div class="ui three buttons">
+              <div class="ui basic blue button">
+                <a href="/pagamentos/agendamentos-pagamentos/">Vencidas  ({{ pagamentos_atrasados }})</a>
+              </div>
+              <div class="ui basic blue button">
+                <a href="/pagamentos/agendamentos-pagamentos/">Hoje ({{pagamentos_para_hoje}})</a>
+              </div>
+              <div class="ui basic blue button">
+                <a href="/pagamentos/agendamentos-pagamentos/">Futuros ({{pagamentos_para_vencer}})</a>
+              </div>
+            </div>
+          </div>
         </div>
-        {% if pagamentos_para_hoje >= 1 or pagamentos_atrasados >= 1  %}
-        <div class="card-body" style="background-color: red;">
-        {% elif pagamentos_para_hoje == 0 %} 
-        <div class="card-body">
-        {% endif %}
-         <div>
-          <div class="card shadow">
-           
-            <div class="row">
-              <!-- Card de contas atrasadas -->
-              <div class="col-sm-4">
-                {% if pagamentos_atrasados >= 1 %}
-                <div class="card border-0" align="center" style="background-color: red;">
-                {% elif pagamentos_atrasados >= 0 %}
-                <div class="card border-0" align="center">
-                {% endif %}
-                  <a href="/pagamentos/agendamentos-pagamentos/" class="nav-link"><strong>Atrasadas ( {{ pagamentos_atrasados }} )</strong></a>
+      </div>
+      <!-- INÍCIO Card de financeiro -->
+      <!-- ------------------------------------------------------------------------------------------- -->
+      
+      <!-- ------------------------------------------------------------------------------------------- -->
+      <!-- INÍCIO Card de Controle de Boletos -->
+      <div class="ui card mt-3 w-100">
+        <div class="content">
+          <div class="header">Controle de Boletos</div>
+          <div class="meta">Lista dos boletos a serem emetidos</div>
+          <div class="description">
+            <div class="ui two column grid row">
+              <div class="column">
+                <div class="ui fluid card">
+                  <div class="image">
+                    <i class="wifi icon"> </i>Instalações
+                  </div>
+                  <div class="content">
+                    <a href="/vendas/instalacao-finalizada-sem-boleto/" class="header">
+                      Boletos - ({{ quant_instalacao_sem_boleto }})
+                    </a>
+                  </div>
                 </div>
               </div>
-            <!-- Card de contas para hoje -->
-              <div class="col-sm-4">
-                {% if pagamentos_para_hoje >= 1 %}
-                <div class="card border-0" align="center" style="background-color: red;">
-                {% elif pagamentos_para_hoje == 0 %}
-                <div class="card border-0" align="center">
-                {% endif %}
-                  <a href="/pagamentos/agendamentos-pagamentos/" class="nav-link"><strong>Hoje ( {{pagamentos_para_hoje}} )</strong></a>
-                </div>
-              </div>
-            <!-- Card de contas futuras -->
-              <div class="col-sm-4">
-                <div class="card border-0" align="center"> 
-                  <a href="/pagamentos/agendamentos-pagamentos/" class="nav-link"><strong>Futuros ( {{pagamentos_para_vencer}} )</strong></a>
+              <div class="column">
+                <div class="ui fluid card">
+                  <div class="image">
+                    <i class="tty icon"></i> Voip
+                  </div>
+                  <div class="content">
+                    <a href="/voip/lista-voip-sem-boleto/" class="header">
+                      Boletos - ({{ quantidade_voip_sem_boleto }})
+
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-        </div>
-      </div>
-    </div>
-  </div>     
-  {% endif %}
-  <!-- FIM Card de Pagamentos -->
-
-  <!-- INÍCIO Card de Controle de Boletos -->
-  <div class="card mt-4">
-    <div class="card-header">
-      <h5>Controle de Boletos</h5>
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="card">   
-              <a href="/vendas/instalacao-finalizada-sem-boleto/" class="btn btn-dark">({{ quant_instalacao_sem_boleto }}) Boletos Internet</a>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card">
-              <a href="/voip/lista-voip-sem-boleto/" class="btn btn-dark">({{ quantidade_voip_sem_boleto }}) Boletos Voip</a> 
           </div>
         </div>
       </div>
-    </div>
-  </div>  
-  <!-- FIM Card de Controle de boletos  -->
+      <!-- FIM Card de Controle de boletos  -->
+      <!-- ------------------------------------------------------------------------------------------- -->
 
-  <!-- INÍCIO dos Status de Serviços -->
-  <div class="row mt-4">
-    <!-- INICIO Status Serviços -->
-    <div class="col-sm-6">
-      <div class="card">
-        <h5 class="card-header">Status Serviços</h5>
-        <div class="card-body row" align="center">
+      <!-- ------------------------------------------------------------------------------------------- -->
+      <!-- INÍCIO dos Status de Serviços -->
+      <div class="card-group">
+        <div class="card">
+          <!-- Staus de serviços -->
+        <div class="column">
+          <div class="ui fluid card">
+            <div class="content">
+              
+              <div class="header">
+                Status dos Serviços <i class="cogs icon"> </i>
+              </div>
+              <div class="meta">
+                <P></P>
+              </div>
+              <div class="description">
+                <p></p>
+              </div>
+            </div>
+            <div class="extra content">
+              <div class="ui three buttons">
+                <a href="servicos/servicos-abertos/" class="ui basic red button">Espera - 1</a>
+                <a href="servicos/servicos-agendados/" class="ui basic yellow button">Agenda - 10</a>
+                <a href="servicos/servicos-finalizados/" class="ui basic green button">Concluído -10</a>
+              </div>
+            </div>
+          </div>
+        </div> 
+        </div>
+        <!-- Status de instalaçoes-->
+        <div class="card">
+        <div class="column">
+          <div class="ui fluid card">
+            <div class="content">
 
-          <a href="servicos/servicos-abertos/" class="btn btn-danger w-30">Espera: ( <strong>{{ quant_servico_aberto }}</strong> )</a>
-          <a href="servicos/servicos-agendados/" class="btn btn-warning text-white w-30">Agenda: ( <strong>{{ quant_servico_agendado }}</strong> )</a>
-          <a href="servicos/servicos-finalizados/" class="btn btn-success text-white w-30">Conluído: ( <strong> {{ quant_servicos_finalizados_mes }}</strong> )</a>
-
+              <div class="header">
+                Status das instalaçoes <i class="wifi icon"> </i>
+              </div>
+              <div class="meta">
+                <P></P>
+              </div>
+              <div class="description">
+                <p></p>
+              </div>
+            </div>
+            <div class="extra content">
+              <div class="ui three buttons">
+                <a href="vendas/instalacao-aberta/" class="ui basic red button">Espera - 1</a>
+                <a href="vendas/instalacao-agendada/" class="ui basic yellow button">Agenda - 10</a>
+                <a href="vendas/instalacao-concluida/" class="ui basic green button">Concluído -10</a>
+              </div>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
-    </div>
-    <!-- FIM Status Serviços -->
+      <!-- INÍCIO dos Status de Serviços -->
+      <!-- ------------------------------------------------------------------------------------------- -->
+  
 
-    <!-- INICIO Status Instalaçaoes -->
-    <div class="col-sm-6">
-      <div class="card" align="center">
-        <h5 class="card-header">Status Instalações</h5>
-        <div class="card-body row" align="center">
-          <a href="vendas/instalacao-aberta/" class="btn btn-danger w-30"><h6>Aberto: ( <strong>{{ quant_instalacao_aberta }}</strong> )</h6></a>
-          <a href="vendas/instalacao-agendada/" class="btn btn-warning text-white w-30"><h6>Agenda: ( <strong>{{ quant_instalacao_agendada }}</strong> )</h6></a>
-          <a href="vendas/instalacao-concluida/" class="btn btn-success w-10"><h6>Conluído: ( <strong>{{ quant_instalacao_finalizados_mes }}</strong> )</h6></a>
-        </div>
-      </div>
-    </div>
-    <!-- FIM Status Instalaçaoes -->
-  </div>
 
+
+
+
+
+
+
+
+
+      
   <!-- INÍCIO dos Serviços Voip -->
     <div class="card mt-4">
         <h5 class="card-header">Status dos Serviços Voip</h5>

@@ -15,23 +15,21 @@
     <div class="mt-4 mb-4 shadow">
         <!--INICIO título da página -->
         <div class="mt-4 mb-2 p-2">
-            <h4 class="text-primary">( {{ count_boletos_entregue }} )- Boletos Entregue </h4>
+            <h2 class="ui dividing header blue">( {{ count_boletos_entregue }} )- Boletos Entregue <a class="anchor" id="content"></a></h2>
         </div>
         <!--INICIO título da página -->
 
         <!-- INÍCIO  Campo de Pesquisas-->
         <div class="mt-1 p-2">
             <form method="GET">
-                <div class="row">
-                    <div class="form-group col-12">
+                <div class="row">   
+            
+                    <div class="form-group col-10">
                         <input type="search" class="form-control" placeholder="Informe nome do cliente"
                                 name="q" value="{{ request.GET.q }}">
                     </div>
-                    <div class="form-group col-12">
-                        <button class=" form-control btn-success">
-                            <i class="fas fa-search"></i>
-                            Pesquisar
-                        </button>
+                    <div class="form-group col-2">
+                        <button class="ui inverted green button">Pesquisar </button>
                     </div>
                 </div>
             </form>
@@ -56,48 +54,71 @@
         <div class="table-responsive-sm p-2">
             <div class="card-group">
 
-                <div class="card p-2 mr-2 ml-2">
-                Boletos Físicos: {{ count_via_fisica }}
+                <!-- Boletos Físicos -->
+                <div class="ui labeled button" tabindex="0">
+                    <div class="ui basic black button">
+                      <i class=""></i> Boletos Físicos
+                    </div>
+                    <a class="ui basic left pointing black label">
+                        {{ count_via_fisica }}
+                    </a>
                 </div>
 
-                <div class="card p-2 mr-2 ml-2">
-                    E-mail e WhatsApp: {{ count_email_whatsapp }}
+                <!-- Boletos E-mail -->
+                <div class="ui labeled button" tabindex="0">
+                    <div class="ui basic orange button">
+                      <i class=""></i> E-mail e WhatsApp
+                    </div>
+                    <a class="ui basic left pointing orange label">
+                        {{ count_email_whatsapp }}
+                    </a>
                 </div>
 
-                <div class="card p-2 mr-2 ml-2">
-                    App: {{ count_app }}
+                <!-- Boletos App -->
+                <div class="ui labeled button" tabindex="0">
+                    <div class="ui basic violet button">
+                      <i class=""></i> App
+                    </div>
+                    <a class="ui basic left pointing violet label">
+                        {{ count_app }}
+                    </a>
                 </div>
 
-                <div class="card p-2 mr-2 ml-2">
-                    WhatsApp: {{ count_whatsapp }}
+                <!-- Boletos WhatsApp -->
+                <div class="ui labeled button" tabindex="0">
+                    <div class="ui green basic blue button">
+                      <i class=""></i> WhatsApp
+                    </div>
+                    <a class="ui basic left pointing green label">
+                        {{ count_whatsapp }}
+                    </a>
                 </div>
 
-                <div class="card p-2 mr-2 ml-2">
-                    E-mail: {{ count_email }}
+                <!-- Boletos E-mail -->
+                <div class="ui labeled button" tabindex="0">
+                    <div class="ui basic red button">
+                      <i class=""></i> E-mail
+                    </div>
+                    <a class="ui basic left pointing red label">
+                        {{ count_email }}
+                    </a>
+                </div>
+
+                <!-- Botão de adiciona novo cliente -->
+                <div class="mr-4 ml-4">
+                    <button class="ui inverted blue button">
+                        <i class="icon user"></i>
+                        <a href="/pagamentos/cadastrar-entrega-boletos/">Adicionar Cliente</a>
+                    </button>
                 </div>
 
             </div>
         </div>
         <!-- FIM quantidade de clientes por forma de boleto -->
-
-        <!-- INÍCIO botões -->
-        <div class="p-2" align="right">
-            <a href="/pagamentos/cadastrar-entrega-boletos/" class="mt-2 mb-2 btn btn-primary"><i class="fas fa-user-plus"></i> Adicionar</a>
-        </div>
-        <!-- FIM botões -->
     </div>
     <!-- FIM -->
 
     
-    
-
-    
-
-    
-
-    
-
-
     <!-- INICIO Tabela dos boletos -->
     <div class="card shadow mb-4 table-responsive-sm">
         <table class="table">
@@ -107,6 +128,7 @@
                 <th scope="col">Nome Completo</th>
                 <th scope="col">CPF</th>
                 <th scope="col">Forma de entrega</th>
+                <th scope="col">Assinado</th>
                 <th scope="col">Data de cadastro</th>
                 <th scope="col">Opções</th>
               </tr>
@@ -118,8 +140,9 @@
                 <td>{{ boletos.nome_cliente }}</td>
                 <td>{{ boletos.cpf_cliente}}</td>
                 <td>{{ boletos.forma_entrega }}</td>
-                <td>{{ boletos.data_cadastro }}</td>
-                <td>
+                <td>{{ boletos.boleto_assinado }}</td>
+                <td>{{ boletos.data_cadastro|date }}</td>
+                <td align="center">
                     <a href="/pagamentos/editar-entrega-boletos/{{ boletos.id }}"><i class="far fa-edit text-warning"></i></a>
                 </td>
               </tr>
