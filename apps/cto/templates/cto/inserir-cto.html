@@ -4,13 +4,93 @@
 
 {% block main %}
 <div class="container">
-    <h2>Inserir CTO</h2>
+    <h2 class=" mt-4 mb-4">Inserir CTO</h2>
+
+
+    <form class="ui form" method="POST">{% csrf_token %}
+
+        <!-- Código da Caixa CTO-->
+        <div class="field">
+            <h4 class="ui dividing header">Código da Caixa CTO</h4>
+            <div class="fields">
+              <div class="three wide field">
+                <label>Código</label>
+                {{ form.codigo_cto}}
+              </div>
+            </div>
+        </div>
+        <!-- Endereço da CTO-->
+        <div class="field">
+            <h4 class="ui dividing header">Endereço da CTO</h4>
+            <div class="fields">
+              <div class="ten wide field">
+                <label>Rua</label>
+                {{ form.rua_cto}}
+              </div>
+              <div class="one wide field">
+                <label>Número</label>
+                {{ form.numero_rua_cto}}
+              </div>
+              <div class="four wide field">
+                <label>Bairro</label>
+                {{ form.bairro}}
+              </div>
+            </div>
+        </div>
+
+        <!-- Endereço da CTO-->
+        <div class="field">
+            <h4 class="ui dividing header">Informações da CTO</h4>
+            <div class="fields">
+              <div class="four wide field">
+                <label>Borda</label>
+                {{ form.board_cto}}
+              </div>
+              <div class="four wide field">
+                <label>Pon</label>
+                {{ form.pon_cto}}
+              </div>
+              <div class="four wide field">
+                <label>Quantidade de conexões</label>
+                {{ form.conexoes_opticas_cto}}
+              </div>
+              <div class="four wide field">
+                <label>Conexões Usadas</label>
+                {{ form.quant_conexoes_usadas_cto}}
+              </div>
+            </div>
+        </div>
+
+        <!-- Observação -->
+        <div class="field">
+            <h4 class="ui dividing header">Área de observações do local</h4>
+            <div class="fields">
+              <div class="sixteen wide field">
+                <label>Observação</label>
+                {{ form.observacao_cto}}
+              </div>
+
+            </div>
+        </div>
+
+
+
+
+
+        <input type="submit" class="btn btn-block btn-primary" value="Cadastrar">
+    </form>
+
+
+
+
+<!-- 
 
     <form action="" method="post"> {% csrf_token %}
         {{ form | crispy }}
 	    {{ form.media }}
 	    <input type="submit" class="btn btn-block btn-primary" value="Cadastrar">
 	</form>
+-->
 
 </div>
 {% endblock %}

@@ -2,7 +2,7 @@ from django.db.models import F, Q
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from .forms import CtoForm, CaixasDeEmendaForm
+from .forms import CtoForm, CaixasDeEmendaForm, InsertCtoForm
 from .models import TerminaisOpticos, Primarias, CaixasDasPrimarias
 from .models import CaixasDeEmenda, PonPorCaixaEmenda
 from django.views.generic.edit import CreateView
@@ -86,10 +86,12 @@ def CtoCompletas(request):
 
 class CTOCreate(CreateView):
     model = TerminaisOpticos
-    fields = ['codigo_cto', 'rua_cto', 'numero_rua_cto', 'bairro', 'pon_cto', 'conexoes_opticas_cto', 'board_cto',
-              'quant_conexoes_usadas_cto', 'observacao_cto'
-              ]
+    template_name = "cto/inserir-cto.html"
+    form_class = InsertCtoForm
     success_url = '/cto/'
+    uccess_message = "%(nome_cliente)s, foi cadastrado com sucesso!!!"
+
+
 
 
 def ExportarCSVCTO(request):

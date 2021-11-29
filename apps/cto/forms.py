@@ -34,6 +34,7 @@ class InsertCtoForm(forms.ModelForm):
         widgets = {
             'codigo_cto': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
             'rua_cto': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
+            'observacao_cto': forms.Textarea(attrs={'rows':1, 'cols':15}),
 
         }
 
