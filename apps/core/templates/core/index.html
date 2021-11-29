@@ -220,7 +220,7 @@
               <tbody>
                 {% for responsavel in responsavel_instalacao%}
                     {% if responsavel.funcionario_instalacao is null %}
-                    <p></p>
+
                     {% else %}
                     <tr>
                       <td><small>{{ responsavel.funcionario_instalacao.get_full_name }}</small></td>

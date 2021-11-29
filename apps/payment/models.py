@@ -1,10 +1,9 @@
 from django.db import models
-from django.db.models.deletion import CASCADE, DO_NOTHING
-from django.utils import timezone
-from ckeditor.fields import RichTextField
 from ..components.models import Bancos
 
 # Create your models here.
+
+
 class CategoriaPagamento(models.Model):
     nome_categoria = models.CharField(max_length=255)
 
@@ -32,8 +31,6 @@ class OrigemValores(models.Model):
 
     def __str__(self):
         return "{}".format(self.origem_valor)
-
-
 
 
 class Pagamento(models.Model):
@@ -81,11 +78,9 @@ class FluxoEntradasSaidas(models.Model):
         return "{}".format(self.saldoInicial)
 
 
-
-
 class DestinoValoresBoletos(models.Model):
     valor = models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    destino = models.ForeignKey(Bancos, on_delete=models.DO_NOTHING )
+    destino = models.ForeignKey(Bancos, on_delete=models.DO_NOTHING)
     data_transacao = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True)
     data_cadastro = models.DateTimeField(auto_now=True)
 
@@ -94,7 +89,6 @@ class DestinoValoresBoletos(models.Model):
 
     def __str__(self):
         return "{}".format(self.valor)
-
 
 
 class MeiosEntregaBoletos(models.Model):

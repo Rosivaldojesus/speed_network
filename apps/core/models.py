@@ -6,6 +6,8 @@ from ..services.models import Servico
 from django.utils import timezone
 
 # Create your models here.
+
+
 class Manuais(models.Model):
     nome_manual = models.CharField(max_length=255)
     texto_manual = RichTextField()
@@ -48,7 +50,6 @@ class SenhasPorEquipamentos(models.Model):
 
     def __str__(self):
         return "{}".format(self.equipamento)
-
 
 
 class GerarResultadosDiarios(models.Model):

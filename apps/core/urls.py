@@ -15,6 +15,5 @@ urlpatterns = [
     path('senhas-por-equipamento/', SenhasPorEquipamento),
     path('cadastro-senhas-equipamentos/', CadastroSenhasPorEquipamentos),
     path('editar-senhas-equipamentos/<int:id>', EditarSenhasPorEquipamentos),
-
-    path('exportar-senhas-csv/', ExportarSenhasCSV),
+    path('exportar-senhas-csv/', ExportarSenhasCSV)
 ]

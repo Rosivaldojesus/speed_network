@@ -1,8 +1,5 @@
 from datetime import date, datetime
-
-from django.contrib.auth import authenticate
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import F, Q, Avg
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q, Sum, Count
 from django.views.generic import CreateView, UpdateView
@@ -20,12 +17,11 @@ import xlwt # Biblioteca Excel
 from django.http import HttpResponse
 from .forms import CadastrarFluxoForm
 from django.core.paginator import Paginator
-#from .forms import EditarClientesEntregaBoletosForm
-from django.http import HttpResponseRedirect
-
 
 
 # Create your views here.
+
+
 def Index(request):
     data_atual = datetime.now()
     this_month = date.today().month
@@ -178,13 +174,10 @@ def ListaPagamentos(request):
     elif valor and data:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(Q(valor_pagamento__icontains=valor)|
                                               Q(data_pagamento__icontains=data))
-
     paginator = Paginator(pagamentos, 50)  # Show 25 payment per page.
     page_number = request.GET.get('page')
     pagamentos = paginator.get_page(page_number)
-
     return render(request, 'payment/lista_pagamentos.html', {'pagamentos': pagamentos})
-
 
 
 def AgendamentosPagamentos(request):
@@ -201,7 +194,9 @@ def AgendamentosPagamentos(request):
     totalPagarNaoVencidas = Pagamento.objects.filter(status_pago= 'False').filter(data_pagamento__gt=data_atual)\
         .aggregate(total=Sum('valor_pagamento'))
 
-    pagamentosFuturos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__gt=data_atual).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+    pagamentosFuturos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(
+        data_pagamento__gt=data_atual).values('month').annotate(
+        c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
 
     pagamentosFuturosDiarios = Pagamento.objects.filter(data_pagamento__gte=data_atual).filter().values(
         'data_pagamento').annotate(number=Sum('valor_pagamento')).order_by('data_pagamento')
@@ -219,7 +214,8 @@ def AgendamentosPagamentos(request):
 
 def PagamentosFuturos(request):
     data_atual = datetime.now()
-    naoVencidas = Pagamento.objects.filter(status_pago='False').filter(data_pagamento__gte=data_atual).order_by('data_pagamento')
+    naoVencidas = Pagamento.objects.filter(status_pago='False').filter(
+        data_pagamento__gte=data_atual).order_by('data_pagamento')
 
     date = request.GET.get('date')
     motivoPagamento = request.GET.get('motivoPagamento')
@@ -238,9 +234,6 @@ def PagamentosFuturos(request):
             filter().filter(Q(motivo_pagamento__icontains=motivoPagamento))
 
     return render(request, 'payment/pagamentos-futuros.html',{'naoVencidas':naoVencidas})
-
-    
-
 
 
 def PagamentosMensaisGrupos(request):
@@ -265,7 +258,11 @@ def PagamentosMensaisGrupos(request):
     mensalImpostos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(categoria=8).values(
         'month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
 
-    return render(request, 'payment/pagamentos-mensais-grupos.html',{'mensalVeiculos':mensalVeiculos})
+    context = {
+        'mensalVeiculos': mensalVeiculos,
+    }
+
+    return render(request, 'payment/pagamentos-mensais-grupos.html', context)
 
 
 def AgendarPagamento(request):
@@ -280,8 +277,6 @@ def AgendarPagamento(request):
     return render(request, 'payment/agendar-pagamento.html',{'form': form})
 
 
-
-
 def EditarPagamento(request, id=None):
     pagar = get_object_or_404(Pagamento, id=id)
     form = EditarPagamentoForm(request.POST or None, instance=pagar)
@@ -291,8 +286,6 @@ def EditarPagamento(request, id=None):
         messages.success(request, 'Pagamento alterado com sucesso.')
         return redirect('/pagamentos/')
     return render(request, 'payment/editar-pagamento.html', {'form': form})
-
-
 
 
 def ConfirmarPagamento(request, id=None):
@@ -350,7 +343,9 @@ def ExportParaExcel(request):
     font_style = xlwt.XFStyle()
     font_style.font.bold = True
 
-    columns = ['motivo_pagamento','data_pagamento','valor_pagamento', 'origem_valor_pagamento', 'tipo_custo_pagamento', 'categoria', 'status_pago']
+    columns = ['motivo_pagamento','data_pagamento','valor_pagamento', 'origem_valor_pagamento', 'tipo_custo_pagamento',
+               'categoria', 'status_pago'
+               ]
 
     for col_num in range(len(columns)):
         ws.write(row_num, col_num, columns[col_num], font_style)
@@ -387,30 +382,25 @@ def SalvarPagamento(request):
     return render(request, 'payment/salvar-pagamento.html', {'form': form})
 
 
-# ----------------------------- Movimentações do ReceitaNET -------------------------------------------------
+# ---------------------------------- Movimentações do ReceitaNET -------------------------------------------------------
 def RetiradasGerencianet(request):
-
-
     startdate = request.GET.get('startdate')
     enddate = request.GET.get('enddate')
 
     if startdate and enddate:
-        retiradas = DestinoValoresBoletos.objects.filter(data_transacao__range=[startdate, enddate]).order_by('-data_transacao')
+        retiradas = DestinoValoresBoletos.objects.filter(
+            data_transacao__range=[startdate, enddate]).order_by('-data_transacao')
     else:
         retiradas = DestinoValoresBoletos.objects.all().order_by('-data_transacao')
 
-    valor_mes =  DestinoValoresBoletos.objects.annotate(month=TruncMonth('data_transacao')).filter().filter().values('month').annotate(c=Sum('valor')).values('month', 'c').order_by('-month')
-
-
+    valor_mes = DestinoValoresBoletos.objects.annotate(month=TruncMonth('data_transacao')).values('month').annotate(
+        c=Sum('valor')).values('month', 'c').order_by('-month')
 
     context = {
         'retiradas':retiradas,
         'valor_mes': valor_mes,
     }
     return render(request, 'payment/lista-retiradas-gerencianet.html', context)
-
-
-
 
 
 class RetiradasGerencianetCreateView(SuccessMessageMixin, CreateView):
@@ -420,7 +410,6 @@ class RetiradasGerencianetCreateView(SuccessMessageMixin, CreateView):
     success_url = '/pagamentos/retiradas-gerencianet/'
     success_message = "R$: %(valor)s, foi cadastrado com sucesso!!!"
     
-
 
 class RetiradasGerencianetUpdateView(UpdateView):
     model = DestinoValoresBoletos # A tabela do banco de dados
@@ -443,8 +432,6 @@ def ExportarRetiradasReceitanetCSV(request):
                          ])
     return response
 
-
-
 # ----------------------------- BOLETOS-------------------------------------------------
 class EntregaBoletosListView(ListView):
     model = ClientesEntregaBoletos
@@ -461,8 +448,10 @@ class EntregaBoletosListView(ListView):
 
         queryset = self.request.GET.get('q')
         if queryset:
-            context['lista_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(Q(nome_cliente__icontains=queryset)).order_by('nome_cliente')
-            context['count_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(Q(nome_cliente__icontains=queryset)).count()
+            context['lista_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(
+                Q(nome_cliente__icontains=queryset)).order_by('nome_cliente')
+            context['count_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(
+                Q(nome_cliente__icontains=queryset)).count()
         else:
             context['lista_boletos_entregue'] = ClientesEntregaBoletos.objects.all().order_by('nome_cliente')
             context['count_boletos_entregue'] = ClientesEntregaBoletos.objects.all().count()
@@ -477,18 +466,9 @@ class EntregaBoletosCreateView(SuccessMessageMixin, CreateView):
     success_message = "%(nome_cliente)s, foi cadastrado com sucesso!!!"
 
 
- 
-
-
-
-
-
-
 class EditarEntregaBoletosUpdateView(UpdateView):
     model = ClientesEntregaBoletos  # A tabela do banco de dados
     form_class = EditarClientesEntregaBoletosForm  # Form for Update
     template_name = 'payment/editar-entrega-boletos.html'  # templete for updating
     success_url = "/pagamentos/lista-entrega-boletos/"  # return após atualizar
     success_message = "foi atualizado com sucesso!!!"
-
-
