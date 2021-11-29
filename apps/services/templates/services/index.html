@@ -190,10 +190,14 @@
        const myChart = new Chart(ctx, {
            type: 'doughnut',
            data: {
-               labels: ['Velocidade', 'Oscilação', 'Retirada', 'Fibra Rompida', 'Troca de modem'],
+               labels: ['Velocidade', 'Oscilação', 'Retirada', 'Fibra Rompida', 'Troca de modem', 'Voip'],
                datasets: [{
-                   label: '{{ count_cancelamentos}} Serciços',
-                   data: [10, 10,10,10,10,10,],
+                   label: '{{ count_cancelamentos}} Serviços',
+                   data: [
+                     '{{ quant_serv_velocidade }}', '{{ quant_serv_osciliacao }}', '{{ quant_serv_retirada }}',
+                     '{{ quant_serv_fibra_rompida }}', '{{ quant_serv_troca_modem }}', '{{ quant_serv_voip }}'
+                   
+                   ],
                    backgroundColor: [
                        'rgba(255, 99, 132, 0.2)',
                        'rgba(54, 162, 235, 0.2)',

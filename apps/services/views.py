@@ -23,15 +23,31 @@ def Index(request):
 
     diarioServicos = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('data_finalizacao')).order_by('data_finalizacao')[90:]
 
+    #Quantidade de serviços por categoria
+    quant_serv_velocidade = Servico.objects.filter(categoria=3).count()
+    quant_serv_osciliacao = Servico.objects.filter(categoria=4).count()
+    quant_serv_retirada = Servico.objects.filter(categoria=5).count()
+    quant_serv_fibra_rompida = Servico.objects.filter(categoria=6).count()
+    quant_serv_troca_modem = Servico.objects.filter(categoria=7).count()
+    quant_serv_voip = Servico.objects.filter(categoria=8).count()
 
+    context = {
+        'contarAbertos': contarAbertos,
+        'contarFinalizados': contarFinalizados,
+        'contarAgendados': contarAgendados,
+        'diarios': diarios,
+        'servicosMensal': servicosMensal,
+        'diarioServicos': diarioServicos,
+        #Quantidade de serviços por categorias
+        'quant_serv_velocidade': quant_serv_velocidade,
+        'quant_serv_osciliacao': quant_serv_osciliacao,
+        'quant_serv_retirada': quant_serv_retirada,
+        'quant_serv_fibra_rompida': quant_serv_fibra_rompida,
+        'quant_serv_troca_modem': quant_serv_troca_modem,
+        'quant_serv_voip': quant_serv_voip,
+    }
 
-    return render(request, 'services/index.html', {'contarAbertos': contarAbertos,
-                                                   'contarFinalizados': contarFinalizados,
-                                                   'contarAgendados': contarAgendados,
-                                                    'diarios': diarios,
-                                                   'servicosMensal': servicosMensal,
-                                                   'diarioServicos': diarioServicos,
-                                                   })
+    return render(request, 'services/index.html', context)
 
 def CadastroServico(request):
     form = ServicoForm(request.POST)
