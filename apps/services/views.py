@@ -24,6 +24,8 @@ def Index(request):
     diarioServicos = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('data_finalizacao')).order_by('data_finalizacao')[90:]
 
     #Quantidade de serviços por categoria
+
+    quant_outros = Servico.objects.filter(categoria=2).count()
     quant_serv_velocidade = Servico.objects.filter(categoria=3).count()
     quant_serv_osciliacao = Servico.objects.filter(categoria=4).count()
     quant_serv_retirada = Servico.objects.filter(categoria=5).count()
@@ -47,6 +49,7 @@ def Index(request):
         'quant_serv_troca_modem': quant_serv_troca_modem,
         'quant_serv_voip': quant_serv_voip,
         'quant_serv_sinal_alto': quant_serv_sinal_alto,
+        'quant_outros': quant_outros,
     }
 
     return render(request, 'services/index.html', context)
