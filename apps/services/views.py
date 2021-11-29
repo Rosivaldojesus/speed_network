@@ -33,6 +33,7 @@ def Index(request):
     quant_serv_troca_modem = Servico.objects.filter(categoria=7).count()
     quant_serv_voip = Servico.objects.filter(categoria=8).count()
     quant_serv_sinal_alto = Servico.objects.filter(categoria=9).count()
+    quant_trocar_senha = Servico.objects.filter(categoria=10).count()
 
     context = {
         'contarAbertos': contarAbertos,
@@ -50,6 +51,7 @@ def Index(request):
         'quant_serv_voip': quant_serv_voip,
         'quant_serv_sinal_alto': quant_serv_sinal_alto,
         'quant_outros': quant_outros,
+        'quant_trocar_senha': quant_trocar_senha
     }
 
     return render(request, 'services/index.html', context)
