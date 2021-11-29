@@ -140,7 +140,7 @@
                 <td>{{ boletos.nome_cliente }}</td>
                 <td>{{ boletos.cpf_cliente}}</td>
                 <td>{{ boletos.forma_entrega }}</td>
-                <td>{{ boletos.boleto_assinado }}</td>
+                <td> {% if boletos.boleto_assinado == False %} {% else %} Assinado {% endif %}</td>
                 <td>{{ boletos.data_cadastro|date }}</td>
                 <td align="center">
                     <a href="/pagamentos/editar-entrega-boletos/{{ boletos.id }}"><i class="far fa-edit text-warning"></i></a>

@@ -1,43 +1,102 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}<title> Terminais </title> {% endblock %}
+{% block title %}<title> .:: Terminais Ópticos </title> {% endblock %}
 
 {% block main %}
 <div class="container-xl">
-	<!-- INÍCIO Dashboard Terminais Ópticos-->
-	<div class="mt-3">
-		<div class="card-group">
-			<div class="card border-0">
 
-				<div class="card-title shadow" align="center">
-					<h5>Primárias</h5>
-					<a href="/cto/primarias/" class="btn btn-block btn-success">Primárias</a>
-				</div>
-			 
-			</div>
-			
-			<div class="card border-0">
-				<div class="card-title shadow" align="center">
-					<h5>Caixas de Emenda</h5>
-					<a href="/cto/caixas-emenda/" class="btn btn-block btn-secondary"> Caixas Emenda </a>
-				</div>
-			</div>
-			<div class="card border-0">
-				<div class="card-title shadow" align="center">
-					<h5>Total CTO</h5>
-					<a href="#" class="btn  btn-block  btn-info"> Caixas cadastradas ( {{ quant_cto_cadastradas }} )</a>
-				</div>
-			</div>
-			<div class="card border-0">
-				<div class="card-title shadow" align="center">
-					<h5>CTO Cheias</h5>
-					<a href="/cto/cto-completas/" class="btn btn-block btn-danger"> Caixas cheias ( {{ quant_cto_completas }} )</a>
-				</div>
+	<!-- ---------------------------------------------------------------------------------   -->
+	<!-- -->
+	<div class="ui four stackable cards mt-3">
+
+		<!-- As Primarias-->
+		<div class="card ui green">
+			<div class="content">
+			  <div class="header">Primárias</div>
+			  <div class="description">
+				Localização das Primárias.
 			  </div>
+			  <div align="center">
+				  <h1>( {{ quant_caixas_primarias }} )</h1>
+			  </div>
+			</div>
+			<a href="/cto/primarias/" class="header">
+				<div class="ui bottom attached button">
+				<i class="hand point right icon"></i>
+				Primárias
+				</div>
+			</a>
+		  
+		</div>
+
+		<!-- Caixas de emendas-->
+		<div class="card ui grey">
+			<div class="content">
+			  <div class="header">Caixas de Emendas</div>
+			  <div class="description ui grey">
+				Localização das caixas de emenda.
+			  </div>
+			  <div align="center">
+				  <h1>( {{ quant_caixas_emenda }} )</h1>
+			  </div>
+			</div>
+			<a href="/cto/caixas-emenda/" class="header">
+				<div class="ui bottom attached button">
+				<i class="hand point right icon"></i>
+				Caixas Primárias
+				</div>
+			</a>
+		</div>
+
+		<!-- Caixas Cheias-->
+		<div class="card ui red">
+			<div class="content">
+			  <div class="header">Caixas cheias</div>
+			  <div class="description">
+				Lista das caixas que já estão cheias.
+			  </div>
+			  <div align = "center">
+				<h1>( {{ quant_cto_completas }} )</h1>
+			  </div>
+			</div>
+			<a href="/cto/cto-completas/" class="header">
+				<div class="ui bottom attached button">
+				<i class="hand point right icon"></i>
+				Caixas Cheias
+				</div>
+			</a>
+		</div>
+
+		<!-- Total de caixas cadastradas-->
+		<div class="card ui blue">
+			<div class="content">
+			  <div class="header">Caixas Cadastradas</div>
+			  <div class="description">
+				Lista das caixas cadastradas.
+			  </div>
+			  <div align="center">
+				  <h1>( {{ quant_cto_cadastradas }} )</h1>
+			  </div>
+			</div>
+			<a href="#" class="header">
+				<div class="ui bottom attached button">
+				<i class="hand point right icon"></i>
+				Total
+				</div>
+			</a>
 		  </div>
-	</div>
-	<!-- FIM - Dashboard Terminais Ópticos-->
+	  </div>
+	<!-- -->
+	<!-- ---------------------------------------------------------------------------------   -->
+
+
+
+
+
+
+
+
 
 	<!-- INÍCIO  Campo de Pesquisas-->
 	<div class="mt-3">
@@ -62,7 +121,6 @@
 			</div>
 
 
-		   
 			   <div class="form-group col-12">
 				   <button class=" form-control btn-success">
 					<i class="fas fa-search"></i>
@@ -72,7 +130,6 @@
 		   </div>
 	   </form>
 	</div>
-
 
 	<!-- FIM Campo de Pesquisas-->
 
@@ -138,13 +195,10 @@
 						<a href="editar-terminais-opticos/{{ cto.id }}" style="color:gold;" ><i class="fas fa-edit"></i></a>
 					</td>
 				</tr>						
-						
 				{% endfor %}
 			</tbody>
 		</table>
 	</div>
 	<!--FIM da Tabela de Terminais Ópticos -->
-
 </div>
-	
 {% endblock %}

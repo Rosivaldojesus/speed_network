@@ -20,6 +20,8 @@ def Index(request):
     # Verifica a quantidade de Ctos Filtradas
     quant_cto_filtradas = TerminaisOpticos.objects.all().count()
     quant_cto_cadastradas = TerminaisOpticos.objects.all().count()
+    quant_caixas_emenda = CaixasDeEmenda.objects.all().count()
+    quant_caixas_primarias = Primarias.objects.all().count()
 
     board = request.GET.get('board')
     pon = request.GET.get('pon')
@@ -53,6 +55,8 @@ def Index(request):
         'boards': boards,
         'pons': pons,
         'quant_cto_filtradas': quant_cto_filtradas,
+        'quant_caixas_emenda': quant_caixas_emenda,
+        'quant_caixas_primarias': quant_caixas_primarias,
     }
     return render(request, 'cto/index.html', context)
 
