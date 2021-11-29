@@ -1,4 +1,5 @@
 from django.db import models
+from ..components.models import Bairros
 
 # Create your models here.
 
@@ -7,6 +8,7 @@ class TerminaisOpticos(models.Model):
     rua_cto = models.CharField(max_length=100, blank=True, null=True)
     numero_rua_cto = models.CharField(max_length=20, blank=True, null=True)
     bairro = models.CharField(max_length=100, blank=True, null=True)
+    bairro_cto = models.ForeignKey(Bairros, on_delete=models.DO_NOTHING, blank=True, null=True)
     pon_cto = models.CharField(max_length=100, blank=True, null=True)
     conexoes_opticas_cto = models.DecimalField(max_digits=8, decimal_places=0, blank=True, null=True)
     board_cto = models.DecimalField(max_digits=8, decimal_places=0, blank=True, null=True)

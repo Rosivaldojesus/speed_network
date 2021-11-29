@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import PlanosInternet, Cidade, AdicionarQuantidade,\
     DataVencimento, FabricanteEquipamentos, ModelosEquipamentos, \
-    Vendedores, Ruas, FuncionariosParaVale, Bancos
+    Vendedores, Ruas, FuncionariosParaVale, Bancos, Bairros
 
 # Register your models here.
 admin.site.register(PlanosInternet)
@@ -12,7 +12,7 @@ admin.site.register(FabricanteEquipamentos)
 admin.site.register(ModelosEquipamentos)
 admin.site.register(Vendedores)
 admin.site.register(FuncionariosParaVale)
-
+admin.site.register(Bairros)
 admin.site.register(Bancos)
 
 
