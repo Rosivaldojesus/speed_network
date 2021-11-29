@@ -13,6 +13,7 @@
     <!-- INÍCIO do campo principal a esquerda -->
     <div class="card col-sm-9 border-0">
       <!-- ------------------------------------------------------------------------------------------- -->
+      {% if request.user.groups.all.0.name == "Master" %}
       <!-- INÍCIO Card de financeiro -->
       <div class="ui link cards">
         <div class="card w-100">
@@ -48,6 +49,7 @@
       </div>
       <!-- INÍCIO Card de financeiro -->
       <!-- ------------------------------------------------------------------------------------------- -->
+      {% endif %}
       
       <!-- ------------------------------------------------------------------------------------------- -->
       <!-- INÍCIO Card de Controle de Boletos -->
