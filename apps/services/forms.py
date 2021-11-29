@@ -2,6 +2,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Servico, ServicoVoip
+from .models import CategoriaServico
 
 
 class ServicoForm(forms.ModelForm):
@@ -40,14 +41,12 @@ class AgendarServicoForm(forms.ModelForm):
 class EditarAgendarServicoForm(forms.ModelForm):
     class Meta:
         model = Servico
-        fields = ['status_agendado','servico_para_executar','data_agendada', 'hora_agendada']
-        widgets = {
-            'data_agendada': forms.DateInput(attrs={'type': 'date'}),
-            'hora_agendada': forms.TimeInput(attrs={'type': 'time'}),
-           }
+        fields = ['status_agendado','servico_para_executar','data_agendada', 'hora_agendada','categoria']
 
-    data_agendada = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
-    hora_agendada = forms.TimeField(widget=forms.DateInput(attrs={"type": "time"}))
+
+    data_agendada = forms.DateField()
+    hora_agendada = forms.TimeField()
+    categoria = forms.ModelChoiceField(queryset=CategoriaServico.objects.all())
 
 
 
