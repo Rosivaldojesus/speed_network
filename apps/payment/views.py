@@ -11,7 +11,7 @@ from .forms import CadastarDestinoValoresBoletosForm, EditarDestinoValoresBoleto
 from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas, DestinoValoresBoletos
 from .models import ClientesEntregaBoletos
 from .forms import CadastarPagamentoForm, AgendarPagamentoForm, ComfirmarPagamentoForm, EditarPagamentoForm
-from .forms import ClientesEntregaBoletosForm
+from .forms import ClientesEntregaBoletosForm, EditarClientesEntregaBoletosForm
 from django.contrib import messages
 from django.db.models.functions import ExtractMonth
 from django.db.models.functions import TruncMonth
@@ -486,9 +486,9 @@ class EntregaBoletosCreateView(SuccessMessageMixin, CreateView):
 
 class EditarEntregaBoletosUpdateView(UpdateView):
     model = ClientesEntregaBoletos  # A tabela do banco de dados
-    form_class = ClientesEntregaBoletosForm  # Form for Update
+    form_class = EditarClientesEntregaBoletosForm  # Form for Update
     template_name = 'payment/editar-entrega-boletos.html'  # templete for updating
     success_url = "/pagamentos/lista-entrega-boletos/"  # return após atualizar
-
+    success_message = "foi atualizado com sucesso!!!"
 
 

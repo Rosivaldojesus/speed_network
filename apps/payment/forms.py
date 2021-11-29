@@ -143,10 +143,12 @@ class EditarClientesEntregaBoletosForm(forms.ModelForm):
         fields = [
             'nome_cliente',
             'cpf_cliente',
+            'boleto_assinado',
             'forma_entrega',
         ]
     nome_cliente = forms.CharField()
     cpf_cliente = forms.CharField()
+    forma_entrega = forms.BooleanField()
     forma_entrega = forms.ModelChoiceField(queryset=MeiosEntregaBoletos.objects.all())
 
 
