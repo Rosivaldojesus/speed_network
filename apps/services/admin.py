@@ -10,11 +10,21 @@ admin.site.register(TipoDeServico)
 
 
 class ServicoAdmin(admin.ModelAdmin):
-    list_display = ['id','contato_servico', 'data_criacao',
-                    'data_agendada','status_agendado',
-                    'status_concluido','data_finalizacao',
-                    'agendado_por',
-                    'criado_por', 'finalizado_por']
+    list_display = [
+        'id','contato_servico',
+
+        'servico_para_executar','categoria',
+    
+        'data_criacao',
+        'data_agendada','status_agendado',
+        'status_concluido','data_finalizacao',
+        'agendado_por',
+        'criado_por', 'finalizado_por'
+    ]
+    list_editable = ('categoria',)
+
+    
+
     search_fields = ['contato_servico']
 admin.site.register(Servico, ServicoAdmin)
 
