@@ -109,35 +109,36 @@
 			</thead>
 			<tbody>
 				{% for cto in ctos %}
-					{% if cto.livre == 0 %}
-						<tr>
-							<td style="color:red;">{{cto.rua_cto}}</td>
-							<td style="color:red;">{{cto.numero_rua_cto}}</td>
-							<td style="color:red;">{{cto.codigo_cto}}</td>
-							<td style="color:red;">{{cto.board_cto}}</td>
-							<td style="color:red;">{{cto.pon_cto}}</td>
-							<td style="color:red;">{{cto.conexoes_opticas_cto}}</td>
-							<td style="color:red;">{{cto.quant_conexoes_usadas_cto}}</td>
-							<td style="color:red;">{{cto.livre}}</td>
-							<td>
-								<a href="editar-terminais-opticos/{{ cto.id }}" style="color:gold;" ><i class="fas fa-edit"></i></a>
-							</td>
-						</tr>
-					{% else %}
-						<tr>
-							<td>{{cto.rua_cto}}</td>
-							<td>{{cto.numero_rua_cto}}</td>
-							<td>{{cto.codigo_cto}}</td>
-							<td>{{cto.board_cto}}</td>
-							<td>{{cto.pon_cto}}</td>
-							<td>{{cto.conexoes_opticas_cto}}</td>
-							<td>{{cto.quant_conexoes_usadas_cto}}</td>
-							<td>{{cto.livre}}</td>
-							<td>
-								<a href="editar-terminais-opticos/{{ cto.id }}" style="color:gold;" ><i class="fas fa-edit"></i></a>
-							</td>
-						</tr>
-					{% endif %}						
+				<tr>
+					<td {% if cto.livre == 0 %} style="color:red;" {% endif %}>
+						{% if cto.rua_cto is null %} 0 {% else %} {{cto.rua_cto}} {% endif %}
+					</td>
+					<td {% if cto.livre == 0 %} style="color:red;" {% endif %}>
+						{% if cto.numero_rua_cto is null %} 0 {% else %} {{cto.numero_rua_cto}} {% endif %}
+					</td>
+					<td {% if cto.livre == 0 %} style="color:red;" {% endif %}>
+						{% if cto.codigo_cto is null %} 0 {% else %} {{cto.codigo_cto}} {% endif %}
+					</td>
+					<td {% if cto.livre == 0 %} style="color:red;" {% endif %}>
+						{% if cto.board_cto is null %} 0 {% else %}	{{cto.board_cto}} {% endif %}
+					</td>
+					<td {% if cto.livre == 0 %} style="color:red;" {% endif %}>
+						{% if cto.pon_cto is null %} 0 {% else %} {{cto.pon_cto}} {% endif %}
+					</td>
+					<td {% if cto.livre == 0 %} style="color:red;" {% endif %}>
+						{% if cto.conexoes_opticas_cto is null %} 0 {% else %} {{cto.conexoes_opticas_cto}} {% endif %}
+					</td>
+					<td {% if cto.livre == 0 %} style="color:red;" {% endif %}>
+						{% if cto.quant_conexoes_usadas_cto is null %} 0 {% else %} {{cto.quant_conexoes_usadas_cto}} {% endif %}
+					</td>
+					<td {% if cto.livre == 0 %} style="color:red;" {% endif %}>
+						{% if cto.livre is null %} 0 {% else%} {{cto.livre}} {% endif %}
+					</td>
+					<td>
+						<a href="editar-terminais-opticos/{{ cto.id }}" style="color:gold;" ><i class="fas fa-edit"></i></a>
+					</td>
+				</tr>						
+						
 				{% endfor %}
 			</tbody>
 		</table>
