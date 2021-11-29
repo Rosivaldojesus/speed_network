@@ -48,6 +48,16 @@ def Index(request):
     boards = TerminaisOpticos.objects.all()
     pons = TerminaisOpticos.objects.all()
 
+    #Contagem de CTO´s por bairros
+
+    quant_cto_ayrosa = TerminaisOpticos.objects.filter(bairro_cto=1).count()
+    quant_cto_vl_remedios = TerminaisOpticos.objects.filter(bairro_cto=2).count()
+    quant_cto_jd_belaura = TerminaisOpticos.objects.filter(bairro_cto=3).count()
+    quant_cto_jd_mutinga = TerminaisOpticos.objects.filter(bairro_cto=4).count()
+    quant_cto_jaguara = TerminaisOpticos.objects.filter(bairro_cto=5).count()
+    quant_cto_jd_rochhale = TerminaisOpticos.objects.filter(bairro_cto=6).count()
+    quant_cto_jd_marisa = TerminaisOpticos.objects.filter(bairro_cto=7).count()
+
     context = {
         'ctos': ctos,
         'quant_cto_completas': quant_cto_completas,
@@ -57,6 +67,16 @@ def Index(request):
         'quant_cto_filtradas': quant_cto_filtradas,
         'quant_caixas_emenda': quant_caixas_emenda,
         'quant_caixas_primarias': quant_caixas_primarias,
+        #QUantidade de CTO´s por bairro
+        'quant_cto_ayrosa': quant_cto_ayrosa,
+        'quant_cto_vl_remedios': quant_cto_vl_remedios,
+        'quant_cto_jd_belaura': quant_cto_jd_belaura,
+        'quant_cto_jd_mutinga': quant_cto_jd_mutinga,
+        'quant_cto_jaguara': quant_cto_jaguara,
+        'quant_cto_jd_rochhale': quant_cto_jd_rochhale,
+        'quant_cto_jd_marisa': quant_cto_jd_marisa,
+
+
     }
     return render(request, 'cto/index.html', context)
 

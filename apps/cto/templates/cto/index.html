@@ -6,91 +6,181 @@
 {% block main %}
 <div class="container-xl">
 
-	<!-- ---------------------------------------------------------------------------------   -->
-	<!-- -->
-	<div class="ui four stackable cards mt-3">
 
-		<!-- As Primarias-->
-		<div class="card ui green">
-			<div class="content">
-			  <div class="header">Primárias</div>
-			  <div class="description">
-				Localização das Primárias.
-			  </div>
-			  <div align="center">
-				  <h1>( {{ quant_caixas_primarias }} )</h1>
-			  </div>
-			</div>
-			<a href="/cto/primarias/" class="header">
-				<div class="ui bottom attached button">
-				<i class="hand point right icon"></i>
-				Primárias
-				</div>
-			</a>
-		  
-		</div>
+	<div class="row mt-4">
+		<div class="col-sm-7">
+		  <div class="card border-0">
+			<div class="card-body">
 
-		<!-- Caixas de emendas-->
-		<div class="card ui grey">
-			<div class="content">
-			  <div class="header">Caixas de Emendas</div>
-			  <div class="description ui grey">
-				Localização das caixas de emenda.
-			  </div>
-			  <div align="center">
-				  <h1>( {{ quant_caixas_emenda }} )</h1>
-			  </div>
-			</div>
-			<a href="/cto/caixas-emenda/" class="header">
-				<div class="ui bottom attached button">
-				<i class="hand point right icon"></i>
-				Caixas Primárias
-				</div>
-			</a>
-		</div>
+				<!-- ---------------------------------------------------------------------------------   -->
+				<!-- Inicio dos quatros cards das informações -->
+				<div class="ui two stackable cards ">
 
-		<!-- Caixas Cheias-->
-		<div class="card ui red">
-			<div class="content">
-			  <div class="header">Caixas cheias</div>
-			  <div class="description">
-				Lista das caixas que já estão cheias.
-			  </div>
-			  <div align = "center">
-				<h1>( {{ quant_cto_completas }} )</h1>
-			  </div>
-			</div>
-			<a href="/cto/cto-completas/" class="header">
-				<div class="ui bottom attached button">
-				<i class="hand point right icon"></i>
-				Caixas Cheias
-				</div>
-			</a>
-		</div>
+					<!-- As Primarias-->
+					<div class="card ui green">
+						<div class="content">
+						<div class="header">Primárias</div>
+						<div class="description">
+							Localização das Primárias.
+						</div>
+						<div align="center">
+							<h1>( {{ quant_caixas_primarias }} )</h1>
+						</div>
+						</div>
+						<a href="/cto/primarias/" class="header">
+							<div class="ui bottom attached button">
+							<i class="hand point right icon"></i>
+							Primárias
+							</div>
+						</a>
+					
+					</div>
 
-		<!-- Total de caixas cadastradas-->
-		<div class="card ui blue">
-			<div class="content">
-			  <div class="header">Caixas Cadastradas</div>
-			  <div class="description">
-				Lista das caixas cadastradas.
-			  </div>
-			  <div align="center">
-				  <h1>( {{ quant_cto_cadastradas }} )</h1>
-			  </div>
-			</div>
-			<a href="#" class="header">
-				<div class="ui bottom attached button">
-				<i class="hand point right icon"></i>
-				Total
+					<!-- Caixas de emendas-->
+					<div class="card ui grey">
+						<div class="content">
+						<div class="header">Caixas de Emendas</div>
+						<div class="description ui grey">
+							Localização das caixas de emenda.
+						</div>
+						<div align="center">
+							<h1>( {{ quant_caixas_emenda }} )</h1>
+						</div>
+						</div>
+						<a href="/cto/caixas-emenda/" class="header">
+							<div class="ui bottom attached button">
+							<i class="hand point right icon"></i>
+							Caixas Primárias
+							</div>
+						</a>
+					</div>
+
+					<!-- Caixas Cheias-->
+					<div class="card ui red">
+						<div class="content">
+						<div class="header">Caixas cheias</div>
+						<div class="description">
+							Lista das caixas que já estão cheias.
+						</div>
+						<div align = "center">
+							<h1>( {{ quant_cto_completas }} )</h1>
+						</div>
+						</div>
+						<a href="/cto/cto-completas/" class="header">
+							<div class="ui bottom attached button">
+							<i class="hand point right icon"></i>
+							Caixas Cheias
+							</div>
+						</a>
+					</div>
+
+					<!-- Total de caixas cadastradas-->
+					<div class="card ui blue">
+						<div class="content">
+						<div class="header">Caixas Cadastradas</div>
+						<div class="description">
+							Lista das caixas cadastradas.
+						</div>
+						<div align="center">
+							<h1>( {{ quant_cto_cadastradas }} )</h1>
+						</div>
+						</div>
+						<a href="#" class="header">
+							<div class="ui bottom attached button">
+							<i class="hand point right icon"></i>
+							Total
+							</div>
+						</a>
+					</div>
 				</div>
-			</a>
+				<!-- ---------------------------------------------------------------------------------   -->
+				<!-- Fim dos quatros cards das informações -->
+			</div>
 		  </div>
+		</div>
+
+
+		<div class="col-sm-5">
+		  <div class="card border-0">
+			<div class="card-body">
+			  
+		
+				<!-- INICIO - Gráfico com o motivos de serviços -->
+				<canvas id="myChart" width="400" height="310">
+					<script>
+					const ctx = document.getElementById('myChart').getContext('2d');
+					const myChart = new Chart(ctx, {
+						type: 'doughnut',
+						data: {
+							labels: ['Ayrosa', 'Remédios', 'Belaura', 'Mutinga', 'Jaguara', 'Rochdale','Marisa'  ],
+							datasets: [{
+								label: '{{ count_cancelamentos}} Serciços',
+								data: ['{{ quant_cto_ayrosa }}', '{{quant_cto_vl_remedios}}', '{{ quant_cto_jd_belaura }}',
+								'{{ quant_cto_jd_mutinga }}', '{{ quant_cto_jaguara }}', '{{ quant_cto_jd_rochdale}}', '{{ quant_cto_jd_marisa }}'
+								
+								
+								
+								],
+								backgroundColor: [
+									'rgba(255, 99, 132, 0.2)',
+									'rgba(54, 162, 235, 0.2)',
+									'rgba(255, 206, 86, 0.2)',
+									'rgba(75, 192, 192, 0.2)',
+									'rgba(153, 102, 255, 0.2)',
+									'rgba(255, 159, 64, 0.2)'
+								],
+								borderColor: [
+									'rgba(255, 99, 132, 1)',
+									'rgba(54, 162, 235, 1)',
+									'rgba(255, 206, 86, 1)',
+									'rgba(75, 192, 192, 1)',
+									'rgba(153, 102, 255, 1)',
+									'rgba(255, 159, 64, 1)'
+								],
+								borderWidth: 1
+							}]
+						},
+						options: {
+							scales: {
+								y: {
+									beginAtZero: true
+								}
+							}
+						}
+					});
+					</script>
+				</canvas>
+				
+				<!-- INICIO - Gráfico com o motivos de serviços -->
+
+
+
+			</div>
+		  </div>
+		</div>
 	  </div>
-	<!-- -->
-	<!-- ---------------------------------------------------------------------------------   -->
 
 
+<!--
+	********************************************************************************
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 
 
 
