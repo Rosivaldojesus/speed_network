@@ -70,7 +70,7 @@ def EditarCto(request, id=None):
         obj.save()
         #messages.success(request, 'Boleto finalizado com sucesso.')
         return redirect('/cto/')
-    return render(request, 'cto/editar-terminais-opticos.html', {'form': form})
+    return render(request, 'cto/cto_formulario.html', {'form': form})
 
 
 def CtoCompletas(request):
@@ -86,7 +86,7 @@ def CtoCompletas(request):
 
 class CTOCreate(CreateView):
     model = TerminaisOpticos
-    template_name = "cto/inserir-cto.html"
+    template_name = "cto/cto_formulario.html"
     form_class = InsertCtoForm
     success_url = '/cto/'
     uccess_message = "%(nome_cliente)s, foi cadastrado com sucesso!!!"

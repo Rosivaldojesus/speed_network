@@ -4,14 +4,14 @@
 
 {% block main %}
 <div class="container">
-    <h2 class=" mt-4 mb-4">Inserir CTO</h2>
+    <div class="mb-4">
+      <h2 class=" mt-4 mb-4">Inserir CTO</h2>
 
-
-    <form class="ui form" method="POST">{% csrf_token %}
+      <form class="ui form" method="POST">{% csrf_token %}
 
         <!-- Código da Caixa CTO-->
         <div class="field">
-            <h4 class="ui dividing header">Código da Caixa CTO</h4>
+            <h4 class="ui dividing header ui blue">Código da Caixa CTO</h4>
             <div class="fields">
               <div class="three wide field">
                 <label>Código</label>
@@ -21,13 +21,13 @@
         </div>
         <!-- Endereço da CTO-->
         <div class="field">
-            <h4 class="ui dividing header">Endereço da CTO</h4>
+            <h4 class="ui dividing header ui blue">Endereço da CTO</h4>
             <div class="fields">
               <div class="ten wide field">
                 <label>Rua</label>
                 {{ form.rua_cto}}
               </div>
-              <div class="one wide field">
+              <div class="two wide field">
                 <label>Número</label>
                 {{ form.numero_rua_cto}}
               </div>
@@ -40,7 +40,7 @@
 
         <!-- Endereço da CTO-->
         <div class="field">
-            <h4 class="ui dividing header">Informações da CTO</h4>
+            <h4 class="ui dividing header ui blue">Informações da CTO</h4>
             <div class="fields">
               <div class="four wide field">
                 <label>Borda</label>
@@ -63,7 +63,7 @@
 
         <!-- Observação -->
         <div class="field">
-            <h4 class="ui dividing header">Área de observações do local</h4>
+            <h4 class="ui dividing header ui blue">Área de observações do local</h4>
             <div class="fields">
               <div class="sixteen wide field">
                 <label>Observação</label>
@@ -73,11 +73,10 @@
             </div>
         </div>
 
-
-
-
-
-        <input type="submit" class="btn btn-block btn-primary" value="Cadastrar">
+        <div align="right">
+          <input type="submit" class="ui inverted blue button" value="Cadastrar Informações">
+        </div>
+        
     </form>
 
 
@@ -91,6 +90,7 @@
 	    <input type="submit" class="btn btn-block btn-primary" value="Cadastrar">
 	</form>
 -->
+    </div>
 
 </div>
 {% endblock %}
