@@ -30,6 +30,7 @@ def Index(request):
     quant_serv_fibra_rompida = Servico.objects.filter(categoria=6).count()
     quant_serv_troca_modem = Servico.objects.filter(categoria=7).count()
     quant_serv_voip = Servico.objects.filter(categoria=8).count()
+    quant_serv_sinal_alto = Servico.objects.filter(categoria=9).count()
 
     context = {
         'contarAbertos': contarAbertos,
@@ -45,6 +46,7 @@ def Index(request):
         'quant_serv_fibra_rompida': quant_serv_fibra_rompida,
         'quant_serv_troca_modem': quant_serv_troca_modem,
         'quant_serv_voip': quant_serv_voip,
+        'quant_serv_sinal_alto': quant_serv_sinal_alto,
     }
 
     return render(request, 'services/index.html', context)
