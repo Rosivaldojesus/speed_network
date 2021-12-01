@@ -45,38 +45,63 @@
       <h5 class="card-header">Mês Atual</h5>
       <div class="card-body">
         <div class="row">
-          <div class="col shadow">
-            Veículos
-            <h6>R$: {{ veiculosMesAtual.total}}</h6>
-          </div>
-          <div class="col shadow">
-            Funcionários
-            <h6>R$: {{ funcionariosMesAtual.total}}</h6>
-          </div>
-          <div class="col shadow">
-            Alimentação
-            <h6>R$: {{ alimentacaoMesAtual.total}}</h6>
-          </div>
-          <div class="col shadow">
-            Links
-            <h6>R$: {{ linksMesAtual.total}}</h6>
-          </div>
-          <div class="col shadow">
-            Locação
-            <h6>R$: {{ locacaoMesAtual.total}}</h6>
-          </div>
-          <div class="col shadow">
-            Instalação
-            <h6>R$: {{ instalacaoMesAtual.total}}</h6>
-          </div>
-          <div class="col shadow">
-            Sócios
-            <h6>R$: {{ sociosMesAtual.total}}</h6>
-          </div>
-          <div class="col shadow">
-            Impostos
-            <h6>R$: {{ ImpostosMesAtual.total}}</h6>
-          </div>
+
+          <!-- Veículos - Gastos mês atual -->
+          {% if veiculosMesAtual.total %}
+            <div class="col shadow"> Veículos <h6>R$: {{ veiculosMesAtual.total }}</h6> </div>
+          {% elif veiculosMesAtual.total is null %}
+            <div class="col shadow"> Veículos <h3><i class="shopping cart icon"></i></h3></div>
+          {% endif %}
+
+          <!-- Veículos - Gastos mês atual -->
+          {% if funcionariosMesAtual.total %}
+            <div class="col shadow"> Funcionários <h6>R$: {{ funcionariosMesAtual.total }}</h6></div>
+          {% elif funcionariosMesAtual.total is null %}
+          <div class="col shadow"> Funcionários <h3><i class="shopping cart icon"></i></h3></div>
+          {% endif %}
+
+          <!-- Alimentação - Gastos mês atual -->
+          {% if alimentacaoMesAtual.total %}
+            <div class="col shadow"> Alimentação<h6>R$: {{ alimentacaoMesAtual.total }}</h6></div>
+          {% elif alimentacaoMesAtual.total is null %}
+            <div class="col shadow"> Alimentação <h3><i class="shopping cart icon"></i></h3></div>
+          {% endif %}
+
+          <!-- Links - Gastos mês atual -->
+          {% if linksMesAtual.total %}
+            <div class="col shadow"> Links <h6>R$: {{ linksMesAtual.total }}</h6> </div>
+          {% elif linksMesAtual.total is null %}
+            <div class="col shadow"> Links <h3><i class="shopping cart icon"></i></h3></div>
+          {% endif %}
+
+          <!-- Locação - Gastos mês atual -->
+          {% if locacaoMesAtual.total %}
+            <div class="col shadow"> Locação <h6>R$: {{ locacaoMesAtual.total }}</h6> </div>
+          {% elif locacaoMesAtual.total is null %}
+            <div class="col shadow"> Locação <h3><i class="shopping cart icon"></i></h3></div>
+          {% endif %}
+
+          <!-- Locação - Gastos mês atual -->
+          {% if instalacaoMesAtual.total %}
+            <div class="col shadow">Instalação <h6>R$: {{ instalacaoMesAtual.total }}</h6></div>
+          {% elif instalacaoMesAtual.total is null %}
+            <div class="col shadow"> Instalação <h3><i class="shopping cart icon"></i></h3></div>
+          {% endif %}
+
+          <!-- Sócios - Gastos mês atual -->
+          {% if sociosMesAtual.total %}
+            <div class="col shadow"> Sócios <h6>R$: {{ sociosMesAtual.total }}</h6></div>
+          {% elif sociosMesAtual.total is null %}
+            <div class="col shadow"> Sócios <h3><i class="shopping cart icon"></i></h3></div>
+          {% endif %}
+
+          <!-- Impostos - Gastos mês atual -->
+          {% if ImpostosMesAtual.total %}
+            <div class="col shadow"> Impostos <h6>R$: {{ ImpostosMesAtual.total }}</h6> </div>
+          {% elif ImpostosMesAtual.total is null %}
+            <div class="col shadow"> Impostos <h3><i class="shopping cart icon"></i></h3> </div>
+          {% endif %}
+
         </div>
       </div>
     </div>
