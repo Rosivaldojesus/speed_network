@@ -35,13 +35,13 @@ def Index(request):
     pagamentos = Pagamento.objects.all().order_by('-data_pagamento')
 
     #Contagem de gastos mensais por catergoria!!!
-    veiculos = Pagamento.objects.filter(categoria=1).filter(data_pagamento__month=this_month).aggregate(total=Sum('valor_pagamento'))
-    funcionarios = Pagamento.objects.filter(categoria=2).filter(data_pagamento__month=this_month).aggregate(total=Sum('valor_pagamento'))
-    alimentacao = Pagamento.objects.filter(categoria=3).filter(data_pagamento__month=this_month).aggregate(total=Sum('valor_pagamento'))
-    links = Pagamento.objects.filter(categoria=4).filter(data_pagamento__month=this_month).aggregate(total=Sum('valor_pagamento'))
-    locacao = Pagamento.objects.filter(categoria=5).filter(data_pagamento__month=this_month).aggregate(total=Sum('valor_pagamento'))
-    instalacao = Pagamento.objects.filter(categoria=6).filter(data_pagamento__month=this_month).aggregate(total=Sum('valor_pagamento'))
-    socios = Pagamento.objects.filter(categoria=7).filter(data_pagamento__month=this_month).aggregate(total=Sum('valor_pagamento'))
+    veiculos = Pagamento.objects.filter(categoria=1).aggregate(total=Sum('valor_pagamento'))
+    funcionarios = Pagamento.objects.filter(categoria=2).aggregate(total=Sum('valor_pagamento'))
+    alimentacao = Pagamento.objects.filter(categoria=3).aggregate(total=Sum('valor_pagamento'))
+    links = Pagamento.objects.filter(categoria=4).aggregate(total=Sum('valor_pagamento'))
+    locacao = Pagamento.objects.filter(categoria=5).aggregate(total=Sum('valor_pagamento'))
+    instalacao = Pagamento.objects.filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
+    socios = Pagamento.objects.filter(categoria=7).aggregate(total=Sum('valor_pagamento'))
 
     #Query de mês atual dos gastos por categoria
     veiculosMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=1).aggregate(total=Sum('valor_pagamento'))
