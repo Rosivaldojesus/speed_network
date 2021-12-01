@@ -9,7 +9,7 @@ from django.db.models import Q, Sum, Count
 from django.views.generic.edit import CreateView
 from django.db.models.functions import TruncMonth
 
-from .ploty import plot1
+
 
 
 # Create your views here.
