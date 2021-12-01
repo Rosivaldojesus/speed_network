@@ -31,6 +31,7 @@ def Index(request):
     quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
     quant_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
     quant_concluida = Instalacao.objects.filter(concluido='True').filter(data_finalizacao__month=this_month).count()
+
     #Filtrando instalação por Vendedor
     user = request.user
     instalacaoVendedor = Instalacao.objects.filter(instalacao_criado_por=user)

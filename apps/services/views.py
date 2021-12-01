@@ -13,8 +13,6 @@ import plotly.graph_objs as go
 from plotly.offline import plot
 
 
-
-
 # Create your views here.
 def Index(request):
     contarAbertos = Servico.objects.all().filter().filter(status_agendado='False')\
@@ -48,6 +46,9 @@ def Index(request):
                          )
     fig.add_trace(scatter)
     graph = plot(fig, output_type='div')
+
+
+
 
     context = {
         'graph': graph,
