@@ -117,35 +117,34 @@ def InstalacaoAberta(request):
 def InstalacaoAgendada(request):
     agendadas = Instalacao.objects.filter(status_agendada='True')\
         .filter(concluido='False').order_by('data_instalacao', 'hora_instalacao')
+    quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
 
     queryset = request.GET.get('q')
     data_dia = request.GET.get('data_dia')
-
     if queryset:
         agendadas = Instalacao.objects.filter(
             Q(nome_cliente__icontains=queryset)|
             Q(sobrenome_cliente__icontains=queryset)
         ).filter(status_agendada='True')\
         .filter(concluido='False').order_by('data_instalacao', 'hora_instalacao')
-        quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
     
     elif data_dia:
         agendadas = Instalacao.objects.filter(Q(data_instalacao__exact=data_dia))
-        quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
+        quant_agendada = Instalacao.objects.filter(Q(data_instalacao__exact=data_dia)).count()
 
-    quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
+    context = {
+        'agendadas':agendadas,
+        'quant_agendada':quant_agendada,
+    }
+    
     #Filtro por vendedor
-    user = request.user
-    agendadas_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='True') \
-        .filter(concluido='False').order_by('data_instalacao', 'hora_instalacao')
-    quant_agendada_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).\
-        filter(status_agendada='True').filter(concluido='False').count()
-    return render(request, 'sales/instalacao-agendada.html', {'agendadas':agendadas,
-                                                              'quant_agendada':quant_agendada,
-                                                              #Filtro por vendedor
-                                                              'agendadas_vendedor':agendadas_vendedor,
-                                                              'quant_agendada_vendedor':quant_agendada_vendedor,
-                                                              })
+    #user = request.user
+    #agendadas_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='True') \
+        #.filter(concluido='False').order_by('data_instalacao', 'hora_instalacao')
+    #quant_agendada_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).\
+        #filter(status_agendada='True').filter(concluido='False').count()
+    
+    return render(request, 'sales/instalacao-agendada.html', context)
 
 @login_required(login_url='/login/')
 def InstalacaoConcluida(request):
