@@ -9,6 +9,9 @@ from django.db.models import Q, Sum, Count
 from django.views.generic.edit import CreateView
 from django.db.models.functions import TruncMonth
 
+import plotly.graph_objs as go
+from plotly.offline import plot
+
 
 
 
@@ -37,7 +40,18 @@ def Index(request):
     quant_serv_sinal_alto = Servico.objects.filter(categoria=9).count()
     quant_trocar_senha = Servico.objects.filter(categoria=10).count()
 
+
+    fig = go.Figure()
+    scatter = go.Scatter(x=["Segunda", 'Terça', 'Quarta', 'Quinta'], y=[0, 10, 17, 8],
+                         mode='lines', name='test',
+                         opacity=0.8, marker_color='green'
+                         )
+    fig.add_trace(scatter)
+    graph = plot(fig, output_type='div')
+
     context = {
+        'graph': graph,
+
         'contarAbertos': contarAbertos,
         'contarFinalizados': contarFinalizados,
         'contarAgendados': contarAgendados,
