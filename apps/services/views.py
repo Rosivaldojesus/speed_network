@@ -9,6 +9,8 @@ from django.db.models import Q, Sum, Count
 from django.views.generic.edit import CreateView
 from django.db.models.functions import TruncMonth
 
+from .ploty import plot1
+
 
 # Create your views here.
 def Index(request):
@@ -35,7 +37,10 @@ def Index(request):
     quant_serv_sinal_alto = Servico.objects.filter(categoria=9).count()
     quant_trocar_senha = Servico.objects.filter(categoria=10).count()
 
+
+
     context = {
+
         'contarAbertos': contarAbertos,
         'contarFinalizados': contarFinalizados,
         'contarAgendados': contarAgendados,

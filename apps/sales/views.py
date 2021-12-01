@@ -117,14 +117,23 @@ def InstalacaoAberta(request):
 def InstalacaoAgendada(request):
     agendadas = Instalacao.objects.filter(status_agendada='True')\
         .filter(concluido='False').order_by('data_instalacao', 'hora_instalacao')
+
     queryset = request.GET.get('q')
+    data_dia = request.GET.get('data_dia')
+
     if queryset:
         agendadas = Instalacao.objects.filter(
             Q(nome_cliente__icontains=queryset)|
-            Q(sobrenome_cliente__icontains=queryset)|
-            Q(data_instalacao__icontains=queryset)
+            Q(sobrenome_cliente__icontains=queryset)
         ).filter(status_agendada='True')\
         .filter(concluido='False').order_by('data_instalacao', 'hora_instalacao')
+    
+    elif data_dia:
+        agendadas = Instalacao.objects.filter(Q(data_instalacao__exact=data_dia))
+
+
+
+
 
     quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
     #Filtro por vendedor
