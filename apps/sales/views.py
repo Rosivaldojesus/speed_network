@@ -127,13 +127,11 @@ def InstalacaoAgendada(request):
             Q(sobrenome_cliente__icontains=queryset)
         ).filter(status_agendada='True')\
         .filter(concluido='False').order_by('data_instalacao', 'hora_instalacao')
+        quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
     
     elif data_dia:
         agendadas = Instalacao.objects.filter(Q(data_instalacao__exact=data_dia))
-
-
-
-
+        quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
 
     quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
     #Filtro por vendedor
