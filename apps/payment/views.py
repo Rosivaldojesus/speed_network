@@ -290,7 +290,7 @@ def EditarPagamento(request, id=None):
         obj = form.save()
         obj.save()
         messages.success(request, 'Pagamento alterado com sucesso.')
-        return redirect('/pagamentos/')
+        return redirect('/pagamentos/lista-pagamentos/')
     return render(request, 'payment/editar-pagamento.html', {'form': form})
 
 
