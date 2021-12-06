@@ -102,6 +102,15 @@
             <div class="col shadow"> Impostos <h3><i class="shopping cart icon"></i></h3> </div>
           {% endif %}
 
+           <!-- Impostos - Gastos mês atual -->
+           {% if taxaMesAtual.total %}
+           <div class="col shadow"> Impostos <h6>R$: {{ taxaMesAtual.total }}</h6> </div>
+         {% elif taxaMesAtual.total is null %}
+           <div class="col shadow"> Taxas <h3><i class="shopping cart icon"></i></h3> </div>
+         {% endif %}
+
+         
+
         </div>
       </div>
     </div>
@@ -226,6 +235,7 @@
             <th scope="col">Instalaçao</th>
             <th scope="col">Sócios</th>
             <th scope="col">Impostos</th>
+            <th scope="col">Taxas</th>
           </tr>
         </thead>
         <tbody>
@@ -293,6 +303,20 @@
               </div>
               {% endfor %}
             </td>
+
+            <td>
+              {% for veiculos in mensalTaxas %}
+              <div class="card mt-1 border border-danger border-start-0" align="center">
+                {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
+              </div>
+              {% endfor %}
+            </td>
+
+
+
+
+
+
           </tr>
         </tbody>
       </table>

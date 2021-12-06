@@ -52,6 +52,7 @@ def Index(request):
     instalacaoMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
     sociosMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=7).aggregate(total=Sum('valor_pagamento'))
     ImpostosMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=8).aggregate(total=Sum('valor_pagamento'))
+    taxaMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=11).aggregate(total=Sum('valor_pagamento'))
 
 
     #Query para total por mês de custo das categorias
@@ -63,6 +64,7 @@ def Index(request):
     mensalInstalacao = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__lte=data_atual).filter(categoria=6).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('-month')
     mensalSocios = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__lte=data_atual).filter(categoria=7).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('-month')
     mensalImpostos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__lte=data_atual).filter(categoria=8).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('-month')
+    mensalTaxas = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__lte=data_atual).filter(categoria=11).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('-month')
 
     #Query para o mês atual das categorias de custos
     atualMensalVeiculos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__month=this_month).filter(categoria=1).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
@@ -99,6 +101,7 @@ def Index(request):
                                                   'instalacaoMesAtual':instalacaoMesAtual,
                                                   'sociosMesAtual':sociosMesAtual,
                                                   'ImpostosMesAtual':ImpostosMesAtual,
+                                                  'taxaMesAtual': taxaMesAtual,
 
                                                   'mensalVeiculos':mensalVeiculos,
                                                   'mensalFuncionarios':mensalFuncionarios,
@@ -108,6 +111,8 @@ def Index(request):
                                                   'mensalInstalacao':mensalInstalacao,
                                                   'mensalSocios':mensalSocios,
                                                   'mensalImpostos':mensalImpostos,
+                                                  'mensalTaxas': mensalTaxas,
+
                                                   'custo_mes':custo_mes,
                                                   })
 
