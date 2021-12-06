@@ -104,7 +104,7 @@
 
            <!-- Impostos - Gastos mês atual -->
            {% if taxaMesAtual.total %}
-           <div class="col shadow"> Impostos <h6>R$: {{ taxaMesAtual.total }}</h6> </div>
+           <div class="col shadow"> Taxas <h6>R$: {{ taxaMesAtual.total }}</h6> </div>
          {% elif taxaMesAtual.total is null %}
            <div class="col shadow"> Taxas <h3><i class="shopping cart icon"></i></h3> </div>
          {% endif %}
