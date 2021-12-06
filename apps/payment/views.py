@@ -225,6 +225,7 @@ def PagamentosFuturos(request):
 
     date = request.GET.get('date')
     motivoPagamento = request.GET.get('motivoPagamento')
+    valor = request.GET.get('valor')
 
     if date and motivoPagamento:
         naoVencidas = Pagamento.objects.filter(status_pago='False').\
@@ -234,6 +235,10 @@ def PagamentosFuturos(request):
     elif date:
         naoVencidas = Pagamento.objects.filter(status_pago='False').\
             filter().filter(Q(data_pagamento__exact=date))
+
+    elif valor:
+        naoVencidas = Pagamento.objects.filter(status_pago='False').\
+            filter().filter(Q(valor_pagamento__exact=valor))
 
     elif motivoPagamento:
         naoVencidas = Pagamento.objects.filter(status_pago='False').\
