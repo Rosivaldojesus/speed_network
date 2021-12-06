@@ -174,7 +174,7 @@ def ListaPagamentos(request):
 
     # Show payment per bank
     elif valor:
-        pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(Q(valor_pagamento__icontains=valor))
+        pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(Q(valor_pagamento__icontains=valor)).order_by('-data_pagamento')
 
     # Show payment per value and date
     elif valor and data:
