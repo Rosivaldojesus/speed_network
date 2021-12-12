@@ -9,8 +9,8 @@ from django.db.models import Q, Sum, Count
 from django.views.generic.edit import CreateView
 from django.db.models.functions import TruncMonth
 
-import plotly.graph_objs as go
-from plotly.offline import plot
+# import plotly.graph_objs as go
+# from plotly.offline import plot
 
 
 # Create your views here.

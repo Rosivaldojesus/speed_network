@@ -57,9 +57,9 @@ INSTALLED_APPS = [
     #Bibliotecas
     'crispy_forms',
     'ckeditor',
-    "bootstrap4",
+    #'bootstrap4',
     'widget_tweaks',
-    'rest_framework',
+    #'rest_framework',
 ]
 
 MIDDLEWARE = [

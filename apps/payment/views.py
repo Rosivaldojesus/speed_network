@@ -13,7 +13,7 @@ from django.contrib import messages
 from django.db.models.functions import ExtractMonth
 from django.db.models.functions import TruncMonth
 import csv
-import xlwt # Biblioteca Excel
+#import xlwt # Biblioteca Excel
 from django.http import HttpResponse
 from .forms import CadastrarFluxoForm
 from django.core.paginator import Paginator

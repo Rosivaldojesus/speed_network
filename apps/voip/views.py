@@ -7,9 +7,9 @@ from .forms import PortabilidadeEnviarAnaliseForm
 from django.contrib import messages
 
 #Serializer
-from .serializers import ServicoVoipSerializer
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+# from .serializers import ServicoVoipSerializer
+# from rest_framework.decorators import api_view
+# from rest_framework.response import Response
 
 # Create your views here.
 def Index(request):
@@ -211,8 +211,8 @@ def FinalizarNumeroVoipSemBoleto(request, id=None):
 
 
 #---------------- Serializers ----------------------------------
-@api_view(['GET', 'POST'])
-def ServicoVoip_list(request):
-    servico_voip = ServicoVoip.objects.all()
-    serializer = ServicoVoipSerializer(servico_voip, many=True)
-    return Response(serializer.data)
+# @api_view(['GET', 'POST'])
+# def ServicoVoip_list(request):
+#     servico_voip = ServicoVoip.objects.all()
+#     serializer = ServicoVoipSerializer(servico_voip, many=True)
+#     return Response(serializer.data)

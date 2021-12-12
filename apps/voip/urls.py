@@ -5,7 +5,7 @@ from .views import Index, AdicionarNumeroVoip, ListaVoipDisponiveis,\
     ListaVoipSemBoleto, SolicitarNumeroVoip, ListaVoipSolicitados
 from .views import FinalizarNumeroVoipSemBoleto
 
-from .views import ServicoVoip_list
+# from .views import ServicoVoip_list
 
 
 from .views import ListaPortabilidadeAguardando, PortabilidadeEnviarAnalise,\
@@ -35,7 +35,7 @@ urlpatterns = [
     path('lista-portabilidade-finalizados/', ListaPortabilidadeFinalizados),
 
     #----- Serializer ---------------------
-    path( 'api-voip/', ServicoVoip_list)
+    # path( 'api-voip/', ServicoVoip_list)
 
 
     ]
