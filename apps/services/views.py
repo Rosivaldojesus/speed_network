@@ -51,7 +51,7 @@ def Index(request):
 
 
     context = {
-        'graph': graph,
+        # 'graph': graph,
 
         'contarAbertos': contarAbertos,
         'contarFinalizados': contarFinalizados,
