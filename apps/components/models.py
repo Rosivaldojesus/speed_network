@@ -21,10 +21,10 @@ Datas de vencimentos
 
 
 class DataVencimento(models.Model):
-    data = models.CharField(max_length=100)
+    data = models.CharField(max_length=100, verbose_name="Data de Vencimento")
 
     class Meta:
-        verbose_name_plural = 'Datas Venciemento'
+        verbose_name_plural = 'Datas Vencimento'
 
     def __str__(self):
         return "{}".format(self.data)
