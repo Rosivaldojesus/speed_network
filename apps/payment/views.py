@@ -200,7 +200,7 @@ def AgendamentosPagamentos(request):
     totalPagarNaoVencidas = Pagamento.objects.filter(status_pago= 'False').filter(data_pagamento__gt=data_atual)\
         .aggregate(total=Sum('valor_pagamento'))
 
-    pagamentosFuturos = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(
+    pagamentosFuturos = Pagamento.objects.filter(status_pago= 'False').annotate(month=TruncMonth('data_pagamento')).filter(
         data_pagamento__gt=data_atual).values('month').annotate(
         c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
 
