@@ -160,7 +160,7 @@
 
 
 
-  <!--INÍCIO Custos total mensais-->
+  <!--INÍCIO Custos total mensais
   <div class="card shadow  border-0 mt-4">
     <div class="card-body">
       <h5 class="card-title">Custos Total por Mês</h5>
@@ -210,7 +210,7 @@
     </div>
   </div>
 
-  <!--FIM Custos total mensais-->
+ FIM Custos total mensais-->
     <hr>  
 
 
@@ -384,7 +384,7 @@
     var speedCanvas = document.getElementById("speedChart");
 
       Chart.defaults.global.defaultFontFamily = "Lato";
-      Chart.defaults.global.defaultFontSize = 14;
+      Chart.defaults.global.defaultFontSize = 10;
 
       var speedData = {
         labels: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
