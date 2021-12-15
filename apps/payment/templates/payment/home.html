@@ -1,57 +1,46 @@
-{% extends 'base.html' %}
-{% load static %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-{% block main %}
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+        <script>
+                Highcharts.chart('container', {
+                        chart: {
+                            type: 'line'
+                        },
+                        title: {
+                            text: 'Monthly Average Temperature'
+                        },
+                        subtitle: {
+                            text: 'Source: WorldClimate.com'
+                        },
+                        xAxis: {
+                            categories: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}]
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Temperature (°C)'
+                            }
+                        },
+                        plotOptions: {
+                            line: {
+                                dataLabels: {
+                                    enabled: true
+                                },
+                                enableMouseTracking: false
+                            }
+                        },
+                        series: [{
+                            name: 'Tokyo',
+                            data: [{% for mes in mes %} '{{ mes.c }}', {% endfor %}]
+                        }, ]
+                    });
 
 
 
-
-
-
-<!--  -------------------------------- Gráfico de Custos Mensais --------------------------------------------------------------- --->
-<div class="card">
-    <h5 class="card-header">Custos Mensais</h5>
-    <div class="card-body">
-      <canvas id="speedChart" width="600" height="100"></canvas>
-      <script>
-  
-      var speedCanvas = document.getElementById("speedChart");
-  
-        Chart.defaults.global.defaultFontFamily = "Lato";
-        Chart.defaults.global.defaultFontSize = 14;
-  
-        var speedData = {
-          labels: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
-          datasets: [{
-            label: "Valor (R$)",
-            data: [{% for mes in mes %} '{{ mes.c }}', {% endfor %}],
-            lineTension:0,
-            fill: false, 
-            borderColor: 'blue'
-          }]
-        };
-  
-        var chartOptions = {
-          legend: {
-            display: true,
-            position: 'top',
-            labels: {
-              boxWidth: 80,
-              fontColor: 'black'
-            }
-          }
-        };
-  
-        var lineChart = new Chart(speedCanvas, {
-          type: 'line',
-          data: speedData,
-          options: chartOptions
-        });
-      </script>
-      
-      
-    </div>
-  </div>      
-  <!--  ----------------------------------------------------------------------------------------------------------------------- --->
-
-{% endblock %}
+        </script>
+    </p>
+</figure>

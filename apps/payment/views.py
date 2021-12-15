@@ -26,9 +26,6 @@ def Home(request):
     # Query para o total de gastos de cada mês
     mes = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__lte=data_atual).filter(
         status_pago=True).values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
-    custo_mes = Pagamento.objects.annotate(month=TruncMonth('data_pagamento'),
-                                           c=Sum('valor_pagamento')).filter().values('month').annotate(
-        c=Sum('valor_pagamento')).filter(data_pagamento__lte=data_atual).filter().values('month', 'c').order_by('month')
 
 
 
