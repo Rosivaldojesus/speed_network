@@ -160,7 +160,7 @@
 
 
 
-  <!--INÍCIO Custos total mensais
+  <!--INÍCIO Custos total mensais-->
   <div class="card shadow  border-0 mt-4">
     <div class="card-body">
       <h5 class="card-title">Custos Total por Mês</h5>
@@ -171,8 +171,8 @@
                     series: [{
                       name: "Mensais",
                       data: [{% for mes in mes %} '{{ mes.c }}', {% endfor %}]
-    
-                      
+
+
                   }],
                     chart: {
                     height: 200,
@@ -203,15 +203,15 @@
                   };
                   var chart = new ApexCharts(document.querySelector("#chart"), options);
                   chart.render();
-      
+
           </script>
         </div>
       </div>
     </div>
   </div>
 
- FIM Custos total mensais-->
-    <hr>  
+  <!--FIM Custos total mensais-->
+    <hr>
 
 
     <hr>
@@ -219,10 +219,10 @@
     <!-- CUSTOS MENSAIS TOTAIS-->
     <div>
       <h6>Valores de custos Mensais</h6>
-      
+
     </div>
 
-  
+
     <div class="table-responsive">
       <table class="table table-bordered">
         <thead>
@@ -247,7 +247,7 @@
                 </div>
               {% endfor %}
             </td>
-  
+
             <td>
               {% for veiculos in mensalFuncionarios %}
                 <div class="card mt-1 border border-danger border-start-0" align="center">
@@ -255,7 +255,7 @@
                 </div>
               {% endfor %}
             </td>
-  
+
             <td>
               {% for veiculos in mensalAlimentacao %}
               <div class="card mt-1 border border-danger border-start-0" align="center">
@@ -263,7 +263,7 @@
               </div>
               {% endfor %}
             </td>
-  
+
             <td>
               {% for veiculos in mensalLinks %}
                 <div class="card mt-1 border border-danger border-start-0" align="center">
@@ -271,7 +271,7 @@
                 </div>
               {% endfor %}
             </td>
-  
+
             <td>
               {% for veiculos in mensalLocacao %}
               <div class="card mt-1 border border-danger border-start-0" align="center">
@@ -279,7 +279,7 @@
               </div>
               {% endfor %}
             </td>
-  
+
             <td>
               {% for veiculos in mensalInstalacao %}
               <div class="card mt-1 border border-danger border-start-0" align="center">
@@ -287,7 +287,7 @@
               </div>
               {% endfor %}
             </td>
-  
+
             <td>
               {% for veiculos in mensalSocios %}
               <div class="card mt-1 border border-danger border-start-0" align="center">
@@ -358,7 +358,7 @@
 										{{ locacao.total }},
 										{{ instalacao.total }},
 										{{ socios.total }}
-										
+
                   ]
 								}]
 							},
@@ -374,51 +374,7 @@
 
 
 
-<!--  -------------------------------- Gráfico de Custos Mensais --------------------------------------------------------------- --->
-<div class="card">
-  <h5 class="card-header">Custos Mensais</h5>
-  <div class="card-body">
-    <canvas id="speedChart" width="600" height="100"></canvas>
-    <script>
-    
-    var speedCanvas = document.getElementById("speedChart");
 
-      Chart.defaults.global.defaultFontFamily = "Lato";
-      Chart.defaults.global.defaultFontSize = 10;
-
-      var speedData = {
-        labels: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
-        datasets: [{
-          label: "Valor (R$)",
-          data: [{% for mes in mes %} '{{ mes.c }}', {% endfor %}],
-          lineTension:0,
-          fill: false, 
-          borderColor: 'blue'
-        }]
-      };
-
-      var chartOptions = {
-        legend: {
-          display: true,
-          position: 'top',
-          labels: {
-            boxWidth: 80,
-            fontColor: 'black'
-          }
-        }
-      };
-
-      var lineChart = new Chart(speedCanvas, {
-        type: 'line',
-        data: speedData,
-        options: chartOptions
-      });
-    </script>
-    
-    
-  </div>
-</div>      
-<!--  ----------------------------------------------------------------------------------------------------------------------- --->
 
 
 

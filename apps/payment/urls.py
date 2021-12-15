@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import Index, CadastrarPagamento
+from .views import Index, CadastrarPagamento, Home
 from .views import DashboardPagamentos, ListaPagamentos, AgendamentosPagamentos,\
     AgendarPagamento, ConfirmarPagamento, EditarPagamento, ExportarCSV,\
     PagamentosFuturos, PagamentosMensaisGrupos, FluxoEntradaSaida, FluxoCreate, ExportParaExcel
@@ -12,6 +12,7 @@ from .views import SalvarPagamento
 urlpatterns = [
     path('', Index),
     path('cadastrar-pagamento/', CadastrarPagamento),
+    path('home/', Home),
     path('dashboard-pagamentos/', DashboardPagamentos),
     path('lista-pagamentos/', ListaPagamentos),
     path('agendamentos-pagamentos/', AgendamentosPagamentos),
