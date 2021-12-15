@@ -24,7 +24,7 @@
           labels: [{% for mes in mes %}'{{ mes.month|date:'F Y' }}',{% endfor %}],
           datasets: [{
             label: "Valor (R$)",
-            data: [{% for mes in mes %}{{ mes.c }},{% endfor %}],
+            data: [{% for mes in mes %}'{{ mes.c }}',{% endfor %}],
             lineTension:0,
             fill: false, 
             borderColor: 'blue'
