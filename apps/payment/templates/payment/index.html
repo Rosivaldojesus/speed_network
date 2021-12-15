@@ -374,34 +374,51 @@
 
 
 
-
-
-
-
-
-
-
-
-<!--
-
-
-
-
-
-
-    </div>
-
-
-
-
-
-
-<hr>
-<hr>
-
-
-
+<!--  -------------------------------- Gráfico de Custos Mensais --------------------------------------------------------------- --->
+<div class="card">
+  <h5 class="card-header">Custos Mensais</h5>
+  <div class="card-body">
+    <canvas id="speedChart" width="600" height="100"></canvas>
+    <script>
     
+    var speedCanvas = document.getElementById("speedChart");
+
+      Chart.defaults.global.defaultFontFamily = "Lato";
+      Chart.defaults.global.defaultFontSize = 14;
+
+      var speedData = {
+        labels: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
+        datasets: [{
+          label: "Valor (R$)",
+          data: [{% for mes in mes %} '{{ mes.c }}', {% endfor %}],
+          lineTension:0,
+          fill: false, 
+          borderColor: 'blue'
+        }]
+      };
+
+      var chartOptions = {
+        legend: {
+          display: true,
+          position: 'top',
+          labels: {
+            boxWidth: 80,
+            fontColor: 'black'
+          }
+        }
+      };
+
+      var lineChart = new Chart(speedCanvas, {
+        type: 'line',
+        data: speedData,
+        options: chartOptions
+      });
+    </script>
+    
+    
+  </div>
+</div>      
+<!--  ----------------------------------------------------------------------------------------------------------------------- --->
 
 
 
@@ -409,26 +426,4 @@
 
 
 
-
-      </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-<hr>
-
-
-</div>
-</div>
 {% endblock %}
