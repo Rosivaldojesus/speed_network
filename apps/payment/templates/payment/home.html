@@ -1,64 +1,97 @@
-{% extends 'base.html' %}
-{% load static %}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-{% block main %}
+<!-- ***************************************************************************** -->
+
+<div id="chart">
+    <div id="timeline-chartMensais">
+        <script>
+            var options = {
+          series: [{
+          name: 'Inflation',
+          data: [{% for mes in mes %} '{{ mes.c }}', {% endfor %}]
+        }],
+          chart: {
+          height: 350,
+          type: 'bar',
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 10,
+            dataLabels: {
+              position: 'top', // top, center, bottom
+            },
+          }
+        },
+        dataLabels: {
+          enabled: true,
+          formatter: function (val) {
+            return val + "R$";
+          },
+          offsetY: -20,
+          style: {
+            fontSize: '12px',
+            colors: ["#304758"]
+          }
+        },
+        
+        xaxis: {
+          categories: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
+          position: 'top',
+          axisBorder: {
+            show: false
+          },
+          axisTicks: {
+            show: false
+          },
+          crosshairs: {
+            fill: {
+              type: 'gradient',
+              gradient: {
+                colorFrom: '#D8E3F0',
+                colorTo: '#BED1E6',
+                stops: [0, 100],
+                opacityFrom: 0.4,
+                opacityTo: 0.5,
+              }
+            }
+          },
+          tooltip: {
+            enabled: true,
+          }
+        },
+        yaxis: {
+          axisBorder: {
+            show: false
+          },
+          axisTicks: {
+            show: false,
+          },
+          labels: {
+            show: false,
+            formatter: function (val) {
+              return val + "%";
+            }
+          }
+        
+        },
+        title: {
+          text: 'Monthly Inflation in Argentina, 2002',
+          floating: true,
+          offsetY: 330,
+          align: 'center',
+          style: {
+            color: '#444'
+          }
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+        </script>
 
 
 
 
 
-
-<!--  -------------------------------- Gráfico de Custos Mensais --------------------------------------------------------------- --->
-<div class="card">
-    <h5 class="card-header">Custos Mensais</h5>
-    <div class="card-body">
-      <div id="chart">
-        <div id="timeline-chartMensais">
-          <script>
-          var options = {
-                    series: [{
-                      name: "Mensais",
-                      data: [{% for mes in mes %} '{{ mes.c }}', {% endfor %}]
-
-
-                  }],
-                    chart: {
-                    height: 200,
-                    type: 'line',
-                    zoom: {
-                      enabled: false
-                    }
-                  },
-                  dataLabels: {
-                    enabled: false
-                  },
-                  stroke: {
-                    curve: 'straight'
-                  },
-                  title: {
-                    text: '',
-                    align: 'left'
-                  },
-                  grid: {
-                    row: {
-                      colors: ['#f5f5f5', 'transparent'],
-                      opacity: 0.5
-                    },
-                  },
-                  xaxis: {
-                    categories: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
-                  }
-                  };
-                  var chart = new ApexCharts(document.querySelector("#chart"), options);
-                  chart.render();
-
-          </script>
-        </div>
-      </div>
-      
-      
     </div>
-  </div>      
-  <!--  ----------------------------------------------------------------------------------------------------------------------- --->
-
-{% endblock %}
+</div>
