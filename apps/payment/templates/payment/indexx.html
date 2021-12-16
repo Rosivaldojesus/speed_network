@@ -1,0 +1,281 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} .:: Finanças {% endblock %}
+
+
+
+
+
+https://cdn.jsdelivr.net/npm/package@version/file
+
+https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js
+
+https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js
+
+https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js
+
+https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js
+
+https://cdn.jsdelivr.net/npm/jquery@3.2.1/src/core.min.js
+
+https://cdn.jsdelivr.net/npm/jquery@3.2
+
+https://cdn.jsdelivr.net/npm/jquery/
+
+
+
+    <div>
+
+
+
+
+
+{% block main %}
+<div class="container-xl">
+
+    <!-- Título da pagina -->
+    <div class="bd-title mt-4 mb-1">
+        <h1 class="ui dividing header blue">Finanças</h1>
+    </div>
+
+    <!--Botões de navegações das finanças -->
+    <div align="right">
+        <a href="lista-pagamentos/" class="btn btn-info"><i class="far fa-eye"></i> Pagamentos</a>
+        <a href="cadastrar-pagamento/" class="btn btn-primary"><i class="far fa-plus-square"></i> Pagamento </a>
+        <a href="retiradas-gerencianet/" class="btn btn-warning"><i class="fas fa-file-invoice-dollar"></i></i> GerenciaNET </a>
+        <a href="exportar-csv/" class="btn btn-info" title="Exportar CSV"><i class="fas fa-file-csv"></i></a>
+    </div>
+
+    <!-- Custos do mês atual por grupo -->
+    <h3 class="ui dividing header blue">Custos do Mês Atual <a class="anchor" id="content"></a></h3>
+    <div class="card-group mt-3 " >
+        <!-- Veículos no mês atual-->
+        <div class="card shadow-sm"  align="center">
+            <p class="card-title">Veículos</p>
+            R$: {{ veiculosMesAtual.total }}
+        </div>
+
+        <!-- Funcionários no mês atual-->
+        <div class="card shadow-sm ml-1"  align="center">
+            <h6 class="card-title">Funcionários</h6>
+            
+            R$: {{ funcionariosMesAtual.total }}
+        </div>
+
+        <!-- Alimentação no mês atual-->
+        <div class="card shadow-sm ml-1" align="center">
+            <p>Alimentação</p>
+            R$: {{ alimentacaoMesAtual.total }}
+        </div>
+
+        <!-- Links no mês atual-->
+        <div class="card shadow-sm ml-1"  align="center">
+            <p>Links</p>
+            R$: {{ linksMesAtual.total }}
+        </div>
+
+        <!-- Locação no mês atual-->
+        <div class="card shadow-sm ml-1"  align="center">
+            <p>Locação</p>
+            R$: {{ locacaoMesAtual.total }}
+        </div>
+
+        <!-- Instalação no mês atual-->
+        <div class="card shadow-sm ml-1"  align="center">
+            <p>Instalação</p>
+            R$: {{ instalacaoMesAtual.total }}
+        </div>
+
+        <!-- Sócios no mês atual-->
+        <div class="card shadow-sm ml-1"  align="center">
+            <p>Sócios</p>
+            R$: {{ sociosMesAtual.total }}
+        </div>
+
+        <!-- Impostos no mês atual-->
+        <div class="card shadow-sm ml-1"  align="center">
+            <p>Impostos</p>
+            R$: {{ ImpostosMesAtual.total }}
+        </div>
+
+        <!-- Taxas no mês atual-->
+        <div class="card shadow-sm mr-1"  align="center">
+            <p>Taxas</p>
+            R$: {{ taxaMesAtual.total }}
+        </div>
+
+
+
+    </div>
+
+
+
+    <div>
+        <div id="chart_custos_mes_atual">
+            <div id="timeline-chart_custos_mes_atual">
+
+
+
+                <script>
+                   
+
+                    var options = {
+                        series: [{
+                        name: 'Marine Sprite',
+                        data: [10, 10]
+                        },{
+                        name: 'Marine Sprite',
+                        data: [10, 10]
+                        },
+                    
+                    
+                    ],
+                        chart: {
+                        type: 'bar',
+                        height: 350,
+                        stacked: true,
+                        },
+                        plotOptions: {
+                        bar: {
+                            horizontal: true,
+                        },
+                        },
+                        stroke: {
+                        width: 1,
+                        colors: ['#fff']
+                        },
+                        title: {
+                        text: 'Fiction Books Sales'
+                        },
+                        xaxis: {
+                        categories: [2008],
+                        labels: {
+                            formatter: function (val) {
+                            return val + "K"
+                            }
+                        }
+                        },
+                        yaxis: {
+                        title: {
+                            text: undefined
+                        },
+                        },
+                        tooltip: {
+                        y: {
+                            formatter: function (val) {
+                            return val + "K"
+                            }
+                        }
+                        },
+                        fill: {
+                        opacity: 1
+                        },
+                        legend: {
+                        position: 'top',
+                        horizontalAlign: 'left',
+                        offsetX: 40
+                        }
+                        };
+
+                            var chart = new ApexCharts(document.querySelector("#chart_custos_mes_atual"), options);
+                            chart.render();
+
+
+
+
+
+                </script>
+
+
+
+
+
+            </div>
+        </div>
+            
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+        <canvas id="myChart" width="400" height="200"></canvas>
+            <script>
+            var ctx = document.getElementById('myChart');
+
+            var veiculos = ("{{veiculosMesAtual|safe}}");
+            var funcionarios = 19;
+
+            var myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: [
+                        'Veículos',
+                        'Funcionários',
+      
+  
+                        ],
+
+
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [
+                            
+                        veiculos,
+                        funcionarios,
+                       
+     
+                    
+                    
+                    
+                    
+                    ],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            </script>
+    </div>
+
+
+
+
+
+
+    <!--Final da Página-->
+    <div class="mb-5">
+
+    </div>
+
+</div>
+{% endblock %}
