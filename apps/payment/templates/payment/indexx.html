@@ -117,98 +117,55 @@ https://cdn.jsdelivr.net/npm/jquery/
 
 
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <meta charset="UTF-8">
-    <script>
-    
-    window.onload = function () {
-    
-    var options = {
-        animationEnabled: true,
-        title: {
-            text: "GDP Growth Rate - 2016"
-        },
-        axisY: {
-            title: "Growth Rate (in %)",
-            suffix: "%"
-        },
-        axisX: {
-            title: "Countries"
-        },
-        data: [{
-            type: "column",
-            yValueFormatString: "#,##0.0#"%"",
-            dataPoints: [
-                { label: "Iraq", y: 10.09 },	
-                { label: "T & C Islands", y: 9.40 },
-                { label: "Nauru", y: 8.50 },
-                { label: "Ethiopia", y: 7.96 },	
-                { label: "Uzbekistan", y: 7.80 },
-                { label: "Nepal", y: 7.56 },
-                { label: "Iceland", y: 7.20 }
-            ]
-        }]
-    };
-    
-    
-    $("#showChart").click(function() {
-        
-        $("#dialogBox").dialog({
-            open: function(event,ui) {
-                $(".ui-widget-overlay").bind("click", function(event,ui) {         
-                    $("#dialogBox").dialog("close");
-                });
-            },
-            closeOnEscape: true,
-            draggable: false,
-            resizable: false,
-            title: "GDP Growth Rate",
-            width: 700,
-            modal: true,
-            show: 500
-        });
-        $(".ui-widget-overlay").css({"background-color": "#111111"});
-        $("#chartContainer").CanvasJSChart(options);
-    });
-    
-    }
-    </script>
-    <style>
-        #showChart{
-            background-color: #5bb85b;
-            color: #ffffff;
-            padding: 10px;
-            border: 0px;
-            border-radius: 8px;
-            font-size: 18px;
-            outline: none;
-            cursor: pointer;
-        } 
-          #container{
-            position: fixed;
-            top: 50%;
-            width:100%;
-            text-align: center;
-            margin-top: -41px;
-          }
-    </style>
-    </head>
-    <body>
-    <div id="container">
-        <button id="showChart">Click to Show Chart in a Pop-up</button>
-    </div>
-    <div id="dialogBox" style="display: none;">
-        <div id="chartContainer" class="dialog" style="height: 250px; width: 100%;"></div>
-    </div>
-    
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    </body>
-    </html>
+    <!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	exportEnabled: true,
+	theme: "light1", // "light1", "light2", "dark1", "dark2"
+	title:{
+		text: "Simple Column Chart with Index Labels"
+	},
+  	axisY: {
+      includeZero: true
+    },
+	data: [{
+		type: "column", //change type to bar, line, area, pie, etc
+		//indexLabel: "{y}", //Shows y value on all Data Points
+		indexLabelFontColor: "#5A5757",
+      	indexLabelFontSize: 16,
+		indexLabelPlacement: "outside",
+		dataPoints: [
+			{ x: 10, y: 71 },
+			{ x: 20, y: 55 },
+			{ x: 30, y: 50 },
+			{ x: 40, y: 65 },
+			{ x: 50, y: 92, indexLabel: "\u2605 Highest" },
+			{ x: 60, y: 68 },
+			{ x: 70, y: 38 },
+			{ x: 80, y: 71 },
+			{ x: 90, y: 54 },
+			{ x: 100, y: 60 },
+			{ x: 110, y: 36 },
+			{ x: 120, y: 49 },
+			{ x: 130, y: 21, indexLabel: "\u2691 Lowest" }
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
 
 
 
