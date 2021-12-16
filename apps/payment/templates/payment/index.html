@@ -103,7 +103,62 @@
     <div class="col-sm-6">
       <div class="card">
         <div class="card-body">
-          <canvas id="quantidadeManuais" width="400" height="250"></canvas>
+
+
+          <div id="chart_chart_custos_mensais_grupos">
+            <div id="timeline-chart_custos_mensais">
+
+            <script>
+              var options = {
+                  series: [
+                
+                
+                    {{ veiculosMesAtual.total }},
+                    {{ funcionariosMesAtual.total }},
+                    {{ veiculosMesAtual.total }},
+                    {{ veiculosMesAtual.total }},
+                    {{ veiculosMesAtual.total }},
+                    {{ veiculosMesAtual.total }},
+                    {{ veiculosMesAtual.total }},
+                    {{ veiculosMesAtual.total }},
+                    {{ veiculosMesAtual.total }},
+          
+                  ],
+                  chart: {
+                  width: 380,
+                  type: 'pie',
+                },
+                labels: [
+                  
+                
+                'Veículos',
+                 'Funcionários',
+                  'Alimentação',
+                   'Links',
+                    'Locação'
+              
+              
+                  ],
+                responsive: [{
+                  breakpoint: 480,
+                  options: {
+                    chart: {
+                      width: 200
+                    },
+                    legend: {
+                      position: 'bottom'
+                    }
+                  }
+                }]
+                };
+
+                var chart = new ApexCharts(document.querySelector("#chart_chart_custos_mensais_grupos"), options);
+                chart.render();
+            </script>
+
+            </div>
+          </div>
+
 
         </div>
       </div>

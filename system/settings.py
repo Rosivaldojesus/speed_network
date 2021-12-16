@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     #'bootstrap4',
     'widget_tweaks',
     #'rest_framework',
+    'django_matplotlib',
 ]
 
 MIDDLEWARE = [
