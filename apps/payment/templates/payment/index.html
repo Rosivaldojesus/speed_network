@@ -54,17 +54,15 @@
               var options = {
             series: [ 
 
-            {%if veiculosMesAtual.total is null %} 0 {% else %} {{ veiculosMesAtual.total }} {% endif %},
-            {%if funcionariosMesAtual.total is null %} 0 {% else %} {{ funcionariosMesAtual.total }} {% endif %},
-            {%if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total }} {% endif %},
-
-            {%if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total }} {% endif %},
-            {%if locacaoMesAtual.total is null %} 0 {% else %} {{ locacaoMesAtual.total }} {% endif %},
-            {%if instalacaoMesAtual.total is null %} 0 {% else %} {{ instalacaoMesAtual.total }} {% endif %},
-
-            {%if sociosMesAtual.total is null %} 0 {% else %} {{ sociosMesAtual.total }} {% endif %},
-            {%if ImpostosMesAtual.total is null %} 0 {% else %} {{ ImpostosMesAtual.total }} {% endif %},
-            {%if taxaMesAtual.total is null %} 0 {% else %} {{ taxaMesAtual.total }} {% endif %},
+            10,
+            20,
+            30,
+            40,
+            50,
+             60,
+              70,
+               80,
+                90,
 
 
 
@@ -115,18 +113,11 @@
 								// The data for our dataset
 								data: {
 									labels: [
-
                   {% if veiculosMesAtual.total != None %} 'Veículos',  {% endif %}
 
-                  {% if funcionariosMesAtual.total != None %} 'Funcionários',  {% endif %}
+                    ], 
 
-
                     
-      
-          
-                    
-                    
-                    ],
 									datasets: [{
 										label: 'Equipamentos nos clientes',
 										backgroundColor: '',
@@ -136,11 +127,8 @@
                     {% if veiculosMesAtual.total != None %} {{ veiculosMesAtual.total }}  {% endif %},
                     {% if funcionariosMesAtual.total != None %} {{ funcionariosMesAtual.total }}  {% endif %}
 
-
-
- 
-                    ],
-
+                    ], 
+              
 										backgroundColor: [
 										'rgba(0,100,255)',
 	
