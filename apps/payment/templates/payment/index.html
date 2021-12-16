@@ -52,17 +52,21 @@
           <div id="chartA">
             <script>
               var options = {
-            series: [
+            series: [ 
 
-              '{{ veiculosMesAtual.total }}',
-              '{{ funcionariosMesAtual.total }}',
-              '{{ alimentacaoMesAtual.total }}',
-              '{{ linksMesAtual.total }}',
-              '{{ locacaoMesAtual.total }}',
-              '{{ instalacaoMesAtual.total }}',
-              '{{ sociosMesAtual.total }}',
-              '{{ ImpostosMesAtual.total }}',
-              '{{ taxaMesAtual.total }}',
+            {%if veiculosMesAtual.total is null %} 0 {% else %} {{ veiculosMesAtual.total }} {% endif %},
+            {%if funcionariosMesAtual.total is null %} 0 {% else %} {{ funcionariosMesAtual.total }} {% endif %},
+            {%if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total }} {% endif %},
+
+            {%if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total }} {% endif %},
+            {%if locacaoMesAtual.total is null %} 0 {% else %} {{ locacaoMesAtual.total }} {% endif %},
+            {%if instalacaoMesAtual.total is null %} 0 {% else %} {{ instalacaoMesAtual.total }} {% endif %},
+
+            {%if sociosMesAtual.total is null %} 0 {% else %} {{ sociosMesAtual.total }} {% endif %},
+            {%if ImpostosMesAtual.total is null %} 0 {% else %} {{ ImpostosMesAtual.total }} {% endif %},
+            {%if taxaMesAtual.total is null %} 0 {% else %} {{ taxaMesAtual.total }} {% endif %},
+
+
 
             ],
             chart: {
@@ -101,9 +105,64 @@
     <div class="col-sm-6">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Manutenção</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <canvas id="quantidadeManuais" width="400" height="250"></canvas>
+						<script>
+							var ctxy = document.getElementById('quantidadeManuais').getContext('2d');
+							var myDoughnutChart = new Chart(ctxy, {
+								// The type of chart we want to create
+								type: 'pie',
+
+								// The data for our dataset
+								data: {
+									labels: [
+                    'Veículos',
+                    'Funcionários',
+                    'Alimentação',
+                    'Links',
+                    'Locação',
+                    'Instalação',
+                    'Sócios',
+                    'Impostos',
+                    'Taxas',
+
+          
+                    
+                    
+                    ],
+									datasets: [{
+										label: 'Equipamentos nos clientes',
+										backgroundColor: '',
+										borderColor: 'white',
+										data: [
+
+               
+
+
+                    {%if funcionariosMesAtual.total is null %} 100 {% else %} {{ funcionariosMesAtual.total }} {% endif %},
+
+
+
+
+                    
+                   
+                    
+                    
+                    
+                    ],
+
+										backgroundColor: [
+										'rgba(0,0,255)',
+										'rgba(79,79,79)',
+										'rgba(0,128,0)',
+										'rgba(255,215,0)',
+										'rgba(255,0,0)'
+										],
+									}]
+								},
+								// Configuration options go here
+								options: {}
+							});
+					</script>
         </div>
       </div>
     </div>
