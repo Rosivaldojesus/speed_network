@@ -54,15 +54,15 @@
               var options = {
             series: [ 
 
-            10,
-            20,
-            30,
-            40,
-            50,
-             60,
-              70,
-               80,
-                90,
+            {{ veiculosMesAtual.total }},
+            {{ veiculosMesAtual.total }},
+            {{ veiculosMesAtual.total }},
+            {{ veiculosMesAtual.total }},
+            {{ veiculosMesAtual.total }},
+            {{ veiculosMesAtual.total }},
+            {{ veiculosMesAtual.total }},
+            {{ veiculosMesAtual.total }},
+            {{ veiculosMesAtual.total }},
 
 
 
@@ -104,43 +104,7 @@
       <div class="card">
         <div class="card-body">
           <canvas id="quantidadeManuais" width="400" height="250"></canvas>
-						<script>
-							var ctxy = document.getElementById('quantidadeManuais').getContext('2d');
-							var myDoughnutChart = new Chart(ctxy, {
-								// The type of chart we want to create
-								type: 'pie',
 
-								// The data for our dataset
-								data: {
-									labels: [
-                  {% if veiculosMesAtual.total != None %} 'Veículos',  {% endif %}
-
-                    ], 
-
-                    
-									datasets: [{
-										label: 'Equipamentos nos clientes',
-										backgroundColor: '',
-										borderColor: 'white',
-										data: [
-
-                    {% if veiculosMesAtual.total != None %} {{ veiculosMesAtual.total }}  {% endif %},
-                    {% if funcionariosMesAtual.total != None %} {{ funcionariosMesAtual.total }}  {% endif %}
-
-                    ], 
-              
-										backgroundColor: [
-										'rgba(0,100,255)',
-	
-								
-										
-										],
-									}]
-								},
-								// Configuration options go here
-								options: {}
-							});
-					</script>
         </div>
       </div>
     </div>
