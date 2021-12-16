@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     #'rest_framework',
     'django_matplotlib',
+    'chartjs'
 ]
 
 MIDDLEWARE = [

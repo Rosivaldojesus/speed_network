@@ -52,9 +52,15 @@ class IndexTemplateView(TemplateView):
 
 
 def Home(request):
+    this_month = date.today().month # Variável do mês atual
+    veiculosMesAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=1).aggregate(total=Sum('valor_pagamento'))
+    
+    data = veiculosMesAtual
 
-
-    return render(request, 'payment/home.html')
+    context = {
+        'data': data,
+    }
+    return render(request, 'payment/home.html', context)
 
 
 def Index(request):
