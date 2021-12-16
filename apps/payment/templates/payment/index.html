@@ -39,6 +39,78 @@
   </div>
   <!-- FIM Botões financeiros -->
 
+
+
+
+  <!-- ******************************************************************************************************** -->
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+
+
+          <div id="chartA">
+            <script>
+              var options = {
+            series: [
+
+              '{{ veiculosMesAtual.total }}',
+              '{{ funcionariosMesAtual.total }}',
+              '{{ alimentacaoMesAtual.total }}',
+              '{{ linksMesAtual.total }}',
+              '{{ locacaoMesAtual.total }}',
+              '{{ instalacaoMesAtual.total }}',
+              '{{ sociosMesAtual.total }}',
+              '{{ ImpostosMesAtual.total }}',
+              '{{ taxaMesAtual.total }}',
+
+            ],
+            chart: {
+            width: 380,
+            type: 'pie',
+          },
+          labels: ['Veículos', 'Funcionários', 'Alimentação', 'Links', 'Locação', 'Instalação', 'Sócios', 'Impostos', 'Taxas'],
+          responsive: [{
+            breakpoint: 480,
+            options: {
+              chart: {
+                width: 200
+              },
+              legend: {
+                position: 'bottom'
+              }
+            }
+          }]
+          };
+  
+          var chart = new ApexCharts(document.querySelector("#chartA"), options);
+          chart.render();
+        
+            </script>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+    <!-- -------------------------------------------------------------------------------------------------------------------   -->
+
+
+
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Manutenção</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ******************************************************************************************************** -->
+
   <!--INÍCIO Custos mês atual -->
   <div class="mt-4">
     <div class="card">
