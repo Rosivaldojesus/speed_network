@@ -42,6 +42,8 @@ class Pagamento(models.Model):
     categoria = models.ForeignKey(CategoriaPagamento, on_delete=models.DO_NOTHING)
     status_pago = models.BooleanField(default=False, verbose_name='Pago')
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name_plural = 'Pagamento'
 

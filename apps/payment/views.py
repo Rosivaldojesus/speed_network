@@ -1,26 +1,53 @@
 from datetime import date, datetime
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect, get_object_or_404
-from django.db.models import Q, Sum, Count
+from django.db.models import Q, Sum
 from django.views.generic import CreateView, UpdateView
 from django.views.generic.list import ListView
 from .forms import CadastarDestinoValoresBoletosForm, EditarDestinoValoresBoletosForm
-from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas, DestinoValoresBoletos
-from .models import ClientesEntregaBoletos
+from .models import Pagamento, FluxoEntradasSaidas, DestinoValoresBoletos, ClientesEntregaBoletos
 from .forms import CadastarPagamentoForm, AgendarPagamentoForm, ComfirmarPagamentoForm, EditarPagamentoForm
 from .forms import ClientesEntregaBoletosForm, EditarClientesEntregaBoletosForm
 from django.contrib import messages
 from django.db.models.functions import ExtractMonth
 from django.db.models.functions import TruncMonth
 import csv
-#import xlwt # Biblioteca Excel
 from django.http import HttpResponse
 from .forms import CadastrarFluxoForm
 from django.core.paginator import Paginator
-
+from django.views.generic import TemplateView
+import json
 
 # Create your views here.
 
+
+class IndexTemplateView(TemplateView):
+    model = Pagamento
+    template_name = 'payment/indexx.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        data_atual = datetime.now() # Variável da data de hoje
+        this_month = date.today().month # Variável do mês atual
+
+        # Query de mês atual dos gastos por categoria
+        context['veiculosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=1).aggregate(total=Sum('valor_pagamento'))
+        context['funcionariosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=2).aggregate(total=Sum('valor_pagamento'))
+        context['alimentacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=3).aggregate(total=Sum('valor_pagamento'))
+        context['linksMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=4).aggregate(total=Sum('valor_pagamento'))
+        context['locacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=5).aggregate(total=Sum('valor_pagamento'))
+        context['instalacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
+        context['sociosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=7).aggregate(total=Sum('valor_pagamento'))
+        context['ImpostosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=8).aggregate(total=Sum('valor_pagamento'))
+        context['taxaMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=11).aggregate(total=Sum('valor_pagamento'))
+
+
+        veiculosAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=1).aggregate(total=Sum('valor_pagamento'))
+
+
+        context['veiculos'] = veiculosAtual
+
+        return context
 
 
 
@@ -349,44 +376,6 @@ def ExportarCSV(request):
     return response
 
 
-def ExportParaExcel(request):
-    response = HttpResponse(content_type='application/ms-excel')
-    response['Content-Disposition'] = 'attachment; filename="users.xls"'
-
-    wb = xlwt.Workbook(encoding='utf-8')
-    ws = wb.add_sheet('Users')
-
-    # Sheet header, first row
-    row_num = 0
-
-    font_style = xlwt.XFStyle()
-    font_style.font.bold = True
-
-    columns = ['motivo_pagamento','data_pagamento','valor_pagamento', 'origem_valor_pagamento', 'tipo_custo_pagamento',
-               'categoria', 'status_pago'
-               ]
-
-    for col_num in range(len(columns)):
-        ws.write(row_num, col_num, columns[col_num], font_style)
-
-    # Sheet body, remaining rows
-    font_style = xlwt.XFStyle()
-
-    rows = Pagamento.objects.all()#.values_list('username', 'first_name', 'last_name', 'email')
-
-    for row in rows:
-        row_num += 1
-        ws.write(row_num,0,row.motivo_pagamento , font_style)
-        ws.write(row_num,1,row.data_pagamento , font_style)
-        ws.write(row_num,2,row.valor_pagamento , font_style)
-        ws.write(row_num,3,row.origem_valor_pagamento.origem_valor , font_style)
-        ws.write(row_num,4,row.tipo_custo_pagamento.tipo_custo , font_style)
-        ws.write(row_num,5,row.data_pagamento , font_style)
-        ws.write(row_num,6,row.categoria.nome_categoria , font_style)
-        ws.write(row_num,7,row.status_pago , font_style)
-
-    wb.save(response)
-    return response
 
 
 def SalvarPagamento(request):

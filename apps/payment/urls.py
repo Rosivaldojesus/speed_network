@@ -2,14 +2,26 @@ from django.urls import path
 from .views import Index, CadastrarPagamento, Home
 from .views import DashboardPagamentos, ListaPagamentos, AgendamentosPagamentos,\
     AgendarPagamento, ConfirmarPagamento, EditarPagamento, ExportarCSV,\
-    PagamentosFuturos, PagamentosMensaisGrupos, FluxoEntradaSaida, FluxoCreate, ExportParaExcel
+    PagamentosFuturos, PagamentosMensaisGrupos, FluxoEntradaSaida, FluxoCreate
 
 from .views import RetiradasGerencianetCreateView, RetiradasGerencianetUpdateView, RetiradasGerencianet
 
 from .views import EntregaBoletosListView, EntregaBoletosCreateView, EditarEntregaBoletosUpdateView
 from .views import SalvarPagamento
 
+
+from .views import IndexTemplateView
+
+
+
+
 urlpatterns = [
+    path('indexx/', IndexTemplateView.as_view(), name='indexx'),
+
+
+
+
+
     path('', Index),
     path('cadastrar-pagamento/', CadastrarPagamento),
     path('home/', Home),
@@ -43,6 +55,6 @@ urlpatterns = [
     path('salvar-pahemnto/', SalvarPagamento),
 
      path('exportar-csv/', ExportarCSV),
-    path('exportar-excel/', ExportParaExcel),
+
     #path('exportar-excel/', ExportParaExcel().as_view(), name='exportar-excel'),
 ]
