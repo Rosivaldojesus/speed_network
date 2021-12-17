@@ -27,8 +27,20 @@
                         
                         //Funcionários
                         {
-                            name: "Session Duration",
+                            name: "Funcionários",
                             data: [{% for veiculos in mensalFuncionarios %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                        },
+
+                        //Alimentação
+                        {
+                            name: "Alimentação",
+                            data: [{% for veiculos in mensalAlimentacao %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                        },
+
+                        //Alimentação
+                        {
+                            name: "Links",
+                            data: [{% for veiculos in mensalLinks %}  '{{ veiculos.c|safe}}', {% endfor %}]
                         }
 
 
