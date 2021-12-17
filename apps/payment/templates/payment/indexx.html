@@ -263,91 +263,95 @@ https://cdn.jsdelivr.net/npm/jquery/
 
 <!-- =========================================================================================================== -->
 <!-- =========================================================================================================== -->
-<h3 class="ui dividing header blue">Custos do Mensais <a class="anchor" id="content"></a></h3>
-<div>
-    <figure class="highcharts-figure">
-        <div id="container_custos_mensais"></div>
-        <p class="highcharts-description">
-            <script>
-                Highcharts.chart('container_custos_mensais', {
-                    chart: {
-                        zoomType: 'xy'
+<div id="chart_A">
+    <div id="timeline-chart_custos_mensais">
+        <script>
+            var options = {
+                series: [{
+                name: 'Custos',
+                data: [{% for mes in mes %} '{{ mes.c }}', {% endfor %}]
+                }],
+                chart: {
+                height: 350,
+                type: 'bar',
+                },
+                plotOptions: {
+                bar: {
+                    borderRadius: 10,
+                    dataLabels: {
+                    position: 'top', // top, center, bottom
                     },
-                    title: {
-                        text: 'Average Monthly Temperature and Rainfall in Tokyo'
-                    },
-                    subtitle: {
-                        text: 'Source: WorldClimate.com'
-                    },
-                    xAxis: [{
-                        categories: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
-                        crosshair: true
-                    }],
-                    yAxis: [{ // Primary yAxis
-                        labels: {
-                            format: '{value}°C',
-                            style: {
-                                color: Highcharts.getOptions().colors[1]
-                            }
-                        },
-                        title: {
-                            text: 'Temperature',
-                            style: {
-                                color: Highcharts.getOptions().colors[1]
-                            }
-                        }
-                    }, { // Secondary yAxis
-                        title: {
-                            text: 'Rainfall',
-                            style: {
-                                color: Highcharts.getOptions().colors[0]
-                            }
-                        },
-                        labels: {
-                            format: '{value} mm',
-                            style: {
-                                color: Highcharts.getOptions().colors[0]
-                            }
-                        },
-                        opposite: true
-                    }],
-                    tooltip: {
-                        shared: true
-                    },
-                    legend: {
-                        layout: 'vertical',
-                        align: 'left',
-                        x: 120,
-                        verticalAlign: 'top',
-                        y: 100,
-                        floating: true,
-                        backgroundColor:
-                            Highcharts.defaultOptions.legend.backgroundColor || // theme
-                            'rgba(255,255,255,0.25)'
-                    },
-                    series: [{
-                        name: 'Rainfall',
-                        type: 'column',
-                        yAxis: 1,
-                        data: [100, 122],
-                        tooltip: {
-                            valueSuffix: ' mm'
-                        }
+                }
+                },
+                dataLabels: {
+                enabled: true,
+                formatter: function (val) {
+                    return "R$: " + val;
+                },
+                offsetY: -20,
+                style: {
+                    fontSize: '12px',
+                    colors: ["#304758"]
+                }
+                },
+                
+                xaxis: {
+                categories: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
+                position: 'top',
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false
+                },
+                crosshairs: {
+                    fill: {
+                    type: 'gradient',
+                    gradient: {
+                        colorFrom: '#D8E3F0',
+                        colorTo: '#BED1E6',
+                        stops: [0, 100],
+                        opacityFrom: 0.4,
+                        opacityTo: 0.5,
+                    }
+                    }
+                },
+                tooltip: {
+                    enabled: true,
+                }
+                },
+                yaxis: {
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false,
+                },
+                labels: {
+                    show: false,
+                    formatter: function (val) {
+                    return val + "%";
+                    }
+                }
+                
+                },
+                title: {
+                text: 'Custos Mensais',
+                floating: true,
+                offsetY: 330,
+                align: 'center',
+                style: {
+                    color: '#444'
+                }
+                }
+                };
 
-                    }, {
-                        name: 'Temperature',
-                        type: 'spline',
-                        data: [100, 122],
-                        tooltip: {
-                            valueSuffix: '°C'
-                        }
-                    }]
-                });
-            </script>
-        </p>
-    </figure>
-
-</div>
+                var chart = new ApexCharts(document.querySelector("#chart_A"), options);
+                chart.render();
+                </script>
+            </div>
+  </div>
+    
 
 <!-- =========================================================================================================== -->
 <!-- =========================================================================================================== -->
@@ -361,80 +365,7 @@ https://cdn.jsdelivr.net/npm/jquery/
 
 
 
-<div id="chart_A">
-    <div id="timeline-chart_custos_mensais">
-        <script>
-            var options = {
-                series: [
-                {
-                    name: "High - 2013",
-                    data: [{% for mes in mes %} '{{ mes.c}}', {% endfor %}]
-                }
-                ],
-                chart: {
-                height: 350,
-                type: 'line',
-                dropShadow: {
-                    enabled: true,
-                    color: '#000',
-                    top: 18,
-                    left: 7,
-                    blur: 10,
-                    opacity: 0.2
-                },
-                toolbar: {
-                    show: false
-                }
-                },
-                colors: ['#77B6EA', '#545454'],
-                dataLabels: {
-                enabled: true,
-                },
-                stroke: {
-                curve: 'smooth'
-                },
-                title: {
-                text: 'Average High & Low Temperature',
-                align: 'left'
-                },
-                grid: {
-                borderColor: '#e7e7e7',
-                row: {
-                    colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-                    opacity: 0.5
-                },
-                },
-                markers: {
-                size: 1
-                },
-                xaxis: {
-                categories: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
-                title: {
-                    text: 'Month'
-                }
-                },
-                yaxis: {
-                title: {
-                    text: 'Temperature'
-                },
-                min: 5,
-                max: 40
-                },
-                legend: {
-                position: 'top',
-                horizontalAlign: 'right',
-                floating: true,
-                offsetY: -25,
-                offsetX: -5
-                }
-                };
 
-                var chart = new ApexCharts(document.querySelector("#chart_A"), options);
-                chart.render();
-        </script>
-    </div>
-</div>
-    
 
 
 
