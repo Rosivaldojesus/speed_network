@@ -10,13 +10,15 @@ from .views import EntregaBoletosListView, EntregaBoletosCreateView, EditarEntre
 from .views import SalvarPagamento
 
 
-from .views import IndexTemplateView
+from .views import IndexTemplateView, CustoMensalCategoriaView
 
 
 
 
 urlpatterns = [
     path('indexx/', IndexTemplateView.as_view(), name='indexx'),
+    path('custo-mensal-categoria', CustoMensalCategoriaView.as_view(), name='custo_mensal_categoria' ),
+
 
 
 
