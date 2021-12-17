@@ -16,7 +16,7 @@ from django.http import HttpResponse
 from .forms import CadastrarFluxoForm
 from django.core.paginator import Paginator
 from django.views.generic import TemplateView
-import json
+
 
 # Create your views here.
 
@@ -27,19 +27,28 @@ class IndexTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        data_atual = datetime.now() # Variável da data de hoje
-        this_month = date.today().month # Variável do mês atual
+        #data_atual = datetime.now()  #  Variável da data de hoje
+        this_month = date.today().month  # Variável do mês atual
 
         # Query de mês atual dos gastos por categoria
-        context['veiculosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=1).aggregate(total=Sum('valor_pagamento'))
-        context['funcionariosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=2).aggregate(total=Sum('valor_pagamento'))
-        context['alimentacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=3).aggregate(total=Sum('valor_pagamento'))
-        context['linksMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=4).aggregate(total=Sum('valor_pagamento'))
-        context['locacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=5).aggregate(total=Sum('valor_pagamento'))
-        context['instalacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
-        context['sociosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=7).aggregate(total=Sum('valor_pagamento'))
-        context['ImpostosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=8).aggregate(total=Sum('valor_pagamento'))
-        context['taxaMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=11).aggregate(total=Sum('valor_pagamento'))
+        context['veiculosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
+            status_pago=True).filter(categoria=1).aggregate(total=Sum('valor_pagamento'))
+        context['funcionariosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
+            status_pago=True).filter(categoria=2).aggregate(total=Sum('valor_pagamento'))
+        context['alimentacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
+            status_pago=True).filter(categoria=3).aggregate(total=Sum('valor_pagamento'))
+        context['linksMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
+            status_pago=True).filter(categoria=4).aggregate(total=Sum('valor_pagamento'))
+        context['locacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
+            status_pago=True).filter(categoria=5).aggregate(total=Sum('valor_pagamento'))
+        context['instalacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
+            status_pago=True).filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
+        context['sociosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
+            status_pago=True).filter(categoria=7).aggregate(total=Sum('valor_pagamento'))
+        context['ImpostosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
+            status_pago=True).filter(categoria=8).aggregate(total=Sum('valor_pagamento'))
+        context['taxaMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
+            status_pago=True).filter(categoria=11).aggregate(total=Sum('valor_pagamento'))
 
 
 

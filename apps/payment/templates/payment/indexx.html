@@ -117,52 +117,55 @@ https://cdn.jsdelivr.net/npm/jquery/
 
 
 
-    <!DOCTYPE HTML>
-    <html>
-    <head>
-    <script>
-    window.onload = function () {
+   
     
-    var chart = new CanvasJS.Chart("chartContainer", {
-        animationEnabled: true,
-        theme: "light2", // "light1", "light2", "dark1", "dark2"
-        title: {
-            text: "GDP Growth Rate - 2016"
-        },
-        axisY: {
-            title: "Growth Rate (in %)",
-            suffix: "%"
-        },
-        axisX: {
-            title: "Countries"
-        },
-        data: [{
-            type: "column",
-            yValueFormatString: "#,##0.0#\"%\"",
-            dataPoints: [
-                { label: "Veículos", y: {% if veiculosMesAtual.total is null %} 0 {% else %} {{ veiculosMesAtual.total }} {% endif %} },	
-                { label: "Funcionários", y: {% if funcionariosMesAtual.total is null %} 0 {% else %} {{ funcionariosMesAtual.total }} {% endif %} },	
-                { label: "Alimentação", y: {% if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total|safe }} {% endif %} },
-                { label: "Links", y: {% if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total|safe }} {% endif %} },                
-                { label: "Locação", y: {% if locacaoMesAtual.total is null %} 0 {% else %} {{ locacaoMesAtual.total|safe }} {% endif %} },
-                { label: "Instalação", y: {% if instalacaoMesAtual.total is null %} 0 {% else %} {{ instalacaoMesAtual.total|safe }} {% endif %} },
-                { label: "Sócios", y: {% if sociosMesAtual.total is null %} 0 {% else %} {{ sociosMesAtual.total|safe }} {% endif %} },
-                { label: "Impostos", y: {% if ImpostosMesAtual.total is null %} 0 {% else %} {{ ImpostosMesAtual.total|safe }} {% endif %} },
-                { label: "Taxas", y: {% if taxaMesAtual.total is null %} 0 {% else %} {{ taxaMesAtual.total|safe }} {% endif %} },
-            ]
-        }]
-    });
-    chart.render();
-    
-    }
-    </script>
-    </head>
-    <body>
-    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    </body>
-    </html>
+    <div class="mt-5 shadow">
+        <script>
+            window.onload = function () {
+            
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                theme: "light2", // "light1", "light2", "dark1", "dark2"
+                title: {
+                    text: "GDP Growth Rate - 2016"
+                },
+                axisY: {
+                    title: "Growth Rate (in %)",
+                    suffix: "%"
+                },
+                axisX: {
+                    title: "Countries"
+                },
+                data: [{
+                    type: "column",
+                    yValueFormatString: "#,##0.0#\"%\"",
+                    dataPoints: [
+                        { label: "Veículos", y: {% if veiculosMesAtual.total is null %} 0 {% else %} {{ veiculosMesAtual.total|safe }} {% endif %} },	
+                        { label: "Funcionários", y: {% if funcionariosMesAtual.total is null %} 0 {% else %} {{ funcionariosMesAtual.total|safe }} {% endif %} },		
+                        { label: "Alimentação", y: {% if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total|safe }} {% endif %} },
+                        { label: "Links", y: {% if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total|safe }} {% endif %} },	
+                        { label: "Locação", y: {% if locacaoMesAtual.total is null %} 0 {% else %} {{ locacaoMesAtual.total|safe }} {% endif %} },	
+                        { label: "Instalação", y: {% if instalacaoMesAtual.total is null %} 0 {% else %} {{ instalacaoMesAtual.total|safe }} {% endif %} },
+                        { label: "Sócios", y: {% if sociosMesAtual.total is null %} 0 {% else %} {{ sociosMesAtual.total|safe }} {% endif %} },
+                        { label: "Impostos", y: {% if ImpostosMesAtual.total is null %} 0 {% else %} {{ ImpostosMesAtual.total|safe }} {% endif %} },
+                        { label: "Taxas", y: {% if taxaMesAtual.total is null %} 0 {% else %} {{ taxaMesAtual.total|safe }} {% endif %} },
+                        
+                    ]
+                }]
+            });
+            chart.render();
+            
+            }
+            </script>
+            </head>
+            <body>
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        
+    </div>
 
+   
+    
 
 
 
