@@ -173,10 +173,8 @@ https://cdn.jsdelivr.net/npm/jquery/
                       
                             </script>
                         </div>
-                    </div>
-                        
+                    </div>  
                 </div>
-                
                 <!-- =========================================================================================================== -->
             </div>
           </div>
@@ -263,20 +261,97 @@ https://cdn.jsdelivr.net/npm/jquery/
 <!-- =========================================================================================================== -->
 
 
+<!-- =========================================================================================================== -->
+<!-- =========================================================================================================== -->
+<h3 class="ui dividing header blue">Custos do Mensais <a class="anchor" id="content"></a></h3>
+<div>
+    <figure class="highcharts-figure">
+        <div id="container_custos_mensais"></div>
+        <p class="highcharts-description">
+            <script>
+                Highcharts.chart('container_custos_mensais', {
+                    chart: {
+                        zoomType: 'xy'
+                    },
+                    title: {
+                        text: 'Average Monthly Temperature and Rainfall in Tokyo'
+                    },
+                    subtitle: {
+                        text: 'Source: WorldClimate.com'
+                    },
+                    xAxis: [{
+                        categories: [{% for mes in custos_meses %} '{{ mes.month|date:'F Y' }}', {% endfor %}
+                        ],
+                        crosshair: true
+                    }],
+                    yAxis: [{ // Primary yAxis
+                        labels: {
+                            format: '{value}°C',
+                            style: {
+                                color: Highcharts.getOptions().colors[1]
+                            }
+                        },
+                        title: {
+                            text: 'Temperature',
+                            style: {
+                                color: Highcharts.getOptions().colors[1]
+                            }
+                        }
+                    }, { // Secondary yAxis
+                        title: {
+                            text: 'Rainfall',
+                            style: {
+                                color: Highcharts.getOptions().colors[0]
+                            }
+                        },
+                        labels: {
+                            format: '{value} mm',
+                            style: {
+                                color: Highcharts.getOptions().colors[0]
+                            }
+                        },
+                        opposite: true
+                    }],
+                    tooltip: {
+                        shared: true
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'left',
+                        x: 120,
+                        verticalAlign: 'top',
+                        y: 100,
+                        floating: true,
+                        backgroundColor:
+                            Highcharts.defaultOptions.legend.backgroundColor || // theme
+                            'rgba(255,255,255,0.25)'
+                    },
+                    series: [{
+                        name: 'Rainfall',
+                        type: 'column',
+                        yAxis: 1,
+                        data: [{% for mes in custos_meses %} '{{ mes.c}}', {% endfor %}],
+                        tooltip: {
+                            valueSuffix: ' mm'
+                        }
 
+                    }, {
+                        name: 'Temperature',
+                        type: 'spline',
+                        data: [{% for mes in custos_meses %} '{{ mes.c}}', {% endfor %}],
+                        tooltip: {
+                            valueSuffix: '°C'
+                        }
+                    }]
+                });
+            </script>
+        </p>
+    </figure>
 
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
+<!-- =========================================================================================================== -->
+<!-- =========================================================================================================== -->
 
     <!--Final da Página-->
     <div class="mb-5">
