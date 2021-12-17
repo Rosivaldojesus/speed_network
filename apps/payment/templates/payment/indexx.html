@@ -54,56 +54,56 @@ https://cdn.jsdelivr.net/npm/jquery/
         <!-- Veículos no mês atual-->
         <div class="card shadow-sm"  align="center">
             <p class="card-title">Veículos</p>
-            R$: {{ veiculosMesAtual.total }}
+            R$: {{ veiculosMesAtual.total|safe }}
         </div>
 
         <!-- Funcionários no mês atual-->
         <div class="card shadow-sm ml-1"  align="center">
             <h6 class="card-title">Funcionários</h6>
             
-            R$: {{ funcionariosMesAtual.total }}
+            R$: {{ funcionariosMesAtual.total|safe }}
         </div>
 
         <!-- Alimentação no mês atual-->
         <div class="card shadow-sm ml-1" align="center">
             <p>Alimentação</p>
-            R$: {{ alimentacaoMesAtual.total }}
+            R$: {{ alimentacaoMesAtual.total|safe }}
         </div>
 
         <!-- Links no mês atual-->
         <div class="card shadow-sm ml-1"  align="center">
             <p>Links</p>
-            R$: {{ linksMesAtual.total }}
+            R$: {{ linksMesAtual.total|safe }}
         </div>
 
         <!-- Locação no mês atual-->
         <div class="card shadow-sm ml-1"  align="center">
             <p>Locação</p>
-            R$: {{ locacaoMesAtual.total }}
+            R$: {{ locacaoMesAtual.total|safe }}
         </div>
 
         <!-- Instalação no mês atual-->
         <div class="card shadow-sm ml-1"  align="center">
             <p>Instalação</p>
-            R$: {{ instalacaoMesAtual.total }}
+            R$: {{ instalacaoMesAtual.total|safe }}
         </div>
 
         <!-- Sócios no mês atual-->
         <div class="card shadow-sm ml-1"  align="center">
             <p>Sócios</p>
-            R$: {{ sociosMesAtual.total }}
+            R$: {{ sociosMesAtual.total|safe }}
         </div>
 
         <!-- Impostos no mês atual-->
         <div class="card shadow-sm ml-1"  align="center">
             <p>Impostos</p>
-            R$: {{ ImpostosMesAtual.total }}
+            R$: {{ ImpostosMesAtual.total|safe }}
         </div>
 
         <!-- Taxas no mês atual-->
-        <div class="card shadow-sm mr-1"  align="center">
+        <div class="card shadow-sm ml-1"  align="center">
             <p>Taxas</p>
-            R$: {{ taxaMesAtual.total }}
+            R$: {{ taxaMesAtual.total|safe }}
         </div>
     </div>
 <!-- =========================================================================================================== -->
@@ -114,7 +114,7 @@ https://cdn.jsdelivr.net/npm/jquery/
 <div class="mt-3">
     <div class="row">
         <div class="col-sm-7">
-          <div class="card h-100">
+          <div class="card h-100 shadow border-0">
             <div class="card-body">
                 <!-- =========================================================================================================== -->
                 <!-- Gráficos com os gastos do mês atual por categorias -->
@@ -166,7 +166,7 @@ https://cdn.jsdelivr.net/npm/jquery/
           </div>
         </div>
         <div class="col-sm-5">
-          <div class="card h-100">
+          <div class="card h-100 shadow border-0">
             <div class="card-body">
                 <!-- =========================================================================================================== -->
                 <div id="chart">
