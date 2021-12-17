@@ -113,102 +113,146 @@ https://cdn.jsdelivr.net/npm/jquery/
 <!-- =========================================================================================================== -->
 <div class="mt-3">
     <div class="row">
-        <div class="col-sm-7">
+        <div class="col-sm-6">
           <div class="card h-100 shadow border-0">
             <div class="card-body">
                 <!-- =========================================================================================================== -->
                 <!-- Gráficos com os gastos do mês atual por categorias -->
-                    <div class="h-100">
-                        <script>
-                            window.onload = function () {
-                            
-                            var chart = new CanvasJS.Chart("chartContainer", {
-                                animationEnabled: true,
-                                theme: "light2", // "light1", "light2", "dark1", "dark2"
-                                title: {
-                                    text: "Gastos no mês {% now "F Y" %}"
-                                },
-                                axisY: {
-                                    title: "Valor (R$)",
-                                    suffix: "R$"
-                                },
-                                axisX: {
-                                    title: "Categorias"
-                                },
-                                data: [{
-                                    type: "column",
-                                    yValueFormatString: "#,##0.0#\"%\"",
-                                    dataPoints: [
-                                        { label: "Veículos", y: {% if veiculosMesAtual.total is null %} 0 {% else %} {{ veiculosMesAtual.total|safe }} {% endif %} },	
-                                        { label: "Funcionários", y: {% if funcionariosMesAtual.total is null %} 0 {% else %} {{ funcionariosMesAtual.total|safe }} {% endif %} },		
-                                        { label: "Alimentação", y: {% if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total|safe }} {% endif %} },
-                                        { label: "Links", y: {% if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total|safe }} {% endif %} },	
-                                        { label: "Locação", y: {% if locacaoMesAtual.total is null %} 0 {% else %} {{ locacaoMesAtual.total|safe }} {% endif %} },	
-                                        { label: "Instalação", y: {% if instalacaoMesAtual.total is null %} 0 {% else %} {{ instalacaoMesAtual.total|safe }} {% endif %} },
-                                        { label: "Sócios", y: {% if sociosMesAtual.total is null %} 0 {% else %} {{ sociosMesAtual.total|safe }} {% endif %} },
-                                        { label: "Impostos", y: {% if ImpostosMesAtual.total is null %} 0 {% else %} {{ ImpostosMesAtual.total|safe }} {% endif %} },
-                                        { label: "Taxas", y: {% if taxaMesAtual.total is null %} 0 {% else %} {{ taxaMesAtual.total|safe }} {% endif %} },
+                <div>
+                    <div id="chart">
+                        <div id="timeline-chart_custos_mensais">
+                            <script>
+                                var options = {
+                                    series: [{
+                                    data: [
                                         
+                                    {% if veiculosMesAtual.total is null %} 0 {% else %} {{ veiculosMesAtual.total|safe }} {% endif %},	
+                                    {% if funcionariosMesAtual.total is null %} 0 {% else %} {{ funcionariosMesAtual.total|safe }} {% endif %},		
+                                    {% if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total|safe }} {% endif %},
+                                    {% if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total|safe }} {% endif %},	
+                                    {% if locacaoMesAtual.total is null %} 0 {% else %} {{ locacaoMesAtual.total|safe }} {% endif %},	
+                                    {% if instalacaoMesAtual.total is null %} 0 {% else %} {{ instalacaoMesAtual.total|safe }} {% endif %},
+                                    {% if sociosMesAtual.total is null %} 0 {% else %} {{ sociosMesAtual.total|safe }} {% endif %},
+                                    {% if ImpostosMesAtual.total is null %} 0 {% else %} {{ ImpostosMesAtual.total|safe }} {% endif %},
+                                    {% if taxaMesAtual.total is null %} 0 {% else %} {{ taxaMesAtual.total|safe }} {% endif %},
+                                
                                     ]
-                                }]
-                            });
-                            chart.render();
-                            
-                            }
+                                    }],
+                                    chart: {
+                                    type: 'bar',
+                                    height: 350
+                                    },
+                                    plotOptions: {
+                                    bar: {
+                                        borderRadius: 4,
+                                        horizontal: true,
+                                    }
+                                    },
+                                    dataLabels: {
+                                    enabled: false
+                                    },
+                                    xaxis: {
+                                    categories: [
+                                        
+                                    'Veículos',
+                                    'Funcionários',
+                                    'Alimentação',
+                                    'Links',
+                                    'Locação',
+                                    'Instalação',
+                                    'Sócios',
+                                    'Impostos',
+                                    'Taxas'
+                                          
+                                    ],
+                                    }
+                                    };
+                
+                                    var chart = new ApexCharts(document.querySelector("#chart"), options);
+                                    chart.render();
+                      
                             </script>
-                            </head>
-                            <body>
-                            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-                            <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                        </div>
                     </div>
+                        
+                </div>
+                
                 <!-- =========================================================================================================== -->
             </div>
           </div>
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-6">
           <div class="card h-100 shadow border-0">
             <div class="card-body">
                 <!-- =========================================================================================================== -->
-                <div id="chart">
-                    <div id="timeline-chart_custos_mensais">
-                        <script>
-                            var options = {
-                            series: [
-
-                                {% if veiculosMesAtual.total is null %} 0 {% else %} {{ veiculosMesAtual.total|safe }} {% endif %},
-                                {% if funcionariosMesAtual.total is null %} 0 {% else %} {{ funcionariosMesAtual.total|safe }} {% endif %},
-                                {% if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total|safe }} {% endif %},
-                                {% if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total|safe }} {% endif %},
-                                {% if locacaoMesAtual.total is null %} 0 {% else %} {{ locacaoMesAtual.total|safe }} {% endif %},
-                                {% if instalacaoMesAtual.total is null %} 0 {% else %} {{ instalacaoMesAtual.total|safe }} {% endif %},
-                                {% if sociosMesAtual.total is null %} 0 {% else %} {{ sociosMesAtual.total|safe }} {% endif %},
-                                {% if ImpostosMesAtual.total is null %} 0 {% else %} {{ ImpostosMesAtual.total|safe }} {% endif %},
-                                {% if taxaMesAtual.total is null %} 0 {% else %} {{ taxaMesAtual.total|safe }} {% endif %},
-                                
-                                ],
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                    <p class="highcharts-description">
+                      <script>
+                            Highcharts.chart('container', {
                             chart: {
-                            width: 380,
-                            type: 'pie',
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false,
+                                type: 'pie'
                             },
-                            labels: ['Veículos', 'Funcionários', 'Alimentação', 'Links', 'Locação', 'Instalação', 'Sócios', 'Impostos', 'Taxas'],
-                            responsive: [{
-                            breakpoint: 480,
-                            options: {
-                                chart: {
-                                width: 200
-                                },
-                                legend: {
-                                position: 'bottom'
+                            title: {
+                                text: '{% now "F Y" %}'
+                            },
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            accessibility: {
+                                point: {
+                                    valueSuffix: '%'
                                 }
-                            }
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                                    }
+                                }
+                            },
+                            series: [{
+                                name: 'Brands',
+                                colorByPoint: true,
+                                data: [{
+                                    name: 'Veículos',
+                                    y: {% if veiculosMesAtual.total is null %} 0 {% else %} {{ veiculosMesAtual.total|safe }} {% endif %},
+                                }, {
+                                    name: 'Funcionários',
+                                    y: {% if funcionariosMesAtual.total is null %} 0 {% else %} {{ funcionariosMesAtual.total|safe }} {% endif %}
+                                }, {
+                                    name: 'Alimentação',
+                                    y: {% if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total|safe }} {% endif %}
+                                }, {
+                                    name: 'Links',
+                                    y: {% if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total|safe }} {% endif %}
+                                }, {
+                                    name: 'Locação',
+                                    y: {% if locacaoMesAtual.total is null %} 0 {% else %} {{ locacaoMesAtual.total|safe }} {% endif %}
+                                }, {
+                                    name: 'Instalação',
+                                    y: {% if instalacaoMesAtual.total is null %} 0 {% else %} {{ instalacaoMesAtual.total|safe }} {% endif %}
+                                }, {
+                                    name: 'Sócios',
+                                    y: {% if sociosMesAtual.total is null %} 0 {% else %} {{ sociosMesAtual.total|safe }} {% endif %}
+                                }, {
+                                    name: 'Impostos',
+                                    y: {% if ImpostosMesAtual.total is null %} 0 {% else %} {{ ImpostosMesAtual.total|safe }} {% endif %}
+                                }, {
+                                    name: 'Taxas',
+                                    y: {% if taxaMesAtual.total is null %} 0 {% else %} {{ taxaMesAtual.total|safe }} {% endif %}
+                                }]
                             }]
-                            };
-                    
-                            var chart = new ApexCharts(document.querySelector("#chart"), options);
-                            chart.render();
-                        </script>
-                    </div>
-                </div> 
+                        });
+                      </script>
+                    </p>
+                </figure>
                 <!-- =========================================================================================================== -->
             </div>
           </div>
@@ -221,75 +265,6 @@ https://cdn.jsdelivr.net/npm/jquery/
 
 
 
-
-<figure class="highcharts-figure">
-    <div id="container"></div>
-    <p class="highcharts-description">
-      <script>
-            Highcharts.chart('container', {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            title: {
-                text: 'Browser market shares in January, 2018'
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            accessibility: {
-                point: {
-                    valueSuffix: '%'
-                }
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-                    }
-                }
-            },
-            series: [{
-                name: 'Brands',
-                colorByPoint: true,
-                data: [{
-                    name: 'Veículos',
-                    y: {% if veiculosMesAtual.total is null %} 0 {% else %} {{ veiculosMesAtual.total|safe }} {% endif %},
-                }, {
-                    name: 'Funcionários',
-                    y: {% if funcionariosMesAtual.total is null %} 0 {% else %} {{ funcionariosMesAtual.total|safe }} {% endif %}
-                }, {
-                    name: 'Alimentação',
-                    y: {% if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total|safe }} {% endif %}
-                }, {
-                    name: 'Links',
-                    y: {% if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total|safe }} {% endif %}
-                }, {
-                    name: 'Locação',
-                    y: {% if locacaoMesAtual.total is null %} 0 {% else %} {{ locacaoMesAtual.total|safe }} {% endif %}
-                }, {
-                    name: 'Instalação',
-                    y: {% if instalacaoMesAtual.total is null %} 0 {% else %} {{ instalacaoMesAtual.total|safe }} {% endif %}
-                }, {
-                    name: 'Sócios',
-                    y: {% if sociosMesAtual.total is null %} 0 {% else %} {{ sociosMesAtual.total|safe }} {% endif %}
-                }, {
-                    name: 'Impostos',
-                    y: {% if ImpostosMesAtual.total is null %} 0 {% else %} {{ ImpostosMesAtual.total|safe }} {% endif %}
-                }, {
-                    name: 'Taxas',
-                    y: {% if taxaMesAtual.total is null %} 0 {% else %} {{ taxaMesAtual.total|safe }} {% endif %}
-                }]
-            }]
-        });
-      </script>
-    </p>
-</figure>
 
 
 
