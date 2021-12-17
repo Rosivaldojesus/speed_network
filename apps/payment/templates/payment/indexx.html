@@ -140,16 +140,15 @@ https://cdn.jsdelivr.net/npm/jquery/
             type: "column",
             yValueFormatString: "#,##0.0#\"%\"",
             dataPoints: [
-                { label: "Veículos", y: {{ veiculosMesAtual.total|safe }} },	
-                { label: "Funcionários", y: {{ funcionariosMesAtual.total|safe }} },	
+                { label: "Veículos", y: {% if veiculosMesAtual.total is null %} 0 {% else %} {{ veiculosMesAtual.total }} {% endif %} },	
+                { label: "Funcionários", y: {% if funcionariosMesAtual.total is null %} 0 {% else %} {{ funcionariosMesAtual.total }} {% endif %} },	
                 { label: "Alimentação", y: {% if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total|safe }} {% endif %} },
-                { label: "Links", y: {% if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total|safe }} {% endif %} },	
-                { label: "Locação", y: {{ veiculosMesAtual.total|safe }} },
-                { label: "Instalação", y: {{ veiculosMesAtual.total|safe }} },
-                { label: "Sócios", y: {{ veiculosMesAtual.total|safe }} },
-                { label: "Impostos", y: {{ veiculosMesAtual.total|safe }} },
-                { label: "Taxas", y: {{ veiculosMesAtual.total|safe }} },
-                
+                { label: "Links", y: {% if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total|safe }} {% endif %} },                
+                { label: "Locação", y: {% if locacaoMesAtual.total is null %} 0 {% else %} {{ locacaoMesAtual.total|safe }} {% endif %} },
+                { label: "Instalação", y: {% if instalacaoMesAtual.total is null %} 0 {% else %} {{ instalacaoMesAtual.total|safe }} {% endif %} },
+                { label: "Sócios", y: {% if sociosMesAtual.total is null %} 0 {% else %} {{ sociosMesAtual.total|safe }} {% endif %} },
+                { label: "Impostos", y: {% if ImpostosMesAtual.total is null %} 0 {% else %} {{ ImpostosMesAtual.total|safe }} {% endif %} },
+                { label: "Taxas", y: {% if taxaMesAtual.total is null %} 0 {% else %} {{ taxaMesAtual.total|safe }} {% endif %} },
             ]
         }]
     });
