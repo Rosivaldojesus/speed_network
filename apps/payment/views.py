@@ -31,9 +31,7 @@ class IndexTemplateView(TemplateView):
         this_month = date.today().month  # Variável do mês atual
 
         # Query para o total de gastos de cada mês
-        context['custos_meses'] = Pagamento.objects.annotate(month=TruncMonth('data_pagamento')).filter(
-            data_pagamento__lte=data_atual).filter(status_pago=True).values('month').annotate(
-            c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+        context['mes'] = Pagamento.objects.annotate(month=TruncMonth('data_pagamento'),c=Sum('valor_pagamento')).filter().values('month').annotate(c=Sum('valor_pagamento')).filter(data_pagamento__lte=data_atual).filter().values('month', 'c').order_by('month')
 
 
 

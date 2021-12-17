@@ -280,7 +280,7 @@ https://cdn.jsdelivr.net/npm/jquery/
                         text: 'Source: WorldClimate.com'
                     },
                     xAxis: [{
-                        categories: [{% for mes in custos_meses %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
+                        categories: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
                         crosshair: true
                     }],
                     yAxis: [{ // Primary yAxis
@@ -329,7 +329,7 @@ https://cdn.jsdelivr.net/npm/jquery/
                         name: 'Rainfall',
                         type: 'column',
                         yAxis: 1,
-                        data: [{% for mes in custos_meses %} '{{ mes.c|safe }}', {% endfor %}],
+                        data: [100, 122],
                         tooltip: {
                             valueSuffix: ' mm'
                         }
@@ -337,7 +337,7 @@ https://cdn.jsdelivr.net/npm/jquery/
                     }, {
                         name: 'Temperature',
                         type: 'spline',
-                        data: [{% for mes in custos_meses %} '{{ mes.c|safe }}', {% endfor %}],
+                        data: [100, 122],
                         tooltip: {
                             valueSuffix: '°C'
                         }
@@ -354,81 +354,52 @@ https://cdn.jsdelivr.net/npm/jquery/
 
 
 <div>
-    {% for mes in custos_meses %} '{{ mes.month|date:'F Y' }}', {% endfor %}
+    {% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}
 
-    {% for mes in custos_meses %} '{{ mes.c}}', {% endfor %}
+    {% for mes in mes %} '{{ mes.c}}', {% endfor %}
 </div>
 
 
 
+<!DOCTYPE HTML>
+<html>
+<head>  
+<script>
+window.onload = function () {
 
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title:{
+		text: "Top Oil Reserves"
+	},
+	axisY: {
+		title: "Reserves(MMbbl)"
+	},
+	data: [{        
+		type: "column",  
+		showInLegend: true, 
+		legendMarkerColor: "grey",
+		legendText: "MMbbl = one million barrels",
+		dataPoints: [ 
+                 
+        {% for mes in mes %}
+		{ y: '{{ mes.c|safe}}', label: "{{ mes.month|date:'F Y' }}" },
+        {% endfor %}
+		
+		]
+	}]
+});
+chart.render();
 
-
-
-
-<div>
-    <figure class="highcharts-figure">
-        <div id="container_e"></div>
-        <p class="highcharts-description">
-            <script>
-                Highcharts.chart('container_e', {
-                    chart: {
-                        type: 'spline'
-                    },
-                    title: {
-                        text: 'Monthly Average Temperature'
-                    },
-                    subtitle: {
-                        text: 'Source: WorldClimate.com'
-                    },
-                    xAxis: {
-                        categories: [{% for mes in custos_meses %} '{{ mes.month|date:'F Y' }}', {% endfor %}]
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Temperature'
-                        },
-                        labels: {
-                            formatter: function () {
-                                return this.value + '°';
-                            }
-                        }
-                    },
-                    tooltip: {
-                        crosshairs: true,
-                        shared: true
-                    },
-                    plotOptions: {
-                        spline: {
-                            marker: {
-                                radius: 4,
-                                lineColor: '#666666',
-                                lineWidth: 1
-                            }
-                        }
-                    },
-                    series: [{
-                        name: 'Tokyo',
-                        marker: {
-                            symbol: 'square'
-                        },
-                        data: [{% for mes in custos_meses %} '{{ mes.c}}', {% endfor %}]
-
-                    }, {
-                        name: 'London',
-                        marker: {
-                            symbol: 'diamond'
-                        },
-                        data: [ 6.6, 4.8]
-                    }]
-                });
-        
-            </script>
-        </p>
-    </figure>
-</div>
-
-
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
 
 
 
