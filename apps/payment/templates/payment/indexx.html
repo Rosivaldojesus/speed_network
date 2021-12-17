@@ -141,9 +141,9 @@ https://cdn.jsdelivr.net/npm/jquery/
             yValueFormatString: "#,##0.0#\"%\"",
             dataPoints: [
                 { label: "Veículos", y: {{ veiculosMesAtual.total|safe }} },	
-                { label: "Funcionários", y: {{ veiculosMesAtual.total|safe }} },	
-                { label: "Alimentação", y: {{ veiculosMesAtual.total|safe }} },
-                { label: "Links", y: {{ veiculosMesAtual.total|safe }} },	
+                { label: "Funcionários", y: {{ funcionariosMesAtual.total|safe }} },	
+                { label: "Alimentação", y: {% if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total|safe }} {% endif %} },
+                { label: "Links", y: {% if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total|safe }} {% endif %} },	
                 { label: "Locação", y: {{ veiculosMesAtual.total|safe }} },
                 { label: "Instalação", y: {{ veiculosMesAtual.total|safe }} },
                 { label: "Sócios", y: {{ veiculosMesAtual.total|safe }} },
