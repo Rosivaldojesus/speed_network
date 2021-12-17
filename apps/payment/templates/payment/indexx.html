@@ -367,6 +367,58 @@ https://cdn.jsdelivr.net/npm/jquery/
 
 
 
+<div id="chart_B">
+    <div id="timeline-chart_custos_mensais">
+        <script>
+            var options = {
+                series: [{
+                name: 'Website Blog',
+                type: 'column',
+                data: [{% for mes in mes %} '{{ mes.c}}', {% endfor %}]
+                }, {
+                name: 'Social Media',
+                type: 'line',
+                data: [{% for mes in mes %} '{{ mes.c}}', {% endfor %}]
+                }],
+                chart: {
+                height: 350,
+                type: 'line',
+                },
+                stroke: {
+                width: [0, 4]
+                },
+                title: {
+                text: 'Traffic Sources'
+                },
+                dataLabels: {
+                enabled: true,
+                enabledOnSeries: [1]
+                },
+                labels: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
+                
+                yaxis: [{
+                title: {
+                    text: 'Website Blog',
+                },
+                
+                }, {
+                opposite: true,
+                title: {
+                    text: 'Social Media'
+                }
+                }]
+                };
+
+                var chart = new ApexCharts(document.querySelector("#chart_B"), options);
+                chart.render();
+            ;
+                </script>
+            </div>
+  </div>
+    
+
+
+
 
 
 
