@@ -37,10 +37,40 @@
                             data: [{% for veiculos in mensalAlimentacao %}  '{{ veiculos.c|safe}}', {% endfor %}]
                         },
 
-                        //Alimentação
+                        //Links
                         {
                             name: "Links",
                             data: [{% for veiculos in mensalLinks %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                        },
+
+                        //Locação
+                        {
+                            name: "Locação",
+                            data: [{% for veiculos in mensalLocacao %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                        },
+
+                        {
+                            name: "Instalação",
+                            data: [{% for veiculos in mensalInstalacao %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                        },
+
+                        {
+                            name: "Sócios",
+                            data: [{% for veiculos in mensalSocios %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                        },
+
+                        
+
+                        {
+                            name: "Impostos",
+                            data: [{% for veiculos in mensalImpostos %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                        },
+
+                        
+
+                        {
+                            name: "Taxas",
+                            data: [{% for veiculos in mensalTaxas %}  '{{ veiculos.c|safe}}', {% endfor %}]
                         }
 
 
