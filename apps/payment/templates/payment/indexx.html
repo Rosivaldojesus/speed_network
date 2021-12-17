@@ -47,7 +47,7 @@ https://cdn.jsdelivr.net/npm/jquery/
         <a href="exportar-csv/" class="btn btn-info" title="Exportar CSV"><i class="fas fa-file-csv"></i></a>
     </div>
 
-    <!-- =========================================================================================================== -->
+<!-- =========================================================================================================== -->
     <!-- Custos do mês atual por grupo -->
     <h3 class="ui dividing header blue">Custos do Mês Atual <a class="anchor" id="content"></a></h3>
     <div class="card-group mt-3 " >
@@ -106,19 +106,14 @@ https://cdn.jsdelivr.net/npm/jquery/
             R$: {{ taxaMesAtual.total }}
         </div>
     </div>
-    <!-- =========================================================================================================== -->
+<!-- =========================================================================================================== -->
 
 
 
 
 
-
-
-
-
-
-   
-    
+<!-- =========================================================================================================== -->
+<!-- Gráficos com os gastos do mês atual por categorias -->
     <div class="mt-5 shadow">
         <script>
             window.onload = function () {
@@ -163,20 +158,30 @@ https://cdn.jsdelivr.net/npm/jquery/
             <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
         
     </div>
-
+<!-- =========================================================================================================== -->
    
     
-
-
-
-
-
-
     <div id="chart">
         <div id="timeline-chart_custos_mensais">
             <script>
                 var options = {
-                  series: [44, 55, 13, 43, 22],
+                  series: [
+
+                    {% if veiculosMesAtual.total is null %} 0 {% else %} {{ veiculosMesAtual.total|safe }} {% endif %},
+                    {% if funcionariosMesAtual.total is null %} 0 {% else %} {{ funcionariosMesAtual.total|safe }} {% endif %},
+                    {% if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total|safe }} {% endif %},
+                    {% if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total|safe }} {% endif %},
+                    {% if locacaoMesAtual.total is null %} 0 {% else %} {{ locacaoMesAtual.total|safe }} {% endif %},
+                    {% if instalacaoMesAtual.total is null %} 0 {% else %} {{ instalacaoMesAtual.total|safe }} {% endif %},
+                    {% if sociosMesAtual.total is null %} 0 {% else %} {{ sociosMesAtual.total|safe }} {% endif %},
+                    {% if ImpostosMesAtual.total is null %} 0 {% else %} {{ ImpostosMesAtual.total|safe }} {% endif %},
+                    {% if taxaMesAtual.total is null %} 0 {% else %} {{ taxaMesAtual.total|safe }} {% endif %},
+                    
+                    
+                    
+                    
+                    
+                    ],
                   chart: {
                   width: 380,
                   type: 'pie',
