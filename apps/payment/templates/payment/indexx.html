@@ -263,159 +263,66 @@ https://cdn.jsdelivr.net/npm/jquery/
 
 <!-- =========================================================================================================== -->
 <!-- =========================================================================================================== -->
-<div id="chart_A">
-    <div id="timeline-chart_custos_mensais">
-        <script>
-            var options = {
-                series: [{
-                name: 'Custos',
-                data: [{% for mes in mes %} '{{ mes.c }}', {% endfor %}]
-                }],
-                chart: {
-                height: 350,
-                type: 'bar',
-                },
-                plotOptions: {
-                bar: {
-                    borderRadius: 10,
-                    dataLabels: {
-                    position: 'top', // top, center, bottom
+<h3 class="ui dividing header blue">Custos Mensais <a class="anchor" id="content"></a></h3>
+<div class="card shadow mt-3">
+    <div id="chart_B">
+        <div id="timeline-chart_custos_mensais">
+            <script>
+                var options = {
+                    series: [{
+                    name: 'Valor R$',
+                    type: 'column',
+                    data: [{% for mes in mes %} '{{ mes.c}}', {% endfor %}]
+                    }, {
+                    name: 'Valor R$',
+                    type: 'line',
+                    data: [{% for mes in mes %} '{{ mes.c}}', {% endfor %}]
+                    }],
+                    chart: {
+                    height: 350,
+                    type: 'line',
                     },
-                }
-                },
-                dataLabels: {
-                enabled: true,
-                formatter: function (val) {
-                    return "R$: " + val;
-                },
-                offsetY: -20,
-                style: {
-                    fontSize: '12px',
-                    colors: ["#304758"]
-                }
-                },
-                
-                xaxis: {
-                categories: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
-                position: 'top',
-                axisBorder: {
-                    show: false
-                },
-                axisTicks: {
-                    show: false
-                },
-                crosshairs: {
-                    fill: {
-                    type: 'gradient',
-                    gradient: {
-                        colorFrom: '#D8E3F0',
-                        colorTo: '#BED1E6',
-                        stops: [0, 100],
-                        opacityFrom: 0.4,
-                        opacityTo: 0.5,
-                    }
-                    }
-                },
-                tooltip: {
+                    stroke: {
+                    width: [0, 4]
+                    },
+                    title: {
+                    text: 'Custos Mensais'
+                    },
+                    dataLabels: {
                     enabled: true,
-                }
-                },
-                yaxis: {
-                axisBorder: {
-                    show: false
-                },
-                axisTicks: {
-                    show: false,
-                },
-                labels: {
-                    show: false,
-                    formatter: function (val) {
-                    return val + "%";
+                    enabledOnSeries: [1]
+                    },
+                    labels: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
+                    
+                    yaxis: [{
+                    title: {
+                        text: 'Website Blog',
+                    },
+                    
+                    }, {
+                    opposite: true,
+                    title: {
+                        text: 'Social Media'
                     }
-                }
-                
-                },
-                title: {
-                text: 'Custos Mensais',
-                floating: true,
-                offsetY: 330,
-                align: 'center',
-                style: {
-                    color: '#444'
-                }
-                }
-                };
-
-                var chart = new ApexCharts(document.querySelector("#chart_A"), options);
-                chart.render();
-                </script>
-            </div>
-  </div>
+                    }]
+                    };
     
-
-<!-- =========================================================================================================== -->
-<!-- =========================================================================================================== -->
-
-
-<div>
-    {% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}
-
-    {% for mes in mes %} '{{ mes.c}}', {% endfor %}
+                    var chart = new ApexCharts(document.querySelector("#chart_B"), options);
+                    chart.render();
+                ;
+                    </script>
+                </div>
+      </div>
 </div>
-
-
-
-
-
-<div id="chart_B">
-    <div id="timeline-chart_custos_mensais">
-        <script>
-            var options = {
-                series: [{
-                name: 'Website Blog',
-                type: 'column',
-                data: [{% for mes in mes %} '{{ mes.c}}', {% endfor %}]
-                }, {
-                name: 'Social Media',
-                type: 'line',
-                data: [{% for mes in mes %} '{{ mes.c}}', {% endfor %}]
-                }],
-                chart: {
-                height: 350,
-                type: 'line',
-                },
-                stroke: {
-                width: [0, 4]
-                },
-                title: {
-                text: 'Traffic Sources'
-                },
-                dataLabels: {
-                enabled: true,
-                enabledOnSeries: [1]
-                },
-                labels: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
-                
-                yaxis: [{
-                title: {
-                    text: 'Website Blog',
-                },
-                
-                }, {
-                opposite: true,
-                title: {
-                    text: 'Social Media'
-                }
-                }]
-                };
-
-                var chart = new ApexCharts(document.querySelector("#chart_B"), options);
-                chart.render();
-            ;
-                </script>
-            </div>
-  </div>
     
+
+<!-- =========================================================================================================== -->
+<!-- =========================================================================================================== -->
+
+
+
+
+
 
 
 
