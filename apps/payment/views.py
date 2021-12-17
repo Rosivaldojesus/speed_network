@@ -42,10 +42,7 @@ class IndexTemplateView(TemplateView):
         context['taxaMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=11).aggregate(total=Sum('valor_pagamento'))
 
 
-        veiculosAtual = Pagamento.objects.filter(data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=1).aggregate(total=Sum('valor_pagamento'))
 
-
-        context['veiculos'] = veiculosAtual
 
         return context
 

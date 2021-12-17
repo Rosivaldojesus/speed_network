@@ -140,14 +140,15 @@ https://cdn.jsdelivr.net/npm/jquery/
             type: "column",
             yValueFormatString: "#,##0.0#\"%\"",
             dataPoints: [
-                { label: "India", y: {{ veiculosMesAtual.total|safe }} },	
-                { label: "China", y: 6.70 },	
-                { label: "Indonesia", y: 5.00 },
-                { label: "Australia", y: 2.50 },	
-                { label: "Mexico", y: 2.30 },
-                { label: "UK", y: 1.80 },
-                { label: "United States", y: 1.60 },
-                { label: "Japan", y: 1.60 }
+                { label: "Veículos", y: {{ veiculosMesAtual.total|safe }} },	
+                { label: "Funcionários", y: {{ veiculosMesAtual.total|safe }} },	
+                { label: "Alimentação", y: {{ veiculosMesAtual.total|safe }} },
+                { label: "Links", y: {{ veiculosMesAtual.total|safe }} },	
+                { label: "Locação", y: {{ veiculosMesAtual.total|safe }} },
+                { label: "Instalação", y: {{ veiculosMesAtual.total|safe }} },
+                { label: "Sócios", y: {{ veiculosMesAtual.total|safe }} },
+                { label: "Impostos", y: {{ veiculosMesAtual.total|safe }} },
+                { label: "Taxas", y: {{ veiculosMesAtual.total|safe }} },
                 
             ]
         }]
@@ -162,6 +163,55 @@ https://cdn.jsdelivr.net/npm/jquery/
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     </body>
     </html>
+
+
+
+
+
+
+
+    <div id="chart">
+        <div id="timeline-chart_custos_mensais">
+            <script>
+                var options = {
+                  series: [44, 55, 13, 43, 22],
+                  chart: {
+                  width: 380,
+                  type: 'pie',
+                },
+                labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+                responsive: [{
+                  breakpoint: 480,
+                  options: {
+                    chart: {
+                      width: 200
+                    },
+                    legend: {
+                      position: 'bottom'
+                    }
+                  }
+                }]
+                };
+        
+                var chart = new ApexCharts(document.querySelector("#chart"), options);
+                chart.render();
+              
+            </script>
+        </div>
+    </div>
+        
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
