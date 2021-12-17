@@ -222,6 +222,74 @@ https://cdn.jsdelivr.net/npm/jquery/
 
 
 
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+      <script>
+            Highcharts.chart('container', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Browser market shares in January, 2018'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                name: 'Brands',
+                colorByPoint: true,
+                data: [{
+                    name: 'Veículos',
+                    y: {% if veiculosMesAtual.total is null %} 0 {% else %} {{ veiculosMesAtual.total|safe }} {% endif %},
+                }, {
+                    name: 'Funcionários',
+                    y: {% if funcionariosMesAtual.total is null %} 0 {% else %} {{ funcionariosMesAtual.total|safe }} {% endif %}
+                }, {
+                    name: 'Alimentação',
+                    y: {% if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total|safe }} {% endif %}
+                }, {
+                    name: 'Links',
+                    y: {% if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total|safe }} {% endif %}
+                }, {
+                    name: 'Locação',
+                    y: {% if locacaoMesAtual.total is null %} 0 {% else %} {{ locacaoMesAtual.total|safe }} {% endif %}
+                }, {
+                    name: 'Instalação',
+                    y: {% if instalacaoMesAtual.total is null %} 0 {% else %} {{ instalacaoMesAtual.total|safe }} {% endif %}
+                }, {
+                    name: 'Sócios',
+                    y: {% if sociosMesAtual.total is null %} 0 {% else %} {{ sociosMesAtual.total|safe }} {% endif %}
+                }, {
+                    name: 'Impostos',
+                    y: {% if ImpostosMesAtual.total is null %} 0 {% else %} {{ ImpostosMesAtual.total|safe }} {% endif %}
+                }, {
+                    name: 'Taxas',
+                    y: {% if taxaMesAtual.total is null %} 0 {% else %} {{ taxaMesAtual.total|safe }} {% endif %}
+                }]
+            }]
+        });
+      </script>
+    </p>
+</figure>
 
 
 
