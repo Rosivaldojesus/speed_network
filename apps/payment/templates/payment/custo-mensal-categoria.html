@@ -21,30 +21,48 @@
                         series: [
                         // Linha de veículos
                         {
-                            name: "Session Duration",
+                            name: "Veiculos",
                             data: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.c|safe}}', {% endfor %}]
                         },
+                        
+                        //Funcionários
+                        {
+                            name: "Session Duration",
+                            data: [{% for veiculos in mensalFuncionarios %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                        }
 
 
                        
 
 
                         ],
+                        //Veículos
                         chart: {
                         height: 350,
                         type: 'line',
                         zoom: {
                             enabled: false
                         },
+
+                        
+
                         },
                         dataLabels: {
                         enabled: false
                         },
+
+
+
                         stroke: {
                         width: [5, 7, 5],
                         curve: 'straight',
                         dashArray: [0, 8, 5]
                         },
+
+
+
+
+
                         title: {
                         text: 'Page Statistics',
                         align: 'left'
