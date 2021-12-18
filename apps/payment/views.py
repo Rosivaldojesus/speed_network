@@ -38,16 +38,21 @@ class IndexTemplateView(TemplateView):
 
         # Query de mês atual dos gastos por categoria ==================================================================
 
-        context['veiculosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
-            status_pago=True).filter(categoria=1).aggregate(total=Sum('valor_pagamento'))
-        context['funcionariosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
-            status_pago=True).filter(categoria=2).aggregate(total=Sum('valor_pagamento'))
-        context['alimentacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
-            status_pago=True).filter(categoria=3).aggregate(total=Sum('valor_pagamento'))
-        context['linksMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
-            status_pago=True).filter(categoria=4).aggregate(total=Sum('valor_pagamento'))
-        context['locacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
-            status_pago=True).filter(categoria=5).aggregate(total=Sum('valor_pagamento'))
+        context['veiculosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month)\
+            .filter(status_pago=True).filter(categoria=1).aggregate(total=Sum('valor_pagamento'))
+
+        context['funcionariosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month)\
+            .filter(status_pago=True).filter(categoria=2).aggregate(total=Sum('valor_pagamento'))
+
+        context['alimentacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month)\
+            .filter(status_pago=True).filter(categoria=3).aggregate(total=Sum('valor_pagamento'))
+
+        context['linksMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month)\
+            .filter(status_pago=True).filter(categoria=4).aggregate(total=Sum('valor_pagamento'))
+
+        context['locacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month)\
+            .filter(status_pago=True).filter(categoria=5).aggregate(total=Sum('valor_pagamento'))
+
         context['instalacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
             status_pago=True).filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
         context['sociosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
@@ -105,7 +110,7 @@ class CustoMensalCategoriaView(TemplateView):
         context = super().get_context_data(**kwargs)
         data_atual = datetime.now() # Variável da data de hoje
         this_month = date.today().month # Variável do mês atual
-        six_months = date.today() + relativedelta(months=-5)
+        six_months = date.today() + relativedelta(months=-6)
         last_months = date.today() + relativedelta(months=-1)
 
 
