@@ -23,6 +23,7 @@ class TipoCusto(models.Model):
     def __str__(self):
         return "{}".format(self.tipo_custo)
 
+
 class OrigemValores(models.Model):
     origem_valor = models.CharField(max_length=100)
 
@@ -65,6 +66,22 @@ class AgendaPagamento(models.Model):
         return "{}".format(self.motivo_pagamento)
 
 
+class FluxoEntradaSaidaMensal(models.Model):
+    entrada_mes_atual = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    entrada_referente_mes_atual = models.DecimalField(max_digits=8, decimal_places=2, default=0)
+    data_registro = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True)
+
+    objects = models.Manager()
+
+    class Meta:
+        verbose_name_plural = "Fluxo Entrada vs Saida"
+
+    def __str__(self):
+        return "{}".format(self.entrada_mes_atual)
+
+
+
+#  Estudar para fazer a retirada
 class FluxoEntradasSaidas(models.Model):
     banco = models.ForeignKey(OrigemValores, on_delete=models.DO_NOTHING)
     saldoInicial = models.DecimalField(max_digits=8, decimal_places=2, default=0)

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} .:: Fluxo de Entradas e Saídas {% endblock %}
+
+
+
+{% block main %}
+<div class="container">
+    <!--=====================================================================================================-->
+    <div class="card shadow mt-3">
+        <div id="chart_A">
+            <script>
+                var options = {
+                    series: [{
+                    name: 'Bancos',
+                    data: [{% for data in entrada_banco %} '{{ data.c }}', {% endfor %}]
+                    },{
+                    name: 'ERP',
+                    data: [{% for data in entrada_erp %} '{{ data.c }}', {% endfor %}]
+                    },{
+                    name: 'Custos',
+                    data: [{% for data in mes %} '{{ data.c }}', {% endfor %}]
+                    }
+                    
+                    ],
+                    chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
+                    },
+                    
+                    animations: {
+                        enabled: false
+                    }
+                    },
+                    stroke: {
+                    width: [5,5,4],
+                    curve: 'straight'
+                    },
+                    labels: [{% for data in entrada_banco %} '{{ data.month|date:'F Y' }}', {% endfor %}],
+                    title: {
+                    text: 'Entradas'
+                    },
+                    xaxis: {
+                    },
+                    };
+
+                    var chart = new ApexCharts(document.querySelector("#chart_A"), options);
+                    chart.render();
+      
+            </script>
+        </div>
+    </div>
+    <!--=====================================================================================================-->
+</div>
+{% endblock %}
