@@ -14,415 +14,370 @@
     <!--============================== VEÍCULOS =========================================================================-->
     <h3 class="ui dividing header blue">Custos com os veículos <a class="anchor" id="content"></a></h3>
     <div class="card shadow mt-3">
-        <div class="card shadow mt-3">
-            <div id="chart_A">
-                <div id="timeline-chart_custos_mensais">
-                    <script>
-                        var options = {
-                            series: [
-                                {
-                                    name: 'Veículos',
-                                    data: [{% for data in mensalVeiculos %}  '{{ data.c|safe}}', {% endfor %}]
-                                }   
-                            ],
+        <div id="chart_A">
+            <script>
+                var options = {
+                    series: [
+                        {
+                            name: 'Veículos',
+                            data: [{% for data in mensalVeiculos %}  '{{ data.c|safe}}', {% endfor %}],
+                            borderWidth: 10
+                        }   
+                    ],
 
-                            //Coloca o valores em cada mês
-                            dataLabels: {
-                            enabled: true,
-                            },
-                            //Coloca a cor da barra
-                            colors: ['#545454', '#545454'],
+                    //Coloca o valores em cada mês
+                    dataLabels: {
+                    enabled: true,
+                    },
+                    //Coloca a cor da barra
+                    colors: ['#545454', '#545454'],
+          
 
-                            chart: {
-                            height: 350,
-                            type: 'line',
-                            zoom: {
-                                enabled: false
-                            },
-                            animations: {
-                                enabled: false
-                            }
-                            },
+                    chart: {
+                    height: 350,
+                    type: 'line',
+                   
+                    zoom: {
+                        enabled: false
+                    },
+                    animations: {
+                        enabled: true
+                    }
+                    },
 
-                            stroke: {
-                            width: [5,5,4],
-                            curve: 'straight'
-                            },
-                            labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
-                            title: {
-                            text: 'Custos Mensais categorias'
-                            },
-                            xaxis: {
-                            },
-                            };
+                    stroke: {
+                        //Largura da linha
+                    width: [2],
+                    curve: 'straight'
+                    },
+                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    title: {
+                    text: 'Custos Mensais categorias'
+                    },
+                    xaxis: {
+                    },
+                    };
 
-                            var chart = new ApexCharts(document.querySelector("#chart_A"), options);
-                            chart.render();
-                    </script>
-                </div>
-            </div>
-    
+                    var chart = new ApexCharts(document.querySelector("#chart_A"), options);
+                    chart.render();
+            </script>
         </div>
     </div>
     <!--=================================================================================================================-->
     <!--============================== FUNCIONÁRIOS =====================================================================-->
     <h3 class="ui dividing header blue">Custos com os funcionários <a class="anchor" id="content"></a></h3>
     <div class="card shadow mt-3">
-        <div class="card shadow mt-3">
-            <div id="chart_B">
-                <div id="timeline-chart_custos_mensais">
-                    <script>
-                        var options = {
-                            series: [{
-                                    name: 'Funcionários',
-                                    data: [{% for data in mensalFuncionarios %}  '{{ data.c|safe}}', {% endfor %}]
-                                }
-                            ],
-                            chart: {
-                            height: 350,
-                            type: 'line',
-                            zoom: {
-                                enabled: false
-                            },
-                            animations: {
-                                enabled: false
-                            }
-                            },
-                            stroke: {
-                            width: [5,5,4],
-                            curve: 'straight'
-                            },
-                            labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
-                            title: {
-                            text: 'Custos Mensais categorias'
-                            },
-                            xaxis: {
-                            },
-                            };
+        <div id="chart_B">
+            <script>
+                var options = {
+                    series: [{
+                            name: 'Funcionários',
+                            data: [{% for data in mensalFuncionarios %}  '{{ data.c|safe}}', {% endfor %}]
+                        }
+                    ],
+                    chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
+                    },
+                    animations: {
+                        enabled: false
+                    }
+                    },
+                    stroke: {
+                    width: [5,5,4],
+                    curve: 'straight'
+                    },
+                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    title: {
+                    text: 'Custos Mensais categorias'
+                    },
+                    xaxis: {
+                    },
+                    };
 
-                            var chart = new ApexCharts(document.querySelector("#chart_B"), options);
-                            chart.render();
-                    </script>
-                </div>
-            </div>
-    
+                    var chart = new ApexCharts(document.querySelector("#chart_B"), options);
+                    chart.render();
+            </script>
         </div>
     </div>
     <!--=================================================================================================================-->
     <!--============================== ALIMENTAÇÃO ======================================================================-->
     <h3 class="ui dividing header blue">Custos com alimentação <a class="anchor" id="content"></a></h3>
     <div class="card shadow mt-3">
-        <div class="card shadow mt-3">
-            <div id="chart_C">
-                <div id="timeline-chart_custos_mensais">
-                    <script>
-                        var options = {
-                            series: [{
-                                name: 'Alimentação',
-                                data: [{% for data in mensalAlimentacao %}  '{{ data.c|safe}}', {% endfor %}]
-                                }
-                            
-                            ],
-                            chart: {
-                            height: 350,
-                            type: 'line',
-                            zoom: {
-                                enabled: false
-                            },
-                            animations: {
-                                enabled: false
-                            }
-                            },
-                            stroke: {
-                            width: [5,5,4],
-                            curve: 'straight'
-                            },
-                            labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
-                            title: {
-                            text: 'Custos Mensais categorias'
-                            },
-                            xaxis: {
-                            },
-                            };
+        <div id="chart_C">
+            <script>
+                var options = {
+                    series: [{
+                        name: 'Alimentação',
+                        data: [{% for data in mensalAlimentacao %}  '{{ data.c|safe}}', {% endfor %}]
+                        }
+                    
+                    ],
+                    chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
+                    },
+                    animations: {
+                        enabled: false
+                    }
+                    },
+                    stroke: {
+                    width: [5,5,4],
+                    curve: 'straight'
+                    },
+                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    title: {
+                    text: 'Custos Mensais categorias'
+                    },
+                    xaxis: {
+                    },
+                    };
 
-                            var chart = new ApexCharts(document.querySelector("#chart_C"), options);
-                            chart.render();
-                    </script>
-                </div>
-            </div>
-    
+                    var chart = new ApexCharts(document.querySelector("#chart_C"), options);
+                    chart.render();
+            </script>
         </div>
     </div>
     <!--=================================================================================================================-->
     <!--============================== LINKS ============================================================================-->
     <h3 class="ui dividing header blue">Custos com os links <a class="anchor" id="content"></a></h3>
     <div class="card shadow mt-3">
-        <div class="card shadow mt-3">
-            <div id="chart_D">
-                <div id="timeline-chart_custos_mensais">
-                    <script>
-                        var options = {
-                            series: [{
-                                name: 'Links',
-                                data: [{% for data in mensalLinks %}  '{{ data.c|safe}}', {% endfor %}]
-                                }
-                            ],
-                            chart: {
-                            height: 350,
-                            type: 'line',
-                            zoom: {
-                                enabled: false
-                            },
-                            animations: {
-                                enabled: false
-                            }
-                            },
-                            stroke: {
-                            width: [5,5,4],
-                            curve: 'straight'
-                            },
-                            labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
-                            title: {
-                            text: 'Custos Mensais categorias'
-                            },
-                            xaxis: {
-                            },
-                            };
+        <div id="chart_D">
+            <script>
+                var options = {
+                    series: [{
+                        name: 'Links',
+                        data: [{% for data in mensalLinks %}  '{{ data.c|safe}}', {% endfor %}]
+                        }
+                    ],
+                    chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
+                    },
+                    animations: {
+                        enabled: false
+                    }
+                    },
+                    stroke: {
+                    width: [5,5,4],
+                    curve: 'straight'
+                    },
+                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    title: {
+                    text: 'Custos Mensais categorias'
+                    },
+                    xaxis: {
+                    },
+                    };
 
-                            var chart = new ApexCharts(document.querySelector("#chart_D"), options);
-                            chart.render();
-                    </script>
-                </div>
-            </div>
-    
+                    var chart = new ApexCharts(document.querySelector("#chart_D"), options);
+                    chart.render();
+            </script>
         </div>
     </div>
     <!--=================================================================================================================-->
     <!--============================== LOCAÇÃO ==========================================================================-->
     <h3 class="ui dividing header blue">Custos com locação<a class="anchor" id="content"></a></h3>
     <div class="card shadow mt-3">
-        <div class="card shadow mt-3">
-            <div id="chart_E">
-                <div id="timeline-chart_custos_mensais">
-                    <script>
-                        var options = {
-                            series: [{
-                                name: 'Locação',
-                                data: [{% for data in mensalLocacao %}  '{{ data.c|safe}}', {% endfor %}]
-                                }
-                            ],
-                            chart: {
-                            height: 350,
-                            type: 'line',
-                            zoom: {
-                                enabled: false
-                            },
-                            animations: {
-                                enabled: false
-                            }
-                            },
-                            stroke: {
-                            width: [5,5,4],
-                            curve: 'straight'
-                            },
-                            labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
-                            title: {
-                            text: 'Custos Mensais categorias'
-                            },
-                            xaxis: {
-                            },
-                            };
+        <div id="chart_E">
+            <script>
+                var options = {
+                    series: [{
+                        name: 'Locação',
+                        data: [{% for data in mensalLocacao %}  '{{ data.c|safe}}', {% endfor %}]
+                        }
+                    ],
+                    chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
+                    },
+                    animations: {
+                        enabled: false
+                    }
+                    },
+                    stroke: {
+                    width: [5,5,4],
+                    curve: 'straight'
+                    },
+                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    title: {
+                    text: 'Custos Mensais categorias'
+                    },
+                    xaxis: {
+                    },
+                    };
 
-                            var chart = new ApexCharts(document.querySelector("#chart_E"), options);
-                            chart.render();
-                    </script>
-                </div>
-            </div>
-    
+                    var chart = new ApexCharts(document.querySelector("#chart_E"), options);
+                    chart.render();
+            </script>
         </div>
     </div>
     <!--=================================================================================================================-->
     <!--============================== INSTALAÇÃO =======================================================================-->
     <h3 class="ui dividing header blue">Custos com as instalações <a class="anchor" id="content"></a></h3>
     <div class="card shadow mt-3">
-        <div class="card shadow mt-3">
-            <div id="chart_F">
-                <div id="timeline-chart_custos_mensais">
-                    <script>
-                        var options = {
-                            series: [{
-                                name: 'Instalação',
-                                data: [{% for data in mensalInstalacao %}  '{{ data.c|safe}}', {% endfor %}]
-                                }
-                            
-                            ],
-                            chart: {
-                            height: 350,
-                            type: 'line',
-                            zoom: {
-                                enabled: false
-                            },
-                            animations: {
-                                enabled: false
-                            }
-                            },
-                            stroke: {
-                            width: [5,5,4],
-                            curve: 'straight'
-                            },
-                            labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
-                            title: {
-                            text: 'Custos Mensais categorias'
-                            },
-                            xaxis: {
-                            },
-                            };
+        <div id="chart_F">
+            <script>
+                var options = {
+                    series: [{
+                        name: 'Instalação',
+                        data: [{% for data in mensalInstalacao %}  '{{ data.c|safe}}', {% endfor %}]
+                        }
+                    
+                    ],
+                    chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
+                    },
+                    animations: {
+                        enabled: false
+                    }
+                    },
+                    stroke: {
+                    width: [5,5,4],
+                    curve: 'straight'
+                    },
+                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    title: {
+                    text: 'Custos Mensais categorias'
+                    },
+                    xaxis: {
+                    },
+                    };
 
-                            var chart = new ApexCharts(document.querySelector("#chart_F"), options);
-                            chart.render();
-                    </script>
-                </div>
-            </div>
-    
+                    var chart = new ApexCharts(document.querySelector("#chart_F"), options);
+                    chart.render();
+            </script>
         </div>
     </div>
     <!--=================================================================================================================-->
     <!--============================== SÓCIOS ===========================================================================-->
     <h3 class="ui dividing header blue">Custos com os sócios <a class="anchor" id="content"></a></h3>
     <div class="card shadow mt-3">
-        <div class="card shadow mt-3">
-            <div id="chart_G">
-                <div id="timeline-chart_custos_mensais">
-                    <script>
-                        var options = {
-                            series: [{
-                                name: 'Sócios',
-                                data: [{% for data in mensalSocios %}  '{{ data.c|safe}}', {% endfor %}]
-                                }
-                            ],
-                            chart: {
-                            height: 350,
-                            type: 'line',
-                            zoom: {
-                                enabled: false
-                            },
-                            animations: {
-                                enabled: false
-                            }
-                            },
-                            stroke: {
-                            width: [5,5,4],
-                            curve: 'straight'
-                            },
-                            labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
-                            title: {
-                            text: 'Custos Mensais categorias'
-                            },
-                            xaxis: {
-                            },
-                            };
+        <div id="chart_G">
+            <script>
+                var options = {
+                    series: [{
+                        name: 'Sócios',
+                        data: [{% for data in mensalSocios %}  '{{ data.c|safe}}', {% endfor %}]
+                        }
+                    ],
+                    chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
+                    },
+                    animations: {
+                        enabled: false
+                    }
+                    },
+                    stroke: {
+                    width: [5,5,4],
+                    curve: 'straight'
+                    },
+                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    title: {
+                    text: 'Custos Mensais categorias'
+                    },
+                    xaxis: {
+                    },
+                    };
 
-                            var chart = new ApexCharts(document.querySelector("#chart_G"), options);
-                            chart.render();
-                    </script>
-                </div>
-            </div>
-    
+                    var chart = new ApexCharts(document.querySelector("#chart_G"), options);
+                    chart.render();
+            </script>
         </div>
     </div>
     <!--=================================================================================================================-->
     <!--============================== IMPOSTOS =========================================================================-->
     <h3 class="ui dividing header blue">Custos com os impostos <a class="anchor" id="content"></a></h3>
     <div class="card shadow mt-3">
-        <div class="card shadow mt-3">
-            <div id="chart_H">
-                <div id="timeline-chart_custos_mensais">
-                    <script>
-                        var options = {
-                            series: [{
-                                name: 'Impostos',
-                                data: [{% for data in mensalImpostos %}  '{{ data.c|safe}}', {% endfor %}]
-                                }
-                        
-                            ],
-                            chart: {
-                            height: 350,
-                            type: 'line',
-                            zoom: {
-                                enabled: false
-                            },
-                            animations: {
-                                enabled: false
-                            }
-                            },
-                            stroke: {
-                            width: [5,5,4],
-                            curve: 'straight'
-                            },
-                            labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
-                            title: {
-                            text: 'Custos Mensais categorias'
-                            },
-                            xaxis: {
-                            },
-                            };
+        <div id="chart_H">
+            <script>
+                var options = {
+                    series: [{
+                        name: 'Impostos',
+                        data: [{% for data in mensalImpostos %}  '{{ data.c|safe}}', {% endfor %}]
+                        }
+                
+                    ],
+                    chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
+                    },
+                    animations: {
+                        enabled: false
+                    }
+                    },
+                    stroke: {
+                    width: [5,5,4],
+                    curve: 'straight'
+                    },
+                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    title: {
+                    text: 'Custos Mensais categorias'
+                    },
+                    xaxis: {
+                    },
+                    };
 
-                            var chart = new ApexCharts(document.querySelector("#chart_H"), options);
-                            chart.render();
-                    </script>
-                </div>
-            </div>
-    
+                    var chart = new ApexCharts(document.querySelector("#chart_H"), options);
+                    chart.render();
+            </script>
         </div>
     </div>
     <!--=================================================================================================================-->
     <!--============================== TAXAS ============================================================================-->
     <h3 class="ui dividing header blue">Custos com as taxas <a class="anchor" id="content"></a></h3>
     <div class="card shadow mt-3 mb-3">
-        <div class="card shadow mt-3 ">
-            <div id="chart_I">
-                <div id="timeline-chart_custos_mensais">
-                    <script>
-                        var options = {
-                            series: [{
-                                name: 'Taxas',
-                                data: [{% for data in mensalTaxas %}  '{{ data.c|safe}}', {% endfor %}]
-                                }
-                        
-                            ],
-                            chart: {
-                            height: 350,
-                            type: 'line',
-                            zoom: {
-                                enabled: false
-                            },
-                            animations: {
-                                enabled: false
-                            }
-                            },
+        <div id="chart_I">
+            <script>
+                var options = {
+                    series: [{
+                        name: 'Taxas',
+                        data: [{% for data in mensalTaxas %}  '{{ data.c|safe}}', {% endfor %}]
+                        }
+                
+                    ],
+                    chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
+                    },
+                    animations: {
+                        enabled: false
+                    }
+                    },
 
+                    stroke: {
+                    width: [5,5,4],
+                    curve: 'straight'
+                    },
+                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    title: {
+                    text: 'Custos Mensais categorias'
+                    },
+                    xaxis: {
+                    },
+                    };
 
-
-
-                            
-                            stroke: {
-                            width: [5,5,4],
-                            curve: 'straight'
-                            },
-                            labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
-                            title: {
-                            text: 'Custos Mensais categorias'
-                            },
-                            xaxis: {
-                            },
-                            };
-
-                            var chart = new ApexCharts(document.querySelector("#chart_I"), options);
-                            chart.render();
-                    </script>
-                </div>
-            </div>
-    
+                    var chart = new ApexCharts(document.querySelector("#chart_I"), options);
+                    chart.render();
+            </script>
         </div>
     </div>
     <!--=================================================================================================================-->
