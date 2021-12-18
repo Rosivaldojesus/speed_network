@@ -25,6 +25,14 @@
                                     data: [{% for data in mensalVeiculos %}  '{{ data.c|safe}}', {% endfor %}]
                                 }   
                             ],
+
+                            //Coloca o valores em cada mês
+                            dataLabels: {
+                            enabled: true,
+                            },
+                            //Coloca a cor da barra
+                            colors: ['#545454', '#545454'],
+
                             chart: {
                             height: 350,
                             type: 'line',
@@ -35,6 +43,7 @@
                                 enabled: false
                             }
                             },
+
                             stroke: {
                             width: [5,5,4],
                             curve: 'straight'
@@ -391,6 +400,11 @@
                                 enabled: false
                             }
                             },
+
+
+
+
+                            
                             stroke: {
                             width: [5,5,4],
                             curve: 'straight'
