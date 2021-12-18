@@ -111,12 +111,8 @@ class CustoMensalCategoriaView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         data_atual = datetime.now() # Variável da data de hoje
-        current_month = datetime.now().month
-        this_month = date.today().month # Variável do mês atual
         six_months = date.today() + relativedelta(months=-6)
-        six_months = date.today() + relativedelta(months=-6)
-        five_months = date.today() + relativedelta(months=-5)
-        last_months = date.today() + relativedelta(months=-1)
+        last_months = date.today() + relativedelta(months=-0)
 
         # Query para total por mês de custo das categorias
         context['mensalVeiculos'] = Pagamento.objects.filter(status_pago=True)\
