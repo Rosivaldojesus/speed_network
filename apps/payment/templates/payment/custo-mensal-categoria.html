@@ -107,7 +107,7 @@
 
                         title: {
                         text: 'Custos Mensais categorias',
-                        align: 'right'
+                        align: 'left'
                         },
                         legend: {
                         tooltipHoverFormatter: function(val, opts) {
@@ -168,7 +168,76 @@
 
      <!--=======================================================================================================-->
      <div class="card shadow mt-3">
+        <div class="card shadow mt-3">
+            <div id="chart_B">
+                <div id="timeline-chart_custos_mensais">
+                    <script>
+                        var options = {
+                            series: [
+                                
+                            
+                            {
+                            name: 'Veículos',
+                            data: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            }, {
+                            name: 'Funcionários',
+                            data: [{% for veiculos in mensalFuncionarios %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            }, {
+                            name: 'Alimentação',
+                            data: [{% for veiculos in mensalAlimentacao %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            },{
+                            name: 'Links',
+                            data: [{% for veiculos in mensalLinks %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            }, {
+                            name: 'Locação',
+                            data: [{% for veiculos in mensalLocacao %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            }, {
+                            name: 'Instalação',
+                            data: [{% for veiculos in mensalInstalacao %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            },{
+                            name: 'Sócios',
+                            data: [{% for veiculos in mensalSocios %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            }, {
+                            name: 'Impostos',
+                            data: [{% for veiculos in mensalImpostos %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            }, {
+                            name: 'Taxas',
+                            data: [{% for veiculos in mensalTaxas %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            }
+                        
+                        
+                        
+                        ],
+                            chart: {
+                            height: 350,
+                            type: 'line',
+                            zoom: {
+                                enabled: false
+                            },
+                            animations: {
+                                enabled: false
+                            }
+                            },
+                            stroke: {
+                            width: [5,5,4],
+                            curve: 'straight'
+                            },
+                            labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                            title: {
+                            text: 'Missing data (null values)'
+                            },
+                            xaxis: {
+                            },
+                            };
 
+                            var chart = new ApexCharts(document.querySelector("#chart_B"), options);
+                            chart.render();
+          
+                    </script>
+                </div>
+            </div>
+    
+        </div>
 
       
 
