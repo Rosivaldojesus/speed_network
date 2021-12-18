@@ -122,8 +122,8 @@ class CustoMensalCategoriaView(TemplateView):
         context['mensalVeiculos'] = Pagamento.objects.filter(status_pago=True)\
             .filter(Q(data_pagamento__range=[six_months, last_months])).annotate(month=TruncMonth('data_pagamento'))\
             .filter(data_pagamento__lte=data_atual).filter(categoria=1).values('month')\
-            .annotate(c=Sum('valor_pagamento')).exclude(data_pagamento=six_months).values('month', 'c')\
-            .order_by('month')
+            .annotate(c=Sum('valor_pagamento')).values('month', 'c')\
+            .order_by('month')[:1]
 
         context['mensalFuncionarios'] = Pagamento.objects.filter(status_pago=True)\
             .annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__lte=data_atual).filter(categoria=2)\
