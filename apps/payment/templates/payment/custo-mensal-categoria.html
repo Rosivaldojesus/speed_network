@@ -21,39 +21,32 @@
                         {
                             name: 'Veículos',
                             data: [{% for data in mensalVeiculos %}  '{{ data.c|safe}}', {% endfor %}],
-                            borderWidth: 10
                         }   
                     ],
 
-                    //Coloca o valores em cada mês
-                    dataLabels: {
-                    enabled: true,
-                    },
-                    //Coloca a cor da barra
-                    colors: ['#545454', '#545454'],
+                    dataLabels: {enabled: true,/*Coloca o valores em cada mês*/},
+                    
+                    colors: ['#545454', '#545454'],//Coloca a cor da barra
           
-
                     chart: {
-                    height: 350,
-                    type: 'line',
-                   
-                    zoom: {
-                        enabled: false
-                    },
-                    animations: {
-                        enabled: true
-                    }
+                        height: 350,
+                        type: 'line',
+                        zoom: { enabled: false },
+                        animations: {enabled: true }
                     },
 
                     stroke: {
-                    width: [2],//Largura da linha
-                    curve: 'straight',
-                    dashArray: [4, 8, 5]//Se quiser a linha pontilhada
+                        width: [2],//Largura da linha
+                        curve: 'straight',
+                        dashArray: [4, 8, 5]//Se quiser a linha pontilhada
                     },
+
                     labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+
                     title: {
-                    text: 'Custos Mensais categorias'
+                    text: 'Veículos'
                     },
+
                     xaxis: {
                     },
                     };
@@ -91,7 +84,7 @@
                     },
                     labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
                     title: {
-                    text: 'Custos Mensais categorias'
+                    text: 'Funcionários'
                     },
                     xaxis: {
                     },
@@ -131,7 +124,7 @@
                     },
                     labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
                     title: {
-                    text: 'Custos Mensais categorias'
+                    text: 'Alimentação'
                     },
                     xaxis: {
                     },
@@ -170,7 +163,7 @@
                     },
                     labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
                     title: {
-                    text: 'Custos Mensais categorias'
+                    text: 'Links'
                     },
                     xaxis: {
                     },
@@ -209,7 +202,7 @@
                     },
                     labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
                     title: {
-                    text: 'Custos Mensais categorias'
+                    text: 'Locação'
                     },
                     xaxis: {
                     },
@@ -249,7 +242,7 @@
                     },
                     labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
                     title: {
-                    text: 'Custos Mensais categorias'
+                    text: 'Instalação'
                     },
                     xaxis: {
                     },
@@ -288,7 +281,7 @@
                     },
                     labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
                     title: {
-                    text: 'Custos Mensais categorias'
+                    text: 'Sócios'
                     },
                     xaxis: {
                     },
@@ -328,7 +321,7 @@
                     },
                     labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
                     title: {
-                    text: 'Custos Mensais categorias'
+                    text: 'Impostos'
                     },
                     xaxis: {
                     },
@@ -369,7 +362,7 @@
                     },
                     labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
                     title: {
-                    text: 'Custos Mensais categorias'
+                    text: 'Taxas'
                     },
                     xaxis: {
                     },
