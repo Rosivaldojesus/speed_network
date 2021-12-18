@@ -46,9 +46,9 @@
                     },
 
                     stroke: {
-                        //Largura da linha
-                    width: [2],
-                    curve: 'straight'
+                    width: [2],//Largura da linha
+                    curve: 'straight',
+                    dashArray: [4, 8, 5]//Se quiser a linha pontilhada
                     },
                     labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
                     title: {
