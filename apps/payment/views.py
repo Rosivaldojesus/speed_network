@@ -167,10 +167,12 @@ class FluxoEntradaSaidaView(TemplateView):
         context['entrada_erp'] = FluxoEntradaSaidaMensal.objects.annotate(month=TruncMonth('data_registro')) \
             .values('month').annotate(c=Sum('entrada_referente_mes_atual')).values('month', 'c')
 
+
+        # Verificar essa logica
         context['mes'] = Pagamento.objects.annotate(month=TruncMonth('data_pagamento'),
                                                     c=Sum('valor_pagamento')).values(
             'month').annotate(c=Sum('valor_pagamento')).filter(data_pagamento__lte=data_atual).filter().values(
-            'month', 'c').order_by('month')
+            'month', 'c').order_by('month')[1:]
 
         return context
 
