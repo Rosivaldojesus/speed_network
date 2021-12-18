@@ -4,7 +4,6 @@
 {% block title %} .:: Custos Mensais Por Categoria {% endblock %}
 
 
-
 {% block main %}
 <div class="container">
     <!-- Título da pagina -->
@@ -14,198 +13,41 @@
 
     <!--=======================================================================================================-->
     <div class="card shadow mt-3">
-        <div id="chart_A">
-            <div id="timeline-chart_custos_mensais">
-                <script>
-                    var options = {
-                        series: [
-                        // Linha de veículos
-                        {
-                            name: "Veiculos",
-                            data: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.c|safe}}', {% endfor %}]
-                        },
-                        
-                        //Funcionários
-                        {
-                            name: "Funcionários",
-                            data: [{% for veiculos in mensalFuncionarios %}  '{{ veiculos.c|safe}}', {% endfor %}]
-                        },
-
-                        //Alimentação
-                        {
-                            name: "Alimentação",
-                            data: [{% for veiculos in mensalAlimentacao %}  '{{ veiculos.c|safe}}', {% endfor %}]
-                        },
-
-                        //Links
-                        {
-                            name: "Links",
-                            data: [{% for veiculos in mensalLinks %}  '{{ veiculos.c|safe}}', {% endfor %}]
-                        },
-
-                        //Locação
-                        {
-                            name: "Locação",
-                            data: [{% for veiculos in mensalLocacao %}  '{{ veiculos.c|safe}}', {% endfor %}]
-                        },
-
-                        {
-                            name: "Instalação",
-                            data: [{% for veiculos in mensalInstalacao %}  '{{ veiculos.c|safe}}', {% endfor %}]
-                        },
-
-                        {
-                            name: "Sócios",
-                            data: [{% for veiculos in mensalSocios %}  '{{ veiculos.c|safe}}', {% endfor %}]
-                        },
-
-                        
-
-                        {
-                            name: "Impostos",
-                            data: [{% for veiculos in mensalImpostos %}  '{{ veiculos.c|safe}}', {% endfor %}]
-                        },
-
-                        
-
-                        {
-                            name: "Taxas",
-                            data: [{% for veiculos in mensalTaxas %}  '{{ veiculos.c|safe}}', {% endfor %}]
-                        }
-
-
-                       
-
-
-                        ],
-                        //Veículos
-                        chart: {
-                        height: 350,
-                        type: 'line',
-                        zoom: {
-                            enabled: false
-                        },
-
-                        
-
-                        },
-                        dataLabels: {
-                        enabled: false
-                        },
-
-
-
-                        stroke: {
-                        width: [5, 7, 5],
-                        curve: 'straight',
-                        dashArray: [0, 8, 5]
-                        },
-
-
-
-
-
-                        title: {
-                        text: 'Custos Mensais categorias',
-                        align: 'left'
-                        },
-                        legend: {
-                        tooltipHoverFormatter: function(val, opts) {
-                            return val + ' - ' + opts.w.globals.series[opts.seriesIndex][opts.dataPointIndex] + ''
-                        }
-                        },
-                        markers: {
-                        size: 0,
-                        hover: {
-                            sizeOffset: 6
-                        }
-                        },
-                        xaxis: {
-                        categories: [
-                            
-                            {% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}
-                        ],
-                        },
-                        tooltip: {
-                        y: [
-                            {
-                            title: {
-                                formatter: function (val) {
-                                return val + " (mins)"
-                                }
-                            }
-                            },
-                            {
-                            title: {
-                                formatter: function (val) {
-                                return val + " per session"
-                                }
-                            }
-                            },
-                            {
-                            title: {
-                                formatter: function (val) {
-                                return val;
-                                }
-                            }
-                            }
-                        ]
-                        },
-                        grid: {
-                        borderColor: '#f1f1f1',
-                        }
-                        };
-
-                        var chart = new ApexCharts(document.querySelector("#chart_A"), options);
-                        chart.render();
-      
-                </script>
-            </div>
-        </div>
-
-    </div>
-    <!--=======================================================================================================-->
-
-     <!--=======================================================================================================-->
-     <div class="card shadow mt-3">
         <div class="card shadow mt-3">
             <div id="chart_B">
                 <div id="timeline-chart_custos_mensais">
                     <script>
                         var options = {
                             series: [
-                                
-                            
+                                    
                             {
                             name: 'Veículos',
-                            data: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            data: [{% for data in mensalVeiculos %}  '{{ data.c|safe}}', {% endfor %}]
                             }, {
                             name: 'Funcionários',
-                            data: [{% for veiculos in mensalFuncionarios %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            data: [{% for data in mensalFuncionarios %}  '{{ data.c|safe}}', {% endfor %}]
                             }, {
                             name: 'Alimentação',
-                            data: [{% for veiculos in mensalAlimentacao %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            data: [{% for data in mensalAlimentacao %}  '{{ data.c|safe}}', {% endfor %}]
                             },{
                             name: 'Links',
-                            data: [{% for veiculos in mensalLinks %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            data: [{% for data in mensalLinks %}  '{{ data.c|safe}}', {% endfor %}]
                             }, {
                             name: 'Locação',
-                            data: [{% for veiculos in mensalLocacao %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            data: [{% for data in mensalLocacao %}  '{{ data.c|safe}}', {% endfor %}]
                             }, {
                             name: 'Instalação',
-                            data: [{% for veiculos in mensalInstalacao %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            data: [{% for data in mensalInstalacao %}  '{{ data.c|safe}}', {% endfor %}]
                             },{
                             name: 'Sócios',
-                            data: [{% for veiculos in mensalSocios %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            data: [{% for data in mensalSocios %}  '{{ data.c|safe}}', {% endfor %}]
                             }, {
                             name: 'Impostos',
-                            data: [{% for veiculos in mensalImpostos %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            data: [{% for data in mensalImpostos %}  '{{ data.c|safe}}', {% endfor %}]
                             }, {
                             name: 'Taxas',
-                            data: [{% for veiculos in mensalTaxas %}  '{{ veiculos.c|safe}}', {% endfor %}]
+                            data: [{% for data in mensalTaxas %}  '{{ data.c|safe}}', {% endfor %}]
                             }
-                        
-                        
                         
                         ],
                             chart: {
@@ -224,7 +66,7 @@
                             },
                             labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
                             title: {
-                            text: 'Missing data (null values)'
+                            text: 'Custos Mensais categorias'
                             },
                             xaxis: {
                             },
@@ -232,15 +74,17 @@
 
                             var chart = new ApexCharts(document.querySelector("#chart_B"), options);
                             chart.render();
-          
                     </script>
                 </div>
             </div>
     
         </div>
+    </div>
+    <!--=======================================================================================================-->
 
-      
-
+    <!--=======================================================================================================-->
+     <div class="card shadow mt-3">
+        
 
     </div>
     <!--=======================================================================================================-->
