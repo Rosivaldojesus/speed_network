@@ -16,6 +16,7 @@ from django.http import HttpResponse
 from .forms import CadastrarFluxoForm
 from django.core.paginator import Paginator
 from django.views.generic import TemplateView
+from dateutil.relativedelta import relativedelta
 
 
 # Create your views here.
@@ -106,9 +107,10 @@ class CustoMensalCategoriaView(TemplateView):
         context = super().get_context_data(**kwargs)
         data_atual = datetime.now() # Variável da data de hoje
         this_month = date.today().month # Variável do mês atual
+        six_months = date.today() + relativedelta(months=-3)
 
         # Query para total por mês de custo das categorias
-        context['mensalVeiculos'] = Pagamento.objects.filter(status_pago=True).annotate(month=TruncMonth('data_pagamento')).filter(
+        context['mensalVeiculos'] = Pagamento.objects.filter(status_pago=True).filter(Q(data_pagamento__range=[six_months, date.today()])).annotate(month=TruncMonth('data_pagamento')).filter(
             data_pagamento__lte=data_atual).filter(categoria=1).values('month').annotate(
             c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
 
