@@ -1,4 +1,6 @@
 from datetime import date, datetime
+
+import months as months
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q, Sum
@@ -109,7 +111,9 @@ class CustoMensalCategoriaView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         data_atual = datetime.now() # Variável da data de hoje
+        current_month = datetime.now().month
         this_month = date.today().month # Variável do mês atual
+        six_months = date.today() + relativedelta(months=-6)
         six_months = date.today() + relativedelta(months=-6)
         five_months = date.today() + relativedelta(months=-5)
         last_months = date.today() + relativedelta(months=-1)
@@ -118,13 +122,12 @@ class CustoMensalCategoriaView(TemplateView):
         context['mensalVeiculos'] = Pagamento.objects.filter(status_pago=True)\
             .filter(Q(data_pagamento__range=[six_months, last_months])).annotate(month=TruncMonth('data_pagamento'))\
             .filter(data_pagamento__lte=data_atual).filter(categoria=1).values('month')\
-            .annotate(c=Sum('valor_pagamento')).exclude(data_pagamento__lt=five_months).values('month', 'c')\
+            .annotate(c=Sum('valor_pagamento')).exclude(data_pagamento=six_months).values('month', 'c')\
             .order_by('month')
 
-
-        context['mensalFuncionarios'] = Pagamento.objects.filter(status_pago=True).annotate(month=TruncMonth('data_pagamento')).filter(
-            data_pagamento__lte=data_atual).filter(categoria=2).values('month').annotate(
-            c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
+        context['mensalFuncionarios'] = Pagamento.objects.filter(status_pago=True)\
+            .annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__lte=data_atual).filter(categoria=2)\
+            .values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
 
         context['mensalAlimentacao'] = Pagamento.objects.filter(status_pago=True).annotate(month=TruncMonth('data_pagamento')).filter(
             data_pagamento__lte=data_atual).filter().filter(categoria=3).values('month').annotate(
@@ -154,8 +157,17 @@ class CustoMensalCategoriaView(TemplateView):
             data_pagamento__lte=data_atual).filter(categoria=11).values('month').annotate(
             c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
 
-
         return context
+
+
+
+
+
+
+
+
+
+
 
 
 
