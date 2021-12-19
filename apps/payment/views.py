@@ -130,7 +130,7 @@ class CustoMensalCategoriaView(TemplateView):
         # Query para total por mês de custo das categorias
         context['custos_mensais_categoria'] = Pagamento.objects.\
                                                   filter(status_pago=True).\
-                                                  filter(Q(data_pagamento__range=[six_months, last_months])).\
+                                                  filter().\
                                                   annotate(month=TruncMonth('data_pagamento')).\
                                                   values('month').\
                                                   annotate(total=Sum('valor_pagamento')).\
