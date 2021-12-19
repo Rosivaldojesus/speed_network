@@ -61,11 +61,12 @@ class IndexTemplateView(TemplateView):
             status_pago=True).filter(categoria=11).aggregate(total=Sum('valor_pagamento'))
 
         # Query [Gráfico] para total por mês de custo das categorias ===================================================
+        data_atual = datetime.now()  # Variável da data de hoje
         six_months = date.today() + relativedelta(months=-6)
         last_months = date.today() + relativedelta(months=-0)
         context['mensais_categoria'] = Pagamento.objects. \
                                                   filter(status_pago=True). \
-                                                  filter(Q(data_pagamento=six_months)). \
+                                                  filter(Q(data_pagamento__range=[six_months, data_atual])). \
                                                   annotate(month=TruncMonth('data_pagamento')). \
                                                   values('month'). \
                                                   annotate(total=Sum('valor_pagamento')). \
