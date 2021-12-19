@@ -65,7 +65,7 @@ class IndexTemplateView(TemplateView):
         last_months = date.today() + relativedelta(months=-0)
         context['mensais_categoria'] = Pagamento.objects. \
                                                   filter(status_pago=True). \
-                                                  filter(). \
+                                                  filter(Q(data_pagamento=six_months)). \
                                                   annotate(month=TruncMonth('data_pagamento')). \
                                                   values('month'). \
                                                   annotate(total=Sum('valor_pagamento')). \
