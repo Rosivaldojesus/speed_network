@@ -395,15 +395,20 @@
                         {
                         name: 'Veículos',
                         data: [
-
-             
-                        {% for data in mensais_categoria %}
-                            {% if data.categoria == 1 %}
-                            '{{ data.total|safe}}',
-                            {% endif %}
-                        {% endfor %}
-                    
-                    
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 1 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
+                        },{
+                        name: 'Funcionários',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 2 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
                         ]
                         }
                     
