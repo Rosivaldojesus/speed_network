@@ -135,7 +135,7 @@ class CustoMensalCategoriaView(TemplateView):
                                                   values('month').\
                                                   annotate(total=Sum('valor_pagamento')).\
                                                   values('month', 'total', 'categoria').\
-                                                  order_by('month')[1:]
+                                                  order_by('month')
         return context
 
 
