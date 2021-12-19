@@ -53,7 +53,7 @@
                         
                     {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 1  %}
-                                '{{ data.month}}',
+                                '{{ data.month|date:'M, Y' }}',
                                 {% endif %}
                             {% endfor %}
                 
