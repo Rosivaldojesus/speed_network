@@ -125,16 +125,16 @@ class CustoMensalCategoriaView(TemplateView):
         last_months = date.today() + relativedelta(months=-0)
 
         # Query para total por mês de custo das categorias
-        context['custos_mensais_categoria'] = Pagamento.objects\
-                                                  .filter(status_pago=True)\
-                                                  .filter(Q(data_pagamento__range=[six_months, last_months]))\
-                                                  .annotate(month=TruncMonth('data_pagamento'))\
-                                                  .filter(data_pagamento__lte=data_atual)\
-                                                  .values('month')\
-                                                  .annotate(total=Sum('valor_pagamento'))\
-                                                  .values('month', 'total', 'categoria')\
-                                                  .order_by('month')[1:]
+        context['custos_mensais_categoria'] = Pagamento.objects.\
+                                                  filter(status_pago=True).\
+                                                  filter(Q(data_pagamento__range=[six_months, last_months])).\
+                                                  annotate(month=TruncMonth('data_pagamento')).\
+                                                  values('month').\
+                                                  annotate(total=Sum('valor_pagamento')).\
+                                                  values('month', 'total', 'categoria').\
+                                                  order_by('month')[1:]
         return context
+
 
 
 class FluxoEntradaSaidaView(TemplateView):
