@@ -131,8 +131,8 @@ class CustoMensalCategoriaView(TemplateView):
                                                   .annotate(month=TruncMonth('data_pagamento'))\
                                                   .filter(data_pagamento__lte=data_atual)\
                                                   .values('month')\
-                                                  .annotate(c=Sum('valor_pagamento'))\
-                                                  .values('month', 'c', 'categoria')\
+                                                  .annotate(total=Sum('valor_pagamento'))\
+                                                  .values('month', 'total', 'categoria')\
                                                   .order_by('month')[1:]
         return context
 

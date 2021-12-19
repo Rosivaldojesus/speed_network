@@ -24,7 +24,7 @@
 
                             {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 1  %}
-                                '{{ data.c|safe}}',
+                                '{{ data.total|safe}}',
                                 {% endif %}
                             {% endfor %}
 
@@ -77,7 +77,7 @@
                                 
                             {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 2  %}
-                                '{{ data.c|safe}}',
+                                '{{ data.total|safe}}',
                                 {% endif %}
                             {% endfor %}
                         
@@ -123,7 +123,7 @@
                         data: [
                         {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 3  %}
-                                '{{ data.c|safe}}',
+                                '{{ data.total|safe}}',
                                 {% endif %}
                             {% endfor %}
                         ]
@@ -170,7 +170,7 @@
 
                             {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 4  %}
-                                '{{ data.c|safe}}',
+                                '{{ data.total|safe}}',
                                 {% endif %}
                             {% endfor %}
                     
@@ -217,7 +217,7 @@
 
                             {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 5  %}
-                                '{{ data.c|safe}}',
+                                '{{ data.total|safe}}',
                                 {% endif %}
                             {% endfor %}
                         
@@ -264,7 +264,7 @@
 
                             {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 6  %}
-                                '{{ data.c|safe}}',
+                                '{{ data.total|safe}}',
                                 {% endif %}
                             {% endfor %}
 
@@ -312,7 +312,7 @@
                             
                             {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 7 %}
-                                '{{ data.c|safe}}',
+                                '{{ data.total|safe}}',
                                 {% endif %}
                             {% endfor %}
                     
@@ -359,7 +359,7 @@
                             
                             {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 8  %}
-                                '{{ data.c|safe}}',
+                                '{{ data.total|safe}}',
                                 {% endif %}
                             {% endfor %}
                         
@@ -408,7 +408,7 @@
                             
                             {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 11  %}
-                                '{{ data.c|safe}}',
+                                '{{ data.total|safe}}',
                                 {% endif %}
                             {% endfor %}
                     
