@@ -49,7 +49,16 @@
                         dashArray: [4, 8, 5]//Se quiser a linha pontilhada
                     },
 
-                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [
+                        
+                    {% for data in custos_mensais_categoria %} 
+                                {% if data.categoria == 1  %}
+                                '{{ data.month}}',
+                                {% endif %}
+                            {% endfor %}
+                
+                
+                ],
 
                     title: {
                     text: 'Veículos'
