@@ -21,13 +21,11 @@
                         {
                             name: 'Veículos',
                             data: [
-
-                            {% for data in custos_mensais_categoria %} 
-                                {% if data.categoria == 1  %}
-                                '{{ data.total|safe}}',
+                                {% for data in custos_mensais_categoria %} 
+                                    {% if data.categoria == 1  %}
+                                        '{{ data.total|safe}}',
                                 {% endif %}
-                            {% endfor %}
-
+                                {% endfor %}
                             ],
                         }   
                     ],
@@ -50,15 +48,12 @@
                     },
 
                     labels: [
-                        
-                    {% for data in custos_mensais_categoria %} 
-                                {% if data.categoria == 1  %}
+                        {% for data in custos_mensais_categoria %} 
+                            {% if data.categoria == 1  %}
                                 '{{ data.month|date:'M, Y' }}',
-                                {% endif %}
-                            {% endfor %}
-                
-                
-                ],
+                            {% endif %}
+                        {% endfor %}    
+                    ],
 
                     title: {
                     text: 'Veículos'
@@ -83,13 +78,11 @@
                     series: [{
                             name: 'Funcionários',
                             data: [
-                                
-                            {% for data in custos_mensais_categoria %} 
-                                {% if data.categoria == 2  %}
-                                '{{ data.total|safe}}',
-                                {% endif %}
-                            {% endfor %}
-                        
+                                {% for data in custos_mensais_categoria %} 
+                                    {% if data.categoria == 2  %}
+                                        '{{ data.total|safe}}',
+                                    {% endif %}
+                                {% endfor %}
                             ]
                         }
                     ],
@@ -107,7 +100,13 @@
                     width: [5,5,4],
                     curve: 'straight'
                     },
-                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [
+                        {% for data in custos_mensais_categoria %} 
+                            {% if data.categoria == 6  %}
+                                '{{ data.month|date:'M, Y' }}',
+                            {% endif %}
+                        {% endfor %}
+                    ],
                     title: {
                     text: 'Funcionários'
                     },
@@ -130,7 +129,7 @@
                     series: [{
                         name: 'Alimentação',
                         data: [
-                        {% for data in custos_mensais_categoria %} 
+                            {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 3  %}
                                 '{{ data.total|safe}}',
                                 {% endif %}
@@ -153,7 +152,13 @@
                     width: [5,5,4],
                     curve: 'straight'
                     },
-                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [
+                        {% for data in custos_mensais_categoria %} 
+                            {% if data.categoria == 3  %}
+                                '{{ data.month|date:'M, Y' }}',
+                            {% endif %}
+                        {% endfor %}
+                    ],
                     title: {
                     text: 'Alimentação'
                     },
@@ -176,14 +181,12 @@
                     series: [{
                         name: 'Links',
                         data: [
-
                             {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 4  %}
-                                '{{ data.total|safe}}',
+                                    '{{ data.total|safe}}',
                                 {% endif %}
                             {% endfor %}
-                    
-                    ]
+                        ]
                         }
                     ],
                     chart: {
@@ -200,7 +203,13 @@
                     width: [5,5,4],
                     curve: 'straight'
                     },
-                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [
+                        {% for data in custos_mensais_categoria %} 
+                            {% if data.categoria == 4  %}
+                                '{{ data.month|date:'M, Y' }}',
+                            {% endif %}
+                        {% endfor %}
+                    ],
                     title: {
                     text: 'Links'
                     },
@@ -223,13 +232,11 @@
                     series: [{
                         name: 'Locação',
                         data: [
-
                             {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 5  %}
-                                '{{ data.total|safe}}',
+                                    '{{ data.total|safe}}',
                                 {% endif %}
                             {% endfor %}
-                        
                         ]
                         }
                     ],
@@ -247,7 +254,13 @@
                     width: [5,5,4],
                     curve: 'straight'
                     },
-                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [
+                        {% for data in custos_mensais_categoria %} 
+                            {% if data.categoria == 5  %}
+                                '{{ data.month|date:'M, Y' }}',
+                            {% endif %}
+                        {% endfor %}
+                    ],
                     title: {
                     text: 'Locação'
                     },
@@ -270,13 +283,11 @@
                     series: [{
                         name: 'Instalação',
                         data: [
-
                             {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 6  %}
-                                '{{ data.total|safe}}',
+                                    '{{ data.total|safe}}',
                                 {% endif %}
                             {% endfor %}
-
                         ]
                         }
                     
@@ -295,7 +306,13 @@
                     width: [5,5,4],
                     curve: 'straight'
                     },
-                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [
+                        {% for data in custos_mensais_categoria %} 
+                            {% if data.categoria == 6  %}
+                                '{{ data.month|date:'M, Y' }}',
+                            {% endif %}
+                        {% endfor %}
+                    ],
                     title: {
                     text: 'Instalação'
                     },
@@ -318,14 +335,12 @@
                     series: [{
                         name: 'Sócios',
                         data: [
-                            
                             {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 7 %}
-                                '{{ data.total|safe}}',
+                                    '{{ data.total|safe}}',
                                 {% endif %}
                             {% endfor %}
-                    
-                    ]
+                        ]
                         }
                     ],
                     chart: {
@@ -342,7 +357,13 @@
                     width: [5,5,4],
                     curve: 'straight'
                     },
-                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [
+                        {% for data in custos_mensais_categoria %} 
+                            {% if data.categoria == 7  %}
+                                '{{ data.month|date:'M, Y' }}',
+                            {% endif %}
+                        {% endfor %}
+                    ],
                     title: {
                     text: 'Sócios'
                     },
@@ -365,17 +386,13 @@
                     series: [{
                         name: 'Impostos',
                         data: [
-                            
                             {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 8  %}
-                                '{{ data.total|safe}}',
+                                    '{{ data.total|safe}}',
                                 {% endif %}
-                            {% endfor %}
-                        
-                        
+                            {% endfor %}    
                         ]
                         }
-                
                     ],
                     chart: {
                     height: 350,
@@ -391,7 +408,13 @@
                     width: [5,5,4],
                     curve: 'straight'
                     },
-                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [
+                        {% for data in custos_mensais_categoria %} 
+                            {% if data.categoria == 8  %}
+                                '{{ data.month|date:'M, Y' }}',
+                            {% endif %}
+                        {% endfor %}
+                    ],
                     title: {
                     text: 'Impostos'
                     },
@@ -414,15 +437,12 @@
                     series: [{
                         name: 'Taxas',
                         data: [
-                            
                             {% for data in custos_mensais_categoria %} 
                                 {% if data.categoria == 11  %}
-                                '{{ data.total|safe}}',
+                                    '{{ data.total|safe}}',
                                 {% endif %}
                             {% endfor %}
-                    
-                    
-                    ]
+                        ]
                         }
                 
                     ],
@@ -441,7 +461,13 @@
                     width: [5,5,4],
                     curve: 'straight'
                     },
-                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [
+                        {% for data in custos_mensais_categoria %} 
+                            {% if data.categoria == 11  %}
+                                '{{ data.month|date:'M, Y' }}',
+                            {% endif %}
+                        {% endfor %}
+                    ],
                     title: {
                     text: 'Taxas'
                     },
@@ -455,7 +481,5 @@
         </div>
     </div>
     <!--=================================================================================================================-->
-    
-
 </div>
 {% endblock %}
