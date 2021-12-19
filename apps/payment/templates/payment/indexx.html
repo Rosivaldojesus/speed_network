@@ -410,7 +410,71 @@
                                 {% endif %}
                             {% endfor %}
                         ]
+                        },{
+                        name: 'Alimentação',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 3 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
+                        },{
+                        name: 'Links',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 4 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
+                        },{
+                        name: 'Locação',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 5 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
+                        },{
+                        name: 'Instalação',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 6 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
+                        },{
+                        name: 'Sócios',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 7 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
+                        },{
+                        name: 'Impostos',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 8 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
+                        },{
+                        name: 'Taxas',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 11 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
                         }
+
                     
                     ],
                         chart: {
