@@ -397,7 +397,11 @@
                         data: [
 
              
-                        {% for data in mensais_categoria %}  '{{ data.total|safe}}', {% endfor %}
+                        {% for data in mensais_categoria %}
+                            {% if data.categoria == 1 %}
+                            '{{ data.total|safe}}',
+                            {% endif %}
+                        {% endfor %}
                     
                     
                         ]
@@ -418,7 +422,11 @@
                         width: [5,5,4],
                         curve: 'straight'
                         },
-                        labels: [{% for data in mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
+                        labels: [{% for data in mensais_categoria %}
+                            {% if data.categoria == 1 %}
+                                '{{ data.month|date:'M, Y'}}',
+                            {% endif %}
+                           {% endfor %}],
                         title: {
                         text: 'Custos Mensais categorias'
                         },
