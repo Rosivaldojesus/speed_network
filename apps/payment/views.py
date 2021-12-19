@@ -113,10 +113,29 @@ class CustoMensalCategoriaView(TemplateView):
 
         # Query para total por mês de custo das categorias
 
+        context['custos_mensais_categoria'] = Pagamento.objects\
+                                                  .filter(status_pago=True)\
+                                                  .filter(Q(data_pagamento__range=[six_months, last_months]))\
+                                                  .annotate(month=TruncMonth('data_pagamento'))\
+                                                  .filter(data_pagamento__lte=data_atual)\
+                                                  .values('month')\
+                                                  .annotate(c=Sum('valor_pagamento'))\
+                                                  .values('month', 'c', 'categoria')\
+                                                  .order_by('month')[1:]
+
+
+
+
+
         context['mensalVeiculos'] = Pagamento.objects.filter(status_pago=True)\
             .filter(Q(data_pagamento__range=[six_months, last_months])).annotate(month=TruncMonth('data_pagamento'))\
-            .filter(data_pagamento__lte=data_atual).filter(categoria=1).values('month')\
-            .annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')[1:]
+            .filter(data_pagamento__lte=data_atual).filter().values('month')\
+            .annotate(c=Sum('valor_pagamento')).values('month', 'c','categoria').order_by('month')[1:]
+
+
+
+
+
 
         context['mensalFuncionarios'] = Pagamento.objects.filter(status_pago=True)\
             .annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__lte=data_atual).filter(categoria=2)\

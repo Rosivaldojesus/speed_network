@@ -20,7 +20,15 @@
                     series: [
                         {
                             name: 'Veículos',
-                            data: [{% for data in mensalVeiculos %}  '{{ data.c|safe}}', {% endfor %}],
+                            data: [
+
+                            {% for data in custos_mensais_categoria %} 
+                                {% if data.categoria == 1  %}
+                                '{{ data.c|safe}}',
+                                {% endif %}
+                            {% endfor %}
+
+                            ],
                         }   
                     ],
 
@@ -65,7 +73,15 @@
                 var options = {
                     series: [{
                             name: 'Funcionários',
-                            data: [{% for data in mensalFuncionarios %}  '{{ data.c|safe}}', {% endfor %}]
+                            data: [
+                                
+                            {% for data in custos_mensais_categoria %} 
+                                {% if data.categoria == 2  %}
+                                '{{ data.c|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        
+                            ]
                         }
                     ],
                     chart: {
@@ -104,7 +120,13 @@
                 var options = {
                     series: [{
                         name: 'Alimentação',
-                        data: [{% for data in mensalAlimentacao %}  '{{ data.c|safe}}', {% endfor %}]
+                        data: [
+                        {% for data in custos_mensais_categoria %} 
+                                {% if data.categoria == 3  %}
+                                '{{ data.c|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
                         }
                     
                     ],
@@ -144,7 +166,15 @@
                 var options = {
                     series: [{
                         name: 'Links',
-                        data: [{% for data in mensalLinks %}  '{{ data.c|safe}}', {% endfor %}]
+                        data: [
+
+                            {% for data in custos_mensais_categoria %} 
+                                {% if data.categoria == 4  %}
+                                '{{ data.c|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                    
+                    ]
                         }
                     ],
                     chart: {
@@ -183,7 +213,15 @@
                 var options = {
                     series: [{
                         name: 'Locação',
-                        data: [{% for data in mensalLocacao %}  '{{ data.c|safe}}', {% endfor %}]
+                        data: [
+
+                            {% for data in custos_mensais_categoria %} 
+                                {% if data.categoria == 5  %}
+                                '{{ data.c|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        
+                        ]
                         }
                     ],
                     chart: {
@@ -222,7 +260,15 @@
                 var options = {
                     series: [{
                         name: 'Instalação',
-                        data: [{% for data in mensalInstalacao %}  '{{ data.c|safe}}', {% endfor %}]
+                        data: [
+
+                            {% for data in custos_mensais_categoria %} 
+                                {% if data.categoria == 6  %}
+                                '{{ data.c|safe}}',
+                                {% endif %}
+                            {% endfor %}
+
+                        ]
                         }
                     
                     ],
@@ -262,7 +308,15 @@
                 var options = {
                     series: [{
                         name: 'Sócios',
-                        data: [{% for data in mensalSocios %}  '{{ data.c|safe}}', {% endfor %}]
+                        data: [
+                            
+                            {% for data in custos_mensais_categoria %} 
+                                {% if data.categoria == 7 %}
+                                '{{ data.c|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                    
+                    ]
                         }
                     ],
                     chart: {
@@ -301,7 +355,16 @@
                 var options = {
                     series: [{
                         name: 'Impostos',
-                        data: [{% for data in mensalImpostos %}  '{{ data.c|safe}}', {% endfor %}]
+                        data: [
+                            
+                            {% for data in custos_mensais_categoria %} 
+                                {% if data.categoria == 8  %}
+                                '{{ data.c|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        
+                        
+                        ]
                         }
                 
                     ],
@@ -341,7 +404,16 @@
                 var options = {
                     series: [{
                         name: 'Taxas',
-                        data: [{% for data in mensalTaxas %}  '{{ data.c|safe}}', {% endfor %}]
+                        data: [
+                            
+                            {% for data in custos_mensais_categoria %} 
+                                {% if data.categoria == 11  %}
+                                '{{ data.c|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                    
+                    
+                    ]
                         }
                 
                     ],
