@@ -49,7 +49,7 @@
                         dashArray: [4, 8, 5]//Se quiser a linha pontilhada
                     },
 
-                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
 
                     title: {
                     text: 'Veículos'
@@ -98,7 +98,7 @@
                     width: [5,5,4],
                     curve: 'straight'
                     },
-                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
                     title: {
                     text: 'Funcionários'
                     },
@@ -144,7 +144,7 @@
                     width: [5,5,4],
                     curve: 'straight'
                     },
-                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
                     title: {
                     text: 'Alimentação'
                     },
@@ -191,7 +191,7 @@
                     width: [5,5,4],
                     curve: 'straight'
                     },
-                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
                     title: {
                     text: 'Links'
                     },
@@ -238,7 +238,7 @@
                     width: [5,5,4],
                     curve: 'straight'
                     },
-                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
                     title: {
                     text: 'Locação'
                     },
@@ -286,7 +286,7 @@
                     width: [5,5,4],
                     curve: 'straight'
                     },
-                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
                     title: {
                     text: 'Instalação'
                     },
@@ -333,7 +333,7 @@
                     width: [5,5,4],
                     curve: 'straight'
                     },
-                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
                     title: {
                     text: 'Sócios'
                     },
@@ -382,7 +382,7 @@
                     width: [5,5,4],
                     curve: 'straight'
                     },
-                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
                     title: {
                     text: 'Impostos'
                     },
@@ -432,7 +432,7 @@
                     width: [5,5,4],
                     curve: 'straight'
                     },
-                    labels: [{% for veiculos in mensalVeiculos %}  '{{ veiculos.month|date:'M, Y'}}', {% endfor %}],
+                    labels: [{% for data in custos_mensais_categoria %}  '{{ data.month|date:'M, Y'}}', {% endfor %}],
                     title: {
                     text: 'Taxas'
                     },

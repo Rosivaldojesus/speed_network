@@ -100,7 +100,11 @@
                                 var options = {
                                     series: [{
                                     data: [
-                                        
+
+
+
+
+
                                     {% if veiculosMesAtual.total is null %} 0 {% else %} {{ veiculosMesAtual.total|safe }} {% endif %},	
                                     {% if funcionariosMesAtual.total is null %} 0 {% else %} {{ funcionariosMesAtual.total|safe }} {% endif %},		
                                     {% if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total|safe }} {% endif %},

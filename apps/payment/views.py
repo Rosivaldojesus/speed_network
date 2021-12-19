@@ -36,6 +36,14 @@ class IndexTemplateView(TemplateView):
             'month', 'c').order_by('month')
 
         # Query de mês atual dos gastos por categoria ==================================================================
+        context['custos_mes_atual_categoria'] = Pagamento.objects.\
+            filter(status_pago=True). \
+            annotate(total=Sum('valor_pagamento'))
+
+
+
+
+
 
         context['veiculosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month)\
             .filter(status_pago=True).filter(categoria=1).aggregate(total=Sum('valor_pagamento'))
@@ -60,6 +68,10 @@ class IndexTemplateView(TemplateView):
             status_pago=True).filter(categoria=8).aggregate(total=Sum('valor_pagamento'))
         context['taxaMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
             status_pago=True).filter(categoria=11).aggregate(total=Sum('valor_pagamento'))
+
+
+
+
 
         # Query para total por mês de custo das categorias =============================================================
         context['mensalVeiculos'] = Pagamento.objects.filter(status_pago=True).annotate(
@@ -105,6 +117,7 @@ class IndexTemplateView(TemplateView):
 class CustoMensalCategoriaView(TemplateView):
     model = Pagamento
     template_name = 'payment/custo-mensal-categoria.html'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         data_atual = datetime.now() # Variável da data de hoje
@@ -112,7 +125,6 @@ class CustoMensalCategoriaView(TemplateView):
         last_months = date.today() + relativedelta(months=-0)
 
         # Query para total por mês de custo das categorias
-
         context['custos_mensais_categoria'] = Pagamento.objects\
                                                   .filter(status_pago=True)\
                                                   .filter(Q(data_pagamento__range=[six_months, last_months]))\
@@ -122,53 +134,6 @@ class CustoMensalCategoriaView(TemplateView):
                                                   .annotate(c=Sum('valor_pagamento'))\
                                                   .values('month', 'c', 'categoria')\
                                                   .order_by('month')[1:]
-
-
-
-
-
-        context['mensalVeiculos'] = Pagamento.objects.filter(status_pago=True)\
-            .filter(Q(data_pagamento__range=[six_months, last_months])).annotate(month=TruncMonth('data_pagamento'))\
-            .filter(data_pagamento__lte=data_atual).filter().values('month')\
-            .annotate(c=Sum('valor_pagamento')).values('month', 'c','categoria').order_by('month')[1:]
-
-
-
-
-
-
-        context['mensalFuncionarios'] = Pagamento.objects.filter(status_pago=True)\
-            .annotate(month=TruncMonth('data_pagamento')).filter(data_pagamento__lte=data_atual).filter(categoria=2)\
-            .values('month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
-
-        context['mensalAlimentacao'] = Pagamento.objects.filter(status_pago=True).annotate(month=TruncMonth('data_pagamento')).filter(
-            data_pagamento__lte=data_atual).filter().filter(categoria=3).values('month').annotate(
-            c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
-
-        context['mensalLinks'] = Pagamento.objects.filter(status_pago=True).annotate(month=TruncMonth('data_pagamento')).filter(
-            data_pagamento__lte=data_atual).filter(categoria=4).values('month').annotate(
-            c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
-
-        context['mensalLocacao'] = Pagamento.objects.filter(status_pago=True).annotate(month=TruncMonth('data_pagamento')).filter(
-            data_pagamento__lte=data_atual).filter(data_pagamento__lt=data_atual).filter(categoria=5).values(
-            'month').annotate(c=Sum('valor_pagamento')).values('month', 'c').order_by('-month')
-        
-        context['mensalInstalacao'] = Pagamento.objects.filter(status_pago=True).annotate(month=TruncMonth('data_pagamento')).filter(
-            data_pagamento__lte=data_atual).filter(categoria=6).values('month').annotate(
-            c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
-
-        context['mensalSocios'] = Pagamento.objects.filter(status_pago=True).annotate(month=TruncMonth('data_pagamento')).filter(
-            data_pagamento__lte=data_atual).filter(categoria=7).values('month').annotate(
-            c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
-
-        context['mensalImpostos'] = Pagamento.objects.filter(status_pago=True).annotate(month=TruncMonth('data_pagamento')).filter(
-            data_pagamento__lte=data_atual).filter(categoria=8).values('month').annotate(
-            c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
-
-        context['mensalTaxas'] = Pagamento.objects.filter(status_pago=True).annotate(month=TruncMonth('data_pagamento')).filter(
-            data_pagamento__lte=data_atual).filter(categoria=11).values('month').annotate(
-            c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
-
         return context
 
 
