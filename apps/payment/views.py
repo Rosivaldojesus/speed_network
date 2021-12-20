@@ -15,7 +15,6 @@ from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.views.generic import TemplateView
 from dateutil.relativedelta import relativedelta
-
 from .models import FluxoEntradaSaidaMensal
 
 
@@ -53,34 +52,16 @@ class IndexTemplateView(TemplateView):
             order_by('month')
 
         # Query de mês atual dos gastos por categoria ==================================================================
-
-        context['gastos_mes_atual_categoria'] = Pagamento.objects. \
-            filter(status_pago=True). \
-            filter(data_pagamento__month=this_month). \
-            annotate(month=TruncMonth('data_pagamento')). \
-            values('month'). \
-            annotate(total=Sum('valor_pagamento')). \
-            values('month', 'total', 'categoria'). \
-            order_by('month')
-
-
-
-
         context['veiculos_mes_atual'] = Pagamento.objects.filter(data_pagamento__month=this_month) \
             .filter(status_pago=True).filter(categoria=1).aggregate(total=Sum('valor_pagamento'))
-
         context['funcionariosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month) \
             .filter(status_pago=True).filter(categoria=2).aggregate(total=Sum('valor_pagamento'))
-
         context['alimentacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month) \
             .filter(status_pago=True).filter(categoria=3).aggregate(total=Sum('valor_pagamento'))
-
         context['linksMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month) \
             .filter(status_pago=True).filter(categoria=4).aggregate(total=Sum('valor_pagamento'))
-
         context['locacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month) \
             .filter(status_pago=True).filter(categoria=5).aggregate(total=Sum('valor_pagamento'))
-
         context['instalacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
             status_pago=True).filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
         context['sociosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
@@ -122,21 +103,23 @@ class FluxoEntradaSaidaView(TemplateView):
         data_atual = datetime.now()  # Variável da data de hoje
         context = super().get_context_data(**kwargs)
 
-        context['entrada_banco'] = FluxoEntradaSaidaMensal.objects.annotate(month=TruncMonth('data_registro')) \
-            .values('month').annotate(c=Sum('entrada_mes_atual')).values('month', 'c').order_by('month')
+        context['entrada_banco'] = FluxoEntradaSaidaMensal.objects.\
+            annotate(month=TruncMonth('data_registro')) \
+            .values('month').\
+            annotate(c=Sum('entrada_mes_atual')).\
+            values('month', 'c').\
+            order_by('month')
 
-        context['entrada_erp'] = FluxoEntradaSaidaMensal.objects.annotate(month=TruncMonth('data_registro')) \
-            .values('month').annotate(c=Sum('entrada_referente_mes_atual')).values('month', 'c').order_by('month')
-
-        # Verificar essa logica
-        context['mes'] = Pagamento.objects.annotate(month=TruncMonth('data_pagamento'),
-                                                    c=Sum('valor_pagamento')).values(
-            'month').annotate(c=Sum('valor_pagamento')).filter(data_pagamento__lte=data_atual).filter().values(
-            'month', 'c').order_by('month')
+        context['entrada_erp'] = FluxoEntradaSaidaMensal.objects.\
+            annotate(month=TruncMonth('data_registro')) \
+            .values('month').\
+            annotate(c=Sum('entrada_referente_mes_atual')).\
+            values('month', 'c').\
+            order_by('month')
 
         return context
 
-
+#=======================================================================================================================
 def Index(request):
     data_atual = datetime.now()
     this_month = date.today().month
