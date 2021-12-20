@@ -27,8 +27,10 @@ class IndexTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        data_atual = datetime.now()  #  Variável da data de hoje
         this_month = date.today().month  # Variável do mês atual
+        data_atual = datetime.now()  # Variável da data de hoje
+        six_months = date.today() + relativedelta(months=-6)
+        last_months = date.today() + relativedelta(months=-0)
 
         # Query para o total de gastos de cada mês =====================================================================
         context['mes'] = Pagamento.objects.annotate(month=TruncMonth('data_pagamento'),c=Sum('valor_pagamento')).values(
@@ -61,9 +63,6 @@ class IndexTemplateView(TemplateView):
             status_pago=True).filter(categoria=11).aggregate(total=Sum('valor_pagamento'))
 
         # Query [Gráfico] para total por mês de custo das categorias ===================================================
-        data_atual = datetime.now()  # Variável da data de hoje
-        six_months = date.today() + relativedelta(months=-6)
-        last_months = date.today() + relativedelta(months=-0)
         context['mensais_categoria'] = Pagamento.objects. \
                                                   filter(status_pago=True). \
                                                   filter(Q(data_pagamento__range=[six_months, data_atual])). \
