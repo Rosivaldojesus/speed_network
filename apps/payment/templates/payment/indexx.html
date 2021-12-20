@@ -121,7 +121,43 @@
                                         {% if data.categoria == 3 %}
                                             {% if data.total < 0 %}    1      {% else %} '{{ data.total|safe }}', {% endif %}
                                         {% endif %}
-                                    {% endfor %}
+                                    {% endfor %},
+
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 4 %}
+                                            {% if data.total < 0 %}    1      {% else %} '{{ data.total|safe }}', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
+
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 5 %}
+                                            {% if data.total < 0 %}    1      {% else %} '{{ data.total|safe }}', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
+
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 6 %}
+                                            {% if data.total < 0 %}    1      {% else %} '{{ data.total|safe }}', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
+
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 7 %}
+                                            {% if data.total < 0 %}    1      {% else %} '{{ data.total|safe }}', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
+
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 8 %}
+                                            {% if data.total < 0 %}    1      {% else %} '{{ data.total|safe }}', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
+
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 11 %}
+                                            {% if data.total < 0 %}    1      {% else %} '{{ data.total|safe }}', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
 
 
 
@@ -147,9 +183,59 @@
                                     xaxis: {
                                     categories: [
                                         
-                                    'Veículos',
-                                    'Funcionários',
-                                    'Funcionárioss'
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 1 %}
+                                            {% if data.total < 0 %}    1      {% else %} 'Campo', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
+
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 2 %}
+                                            {% if data.total < 0 %}    1      {% else %} 'Campo', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
+
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 3 %}
+                                            {% if data.total < 0 %}    1      {% else %} 'Campo', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
+
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 4 %}
+                                            {% if data.total < 0 %}    1      {% else %} 'Campo', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
+
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 5 %}
+                                            {% if data.total < 0 %}    1      {% else %} 'Campo', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
+
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 6 %}
+                                            {% if data.total < 0 %}    1      {% else %} 'Campo', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
+
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 7 %}
+                                            {% if data.total < 0 %}    1      {% else %} 'Campo', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
+
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 8 %}
+                                            {% if data.total < 0 %}    1      {% else %} 'Campo', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
+
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 11 %}
+                                            {% if data.total < 0 %}    1      {% else %} 'Campo', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
           
 
                                           
