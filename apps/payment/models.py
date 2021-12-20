@@ -59,6 +59,8 @@ class AgendaPagamento(models.Model):
     categoria = models.ForeignKey(CategoriaPagamento, on_delete=models.DO_NOTHING)
     status_pago = models.BooleanField(default=False, verbose_name='Pago')
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name_plural = ' Agenda Pagamento'
 
@@ -90,6 +92,8 @@ class FluxoEntradasSaidas(models.Model):
     SaidaDia = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     SaldoDia = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name_plural = 'Fluxo Entradas e Saídas'
 
@@ -102,6 +106,8 @@ class DestinoValoresBoletos(models.Model):
     destino = models.ForeignKey(Bancos, on_delete=models.DO_NOTHING)
     data_transacao = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True)
     data_cadastro = models.DateTimeField(auto_now=True)
+
+    objects = models.Manager()
 
     class Meta:
         verbose_name_plural = "Destino Valores Boletos"
@@ -126,6 +132,8 @@ class ClientesEntregaBoletos(models.Model):
     forma_entrega = models.ForeignKey(MeiosEntregaBoletos, on_delete=models.DO_NOTHING, blank=True, null=True)
     data_cadastro = models.DateTimeField(auto_now=True)
     boleto_assinado = models.BooleanField(default=False)
+
+    objects = models.Manager()
 
     class Meta:
         verbose_name_plural = "Boletos de clientes "

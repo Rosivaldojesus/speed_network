@@ -83,7 +83,11 @@
     </div>
 <!-- =========================================================================================================== -->
 
-
+{% for data in gastos_mes_atual_categoria %}
+    {% if data.categoria == 1 %}
+        Veículos R$: {{ data.total|safe }}
+    {% endif %}
+{% endfor %},
 <!-- =========================================================================================================== -->
 <!-- =========================================================================================================== -->
 <div class="mt-3">
@@ -100,12 +104,83 @@
                                 var options = {
                                     series: [{
                                     data: [
+                                        
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 1 %}
+                                            {% if data.total < 0 %}    1      {% else %} '{{ data.total|safe }}', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
+
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 2 %}
+                                            {% if data.total < 0 %}    1      {% else %} '{{ data.total|safe }}', {% endif %}
+                                        {% endif %}
+                                    {% endfor %},
+
+                                    {% for data in gastos_mes_atual_categoria %}
+                                        {% if data.categoria == 3 %}
+                                            {% if data.total < 0 %}    1      {% else %} '{{ data.total|safe }}', {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
 
 
 
 
 
-                                    {% if veiculosMesAtual.total is null %} 0 {% else %} {{ veiculosMesAtual.total|safe }} {% endif %},	
+                                
+                                    ]
+
+                                    }],
+                                    chart: {
+                                    type: 'bar',
+                                    height: 350
+                                    },
+                                    plotOptions: {
+                                    bar: {
+                                        borderRadius: 4,
+                                        horizontal: true,
+                                    }
+                                    },
+                                    dataLabels: {
+                                    enabled: false
+                                    },
+                                    xaxis: {
+                                    categories: [
+                                        
+                                    'Veículos',
+                                    'Funcionários',
+                                    'Funcionárioss'
+          
+
+                                          
+                                    ],
+                                    }
+                                    };
+                
+                                    var chart = new ApexCharts(document.querySelector("#chart"), options);
+                                    chart.render();
+                      
+                            </script>
+                        </div>
+                    </div>  
+                </div>
+                <!-- =========================================================================================================== -->
+
+
+
+
+
+                <!-- =========================================================================================================== -->
+                <!-- Gráficos com os gastos do mês atual por categorias -->
+                <div>
+                    <div id="chart_AAA">
+                        <div id="timeline-chart_custos_mensais">
+                            <script>
+                                var options = {
+                                    series: [{
+                                    data: [
+
+                                    {% if veiculos_mes_atual.total is null %} 0 {% else %} {{ veiculos_mes_atual.total|safe }} {% endif %},	
                                     {% if funcionariosMesAtual.total is null %} 0 {% else %} {{ funcionariosMesAtual.total|safe }} {% endif %},		
                                     {% if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total|safe }} {% endif %},
                                     {% if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total|safe }} {% endif %},	
@@ -133,7 +208,7 @@
                                     xaxis: {
                                     categories: [
                                         
-                                    'Veículos',
+                                    'Veículoss',
                                     'Funcionários',
                                     'Alimentação',
                                     'Links',
@@ -147,7 +222,7 @@
                                     }
                                     };
                 
-                                    var chart = new ApexCharts(document.querySelector("#chart"), options);
+                                    var chart = new ApexCharts(document.querySelector("#chart_AAA"), options);
                                     chart.render();
                       
                             </script>
@@ -155,6 +230,14 @@
                     </div>  
                 </div>
                 <!-- =========================================================================================================== -->
+
+
+
+
+
+
+
+
             </div>
           </div>
         </div>
@@ -195,7 +278,7 @@
                                 }
                             },
                             series: [{
-                                name: 'Brands',
+                                name: 'Valor R$',
                                 colorByPoint: true,
                                 data: [{
                                     name: 'Veículos',
