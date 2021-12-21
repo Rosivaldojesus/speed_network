@@ -142,15 +142,15 @@ class ContasVencerView(TemplateView):
 
         if motivo_pagamento:
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
-                filter(Q(motivo_pagamento__icontains=motivo_pagamento)).order_by('-data_pagamento')
+                filter(Q(motivo_pagamento__icontains=motivo_pagamento)).order_by('data_pagamento')
         elif data:
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
-                filter(Q(data_pagamento__exact=data)).order_by('-data_pagamento')
+                filter(Q(data_pagamento__exact=data)).order_by('data_pagamento')
         elif valor:
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
-                filter(Q(valor_pagamento__exact=valor)).order_by('-data_pagamento')
+                filter(Q(valor_pagamento__exact=valor)).order_by('data_pagamento')
         else:
-            context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).order_by('-data_pagamento')
+            context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).order_by('data_pagamento')
 
         return context
 
