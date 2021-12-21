@@ -129,8 +129,6 @@ class ContarPagarView(TemplateView):
         return context
 
 
-
-
 class ContasVencerView(TemplateView):
     model = Pagamento
     template_name = 'payment/contas-a-vencer.html'
@@ -144,19 +142,21 @@ class ContasVencerView(TemplateView):
 
         if motivo_pagamento:
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
-                filter(Q(motivo_pagamento__icontains=motivo_pagamento))
+                filter(Q(motivo_pagamento__icontains=motivo_pagamento)).order_by('-data_pagamento')
         elif data:
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
-                filter(Q(data_pagamento__exact=data))
+                filter(Q(data_pagamento__exact=data)).order_by('-data_pagamento')
         elif valor:
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
-                filter(Q(valor_pagamento__exact=valor))
+                filter(Q(valor_pagamento__exact=valor)).order_by('-data_pagamento')
         else:
-            context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False)
+            context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).order_by('-data_pagamento')
 
         return context
 
 #  =======================================================================================================================
+
+
 def Index(request):
     data_atual = datetime.now()
     this_month = date.today().month
