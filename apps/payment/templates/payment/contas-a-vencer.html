@@ -50,30 +50,32 @@
 
 
     <!-- =====================================================================================================-->
-    <div class="card shadow">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Conta</th>
-                <th scope="col">Valor</th>
-                <th scope="col">Data</th>
-                <th scope="col">Categoria</th>
-                <th scope="col">Editar</th>
-              </tr>
-            </thead>
+    <div class="card shadow mb-3">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Conta</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Editar</th>
+                </tr>
+                </thead>
 
-            <tbody>
-            {% for conta in conta_a_vencer %}
-              <tr>
-                <th scope="row">{{ conta.motivo_pagamento }}</th>
-                <td>{{ conta.valor_pagamento }}</td>
-                <td>{{ conta.data_pagamento|date:'j-M-Y' }}</td>
-                <td>{{ conta.categoria }}</td>
-                <td> Editar </td>
-              </tr>
-            {% endfor %}
-            </tbody>
-          </table>
+                <tbody>
+                {% for conta in conta_a_vencer %}
+                <tr>
+                    <th scope="row">{{ conta.motivo_pagamento }}</th>
+                    <td>{{ conta.valor_pagamento }}</td>
+                    <td>{{ conta.data_pagamento|date:'j-M-Y' }}</td>
+                    <td>{{ conta.categoria }}</td>
+                    <td> Editar </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
     <!-- =====================================================================================================-->
     

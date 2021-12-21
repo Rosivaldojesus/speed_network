@@ -607,11 +607,18 @@ class EntregaBoletosListView(ListView):
         context['count_email'] = ClientesEntregaBoletos.objects.filter(forma_entrega=5).count()
 
         queryset = self.request.GET.get('q')
+        forma_entrega_boleto = self.request.GET.get('forma_entrega_boleto')
+
         if queryset:
             context['lista_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(
                 Q(nome_cliente__icontains=queryset)).order_by('nome_cliente')
             context['count_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(
                 Q(nome_cliente__icontains=queryset)).count()
+        elif forma_entrega_boleto:
+            context['lista_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(
+                Q(forma_entrega__exact=forma_entrega_boleto)).order_by('nome_cliente')
+            context['count_boletos_entregue'] = ClientesEntregaBoletos.objects.filter(
+                Q(forma_entrega__exact=forma_entrega_boleto)).count()
         else:
             context['lista_boletos_entregue'] = ClientesEntregaBoletos.objects.all().order_by('nome_cliente')
             context['count_boletos_entregue'] = ClientesEntregaBoletos.objects.all().count()
