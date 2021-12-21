@@ -1,7 +1,7 @@
 from datetime import date, datetime
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect, get_object_or_404
-from django.db.models import Q, Sum
+from django.db.models import Q, Sum, Avg, F
 from django.views.generic import CreateView, UpdateView
 from django.views.generic.list import ListView
 from .forms import CadastarDestinoValoresBoletosForm, EditarDestinoValoresBoletosForm
@@ -78,7 +78,7 @@ class CustoMensalCategoriaView(TemplateView):
     model = Pagamento
     template_name = 'payment/custo-mensal-categoria.html'
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self,*args, **kwargs):
         context = super().get_context_data(**kwargs)
         six_months = date.today() + relativedelta(months=-6)
         last_months = date.today() + relativedelta(months=-0)
@@ -87,11 +87,33 @@ class CustoMensalCategoriaView(TemplateView):
         context['custos_mensais_categoria'] = Pagamento.objects. \
             filter(status_pago=True). \
             filter(Q(data_pagamento__range=[six_months, last_months])). \
-            annotate(month=TruncMonth('data_pagamento')). \
+            annotate(media_total=Sum('valor_pagamento')).\
+            annotate(month=TruncMonth('data_pagamento')).  \
             values('month'). \
             annotate(total=Sum('valor_pagamento')). \
             values('month', 'total', 'categoria'). \
             order_by('month')[1:]
+
+        context['media_veiculos'] = Pagamento.objects.filter(categoria=1).\
+            filter(Q(data_pagamento__range=[six_months, last_months])).aggregate(total=Sum('valor_pagamento') / 6)
+        context['media_funcionarios'] = Pagamento.objects.filter(categoria=2). \
+            filter(Q(data_pagamento__range=[six_months, last_months])).aggregate(total=Sum('valor_pagamento') / 6)
+        context['media_alimentacao'] = Pagamento.objects.filter(categoria=3). \
+            filter(Q(data_pagamento__range=[six_months, last_months])).aggregate(total=Sum('valor_pagamento') / 6)
+        context['media_links'] = Pagamento.objects.filter(categoria=4). \
+            filter(Q(data_pagamento__range=[six_months, last_months])).aggregate(total=Sum('valor_pagamento') / 6)
+        context['media_locacao'] = Pagamento.objects.filter(categoria=5). \
+            filter(Q(data_pagamento__range=[six_months, last_months])).aggregate(total=Sum('valor_pagamento') / 6)
+        context['media_instalacao'] = Pagamento.objects.filter(categoria=6). \
+            filter(Q(data_pagamento__range=[six_months, last_months])).aggregate(total=Sum('valor_pagamento') / 6)
+        context['media_socios'] = Pagamento.objects.filter(categoria=7). \
+            filter(Q(data_pagamento__range=[six_months, last_months])).aggregate(total=Sum('valor_pagamento') / 6)
+        context['media_impostos'] = Pagamento.objects.filter(categoria=8). \
+            filter(Q(data_pagamento__range=[six_months, last_months])).aggregate(total=Sum('valor_pagamento') / 6)
+        context['media_taxas'] = Pagamento.objects.filter(categoria=11). \
+            filter(Q(data_pagamento__range=[six_months, last_months])).aggregate(total=Sum('valor_pagamento') / 6)
+
+
         return context
 
 
@@ -141,7 +163,10 @@ class ContarPagarView(TemplateView):
             aggregate(total=Sum('valor_pagamento'))
 
         context['valor_a_pagar_atrasada'] = Pagamento.objects.filter(data_pagamento__lt=this_day).\
-            filter(status_pago=False).filter(data_pagamento__lt=this_day).aggregate(total=Sum('valor_pagamento'))
+            filter(status_pago=False).aggregate(total=Sum('valor_pagamento'))
+
+        context['lista_conta_a_pagar'] = Pagamento.objects.filter(data_pagamento__gte=this_day).\
+            filter(status_pago=False).aggregate(total=Sum('valor_pagamento'))
 
         return context
 
@@ -174,6 +199,8 @@ class ContasVencerView(TemplateView):
 
         return context
 
+#  =======================================================================================================================
+#  =======================================================================================================================
 #  =======================================================================================================================
 
 
@@ -333,7 +360,6 @@ def DashboardPagamentos(request):
 def ListaPagamentos(request):
     data_atual = datetime.now()
 
-
     data = request.GET.get('data')
     motivoPagamento = request.GET.get('motivoPagamento')
     banco = request.GET.get('banco')
@@ -349,51 +375,41 @@ def ListaPagamentos(request):
     # Show payment per time course
     elif startdate and enddate:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(
-            Q(data_pagamento__range=[startdate, enddate])).order_by(
-            '-data_pagamento')
+            Q(data_pagamento__range=[startdate, enddate])).order_by('-data_pagamento')
 
         # Show payment per time, course and value
     elif startdate and enddate and valor:
         pagamentos = Pagamento.objects.filter(Q(data_pagamento__range=[startdate, enddate]) |
-                                              Q(valor_pagamento__icontains=valor)).order_by(
-            '-data_pagamento')
+                                              Q(valor_pagamento__icontains=valor)).\
+            order_by('-data_pagamento')
     # Show payment per time, course and value
     elif startdate and enddate and banco:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(
             Q(data_pagamento__range=[startdate, enddate]) |
-            Q(origem_valor_pagamento__exact=banco)).order_by(
-            '-data_pagamento')
+            Q(origem_valor_pagamento__exact=banco)).order_by('-data_pagamento')
     # Show payment per reason
     elif motivoPagamento:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(
-            Q(motivo_pagamento__icontains=motivoPagamento)).order_by(
-            '-data_pagamento')
-
-        dia = Pagamento.objects.values('data_pagamento').annotate(
-            number=Sum('valor_pagamento'))
+            Q(motivo_pagamento__icontains=motivoPagamento)).order_by('-data_pagamento')
 
     # Show payment per bank
     elif banco:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(
-            Q(origem_valor_pagamento__exact=banco)).order_by(
-            '-data_pagamento')
+            Q(origem_valor_pagamento__exact=banco)).order_by('-data_pagamento')
 
     # Show payment per bank
     elif valor:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(
-            Q(valor_pagamento__exact=valor)).order_by('-data_pagamento').order_by(
-            '-data_pagamento')
+            Q(valor_pagamento__exact=valor)).order_by('-data_pagamento').order_by('-data_pagamento')
 
     # Show payment per value and date
     elif valor and data:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(
             Q(valor_pagamento__icontains=valor) |
-            Q(data_pagamento__icontains=data)).order_by(
-            '-data_pagamento')
+            Q(data_pagamento__icontains=data)).order_by('-data_pagamento')
     else:
-
-        pagamentos = Pagamento.objects.filter().filter(data_pagamento__lte=data_atual).order_by(
-            '-data_pagamento')  # Show all payment
+        # Show all payment
+        pagamentos = Pagamento.objects.filter().filter(data_pagamento__lte=data_atual).order_by('-data_pagamento')
 
     paginator = Paginator(pagamentos, 50)  # Show 25 payment per page.
     page_number = request.GET.get('page', '1')  #
@@ -431,7 +447,7 @@ def AgendamentosPagamentos(request):
                                                                     'totalPagarAtrasadas': totalPagarAtrasadas,
                                                                     'totalPagarNaoVencidas': totalPagarNaoVencidas,
                                                                     'pagamentosFuturos': pagamentosFuturos,
-                                                                    'pagamentosFuturosDiarios': pagamentosFuturosDiarios,
+                                                                'pagamentosFuturosDiarios': pagamentosFuturosDiarios,
                                                                     })
 
 
@@ -528,8 +544,6 @@ def ConfirmarPagamento(request, id=None):
 
 
 def FluxoEntradaSaida(request):
-    data_atual = datetime.now()
-    this_month = date.today().month
     fluxos = FluxoEntradasSaidas.objects.all()
     return render(request, 'payment/fluxo-entradas-saidas.html', {'fluxos': fluxos})
 
@@ -542,7 +556,7 @@ class FluxoCreate(CreateView):
 
 
 # Exportando os dados para CSV
-def ExportarCSV(request):
+def ExportarCSV():
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="relatorio-pagamentos.csv"'
 
@@ -608,7 +622,7 @@ class RetiradasGerencianetUpdateView(UpdateView):
 
 
 # Exportando os dados para CSV
-def ExportarRetiradasReceitanetCSV(request):
+def ExportarRetiradasReceitanetCSV():
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="relatorio-retiradas-receitanet.csv"'
     retiradas = DestinoValoresBoletos.objects.all()
