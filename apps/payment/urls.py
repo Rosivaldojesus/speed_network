@@ -9,7 +9,7 @@ from .views import RetiradasGerencianetCreateView, RetiradasGerencianetUpdateVie
 from .views import EntregaBoletosListView, EntregaBoletosCreateView, EditarEntregaBoletosUpdateView
 from .views import SalvarPagamento
 
-from .views import IndexTemplateView, CustoMensalCategoriaView, FluxoEntradaSaidaView
+from .views import IndexTemplateView, CustoMensalCategoriaView, FluxoEntradaSaidaView, ContarPagarView, ContasVencerView
 
 
 urlpatterns = [
@@ -17,6 +17,8 @@ urlpatterns = [
     path('indexx/', IndexTemplateView.as_view(), name='indexx'),
     path('custo-mensal-categoria', CustoMensalCategoriaView.as_view(), name='custo_mensal_categoria'),
     path('fluxo-entrada-saida', FluxoEntradaSaidaView.as_view(), name='fluxo_entrada_saida'),
+    path('contas-a-pagar/', ContarPagarView.as_view(), name='contas-a-pagar'),
+    path('contas-a-vencer/', ContasVencerView.as_view(), name='contas-a-vencer'),
 
 
     #  Pré-Refatorado

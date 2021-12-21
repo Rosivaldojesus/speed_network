@@ -12,16 +12,22 @@
         <h1 class="ui dividing header blue">Finanças</h1>
     </div>
 
+<!-- =========================================================================================================== -->
+<!-- =========================================================================================================== -->
     <!--Botões de navegações das finanças -->
     <div align="right">
-        <a href="{% url 'fluxo_entrada_saida' %}" class="btn btn-info"><i class=""></i> In-Out</a>
-        <a href="{% url 'custo_mensal_categoria' %}" class="btn btn-info"><i class=""></i> Custos Mensais</a>
-        <a href="{% url 'lista_pagamentos' %}" class="btn btn-info"><i class="far fa-eye"></i> Pagamentos</a>
-        <a href="cadastrar-pagamento/" class="btn btn-primary"><i class="far fa-plus-square"></i> Pagamento </a>
+        <a href="{% url 'contas-a-pagar' %}" class="btn btn-danger"><i class="far fa-eye"></i> Contas a Pagar</a>
+        <a href="{% url 'lista_pagamentos' %}" class="btn btn-info"><i class="far fa-eye"></i> Lista Pagamentos</a>
+        <a href="cadastrar-pagamento/" class="btn btn-primary"><i class="far fa-plus-square"></i> Add Pagamento </a>
         <a href="retiradas-gerencianet/" class="btn btn-warning"><i class="fas fa-file-invoice-dollar"></i></i> GerenciaNET </a>
         <a href="exportar-csv/" class="btn btn-info" title="Exportar CSV"><i class="fas fa-file-csv"></i></a>
     </div>
 
+    <div class="mt-1" align="right">
+        <a href="{% url 'fluxo_entrada_saida' %}" class="ui orange basic button"><i class=""></i> In-Out</a>
+        <a href="{% url 'custo_mensal_categoria' %}" class="ui purple basic button"><i class=""></i> Custos Mensais</a>
+    </div>
+<!-- =========================================================================================================== -->
 <!-- =========================================================================================================== -->
     <!-- Custos do mês atual por grupo -->
     <h3 class="ui dividing header blue">Custos do Mês Atual <a class="anchor" id="content"></a></h3>

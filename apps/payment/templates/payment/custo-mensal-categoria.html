@@ -23,7 +23,7 @@
                             data: [
                                 {% for data in custos_mensais_categoria %} 
                                     {% if data.categoria == 1  %}
-                                        '{{ data.total|safe}}',
+                                         '{{ data.total|safe}}',
                                 {% endif %}
                                 {% endfor %}
                             ],

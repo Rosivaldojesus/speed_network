@@ -100,7 +100,6 @@ class FluxoEntradaSaidaView(TemplateView):
     template_name = 'payment/fluxo-entrada-saida.html'
 
     def get_context_data(self, **kwargs):
-        data_atual = datetime.now()  # Variável da data de hoje
         context = super().get_context_data(**kwargs)
 
         context['entrada_banco'] = FluxoEntradaSaidaMensal.objects.\
@@ -119,7 +118,44 @@ class FluxoEntradaSaidaView(TemplateView):
 
         return context
 
-#=======================================================================================================================
+
+class ContarPagarView(TemplateView):
+    model = Pagamento
+    template_name = 'payment/contas-a-pagar.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
+
+
+
+
+class ContasVencerView(TemplateView):
+    model = Pagamento
+    template_name = 'payment/contas-a-vencer.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ContasVencerView, self).get_context_data()
+
+        motivo_pagamento = self.request.GET.get('motivo_pagamento')
+        data = self.request.GET.get('data')
+        valor = self.request.GET.get('valor')
+
+        if motivo_pagamento or data or valor:
+            context['conta_a_vencer'] = Pagamento.objects. \
+                filter(status_pago=False).\
+                filter(Q(motivo_pagamento__icontains=motivo_pagamento)). \
+                filter(Q(valor_pagamento__icontains=valor)). \
+                filter(Q(data_pagamento__icontains=data))
+
+        else:
+            context['conta_a_vencer'] = Pagamento.objects.\
+            filter(status_pago=False)
+
+        return context
+
+#  =======================================================================================================================
 def Index(request):
     data_atual = datetime.now()
     this_month = date.today().month
