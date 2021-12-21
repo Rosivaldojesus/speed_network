@@ -316,8 +316,7 @@ def DashboardPagamentos(request):
 def ListaPagamentos(request):
     data_atual = datetime.now()
 
-    pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).order_by(
-        '-data_pagamento')  # Show all payment
+
     data = request.GET.get('data')
     motivoPagamento = request.GET.get('motivoPagamento')
     banco = request.GET.get('banco')
@@ -366,6 +365,11 @@ def ListaPagamentos(request):
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(
             Q(valor_pagamento__icontains=valor) |
             Q(data_pagamento__icontains=data))
+    else:
+
+        pagamentos = Pagamento.objects.filter(status_pago=True).filter(data_pagamento__lte=data_atual).order_by(
+            '-data_pagamento')  # Show all payment
+
     paginator = Paginator(pagamentos, 50)  # Show 25 payment per page.
     page_number = request.GET.get('page', '1')  #
     pagamentos = paginator.get_page(page_number)
