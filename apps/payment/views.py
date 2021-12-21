@@ -142,16 +142,17 @@ class ContasVencerView(TemplateView):
         data = self.request.GET.get('data')
         valor = self.request.GET.get('valor')
 
-        if motivo_pagamento or data or valor:
-            context['conta_a_vencer'] = Pagamento.objects. \
-                filter(status_pago=False).\
-                filter(Q(motivo_pagamento__icontains=motivo_pagamento)). \
-                filter(Q(valor_pagamento__icontains=valor)). \
-                filter(Q(data_pagamento__icontains=data))
-
+        if motivo_pagamento:
+            context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
+                filter(Q(motivo_pagamento__icontains=motivo_pagamento))
+        elif data :
+            context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
+                filter(Q(valor_pagamento__icontains=valor))
+        elif valor:
+            context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
+                filter(Q(data_pagamento__exact=data))
         else:
-            context['conta_a_vencer'] = Pagamento.objects.\
-            filter(status_pago=False)
+            context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False)
 
         return context
 
