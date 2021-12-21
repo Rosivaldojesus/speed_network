@@ -367,7 +367,7 @@ def ListaPagamentos(request):
             Q(data_pagamento__icontains=data))
     else:
 
-        pagamentos = Pagamento.objects.filter(status_pago=True).filter(data_pagamento__lte=data_atual).order_by(
+        pagamentos = Pagamento.objects.filter().filter(data_pagamento__lte=data_atual).order_by(
             '-data_pagamento')  # Show all payment
 
     paginator = Paginator(pagamentos, 50)  # Show 25 payment per page.

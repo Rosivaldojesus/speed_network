@@ -135,6 +135,7 @@
                 <th scope="col">Tipo custo</th>
                 <th scope="col">Data</th>
                 <th scope="col">Categoria</th>
+                <th scope="col">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -148,6 +149,7 @@
                 <td>{{ pagamento.tipo_custo_pagamento }}</td>
                 <td>{{ pagamento.data_pagamento | date:" d/m/Y" }}</td>
                 <td>{{ pagamento.categoria }}</td>
+                <td>{{ pagamento.status_pago }}</td>
             </tr>
             {% endfor %}
           </tbody>
