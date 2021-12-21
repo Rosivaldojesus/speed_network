@@ -149,7 +149,15 @@
                 <td>{{ pagamento.tipo_custo_pagamento }}</td>
                 <td>{{ pagamento.data_pagamento | date:" d/m/Y" }}</td>
                 <td>{{ pagamento.categoria }}</td>
-                <td>{{ pagamento.status_pago }}</td>
+
+                <td>
+                  {% if pagamento.status_pago == True %}
+                    <p style="color: green;">Pago</p>
+                  {% else %}
+                  <p style="color: red;">Não Pago</p>
+                  {% endif%}
+                </td>
+                
             </tr>
             {% endfor %}
           </tbody>
