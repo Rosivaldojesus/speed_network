@@ -132,6 +132,16 @@ class ContarPagarView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        this_day = date.today()  # Variável do mês atual
+
+        context['valor_a_pagar'] = Pagamento.objects.filter(status_pago=False).filter(data_pagamento__gt=this_day).\
+            aggregate(total=Sum('valor_pagamento'))
+
+        context['valor_a_pagar_hoje'] = Pagamento.objects.filter(data_pagamento=this_day).filter(status_pago=False). \
+            aggregate(total=Sum('valor_pagamento'))
+
+        context['valor_a_pagar_atrasada'] = Pagamento.objects.filter(data_pagamento__lt=this_day).\
+            filter(status_pago=False).filter(data_pagamento__lt=this_day).aggregate(total=Sum('valor_pagamento'))
 
         return context
 
@@ -333,26 +343,31 @@ def ListaPagamentos(request):
 
     # Show payment per bank
     if data:
-        pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(Q(data_pagamento__icontains=data))
+        pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(Q(data_pagamento__icontains=data))\
+            .order_by('-data_pagamento')
 
     # Show payment per time course
     elif startdate and enddate:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(
-            Q(data_pagamento__range=[startdate, enddate]))
+            Q(data_pagamento__range=[startdate, enddate])).order_by(
+            '-data_pagamento')
 
         # Show payment per time, course and value
     elif startdate and enddate and valor:
         pagamentos = Pagamento.objects.filter(Q(data_pagamento__range=[startdate, enddate]) |
-                                              Q(valor_pagamento__icontains=valor))
+                                              Q(valor_pagamento__icontains=valor)).order_by(
+            '-data_pagamento')
     # Show payment per time, course and value
     elif startdate and enddate and banco:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(
             Q(data_pagamento__range=[startdate, enddate]) |
-            Q(origem_valor_pagamento__exact=banco))
+            Q(origem_valor_pagamento__exact=banco)).order_by(
+            '-data_pagamento')
     # Show payment per reason
     elif motivoPagamento:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(
-            Q(motivo_pagamento__icontains=motivoPagamento))
+            Q(motivo_pagamento__icontains=motivoPagamento)).order_by(
+            '-data_pagamento')
 
         dia = Pagamento.objects.values('data_pagamento').annotate(
             number=Sum('valor_pagamento'))
@@ -360,18 +375,21 @@ def ListaPagamentos(request):
     # Show payment per bank
     elif banco:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(
-            Q(origem_valor_pagamento__exact=banco))
+            Q(origem_valor_pagamento__exact=banco)).order_by(
+            '-data_pagamento')
 
     # Show payment per bank
     elif valor:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(
-            Q(valor_pagamento__exact=valor)).order_by('-data_pagamento')
+            Q(valor_pagamento__exact=valor)).order_by('-data_pagamento').order_by(
+            '-data_pagamento')
 
     # Show payment per value and date
     elif valor and data:
         pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(
             Q(valor_pagamento__icontains=valor) |
-            Q(data_pagamento__icontains=data))
+            Q(data_pagamento__icontains=data)).order_by(
+            '-data_pagamento')
     else:
 
         pagamentos = Pagamento.objects.filter().filter(data_pagamento__lte=data_atual).order_by(
