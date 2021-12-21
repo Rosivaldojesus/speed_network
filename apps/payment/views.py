@@ -139,18 +139,18 @@ class ContasVencerView(TemplateView):
         context = super(ContasVencerView, self).get_context_data()
 
         motivo_pagamento = self.request.GET.get('motivo_pagamento')
-        data = self.request.GET.get('data')
         valor = self.request.GET.get('valor')
+        data = self.request.GET.get('data')
 
         if motivo_pagamento:
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
                 filter(Q(motivo_pagamento__icontains=motivo_pagamento))
         elif data:
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
-                filter(Q(valor_pagamento__exact=data))
+                filter(Q(data_pagamento__exact=data))
         elif valor:
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
-                filter(Q(data_pagamento__exact=valor))
+                filter(Q(valor_pagamento__exact=valor))
         else:
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False)
 
