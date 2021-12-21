@@ -18,10 +18,8 @@
                     },{
                     name: 'ERP',
                     data: [{% for data in entrada_erp %} '{{ data.c }}', {% endfor %}]
-                    },{
-                    name: 'Custos',
-                    data: [{% for data in mes %} '{{ data.c }}', {% endfor %}]
                     }
+
                     
                     ],
                     chart: {
