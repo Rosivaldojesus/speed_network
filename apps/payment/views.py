@@ -14,8 +14,10 @@ import csv
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.views.generic import TemplateView
+from django.views.generic.edit import UpdateView
 from dateutil.relativedelta import relativedelta
 from .models import FluxoEntradaSaidaMensal
+
 
 
 # Create your views here.
@@ -113,7 +115,6 @@ class CustoMensalCategoriaView(TemplateView):
         context['media_taxas'] = Pagamento.objects.filter(categoria=11). \
             filter(Q(data_pagamento__range=[six_months, last_months])).aggregate(total=Sum('valor_pagamento') / 6)
 
-
         return context
 
 
@@ -198,6 +199,16 @@ class ContasVencerView(TemplateView):
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).order_by('data_pagamento')
 
         return context
+
+
+
+
+
+class EditarPagamentoAgendadoView(UpdateView):
+    model = Pagamento
+    fields = '__all__'
+    template_name = 'payment/atualizar-pagamento.html'
+    success_url = '/pagamentos/contas-a-pagar/'
 
 #  =======================================================================================================================
 #  =======================================================================================================================

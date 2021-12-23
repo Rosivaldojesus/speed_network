@@ -9,7 +9,10 @@ from .views import RetiradasGerencianetCreateView, RetiradasGerencianetUpdateVie
 from .views import EntregaBoletosListView, EntregaBoletosCreateView, EditarEntregaBoletosUpdateView
 from .views import SalvarPagamento
 
-from .views import IndexTemplateView, CustoMensalCategoriaView, FluxoEntradaSaidaView, ContarPagarView, ContasVencerView
+from .views import IndexTemplateView, CustoMensalCategoriaView, FluxoEntradaSaidaView, ContarPagarView,\
+    ContasVencerView
+
+from .views import EditarPagamentoAgendadoView
 
 
 urlpatterns = [
@@ -20,9 +23,13 @@ urlpatterns = [
     path('contas-a-pagar/', ContarPagarView.as_view(), name='contas-a-pagar'),
     path('contas-a-vencer/', ContasVencerView.as_view(), name='contas-a-vencer'),
 
+    path('editar-pagamento-agendado/<int:pk>', EditarPagamentoAgendadoView.as_view(), name='editar_pagamento_agendado'),
+
 
     #  Pré-Refatorado
     path('lista-pagamentos/', ListaPagamentos, name='lista_pagamentos'),
+    path('editar-pagamento/<int:id>', EditarPagamento, name='editar_pagamento'),
+    path('agendar-pagamento/', AgendarPagamento, name='agendar_pagamento'),
 
 
 
@@ -35,7 +42,7 @@ urlpatterns = [
     path('dashboard-pagamentos/', DashboardPagamentos),
 
     path('agendamentos-pagamentos/', AgendamentosPagamentos),
-    path('agendar-pagamento/', AgendarPagamento),
+
     path('comfirmar-pagamento/<int:id>', ConfirmarPagamento),
     path('editar-pagamento/<int:id>', EditarPagamento),
     path('pagamentos-futuros/', PagamentosFuturos),

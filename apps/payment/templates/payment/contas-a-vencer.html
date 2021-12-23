@@ -70,7 +70,7 @@
                     <td>{{ conta.valor_pagamento }}</td>
                     <td>{{ conta.data_pagamento|date:'j-M-Y' }}</td>
                     <td>{{ conta.categoria }}</td>
-                    <td> Editar </td>
+                    <td> <a href="{% url 'editar_pagamento_agendado' conta.id  %}"> Editar </a> </td>
                 </tr>
                 {% endfor %}
                 </tbody>
