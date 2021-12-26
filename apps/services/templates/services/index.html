@@ -254,12 +254,36 @@
             <div id='chart'>
               <script>
                 var options = {
-                    series: [44, 55, 13, 43, 22],
+                    series: [
+                      
+                    {{ quant_outros_mes }},
+                    {{ quant_serv_velocidade_mes }},
+                    {{ quant_serv_osciliacao_mes }},
+                    {{ quant_serv_retirada_mes }},
+                    {{ quant_serv_fibra_rompida_mes }},
+                    {{ quant_serv_troca_modem_mes }},
+                    {{ quant_serv_voip_mes }},
+                    {{ quant_serv_sinal_alto_mes }},
+                    {{ quant_trocar_senha_mes }},
+                  
+                  ],
                     chart: {
                     width: 380,
                     type: 'pie',
                   },
-                  labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+                  labels: [
+                    
+                  'Outros',
+                  'Velocidade',
+                  'Oscilação',
+                  'Retirada',
+                  'Fibra Rompida',
+                  'Troca de modem',
+                  'Voip',
+                  'Sinal Alto',
+                  'Senha',
+                
+                ],
                   responsive: [{
                     breakpoint: 480,
                     options: {

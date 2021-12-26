@@ -15,6 +15,7 @@ from django.db.models.functions import TruncMonth
 
 # Create your views here.
 def Index(request):
+    this_month = date.today().month  # Variável do mês atual
     contarAbertos = Servico.objects.all().filter().filter(status_agendado='False')\
     .filter(status_concluido='False').count()
     contarAgendados = Servico.objects.filter(status_agendado='True')\
@@ -26,8 +27,18 @@ def Index(request):
 
     diarioServicos = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('data_finalizacao')).order_by('data_finalizacao')[150:]
 
-    #Quantidade de serviços por categoria
+    #Quantidade de serviços por categoria no mês atual
+    quant_outros_mes = Servico.objects.filter(categoria=2).filter(data_finalizacao__month=this_month).count()
+    quant_serv_velocidade_mes = Servico.objects.filter(categoria=3).filter(data_finalizacao__month=this_month).count()
+    quant_serv_osciliacao_mes = Servico.objects.filter(categoria=4).filter(data_finalizacao__month=this_month).count()
+    quant_serv_retirada_mes = Servico.objects.filter(categoria=5).filter(data_finalizacao__month=this_month).count()
+    quant_serv_fibra_rompida_mes = Servico.objects.filter(categoria=6).filter(data_finalizacao__month=this_month).count()
+    quant_serv_troca_modem_mes = Servico.objects.filter(categoria=7).filter(data_finalizacao__month=this_month).count()
+    quant_serv_voip_mes = Servico.objects.filter(categoria=8).filter(data_finalizacao__month=this_month).count()
+    quant_serv_sinal_alto_mes = Servico.objects.filter(categoria=9).filter(data_finalizacao__month=this_month).count()
+    quant_trocar_senha_mes = Servico.objects.filter(categoria=10).filter(data_finalizacao__month=this_month).count()
 
+    # Quantidade de serviços por categoria
     quant_outros = Servico.objects.filter(categoria=2).count()
     quant_serv_velocidade = Servico.objects.filter(categoria=3).count()
     quant_serv_osciliacao = Servico.objects.filter(categoria=4).count()
@@ -38,8 +49,6 @@ def Index(request):
     quant_serv_sinal_alto = Servico.objects.filter(categoria=9).count()
     quant_trocar_senha = Servico.objects.filter(categoria=10).count()
 
-
-
     context = {
 
         'contarAbertos': contarAbertos,
@@ -48,7 +57,17 @@ def Index(request):
         'diarios': diarios,
         'servicosMensal': servicosMensal,
         'diarioServicos': diarioServicos,
-        #Quantidade de serviços por categorias
+        #Quantidade de serviços por categorias mês atual
+        'quant_serv_velocidade_mes': quant_serv_velocidade_mes,
+        'quant_serv_osciliacao_mes': quant_serv_osciliacao_mes,
+        'quant_serv_retirada_mes': quant_serv_retirada_mes,
+        'quant_serv_fibra_rompida_mes': quant_serv_fibra_rompida_mes,
+        'quant_serv_troca_modem_mes': quant_serv_troca_modem_mes,
+        'quant_serv_voip_mes': quant_serv_voip_mes,
+        'quant_serv_sinal_alto_mes': quant_serv_sinal_alto_mes,
+        'quant_outros_mes': quant_outros_mes,
+        'quant_trocar_senha_mes': quant_trocar_senha_mes,
+        # Quantidade de serviços por categorias
         'quant_serv_velocidade': quant_serv_velocidade,
         'quant_serv_osciliacao': quant_serv_osciliacao,
         'quant_serv_retirada': quant_serv_retirada,
