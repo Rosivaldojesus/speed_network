@@ -28,8 +28,9 @@ def Index(request):
 
     #diarioServicos = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('data_finalizacao')).order_by('data_finalizacao')[150:]
 
-    diarioServicos = Servico.objects.filter(status_concluido='True').\
-        filter(data_finalizacao__gte=datetime.today()-timedelta(days=30)).order_by('data_finalizacao')
+    diarioServicos = Servico.objects.filter(status_concluido='True').values('data_finalizacao').\
+        filter(data_finalizacao__gte=datetime.today()-timedelta(days=30)).annotate(number=Count('data_finalizacao')).\
+        order_by('data_finalizacao')
 
     #Quantidade de serviços por categoria no mês atual
     quant_outros_mes = Servico.objects.filter(categoria=2).filter(data_finalizacao__month=this_month).count()
