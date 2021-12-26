@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.urls.base import clear_script_prefix
+from ..components.models import PlanosInternet
 
 # Create your models here.
 from django.utils import timezone
@@ -8,6 +8,8 @@ from django.utils import timezone
 
 class CategoriaServico(models.Model):
     nome_categoria = models.CharField(max_length=255, verbose_name='Categoria do serviço')
+
+    objects = models.Manager()
 
     class Meta:
         verbose_name_plural = 'Categoria dos serviços'
@@ -19,12 +21,13 @@ class CategoriaServico(models.Model):
 class TipoDeServico(models.Model):
     nome_tipo = models.CharField(max_length=100, verbose_name='Tipo de Serviço')
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name_plural = 'Tipos de Serviços'
 
     def __str__(self):
         return "{}".format(self.nome_tipo)
-
 
 
 class Servico(models.Model):
@@ -45,8 +48,11 @@ class Servico(models.Model):
     finalizado_por = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='finalizado_por', blank=True,
                                        null=True)
     agendado_por = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='agendado_por', blank=True,
-                                       null=True)
+                                     null=True)
+    plano_internet = models.ForeignKey(PlanosInternet, on_delete=models.DO_NOTHING, blank=True, null=True,
+                                       verbose_name='Plano Instalado')
 
+    objects = models.Manager()
 
     class Meta:
         verbose_name_plural = 'Serviços'
@@ -65,8 +71,11 @@ class ServicoVoip(models.Model):
     data_reserva_voip = models.DateField(blank=True, null=True, verbose_name='Data da Reserva')
     portabilidade_voip = models.BooleanField(default=False, verbose_name='Portabilidade')
     finalizado_voip = models.BooleanField(default=False, verbose_name='Finalizado')
-    funcionario_reserva_voip = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='funcionário_reserva_voip', blank=True, null=True)
+    funcionario_reserva_voip = models.ForeignKey(User, on_delete=models.DO_NOTHING,
+                                                 related_name='funcionário_reserva_voip', blank=True, null=True)
     boleto_entregue = models.BooleanField(default=False)
+
+    objects = models.Manager()
 
     class Meta:
         verbose_name_plural = 'Serviço Voip'

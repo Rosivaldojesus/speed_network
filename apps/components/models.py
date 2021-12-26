@@ -6,6 +6,8 @@ from django.db import models
 class PlanosInternet(models.Model):
     nome_plano = models.CharField(max_length=30)
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name_plural = 'Planos Internet'
 
@@ -22,6 +24,8 @@ Datas de vencimentos
 
 class DataVencimento(models.Model):
     data = models.CharField(max_length=100, verbose_name="Data de Vencimento")
+
+    objects = models.Manager()
 
     class Meta:
         verbose_name_plural = 'Datas Vencimento'
@@ -41,6 +45,8 @@ class Cidade(models.Model):
     nome_cidade = models.CharField(max_length=100, blank=True, null=True)
     uf_cidade = models.CharField(max_length=2, blank=True, null=True)
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name_plural = 'Cidade'
 
@@ -57,6 +63,8 @@ Quantidades
 
 class AdicionarQuantidade(models.Model):
     quantidade = models.DecimalField(max_digits=10, decimal_places=10)
+
+    objects = models.Manager()
 
     class Meta:
         verbose_name_plural = 'Adicionar Quantidade'
@@ -75,6 +83,8 @@ Lista de fabricantes de ONU
 class FabricanteEquipamentos(models.Model):
     nome_fabricante = models.CharField(max_length=255)
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name_plural = 'Fabricante equipamentos'
 
@@ -92,6 +102,8 @@ Lista de modelos de ONU
 class ModelosEquipamentos(models.Model):
     nome_modelo = models.CharField(max_length=255)
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name_plural = 'Modelos equipamentos'
 
@@ -108,6 +120,8 @@ Lista de Vendedores
 
 class Vendedores(models.Model):
     nome_vendedor = models.CharField(max_length=255)
+
+    objects = models.Manager()
 
     class Meta:
         verbose_name_plural = 'Vendedores'
@@ -130,6 +144,8 @@ class Ruas(models.Model):
     numero_baixo = models.CharField(max_length=20)
     numero_alto = models.CharField(max_length=20)
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name_plural = 'Ruas'
 
@@ -146,6 +162,8 @@ Lista de Funcionários que podem pegar Vale-Refeição
 
 class FuncionariosParaVale(models.Model):
     nome_funcionario = models.CharField(max_length=255, null=True, blank=True)
+
+    objects = models.Manager()
 
     class Meta:
         verbose_name_plural = 'Funcionarios Para Vale'
@@ -164,6 +182,8 @@ Lista dos bancos
 class Bancos(models.Model):
     nome_banco = models.CharField(max_length=100)
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name_plural = "Banco"
     
@@ -177,8 +197,11 @@ Lista dos bairros
 ------------------------------------------------------------------------------------------------------------------------
 """
 
+
 class Bairros(models.Model):
     nome_bairro = models.CharField(max_length=100)
+
+    objects = models.Manager()
 
     class Meta:
         verbose_name_plural = "Bairros"
