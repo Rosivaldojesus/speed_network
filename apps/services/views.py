@@ -1,4 +1,4 @@
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ServicoForm, AgendarServicoForm, EditarAgendarServicoForm,\
@@ -8,6 +8,7 @@ from .models import Servico, ServicoVoip
 from django.db.models import Q, Sum, Count
 from django.views.generic.edit import CreateView
 from django.db.models.functions import TruncMonth
+
 
 # import plotly.graph_objs as go
 # from plotly.offline import plot
@@ -25,7 +26,10 @@ def Index(request):
    # diarioInstalaçao = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate( number=Count('data_finalizacao')).order_by('data_finalizacao')[90:]
     servicosMensal = Servico.objects.annotate(month=TruncMonth('data_finalizacao')).filter(status_concluido='True').values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
 
-    diarioServicos = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('data_finalizacao')).order_by('data_finalizacao')[150:]
+    #diarioServicos = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('data_finalizacao')).order_by('data_finalizacao')[150:]
+
+    diarioServicos = Servico.objects.filter(status_concluido='True').\
+        filter(data_finalizacao__gte=datetime.today()-timedelta(days=30)).order_by('data_finalizacao')
 
     #Quantidade de serviços por categoria no mês atual
     quant_outros_mes = Servico.objects.filter(categoria=2).filter(data_finalizacao__month=this_month).count()
