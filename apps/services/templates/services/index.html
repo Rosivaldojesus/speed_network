@@ -241,6 +241,132 @@
 
 
 
+
+<!-- ========================================================================================================= -->
+<!-- ========================================================================================================= -->
+  <!-- Gráfico de serviços do mês -->
+  <div class="mt-2">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+
+            <div id='chart'>
+              <script>
+                var options = {
+                    series: [44, 55, 13, 43, 22],
+                    chart: {
+                    width: 380,
+                    type: 'pie',
+                  },
+                  labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+                  responsive: [{
+                    breakpoint: 480,
+                    options: {
+                      chart: {
+                        width: 200
+                      },
+                      legend: {
+                        position: 'bottom'
+                      }
+                    }
+                  }]
+                  };
+
+                  var chart = new ApexCharts(document.querySelector("#chart"), options);
+                  chart.render();
+      
+      
+              </script>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+
+
+            <div id='chart_A'>
+              <script>
+                var options = {
+                    series: [
+
+                    {{ quant_outros }},
+                    {{ quant_serv_velocidade }},
+                    {{ quant_serv_osciliacao }},
+                    {{ quant_serv_retirada }},
+                    {{ quant_serv_fibra_rompida }},
+                    {{ quant_serv_troca_modem }},
+                    {{ quant_serv_voip }},
+                    {{ quant_serv_sinal_alto }},
+                    {{ quant_trocar_senha }},
+
+                   
+                  
+                  ],
+                    chart: {
+                    width: 380,
+                    type: 'donut',
+                  },
+                  labels: [
+                    
+                  'Outros',
+                  'Velocidade',
+                  'Oscilação',
+                  'Retirada',
+                  'Fibra Rompida',
+                  'Troca de modem',
+                  'Voip',
+                  'Sinal Alto',
+                  'Senha',
+                
+                ],
+                  responsive: [{
+                    breakpoint: 480,
+                    options: {
+                      chart: {
+                        width: 200
+                      },
+                      legend: {
+                        position: 'bottom'
+                      }
+                    }
+                  }]
+                  };
+
+                  var chart = new ApexCharts(document.querySelector("#chart_A"), options);
+                  chart.render();
+      
+      
+              </script>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- ========================================================================================================= -->
+<!-- ========================================================================================================= -->
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- FIM do Container-->
 </div>
 {% endblock %}
