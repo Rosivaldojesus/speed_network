@@ -61,6 +61,7 @@ def Index(request):
         'diarios': diarios,
         'servicosMensal': servicosMensal,
         'diarioServicos': diarioServicos,
+
         #Quantidade de serviços por categorias mês atual
         'quant_serv_velocidade_mes': quant_serv_velocidade_mes,
         'quant_serv_osciliacao_mes': quant_serv_osciliacao_mes,
@@ -71,6 +72,7 @@ def Index(request):
         'quant_serv_sinal_alto_mes': quant_serv_sinal_alto_mes,
         'quant_outros_mes': quant_outros_mes,
         'quant_trocar_senha_mes': quant_trocar_senha_mes,
+
         # Quantidade de serviços por categorias
         'quant_serv_velocidade': quant_serv_velocidade,
         'quant_serv_osciliacao': quant_serv_osciliacao,
