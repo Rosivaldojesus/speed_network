@@ -123,6 +123,49 @@
 
 
 
+  <!-- ========================================================================================================= -->
+  <!-- ========================================================================================================= -->
+    <div class="card shadow mt-3">
+        <div id="chart_C">
+            <script>
+                var options = {
+                    series: [{
+                            name: 'Funcionários',
+                            data: [ {% for diario in diarioServicos %} '{{ diario.number}}', {% endfor %} ]
+                        }
+                    ],
+                    dataLabels: {enabled: true,/*Coloca o valores em cada mês*/},
+                    chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
+                    },
+                    animations: {
+                        enabled: false
+                    }
+                    },
+                    stroke: {
+                    width: [2],
+                    curve: 'straight',
+                    dashArray: [4, 8, 5]//Se quiser a linha pontilhada
+                    },
+                    labels: [{% for diario in diarioServicos %} '{{ diario.data_finalizacao }}', {% endfor %}],
+                    title: {
+                    text: 'Funcionários'
+                    },
+                    xaxis: {
+                    },
+                    };
+
+                    var chart = new ApexCharts(document.querySelector("#chart_C"), options);
+                    chart.render();
+            </script>
+        </div>
+    </div>
+    <!--=================================================================================================================-->
+
+
 <!-- ========================================================================================================= -->
 <!-- ========================================================================================================= -->
 <h3 class="ui dividing header blue">Gráfico de serviços diários<a class="anchor" id="content"></a></h3>
