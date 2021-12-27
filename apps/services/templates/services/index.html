@@ -121,18 +121,10 @@
 <!-- FIM Gráfico com o serviços Mensal  -->
 
 
-
-
-  <!-- ========================================================================================================= -->
-  <!-- ========================================================================================================= -->
-
-    <!--=================================================================================================================-->
-
-
 <!-- ========================================================================================================= -->
 <!-- ========================================================================================================= -->
 <h3 class="ui dividing header blue">Gráfico de serviços diários<a class="anchor" id="content"></a></h3>
-  <!-- Gráfico de serviços do mês -->
+  <!-- Gráfico de serviços diários -->
   <div class="card">
     <div id="chart_B">
             <script>
@@ -180,6 +172,7 @@
   <!-- Gráfico de serviços do mês -->
   <div class="mt-2">
     <div class="row">
+      <!-- Serviços por categoria no mês atual-->
       <div class="col-sm-6">
         <div class="card">
           <div class="card-body">
@@ -229,7 +222,6 @@
                     }
                   }]
                   };
-
                   var chart = new ApexCharts(document.querySelector("#chart"), options);
                   chart.render();
               </script>
@@ -238,11 +230,10 @@
         </div>
       </div>
 
+      <!-- Serviços por categoria no geral -->
       <div class="col-sm-6">
         <div class="card">
           <div class="card-body">
-
-
             <div id='chart_A'>
               <script>
                 var options = {
