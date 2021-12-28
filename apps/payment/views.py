@@ -19,7 +19,6 @@ from dateutil.relativedelta import relativedelta
 from .models import FluxoEntradaSaidaMensal
 
 
-
 # Create your views here.
 
 
@@ -31,7 +30,7 @@ class IndexTemplateView(TemplateView):
         context = super().get_context_data(**kwargs)
         this_month = date.today().month  # Variável do mês atual
         data_atual = datetime.now()  # Variável da data de hoje
-        six_months = date.today() + relativedelta(months=-6)
+        six_months = date.today() + relativedelta(months=-5)
 
         # Query para o total de gastos de cada mês =====================================================================
         context['mes'] = Pagamento.objects.\
