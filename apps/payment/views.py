@@ -32,6 +32,7 @@ class IndexTemplateView(TemplateView):
         data_atual = datetime.now()  # Variável da data de hoje
         six_months = date.today() + relativedelta(months=-5)
 
+
         # Query para o total de gastos de cada mês =====================================================================
         context['mes'] = Pagamento.objects.\
             annotate(month=TruncMonth('data_pagamento'), c=Sum('valor_pagamento')). \
