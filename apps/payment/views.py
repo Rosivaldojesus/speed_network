@@ -54,7 +54,7 @@ class IndexTemplateView(TemplateView):
             order_by('month')
 
         # Query de mês atual dos gastos por categoria ==================================================================
-        context['veiculos_mes_atual'] = Pagamento.objects.filter(data_pagamento__month=this_month) \
+        context['veiculosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month) \
             .filter(status_pago=True).filter(categoria=1).aggregate(total=Sum('valor_pagamento'))
         context['funcionariosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month) \
             .filter(status_pago=True).filter(categoria=2).aggregate(total=Sum('valor_pagamento'))
