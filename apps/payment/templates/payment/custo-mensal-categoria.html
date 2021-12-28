@@ -117,7 +117,7 @@
                     },
                     labels: [
                         {% for data in custos_mensais_categoria %} 
-                            {% if data.categoria == 6  %}
+                            {% if data.categoria == 2  %}
                                 '{{ data.month|date:'M, Y' }}',
                             {% endif %}
                         {% endfor %}
