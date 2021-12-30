@@ -1,5 +1,4 @@
 from django.contrib import messages
-from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Sum, Count, Avg
@@ -155,17 +154,13 @@ def InstalacaoConcluida(request):
     queryset = request.GET.get('q')
     date = request.GET.get('date')
     if queryset:
-        concluidas = Instalacao.objects.filter(
-            Q(nome_cliente__icontains=queryset) |
-            Q(sobrenome_cliente__icontains=queryset))
+        concluidas = Instalacao.objects.filter(Q(nome_cliente__icontains=queryset)
+                                               |Q(sobrenome_cliente__icontains=queryset))
     elif date:
-        concluidas = Instalacao.objects.filter(
-            Q(data_finalizacao__exact=date))
+        concluidas = Instalacao.objects.filter(Q(data_finalizacao__exact=date))
+        quant_concluida = Instalacao.objects.filter(concluido='True').count()
     elif startdate:
-        concluidas = Instalacao.objects.filter(
-            Q(data_agendada__exact=startdate))
-
-
+        concluidas = Instalacao.objects.filter(Q(data_agendada__exact=startdate))
 
     return render(request, 'sales/instalacao-concluida.html', {'concluidas': concluidas,
                                                                'quant_concluida':quant_concluida
