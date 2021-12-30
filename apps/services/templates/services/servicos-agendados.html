@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 
-{% block title %}<title>Serviços em agendados</title>{% endblock %}
+{% block title %}.:: Serviços em agendados{% endblock %}
 
 {% block main %}
 <body style="background-color: lightgrey;">
@@ -56,28 +56,34 @@
   <hr>
 
 
-
-
-
-
 {% for agendado in agendados %}
   <div class="card mt-2 mb-2 shadow border-warning">
     <div class="card-header ">
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-4">
             <div class="card">
               <div class="card-body shadow-sm">
                 <strong>Data agendada: </strong>  {{ agendado.data_agendada | date:'d/m/Y' }} ás {{agendado.hora_agendada}}
               </div>
             </div>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-4">
             <div class="card">
               <div class="card-body shadow-sm">
-                <strong>Setor:</strong> {{ agendado.categoria}}
+                <strong>Plano:</strong> {{ agendado.plano_internet}}
               </div>
             </div>
           </div>
+
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body shadow-sm">
+                <strong>Serviço:</strong> {{ agendado.categoria}}
+              </div>
+            </div>
+          </div>
+
+
         </div>
     </div>
     <div class="card-body">
