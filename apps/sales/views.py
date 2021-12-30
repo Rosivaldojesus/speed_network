@@ -161,7 +161,6 @@ def InstalacaoConcluida(request):
     elif date:
         concluidas = Instalacao.objects.filter(
             Q(data_finalizacao__exact=date))
-
     elif startdate:
         concluidas = Instalacao.objects.filter(
             Q(data_agendada__exact=startdate))
