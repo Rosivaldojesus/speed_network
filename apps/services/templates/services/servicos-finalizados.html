@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-{% block title %}<title>Serviços finalizados</title>{% endblock %}
+{% block title %}.:: Serviços finalizados {% endblock %}
 
 {% block main %}
 <div class="container">
@@ -36,7 +36,6 @@
         <th scope="col">Cliente</th>
         <th scope="col">Data</th>
         <th scope="col">Detalhes</th>
-        <th scope="col">Técnico</th>
       </tr>
     </thead>
     <tbody>
@@ -44,11 +43,11 @@
       <tr>
         
         <td>{{ finalizado.contato_servico }}</td>
-        <td>{{ finalizado.data_finalizacao }}</td>
+        <td>{{ finalizado.data_finalizacao|date:'D, d-M-Y' }}</td>
         <td>
           <a href="/servicos/visualizar-servico/?id={{ finalizado.id }}">Visualizar</a>
       </td>
-      <td>{{ finalizado.funcionario_servico }}</td>
+
       </tr>
       {% endfor %}
     </tbody>

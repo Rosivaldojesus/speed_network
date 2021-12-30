@@ -149,19 +149,25 @@ def InstalacaoAgendada(request):
 
 @login_required(login_url='/login/')
 def InstalacaoConcluida(request):
+    quant_concluida = Instalacao.objects.filter(concluido='True').count()
     concluidas = Instalacao.objects.filter(concluido='True').order_by('-id')
     startdate = request.GET.get('startdate')
     queryset = request.GET.get('q')
+    date = request.GET.get('date')
     if queryset:
         concluidas = Instalacao.objects.filter(
             Q(nome_cliente__icontains=queryset) |
             Q(sobrenome_cliente__icontains=queryset))
+    elif date:
+        concluidas = Instalacao.objects.filter(
+            Q(data_finalizacao__exact=date))
+
     elif startdate:
         concluidas = Instalacao.objects.filter(
             Q(data_agendada__exact=startdate))
 
 
-    quant_concluida = Instalacao.objects.filter(concluido='True').count()
+
     return render(request, 'sales/instalacao-concluida.html', {'concluidas': concluidas,
                                                                'quant_concluida':quant_concluida
                                                                })
