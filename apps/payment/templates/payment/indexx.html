@@ -416,9 +416,9 @@
                         curve: 'straight'
                         },
                         labels: [{% for data in mensais_categoria %}
-                            
+                            {% if data.categoria == 1 %}
                                 '{{ data.month|date:'M, Y'}}',
-                          
+                            {% endif %}
                            {% endfor %}],
                         title: {
                         text: 'Custos Mensais categorias'
