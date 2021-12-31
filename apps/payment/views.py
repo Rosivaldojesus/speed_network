@@ -44,9 +44,9 @@ class IndexTemplateView(TemplateView):
             order_by('month')
 
         # Query [Gráfico] para total por mês de custo das categorias ===================================================
+        # filter(Q(data_pagamento__range=[six_months, data_atual])). \
         context['mensais_categoria'] = Pagamento.objects. \
             filter(status_pago=True). \
-            filter(Q(data_pagamento__range=[six_months, data_atual])). \
             annotate(month=TruncMonth('data_pagamento')). \
             values('month'). \
             annotate(total=Sum('valor_pagamento')). \
