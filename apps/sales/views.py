@@ -415,9 +415,12 @@ class CancelamentosListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(CancelamentosListView, self).get_context_data(**kwargs)
+
         
         context['cancelamentos'] = Cancelamentos.objects.all()
         context['count_cancelamentos'] = Cancelamentos.objects.all().count()
+        context['cancelamentos_mensais'] = Cancelamentos.objects.annotate(month=TruncMonth('data')).values('month').\
+            annotate(total=Count('month')).values('month', 'total').order_by('month')
 
         # Cancelamentos por plano
         context['plano_69'] = Cancelamentos.objects.filter(plano_internet__icontains='69,90').count()

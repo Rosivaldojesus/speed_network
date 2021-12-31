@@ -42,7 +42,7 @@
       {% for finalizado in finalizados %} 
       <tr>
         
-        <td>{{ finalizado.contato_servico }}</td>
+        <td>{{ finalizado.contato_servico }} </td>
         <td>{{ finalizado.data_finalizacao|date:'D, d-M-Y' }}</td>
         <td>
           <a href="/servicos/visualizar-servico/?id={{ finalizado.id }}">Visualizar</a>
