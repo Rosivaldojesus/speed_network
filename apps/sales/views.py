@@ -415,6 +415,7 @@ class CancelamentosListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(CancelamentosListView, self).get_context_data(**kwargs)
+        this_month = date.today().month
 
         
         context['cancelamentos'] = Cancelamentos.objects.all()
@@ -422,12 +423,24 @@ class CancelamentosListView(ListView):
         context['cancelamentos_mensais'] = Cancelamentos.objects.annotate(month=TruncMonth('data')).values('month').\
             annotate(total=Count('month')).values('month', 'total').order_by('month')
 
+        # Cancelamentos por plano no mês atual
+        context['plano_100mb_mes_atual'] = Cancelamentos.objects.filter(data__month=this_month).filter(plano_internet__icontains='69,90').count()
+        context['plano_200mb_mes_atual'] = Cancelamentos.objects.filter(data__month=this_month).filter(plano_internet__icontains='89,90').count()
+        context['plano_400mb_mes_atual'] = Cancelamentos.objects.filter(data__month=this_month).filter(plano_internet__icontains='99,90').count()
+        context['plano_500mb_mes_atual'] = Cancelamentos.objects.filter(data__month=this_month).filter(plano_internet__icontains='119,90').count()
+        context['plano_600mb_mes_atual'] = Cancelamentos.objects.filter(data__month=this_month).filter(plano_internet__icontains='149,90').count()
+
         # Cancelamentos por plano
         context['plano_100mb'] = Cancelamentos.objects.filter(plano_internet__icontains='69,90').count()
         context['plano_200mb'] = Cancelamentos.objects.filter(plano_internet__icontains='89,90').count()
         context['plano_400mb'] = Cancelamentos.objects.filter(plano_internet__icontains='99,90').count()
         context['plano_500mb'] = Cancelamentos.objects.filter(plano_internet__icontains='119,90').count()
         context['plano_600mb'] = Cancelamentos.objects.filter(plano_internet__icontains='149,90').count()
+
+
+
+
+
 
         # Cancelamentos por plano
         context['plano_69'] = Cancelamentos.objects.filter(plano_internet__icontains='69,90').count()

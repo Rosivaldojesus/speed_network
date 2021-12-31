@@ -91,10 +91,23 @@
           <div id="chart_mes_atual">
             <script>
               var options = {
-                series: [44, 55, 41, 17, 15],
+                series: [ 
+
+
+                  {{ plano_100mb_mes_atual }},
+                  {{ plano_200mb_mes_atual }},
+                  {{ plano_400mb_mes_atual }},
+                  {{ plano_500mb_mes_atual }},
+
+                  {{ plano_600mb_mes_atual }}
+                  
+                  
+                  ],
                 chart: {
+                width: 380,
                 type: 'donut',
               },
+              labels: ['100MB', '200MB', '400MB', '500MB', '600MB'],
               responsive: [{
                 breakpoint: 480,
                 options: {
@@ -107,7 +120,6 @@
                 }
               }]
               };
-
               var chart = new ApexCharts(document.querySelector("#chart_mes_atual"), options);
               chart.render();
             </script>
@@ -119,7 +131,7 @@
     <div class="col-sm-6 ">
       <div class="card h-100">
         <div class="card-body">
-          <h5 class="card-title">Geral</h5>
+          <h5 class="card-title">Geral ( {{ count_cancelamentos}} )</h5>
           <div id='chart_geral'>
             <script>
               var options = {
