@@ -47,6 +47,7 @@ class IndexTemplateView(TemplateView):
         # filter(Q(data_pagamento__range=[six_months, data_atual])). \
         context['mensais_categoria'] = Pagamento.objects. \
             filter(status_pago=True). \
+            filter(Q(data_pagamento__range=[six_months, data_atual])). \
             annotate(month=TruncMonth('data_pagamento')). \
             values('month'). \
             annotate(total=Sum('valor_pagamento')). \
