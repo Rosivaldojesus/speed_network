@@ -566,8 +566,8 @@ class FluxoCreate(CreateView):
     success_url = '/pagamentos/fluxo-entradas-saidas/'
 
 
-# Exportando os dados para CSV
-def ExportarCSV():
+#Exportando os dados para CSV
+def ExportarCSV(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="relatorio-pagamentos.csv"'
 
@@ -578,7 +578,7 @@ def ExportarCSV():
                      'tipo_custo_pagamento', 'categoria', 'status_pago'])
     for pag in pagamentos:
         writer.writerow([pag.id, pag.data_pagamento, pag.motivo_pagamento, pag.valor_pagamento,
-                         pag.origem_valor_pagamento, pag.tipo_custo_pagamento, pag.categoria, pag.status_pago
+                         pag.origem_valor_pagamento, pag.tipo_custo_pagamento,  pag.categoria , pag.status_pago
                          ])
     return response
 
