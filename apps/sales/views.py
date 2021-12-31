@@ -423,6 +423,13 @@ class CancelamentosListView(ListView):
             annotate(total=Count('month')).values('month', 'total').order_by('month')
 
         # Cancelamentos por plano
+        context['plano_100mb'] = Cancelamentos.objects.filter(plano_internet__icontains='69,90').count()
+        context['plano_200mb'] = Cancelamentos.objects.filter(plano_internet__icontains='89,90').count()
+        context['plano_400mb'] = Cancelamentos.objects.filter(plano_internet__icontains='99,90').count()
+        context['plano_500mb'] = Cancelamentos.objects.filter(plano_internet__icontains='119,90').count()
+        context['plano_600mb'] = Cancelamentos.objects.filter(plano_internet__icontains='149,90').count()
+
+        # Cancelamentos por plano
         context['plano_69'] = Cancelamentos.objects.filter(plano_internet__icontains='69,90').count()
         context['plano_89'] = Cancelamentos.objects.filter(plano_internet__icontains='89,90').count()
         context['plano_99'] = Cancelamentos.objects.filter(plano_internet__icontains='99,90').count()
@@ -434,19 +441,19 @@ class CancelamentosListView(ListView):
 
 
 
-        context.update({
-            'mes': Cancelamentos.objects.annotate(month=TruncMonth('data')).filter().values('month').annotate(c=Count('id')).values('month', 'c').order_by('-month'),
-            'cancelamentos': Cancelamentos.objects.all(),
-            'count_cancelamentos': Cancelamentos.objects.all().count(),
-
-            # Análise por planos
-
-            'plano_69' : Cancelamentos.objects.filter(plano_internet='69,90').count(),
-            'plano_89' : Cancelamentos.objects.filter(plano_internet='89,90').count(),
-            'plano_99' : Cancelamentos.objects.filter(plano_internet='99,90').count(),
-            'plano_119' : Cancelamentos.objects.filter(plano_internet='119,90').count(),
-            'plano_149' : Cancelamentos.objects.filter(plano_internet='149,90').count(), 
-        })
+        # context.update({
+        #     'mes': Cancelamentos.objects.annotate(month=TruncMonth('data')).filter().values('month').annotate(c=Count('id')).values('month', 'c').order_by('-month'),
+        #     'cancelamentos': Cancelamentos.objects.all(),
+        #     'count_cancelamentos': Cancelamentos.objects.all().count(),
+        #
+        #     # Análise por planos
+        #
+        #     'plano_69' : Cancelamentos.objects.filter(plano_internet='69,90').count(),
+        #     'plano_89' : Cancelamentos.objects.filter(plano_internet='89,90').count(),
+        #     'plano_99' : Cancelamentos.objects.filter(plano_internet='99,90').count(),
+        #     'plano_119' : Cancelamentos.objects.filter(plano_internet='119,90').count(),
+        #     'plano_149' : Cancelamentos.objects.filter(plano_internet='149,90').count(),
+        # })
 
 
         
