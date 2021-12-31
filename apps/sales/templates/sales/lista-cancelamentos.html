@@ -175,61 +175,7 @@
   </div>
  <!-- =====================================================================================================-->
 <!-- =====================================================================================================-->
-
-
-
-
-
-
-
-  <!-- INICIO - Gráfico com o motivos de cancelamentos -->
- <div class="card shadow">
-   <div class="card-header" align="center">
-     Gráficos
-   </div>
-  <canvas id="myChart" width="400" height="100">
-    <script>
-      const ctx = document.getElementById('myChart').getContext('2d');
-      const myChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-              labels: ['R$: 69,90', 'R$: 89,90', 'R$: 99,90', 'R$: 119,90', 'R$: 149,90'],
-              datasets: [{
-                  label: '{{ count_cancelamentos}} Cancelamentos',
-                  data: ['{{ plano_69}}', '{{ plano_89}}', '{{ plano_99}}', '{{ plano_119}}', '{{ plano_149}}'],
-                  backgroundColor: [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
-                  ],
-                  borderColor: [
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                  ],
-                  borderWidth: 1
-              }]
-          },
-          options: {
-              scales: {
-                  y: {
-                      beginAtZero: true
-                  }
-              }
-          }
-      });
-      </script>
-  </canvas>
- </div>
-
- <!-- INICIO - Gráfico com o motivos de cancelamentos -->
-    
+ 
 
 
 
