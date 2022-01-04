@@ -22,9 +22,11 @@ def Index(request):
     contarAgendados = Servico.objects.filter(status_agendado='True')\
     .filter(status_concluido='False').count()
     contarFinalizados = Servico.objects.all().filter(status_concluido='True').count()
-    diarios = Servico.objects.all().filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('contato_servico'))
+    diarios = Servico.objects.all().filter(status_concluido='True').values('data_finalizacao').\
+        annotate(number=Count('contato_servico'))
    # diarioInstalaçao = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate( number=Count('data_finalizacao')).order_by('data_finalizacao')[90:]
-    servicosMensal = Servico.objects.annotate(month=TruncMonth('data_finalizacao')).filter(status_concluido='True').values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
+    servicosMensal = Servico.objects.annotate(month=TruncMonth('data_finalizacao')).filter(status_concluido='True').\
+        values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
 
     #diarioServicos = Servico.objects.filter(status_concluido='True').values('data_finalizacao').annotate(number=Count('data_finalizacao')).order_by('data_finalizacao')[150:]
 

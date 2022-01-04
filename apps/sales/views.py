@@ -13,7 +13,7 @@ from .forms import InstalacaoCreateForm, InstalacaoUpdateForm,\
 from ..components.models import Vendedores
 from django.db.models.functions import ExtractMonth
 from django.db.models.functions import TruncMonth
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -39,11 +39,18 @@ def Index(request):
     quant_agendada_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='True')\
         .filter(concluido='False').count()
     #Instalações Mensais
-    instalacoesMensais = Instalacao.objects.annotate(month=ExtractMonth('data_finalizacao')).values('month').annotate(count=Count('id'))
-    mensalInstalacao = Instalacao.objects.annotate(month=TruncMonth('data_finalizacao')).filter(concluido='True').values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
-    diarioInstalaçao = Instalacao.objects.filter(concluido='True').values('data_finalizacao').annotate( number=Count('data_finalizacao')).order_by('data_finalizacao')[90:]
+    instalacoesMensais = Instalacao.objects.annotate(month=ExtractMonth('data_finalizacao')).values('month').\
+        annotate(count=Count('id'))
+    mensalInstalacao = Instalacao.objects.annotate(month=TruncMonth('data_finalizacao')).filter(concluido='True').\
+        values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
 
-    mediaDiarioInstalacao = Instalacao.objects.annotate(month=TruncMonth('data_finalizacao')).filter(concluido='True').values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
+    diarioInstalaçao = Instalacao.objects.filter(concluido='True').\
+        filter(data_finalizacao__gte=datetime.today()-timedelta(days=30)).values('data_finalizacao').\
+        annotate( number=Count('data_finalizacao')).order_by('data_finalizacao')
+
+    mediaDiarioInstalacao = Instalacao.objects.annotate(month=TruncMonth('data_finalizacao')).\
+        filter(concluido='True').values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').\
+        order_by('month')
 
     # Filtros de como o cliente conheceu a empresa
     conheceu_empresa_count = Instalacao.objects.filter(como_conheceu_empresa__isnull=True).count()
