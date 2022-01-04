@@ -57,7 +57,9 @@
                 <th scope="col">Endereço</th>
                 <th scope="col">Bairro</th>
                 <th>Data Instalação</th>
+                <th scope="col">Como conheceu</th>
                 <th scope="col">Vendedor</th>
+
             </tr>
           </thead>
           <tbody>
@@ -71,6 +73,7 @@
                 <td>{{ concluida.rua_cliente }}, {{ concluida.numero_endereco_cliente }}</td>
                 <td>{{ concluida.bairro_cliente }}</td>
                 <td>{{ concluida.data_finalizacao|date:"d M, Y" }}</td>
+                <td>{{ concluida.como_conheceu_empresa }}</td>
                 <td>{{ concluida.instalacao_vendedor }}</td>
             </tr>
 
