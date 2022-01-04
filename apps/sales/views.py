@@ -60,9 +60,16 @@ def Index(request):
     indicacao_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Indicação')).count()
     outros_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Outros')).count()
 
+    # Filtros de como o cliente conheceu a empresa mês atual
+    conheceu_empresa_mes_count = Instalacao.objects.filter(como_conheceu_empresa__isnull=True).count()
+    panfletos_mes_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Panfleto')).filter(data_finalizacao__month=this_month).count()
+    redes_sociais_mes_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Redes Socias')).filter(data_finalizacao__month=this_month).count()
+    site_mes_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Site')).filter(data_finalizacao__month=this_month).count()
+    indicacao_mes_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Indicação')).filter(data_finalizacao__month=this_month).count()
+    outros_mes_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Outros')).filter(data_finalizacao__month=this_month).count()
 
-    return render(request, 'sales/instalacao.html', {'instalacoes': instalacoes,
-                                                     'quant_aberta': quant_aberta,
+    context = {'instalacoes': instalacoes,
+                'quant_aberta': quant_aberta,
                                                      'quant_agendada': quant_agendada,
                                                      'quant_concluida': quant_concluida,
                                                      'quant_sem_boleto': quant_sem_boleto,
@@ -86,10 +93,15 @@ def Index(request):
                                                      'indicacao_count': indicacao_count,
                                                      'outros_count': outros_count,
 
-                                                     
+                                                     'panfletos_mes_count': panfletos_mes_count,
+                                                     'redes_sociais_mes_count': redes_sociais_mes_count,
+                                                     'site_mes_count': site_mes_count,
+                                                     'indicacao_mes_count': indicacao_mes_count,
+                                                     'outros_mes_count': outros_mes_count
 
+                                                     }
 
-                                                     })
+    return render(request, 'sales/instalacao.html', context )
 
 @login_required(login_url='/login/')
 def VendasInstalacao(request):

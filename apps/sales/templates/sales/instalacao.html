@@ -132,6 +132,8 @@
   {% endif %}
   <!-- FIM Gráfico de instalações por mês -->
 
+
+  <!-- =====================================================================================================================-->
   <!-- INICIO Gráfico de instações diárias -->
   <div class="card shadow mt-4 mb-4 p-2">
     <canvas id="speedChart" width="400" height="100">
@@ -187,58 +189,102 @@
     
   </div>
   <!-- FIM Gráfico de instações diárias -->
+  <!-- =====================================================================================================================-->
 
-
-
+  
+  <!-- =====================================================================================================================-->
   <!-- INICIO Gráfico de como os clientes conheceram a empresa -->
-  <div class="mb-2">
+  <div class="row mb-4">
+    <div class="col-sm-6">
+      <div class="card shadow h-100 border-0">
+        <div class="card-body">
+          <h4 class="card-title">{% now "M Y" %}</h4>
+          <div id="chart_AA">
+            <script>
+              var options = {
+                  series: [
+                    
+                    {{ panfletos_mes_count }},
+                    {{ redes_sociais_mes_count }},
+                    {{ site_mes_count }},
+                    {{ indicacao_mes_count }},
+                    {{ outros_mes_count}}
+                  
+                  ],
+                  chart: {
+                  width: 380,
+                  type: 'donut',
+                },
+                labels: ['Panfleto', 'Redes Sociais', 'Site', 'Indicação', 'Outros'],
+                responsive: [{
+                  breakpoint: 480,
+                  options: {
+                    chart: {
+                      width: 200
+                    },
+                    legend: {
+                      position: 'bottom'
+                    }
+                  }
+                }]
+                };
 
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Como conheceu a empresa? #( {{ conheceu_empresa_count }} )</h5>
-            <canvas id="quantidadeManuais" width="400" height="200"></canvas>
-						<script>
-							var ctxy = document.getElementById('quantidadeManuais').getContext('2d');
-							var myDoughnutChart = new Chart(ctxy, {
-								// The type of chart we want to create
-								type: 'pie',
-
-								// The data for our dataset
-								data: {
-									labels: ['Panfleto', 'Redes Sociais', 'Site', 'Indicação', 'Outros'],
-									datasets: [{
-										label: 'Equipamentos nos clientes',
-										backgroundColor: '',
-										borderColor: 'white',
-										data: [{{ panfletos_count }},{{ redes_sociais_count }}, {{ site_count }}, {{ indicacao_count }}, {{ outros_count}}],
-
-										backgroundColor: [
-										'rgba(0,0,255)',
-										'rgba(79,79,79)',
-										'rgba(0,128,0)',
-										'rgba(255,215,0)',
-										'rgba(255,69,0)'
-										],
-									}]
-								},
-								// Configuration options go here
-								options: {}
-							});
-					</script>
+                var chart = new ApexCharts(document.querySelector("#chart_AA"), options);
+                chart.render();
+            </script>
           </div>
         </div>
       </div>
-      <div class="col-sm-6">
-        <div class="card border-0">
-   
+    </div>
+    <div class="col-sm-6">
+      <div class="card shadow h-100 border-0">
+        <div class="card-body">
+          <h4 class="card-title">Geral</h4>
+          <div id="chart_BB">
+            <script>
+              var options = {
+                series: [
+                  
+                {{ panfletos_count }},
+                {{ redes_sociais_count }},
+                {{ site_count }},
+                {{ indicacao_count }},
+                {{ outros_count}}
+                
+                ],
+                chart: {
+                width: 380,
+                type: 'pie',
+              },
+              labels: ['Panfleto', 'Redes Sociais', 'Site', 'Indicação', 'Outros'],
+              responsive: [{
+                breakpoint: 480,
+                options: {
+                  chart: {
+                    width: 200
+                  },
+                  legend: {
+                    position: 'bottom'
+                  }
+                }
+              }]
+              };
+
+              var chart = new ApexCharts(document.querySelector("#chart_BB"), options);
+              chart.render();
+            </script>
+          </div>
         </div>
       </div>
     </div>
   </div>
-    
-  <!-- INICIO Gráfico de como os clientes conheceram a empresa -->
+  <!-- FIM Gráfico de como os clientes conheceram a empresa -->
+  <!-- =====================================================================================================================-->
+
+
+
+
+
 
 </div>
 {% endblock %}
