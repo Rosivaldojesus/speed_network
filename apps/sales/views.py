@@ -61,7 +61,7 @@ def Index(request):
     outros_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Outros')).count()
 
     # Filtros de como o cliente conheceu a empresa mês atual
-    conheceu_empresa_mes_count = Instalacao.objects.filter(como_conheceu_empresa__isnull=True).count()
+    conheceu_empresa_mes_count = Instalacao.objects.filter(como_conheceu_empresa__isnull=True).filter(data_finalizacao__month=this_month).count()
     panfletos_mes_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Panfleto')).filter(data_finalizacao__month=this_month).count()
     redes_sociais_mes_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Redes Socias')).filter(data_finalizacao__month=this_month).count()
     site_mes_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Site')).filter(data_finalizacao__month=this_month).count()
@@ -70,9 +70,9 @@ def Index(request):
 
     context = {'instalacoes': instalacoes,
                 'quant_aberta': quant_aberta,
-                                                     'quant_agendada': quant_agendada,
-                                                     'quant_concluida': quant_concluida,
-                                                     'quant_sem_boleto': quant_sem_boleto,
+                'quant_agendada': quant_agendada,
+                'quant_concluida': quant_concluida,
+                'quant_sem_boleto': quant_sem_boleto,
                                                      # Filtrando instalação por Vendedor
                                                      'instalacaoVendedor': instalacaoVendedor,
                                                      'quant_aberta_vendedor':quant_aberta_vendedor,
@@ -97,7 +97,8 @@ def Index(request):
                                                      'redes_sociais_mes_count': redes_sociais_mes_count,
                                                      'site_mes_count': site_mes_count,
                                                      'indicacao_mes_count': indicacao_mes_count,
-                                                     'outros_mes_count': outros_mes_count
+                'outros_mes_count': outros_mes_count,
+               'conheceu_empresa_mes_count': conheceu_empresa_mes_count,
 
                                                      }
 
