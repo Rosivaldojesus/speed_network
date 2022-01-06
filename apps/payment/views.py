@@ -444,8 +444,7 @@ def AgendamentosPagamentos(request):
         .aggregate(total=Sum('valor_pagamento'))
 
     pagamentosFuturos = Pagamento.objects.filter(status_pago='False').annotate(
-        month=TruncMonth('data_pagamento')).filter(
-        data_pagamento__gt=data_atual).values('month').annotate(
+        month=TruncMonth('data_pagamento')).filter().values('month').annotate(
         c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
 
     pagamentosFuturosDiarios = Pagamento.objects.filter(status_pago='False').filter(
