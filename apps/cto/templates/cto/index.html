@@ -236,11 +236,11 @@
 			</thead>
 			<tbody>
 				{% for cto in ctos %}
-				<tr {% if cto.livre == 0 %} style="color:white; background-color: red;" {% endif %}>
+				<tr {% if cto.livre == 0 %} style="color:red; background-color: white;" {% endif %}>
 					<td>{{cto.rua_cto}}</td>
 					<td>{{cto.numero_rua_cto}} </td>
 					<td>{{cto.bairro_cto}}</td>
-					<td>{{cto.codigo_cto}}</td>
+					<td>{% if cto.codigo_cto is null %} <p style="color:red; background-color: gold;" align="center">Código</p> {% else %} {{cto.codigo_cto}} {% endif %}</td>
 					<td>{{cto.board_cto}}</td>
 					<td>{{cto.pon_cto}}</td>
 					<td> {{cto.conexoes_opticas_cto}}</td>
