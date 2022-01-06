@@ -16,7 +16,7 @@ import csv
 @login_required(login_url='/login/')
 def Index(request):
     ctos = TerminaisOpticos.objects.annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))\
-        .order_by('rua_cto')
+        .order_by('rua_cto').order_by('bairro_cto')
     # Verifica a quantidade de Ctos Filtradas
     quant_cto_filtradas = TerminaisOpticos.objects.all().count()
     quant_cto_cadastradas = TerminaisOpticos.objects.all().count()
