@@ -67,7 +67,6 @@ class InstalacaoCreateForm(forms.ModelForm):
             'data_instalacao': forms.DateInput(attrs={'type': 'date'}),
             'hora_instalacao': forms.TimeInput(attrs={'type': 'time'}),
             'instalacao_vendedor': forms.Select(attrs={'class': 'form-control'}),
-            'como_conheceu_empresa': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
             'observacao_instalacao' : forms.Textarea(attrs={'class': 'form-control'}),
         }
 
@@ -78,7 +77,7 @@ class InstalacaoCreateForm(forms.ModelForm):
         ('Redes Socias', 'Redes Socias'),
         ('Outros', 'Outros'),
     )
-    como_conheceu_empresa = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
+    como_conheceu_empresa = forms.MultipleChoiceField(widget=forms.SelectMultiple,
                                         choices=COMO_CONHECEU_EMPRESA, required=True)
 
 

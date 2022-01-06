@@ -30,7 +30,7 @@ def Index(request):
     if board and pon:
         ctos = TerminaisOpticos.objects.annotate(
             livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).order_by('rua_cto')\
-            .filter(board_cto__exact=board, pon_cto__exact=pon)
+            .filter(board_cto__exact=board, pon_cto__exact=pon).order_by('codigo_cto')
         quant_cto_filtradas = TerminaisOpticos.objects.annotate(
             livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto'))\
             .order_by('rua_cto').filter(board_cto__exact=board, pon_cto__exact=pon).count()
