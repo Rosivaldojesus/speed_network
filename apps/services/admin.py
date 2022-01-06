@@ -25,7 +25,7 @@ class ServicoAdmin(admin.ModelAdmin):
 
     
 
-    search_fields = ['contato_servico']
+    search_fields = ['contato_servico', 'usuario_voip']
 admin.site.register(Servico, ServicoAdmin)
 
 
