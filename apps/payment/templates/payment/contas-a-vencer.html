@@ -57,6 +57,7 @@
                 <tr>
                     <th scope="col">Conta</th>
                     <th scope="col">Valor</th>
+                    <th scope="col">Banco</th>
                     <th scope="col">Data</th>
                     <th scope="col">Categoria</th>
                     <th scope="col">Editar</th>
@@ -69,6 +70,7 @@
                 <tr>
                     <th scope="row">{{ conta.motivo_pagamento }}</th>
                     <td>{{ conta.valor_pagamento }}</td>
+                    <td>{{ conta.origem_valor_pagamento}}</td>
                     <td>{{ conta.data_pagamento|date:'j-M-Y' }}</td>
                     <td>{{ conta.categoria }}</td>
                     <td> <a href="{% url 'editar_pagamento_agendado' conta.id  %}"> Editar </a> </td>

@@ -91,6 +91,7 @@
                 <tr>
                   <th scope="col">Motivo</th>
                   <th scope="col">Valor</th>
+                  <th scope="col">Banco</th>
                   <th scope="col">Data</th>
                   <th scope="col">Pagar</th>
                 </tr>
@@ -100,7 +101,8 @@
                 <tr>
                   <th scope="row">{{ valor.motivo_pagamento}}</th>
                   <td>{{ valor.valor_pagamento}}</td>
-                  <td>{{ valor.data_pagamento }}</td>
+                  <td>{{ valor.origem_valor_pagamento}}</td>
+                  <td>{{ valor.data_pagamento|date:"d-M-Y"  }}</td>
                   <td>
                     <a href="/pagamentos/comfirmar-pagamento/{{ valor.id }}" title="Pagar"><i class="fas fa-money-check-alt fa-lg"></i></a>
                   </td>
@@ -119,6 +121,7 @@
                 <tr>
                   <th scope="col">Motivo</th>
                   <th scope="col">Valor</th>
+                  <th scope="col">Banco</th>
                   <th scope="col">Data</th>
                   <th scope="col">Pagar</th>
                 </tr>
@@ -128,7 +131,8 @@
                 <tr>
                   <th scope="row">{{ valor.motivo_pagamento}}</th>
                   <td>{{ valor.valor_pagamento}}</td>
-                  <td>{{ valor.data_pagamento }}</td>
+                  <td>{{ valor.origem_valor_pagamento}}</td>
+                  <td>{{ valor.data_pagamento|date:"d-M-Y"  }}</td>
                   <td>
                     <a href="/pagamentos/comfirmar-pagamento/{{ valor.id }}" title="Pagar"><i class="fas fa-money-check-alt fa-lg"></i></a>
                   </td>
