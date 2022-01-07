@@ -76,35 +76,55 @@
     <!-- =====================================================================================================-->
     <!-- =====================================================================================================-->
     <h3 class="ui dividing header blue">Lista de contas a Pagar<a class="anchor" id="content"></a></h3>
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
 
-        </tbody>
-      </table>
+
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="card">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Motivo</th>
+                  <th scope="col">Valor</th>
+                  <th scope="col">Data</th>
+                  <th scope="col">Opções</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for valor in valor_a_pagar %}
+                <tr>
+                  <th scope="row">{{ valor.motivo_pagamento}}</th>
+                  <td>{{ valor.valor_pagamento}}</td>
+                  <td>{{ valor.data_pagamento }}</td>
+                  <td>{{ valor.motivo_pagamento}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- =====================================================================================================-->
-    <!-- =====================================================================================================-->
 
-    <!-- =====================================================================================================-->
-    
+
+      
 
 
     <!-- =====================================================================================================-->
+    <!-- =====================================================================================================-->
+
 
 </div>
 {% endblock %}
