@@ -170,12 +170,9 @@ class ContarPagarView(TemplateView):
         context['lista_conta_a_hoje'] = Pagamento.objects.filter(status_pago='False').filter(data_pagamento=this_day)
         context['lista_conta_atrasadas'] = Pagamento.objects.filter(status_pago='False').filter(data_pagamento__lt=this_day)
 
-        context['pagamentos_futuros_mensal'] = Pagamento.objects.filter(status_pago='False').annotate(
-            month=TruncMonth('data_pagamento')).filter(
-            data_pagamento__gt=this_day).values('month').annotate(
-            c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
-
-
+        context['pagamentos_futuros_mensal'] = Pagamento.objects.filter(status_pago='False').\
+            annotate(month=TruncMonth('data_pagamento')).values('month').annotate(c=Sum('valor_pagamento'))\
+            .values('month', 'c').order_by('month')
 
         return context
 
