@@ -155,11 +155,13 @@
       <div class="col-sm-4">
         <div class="card">
 
-
+          <!-- ===================================================================================-->
+          <!-- Pagamentos futuros mensais -->
+          <h3 class="ui dividing header blue">Mensais <a class="anchor" id="content"></a></h3>
           <table class="table">
             <thead class="table-info">
               <tr>
-                <th scope="col">Mês Valor</th>
+                <th scope="col">Mês</th>
                 <th scope="col">Valor</th>
 
               </tr>
@@ -169,6 +171,26 @@
               <tr>
                 <th scope="row">{{ valor.month|date:"F Y" }}</th>
                 <td>R$: {{ valor.c }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <!-- ===================================================================================-->
+          <!-- Pagamentos futuros diários -->
+          <h3 class="ui dividing header violet">Diários <a class="anchor" id="content"></a></h3>
+          <table class="table">
+            <thead class="table-success">
+              <tr>
+                <th scope="col">Dia</th>
+                <th scope="col">Valor</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for valor in pagamentos_futuros_diarios %}
+              <tr>
+                <th scope="row">{{ valor.data_pagamento }}</th>
+                <td>R$: {{ valor.number }}</td>
               </tr>
               {% endfor %}
             </tbody>

@@ -174,6 +174,10 @@ class ContarPagarView(TemplateView):
             annotate(month=TruncMonth('data_pagamento')).values('month').annotate(c=Sum('valor_pagamento'))\
             .values('month', 'c').order_by('month')
 
+        context['pagamentos_futuros_diarios'] = Pagamento.objects.filter(status_pago='False').filter(
+            data_pagamento__gte=this_day).filter().values(
+            'data_pagamento').annotate(number=Sum('valor_pagamento')).order_by('data_pagamento')
+
         return context
 
 
