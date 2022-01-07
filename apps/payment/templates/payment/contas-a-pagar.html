@@ -92,12 +92,12 @@
                 </tr>
               </thead>
               <tbody>
-                {% for valor in valor_a_pagar %}
+                {% for valor in lista_conta_a_pagar %}
                 <tr>
                   <th scope="row">{{ valor.motivo_pagamento}}</th>
                   <td>{{ valor.valor_pagamento}}</td>
                   <td>{{ valor.data_pagamento }}</td>
-                  <td>{{ valor.motivo_pagamento}}</td>
+                  <td></td>
                 </tr>
                 {% endfor %}
               </tbody>

@@ -167,9 +167,7 @@ class ContarPagarView(TemplateView):
         context['valor_a_pagar_atrasada'] = Pagamento.objects.filter(data_pagamento__lt=this_day).\
             filter(status_pago=False).aggregate(total=Sum('valor_pagamento'))
 
-        context['lista_conta_a_pagar'] = Pagamento.objects.filter(data_pagamento__gte=this_day).\
-            filter(status_pago=False).aggregate(total=Sum('valor_pagamento'))
-
+        context['lista_conta_a_pagar'] = Pagamento.objects.filter(status_pago='False').filter(data_pagamento__gt=this_day)
         return context
 
 
