@@ -84,15 +84,15 @@
           
           <!-- ===================================================================================-->
           <!-- Lista de contas que vencem hoje -->
-          <h3 class="ui dividing header yellow">Hoje<a class="anchor" id="content"></a></h3>
+          <h3 class="ui dividing header yellow">Hoje ( R$: {{ valor_a_pagar_hoje.total }} )<a class="anchor" id="content"></a></h3>
           <div class="table-responsive">
-            <table class="table">
-              <thead>
+            <table class="table ">
+              <thead class="table-warning">
                 <tr>
                   <th scope="col">Motivo</th>
                   <th scope="col">Valor</th>
                   <th scope="col">Data</th>
-                  <th scope="col">Opções</th>
+                  <th scope="col">Pagar</th>
                 </tr>
               </thead>
               <tbody>
@@ -101,7 +101,9 @@
                   <th scope="row">{{ valor.motivo_pagamento}}</th>
                   <td>{{ valor.valor_pagamento}}</td>
                   <td>{{ valor.data_pagamento }}</td>
-                  <td></td>
+                  <td>
+                    <a href="/pagamentos/comfirmar-pagamento/{{ valor.id }}" title="Pagar"><i class="fas fa-money-check-alt fa-lg"></i></a>
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -110,15 +112,15 @@
           <!-- ===================================================================================-->
           <!-- Lista de contas que vencem hoje -->
 
-          <h3 class="ui dividing header red">Atrasadas<a class="anchor" id="content"></a></h3>
+          <h3 class="ui dividing header red">Atrasadas (R$: {{ valor_a_pagar_atrasada.total }}) <a class="anchor" id="content"></a></h3>
           <div class="table-responsive">
             <table class="table">
-              <thead>
+              <thead class="table-danger">
                 <tr>
                   <th scope="col">Motivo</th>
                   <th scope="col">Valor</th>
                   <th scope="col">Data</th>
-                  <th scope="col">Opções</th>
+                  <th scope="col">Pagar</th>
                 </tr>
               </thead>
               <tbody>
@@ -127,7 +129,9 @@
                   <th scope="row">{{ valor.motivo_pagamento}}</th>
                   <td>{{ valor.valor_pagamento}}</td>
                   <td>{{ valor.data_pagamento }}</td>
-                  <td></td>
+                  <td>
+                    <a href="/pagamentos/comfirmar-pagamento/{{ valor.id }}" title="Pagar"><i class="fas fa-money-check-alt fa-lg"></i></a>
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>
