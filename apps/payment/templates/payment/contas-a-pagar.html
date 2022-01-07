@@ -154,11 +154,28 @@
 
       <div class="col-sm-4">
         <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
+
+
+          <table class="table">
+            <thead class="table-info">
+              <tr>
+                <th scope="col">Mês Valor</th>
+                <th scope="col">Valor</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for valor in pagamentos_futuros_mensal%}
+              <tr>
+                <th scope="row">{{ valor.month|date:"F Y" }}</th>
+                <td>R$: {{ valor.c }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+
+
         </div>
       </div>
     </div>
