@@ -30,7 +30,7 @@ class IndexTemplateView(TemplateView):
         context = super().get_context_data(**kwargs)
         this_month = date.today().month  # Variável do mês atual
         data_atual = datetime.now()  # Variável da data de hoje
-        data_inicial = '2021-6-1'
+        data_inicial = '2021-7-1'
         six_months = date.today() + relativedelta(months=-5)
 
 
