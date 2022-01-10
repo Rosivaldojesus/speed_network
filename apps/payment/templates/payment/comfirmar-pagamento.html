@@ -5,14 +5,14 @@
 
 {% block main %}
      <div class="container">
-         <h5 class="mt-2">Comfirmar Pagamento</h5>
+         <h5 class="mt-2">Confirmar Pagamento</h5>
          <form action="" method="post"> {% csrf_token %}
 
             <div class="mt-10">
                 {{ form | crispy }}
             </div>
 
-				<input type="submit" class="btn btn-block btn-primary" value="Comfirmar pagamento">
+				<input type="submit" class="btn btn-block btn-primary" value="Confirmar pagamento">
 		 </form>
      </div>
 
