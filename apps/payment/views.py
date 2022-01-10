@@ -198,6 +198,11 @@ class ContasVencerView(TemplateView):
         if motivo_pagamento:
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
                 filter(Q(motivo_pagamento__icontains=motivo_pagamento)).order_by('data_pagamento')
+            context['valor_a_pagar'] = Pagamento.objects.filter(status_pago=False). \
+                filter(Q(motivo_pagamento__icontains=motivo_pagamento)).\
+                aggregate(total=Sum('valor_pagamento'))
+
+
         elif data:
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
                 filter(Q(data_pagamento__exact=data)).order_by('data_pagamento')

@@ -21,7 +21,7 @@ class CadastarPagamentoForm(forms.ModelForm):
                  'status_pago',
                  ]
     data_pagamento = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
-    status_pago = forms.BooleanField(required=True, initial=True, label='Comfirmar pagamento')
+    status_pago = forms.BooleanField(required=True, initial=True, label='Confirmar pagamento')
 
 
 class EditarPagamentoForm(forms.ModelForm):
