@@ -13,7 +13,66 @@
 
     <br>
 
-    <!-- 
+
+
+    <div>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+        <script src="https://code.highcharts.com/modules/cylinder.js"></script>
+        <script src="https://code.highcharts.com/modules/funnel3d.js"></script>
+        <script src="https://code.highcharts.com/modules/pyramid3d.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+        <figure class="highcharts-figure">
+            <div id="container"></div>
+            <script>
+                // Set up the chart
+                Highcharts.chart('container', {
+                    chart: {
+                        type: 'pyramid3d',
+                        options3d: {
+                            enabled: true,
+                            alpha: 10,
+                            depth: 50,
+                            viewDistance: 50
+                        }
+                    },
+                    title: {
+                        text: 'Highcharts Pyramid3D Chart'
+                    },
+                    plotOptions: {
+                        series: {
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b> ({point.y:,.0f})',
+                                allowOverlap: true,
+                                x: 10,
+                                y: -5
+                            },
+                            width: '60%',
+                            height: '80%',
+                            center: ['50%', '45%']
+                        }
+                    },
+                    series: [{
+                        name: 'Unique users',
+                        data: [
+                            ['Veículos', {% if media_veiculos.total is null  %} 0 {% else %} {{ media_veiculos.total }}  {% endif %}],
+                            ['Veículos', {% if media_funcionarios.total is null %} 0 {% else %} {{ media_funcionarios.total }}  {% endif %}],
+                           
+                     
+                        ]
+                    }]
+                });
+             
+            </script>
+        </figure>
+
+    </div>
+
+    
 
     Media Veículos = {{ media_veiculos.total }}<br>
     Media Funcionários = {{ media_funcionarios.total }}<br>
@@ -25,7 +84,7 @@
     Media Impostos = {{ media_impostos.total }}<br>
     Media Taxas = {{ media_taxas.total }}<br>
 
-    -->
+    
 
     <!--============================== VEÍCULOS =========================================================================-->
     <h3 class="ui dividing header blue">Custos com os veículos <a class="anchor" id="content"></a></h3>

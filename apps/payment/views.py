@@ -1,8 +1,8 @@
 from datetime import date, datetime
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect, get_object_or_404
-from django.db.models import Q, Sum, Avg, F
-from django.views.generic import CreateView, UpdateView
+from django.db.models import Q, Sum
+from django.views.generic import CreateView
 from django.views.generic.list import ListView
 from .forms import CadastarDestinoValoresBoletosForm, EditarDestinoValoresBoletosForm
 from .models import Pagamento, FluxoEntradasSaidas, DestinoValoresBoletos, ClientesEntregaBoletos
@@ -31,10 +31,8 @@ class IndexTemplateView(TemplateView):
         this_month = date.today().month  # Variável do mês atual
         data_atual = datetime.now()  # Variável da data de hoje
         data_inicial = '2021-7-1'
-        six_months = date.today() + relativedelta(months=-5)
 
-
-        # Query para o total de gastos de cada mês =====================================================================
+        #  Query para o total de gastos de cada mês ===================================================================
         context['mes'] = Pagamento.objects.\
             annotate(month=TruncMonth('data_pagamento'), c=Sum('valor_pagamento')). \
             values('month').\
@@ -44,7 +42,7 @@ class IndexTemplateView(TemplateView):
             'month', 'c').\
             order_by('month')
 
-        # Query [Gráfico] para total por mês de custo das categorias ===================================================
+        #  Query [Gráfico] para total por mês de custo das categorias =================================================
         context['mensais_categoria'] = Pagamento.objects. \
             filter(status_pago=True). \
             filter(Q(data_pagamento__range=[data_inicial, data_atual])). \
@@ -81,7 +79,7 @@ class CustoMensalCategoriaView(TemplateView):
     model = Pagamento
     template_name = 'payment/custo-mensal-categoria.html'
 
-    def get_context_data(self,*args, **kwargs):
+    def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         six_months = date.today() + relativedelta(months=-6)
         last_months = date.today() + relativedelta(months=-0)
@@ -168,7 +166,8 @@ class ContarPagarView(TemplateView):
             filter(status_pago=False).aggregate(total=Sum('valor_pagamento'))
 
         context['lista_conta_a_hoje'] = Pagamento.objects.filter(status_pago='False').filter(data_pagamento=this_day)
-        context['lista_conta_atrasadas'] = Pagamento.objects.filter(status_pago='False').filter(data_pagamento__lt=this_day)
+        context['lista_conta_atrasadas'] = Pagamento.objects.filter(status_pago='False').\
+            filter(data_pagamento__lt=this_day)
 
         context['pagamentos_futuros_mensal'] = Pagamento.objects.filter(status_pago='False').\
             annotate(month=TruncMonth('data_pagamento')).values('month').annotate(c=Sum('valor_pagamento'))\
@@ -199,23 +198,24 @@ class ContasVencerView(TemplateView):
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
                 filter(Q(motivo_pagamento__icontains=motivo_pagamento)).order_by('data_pagamento')
             context['valor_a_pagar'] = Pagamento.objects.filter(status_pago=False). \
-                filter(Q(motivo_pagamento__icontains=motivo_pagamento)).\
-                aggregate(total=Sum('valor_pagamento'))
-
+                filter(Q(motivo_pagamento__icontains=motivo_pagamento)).aggregate(total=Sum('valor_pagamento'))
 
         elif data:
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
                 filter(Q(data_pagamento__exact=data)).order_by('data_pagamento')
+            context['valor_a_pagar'] = Pagamento.objects.filter(status_pago=False). \
+                filter(Q(data_pagamento__exact=data)).aggregate(total=Sum('valor_pagamento'))
+
         elif valor:
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).\
                 filter(Q(valor_pagamento__exact=valor)).order_by('data_pagamento')
+            context['valor_a_pagar'] = Pagamento.objects.filter(status_pago=False). \
+                filter(Q(valor_pagamento__exact=valor)).aggregate(total=Sum('valor_pagamento'))
+
         else:
             context['conta_a_vencer'] = Pagamento.objects.filter(status_pago=False).order_by('data_pagamento')
 
         return context
-
-
-
 
 
 class EditarPagamentoAgendadoView(UpdateView):
@@ -224,9 +224,9 @@ class EditarPagamentoAgendadoView(UpdateView):
     template_name = 'payment/atualizar-pagamento.html'
     success_url = '/pagamentos/contas-a-pagar/'
 
-#  =======================================================================================================================
-#  =======================================================================================================================
-#  =======================================================================================================================
+#  ====================================================================================================================
+#  ====================================================================================================================
+#  ====================================================================================================================
 
 
 def Index(request):
