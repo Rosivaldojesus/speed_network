@@ -60,9 +60,16 @@
                         name: 'Unique users',
                         data: [
                             ['Veículos', {% if media_veiculos.total is null  %} 0 {% else %} {{ media_veiculos.total }}  {% endif %}],
-                            ['Veículos', {% if media_funcionarios.total is null %} 0 {% else %} {{ media_funcionarios.total }}  {% endif %}],
-                           
-                     
+                            ['Funcionários', {% if media_funcionarios.total is null %} 0 {% else %} {{ media_funcionarios.total }}  {% endif %}],
+                            ['Alimentação', {% if media_alimentacao.total is null %} 0 {% else %} {{ media_alimentacao.total }}  {% endif %}],
+                            ['Links', {% if media_links.total is null %} 0 {% else %} {{ media_links.total }}  {% endif %}],
+                            ['Locação', {% if media_locacao.total is null %} 0 {% else %} {{ media_locacao.total }}  {% endif %}],
+                            ['Instalação', {% if media_instalacao.total is null %} 0 {% else %} {{ media_instalacao.total }}  {% endif %}],
+                            ['Sócios', {% if media_socios.total is null %} 0 {% else %} {{ media_socios.total }}  {% endif %}],
+                            ['Impostos', {% if media_impostos.total is null %} 0 {% else %} {{ media_impostos.total }}  {% endif %}],
+                            ['Taxas', {% if media_taxas.total is null %} 0 {% else %} {{ media_taxas.total }}  {% endif %}],
+
+
                         ]
                     }]
                 });
