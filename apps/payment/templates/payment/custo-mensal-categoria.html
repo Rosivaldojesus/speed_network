@@ -40,7 +40,7 @@
                         }
                     },
                     title: {
-                        text: 'Highcharts Pyramid3D Chart'
+                        text: 'Média de custos mensais'
                     },
                     plotOptions: {
                         series: {
@@ -57,14 +57,19 @@
                         }
                     },
                     series: [{
-                        name: 'Unique users',
+                        name: 'Reais',
                         data: [
-                            ['Veículos', {% if media_veiculos.total is null  %} 0 {% else %} {{ media_veiculos.total }}  {% endif %}],
-                            ['Funcionários', {% if media_funcionarios.total is null %} 0 {% else %} {{ media_funcionarios.total }}  {% endif %}],
-                            ['Alimentação', {% if media_alimentacao.total is null %} 0 {% else %} {{ media_alimentacao.total }}  {% endif %}],
-                            ['Links', {% if media_links.total is null %} 0 {% else %} {{ media_links.total }}  {% endif %}],
-                            ['Locação', {% if media_locacao.total is null %} 0 {% else %} {{ media_locacao.total }}  {% endif %}],
+
                             ['Instalação', {% if media_instalacao.total is null %} 0 {% else %} {{ media_instalacao.total }}  {% endif %}],
+                            ['Funcionários', {% if media_funcionarios.total is null %} 0 {% else %} {{ media_funcionarios.total }}  {% endif %}],
+                            ['Locação', {% if media_locacao.total is null %} 0 {% else %} {{ media_locacao.total }}  {% endif %}],
+                            ['Links', {% if media_links.total is null %} 0 {% else %} {{ media_links.total }}  {% endif %}],
+                            ['Veículos', {% if media_veiculos.total is null  %} 0 {% else %} {{ media_veiculos.total }}  {% endif %}],
+                            
+                            ['Alimentação', {% if media_alimentacao.total is null %} 0 {% else %} {{ media_alimentacao.total }}  {% endif %}],
+                            
+                            
+                            
                             ['Sócios', {% if media_socios.total is null %} 0 {% else %} {{ media_socios.total }}  {% endif %}],
                             ['Impostos', {% if media_impostos.total is null %} 0 {% else %} {{ media_impostos.total }}  {% endif %}],
                             ['Taxas', {% if media_taxas.total is null %} 0 {% else %} {{ media_taxas.total }}  {% endif %}],
@@ -79,7 +84,7 @@
 
     </div>
 
-    
+    <!--
 
     Media Veículos = {{ media_veiculos.total }}<br>
     Media Funcionários = {{ media_funcionarios.total }}<br>
@@ -91,7 +96,7 @@
     Media Impostos = {{ media_impostos.total }}<br>
     Media Taxas = {{ media_taxas.total }}<br>
 
-    
+    -->
 
     <!--============================== VEÍCULOS =========================================================================-->
     <h3 class="ui dividing header blue">Custos com os veículos <a class="anchor" id="content"></a></h3>
