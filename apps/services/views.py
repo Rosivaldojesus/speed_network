@@ -154,12 +154,8 @@ def ServicosAgendados(request):
     queryset = request.GET.get('q')
     startdate = request.GET.get('date')
     if queryset:
-        agendados = Servico.objects.filter(
-            Q(contato_servico=queryset) |
-            Q(data_agendada__icontains=startdate)).filter(status_concluido='False')
-        quant_agendados = Servico.objects.filter(
-            Q(contato_servico=queryset) |
-            Q(data_agendada__icontains=startdate)).filter(status_concluido='False').count()
+        agendados = Servico.objects.filter(Q(contato_servico=queryset)).filter(status_concluido='False')
+        quant_agendados = Servico.objects.filter( Q(contato_servico=queryset)).filter(status_concluido='False').count()
     if startdate:
         agendados = Servico.objects.filter(Q(data_agendada__exact=startdate)).filter(status_concluido='False')
         quant_agendados = Servico.objects.filter(
