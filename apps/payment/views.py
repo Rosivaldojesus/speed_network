@@ -141,7 +141,7 @@ class FluxoEntradaSaidaView(TemplateView):
         context['custos_gerais'] = FluxoEntradaSaidaMensal.objects. \
             annotate(month=TruncMonth('data_registro')) \
             .values('month'). \
-            annotate(c=Sum('entrada_referente_mes_atual')). \
+            annotate(c=Sum('custos_mensais')). \
             values('month', 'c'). \
             order_by('month')
 

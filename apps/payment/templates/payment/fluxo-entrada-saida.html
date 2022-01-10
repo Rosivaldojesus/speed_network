@@ -18,6 +18,9 @@
                     },{
                     name: 'ERP',
                     data: [{% for data in entrada_erp %} '{{ data.c }}', {% endfor %}]
+                    },{
+                    name: 'Custos Mensais',
+                    data: [{% for data in custos_gerais %} '{{ data.c }}', {% endfor %}]
                     }
 
                     
