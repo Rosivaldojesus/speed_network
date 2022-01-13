@@ -67,7 +67,7 @@ class ComfirmarPagamentoForm(forms.ModelForm):
         model = Pagamento
         fields = ['status_pago']
 
-    status_pago = forms.BooleanField(required=True, initial=False, label='Comfirmar pagamento')
+    status_pago = forms.BooleanField(required=True, initial=False, label='Marque aqui, para confirmar pagamento')
 
 
 
