@@ -3,7 +3,7 @@ from .views import Index, AdicionarNumeroVoip, ListaVoipDisponiveis,\
     ReservarNumeroVoip, ListaVoipReservados, FinalizarNumeroVoip,\
     ListaVoipFinalizados, VoipVisualizar, SolicitarPortabilidadeVoip,\
     ListaVoipSemBoleto, SolicitarNumeroVoip, ListaVoipSolicitados
-from .views import FinalizarNumeroVoipSemBoleto
+from .views import FinalizarNumeroVoipSemBoleto, ListaClientesVoipView
 
 # from .views import ServicoVoip_list
 
@@ -33,6 +33,8 @@ urlpatterns = [
     path('portabilidade-enviar-analise/<int:id>', PortabilidadeEnviarAnalise),
     path('finalizar-portabilidade-voip/<int:id>', FinalizarPortabiliadeVoip),
     path('lista-portabilidade-finalizados/', ListaPortabilidadeFinalizados),
+
+    path('lista-clientes-voip', ListaClientesVoipView.as_view(), name='lista-clientes-voip')
 
     #----- Serializer ---------------------
     # path( 'api-voip/', ServicoVoip_list)

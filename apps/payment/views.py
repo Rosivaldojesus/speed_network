@@ -33,7 +33,7 @@ class IndexTemplateView(TemplateView):
         data_inicial = '2021-7-1'
 
         #  Query para o total de gastos de cada mês ===================================================================
-        context['mes'] = Pagamento.objects.\
+        context['mes'] = Pagamento.objects.filter(status_pago=True).\
             annotate(month=TruncMonth('data_pagamento'), c=Sum('valor_pagamento')). \
             values('month').\
             annotate(c=Sum('valor_pagamento')).\

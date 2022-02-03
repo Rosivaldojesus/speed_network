@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
+from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 from .models import ServicoVoip
 from .forms import AdicionarNumeroVoipForm, ReservarNumeroVoipForm, FinalizarNumeroVoipForm,\
@@ -57,6 +58,18 @@ def Index(request):
         'quantidade_portabilidade_finalizados': quantidade_portabilidade_finalizados,
 
     })
+
+
+class ListaClientesVoipView(TemplateView):
+    model = ServicoVoip
+    template_name = 'voip/lista-clientes-voip.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['lista_clientes'] = ServicoVoip.objects.filter()
+
+        return context
 
 
 class AdicionarNumeroVoip(CreateView):
