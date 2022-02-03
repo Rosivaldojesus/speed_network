@@ -48,7 +48,7 @@ def Index(request):
     boards = TerminaisOpticos.objects.all()
     pons = TerminaisOpticos.objects.all()
 
-    #Contagem de CTO´s por bairros
+#Contagem de CTO´s por bairros
 
     quant_cto_ayrosa = TerminaisOpticos.objects.filter(bairro_cto=1).count()
     quant_cto_vl_remedios = TerminaisOpticos.objects.filter(bairro_cto=2).count()
@@ -67,7 +67,6 @@ def Index(request):
         'quant_cto_filtradas': quant_cto_filtradas,
         'quant_caixas_emenda': quant_caixas_emenda,
         'quant_caixas_primarias': quant_caixas_primarias,
-
         'quant_cto_ayrosa': quant_cto_ayrosa,
         'quant_cto_vl_remedios': quant_cto_vl_remedios,
         'quant_cto_jd_belaura': quant_cto_jd_belaura,
@@ -98,7 +97,11 @@ def CtoCompletas(request):
         cto_completas = TerminaisOpticos.objects.filter(conexoes_opticas_cto=F("quant_conexoes_usadas_cto")) \
             .annotate(livre=F('conexoes_opticas_cto') - F('quant_conexoes_usadas_cto')).filter(
             Q(rua_cto__icontains=queryset))
-    return render(request, 'cto/cto-completas.html', {'cto_completas': cto_completas})
+
+    context = {
+        'cto_completas': cto_completas
+    }
+    return render(request, 'cto/cto-completas.html', context)
 
 
 class CTOCreate(CreateView):
@@ -109,29 +112,36 @@ class CTOCreate(CreateView):
     success_message = "%(nome_cliente)s, foi cadastrado com sucesso!!!"
 
 
-def ExportarCSVCTO():
-
+def ExportarCSVCTO(request):
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="lista-CTO.csv"'
-
+    response['Content-Disposition'] = 'attachment; filename="lista_de_cto.csv"'
     ctos = TerminaisOpticos.objects.all()
-
     writer = csv.writer(response)
-    writer.writerow(['id', 'codigo_cto', 'rua_cto', 'numero_rua_cto', 'bairro', 'pon_cto', 'conexoes_opticas_cto',
-                     'board_cto', 'quant_conexoes_usadas_cto',
-                     ])
+    writer.writerow(
+        [
+            'id', 'codigo_cto', 'rua_cto', 'numero_rua_cto', 'bairro', 'pon_cto', 'conexoes_opticas_cto',
+            'board_cto', 'quant_conexoes_usadas_cto'
+        ]
+    )
     for cto in ctos:
-        writer.writerow([cto.id, cto.codigo_cto, cto.rua_cto, cto.numero_rua_cto, cto.bairro, cto.pon_cto,
-                         cto.conexoes_opticas_cto, cto.board_cto, cto.quant_conexoes_usadas_cto,
-                         ])
+        writer.writerow(
+            [
+                cto.id, cto.codigo_cto, cto.rua_cto, cto.numero_rua_cto, cto.bairro, cto.pon_cto,
+                cto.conexoes_opticas_cto, cto.board_cto, cto.quant_conexoes_usadas_cto
+            ]
+        )
     return response
+
 
 # ------------------------- Caixas de Emenda ----------------
 
 
 def CaixasEmenda(request):
     caixa_emenda = CaixasDeEmenda.objects.all().order_by('-id')
-    return render(request, 'cto/caixas-emenda.html', {'caixa_emenda': caixa_emenda})
+    context = {
+        'caixa_emenda': caixa_emenda
+    }
+    return render(request, 'cto/caixas-emenda.html', context)
 
 
 @login_required(login_url='/login/')
@@ -148,7 +158,7 @@ def CaixaEmendaVisualizacao(request):
     return render(request, 'cto/visualizar-caixa_emenda.html', context)
 
 
-def ExportarCSVCaixasEmenda():
+def ExportarCSVCaixasEmenda(request):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="caixas-emenda.csv"'
@@ -221,4 +231,9 @@ def VisualizarCaixasPrimarias(request):
     caixas = request.GET.get('id')
     if caixas:
         caixas = CaixasDasPrimarias.objects.filter(primaria=caixas)
-    return render(request, 'cto/caixas-primarias.html', {'caixas': caixas})
+
+    context = {
+        'caixas': caixas
+
+    }
+    return render(request, 'cto/caixas-primarias.html', context)
