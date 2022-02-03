@@ -4,9 +4,13 @@
 
 {% block main %}
 <div class="container">
-    <div class="mb-4">
-      <h2 class=" mt-4 mb-4">Inserir CTO</h2>
-
+    
+  <div class="mb-2 mt-2">
+    <h2 class="ui dividing header ui blue">Cadastrar CTO´s</h2>
+  </div>
+  
+    <div class="m4-4 mt-4">
+      
       <form class="ui form" method="POST">{% csrf_token %}
 
         <!-- Código da Caixa CTO-->
@@ -19,6 +23,7 @@
               </div>
             </div>
         </div>
+
         <!-- Endereço da CTO-->
         <div class="field">
             <h4 class="ui dividing header ui blue">Endereço da CTO</h4>
@@ -27,14 +32,11 @@
                 <label>Rua</label>
                 {{ form.rua_cto}}
               </div>
-              <div class="two wide field">
+              <div class="four wide field">
                 <label>Número</label>
                 {{ form.numero_rua_cto}}
               </div>
-              <div class="four wide field">
-                <label>Bairro</label>
-                {{ form.bairro}}
-              </div>
+
               <div class="four wide field">
                 <label>Bairro</label>
                 {{ form.bairro_cto}}
@@ -42,7 +44,7 @@
             </div>
         </div>
 
-        <!-- Endereço da CTO-->
+        <!-- informações da CTO-->
         <div class="field">
             <h4 class="ui dividing header ui blue">Informações da CTO</h4>
             <div class="fields">
@@ -73,28 +75,13 @@
                 <label>Observação</label>
                 {{ form.observacao_cto}}
               </div>
-
             </div>
         </div>
 
-        <div align="right">
+        <div align="right" class="mb-4">
           <input type="submit" class="ui inverted primary basic button" value="Cadastrar Informações">
         </div>
-        
     </form>
-
-
-
-
-<!-- 
-
-    <form action="" method="post"> {% csrf_token %}
-        {{ form | crispy }}
-	    {{ form.media }}
-	    <input type="submit" class="btn btn-block btn-primary" value="Cadastrar">
-	</form>
--->
     </div>
-
 </div>
 {% endblock %}
