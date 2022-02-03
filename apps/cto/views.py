@@ -67,7 +67,7 @@ def Index(request):
         'quant_cto_filtradas': quant_cto_filtradas,
         'quant_caixas_emenda': quant_caixas_emenda,
         'quant_caixas_primarias': quant_caixas_primarias,
-        #QUantidade de CTO´s por bairro
+
         'quant_cto_ayrosa': quant_cto_ayrosa,
         'quant_cto_vl_remedios': quant_cto_vl_remedios,
         'quant_cto_jd_belaura': quant_cto_jd_belaura,
@@ -75,8 +75,6 @@ def Index(request):
         'quant_cto_jaguara': quant_cto_jaguara,
         'quant_cto_jd_rochhale': quant_cto_jd_rochhale,
         'quant_cto_jd_marisa': quant_cto_jd_marisa,
-
-
     }
     return render(request, 'cto/index.html', context)
 
@@ -88,7 +86,6 @@ def EditarCto(request, id=None):
     if form.is_valid():
         obj = form.save()
         obj.save()
-        #messages.success(request, 'Boleto finalizado com sucesso.')
         return redirect('/cto/')
     return render(request, 'cto/cto_formulario.html', {'form': form})
 
@@ -109,13 +106,11 @@ class CTOCreate(CreateView):
     template_name = "cto/cto_formulario.html"
     form_class = InsertCtoForm
     success_url = '/cto/'
-    uccess_message = "%(nome_cliente)s, foi cadastrado com sucesso!!!"
+    success_message = "%(nome_cliente)s, foi cadastrado com sucesso!!!"
 
 
+def ExportarCSVCTO():
 
-
-def ExportarCSVCTO(request):
-    # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="lista-CTO.csv"'
 
@@ -153,7 +148,7 @@ def CaixaEmendaVisualizacao(request):
     return render(request, 'cto/visualizar-caixa_emenda.html', context)
 
 
-def ExportarCSVCaixasEmenda(request):
+def ExportarCSVCaixasEmenda():
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="caixas-emenda.csv"'
@@ -186,7 +181,6 @@ def CadastrarCaixaEmenda(request):
         obj = form.save(commit=False)
         obj.save()
         messages.success(request, 'Caixa de emenda criada  com sucesso!')
-        #return redirect('/cto/caixas-emenda/')
     else:
         form = CaixasDeEmendaForm()
     return render(request, 'cto/caixasdeemenda_form.html', {'form': form})
@@ -214,7 +208,6 @@ def Primaria(request):
     queryset = request.GET.get('q')
     if queryset:
         primarias = Primarias.objects.filter(Q(pon__icontains=queryset))
-
     return render(request, 'cto/primarias.html', {'primarias': primarias})
 
 
