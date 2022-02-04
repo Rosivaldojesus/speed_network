@@ -169,9 +169,15 @@ def InstalacaoConcluida(request):
     if queryset:
         concluidas = Instalacao.objects.filter(Q(nome_cliente__icontains=queryset)
                                                |Q(sobrenome_cliente__icontains=queryset))
+
+        quant_concluida = Instalacao.objects.filter(Q(nome_cliente__icontains=queryset)
+                                               |Q(sobrenome_cliente__icontains=queryset)).count()
     elif date:
         concluidas = Instalacao.objects.filter(Q(data_finalizacao__exact=date))
-        quant_concluida = Instalacao.objects.filter(concluido='True').count()
+        quant_concluida = Instalacao.objects.filter(Q(nome_cliente__icontains=queryset)
+                                               |Q(sobrenome_cliente__icontains=queryset)).count()
+
+
     elif startdate:
         concluidas = Instalacao.objects.filter(Q(data_agendada__exact=startdate))
 
