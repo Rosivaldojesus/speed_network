@@ -12,9 +12,10 @@
 
   <div class="mb-4">
     <form method="GET" class="form-row">
-      <div class="form-group col-md-12">
-        <label for="inputState">Vendedor</label>
-        <select name="q" value="{{ request.GET.q }}" class="form-control">
+      <div class="row">
+        <div class="form-group col-6">
+          <label>Vendedor:</label>
+          <select name="q" value="{{ request.GET.q }}" class="form-control">
             <option selected value="0">Escolha...</option>
               <option value="1">Speed Network</option>
               <option value="2">Ana Lúcia</option>
@@ -24,17 +25,21 @@
               <option value="6">Audrey</option>
               <option value="7">Paulo Alves</option>      
         </select>
-        <div>
-             <div class="form-group col-md-3">
-               <label for="inputCity">Data Inicial</label>
-               <input type="date" class="form-control" name="startdate" value="{{ request.GET.startdate }}">
         </div>
-        <div class="form-group col-md-3">
-               <label for="inputZip">Data Final</label>
-               <input type="date" class="form-control" name="enddate" value="{{ request.GET.enddate}}">
+
+        <div class="form-group col-3">
+          <label>Data Inicial:</label>
+          <input type="date" class="form-control" name="startdate" value="{{ request.GET.startdate }}">
         </div>
-      
-      
+
+
+        <div class="form-group col-3">
+          <label>Data Final:</label>
+          <input type="date" class="form-control" name="enddate" value="{{ request.GET.enddate}}">
+        </div>
+
+      </div>
+
       <button class=" form-control btn-success">
         Buscar
   
