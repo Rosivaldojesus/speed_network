@@ -114,8 +114,7 @@ def VendasInstalacao(request):
     vendas = Instalacao.objects.all().order_by('-id')
     queryset = request.GET.get('q')
     if queryset:
-        vendas = Instalacao.objects.filter(
-            Q(instalacao_vendedor__icontains=queryset))
+        vendas = Instalacao.objects.filter(Q(instalacao_vendedor__icontains=queryset))
     conetxt = {
         'vendas': vendas,
         'vendedores': vendedores
@@ -133,7 +132,6 @@ def InstalacaoAberta(request):
         .filter(concluido='False')
     quant_aberta_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='False')\
         .filter(concluido='False').count()
-
     context = {
         'abertas': abertas,
         'quant_aberta': quant_aberta,
@@ -148,18 +146,15 @@ def InstalacaoAgendada(request):
     agendadas = Instalacao.objects.filter(status_agendada='True')\
         .filter(concluido='False').order_by('data_instalacao', 'hora_instalacao')
     quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
-
     queryset = request.GET.get('q')
     data_dia = request.GET.get('data_dia')
     if queryset:
-        agendadas = Instalacao.objects.filter(Q(nome_cliente__icontains=queryset) |
-                                              Q(sobrenome_cliente__icontains=queryset)).filter(status_agendada='True').\
-            filter(concluido='False').order_by('data_instalacao', 'hora_instalacao')
-    
+        agendadas = Instalacao.objects.\
+            filter(Q(nome_cliente__icontains=queryset) | Q(sobrenome_cliente__icontains=queryset)).\
+            filter(status_agendada='True').filter(concluido='False').order_by('data_instalacao', 'hora_instalacao')
     elif data_dia:
         agendadas = Instalacao.objects.filter(Q(data_instalacao__exact=data_dia))
         quant_agendada = Instalacao.objects.filter(Q(data_instalacao__exact=data_dia)).count()
-
     context = {
         'agendadas': agendadas,
         'quant_agendada': quant_agendada,
@@ -175,17 +170,15 @@ def InstalacaoConcluida(request):
     queryset = request.GET.get('q')
     date = request.GET.get('date')
     if queryset:
-        concluidas = Instalacao.objects.filter(Q(nome_cliente__icontains=queryset)
-                                               | Q(sobrenome_cliente__icontains=queryset))
-
-        quant_concluida = Instalacao.objects.filter(Q(nome_cliente__icontains=queryset) |
-                                                    Q(sobrenome_cliente__icontains=queryset)).count()
+        concluidas = Instalacao.objects.\
+            filter(Q(nome_cliente__icontains=queryset) | Q(sobrenome_cliente__icontains=queryset))
+        quant_concluida = Instalacao.objects.\
+            filter(Q(nome_cliente__icontains=queryset) | Q(sobrenome_cliente__icontains=queryset)).count()
     elif date:
         concluidas = Instalacao.objects.filter(Q(data_finalizacao__exact=date))
         quant_concluida = Instalacao.objects.filter(Q(data_finalizacao__exact=date)).count()
     elif startdate:
         concluidas = Instalacao.objects.filter(Q(data_agendada__exact=startdate))
-
     context = {
         'concluidas': concluidas,
         'quant_concluida': quant_concluida
@@ -201,8 +194,8 @@ def InstalacaoConcluidaVendedores(request):
     enddate = request.GET.get('enddate')
     queryset = request.GET.get('q')
     if startdate and enddate and queryset:
-        concluidas = Instalacao.objects.filter(concluido='True').filter(Q(data_instalacao__range=[startdate, enddate])
-                                                                        & Q(instalacao_vendedor__exact=queryset)).\
+        concluidas = Instalacao.objects.filter(concluido='True').\
+            filter(Q(data_instalacao__range=[startdate, enddate]) & Q(instalacao_vendedor__exact=queryset)).\
             order_by('data_instalacao')
         quant_concluida = Instalacao.objects.filter(concluido='True').\
             filter(Q(data_instalacao__range=[startdate, enddate]) & Q(instalacao_vendedor__exact=queryset)).count()
@@ -334,7 +327,6 @@ def Voip(request):
         annotate(c=Count('data_reserva_voip')).values('month', 'c').order_by('month')
     quant_numeros_novos = ServicoVoip.objects.filter(portabilidade_voip='False').count()
     quant_numeros_portabilidade = ServicoVoip.objects.filter(portabilidade_voip='True').count()
-
     context = {
         'quant_numeros_novos': quant_numeros_novos,
         'quant_numeros_portabilidade': quant_numeros_portabilidade,
@@ -368,19 +360,16 @@ def VoipFinalizadoSemBoleto(request):
 def ValeRefeicoes(request):
     vales_sem_valor = ValeRefeicao.objects.filter(valor_vale__isnull=True)
     vales_com_valor = ValeRefeicao.objects.filter(valor_vale__isnull=False).filter(status_pago=False)
-
     valor_pagar = ValeRefeicao.objects.filter(status_pago=False).filter().aggregate(Sum('valor_vale')).\
         get('valor_vale__sum')
-
     startdate = request.GET.get('startdate')
     enddate = request.GET.get('enddate')
     queryset = request.GET.get('q')
     if startdate and enddate and queryset:
-        vales_com_valor = ValeRefeicao.objects.filter(status_pago=False).filter(Q(data_vale__range=[startdate, enddate])
-                                                      & Q(nome_funcionario__icontains=queryset))
+        vales_com_valor = ValeRefeicao.objects.filter(status_pago=False).\
+            filter(Q(data_vale__range=[startdate, enddate]) & Q(nome_funcionario__icontains=queryset))
         valor_pagar = ValeRefeicao.objects.filter(status_pago=False).filter(Q(nome_funcionario__icontains=queryset)).\
             aggregate(Sum('valor_vale')).get('valor_vale__sum')
-
     elif queryset:
         vales_com_valor = ValeRefeicao.objects.filter(status_pago=False).filter(Q(nome_funcionario__icontains=queryset))
         valor_pagar = ValeRefeicao.objects.filter(status_pago=False).filter(Q(nome_funcionario__icontains=queryset)).\
@@ -486,15 +475,6 @@ class CancelamentosListView(ListView):
         context['plano_149'] = Cancelamentos.objects.filter(plano_internet__icontains='149,90').count()
 
         return context
-
-
-def get_queryset(self):
-        query = self.request.GET.get('q')
-        if query:
-            posts = Post.objects.filter(titulo_post__icontains=query)
-        else:
-            posts = Post.objects.filter()
-        return posts
 
 
 class CancelamentosUpdateView(UpdateView):

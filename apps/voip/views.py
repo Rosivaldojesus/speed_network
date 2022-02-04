@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 from .models import ServicoVoip
@@ -7,14 +7,11 @@ from .forms import AdicionarNumeroVoipForm, ReservarNumeroVoipForm, FinalizarNum
 from .forms import PortabilidadeEnviarAnaliseForm
 from django.contrib import messages
 
-#Serializer
-# from .serializers import ServicoVoipSerializer
-# from rest_framework.decorators import api_view
-# from rest_framework.response import Response
 
 # Create your views here.
+
+
 def Index(request):
-    #Contagem referentes ao números novos
     quantidade_voip_disponiveis = ServicoVoip.objects.filter(reservado_voip='False').\
         filter(finalizado_voip='False').\
         filter(boleto_entregue='False').count()
@@ -29,7 +26,8 @@ def Index(request):
         filter(finalizado_voip='True').\
         filter(boleto_entregue='True').count()
 
-    # Contagem referentes ao números de portabiliade
+    #  Contagem referentes ao números de portabiliade
+
     quantidade_portabilidade_aguardando = ServicoVoip.objects.filter(reservado_voip='True').\
         filter(portabilidade_voip='True'). \
         filter(portabilidade_analise='False').\
@@ -46,18 +44,16 @@ def Index(request):
         filter(finalizado_voip='True'). \
         filter(boleto_entregue='False').count()
 
-
-    return render(request, 'voip/index.html', {
+    context = {
         'quantidade_voip_disponiveis': quantidade_voip_disponiveis,
         'quantidade_voip_reservados': quantidade_voip_reservados,
         'quantidade_voip_sem_boleto': quantidade_voip_sem_boleto,
         'quantidade_voip_finalizados': quantidade_voip_finalizados,
-
         'quantidade_portabilidade_aguardando': quantidade_portabilidade_aguardando,
         'quantidade_portabilidade_analise': quantidade_portabilidade_analise,
         'quantidade_portabilidade_finalizados': quantidade_portabilidade_finalizados,
-
-    })
+    }
+    return render(request, 'voip/index.html', context)
 
 
 class ListaClientesVoipView(TemplateView):
@@ -87,31 +83,40 @@ class SolicitarNumeroVoip(CreateView):
 
 
 def ListaVoipDisponiveis(request):
-    voip_disponiveis = ServicoVoip.objects.filter(reservado_voip='False').filter(boleto_entregue='False').filter(finalizado_voip='False')
+    voip_disponiveis = ServicoVoip.objects.filter(reservado_voip='False').filter(boleto_entregue='False').\
+        filter(finalizado_voip='False')
     return render(request, 'voip/lista-voip-disponiveis.html', {'voip_disponiveis': voip_disponiveis})
 
+
 def ListaVoipSolicitados(request):
-    voip_solicitados = ServicoVoip.objects.filter(reservado_voip='False').filter(boleto_entregue='False').filter(finalizado_voip='False')
+    voip_solicitados = ServicoVoip.objects.filter(reservado_voip='False').filter(boleto_entregue='False').\
+        filter(finalizado_voip='False')
     return render(request, 'voip/lista-voip-solicitados.html', {'voip_solicitados': voip_solicitados})
 
 
 def ListaVoipReservados(request):
-    voip_reservados = ServicoVoip.objects.filter(reservado_voip='True').filter(portabilidade_voip='False').filter(boleto_entregue='False').filter(finalizado_voip='False')
+    voip_reservados = ServicoVoip.objects.filter(reservado_voip='True').filter(portabilidade_voip='False').\
+        filter(boleto_entregue='False').filter(finalizado_voip='False')
     return render(request, 'voip/lista-voip-reservados.html', {'voip_reservados': voip_reservados})
 
 
 def ListaVoipSemBoleto(request):
-    voip_sem_boleto = ServicoVoip.objects.filter(reservado_voip='True').filter(finalizado_voip='True').filter(boleto_entregue='False')
+    voip_sem_boleto = ServicoVoip.objects.filter(reservado_voip='True').filter(finalizado_voip='True').\
+        filter(boleto_entregue='False')
     return render(request, 'voip/lista-voip-sem-boleto.html', {'voip_sem_boleto': voip_sem_boleto})
 
 
 def ListaVoipFinalizados(request):
-    voip_finalizados = ServicoVoip.objects.filter(reservado_voip='True').filter(finalizado_voip='True').filter(boleto_entregue='True')
+    voip_finalizados = ServicoVoip.objects.filter(reservado_voip='True').filter(finalizado_voip='True').\
+        filter(boleto_entregue='True')
     return render(request, 'voip/lista-voip-finalizados.html', {'voip_finalizados': voip_finalizados})
 
-#------------------------------------------------------------------------
-#------------------------------------------------------------------------
-#------------------------------------------------------------------------
+
+#  ------------------------------------------------------------------------
+#  ------------------------------------------------------------------------
+#  ------------------------------------------------------------------------
+
+
 class SolicitarPortabilidadeVoip(CreateView):
     model = ServicoVoip
     form_class = SolicitarPortabilidadeVoipForm
@@ -125,19 +130,24 @@ class SolicitarPortabilidadeVoip(CreateView):
 
 
 def ListaPortabilidadeAguardando(request):
-    portabilidade_aguardando = ServicoVoip.objects.filter(reservado_voip='True').filter(portabilidade_voip='True').filter(portabilidade_analise='False').filter(finalizado_voip='False').filter(boleto_entregue='False')
-    return render(request, 'voip/lista-portabilidade-aguardando.html', {
-        'portabilidade_aguardando':portabilidade_aguardando})
+    portabilidade_aguardando = ServicoVoip.objects.filter(reservado_voip='True').filter(portabilidade_voip='True').\
+        filter(portabilidade_analise='False').filter(finalizado_voip='False').filter(boleto_entregue='False')
+    conetext = {
+        'portabilidade_aguardando': portabilidade_aguardando
+    }
+    return render(request, 'voip/lista-portabilidade-aguardando.html', conetext)
 
 
 def ListaPortabilidadeAnalise(request):
-    portabilidade_analise  = ServicoVoip.objects.filter(reservado_voip='True').\
+    portabilidade_analise = ServicoVoip.objects.filter(reservado_voip='True').\
         filter(portabilidade_voip='True'). \
         filter(portabilidade_analise='True').\
         filter(finalizado_voip='False').\
         filter(boleto_entregue='False')
-    return render(request, 'voip/lista-portabilidade-analise.html', {
-        'portabilidade_analise':portabilidade_analise})
+    context = {
+        'portabilidade_analise': portabilidade_analise
+    }
+    return render(request, 'voip/lista-portabilidade-analise.html', context)
 
 
 def PortabilidadeEnviarAnalise(request, id=None):
@@ -163,7 +173,11 @@ def FinalizarPortabiliadeVoip(request, id=None):
         obj.save()
         messages.success(request, 'Número finalizado com sucesso!')
         return redirect('/voip/')
-    return render(request, 'voip/finalizar-portabilidade-voip.html', {'form': form, 'portabilidade_voip':portabilidade_voip})
+    context = {
+        'form': form,
+        'portabilidade_voip': portabilidade_voip
+    }
+    return render(request, 'voip/finalizar-portabilidade-voip.html', context)
 
 
 def ListaPortabilidadeFinalizados(request):
@@ -171,10 +185,17 @@ def ListaPortabilidadeFinalizados(request):
         filter(portabilidade_voip='True'). \
         filter(portabilidade_analise='True'). \
         filter(finalizado_voip='True')
-    return render(request, 'voip/lista-portabilidade-finalizados.html', {'portabilidade_finalizados': portabilidade_finalizados})
-#------------------------------------------------------------------------
-#------------------------------------------------------------------------
-#------------------------------------------------------------------------
+    context = {
+        'portabilidade_finalizados': portabilidade_finalizados
+    }
+    return render(request, 'voip/lista-portabilidade-finalizados.html', context)
+
+
+#  ------------------------------------------------------------------------
+#  ------------------------------------------------------------------------
+#  ------------------------------------------------------------------------
+
+
 def VoipVisualizar(request):
     voip = request.GET.get('id')
     if voip:
@@ -205,8 +226,7 @@ def FinalizarNumeroVoip(request, id=None):
         obj.save()
         messages.success(request, 'Número finalizado com sucesso!')
         return redirect('/voip/')
-    return render(request, 'voip/finalizar-numero-voip.html', {'form': form, 'numero_voip':numero_voip})
-
+    return render(request, 'voip/finalizar-numero-voip.html', {'form': form, 'numero_voip': numero_voip})
 
 
 def FinalizarNumeroVoipSemBoleto(request, id=None):
@@ -220,12 +240,3 @@ def FinalizarNumeroVoipSemBoleto(request, id=None):
         messages.success(request, 'Boleto verificado!')
         return redirect('/voip/')
     return render(request, 'voip/finalizar-numero-voip-sem-boleto.html', {'form': form})
-
-
-
-#---------------- Serializers ----------------------------------
-# @api_view(['GET', 'POST'])
-# def ServicoVoip_list(request):
-#     servico_voip = ServicoVoip.objects.all()
-#     serializer = ServicoVoipSerializer(servico_voip, many=True)
-#     return Response(serializer.data)

@@ -17,6 +17,8 @@ class ServicoVoip(models.Model):
     boleto_entregue = models.BooleanField(default=False)
     observacao_voip = models.TextField(blank=True, null=True, verbose_name='Observação')
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name_plural = 'Serviço Voip'
 
