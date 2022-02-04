@@ -205,7 +205,7 @@ def InstalacaoConcluidaVendedores(request):
     queryset = request.GET.get('q')
     if startdate and enddate and queryset:
         concluidas = Instalacao.objects.filter(concluido='True').filter(Q(data_instalacao__range=[startdate, enddate])
-                                               & Q(instalacao_vendedor__exact=queryset))
+                                               & Q(instalacao_vendedor__exact=queryset)).order_by('data_instalacao')
         quant_concluida = Instalacao.objects.filter(concluido='True').\
             filter(Q(data_instalacao__range=[startdate, enddate])
                                                & Q(instalacao_vendedor__exact=queryset)).count()
