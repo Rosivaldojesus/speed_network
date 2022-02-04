@@ -44,6 +44,8 @@ class Instalacao(models.Model):
     instalacao_vendedor = models.ForeignKey(Vendedores, on_delete=models.DO_NOTHING, verbose_name='Vendedores')
     como_conheceu_empresa = models.CharField(max_length=255, blank=True, null=True)
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name_plural = 'Instalação'
 
@@ -63,6 +65,7 @@ class ClientesVoip(models.Model):
     finalizado_voip = models.BooleanField(default=False, verbose_name='Finalizado')
     funcionario_reserva_voip = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='funcionario_reserva_voip', blank=True, null=True)
 
+    objects = models.Manager()
 
     class Meta:
         verbose_name_plural = 'Clientes Voip'
@@ -78,6 +81,8 @@ class ValeRefeicao(models.Model):
     data_criacao = models.DateTimeField(default=timezone.now)
     data_vale = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True)
     status_pago = models.BooleanField(default=False, verbose_name='Pago')
+
+    objects = models.Manager()
 
     class Meta:
         verbose_name_plural = " Vale Refeição"
@@ -103,9 +108,10 @@ class Cancelamentos(models.Model):
     data = models.DateField(blank=True, null=True, verbose_name='Data do serviço')
     data_criacao = models.DateTimeField(auto_now=True)
 
+    objects = models.Manager()
+
     def get_absolute_url(self):
         return reverse('detalhes-detail', kwargs={'pk': self.pk})
-
 
     class Meta:
         verbose_name_plural = "Cancelamentos"
