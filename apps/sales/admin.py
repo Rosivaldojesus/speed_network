@@ -26,7 +26,7 @@ admin.site.register(ValeRefeicao, ValeRefeicaoAdmin)
 
 
 class CancelamentosAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nome', 'plano_internet', 'data_criacao', 'atendente')
+    list_display = ('id', 'nome', 'plano_internet', 'data', 'data_criacao', 'atendente')
     search_fields = ('nome',)
 
 
