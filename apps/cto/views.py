@@ -75,7 +75,7 @@ def Index(request):
         'quant_cto_jd_rochhale': quant_cto_jd_rochhale,
         'quant_cto_jd_marisa': quant_cto_jd_marisa,
     }
-    return render(request, 'cto/indexxx.html', context)
+    return render(request, 'cto/index.html', context)
 
 
 @login_required(login_url='/login/')
