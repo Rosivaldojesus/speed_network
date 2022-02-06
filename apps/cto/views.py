@@ -166,9 +166,9 @@ def ExportarCSVCaixasEmenda(request):
     caixas_emenda = CaixasDeEmenda.objects.all()
 
     writer = csv.writer(response)
-    writer.writerow(['id', 'codigo_caixa', 'rua_caixa_emenda', 'numero_rua_cto'])
+    writer.writerow(['id', 'codigo_caixa', 'bairro_cto', 'rua_caixa_emenda',  'numero_rua_cto'])
     for caixa in caixas_emenda:
-        writer.writerow([caixa.id, caixa.codigo_caixa, caixa.rua_caixa_emenda, caixa.numero_rua_cto])
+        writer.writerow([caixa.id, caixa.codigo_caixa, caixa.bairro_cto, caixa.rua_caixa_emenda, caixa.numero_rua_cto])
     return response
 
 
