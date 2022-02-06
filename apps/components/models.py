@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 
@@ -130,27 +131,7 @@ class Vendedores(models.Model):
         return "{}".format(self.nome_vendedor)
 
 
-"""
-------------------------------------------------------------------------------------------------------------------------
-Lista das ruas que possuem serviços da SPEED NETWORK TELECOM
-------------------------------------------------------------------------------------------------------------------------
-"""
 
-
-class Ruas(models.Model):
-    logradouro = models.CharField(max_length=255)
-    bairro = models.CharField(max_length=100)
-    cep = models.CharField(max_length=100)
-    numero_baixo = models.CharField(max_length=20)
-    numero_alto = models.CharField(max_length=20)
-
-    objects = models.Manager()
-
-    class Meta:
-        verbose_name_plural = 'Ruas'
-
-    def __str__(self):
-        return "{}".format(self.logradouro)
 
 
 """
@@ -208,3 +189,27 @@ class Bairros(models.Model):
 
     def __str__(self):
         return "{}".format(self.nome_bairro)
+
+
+"""
+------------------------------------------------------------------------------------------------------------------------
+Lista das ruas que possuem serviços da SPEED NETWORK TELECOM
+------------------------------------------------------------------------------------------------------------------------
+"""
+
+
+class Ruas(models.Model):
+    logradouro = models.CharField(max_length=255)
+    bairro = models.CharField(max_length=100)
+    bairro_ruas = models.ForeignKey(Bairros, on_delete=models.DO_NOTHING, blank=True, null=True)
+    cep = models.CharField(max_length=100)
+    numero_baixo = models.CharField(max_length=20)
+    numero_alto = models.CharField(max_length=20)
+
+    objects = models.Manager()
+
+    class Meta:
+        verbose_name_plural = 'Ruas'
+
+    def __str__(self):
+        return "{}".format(self.logradouro)
