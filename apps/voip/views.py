@@ -53,7 +53,7 @@ def Index(request):
         'quantidade_portabilidade_analise': quantidade_portabilidade_analise,
         'quantidade_portabilidade_finalizados': quantidade_portabilidade_finalizados,
     }
-    return render(request, 'voip/indexxx.html', context)
+    return render(request, 'voip/index.html', context)
 
 
 class ListaClientesVoipView(TemplateView):
