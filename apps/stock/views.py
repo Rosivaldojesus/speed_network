@@ -12,7 +12,7 @@ def Index(request):
             Q(nome_produto__icontains=queryset) |
             Q(marca_produto__icontains=queryset)|
             Q(modelo_produto__icontains=queryset))
-    return render(request, 'stock/index.html', {'produtos': produtos})
+    return render(request, 'stock/indexxx.html', {'produtos': produtos})
 
 def EntradaProdutos(request):
     entradas = EntradaProduto.objects.all()

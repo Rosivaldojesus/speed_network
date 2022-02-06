@@ -88,7 +88,7 @@ def Index(request):
         'quant_trocar_senha': quant_trocar_senha
     }
 
-    return render(request, 'services/index.html', context)
+    return render(request, 'services/indexxx.html', context)
 
 def CadastroServico(request):
     form = ServicoForm(request.POST)

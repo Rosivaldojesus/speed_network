@@ -1,384 +1,459 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %} .:: Finanças {% endblock %}
+
+
 {% block main %}
-	<!-- ********************************************************************************************** -->
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-	<!-- ********************************************************************************************** -->
 <div class="container-xl">
 
-    <h2>Financeiro</h2>
-    <hr>
-  {% if messages %}
-    {% for message in messages %}
-        <div class="alert {{ message.tags }}" role="alert">
-            {{ message }}
-        </div>
-    {% endfor %}
-  {% endif %}
+    <!-- Título da pagina -->
+    <div class="bd-title mt-4 mb-1">
+        <h1 class="ui dividing header blue">Finanças</h1>
+    </div>
 
-  <!--INÍCIO dos Botões -->
-
- <!-- ******************************************************************************************************** -->
-  <!-- INICIO Botões financeiros -->
-  <div class="shadow">
+<!-- =========================================================================================================== -->
+<!-- =========================================================================================================== -->
+    <!--Botões de navegações das finanças -->
     <div align="right">
-      <a href="/pagamentos/indexx/" class="btn btn-danger">Página nova em construção</a>
-      <a href="lista-pagamentos/" class="btn btn-info"><i class="far fa-eye"></i> Pagamentos</a>
-      <a href="cadastrar-pagamento/" class="btn btn-primary"><i class="far fa-plus-square"></i> Pagamento </a>
-      
-        <a href="retiradas-gerencianet/" class="btn btn-warning"><i class="fas fa-file-invoice-dollar"></i></i> GerenciaNET </a>
-      
-      <a href="exportar-csv/" class="btn btn-info" title="Exportar CSV"><i class="fas fa-file-csv"></i></a>
-      <!--
-            <a href="/pagamentos/fluxo-entradas-saidas/" class="btn btn-info">Fluxo</a>
-          -->
-      <!--
-            <a href="exportar-excel/">Exportar Excel</a>
-          -->
+
+        <a href="{% url 'contas-a-pagar' %}" class="btn btn-danger"><i class="far fa-eye"></i> Contas a Pagar</a>
+        <a href="{% url 'lista_pagamentos' %}" class="btn btn-info"><i class="far fa-eye"></i> Lista Pagamentos</a>
+        <a href="/pagamentos/cadastrar-pagamento/" class="btn btn-primary"><i class="far fa-plus-square"></i> Add Pagamento </a>
+        <a href="/pagamentos/retiradas-gerencianet/" class="btn btn-warning"><i class="fas fa-file-invoice-dollar"></i></i> GerenciaNET </a>
+        <a href="/pagamentos/exportar-csv/" class="btn btn-info" title="Exportar CSV"><i class="fas fa-file-csv"></i></a>
     </div>
-  </div>
-  <!-- FIM Botões financeiros -->
-   <!-- ******************************************************************************************************** -->
 
-
-  <!-- ******************************************************************************************************** -->
-  <!--INÍCIO Custos mês atual -->
-  <div class="mt-4">
-    <div class="card">
-      <h5 class="card-header">Mês Atual</h5>
-      <div class="card-body">
-        <div class="row">
-
-          <!-- Veículos - Gastos mês atual -->
-          {% if veiculosMesAtual.total %}
-            <div class="col shadow"> Veículos <h6>R$: {{ veiculosMesAtual.total }}</h6> </div>
-          {% elif veiculosMesAtual.total is null %}
-            <div class="col shadow"> Veículos <h3><i class="shopping cart icon"></i></h3></div>
-          {% endif %}
-
-          <!-- Veículos - Gastos mês atual -->
-          {% if funcionariosMesAtual.total %}
-            <div class="col shadow"> Funcionários <h6>R$: {{ funcionariosMesAtual.total }}</h6></div>
-          {% elif funcionariosMesAtual.total is null %}
-          <div class="col shadow"> Funcionários <h3><i class="shopping cart icon"></i></h3></div>
-          {% endif %}
-
-          <!-- Alimentação - Gastos mês atual -->
-          {% if alimentacaoMesAtual.total %}
-            <div class="col shadow"> Alimentação<h6>R$: {{ alimentacaoMesAtual.total }}</h6></div>
-          {% elif alimentacaoMesAtual.total is null %}
-            <div class="col shadow"> Alimentação <h3><i class="shopping cart icon"></i></h3></div>
-          {% endif %}
-
-          <!-- Links - Gastos mês atual -->
-          {% if linksMesAtual.total %}
-            <div class="col shadow"> Links <h6>R$: {{ linksMesAtual.total }}</h6> </div>
-          {% elif linksMesAtual.total is null %}
-            <div class="col shadow"> Links <h3><i class="shopping cart icon"></i></h3></div>
-          {% endif %}
-
-          <!-- Locação - Gastos mês atual -->
-          {% if locacaoMesAtual.total %}
-            <div class="col shadow"> Locação <h6>R$: {{ locacaoMesAtual.total }}</h6> </div>
-          {% elif locacaoMesAtual.total is null %}
-            <div class="col shadow"> Locação <h3><i class="shopping cart icon"></i></h3></div>
-          {% endif %}
-
-          <!-- Locação - Gastos mês atual -->
-          {% if instalacaoMesAtual.total %}
-            <div class="col shadow">Instalação <h6>R$: {{ instalacaoMesAtual.total }}</h6></div>
-          {% elif instalacaoMesAtual.total is null %}
-            <div class="col shadow"> Instalação <h3><i class="shopping cart icon"></i></h3></div>
-          {% endif %}
-
-          <!-- Sócios - Gastos mês atual -->
-          {% if sociosMesAtual.total %}
-            <div class="col shadow"> Sócios <h6>R$: {{ sociosMesAtual.total }}</h6></div>
-          {% elif sociosMesAtual.total is null %}
-            <div class="col shadow"> Sócios <h3><i class="shopping cart icon"></i></h3></div>
-          {% endif %}
-
-          <!-- Impostos - Gastos mês atual -->
-          {% if ImpostosMesAtual.total %}
-            <div class="col shadow"> Impostos <h6>R$: {{ ImpostosMesAtual.total }}</h6> </div>
-          {% elif ImpostosMesAtual.total is null %}
-            <div class="col shadow"> Impostos <h3><i class="shopping cart icon"></i></h3> </div>
-          {% endif %}
-
-           <!-- Impostos - Gastos mês atual -->
-           {% if taxaMesAtual.total %}
-           <div class="col shadow"> Taxas <h6>R$: {{ taxaMesAtual.total }}</h6> </div>
-         {% elif taxaMesAtual.total is null %}
-           <div class="col shadow"> Taxas <h3><i class="shopping cart icon"></i></h3> </div>
-         {% endif %}
-
+    <div class="mt-1" align="right">
+        <a href="{% url 'fluxo_entrada_saida' %}" class="ui orange basic button"><i class=""></i> In-Out</a>
+        <a href="{% url 'custo_mensal_categoria' %}" class="ui purple basic button"><i class=""></i> Custos Mensais</a>
+    </div>
+<!-- =========================================================================================================== -->
+<!-- =========================================================================================================== -->
+    <!-- Custos do mês atual por grupo -->
+    <h3 class="ui dividing header blue">Custos do Mês Atual <a class="anchor" id="content"></a></h3>
+    <div class="card-group mt-3 " >
+        <!-- Veículos no mês atual-->
+        <div class="card shadow-sm"  align="center">
+            <p class="card-title">Veículos</p>
+            R$: {{ veiculosMesAtual.total|safe }}
         </div>
-      </div>
+
+        <!-- Funcionários no mês atual-->
+        <div class="card shadow-sm ml-1"  align="center">
+            <h6 class="card-title">Funcionários</h6>
+            
+            R$: {{ funcionariosMesAtual.total|safe }}
+        </div>
+
+        <!-- Alimentação no mês atual-->
+        <div class="card shadow-sm ml-1" align="center">
+            <p>Alimentação</p>
+            R$: {{ alimentacaoMesAtual.total|safe }}
+        </div>
+
+        <!-- Links no mês atual-->
+        <div class="card shadow-sm ml-1"  align="center">
+            <p>Links</p>
+            R$: {{ linksMesAtual.total|safe }}
+        </div>
+
+        <!-- Locação no mês atual-->
+        <div class="card shadow-sm ml-1"  align="center">
+            <p>Locação</p>
+            R$: {{ locacaoMesAtual.total|safe }}
+        </div>
+
+        <!-- Instalação no mês atual-->
+        <div class="card shadow-sm ml-1"  align="center">
+            <p>Instalação</p>
+            R$: {{ instalacaoMesAtual.total|safe }}
+        </div>
+
+        <!-- Sócios no mês atual-->
+        <div class="card shadow-sm ml-1"  align="center">
+            <p>Sócios</p>
+            R$: {{ sociosMesAtual.total|safe }}
+        </div>
+
+        <!-- Impostos no mês atual-->
+        <div class="card shadow-sm ml-1"  align="center">
+            <p>Impostos</p>
+            R$: {{ ImpostosMesAtual.total|safe }}
+        </div>
+
+        <!-- Taxas no mês atual-->
+        <div class="card shadow-sm ml-1"  align="center">
+            <p>Taxas</p>
+            R$: {{ taxaMesAtual.total|safe }}
+        </div>
     </div>
-  </div>
-  <!--FIM Custos mês atual -->
-  <!-- ******************************************************************************************************** -->
+<!-- =========================================================================================================== -->
+
+<!-- =========================================================================================================== -->
+<!-- =========================================================================================================== -->
+<div class="mt-3">
+    <div class="row">
+        <div class="col-sm-6">
+          <div class="card h-100 shadow border-0">
+            <div class="card-body">
+
+                <!-- =========================================================================================================== -->
+                <!-- Gráficos com os gastos do mês atual por categorias -->
+                <div>
+                    <div id="chart_AAA">
+                        <div id="timeline-chart_custos_mensais">
+                            <script>
+                                var options = {
+                                    series: [{
+                                    data: [
+
+                                    {% if veiculos_mes_atual.total is null %} 0 {% else %} {{ veiculos_mes_atual.total|safe }} {% endif %},	
+                                    {% if funcionariosMesAtual.total is null %} 0 {% else %} {{ funcionariosMesAtual.total|safe }} {% endif %},		
+                                    {% if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total|safe }} {% endif %},
+                                    {% if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total|safe }} {% endif %},	
+                                    {% if locacaoMesAtual.total is null %} 0 {% else %} {{ locacaoMesAtual.total|safe }} {% endif %},	
+                                    {% if instalacaoMesAtual.total is null %} 0 {% else %} {{ instalacaoMesAtual.total|safe }} {% endif %},
+                                    {% if sociosMesAtual.total is null %} 0 {% else %} {{ sociosMesAtual.total|safe }} {% endif %},
+                                    {% if ImpostosMesAtual.total is null %} 0 {% else %} {{ ImpostosMesAtual.total|safe }} {% endif %},
+                                    {% if taxaMesAtual.total is null %} 0 {% else %} {{ taxaMesAtual.total|safe }} {% endif %},
+                                
+                                    ]
+                                    }],
+                                    chart: {
+                                    type: 'bar',
+                                    height: 350
+                                    },
+                                    plotOptions: {
+                                    bar: {
+                                        borderRadius: 4,
+                                        horizontal: true,
+                                    }
+                                    },
+                                    dataLabels: {
+                                    enabled: false
+                                    },
+                                    xaxis: {
+                                    categories: [
+                                        
+                                    'Veículoss',
+                                    'Funcionários',
+                                    'Alimentação',
+                                    'Links',
+                                    'Locação',
+                                    'Instalação',
+                                    'Sócios',
+                                    'Impostos',
+                                    'Taxas'
+                                          
+                                    ],
+                                    }
+                                    };
+                
+                                    var chart = new ApexCharts(document.querySelector("#chart_AAA"), options);
+                                    chart.render();
+                      
+                            </script>
+                        </div>
+                    </div>  
+                </div>
+                <!-- =========================================================================================================== -->
 
 
 
-  <!-- ******************************************************************************************************** -->
-  <!--INÍCIO Custos total mensais-->
-  
-  <div class="card shadow  border-0 mt-4">
-    <div class="card-body">
-      <h5 class="card-title">Custos Total por Mês</h5>
-      <div class="row row-cols-1 row-cols-md-5 g-4">
-        {% for mes in mes %}
-        <div class="col mt-2 " >
-          <div class="card border border-danger">
-            <div class="card-body" align="center">
-              {{ mes.month|date:'F Y' }}: R$: ({{ mes.c }})
+
+
+
+
 
             </div>
           </div>
         </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-
-
-  
-  <!--
-  <div class="card shadow  border-0 mt-4">
-    <div class="card-body">
-      <h5 class="card-title">Custos Total por Mês</h5>
-      {% for mes in mes %}
-        <div class="row">
-          <div class="card">
-            {{ mes.month|date:'F Y' }}: R$: ({{ mes.c }}) 
+        <div class="col-sm-6">
+          <div class="card h-100 shadow border-0">
+            <div class="card-body">
+                <!-- =========================================================================================================== -->
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                    <p class="highcharts-description">
+                      <script>
+                            Highcharts.chart('container', {
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false,
+                                type: 'pie'
+                            },
+                            title: {
+                                text: '{% now "F Y" %}'
+                            },
+                            tooltip: {
+                                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            accessibility: {
+                                point: {
+                                    valueSuffix: '%'
+                                }
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                                    }
+                                }
+                            },
+                            series: [{
+                                name: 'Valor R$',
+                                colorByPoint: true,
+                                data: [{
+                                    name: 'Veículos',
+                                    y: {% if veiculosMesAtual.total is null %} 0 {% else %} {{ veiculosMesAtual.total|safe }} {% endif %},
+                                }, {
+                                    name: 'Funcionários',
+                                    y: {% if funcionariosMesAtual.total is null %} 0 {% else %} {{ funcionariosMesAtual.total|safe }} {% endif %}
+                                }, {
+                                    name: 'Alimentação',
+                                    y: {% if alimentacaoMesAtual.total is null %} 0 {% else %} {{ alimentacaoMesAtual.total|safe }} {% endif %}
+                                }, {
+                                    name: 'Links',
+                                    y: {% if linksMesAtual.total is null %} 0 {% else %} {{ linksMesAtual.total|safe }} {% endif %}
+                                }, {
+                                    name: 'Locação',
+                                    y: {% if locacaoMesAtual.total is null %} 0 {% else %} {{ locacaoMesAtual.total|safe }} {% endif %}
+                                }, {
+                                    name: 'Instalação',
+                                    y: {% if instalacaoMesAtual.total is null %} 0 {% else %} {{ instalacaoMesAtual.total|safe }} {% endif %}
+                                }, {
+                                    name: 'Sócios',
+                                    y: {% if sociosMesAtual.total is null %} 0 {% else %} {{ sociosMesAtual.total|safe }} {% endif %}
+                                }, {
+                                    name: 'Impostos',
+                                    y: {% if ImpostosMesAtual.total is null %} 0 {% else %} {{ ImpostosMesAtual.total|safe }} {% endif %}
+                                }, {
+                                    name: 'Taxas',
+                                    y: {% if taxaMesAtual.total is null %} 0 {% else %} {{ taxaMesAtual.total|safe }} {% endif %}
+                                }]
+                            }]
+                        });
+                      </script>
+                    </p>
+                </figure>
+                <!-- =========================================================================================================== -->
+            </div>
           </div>
         </div>
-       {% endfor %}
-    </div>
-  </div>
-  -->
-  <!--FIM Custos total mensais-->
-
-  <!-- ******************************************************************************************************** -->
+      </div>
+</div>
+<!-- =========================================================================================================== -->
+<!-- =========================================================================================================== -->
 
 
-<!-- ############################################################################################################################-->
-  <!--INÍCIO Custos total mensais-->
-  <div class="card shadow  border-0 mt-4">
-    <div class="card-body">
-      <h5 class="card-title">Custos Total por Mês</h5>
-
-
-
-      <div id="chart">
+<!-- =========================================================================================================== -->
+<!-- =========================================================================================================== -->
+<h3 class="ui dividing header blue">Custos Mensais <a class="anchor" id="content"></a></h3>
+<div class="card shadow mt-3">
+    <div id="chart_B">
         <div id="timeline-chart_custos_mensais">
             <script>
                 var options = {
                     series: [{
-                    name: 'Custos',
-                    data: [{% for mes in mes %} '{{ mes.c }}', {% endfor %}]
+                    name: 'Valor R$',
+                    type: 'column',
+                    data: [{% for mes in mes %} '{{ mes.c}}', {% endfor %}]
+                    }, {
+                    name: 'Valor R$',
+                    type: 'line',
+                    data: [{% for mes in mes %} '{{ mes.c}}', {% endfor %}]
                     }],
                     chart: {
                     height: 350,
-                    type: 'bar',
+                    type: 'line',
                     },
-                    plotOptions: {
-                    bar: {
-                        borderRadius: 10,
-                        dataLabels: {
-                        position: 'top', // top, center, bottom
-                        },
-                    }
+                    stroke: {
+                    width: [0, 4]
+                    },
+                    title: {
+                    text: 'Custos Mensais'
                     },
                     dataLabels: {
                     enabled: true,
-                    formatter: function (val) {
-                        return "R$: " + val;
+                    enabledOnSeries: [1]
                     },
-                    offsetY: -20,
-                    style: {
-                        fontSize: '12px',
-                        colors: ["#304758"]
-                    }
-                    },
+                    labels: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
                     
-                    xaxis: {
-                    categories: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
-                    position: 'top',
-                    axisBorder: {
-                        show: false
-                    },
-                    axisTicks: {
-                        show: false
-                    },
-                    crosshairs: {
-                        fill: {
-                        type: 'gradient',
-                        gradient: {
-                            colorFrom: '#D8E3F0',
-                            colorTo: '#BED1E6',
-                            stops: [0, 100],
-                            opacityFrom: 0.4,
-                            opacityTo: 0.5,
-                        }
-                        }
-                    },
-                    tooltip: {
-                        enabled: true,
-                    }
-                    },
-                    yaxis: {
-                    axisBorder: {
-                        show: false
-                    },
-                    axisTicks: {
-                        show: false,
-                    },
-                    labels: {
-                        show: false,
-                        formatter: function (val) {
-                        return val + "%";
-                        }
-                    }
-                    
-                    },
+                    yaxis: [{
                     title: {
-                    text: 'Custos Mensais',
-                    floating: true,
-                    offsetY: 330,
-                    align: 'center',
-                    style: {
-                        color: '#444'
+                        text: 'Valor R$',
+                    },
+                    
+                    }, {
+                    opposite: true,
+                    title: {
+                        text: 'Valor R$'
                     }
-                    }
+                    }]
                     };
     
-                    var chart = new ApexCharts(document.querySelector("#chart"), options);
+                    var chart = new ApexCharts(document.querySelector("#chart_B"), options);
                     chart.render();
+                ;
                     </script>
                 </div>
       </div>
+</div>
+    
+
+<!-- =========================================================================================================== -->
+<!-- =========================================================================================================== -->
+<h3 class="ui dividing header blue">Custos Mensais por Categoria <a class="anchor" id="content"></a></h3>
+<div class="card shadow mt-3">
+    <div class="card shadow mt-3">
+        <div id="chart_CA">
+            <div id="timeline-chart_custos_mensais">
+                <script>
+                    var options = {
+                        series: [
+                                
+                        {
+                        name: 'Veículos',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 1 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
+                        },{
+                        name: 'Funcionários',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 2 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
+                        },{
+                        name: 'Alimentação',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 3 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
+                        },{
+                        name: 'Links',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 4 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
+                        },{
+                        name: 'Locação',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 5 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
+                        },{
+                        name: 'Instalação',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 6 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
+                        },{
+                        name: 'Sócios',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 7 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
+                        },{
+                        name: 'Impostos',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 8 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
+                        },{
+                        name: 'Taxas',
+                        data: [
+                            {% for data in mensais_categoria %}
+                                {% if data.categoria == 11 %}
+                                    '{{ data.total|safe}}',
+                                {% endif %}
+                            {% endfor %}
+                        ]
+                        }
+
+                    
+                    ],
+                        chart: {
+                        height: 350,
+                        type: 'line',
+                        zoom: {
+                            enabled: false
+                        },
+                        animations: {
+                            enabled: false
+                        }
+                        },
+                        stroke: {
+                        width: [5,5,4],
+                        curve: 'straight'
+                        },
+                        labels: [{% for data in mensais_categoria %}
+                            {% if data.categoria == 1 %}
+                                '{{ data.month|date:'M, Y'}}',
+                            {% endif %}
+                           {% endfor %}],
+                        title: {
+                        text: 'Custos Mensais categorias'
+                        },
+                        xaxis: {
+                        },
+                        };
+
+                        var chart = new ApexCharts(document.querySelector("#chart_CA"), options);
+                        chart.render();
+                </script>
+            </div>
+        </div>
+
     </div>
-  </div>
-
-  <!--FIM Custos total mensais-->
-
-  <!-- ############################################################################################################################-->
-    <hr>
+</div>
+<!--=======================================================================================================-->
 
 
-    <hr>
 
-    <!-- CUSTOS MENSAIS TOTAIS-->
-    <div>
-      <h6>Valores de custos Mensais</h6>
+
+
+
+
+
+
+
+
+
+
+    <!--Final da Página-->
+    <div class="mb-5">
 
     </div>
 
-
-    <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">Veiculos</th>
-            <th scope="col">Funcionários</th>
-            <th scope="col">Alimentação</th>
-            <th scope="col">Links</th>
-            <th scope="col">Locação</th>
-            <th scope="col">Instalaçao</th>
-            <th scope="col">Sócios</th>
-            <th scope="col">Impostos</th>
-            <th scope="col">Taxas</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              {% for veiculos in mensalVeiculos %}
-                <div class="card mt-1 border border-danger border-start-0" align="center">
-                  {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
-                </div>
-              {% endfor %}
-            </td>
-
-            <td>
-              {% for veiculos in mensalFuncionarios %}
-                <div class="card mt-1 border border-danger border-start-0" align="center">
-                  {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
-                </div>
-              {% endfor %}
-            </td>
-
-            <td>
-              {% for veiculos in mensalAlimentacao %}
-              <div class="card mt-1 border border-danger border-start-0" align="center">
-                {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
-              </div>
-              {% endfor %}
-            </td>
-
-            <td>
-              {% for veiculos in mensalLinks %}
-                <div class="card mt-1 border border-danger border-start-0" align="center">
-                  {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
-                </div>
-              {% endfor %}
-            </td>
-
-            <td>
-              {% for veiculos in mensalLocacao %}
-              <div class="card mt-1 border border-danger border-start-0" align="center">
-                {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
-              </div>
-              {% endfor %}
-            </td>
-
-            <td>
-              {% for veiculos in mensalInstalacao %}
-              <div class="card mt-1 border border-danger border-start-0" align="center">
-                {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
-              </div>
-              {% endfor %}
-            </td>
-
-            <td>
-              {% for veiculos in mensalSocios %}
-              <div class="card mt-1 border border-danger border-start-0" align="center">
-                {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
-              </div>
-              {% endfor %}
-            </td>
-
-            <td>
-              {% for veiculos in mensalImpostos %}
-              <div class="card mt-1 border border-danger border-start-0" align="center">
-                {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
-              </div>
-              {% endfor %}
-            </td>
-
-            <td>
-              {% for veiculos in mensalTaxas %}
-              <div class="card mt-1 border border-danger border-start-0" align="center">
-                {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
-              </div>
-              {% endfor %}
-            </td>
-
-
-
-
-
-
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-
-
-
-
+</div>
 {% endblock %}

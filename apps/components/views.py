@@ -7,7 +7,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 def Index(request):
-    return render(request, 'components/index.html')
+    return render(request, 'components/indexxx.html')
 
 
 def DirecionamentoServicos(request):

@@ -17,7 +17,8 @@ from .views import EditarPagamentoAgendadoView
 
 urlpatterns = [
     #  Refatorado
-    path('indexx/', IndexTemplateView.as_view(), name='indexx'),
+    path('', IndexTemplateView.as_view(), name='index'),
+
     path('custo-mensal-categoria', CustoMensalCategoriaView.as_view(), name='custo_mensal_categoria'),
     path('fluxo-entrada-saida', FluxoEntradaSaidaView.as_view(), name='fluxo_entrada_saida'),
     path('contas-a-pagar/', ContarPagarView.as_view(), name='contas-a-pagar'),
@@ -33,10 +34,8 @@ urlpatterns = [
 
 
 
-
-
     # Sem refatoração
-    path('', Index),
+    path('indexx', Index),
     path('cadastrar-pagamento/', CadastrarPagamento),
 
     path('dashboard-pagamentos/', DashboardPagamentos),

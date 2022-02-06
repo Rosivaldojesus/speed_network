@@ -24,7 +24,7 @@ from .models import FluxoEntradaSaidaMensal
 
 class IndexTemplateView(TemplateView):
     model = Pagamento
-    template_name = 'payment/indexx.html'
+    template_name = 'payment/index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -325,7 +325,7 @@ def Index(request):
         data_pagamento__month=this_month).filter(status_pago=True).filter(categoria=7).values('month').annotate(
         c=Sum('valor_pagamento')).values('month', 'c').order_by('month')
 
-    return render(request, 'payment/index.html', {'pagamentos': pagamentos, 'dia': dia, 'mes': mes,
+    return render(request, 'payment/indexxx.html', {'pagamentos': pagamentos, 'dia': dia, 'mes': mes,
                                                   'veiculos': veiculos,
                                                   'funcionarios': funcionarios,
                                                   'alimentacao': alimentacao,

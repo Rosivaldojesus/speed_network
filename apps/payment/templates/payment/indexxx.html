@@ -1,0 +1,384 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+	<!-- ********************************************************************************************** -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<!-- ********************************************************************************************** -->
+<div class="container-xl">
+
+    <h2>Financeiro</h2>
+    <hr>
+  {% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+  {% endif %}
+
+  <!--INÍCIO dos Botões -->
+
+ <!-- ******************************************************************************************************** -->
+  <!-- INICIO Botões financeiros -->
+  <div class="shadow">
+    <div align="right">
+      <a href="/pagamentos/indexx/" class="btn btn-danger">Página nova em construção</a>
+      <a href="lista-pagamentos/" class="btn btn-info"><i class="far fa-eye"></i> Pagamentos</a>
+      <a href="cadastrar-pagamento/" class="btn btn-primary"><i class="far fa-plus-square"></i> Pagamento </a>
+      
+        <a href="retiradas-gerencianet/" class="btn btn-warning"><i class="fas fa-file-invoice-dollar"></i></i> GerenciaNET </a>
+      
+      <a href="exportar-csv/" class="btn btn-info" title="Exportar CSV"><i class="fas fa-file-csv"></i></a>
+      <!--
+            <a href="/pagamentos/fluxo-entradas-saidas/" class="btn btn-info">Fluxo</a>
+          -->
+      <!--
+            <a href="exportar-excel/">Exportar Excel</a>
+          -->
+    </div>
+  </div>
+  <!-- FIM Botões financeiros -->
+   <!-- ******************************************************************************************************** -->
+
+
+  <!-- ******************************************************************************************************** -->
+  <!--INÍCIO Custos mês atual -->
+  <div class="mt-4">
+    <div class="card">
+      <h5 class="card-header">Mês Atual</h5>
+      <div class="card-body">
+        <div class="row">
+
+          <!-- Veículos - Gastos mês atual -->
+          {% if veiculosMesAtual.total %}
+            <div class="col shadow"> Veículos <h6>R$: {{ veiculosMesAtual.total }}</h6> </div>
+          {% elif veiculosMesAtual.total is null %}
+            <div class="col shadow"> Veículos <h3><i class="shopping cart icon"></i></h3></div>
+          {% endif %}
+
+          <!-- Veículos - Gastos mês atual -->
+          {% if funcionariosMesAtual.total %}
+            <div class="col shadow"> Funcionários <h6>R$: {{ funcionariosMesAtual.total }}</h6></div>
+          {% elif funcionariosMesAtual.total is null %}
+          <div class="col shadow"> Funcionários <h3><i class="shopping cart icon"></i></h3></div>
+          {% endif %}
+
+          <!-- Alimentação - Gastos mês atual -->
+          {% if alimentacaoMesAtual.total %}
+            <div class="col shadow"> Alimentação<h6>R$: {{ alimentacaoMesAtual.total }}</h6></div>
+          {% elif alimentacaoMesAtual.total is null %}
+            <div class="col shadow"> Alimentação <h3><i class="shopping cart icon"></i></h3></div>
+          {% endif %}
+
+          <!-- Links - Gastos mês atual -->
+          {% if linksMesAtual.total %}
+            <div class="col shadow"> Links <h6>R$: {{ linksMesAtual.total }}</h6> </div>
+          {% elif linksMesAtual.total is null %}
+            <div class="col shadow"> Links <h3><i class="shopping cart icon"></i></h3></div>
+          {% endif %}
+
+          <!-- Locação - Gastos mês atual -->
+          {% if locacaoMesAtual.total %}
+            <div class="col shadow"> Locação <h6>R$: {{ locacaoMesAtual.total }}</h6> </div>
+          {% elif locacaoMesAtual.total is null %}
+            <div class="col shadow"> Locação <h3><i class="shopping cart icon"></i></h3></div>
+          {% endif %}
+
+          <!-- Locação - Gastos mês atual -->
+          {% if instalacaoMesAtual.total %}
+            <div class="col shadow">Instalação <h6>R$: {{ instalacaoMesAtual.total }}</h6></div>
+          {% elif instalacaoMesAtual.total is null %}
+            <div class="col shadow"> Instalação <h3><i class="shopping cart icon"></i></h3></div>
+          {% endif %}
+
+          <!-- Sócios - Gastos mês atual -->
+          {% if sociosMesAtual.total %}
+            <div class="col shadow"> Sócios <h6>R$: {{ sociosMesAtual.total }}</h6></div>
+          {% elif sociosMesAtual.total is null %}
+            <div class="col shadow"> Sócios <h3><i class="shopping cart icon"></i></h3></div>
+          {% endif %}
+
+          <!-- Impostos - Gastos mês atual -->
+          {% if ImpostosMesAtual.total %}
+            <div class="col shadow"> Impostos <h6>R$: {{ ImpostosMesAtual.total }}</h6> </div>
+          {% elif ImpostosMesAtual.total is null %}
+            <div class="col shadow"> Impostos <h3><i class="shopping cart icon"></i></h3> </div>
+          {% endif %}
+
+           <!-- Impostos - Gastos mês atual -->
+           {% if taxaMesAtual.total %}
+           <div class="col shadow"> Taxas <h6>R$: {{ taxaMesAtual.total }}</h6> </div>
+         {% elif taxaMesAtual.total is null %}
+           <div class="col shadow"> Taxas <h3><i class="shopping cart icon"></i></h3> </div>
+         {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--FIM Custos mês atual -->
+  <!-- ******************************************************************************************************** -->
+
+
+
+  <!-- ******************************************************************************************************** -->
+  <!--INÍCIO Custos total mensais-->
+  
+  <div class="card shadow  border-0 mt-4">
+    <div class="card-body">
+      <h5 class="card-title">Custos Total por Mês</h5>
+      <div class="row row-cols-1 row-cols-md-5 g-4">
+        {% for mes in mes %}
+        <div class="col mt-2 " >
+          <div class="card border border-danger">
+            <div class="card-body" align="center">
+              {{ mes.month|date:'F Y' }}: R$: ({{ mes.c }})
+
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+
+  
+  <!--
+  <div class="card shadow  border-0 mt-4">
+    <div class="card-body">
+      <h5 class="card-title">Custos Total por Mês</h5>
+      {% for mes in mes %}
+        <div class="row">
+          <div class="card">
+            {{ mes.month|date:'F Y' }}: R$: ({{ mes.c }}) 
+          </div>
+        </div>
+       {% endfor %}
+    </div>
+  </div>
+  -->
+  <!--FIM Custos total mensais-->
+
+  <!-- ******************************************************************************************************** -->
+
+
+<!-- ############################################################################################################################-->
+  <!--INÍCIO Custos total mensais-->
+  <div class="card shadow  border-0 mt-4">
+    <div class="card-body">
+      <h5 class="card-title">Custos Total por Mês</h5>
+
+
+
+      <div id="chart">
+        <div id="timeline-chart_custos_mensais">
+            <script>
+                var options = {
+                    series: [{
+                    name: 'Custos',
+                    data: [{% for mes in mes %} '{{ mes.c }}', {% endfor %}]
+                    }],
+                    chart: {
+                    height: 350,
+                    type: 'bar',
+                    },
+                    plotOptions: {
+                    bar: {
+                        borderRadius: 10,
+                        dataLabels: {
+                        position: 'top', // top, center, bottom
+                        },
+                    }
+                    },
+                    dataLabels: {
+                    enabled: true,
+                    formatter: function (val) {
+                        return "R$: " + val;
+                    },
+                    offsetY: -20,
+                    style: {
+                        fontSize: '12px',
+                        colors: ["#304758"]
+                    }
+                    },
+                    
+                    xaxis: {
+                    categories: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
+                    position: 'top',
+                    axisBorder: {
+                        show: false
+                    },
+                    axisTicks: {
+                        show: false
+                    },
+                    crosshairs: {
+                        fill: {
+                        type: 'gradient',
+                        gradient: {
+                            colorFrom: '#D8E3F0',
+                            colorTo: '#BED1E6',
+                            stops: [0, 100],
+                            opacityFrom: 0.4,
+                            opacityTo: 0.5,
+                        }
+                        }
+                    },
+                    tooltip: {
+                        enabled: true,
+                    }
+                    },
+                    yaxis: {
+                    axisBorder: {
+                        show: false
+                    },
+                    axisTicks: {
+                        show: false,
+                    },
+                    labels: {
+                        show: false,
+                        formatter: function (val) {
+                        return val + "%";
+                        }
+                    }
+                    
+                    },
+                    title: {
+                    text: 'Custos Mensais',
+                    floating: true,
+                    offsetY: 330,
+                    align: 'center',
+                    style: {
+                        color: '#444'
+                    }
+                    }
+                    };
+    
+                    var chart = new ApexCharts(document.querySelector("#chart"), options);
+                    chart.render();
+                    </script>
+                </div>
+      </div>
+    </div>
+  </div>
+
+  <!--FIM Custos total mensais-->
+
+  <!-- ############################################################################################################################-->
+    <hr>
+
+
+    <hr>
+
+    <!-- CUSTOS MENSAIS TOTAIS-->
+    <div>
+      <h6>Valores de custos Mensais</h6>
+
+    </div>
+
+
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Veiculos</th>
+            <th scope="col">Funcionários</th>
+            <th scope="col">Alimentação</th>
+            <th scope="col">Links</th>
+            <th scope="col">Locação</th>
+            <th scope="col">Instalaçao</th>
+            <th scope="col">Sócios</th>
+            <th scope="col">Impostos</th>
+            <th scope="col">Taxas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {% for veiculos in mensalVeiculos %}
+                <div class="card mt-1 border border-danger border-start-0" align="center">
+                  {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
+                </div>
+              {% endfor %}
+            </td>
+
+            <td>
+              {% for veiculos in mensalFuncionarios %}
+                <div class="card mt-1 border border-danger border-start-0" align="center">
+                  {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
+                </div>
+              {% endfor %}
+            </td>
+
+            <td>
+              {% for veiculos in mensalAlimentacao %}
+              <div class="card mt-1 border border-danger border-start-0" align="center">
+                {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
+              </div>
+              {% endfor %}
+            </td>
+
+            <td>
+              {% for veiculos in mensalLinks %}
+                <div class="card mt-1 border border-danger border-start-0" align="center">
+                  {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
+                </div>
+              {% endfor %}
+            </td>
+
+            <td>
+              {% for veiculos in mensalLocacao %}
+              <div class="card mt-1 border border-danger border-start-0" align="center">
+                {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
+              </div>
+              {% endfor %}
+            </td>
+
+            <td>
+              {% for veiculos in mensalInstalacao %}
+              <div class="card mt-1 border border-danger border-start-0" align="center">
+                {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
+              </div>
+              {% endfor %}
+            </td>
+
+            <td>
+              {% for veiculos in mensalSocios %}
+              <div class="card mt-1 border border-danger border-start-0" align="center">
+                {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
+              </div>
+              {% endfor %}
+            </td>
+
+            <td>
+              {% for veiculos in mensalImpostos %}
+              <div class="card mt-1 border border-danger border-start-0" align="center">
+                {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
+              </div>
+              {% endfor %}
+            </td>
+
+            <td>
+              {% for veiculos in mensalTaxas %}
+              <div class="card mt-1 border border-danger border-start-0" align="center">
+                {{ veiculos.month|date:'M, Y'}}:<br> <strong>R$: {{ veiculos.c }}</strong>
+              </div>
+              {% endfor %}
+            </td>
+
+
+
+
+
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+
+{% endblock %}
