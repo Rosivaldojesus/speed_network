@@ -119,14 +119,14 @@ def ExportarCSVCTO(request):
     writer = csv.writer(response)
     writer.writerow(
         [
-            'id', 'codigo_cto', 'rua_cto', 'numero_rua_cto', 'bairro', 'pon_cto', 'conexoes_opticas_cto',
+            'id', 'codigo_cto', 'rua_cto', 'numero_rua_cto', 'bairro_cto', 'pon_cto', 'conexoes_opticas_cto',
             'board_cto', 'quant_conexoes_usadas_cto'
         ]
     )
     for cto in ctos:
         writer.writerow(
             [
-                cto.id, cto.codigo_cto, cto.rua_cto, cto.numero_rua_cto, cto.bairro, cto.pon_cto,
+                cto.id, cto.codigo_cto, cto.rua_cto, cto.numero_rua_cto, cto.bairro_cto, cto.pon_cto,
                 cto.conexoes_opticas_cto, cto.board_cto, cto.quant_conexoes_usadas_cto
             ]
         )
