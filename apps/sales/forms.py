@@ -115,9 +115,9 @@ class InstalacaoFinalizarForm(forms.ModelForm):
 class BoletoEntregueForm(forms.ModelForm):
     class Meta:
         model = Instalacao
-        fields = (
-            'boleto_entregue'
-        )
+        fields = [
+            'boleto_entregue',
+        ]
     boleto_entregue = forms.BooleanField(label='Marque para finalizar boleto.')
 
 
@@ -150,18 +150,18 @@ class EmitirValeRefeicaoForm(forms.ModelForm):
 class AdicionarValorValeRefeicaoForm(forms.ModelForm):
     class Meta:
         model = ValeRefeicao
-        fields = (
-            'valor_vale'
-        )
+        fields = [
+            'valor_vale',
+        ]
     valor_vale = forms.DecimalField(required=True)
 
 
 class AdicionarPagamentoValeRefeicaoForm(forms.ModelForm):
     class Meta:
         model = ValeRefeicao
-        fields = (
-            'status_pago'
-        )
+        fields = [
+            'status_pago',
+        ]
     status_pago = forms.BooleanField()
 
 

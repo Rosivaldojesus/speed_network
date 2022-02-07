@@ -5,7 +5,7 @@ from .models import SenhasPorEquipamentos
 class SenhasPorEquipamentosForm(forms.ModelForm):
     class Meta:
         model = SenhasPorEquipamentos
-        fields = [
+        fields = (
             'codigo_equipamento',
             'sn_equipamento',
             'equipamento',
@@ -14,4 +14,4 @@ class SenhasPorEquipamentosForm(forms.ModelForm):
             'senha',
             'fabricante',
             'patrimonio_equipamento'
-        ]
+        )
