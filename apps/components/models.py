@@ -131,9 +131,6 @@ class Vendedores(models.Model):
         return "{}".format(self.nome_vendedor)
 
 
-
-
-
 """
 ------------------------------------------------------------------------------------------------------------------------
 Lista de Funcionários que podem pegar Vale-Refeição

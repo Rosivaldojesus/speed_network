@@ -29,7 +29,9 @@ class InsertCtoForm(forms.ModelForm):
 class CaixasDeEmendaForm(forms.ModelForm):
     class Meta:
         model = CaixasDeEmenda
-        fields = ['codigo_caixa', 'rua_caixa_emenda', 'numero_rua_cto']
+        fields = [
+            'codigo_caixa', 'rua_caixa_emenda', 'numero_rua_cto'
+        ]
 
 
 class PrimariasForm(forms.ModelForm):

@@ -1,10 +1,6 @@
 from django import forms
-from django.db import models
-from django.forms import fields
 from ..components.models import Bancos
-from django.core.exceptions import ValidationError
-
-from .models import Pagamento, AgendaPagamento, FluxoEntradasSaidas, DestinoValoresBoletos, MeiosEntregaBoletos
+from .models import Pagamento, FluxoEntradasSaidas, MeiosEntregaBoletos
 from .models import DestinoValoresBoletos
 from .models import ClientesEntregaBoletos
 
@@ -12,14 +8,15 @@ from .models import ClientesEntregaBoletos
 class CadastarPagamentoForm(forms.ModelForm):
     class Meta:
         model = Pagamento
-        fields =['motivo_pagamento',
-                 'valor_pagamento',
-                 'origem_valor_pagamento',
-                 'tipo_custo_pagamento',
-                 'data_pagamento',
-                 'categoria',
-                 'status_pago',
-                 ]
+        fields = [
+            'motivo_pagamento',
+            'valor_pagamento',
+            'origem_valor_pagamento',
+            'tipo_custo_pagamento',
+            'data_pagamento',
+            'categoria',
+            'status_pago',
+        ]
     data_pagamento = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
     status_pago = forms.BooleanField(required=True, initial=True, label='Confirmar pagamento')
 
@@ -27,31 +24,28 @@ class CadastarPagamentoForm(forms.ModelForm):
 class EditarPagamentoForm(forms.ModelForm):
     class Meta:
         model = Pagamento
-        fields =['motivo_pagamento',
-                 'valor_pagamento',
-                 'origem_valor_pagamento',
-                 'tipo_custo_pagamento',
-                 'data_pagamento',
-                 'categoria',
-               
-                 ]
+        fields = [
+            'motivo_pagamento',
+            'valor_pagamento',
+            'origem_valor_pagamento',
+            'tipo_custo_pagamento',
+            'data_pagamento',
+            'categoria',
+        ]
  
-
-
 
 class AgendarPagamentoForm(forms.ModelForm):
     class Meta:
         model = Pagamento
-        fields =['motivo_pagamento',
-                 'valor_pagamento',
-                 'origem_valor_pagamento',
-                 'tipo_custo_pagamento',
-                 'data_pagamento',
-                 'categoria',
-                 ]
-
+        fields = [
+            'motivo_pagamento',
+            'valor_pagamento',
+            'origem_valor_pagamento',
+            'tipo_custo_pagamento',
+            'data_pagamento',
+            'categoria',
+        ]
     data_pagamento = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
-
 
 
 '''
@@ -62,20 +56,22 @@ class AgendarPagamentoForm(forms.ModelForm):
     data_pagamento = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
 '''
 
+
 class ComfirmarPagamentoForm(forms.ModelForm):
     class Meta:
         model = Pagamento
-        fields = ['status_pago']
-
+        fields = [
+            'status_pago'
+        ]
     status_pago = forms.BooleanField(required=True, initial=False, label='Marque aqui, para confirmar pagamento')
-
 
 
 class CadastrarFluxoForm(forms.ModelForm):
     class Meta:
         model = FluxoEntradasSaidas
-        fields = ['fluxo_data','banco', 'saldoInicial','entradaDia',  'SaidaDia', 'SaldoDia']
-
+        fields = [
+            'fluxo_data', 'banco', 'saldoInicial', 'entradaDia',  'SaidaDia', 'SaldoDia'
+        ]
     saldoInicial = forms.DecimalField(label='Saldo do início do dia R$:')
     entradaDia = forms.DecimalField(label='Total de entradas do dia R$:')
     fluxo_data = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), required=False)
@@ -86,35 +82,32 @@ class CadastrarFluxoForm(forms.ModelForm):
 class CadastarDestinoValoresBoletosForm(forms.ModelForm):
     class Meta:
         model = DestinoValoresBoletos
-        fields = ['valor', 'destino', 'data_transacao']
-
+        fields = [
+            'valor', 'destino', 'data_transacao'
+        ]
     valor = forms.DecimalField(label="Valor transferido")
     destino = forms.ModelChoiceField(queryset=Bancos.objects.all().order_by('nome_banco'), label="Banco de destino")
     data_transacao = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), label="Data da transação")
 
 
-
 class EditarDestinoValoresBoletosForm(forms.ModelForm):
     class Meta:
         model = DestinoValoresBoletos
-        fields = ['valor', 'destino', 'data_transacao']
-
+        fields = [
+            'valor', 'destino', 'data_transacao'
+        ]
     valor = forms.DecimalField(label="Valor transferido")
     destino = forms.ModelChoiceField(queryset=Bancos.objects.all().order_by('nome_banco'), label="Banco de destino")
-    #data_transacao = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), label="Data da transação")
-
-
-
-
 
 
 class ClientesEntregaBoletosForm(forms.ModelForm):
     class Meta:
         model = ClientesEntregaBoletos
-        fields= ['nome_cliente', 'cpf_cliente', 'forma_entrega']
+        fields = [
+            'nome_cliente', 'cpf_cliente', 'forma_entrega'
+        ]
         nome_cliente = forms.CharField(label='Group', help_text='Some text')
-        #Exclude
-        exclude = ['',]
+        exclude = ['', ]
 
     def clean(self):
         super(ClientesEntregaBoletosForm, self).clean()
@@ -135,8 +128,6 @@ class ClientesEntregaBoletosForm(forms.ModelForm):
         return self.cleaned_data
 
 
-
-
 class EditarClientesEntregaBoletosForm(forms.ModelForm):
     class Meta:
         model = ClientesEntregaBoletos
@@ -150,6 +141,3 @@ class EditarClientesEntregaBoletosForm(forms.ModelForm):
     cpf_cliente = forms.CharField()
     forma_entrega = forms.BooleanField()
     forma_entrega = forms.ModelChoiceField(queryset=MeiosEntregaBoletos.objects.all())
-
-
-

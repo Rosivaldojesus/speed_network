@@ -1,58 +1,36 @@
 from django import forms
 from .models import Instalacao, ValeRefeicao, Cancelamentos
 from ..services.models import ServicoVoip
-from ..components.models import FuncionariosParaVale, Bancos
+from ..components.models import FuncionariosParaVale
 from django.forms.widgets import NumberInput
-from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
-
 
 
 class InstalacaoCreateForm(forms.ModelForm):
 
-    # method for cleaning the data
     def clean(self):
         super(InstalacaoCreateForm, self).clean()
 
-        # getting username and password from cleaned_data
         nome_cliente = self.cleaned_data.get('nome_cliente')
 
-        # validating the username and password
         if not nome_cliente:
             self._errors['nome_cliente'] = self.error_class(['O campo não pode ficar em branco'])
          
         return self.cleaned_data
 
-
-        
     class Meta:
         model = Instalacao
-        fields = ['nome_cliente',
-                  'sobrenome_cliente',
-                  'cpf_cliente',
-                  'rg_cliente',
-                  'data_nascimento_cliente',
-                  'rua_cliente',
-                  'cep_cliente',
-                  'numero_endereco_cliente',
-                  'complemento_endereco_cliente',
-                  'bairro_cliente',
-                  'cidade',
-                  'telefone1_cliente',
-                  'telefone2_cliente',
-                  'email_cliente',
-                  'planos_instalacao',
-                  'data_vencimento',
-                  'instalacao_vendedor',
-                  'como_conheceu_empresa',
-                  'observacao_instalacao',
-                  ]
+        fields = (
+            'nome_cliente', 'sobrenome_cliente', 'cpf_cliente', 'rg_cliente', 'data_nascimento_cliente', 'rua_cliente',
+            'cep_cliente', 'numero_endereco_cliente', 'complemento_endereco_cliente', 'bairro_cliente', 'cidade',
+            'telefone1_cliente', 'telefone2_cliente', 'email_cliente', 'planos_instalacao', 'data_vencimento',
+            'instalacao_vendedor', 'como_conheceu_empresa', 'observacao_instalacao',
+        )
         widgets = {
             'nome_cliente': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
             'sobrenome_cliente': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
             'cpf_cliente': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
             'rg_cliente': forms.TextInput(attrs={'class': 'form-control'}),
-            'data_nascimento_cliente': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'} ),
+            'data_nascimento_cliente': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'rua_cliente': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
             'cep_cliente': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
             'numero_endereco_cliente': forms.TextInput(attrs={'class': 'form-control', 'required': True}),
@@ -67,9 +45,8 @@ class InstalacaoCreateForm(forms.ModelForm):
             'data_instalacao': forms.DateInput(attrs={'type': 'date'}),
             'hora_instalacao': forms.TimeInput(attrs={'type': 'time'}),
             'instalacao_vendedor': forms.Select(attrs={'class': 'form-control'}),
-            'observacao_instalacao' : forms.Textarea(attrs={'class': 'form-control'}),
+            'observacao_instalacao': forms.Textarea(attrs={'class': 'form-control'}),
         }
-
     COMO_CONHECEU_EMPRESA = (
         ('Panfleto', 'Panfleto'),
         ('Indicação', 'Indicação'),
@@ -77,49 +54,29 @@ class InstalacaoCreateForm(forms.ModelForm):
         ('Redes Socias', 'Redes Socias'),
         ('Outros', 'Outros'),
     )
-    como_conheceu_empresa = forms.MultipleChoiceField(widget=forms.SelectMultiple,
-                                        choices=COMO_CONHECEU_EMPRESA, required=True)
-
-
-    
-
+    como_conheceu_empresa = forms.MultipleChoiceField(
+        widget=forms.SelectMultiple, choices=COMO_CONHECEU_EMPRESA, required=True
+    )
 
 
 class InstalacaoUpdateForm(forms.ModelForm):
     class Meta:
         model = Instalacao
-        fields = ['nome_cliente',
-                  'sobrenome_cliente',
-                  'cpf_cliente',
-                  'cep_cliente',
-                  'rua_cliente',
-                  'bairro_cliente',
-                  'numero_endereco_cliente',
-                  'complemento_endereco_cliente',
-                  'cidade',
-                  'email_cliente',
-                  'telefone1_cliente',
-                  'telefone2_cliente',
-                  'planos_instalacao',
-                  'data_vencimento',
-                  'data_instalacao',
-                  'hora_instalacao',
-                  'observacao_instalacao',
-                  ]
+        fields = (
+            'nome_cliente', 'sobrenome_cliente', 'cpf_cliente', 'cep_cliente', 'rua_cliente', 'bairro_cliente',
+            'numero_endereco_cliente', 'complemento_endereco_cliente', 'cidade', 'email_cliente', 'telefone1_cliente',
+            'telefone2_cliente', 'planos_instalacao', 'data_vencimento', 'data_instalacao', 'hora_instalacao',
+            'observacao_instalacao',
+        )
         data_instalacao = forms.DateField(label='What is your birth date?', widget=forms.SelectDateWidget)
-
-
-
 
 
 class InstalacaoAgendarForm(forms.ModelForm):
     class Meta:
         model = Instalacao
-        fields = [
-                  'status_agendada',
-                  'data_instalacao',
-                  'hora_instalacao',
-                  ]
+        fields = (
+            'status_agendada', 'data_instalacao', 'hora_instalacao',
+        )
         widgets = {
             'data_instalacao': forms.DateInput(attrs={'type': 'date'}),
             'hora_instalacao': forms.TimeInput(attrs={'type': 'time'}),
@@ -142,11 +99,7 @@ class InstalacaoFinalizarForm(forms.ModelForm):
     class Meta:
         model = Instalacao
         fields = [
-            'concluido',
-            'material_utilizado',
-            'data_finalizacao',
-
-            'observacao_instalacao',
+            'concluido', 'material_utilizado', 'data_finalizacao', 'observacao_instalacao',
                   ]
         widgets = {
             'data_instalacao': forms.DateInput(attrs={'type': 'date'}),
@@ -159,15 +112,18 @@ class InstalacaoFinalizarForm(forms.ModelForm):
     concluido = forms.BooleanField(label='Marque para finalizar instalação.')
 
 
-
-
 class BoletoEntregueForm(forms.ModelForm):
     class Meta:
         model = Instalacao
-        fields = ['boleto_entregue']
+        fields = (
+            'boleto_entregue'
+        )
     boleto_entregue = forms.BooleanField(label='Marque para finalizar boleto.')
 
-#------------------------------ VOIP -------------------------------------------------
+
+#  ------------------------------ VOIP -------------------------------------------------
+
+
 class BoletoVoipEntregueForm(forms.ModelForm):
     class Meta:
         model = ServicoVoip
@@ -175,44 +131,49 @@ class BoletoVoipEntregueForm(forms.ModelForm):
     boleto_entregue = forms.BooleanField(label='Marque para finalizar boleto.')
 
     
-#---------------------------------------------------------------------------------------
+#  ---------------------------------------------------------------------------------------
 
 class EmitirValeRefeicaoForm(forms.ModelForm):
     class Meta:
         model = ValeRefeicao
-        fields = ['nome_funcionario','data_vale']
+        fields = (
+            'nome_funcionario', 'data_vale'
+        )
         widgets = {
 
             'data_vale': forms.DateInput(attrs={'type': 'date'}),
         }
     nome_funcionario = forms.ModelChoiceField(queryset=FuncionariosParaVale.objects.all().order_by('nome_funcionario'))
     data_vale = forms.DateField(widget=NumberInput(attrs={'type': 'date'}))
-    #valor_vale = forms.DecimalField(required=False)
-
 
 
 class AdicionarValorValeRefeicaoForm(forms.ModelForm):
     class Meta:
         model = ValeRefeicao
-        fields = ['valor_vale']
+        fields = (
+            'valor_vale'
+        )
     valor_vale = forms.DecimalField(required=True)
 
 
 class AdicionarPagamentoValeRefeicaoForm(forms.ModelForm):
     class Meta:
         model = ValeRefeicao
-        fields = ['status_pago']
+        fields = (
+            'status_pago'
+        )
     status_pago = forms.BooleanField()
 
 
+#  -------------- Cancellatios -------------------
 
-
-# -------------- Cancellatios -------------------
 class CadastrarCancelamentosForm(forms.ModelForm):
     class Meta:
         required_css_class = 'required'
         model = Cancelamentos
-        fields = ['nome','cpf','endereco','numero' ,'cep','bairro','plano_internet','motivo','data' ]
+        fields = (
+            'nome', 'cpf', 'endereco', 'numero', 'cep', 'bairro', 'plano_internet', 'motivo', 'data'
+        )
 
     nome = forms.CharField()
 
@@ -230,10 +191,10 @@ class CadastrarCancelamentosForm(forms.ModelForm):
         ('149,90', '149,90'),
         ('Voip', 'Voip'),
     )
-    plano_internet = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
-                                          choices=PLANO_INTERNET)
-    motivo = forms.CharField(widget=forms.Textarea(attrs={'rows': 3, 'cols': 40}), label='Motivo do cancelamento:', required=True)
-    data = forms.DateField(widget = forms.DateInput(attrs={"type": "date"}), label='Informe a data do cancelamento:')
+    plano_internet = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=PLANO_INTERNET)
+    motivo = forms.CharField(widget=forms.Textarea(attrs={'rows': 3, 'cols': 40}), label='Motivo do cancelamento:',
+                             required=True)
+    data = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), label='Informe a data do cancelamento:')
 
     def clean(self):
         cleaned_data = super().clean()
@@ -249,7 +210,9 @@ class EditarCancelamentosForm(forms.ModelForm):
     class Meta:
         required_css_class = 'required'
         model = Cancelamentos
-        fields = ['nome', 'cpf', 'endereco', 'numero', 'cep', 'bairro', 'plano_internet', 'motivo', 'data']
+        fields = (
+            'nome', 'cpf', 'endereco', 'numero', 'cep', 'bairro', 'plano_internet', 'motivo', 'data'
+        )
 
     nome = forms.CharField()
 
@@ -271,4 +234,3 @@ class EditarCancelamentosForm(forms.ModelForm):
                                                choices=PLANO_INTERNET)
     motivo = forms.CharField(widget=forms.Textarea(attrs={'rows': 3, 'cols': 40}), label='Motivo do cancelamento:',
                              required=True)
-    #data = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}), label='Informe a data do cancelamento:')

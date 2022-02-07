@@ -36,7 +36,7 @@ urlpatterns = [
 
     path('lista-clientes-voip', ListaClientesVoipView.as_view(), name='lista-clientes-voip')
 
-    #----- Serializer ---------------------
+    #  ----- Serializer ---------------------
     # path( 'api-voip/', ServicoVoip_list)
 
 

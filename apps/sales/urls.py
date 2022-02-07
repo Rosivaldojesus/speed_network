@@ -1,15 +1,10 @@
 from django.urls import path
 from .views import Index
-from .views import CadastroInstalacao, InstalacaoVisualizacao, InstalacaoEditar,\
-    InstalacaoAgendar, InstalacaoAberta, InstalacaoAgendada, InstalacaoFinalizar,\
-    InstalacaoConcluida, InstalacaoSemBoleto, InstalacaoFinalizadaSemBoleto,\
-    FinalizarEntregaBoleto, InstalacaoDefinirTecnico, VendasInstalacao, \
-    InstalacaoConcluidaVendedores, DeletarInstalacaoAgendada, ClientesVoip,\
-    Voip, ValeRefeicoes, EmitirValeRefeicaoCreate, AdicionarValorVale, \
-    AdicionarNomeParaValeCreate, AdicionarPagamentoVale,\
-    VoipFinalizadoSemBoleto, CancelamentosUpdateView
-
-
+from .views import CadastroInstalacao, InstalacaoVisualizacao, InstalacaoEditar, InstalacaoAgendar, InstalacaoAberta,\
+    InstalacaoAgendada, InstalacaoFinalizar, InstalacaoConcluida, InstalacaoSemBoleto, InstalacaoFinalizadaSemBoleto,\
+    FinalizarEntregaBoleto, InstalacaoDefinirTecnico, VendasInstalacao, InstalacaoConcluidaVendedores,\
+    DeletarInstalacaoAgendada, ClientesVoip, Voip, ValeRefeicoes, EmitirValeRefeicaoCreate, AdicionarValorVale, \
+    AdicionarNomeParaValeCreate, AdicionarPagamentoVale, VoipFinalizadoSemBoleto, CancelamentosUpdateView
 from .views import CancelamentosCreateView, CancelamentosListView
 
 
@@ -48,12 +43,12 @@ urlpatterns = [
     path('adicionar_nome-para-vale/', AdicionarNomeParaValeCreate.as_view(), name='adicionar_nome-para-vale'),
 
     # ------------- Cancellations ----------------
+
     path('criar-cancelamento/', CancelamentosCreateView.as_view(), name='criar-cancelamento'),
     path('lista-cancelamentos/', CancelamentosListView.as_view(), name='lista-cancelamentos'),
+
     # UpdateView
+
     path('editar-cancelamento/<int:pk>', CancelamentosUpdateView.as_view(), name='editar-cancelamento'),
 
-
-
-
-    ]
+]

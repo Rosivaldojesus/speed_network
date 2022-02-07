@@ -1,24 +1,36 @@
-from django.db.models import Sum, Q
+from django.db.models import Q
 from django.shortcuts import render
 from .models import Produto
-from .models import EntradaProduto, SaidaProduto, TotalProdutos
+from .models import EntradaProduto, SaidaProduto
 
 # Create your views here.
+
+
 def Index(request):
     produtos = Produto.objects.all()
     queryset = request.GET.get('q')
     if queryset:
         produtos = Produto.objects.filter(
             Q(nome_produto__icontains=queryset) |
-            Q(marca_produto__icontains=queryset)|
+            Q(marca_produto__icontains=queryset) |
             Q(modelo_produto__icontains=queryset))
-    return render(request, 'stock/indexxx.html', {'produtos': produtos})
+    context = {
+        'produtos': produtos
+    }
+    return render(request, 'stock/index.html', context)
+
 
 def EntradaProdutos(request):
     entradas = EntradaProduto.objects.all()
-    return render(request, 'stock/entrada-produtos.html',{'entradas':entradas})
+    context = {
+        'entradas': entradas
+    }
+    return render(request, 'stock/entrada-produtos.html', context)
 
 
 def SaidaProdutos(request):
     saidas = SaidaProduto.objects.all()
-    return render(request, 'stock/saida-produtos.html',{'saidas':saidas} )
+    context = {
+        'saidas': saidas
+    }
+    return render(request, 'stock/saida-produtos.html', context)

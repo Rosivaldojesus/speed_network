@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+
+
 class ServicoVoip(models.Model):
     nome_usuario_voip = models.CharField(max_length=255, blank=True, null=True, verbose_name='Cliente Voip')
     cpf_usuario_voip = models.CharField(max_length=50, blank=True, null=True, verbose_name='CPF')
@@ -13,7 +15,8 @@ class ServicoVoip(models.Model):
     portabilidade_voip = models.BooleanField(default=False, verbose_name='Portabilidade')
     portabilidade_analise = models.BooleanField(default=False, verbose_name='Portabilidade em Análise')
     finalizado_voip = models.BooleanField(default=False, verbose_name='Finalizado')
-    funcionario_reserva_voip = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='funcionário_reserva', blank=True, null=True)
+    funcionario_reserva_voip = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='funcionário_reserva',
+                                                 blank=True, null=True)
     boleto_entregue = models.BooleanField(default=False)
     observacao_voip = models.TextField(blank=True, null=True, verbose_name='Observação')
 

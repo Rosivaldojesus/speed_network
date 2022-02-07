@@ -12,6 +12,8 @@ class Manuais(models.Model):
     nome_manual = models.CharField(max_length=255)
     texto_manual = RichTextField()
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name_plural = 'Manuais'
 
@@ -24,8 +26,9 @@ class SenhasEquipamentos(models.Model):
     ip_equipamento = models.CharField(max_length=100, blank=True, null=True)
     login = models.CharField(max_length=100, blank=True, null=True)
     senha = models.CharField(max_length=100, blank=True, null=True)
-
     fabricante = models.ForeignKey(FabricanteEquipamentos, on_delete=models.DO_NOTHING)
+
+    objects = models.Manager()
 
     class Meta:
         verbose_name_plural = 'Senhas Equipamentos'
@@ -45,6 +48,8 @@ class SenhasPorEquipamentos(models.Model):
     patrimonio_equipamento = models.DecimalField(max_digits=8, decimal_places=0, default=0)
     data_cadastro = models.DateTimeField(default=timezone.now)
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name_plural = 'Senhas por Equipamentos'
 
@@ -56,9 +61,10 @@ class GerarResultadosDiarios(models.Model):
     quantidade_instalacao = models.ForeignKey(Instalacao, on_delete=models.DO_NOTHING)
     quantidade_servico = models.ForeignKey(Servico, on_delete=models.DO_NOTHING)
 
+    objects = models.Manager()
+
     class Meta:
         verbose_name_plural = 'Gerar Resultados Diários'
 
     def __str__(self):
         return "{}".format(self.quantidade_servico)
-
