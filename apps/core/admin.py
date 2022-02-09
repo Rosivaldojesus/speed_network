@@ -44,8 +44,6 @@ class SenhasPorEquipamentosAdmin(admin.ModelAdmin):
 admin.site.register(SenhasPorEquipamentos, SenhasPorEquipamentosAdmin)
 
 
-
-
 admin.site.site_header = "Administração - Speed Network Telecom"
 admin.site.site_title = "Speed Network Telecom"
 admin.site.index_title = "Administração do Sistema"

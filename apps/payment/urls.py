@@ -14,6 +14,8 @@ from .views import IndexTemplateView, CustoMensalCategoriaView, FluxoEntradaSaid
 
 from .views import EditarPagamentoAgendadoView
 
+from .views import PagamentoDetailView
+
 
 urlpatterns = [
     #  Refatorado
@@ -31,6 +33,8 @@ urlpatterns = [
     path('lista-pagamentos/', ListaPagamentos, name='lista_pagamentos'),
     path('editar-pagamento/<int:id>', EditarPagamento, name='editar_pagamento'),
     path('agendar-pagamento/', AgendarPagamento, name='agendar_pagamento'),
+
+    path('detalhes-pagamento/<int:pk>/', PagamentoDetailView.as_view(), name='detalhes_pagamento'),
 
 
 

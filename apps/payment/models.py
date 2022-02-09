@@ -42,6 +42,7 @@ class Pagamento(models.Model):
     data_pagamento = models.DateField()
     categoria = models.ForeignKey(CategoriaPagamento, on_delete=models.DO_NOTHING)
     status_pago = models.BooleanField(default=False, verbose_name='Pago')
+    informacao_pagamento = models.CharField(max_length=255, blank=True, null=True)
 
     objects = models.Manager()
 

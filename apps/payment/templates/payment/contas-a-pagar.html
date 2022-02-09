@@ -4,6 +4,14 @@
 
 {% block title %} .:: Contas a Pagar {% endblock %}
 
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
 {% block main %}
 <div class="container">
     <!-- Título da pagina -->
@@ -93,6 +101,7 @@
                   <th scope="col">Valor</th>
                   <th scope="col">Banco</th>
                   <th scope="col">Data</th>
+                  <th scope="col">Infor.</th>
                   <th scope="col">Pagar</th>
                 </tr>
               </thead>
@@ -103,6 +112,15 @@
                   <td>{{ valor.valor_pagamento}}</td>
                   <td>{{ valor.origem_valor_pagamento}}</td>
                   <td>{{ valor.data_pagamento|date:"d-M-Y"  }}</td>
+                  <td>
+                    {% if valor.informacao_pagamento is not null %}
+
+                      <a href="{% url 'detalhes_pagamento' valor.id %}"><i class="large barcode icon"></i></a>
+
+                    {% else %}
+
+                    {% endif %}
+                  </td>
                   <td>
                     <a href="/pagamentos/comfirmar-pagamento/{{ valor.id }}" title="Pagar"><i class="fas fa-money-check-alt fa-lg"></i></a>
                   </td>
@@ -123,6 +141,7 @@
                   <th scope="col">Valor</th>
                   <th scope="col">Banco</th>
                   <th scope="col">Data</th>
+                  <th scope="col">Infor.</th>
                   <th scope="col">Pagar</th>
                 </tr>
               </thead>
@@ -133,6 +152,15 @@
                   <td>{{ valor.valor_pagamento}}</td>
                   <td>{{ valor.origem_valor_pagamento}}</td>
                   <td>{{ valor.data_pagamento|date:"d-M-Y"  }}</td>
+                  <td>
+                    {% if valor.informacao_pagamento is not null %}
+
+                      <a href="{% url 'detalhes_pagamento' valor.id %}"><i class="large barcode icon"></i></a>
+
+                    {% else %}
+
+                    {% endif %}
+                  </td>
                   <td>
                     <a href="/pagamentos/comfirmar-pagamento/{{ valor.id }}" title="Pagar"><i class="fas fa-money-check-alt fa-lg"></i></a>
                   </td>

@@ -17,6 +17,7 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import UpdateView
 from dateutil.relativedelta import relativedelta
 from .models import FluxoEntradaSaidaMensal
+from django.views.generic.detail import DetailView
 
 
 # Create your views here.
@@ -223,6 +224,17 @@ class EditarPagamentoAgendadoView(UpdateView):
     fields = '__all__'
     template_name = 'payment/atualizar-pagamento.html'
     success_url = '/pagamentos/contas-a-pagar/'
+
+
+class PagamentoDetailView(DetailView):
+
+    model = Pagamento
+    template_name = 'payment/detalhes-pagamento.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
 
 #  ====================================================================================================================
 #  ====================================================================================================================
