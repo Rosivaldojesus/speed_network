@@ -60,7 +60,9 @@
                     <th scope="col">Banco</th>
                     <th scope="col">Data</th>
                     <th scope="col">Categoria</th>
+
                     <th scope="col">Editar</th>
+                    <th scope="col">Infor.</th>
                     <th scope="col">Pagar</th>
                 </tr>
                 </thead>
@@ -74,9 +76,21 @@
                     <td>{{ conta.data_pagamento|date:'j-M-Y' }}</td>
                     <td>{{ conta.categoria }}</td>
                     <td> <a href="{% url 'editar_pagamento_agendado' conta.id  %}"> Editar </a> </td>
+
+                    <td>
+                    {% if conta.informacao_pagamento is not null %}
+
+                      <a href="{% url 'detalhes_pagamento' conta.id %}"><i class="large barcode icon"></i></a>
+
+                    {% else %}
+
+                    {% endif %}
+                  </td>
+
+
                     <td>
                         <a href="/pagamentos/comfirmar-pagamento/{{ conta.id }}" title="Pagar"><i class="fas fa-money-check-alt fa-lg"></i></a>
-                      </td>
+                    </td>
                 </tr>
                 {% endfor %}
                 </tbody>
