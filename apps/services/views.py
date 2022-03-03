@@ -153,9 +153,9 @@ def EditarServicoAgendado(request, id=None):
 
 
 def ServicosAgendados(request):
-    agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').\
+    agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').filter(status_analise='False').\
         order_by('data_agendada', 'hora_agendada')
-    quant_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
+    quant_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').filter(status_analise='False').count()
 
     queryset = request.GET.get('q')
     startdate = request.GET.get('date')
@@ -163,12 +163,12 @@ def ServicosAgendados(request):
     if queryset:
         agendados = Servico.objects.filter(Q(contato_servico__icontains=queryset)).filter(status_concluido='False')
         quant_agendados = Servico.objects.filter(Q(contato_servico__icontains=queryset)).\
-            filter(status_concluido='False').count()
+            filter(status_concluido='False').filter(status_analise='False').count()
 
     if startdate:
-        agendados = Servico.objects.filter(Q(data_agendada__exact=startdate)).filter(status_concluido='False')
+        agendados = Servico.objects.filter(Q(data_agendada__exact=startdate)).filter(status_concluido='False').filter(status_analise='False')
         quant_agendados = Servico.objects.filter(Q(data_agendada__icontains=startdate)).\
-            filter(status_concluido='False').count()
+            filter(status_concluido='False').filter(status_analise='False').count()
 
     context = {
         'agendados': agendados,
