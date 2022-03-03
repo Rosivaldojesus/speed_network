@@ -170,9 +170,13 @@ def ServicosAgendados(request):
         quant_agendados = Servico.objects.filter(Q(data_agendada__icontains=startdate)).\
             filter(status_concluido='False').filter(status_analise='False').count()
 
+    quant_retiradas_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False'). \
+        filter(status_analise='True').count()
+
     context = {
         'agendados': agendados,
-        'quant_agendados': quant_agendados
+        'quant_agendados': quant_agendados,
+        'quant_retiradas_agendados': quant_retiradas_agendados,
     }
     return render(request, 'services/servicos-agendados.html', context)
 
