@@ -17,7 +17,7 @@ def Index(request):
     contarAbertos = Servico.objects.all().filter().filter(status_agendado='False').\
         filter(status_concluido='False').count()
     contarAgendados = Servico.objects.filter(status_agendado='True').\
-        filter(status_concluido='False').filter(status_analise='True').count()
+        filter(status_concluido='False').filter(status_analise='False').count()
     contarFinalizados = Servico.objects.all().filter(status_concluido='True').count()
     diarios = Servico.objects.all().filter(status_concluido='True').values('data_finalizacao').\
         annotate(number=Count('contato_servico'))
