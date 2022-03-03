@@ -52,6 +52,9 @@ def Index(request):
     quant_serv_sinal_alto = Servico.objects.filter(categoria=9).count()
     quant_trocar_senha = Servico.objects.filter(categoria=10).count()
 
+    quant_retiradas_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False'). \
+        filter(status_analise='True').count()
+
     context = {
         'contarAbertos': contarAbertos,
         'contarFinalizados': contarFinalizados,
@@ -80,7 +83,11 @@ def Index(request):
         'quant_serv_voip': quant_serv_voip,
         'quant_serv_sinal_alto': quant_serv_sinal_alto,
         'quant_outros': quant_outros,
-        'quant_trocar_senha': quant_trocar_senha
+        'quant_trocar_senha': quant_trocar_senha,
+
+        'quant_retiradas_agendados': quant_retiradas_agendados,
+
+
     }
     return render(request, 'services/index.html', context)
 
@@ -173,7 +180,7 @@ def ServicosAgendados(request):
 def servicos_retiradas_agendados(request):
     agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').\
         filter(status_analise='True').order_by('data_agendada', 'hora_agendada')
-    quant_agendados = not Servico.objects.filter(status_agendado='True').filter(status_concluido='False').\
+    quant_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').\
     filter(status_analise='True').count()
 
     queryset = request.GET.get('q')

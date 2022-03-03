@@ -10,7 +10,7 @@
 
 </body>
 <div class="container">
-  <h5 class="mt-3 mb-3"><span class="badge badge-warning badge-pill">{{quant_agendados}} </span> Retiradas em Análise</h5>
+  <h5 class="mt-3 mb-3"><span class="badge badge-warning badge-pill">{{ quant_agendados }} </span> Retiradas em Análise</h5>
 
   {% if messages %}
   {% for message in messages %}
@@ -88,6 +88,7 @@
       <h6 class="card-title"><strong>Cliente: </strong> {{ agendado.contato_servico}}</h6>
       <h6 class="card-title"><strong>O que: </strong> {{ agendado.servico_para_executar}}</h6>
       <p class="card-text"><strong>Onde: </strong>{{ agendado.endereco_servico}}</p>
+      <p class="card-text"><strong>Observações: </strong>{{ agendado.observacao}}</p>
       <div align="right">
         <tr>
 
