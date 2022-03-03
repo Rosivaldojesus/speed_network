@@ -41,7 +41,8 @@ class EditarAgendarServicoForm(forms.ModelForm):
     class Meta:
         model = Servico
         fields = [
-            'status_agendado', 'servico_para_executar', 'data_agendada', 'hora_agendada', 'categoria', 'status_analise'
+            'status_agendado', 'servico_para_executar', 'data_agendada', 'hora_agendada', 'categoria', 'status_analise',
+            'observacao'
         ]
         widgets = {
             'data_agendada': DatePickerInput(),
@@ -51,6 +52,9 @@ class EditarAgendarServicoForm(forms.ModelForm):
     categoria = forms.ModelChoiceField(queryset=CategoriaServico.objects.all())
     servico_para_executar = forms.CharField(widget=forms.Textarea(attrs={'rows': 3, 'cols': 40}),
                                             label='Serviço a fazer'
+                                            )
+    observacao = forms.CharField(widget=forms.Textarea(attrs={'rows': 3, 'cols': 40}),
+                                            label='Observações', required=False
                                             )
 
 

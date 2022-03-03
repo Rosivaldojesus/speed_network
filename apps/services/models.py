@@ -53,6 +53,8 @@ class Servico(models.Model):
                                        verbose_name='Plano Instalado')
     status_analise = models.BooleanField(default=False, verbose_name='Em Análise')
 
+    observacao = models.TextField(blank=True, null=True, verbose_name='Observações')
+
     objects = models.Manager()
 
     class Meta:
