@@ -20,6 +20,12 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import UpdateView
 
 
+
+from twilio.rest import Client
+
+
+
+
 # Create your views here.
 
 
@@ -206,13 +212,16 @@ def InstalacaoConcluidaVendedores(request):
     return render(request, 'sales/instalacao-concluida-vendedores.html', context)
 
 
-@login_required(login_url='/login/')
+#@login_required(login_url='/login/')
 def CadastroInstalacao(request):
+
     form = InstalacaoCreateForm(request.POST)
     if form.is_valid():
         obj = form.save(commit=False)
         obj.instalacao_criado_por = request.user
         obj.save()
+
+
         messages.success(request, 'Instalação cadastrada com sucesso.')
         return redirect('/vendas/')
     else:

@@ -1,3 +1,4 @@
+import io
 from datetime import datetime, date, timedelta
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
@@ -169,6 +170,39 @@ def ServicosAgendados(request):
     return render(request, 'services/servicos-agendados.html', context)
 
 
+def servicos_retiradas_agendados(request):
+    agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').\
+        filter(status_analise='True').order_by('data_agendada', 'hora_agendada')
+    quant_agendados = not Servico.objects.filter(status_agendado='True').filter(status_concluido='False').\
+    filter(status_analise='True').count()
+
+    queryset = request.GET.get('q')
+    startdate = request.GET.get('date')
+
+    if queryset:
+        agendados = Servico.objects.filter(Q(contato_servico__icontains=queryset)).filter(status_concluido='False').\
+            filter(status_analise='True')
+        quant_agendados = Servico.objects.filter(Q(contato_servico__icontains=queryset)).\
+            filter(status_concluido='False').filter(status_analise='True').count()
+
+    if startdate:
+        agendados = Servico.objects.filter(Q(data_agendada__exact=startdate)).filter(status_concluido='False').\
+            filter(status_analise='True')
+        quant_agendados = Servico.objects.filter(Q(data_agendada__icontains=startdate)).\
+            filter(status_concluido='False').filter(status_analise='True').count()
+
+    context = {
+        'agendados': agendados,
+        'quant_agendados': quant_agendados
+    }
+    return render(request, 'services/servicos-de-retiradas-agendados.html', context)
+
+
+
+
+
+
+
 def ServicosFinalizados(request):
     finalizados = Servico.objects.filter(status_concluido='True').order_by('-id')
     queryset = request.GET.get('q')
@@ -280,3 +314,41 @@ class ReservarVoipPortabilidadeCreate(CreateView):
     model = ServicoVoip
     fields = ['nome_usuario_voip', 'cpf_usuario_voip']
     success_url = '/servicos/'
+
+
+#  =============== PDF ======================
+from reportlab.pdfgen import canvas
+from django.http import HttpResponse
+
+def servicos_de_retiradas(request):
+    # Crie o objeto HttpResponse com o cabeçalho de PDF apropriado.
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename=retiradas.pdf'
+
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer)
+
+    # Crie o objeto PDF, usando o objeto response como seu "arquivo".
+    # p = canvas.Canvas(response)
+
+    # Desenhe coisas no PDF. Aqui é onde a geração do PDF acontece.
+    # Veja a documentação do ReportLab para a lista completa de
+    # funcionalidades.
+    p.drawString(10, 100, "Hello world.")
+
+    retiradas = Servico.objects.all()
+
+    y = 750
+    for retirada in retiradas:
+        p.drawString(10, y, retirada)
+        y -= 20
+
+    # Feche o objeto PDF, e está feito.
+    p.showPage()
+    p.save()
+
+    pdf = buffer.getvalue()
+    buffer.close()
+    response.write(pdf)
+
+    return response

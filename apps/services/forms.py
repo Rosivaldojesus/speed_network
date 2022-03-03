@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import DateInput
+from bootstrap_datepicker_plus import DatePickerInput
 from .models import Servico, ServicoVoip
 from ..components.models import PlanosInternet
 from ..services.models import CategoriaServico
@@ -39,11 +41,17 @@ class EditarAgendarServicoForm(forms.ModelForm):
     class Meta:
         model = Servico
         fields = [
-            'status_agendado', 'servico_para_executar', 'data_agendada', 'hora_agendada', 'categoria'
+            'status_agendado', 'servico_para_executar', 'data_agendada', 'hora_agendada', 'categoria', 'status_analise'
         ]
-    data_agendada = forms.DateField()
+        widgets = {
+            'data_agendada': DatePickerInput(),
+        }
+
     hora_agendada = forms.TimeField()
     categoria = forms.ModelChoiceField(queryset=CategoriaServico.objects.all())
+    servico_para_executar = forms.CharField(widget=forms.Textarea(attrs={'rows': 3, 'cols': 40}),
+                                            label='Serviço a fazer'
+                                            )
 
 
 class FinalizarServicoForm(forms.ModelForm):

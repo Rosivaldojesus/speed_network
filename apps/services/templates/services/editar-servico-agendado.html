@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
 
 {% block main %}
 <div class="container">
@@ -10,6 +13,10 @@
 
         {{ form | crispy }}
 	    {{ form.media }}
+        Aqui
+      {{ form.data_agendada }}
+
+      <p>Date: <input name='date' type="text" id="id_date"></p>
 
 	    <input type="submit" class="btn btn-block btn-primary" value="Cadastrar">
 	</form>

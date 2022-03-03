@@ -3,6 +3,7 @@ from .views import Index, CadastroServico, AgendarServico, ServicosAbertos, Serv
     EditarServico, RemoverServico, EditarServicoAgendado, FinalizarServico, ServicoVisualizar, ServicosVoip,\
     ServicosVoipDisponiveis, ReservarVoip, ServicosVoipReservados, DeletarServico, ReservarVoipPortabilidadeCreate
 
+from .views import servicos_de_retiradas, servicos_retiradas_agendados
 
 urlpatterns = [
     path('', Index),
@@ -25,5 +26,11 @@ urlpatterns = [
     path('deletar-servico/<int:id>', DeletarServico),
 
     path('reservar-voip-portabilidade/', ReservarVoipPortabilidadeCreate.as_view(), name='reservar-voip-portabilidade'),
+
+
+    path('servicos-de-retiradas-agendados/', servicos_retiradas_agendados, name='servicos-de-retiradas-agendados'),
+
+    path('servicos-de-retiradas/', servicos_de_retiradas, name='servicos-de-retiradas'),
+
 
 ]

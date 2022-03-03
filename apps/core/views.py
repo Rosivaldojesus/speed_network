@@ -15,8 +15,26 @@ from django.db.models import Count
 from .forms import SenhasPorEquipamentosForm
 from django.http import HttpResponse
 import csv
+from .forms import UserForm
 
 # Create your views here.
+def add_user(request):
+    template_name = 'core/add-user.html'
+    context = {}
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            f = form.save(commit=False)
+            f.set_password(f.password)
+            f.save()
+            messages.success(request, 'Usuário criado com sucesso!!!')
+            return redirect('/novo-usuario/')
+        context['form'] = form
+    else:
+        form = UserForm()
+    context['form'] = form
+    return render(request, template_name, context)
+
 
 
 def login_user(request):

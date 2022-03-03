@@ -51,6 +51,7 @@ class Servico(models.Model):
                                      null=True)
     plano_internet = models.ForeignKey(PlanosInternet, on_delete=models.DO_NOTHING, blank=True, null=True,
                                        verbose_name='Plano Instalado')
+    status_analise = models.BooleanField(default=False, verbose_name='Em Análise')
 
     objects = models.Manager()
 

@@ -61,7 +61,12 @@ INSTALLED_APPS = [
     'widget_tweaks',
     #'rest_framework',
     'django_matplotlib',
-    'chartjs'
+    'chartjs',
+
+    "bootstrap4",
+
+    'bootstrap_datepicker_plus',
+
 ]
 
 MIDDLEWARE = [

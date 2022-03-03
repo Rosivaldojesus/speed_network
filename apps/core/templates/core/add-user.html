@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block main %}
+    <div class="container">
+
+        <div class="mt-4 mb-4">
+            <h1>Novo Usuário</h1>
+        </div>
+
+        <!-- INÍCIO Messagens -->
+        <div>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+<!-- FIM Messagens -->
+
+<div class="mb-4">
+  <form class="ui form" action="" method="POST">{% csrf_token %}
+        <div >
+            <label>Primeiro nome:</label>
+            {{form.first_name}}
+            {% if form.first_name.errors %}
+                <div class="">
+                    <div class="text-danger" role="alert">{{form.first_name.errors }}</div>
+                </div>
+            {% endif %} 
+        </div>
+
+        <div>
+            <label>Sobrenome:</label>
+            {{form.last_name}}
+            {% if form.last_name.errors %}
+                <div class="">
+                    <div class="text-danger" role="alert">{{form.last_name.errors }}</div>
+                </div>
+            {% endif %} 
+        </div>
+
+        <div>
+            <label>Usuário:</label>
+            {{form.username}}
+            {% if form.username.errors %}
+                <div class="">
+                    <div class="text-danger" role="alert">{{form.username.errors }}</div>
+                </div>
+            {% endif %} 
+        </div>
+
+        <div>
+            <label>Senha:</label>
+            {{form.password}}
+            {% if form.password.errors %}
+                <div class="">
+                    <div class="text-danger" role="alert">{{form.password.errors }}</div>
+                </div>
+            {% endif %} 
+        </div>
+
+        <div>
+            <label>E-mail:</label>
+            {{form.email}}
+            {% if form.email.errors %}
+                <div class="">
+                    <div class="text-danger" role="alert">{{form.email.errors }}</div>
+                </div>
+            {% endif %} 
+        </div>
+
+
+      
+
+
+
+
+      <div class="mt-2 mb-2">
+        <button class="ui button" type="submit">Cadastar</button>
+      </div>
+  </form>
+</div>
+
+    </div>
+{% endblock %}

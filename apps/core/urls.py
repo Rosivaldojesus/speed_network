@@ -3,9 +3,16 @@ from .views import Index
 from .views import ManuaisServicos, login_user, submit_login, logout_user
 from .views import Senhas, SenhasPorEquipamento, ManuaisVisualizacao, \
     CadastroSenhasPorEquipamentos, EditarSenhasPorEquipamentos, ExportarSenhasCSV
+from .views import add_user
+
+app_name = 'core'
 
 urlpatterns = [
     path('', Index),
+
+    path('novo-usuario/', add_user, name='add_user'),
+
+
     path('manuais/', ManuaisServicos),
     path('manuais/manuais-visualizacao/', ManuaisVisualizacao),
     path('login/', login_user),
