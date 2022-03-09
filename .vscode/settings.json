@@ -1,6 +1,6 @@
 
 {
-    "window.zoomLevel": 0,
+    "window.zoomLevel": -1,
     "editor.fontSize": 16,
     "python.languageServer": "Pylance", // ms-python.vscode-pylance
     "python.testing.unittestEnabled": false, // ms-python.python
@@ -8,6 +8,16 @@
     "python.testing.pytestArgs": [], // -x to bail
     "python.linting.flake8Enabled": true,
     "python.linting.+mypyEnabled": true,
+
+
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+      },
+
+
+
+
+    "editor.formatOnSave": false,
     "python.linting.pylintArgs": [
       "--load-plugins=pylint_django",
       "--errors-only"

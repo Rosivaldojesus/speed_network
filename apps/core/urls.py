@@ -8,12 +8,17 @@ from .views import add_user
 app_name = 'core'
 
 urlpatterns = [
-    path('', Index),
+    path('', Index, name='core_index'),
+    path('login/', login_user, name='core_login'),
+    path('logout/', logout_user),
+
+
+
     path('novo-usuario/', add_user, name='add_user'),
     path('manuais/', ManuaisServicos),
     path('manuais/manuais-visualizacao/', ManuaisVisualizacao),
-    path('login/', login_user),
-    path('logout/', logout_user),
+
+
     path('login/submit', submit_login),
     path('senhas/', Senhas),
     path('senhas-por-equipamento/', SenhasPorEquipamento),
