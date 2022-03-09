@@ -132,7 +132,7 @@ class ClientesEntregaBoletos(models.Model):
     nome_cliente = models.CharField(max_length=255, blank=True, null=True)
     cpf_cliente = models.CharField(max_length=50, blank=True, null=True)
     forma_entrega = models.ForeignKey(MeiosEntregaBoletos, on_delete=models.DO_NOTHING, blank=True, null=True)
-    data_cadastro = models.DateTimeField(auto_now=True)
+    data_cadastro = models.DateTimeField(auto_now_add=True)
     boleto_assinado = models.BooleanField(default=False)
 
     objects = models.Manager()

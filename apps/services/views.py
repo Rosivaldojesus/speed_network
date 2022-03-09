@@ -8,7 +8,6 @@ from .models import Servico, ServicoVoip
 from django.db.models import Q, Count
 from django.views.generic.edit import CreateView
 from django.db.models.functions import TruncMonth
-
 # Create your views here.
 
 

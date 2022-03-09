@@ -9,10 +9,7 @@ app_name = 'core'
 
 urlpatterns = [
     path('', Index),
-
     path('novo-usuario/', add_user, name='add_user'),
-
-
     path('manuais/', ManuaisServicos),
     path('manuais/manuais-visualizacao/', ManuaisVisualizacao),
     path('login/', login_user),
