@@ -1,4 +1,4 @@
-from django.test import TestCase
+from unittest import TestCase
 from django.urls import reverse
 from django.test import Client
 
@@ -49,3 +49,4 @@ class CoreUrlsTest(TestCase):
     def test_core_editar_senhas_equipamentos_urls_is_correct(self):
         url = reverse('core:editar_senhas_equipamentos', kwargs={'id': 1})
         self.assertEqual(url, '/editar-senhas-equipamentos/1')
+

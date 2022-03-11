@@ -9,12 +9,13 @@
     </div>
 
     <div class="mb-4">
-        <form class="ui form" action="" method="POST">{% csrf_token %}
+<!--       <form class="ui form" action="" method="POST">{% csrf_token %}-->
+        <form action="" method="POST">{% csrf_token %}
             <div class="field">
               <label>Nome do Cliente</label>
                 {{form.nome_cliente}}
                     {% if form.nome_cliente.errors %}
-                        <div class="ui pointing red basic label">
+                        <div>
                             <div class="text-danger" role="alert">{{form.nome_cliente.errors }}</div>
                         </div>
                     {% endif %}
@@ -24,8 +25,8 @@
               <label>CPF do Cliente</label>
               {{form.cpf_cliente}}
                 {% if form.cpf_cliente.errors %}
-                    <div class="ui pointing red basic label">
-                            <div class="text-danger" role="alert">{{form.cpf_cliente.errors }}</div>
+                    <div>
+                        <div class="text-danger" role="alert">{{form.cpf_cliente.errors }}</div>
                     </div>
                 {% endif %}
             </div>
@@ -34,7 +35,7 @@
                 <label>Forma de entrega do boleto</label>
                 {{form.forma_entrega}}
                     {% if form.forma_entrega.errors %}
-                        <div class="ui pointing red basic label">
+                        <div>
                             <div class="text-danger" role="alert">{{form.forma_entrega.errors }}</div>
                         </div>
                     {% endif %}

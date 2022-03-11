@@ -7,12 +7,33 @@
      <div class="container">
          <h5 class="mt-2">Agendar Pagamento</h5>
          <form action="" method="post"> {% csrf_token %}
+            <div class=" card p-4  shadow">
 
-            <div class="mt-10">
-                {{ form | crispy }}
+                <div class="field">
+              <label>Nome do Cliente</label>
+                {{form.motivo_pagamento }}
+                    {% if form.motivo_pagamento.errors %}
+                        <div>
+                            <div class="text-danger" role="alert">{{ form.motivo_pagamento.errors }}</div>
+                        </div>
+                    {% endif %}
             </div>
 
-				<input type="submit" class="btn btn-block btn-primary" value="Agendar pagamento">
+
+<!--                <div class="mt-10">-->
+<!--                {{ form | crispy }}-->
+<!--                </div>-->
+
+
+            </div>
+
+             <div class="mb-4">
+                 <input type="submit" class="btn btn-block btn-primary" value="Agendar pagamento">
+             </div>
+
+
+
+
 		 </form>
      </div>
 
