@@ -3,75 +3,80 @@
 {% load humanize %}
 
 {% block main %}
-<div class="container">
-  <!-- INÍCIO dos campos de Filtros -->
-    <div class="mt-2">
-      <form method="GET">
-			  <div class="row">
-          <div class="form-group col-8">
-            <label>Por motivo:</label>
-            <input type="text" class="form-control" placeholder="Motivo do pagamento" name="motivoPagamento" value="{{ request.GET.motivoPagamento }}">
-          </div>
-  
-          <div class="form-group col-2">
-              <label>Valor:</label>
-              <input type="number" step="any" class="form-control" placeholder="R$" name="valor" value="{{ request.GET.valor }}">
-          </div>
-  
-          <div class="form-group col-2">
-              <label>Por data:</label>
-              <input type="date" class="form-control" placeholder="Data do pagamento" name="data" value="{{ request.GET.data }}">
-          </div>  
 
-        </div>
 
-        <div class="row">
-          <div class="form-group col-6">
-            <label>Banco:</label>
-            <select class="form-control" size="7" name="banco" value="{{ request.GET.banco }}">
-              <optgroup label="Banco">
-                <option value="1">Bradesco</option>
-                <option value="2">Itaú</option>
-              </optgroup>
-             
-              <optgroup label="Meios">
-                <option value="3">cartao de debito bradesco</option>
-                <option value="4">cartao de credito Bradesco</option>
-                <option value="3">cartao de debito Itau</option>
-                <option value="4">Dinheiro</option>
-              </optgroup>
-            </select>
-          </div>
-          <div class="form-group col-6">
-            <label>Período:</label>
-            <div class="card">
-              <div class="form-group col-md-12">
-                <label for="inputCity">Data Inicial</label>
-                <input type="date" class="form-control" name="startdate" value="{{ request.GET.startdate }}">
-              </div>
-    
-              <div class="form-group col-md-12">
-                <label for="inputZip">Data Final</label>
-                <input type="date" class="form-control" name="enddate" value="{{ request.GET.enddate}}">
-              </div>
-            </div>
-          </div>
-        </div>
+<div class="container-xl">
 
-        
-
-        <div class="row">
-          <div class="form-group col-12">
-            <button class=" form-control btn-success">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-		  </form>
+	<div class="mt-4 mb-4">
+        <h1 class="display-5">Lista dos pagamentos</h1>
     </div>
+
+
+
+  <!-- INÍCIO dos campos de Filtros -->
+    <div class="mt-2 mb-4">
+		<div class="shadow p-4">
+		
+			<form method="GET">
+		  
+				<div class="row">
+					<div class="col-md-6">
+						<label>Por motivo:</label>
+						<input type="text" class="form-control" placeholder="Motivo do pagamento" name="motivoPagamento" value="{{ request.GET.motivoPagamento }}">
+					</div>
+					<div class="col-md-3">
+						<label>Valor:</label>
+						<input type="number" step="any" class="form-control" placeholder="R$" name="valor" value="{{ request.GET.valor }}">
+					</div>
+					<div class="col-md-3">
+						<label>Por data:</label>
+						<input type="date" class="form-control" placeholder="Data do pagamento" name="data" value="{{ request.GET.data }}">
+					</div>
+				</div>
+				
+				<div class="row mt-2">
+				
+					<div class="col-md-6">
+					  <div class="card-header">
+						Por Banco
+					  </div>
+						<select class="form-control" size="7" name="banco" value="{{ request.GET.banco }}">
+							<optgroup label="Banco">
+								<option value="1">Bradesco</option>
+								<option value="2">Itaú</option>
+							</optgroup>
+							 
+							<optgroup label="Meios">
+								<option value="3">cartao de debito bradesco</option>
+								<option value="4">cartao de credito Bradesco</option>
+								<option value="3">cartao de debito Itau</option>
+								<option value="4">Dinheiro</option>
+							</optgroup>
+						</select>
+					</div>
+
+					<div class="col-md-6">
+						<div class="card-header">
+						Período
+						</div>
+							<div class="form-group col-md-12">
+							<label for="inputCity">Data Inicial</label>
+							<input type="date" class="form-control" name="startdate" value="{{ request.GET.startdate }}">
+						</div>
+			
+						<div class="form-group col-md-12">
+							<label for="inputZip">Data Final</label>
+							<input type="date" class="form-control" name="enddate" value="{{ request.GET.enddate}}">
+						</div>
+					</div>
+				</div>
+				
+				<div align="right">
+					<button type="submit" class="btn btn-success">Executar Pesquisa</button>
+				</div>
+			</form>
+		</div>
+	</div>
     <!-- FIM dos campos de Filtros -->
 
 <!--=================================================================================-->
@@ -162,17 +167,11 @@
             {% endfor %}
           </tbody>
         </table>
-
-
-
-
-
-
-
-
-
-
-  <div>
+	<div>
+  
+  
+  
+  
   <nav aria-label="...">
     <ul class="pagination justify-content-center">
       <li class="page-item">
