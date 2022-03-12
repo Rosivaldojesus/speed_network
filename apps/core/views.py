@@ -36,7 +36,6 @@ def add_user(request):
     return render(request, template_name, context)
 
 
-
 def login_user(request):
     return render(request, 'core/login.html')
 
@@ -264,7 +263,7 @@ def SenhasPorEquipamento(request):
             filter(Q(codigo_equipamento__icontains=queryset) | Q(sn_equipamento__icontains=queryset))
 
     elif patrimonio:
-        senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__icontains=patrimonio))
+        senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__contains=patrimonio))
 
     context = {
         'senhasPorEquipamentos': senhasPorEquipamentos,
