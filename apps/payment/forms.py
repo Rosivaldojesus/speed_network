@@ -1,21 +1,50 @@
 from django import forms
 from ..components.models import Bancos
-from .models import Pagamento, FluxoEntradasSaidas, MeiosEntregaBoletos
+from .models import Pagamento, FluxoEntradasSaidas, MeiosEntregaBoletos, TipoCusto, OrigemValores
 from .models import DestinoValoresBoletos
 from .models import ClientesEntregaBoletos
-from django.core.exceptions import ValidationError
 
 
 class CadastarPagamentoForm(forms.ModelForm):
+    motivo_pagamento = forms.CharField(
+        label='Motivo desse pagamento',
+        help_text=(
+            '- informe para onde vai esse pagamento'
+        ),
+        error_messages={
+            'required': "Please Enter your Name",
+            'min_lenght': 'Nome curto',
+        }, required=False
+    )
+
+    valor_pagamento = forms.CharField(
+        label='Valor a ser pago R$:',
+        error_messages={
+            'required': 'Qual é valor'
+        }
+    )
+
+    data_pagamento = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
+
     class Meta:
         model = Pagamento
         fields = [
             'motivo_pagamento', 'valor_pagamento', 'origem_valor_pagamento',
-            'tipo_custo_pagamento', 'data_pagamento', 'categoria', 'status_pago',
+            'tipo_custo_pagamento', 'data_pagamento', 'categoria',
         ]
 
-    data_pagamento = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
-    status_pago = forms.BooleanField(required=True, initial=True, label='Confirmar pagamento')
+    # method for cleaning the data
+    def clean(self):
+        super(CadastarPagamentoForm, self).clean()
+
+        # getting username and password from cleaned_data
+        motivo_pagamento = self.cleaned_data.get('motivo_pagamento')
+
+        # validating the username and password
+        if len(motivo_pagamento) < 4:
+            self._errors['motivo_pagamento'] = self.error_class(['A minimum of 4 characters is required'])
+
+        return self.cleaned_data
 
 
 class EditarPagamentoForm(forms.ModelForm):
@@ -27,38 +56,49 @@ class EditarPagamentoForm(forms.ModelForm):
         ]
 
 
- 
-
-
-
 class AgendarPagamentoForm(forms.ModelForm):
+    motivo_pagamento = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'Ex: Boleto do link'}),
+    )
+    valor_pagamento = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'Ex: 385,50'}),
+
+    )
+    informacao_pagamento = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'Código de barras, Conta bancária, Chave PIX'}),
+        label='Informações para pagamento',
+        help_text='Caso haja código de barras, conta bancária, Chave Pix e etc',
+        required=False
+    )
+    origem_valor_pagamento = forms.ModelChoiceField(
+        queryset=OrigemValores.objects.all(),
+        help_text='Origem do dinheiro Ex: Banco NET.'
+    )
+    tipo_custo_pagamento = forms.ModelChoiceField(
+        queryset=TipoCusto.objects.all(),
+        help_text='Referente a recorrência deste custo.'
+    )
+    data_pagamento = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
+
     class Meta:
         model = Pagamento
-        fields = [
-            'motivo_pagamento',
-        ]
-        # fields = [
-        #     'motivo_pagamento', 'valor_pagamento', 'informacao_pagamento', 'origem_valor_pagamento',
-        #     'tipo_custo_pagamento', 'data_pagamento', 'categoria',
-        # ]
 
-    data_pagamento = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
+        fields = [
+            'motivo_pagamento', 'valor_pagamento', 'informacao_pagamento', 'origem_valor_pagamento',
+            'tipo_custo_pagamento', 'data_pagamento', 'categoria',
+        ]
 
     def clean(self):
         super(AgendarPagamentoForm, self).clean()
 
+        # getting username and password from cleaned_data
         motivo_pagamento = self.cleaned_data.get('motivo_pagamento')
 
-
-        if not motivo_pagamento:
-            self._errors['motivo_pagamento'] = self.error_class(['Não pode ser vazio'])
-
+        # validating the username and password
+        if len(motivo_pagamento) < 4:
+            self._errors['motivo_pagamento'] = self.error_class(['Descreva melhor o gasto.'])
 
         return self.cleaned_data
-
-
-
-
 
 
 class ComfirmarPagamentoForm(forms.ModelForm):
@@ -139,5 +179,5 @@ class EditarClientesEntregaBoletosForm(forms.ModelForm):
         ]
     nome_cliente = forms.CharField()
     cpf_cliente = forms.CharField()
-    forma_entrega = forms.BooleanField()
+    # forma_entrega = forms.BooleanField()
     forma_entrega = forms.ModelChoiceField(queryset=MeiosEntregaBoletos.objects.all())

@@ -2,14 +2,52 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+
 {% block main %}
-<div class="container">
-    <h2>Adicionar pagamento</h2>
+<div class="container-xl">
+	
+	<div class="mt-4 mb-4">
+        <h1 class="display-5">Adicionar pagamento</h1>
+    </div>
+	
 
     <form action="" method="post"> {% csrf_token %}
-        {{ form | crispy }}
-	    {{ form.media }}
-	    <input type="submit" class="btn btn-block btn-primary" value="Cadastrar">
+		
+		<div class="shadow p-4">
+			<div class="form-row">
+				<div class="form-group col-md-12 mb-0">
+				{{ form.motivo_pagamento|as_crispy_field }}
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-4 mb-0">
+				{{ form.valor_pagamento|as_crispy_field }}
+				</div>
+				<div class="form-group col-md-4 mb-0">
+				{{ form.origem_valor_pagamento|as_crispy_field }}
+				</div>
+				<div class="form-group col-md-4 mb-0">
+				{{ form.tipo_custo_pagamento|as_crispy_field }}
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-4 mb-0">
+				{{ form.data_pagamento|as_crispy_field }}
+				</div>
+				<div class="form-group col-md-8 mb-0">
+				{{ form.categoria|as_crispy_field }}
+				</div>
+			</div>
+		</div>
+	
+        <div class="mt-2 mb-4">
+            <input type="submit" class="btn  btn-primary" value="Adicionar Pagamento">
+			<a href="/pagamentos/" class="btn  btn-secondary" >Cancelar</a>
+
+        </div>
+
 	</form>
 
 </div>

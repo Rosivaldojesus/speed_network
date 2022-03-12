@@ -378,16 +378,27 @@ def Index(request):
                                                   })
 
 
+
+
 def CadastrarPagamento(request):
-    form = CadastarPagamentoForm(request.POST)
-    if form.is_valid():
-        obj = form.save()
-        obj.save()
-        messages.success(request, 'Pagamento adicionado com sucesso!')
-        return redirect('/pagamentos/')
+    if request.method == 'POST':
+        form = CadastarPagamentoForm(request.POST or None)
+
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.status_pago = True
+            obj.save()
+            messages.success(request, 'Pagamento adicionado com sucesso!')
+            return redirect('/pagamentos/')
+        else:
+            return render(request, 'payment/cadastrar-pagamento.html', {'form': form})
     else:
         form = CadastarPagamentoForm()
     return render(request, 'payment/cadastrar-pagamento.html', {'form': form})
+
+
+
+
 
 
 def DashboardPagamentos(request):
@@ -543,16 +554,45 @@ def PagamentosMensaisGrupos(request):
     return render(request, 'payment/pagamentos-mensais-grupos.html', context)
 
 
+# def AgendarPagamento(request):
+#     form = AgendarPagamentoForm(request.POST)
+#     if form.is_valid():
+#         obj = form.save()
+#         obj.save()
+#         messages.success(request, 'Pagamento agendado com sucesso!')
+#         return redirect('/pagamentos/contas-a-pagar/')
+#     else:
+#         form = AgendarPagamentoForm()
+#
+#     return render(request, 'payment/agendar-pagamento.html', {'form': form})
+
+
 def AgendarPagamento(request):
-    form = AgendarPagamentoForm(request.POST)
-    if form.is_valid():
-        obj = form.save()
-        obj.save()
-        messages.success(request, 'Pagamento agendado com sucesso!')
-        return redirect('/pagamentos/contas-a-pagar/')
+    if request.method == 'POST':
+        form = AgendarPagamentoForm(request.POST)
+        if form.is_valid():
+            obj = form.save()
+            obj.save()
+            messages.success(request, 'Pagamento agendado com sucesso!')
+            return redirect('/pagamentos/contas-a-pagar/')
+        else:
+            return render(request, 'payment/agendar-pagamento.html', {'form': form})
     else:
         form = AgendarPagamentoForm()
     return render(request, 'payment/agendar-pagamento.html', {'form': form})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def EditarPagamento(request, id=None):

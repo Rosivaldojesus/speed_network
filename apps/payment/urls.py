@@ -40,7 +40,10 @@ urlpatterns = [
 
     # Sem refatoração
     path('indexx', Index),
+
+
     path('cadastrar-pagamento/', CadastrarPagamento),
+
 
     path('dashboard-pagamentos/', DashboardPagamentos),
 

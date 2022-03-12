@@ -4,8 +4,17 @@
 
 {% block title %} .:: Contas a Vencer {% endblock %}
 
+
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  
+
 {% block main %}
-<div class="container">
+<div class="container-xl">
     <!-- Título da pagina -->
     <div class="bd-title mt-4 mb-1">
         <h1 class="ui dividing header blue">Contas a Vencer</h1>
@@ -47,7 +56,8 @@
     <!-- =====================================================================================================-->
     <h3 class="ui dividing header blue">Lista de contas a pagar - R$: {{ valor_a_pagar.total }}<a class="anchor" id="content"></a></h3>
     <!-- =====================================================================================================-->
-
+	
+  
 
     <!-- =====================================================================================================-->
     <div class="card shadow mb-3">
@@ -81,6 +91,33 @@
                     {% if conta.informacao_pagamento is not null %}
 
                       <a href="{% url 'detalhes_pagamento' conta.id %}"><i class="large barcode icon"></i></a>
+					  
+					  <!-- Trigger the modal with a button -->
+					  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+					  <!-- Modal -->
+					  <div class="modal fade" id="myModal" role="dialog">
+						<div class="modal-dialog">
+						
+						  <!-- Modal content-->
+						  <div class="modal-content">
+							<div class="modal-header">
+							  <button type="button" class="close" data-dismiss="modal">&times;</button>
+							  <h4 class="modal-title">Modal Header ID: {{ conta.motivo_pagamento}}</h4>
+							</div>
+							<div class="modal-body">
+							  <p>Some text in the modal.</p>
+							</div>
+							<div class="modal-footer">
+							  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						  </div>
+						  
+						</div>
+					  </div>
+					  
+					  
+
 
                     {% else %}
 
