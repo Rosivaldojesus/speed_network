@@ -86,6 +86,7 @@ class CustoMensalCategoriaView(TemplateView):
         six_months = date.today() + relativedelta(months=-6)
         last_months = date.today() + relativedelta(months=-0)
         data_atual = datetime.now()  # Variável da data de hoje
+        data_inicial = '2021-7-1'
 
         # Query para total por mês de custo das categorias
         context['custos_mensais_categoria'] = Pagamento.objects.filter(status_pago=True). \
@@ -98,13 +99,13 @@ class CustoMensalCategoriaView(TemplateView):
             order_by('month')[1:]
 
         #  Query para o total de gastos de cada mês ===================================================================
-        context['fixo_vs_variavel'] = Pagamento.objects.filter(status_pago=True). \
-            annotate(month=TruncMonth('data_pagamento'), c=Sum('valor_pagamento')). \
+        context['fixo_vs_variavel'] = Pagamento.objects. \
+            filter(status_pago=True). \
+            filter(Q(data_pagamento__range=[data_inicial, data_atual])). \
+            annotate(month=TruncMonth('data_pagamento')). \
             values('month'). \
-            annotate(c=Sum('valor_pagamento')). \
-            filter(data_pagamento__lte=data_atual). \
-            filter().values(
-            'month', 'c', 'tipo_custo_pagamento'). \
+            annotate(total=Sum('valor_pagamento')). \
+            values('month', 'total', 'tipo_custo_pagamento'). \
             order_by('month')
 
 
