@@ -78,6 +78,81 @@
   </div>
 <!-- FIM com as opções de processos dos serviços -->
 
+
+
+<!-- ========================================================================================================= -->
+<h3 class="ui dividing header blue">Gráfico de serviços diários<a class="anchor" id="content"></a></h3>
+  <!-- Gráfico de serviços diários -->
+  <div class="card">
+    <div id="chart_AB">
+            <script>
+              var options = {
+				  series: [{
+				  name: 'Marine Sprite',
+				  data: [{{ quant_outros_mes }}]
+				}, {
+				  name: 'Striking Calf',
+				  data: [53]
+				}, {
+				  name: 'Tank Picture',
+				  data: [12]
+				}, {
+				  name: 'Bucket Slope',
+				  data: [9]
+				}, {
+				  name: 'Reborn Kid',
+				  data: [25]
+				}],
+				  chart: {
+				  type: 'bar',
+				  height: 200,
+				  stacked: true,
+				  stackType: '100%'
+				},
+				plotOptions: {
+				  bar: {
+					horizontal: true,
+				  },
+				},
+				stroke: {
+				  width: 1,
+				  colors: ['#fff']
+				},
+				title: {
+				  text: '100% Stacked Bar'
+				},
+				xaxis: {
+				  categories: ["Abertos",],
+				},
+				tooltip: {
+				  y: {
+					formatter: function (val) {
+					  return val + "K"
+					}
+				  }
+				},
+				fill: {
+				  opacity: 1
+				
+				},
+				legend: {
+				  position: 'top',
+				  horizontalAlign: 'left',
+				  offsetX: 40
+				}
+				};
+
+				var chart = new ApexCharts(document.querySelector("#chart_AB"), options);
+				chart.render();
+			  
+          </script>
+    </div>
+  </div>
+<!-- ========================================================================================================= -->
+
+
+
+
 <!-- INICIO Gráfico com o serviços Mensal  -->
 <div class="mt-2 mb-2">
   <div class="card">

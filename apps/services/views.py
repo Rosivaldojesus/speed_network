@@ -8,9 +8,6 @@ from .models import Servico, ServicoVoip
 from django.db.models import Q, Count
 from django.views.generic.edit import CreateView
 from django.db.models.functions import TruncMonth
-from reportlab.pdfgen import canvas
-from django.http import HttpResponse
-
 # Create your views here.
 
 
@@ -330,6 +327,42 @@ class ReservarVoipPortabilidadeCreate(CreateView):
 
 
 #  =============== PDF ======================
+from reportlab.pdfgen import canvas
+from django.http import HttpResponse
+
+def servicos_de_retiradas(request):
+    # Crie o objeto HttpResponse com o cabeçalho de PDF apropriado.
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename=retiradas.pdf'
+
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer)
+
+    # Crie o objeto PDF, usando o objeto response como seu "arquivo".
+    # p = canvas.Canvas(response)
+
+    # Desenhe coisas no PDF. Aqui é onde a geração do PDF acontece.
+    # Veja a documentação do ReportLab para a lista completa de
+    # funcionalidades.
+    p.drawString(10, 100, "Hello world.")
+
+    retiradas = Servico.objects.all()
+
+    y = 750
+    for retirada in retiradas:
+        p.drawString(10, y, retirada)
+        y -= 20
+
+    # Feche o objeto PDF, e está feito.
+    p.showPage()
+    p.save()
+
+    pdf = buffer.getvalue()
+    buffer.close()
+    response.write(pdf)
+
+    return response
+
 
 
 
@@ -340,19 +373,16 @@ def relatorio_servicos_retiradas(request):
     buffer = io.BytesIO()
     p = canvas.Canvas(buffer)
 
-    servicos = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').\
-        filter(status_analise='True').order_by('data_agendada', 'hora_agendada')
     # p.drawString(200, 810, 'Relatorio de Serviços')
-    quant_de_sevicos = len(servicos)
-    p.drawString(40, 790, 'Quantidade de serviços: %s' % (quant_de_sevicos))
 
 
+    servicos = Servico.objects.filter()
 
     # p.drawString(0, 800, '_' * 150)
     y = 750
 
     quant_de_clientes = 0
-
+    quant_de_sevicos = len(servicos)
     lista = [3, 6, 9, 12]
 
 
@@ -378,7 +408,14 @@ def relatorio_servicos_retiradas(request):
             p.drawString(40, 760, 'Serviço: %s' % (servico.servico_para_executar))
             p.drawString(40, 740, 'Endereço: %s' % (servico.endereco_servico))
             p.drawString(40, 720, 'Observação: %s' % (servico.observacao))
-            p.drawString(0, 700, '_' * 150)
+            # y -= 20
+            # p.drawString(40, y, 'Endereço: %s' % (servico.endereco_servico))
+            # y -= 20
+            # p.drawString(40, y, 'Observação: %s' % (servico.observacao))
+            # y -= 20
+
+            # p.drawString(0, y, '_' * 120)
+            # y -= 20
 
         quant_de_clientes = quant_de_clientes + 1
 
