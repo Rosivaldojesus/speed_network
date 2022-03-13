@@ -99,16 +99,11 @@ class CustoMensalCategoriaView(TemplateView):
             order_by('month')[1:]
 
         #  Query para o total de gastos de cada mês ===================================================================
-        context['fixo_vs_variavel'] = Pagamento.objects. \
-            filter(status_pago=True). \
+        context['fixo_vs_variavel'] = Pagamento.objects.filter(status_pago=True). \
             filter(Q(data_pagamento__range=[data_inicial, data_atual])). \
-            annotate(month=TruncMonth('data_pagamento')). \
-            values('month'). \
+            annotate(month=TruncMonth('data_pagamento')).values('month'). \
             annotate(total=Sum('valor_pagamento')). \
-            values('month', 'total', 'tipo_custo_pagamento'). \
-            order_by('month')
-
-
+            values('month', 'total', 'tipo_custo_pagamento').order_by('month')
 
         context['media_veiculos'] = Pagamento.objects.filter(categoria=1).\
             filter(Q(data_pagamento__range=[six_months, last_months])).aggregate(total=Sum('valor_pagamento') / 6)
@@ -128,7 +123,6 @@ class CustoMensalCategoriaView(TemplateView):
             filter(Q(data_pagamento__range=[six_months, last_months])).aggregate(total=Sum('valor_pagamento') / 6)
         context['media_taxas'] = Pagamento.objects.filter(categoria=11). \
             filter(Q(data_pagamento__range=[six_months, last_months])).aggregate(total=Sum('valor_pagamento') / 6)
-
 
         return context
 

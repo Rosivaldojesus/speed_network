@@ -169,6 +169,84 @@
     <!--=================================================================================================================-->
 	
 	
+	
+		<!--============================== Fixo VS Variáveis =========================================================================-->
+    <h3 class="ui dividing header blue">Fixo VS Variáveis <a class="anchor" id="content"></a></h3>
+    <div class="card shadow mt-3">
+        <div id="chart_AAA">
+            <script>
+                var options = {
+				  series: [{
+				  name: 'Fixo',
+				  type: 'column',
+				  data: [
+					{% for data in fixo_vs_variavel %} 
+                        {% if data.tipo_custo_pagamento == 1  %}
+                            '{{ data.total|safe}}',
+                    {% endif %}
+					{% endfor %}
+				  
+				  ]
+				}, {
+				  name: 'Variável',
+				  type: 'line',
+				  data: [
+					{% for data in fixo_vs_variavel %} 
+                        {% if data.tipo_custo_pagamento == 2  %}
+                            '{{ data.total|safe}}',
+                        {% endif %}
+                    {% endfor %}
+				  ]
+				}],
+				  chart: {
+				  height: 350,
+				  type: 'line',
+				},
+				stroke: {
+				  width: [0, 4]
+				},
+				title: {
+				  text: 'Traffic Sources'
+				},
+				dataLabels: {
+				  enabled: true,
+				  enabledOnSeries: [1]
+				},
+				labels: [
+					{% for data in fixo_vs_variavel %} 
+                        {% if data.tipo_custo_pagamento == 1  %}
+                            '{{ data.month|date:'M, Y' }}',
+                        {% endif %}
+                    {% endfor %} 
+				
+				],
+				xaxis: {
+				  type: 'datetime'
+				},
+				yaxis: [{
+				  title: {
+					text: 'Website Blog',
+				  },
+				
+				}, {
+				  opposite: true,
+				  title: {
+					text: 'Social Media'
+				  }
+				}]
+				};
+
+				var chart = new ApexCharts(document.querySelector("#chart_AAA"), options);
+				chart.render();
+			  
+            </script>
+        </div>
+    </div>
+    <!--=================================================================================================================-->
+	
+	
+	
+	
 
     <!--============================== VEÍCULOS =========================================================================-->
     <h3 class="ui dividing header blue">Custos com os veículos <a class="anchor" id="content"></a></h3>
