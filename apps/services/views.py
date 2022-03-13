@@ -2,36 +2,38 @@ import io
 from datetime import datetime, date, timedelta
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ServicoForm, AgendarServicoForm, EditarAgendarServicoForm, FinalizarServicoForm
-from .forms import ReservarVoipForm
+from .forms import ServicoForm, AgendarServicoForm, EditarAgendarServicoForm, FinalizarServicoForm, ReservarVoipForm
 from .models import Servico, ServicoVoip
 from django.db.models import Q, Count
 from django.views.generic.edit import CreateView
 from django.db.models.functions import TruncMonth
-# Create your views here.
+from reportlab.pdfgen import canvas
+from django.http import HttpResponse
 
+
+# Create your views here.
 
 def Index(request):
     this_month = date.today().month  # Variável do mês atual
-    contarAbertos = Servico.objects.all().filter().filter(status_agendado='False').\
-        filter(status_concluido='False').count()
-    contarAgendados = Servico.objects.filter(status_agendado='True').\
-        filter(status_concluido='False').filter(status_analise='False').count()
-
-    contarFinalizados = Servico.objects.filter(data_finalizacao__month=this_month).filter(status_concluido='True').count()
-
-    diarios = Servico.objects.all().filter(status_concluido='True').values('data_finalizacao').\
-        annotate(number=Count('contato_servico'))
-    servicosMensal = Servico.objects.annotate(month=TruncMonth('data_finalizacao')).filter(status_concluido='True').\
+    contarAbertos = Servico.objects.filter(status_agendado='False', status_concluido='False').count()
+    contarAgendados = Servico.objects.filter(
+        status_agendado='True', status_concluido='False', status_analise='False').count()
+    contarFinalizados = Servico.objects.filter(data_finalizacao__month=this_month, status_concluido='True').count()
+    diarios = Servico.objects.all().filter(status_concluido='True').values('data_finalizacao').annotate(
+        number=Count('contato_servico'))
+    servicosMensal = Servico.objects.filter(status_concluido='True').annotate(month=TruncMonth('data_finalizacao')).\
         values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
-    diarioServicos = Servico.objects.filter(status_concluido='True').values('data_finalizacao').\
-        filter(data_finalizacao__gte=datetime.today()-timedelta(days=30)).annotate(number=Count('data_finalizacao')).\
+    diarioServicos = Servico.objects.filter(status_concluido='True').values('data_finalizacao').filter(
+        data_finalizacao__gte=datetime.today()-timedelta(days=30)).annotate(number=Count('data_finalizacao')).\
         order_by('data_finalizacao')
 
     #  Quantidade de serviços por categoria no mês atual
+    quant_outros_mes = Servico.objects.filter(categoria=2, data_finalizacao__month=this_month).count()
 
-    quant_outros_mes = Servico.objects.filter(categoria=2).filter(data_finalizacao__month=this_month).count()
-    quant_serv_velocidade_mes = Servico.objects.filter(categoria=3).filter(data_finalizacao__month=this_month).count()
+    quant_serv_velocidade_mes = Servico.objects.filter(categoria=3, data_finalizacao__month=this_month).count()
+
+
+
     quant_serv_osciliacao_mes = Servico.objects.filter(categoria=4).filter(data_finalizacao__month=this_month).count()
     quant_serv_retirada_mes = Servico.objects.filter(categoria=5).filter(data_finalizacao__month=this_month).count()
     quant_serv_fibra_rompida_mes = Servico.objects.filter(categoria=6).\
@@ -42,7 +44,6 @@ def Index(request):
     quant_trocar_senha_mes = Servico.objects.filter(categoria=10).filter(data_finalizacao__month=this_month).count()
 
     #  Quantidade de serviços por categoria
-
     quant_outros = Servico.objects.filter(categoria=2).count()
     quant_serv_velocidade = Servico.objects.filter(categoria=3).count()
     quant_serv_osciliacao = Servico.objects.filter(categoria=4).count()
@@ -176,9 +177,11 @@ def EditarServicoAgendado(request, id=None):
 
 
 def ServicosAgendados(request):
-    agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').filter(status_analise='False').\
+    agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').\
+        filter(status_analise='False').\
         order_by('data_agendada', 'hora_agendada')
-    quant_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').filter(status_analise='False').count()
+    quant_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').\
+        filter(status_analise='False').count()
 
     queryset = request.GET.get('q')
     startdate = request.GET.get('date')
@@ -189,7 +192,9 @@ def ServicosAgendados(request):
             filter(status_concluido='False').filter(status_analise='False').count()
 
     if startdate:
-        agendados = Servico.objects.filter(Q(data_agendada__exact=startdate)).filter(status_concluido='False').filter(status_analise='False')
+        agendados = Servico.objects.filter(Q(data_agendada__exact=startdate)).filter(status_concluido='False').\
+            filter(status_analise='False')
+
         quant_agendados = Servico.objects.filter(Q(data_agendada__icontains=startdate)).\
             filter(status_concluido='False').filter(status_analise='False').count()
 
@@ -205,8 +210,14 @@ def ServicosAgendados(request):
 
 
 def servicos_retiradas_agendados(request):
-    agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').\
+    agendados = Servico.objects.filter(status_agendado='True', status_concluido='False').\
         filter(status_analise='True').order_by('data_agendada', 'hora_agendada')
+
+    # Servico.objects.filter(status_agendado='True').filter(status_concluido='False'). \
+    #     filter(status_analise='True')
+    #
+
+
     quant_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').\
     filter(status_analise='True').count()
 
@@ -230,11 +241,6 @@ def servicos_retiradas_agendados(request):
         'quant_agendados': quant_agendados
     }
     return render(request, 'services/servicos-de-retiradas-agendados.html', context)
-
-
-
-
-
 
 
 def ServicosFinalizados(request):
@@ -298,9 +304,7 @@ def DeletarServico(request, id=None):
     return render(request, 'services/deletar-servico.html', context)
 
 
-#  -------------------------------- SERVIÇOS DE VOIP ------------------------------------------------------------------
-
-
+#  ========================================>\ SERVIÇOS DE VOIP /<=======================================================
 def ServicosVoip(request):
     voipDisponivel = ServicoVoip.objects.all().filter(reservado_voip='False').filter(finalizado_voip='False')
     quantDisponivel = ServicoVoip.objects.all().filter(reservado_voip='False').filter(finalizado_voip='False').count()
@@ -315,6 +319,7 @@ def ServicosVoip(request):
         'voipReservadoPortabilidade': voipReservadoPortabilidade
     }
     return render(request, 'services/servicos-voip.html', context)
+
 
 def ServicosVoipDisponiveis(request):
     voipDisponivel = ServicoVoip.objects.all().filter(finalizado_voip='False')
@@ -350,10 +355,7 @@ class ReservarVoipPortabilidadeCreate(CreateView):
     success_url = '/servicos/'
 
 
-#  =============== PDF ======================
-from reportlab.pdfgen import canvas
-from django.http import HttpResponse
-
+#  =============================================>\ PDF /<===============================================================
 def servicos_de_retiradas(request):
     # Crie o objeto HttpResponse com o cabeçalho de PDF apropriado.
     response = HttpResponse(content_type='application/pdf')
@@ -388,8 +390,6 @@ def servicos_de_retiradas(request):
     return response
 
 
-
-
 def relatorio_servicos_retiradas(request):
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="mypdf.pdf"'
@@ -400,7 +400,8 @@ def relatorio_servicos_retiradas(request):
     # p.drawString(200, 810, 'Relatorio de Serviços')
 
 
-    servicos = Servico.objects.filter()
+    servicos = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').\
+        filter(status_analise='True')
 
     # p.drawString(0, 800, '_' * 150)
     y = 750
