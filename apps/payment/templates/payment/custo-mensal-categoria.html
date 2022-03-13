@@ -146,8 +146,8 @@
                     },
 
                     labels: [
-                        {% for data in custos_mensais_categoria %} 
-                            {% if data.tipo_custo_pagamento == 1  %}
+                        {% for data in fixo_vs_variavel %} 
+                            {% if data.tipo_custo_pagamento  %}
                                 '{{ data.month|date:'M, Y' }}',
                             {% endif %}
                         {% endfor %}    
