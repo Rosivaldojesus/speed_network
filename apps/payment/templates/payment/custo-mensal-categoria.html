@@ -130,7 +130,7 @@
 
                     dataLabels: {enabled: true,/*Coloca o valores em cada mês*/},
                     
-                    colors: ['#545454', '#545454'],//Coloca a cor da barra
+                    colors: ['#f10000', '#4B0082'],//Coloca a cor da barra
           
                     chart: {
                         height: 350,
@@ -147,14 +147,14 @@
 
                     labels: [
                         {% for data in custos_mensais_categoria %} 
-                            {% if data.categoria == 1  %}
+                            {% if data.tipo_custo_pagamento == 1  %}
                                 '{{ data.month|date:'M, Y' }}',
                             {% endif %}
                         {% endfor %}    
                     ],
 
                     title: {
-                    text: 'Veículos'
+                    text: 'Fixos vs Variáveis'
                     },
 
                     xaxis: {
