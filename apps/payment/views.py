@@ -93,10 +93,10 @@ class CustoMensalCategoriaView(TemplateView):
             annotate(month=TruncMonth('data_pagamento')).  \
             values('month'). \
             annotate(total=Sum('valor_pagamento')). \
-            values('month', 'total', 'categoria'). \
+            values('month', 'total', 'categoria', 'tipo_custo_pagamento'). \
             order_by('month')[1:]
 
-
+        context['fixo_vs_variavel'] = Pagamento.objects.filter(status_pago=True)
 
 
 
