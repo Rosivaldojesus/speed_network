@@ -29,19 +29,14 @@ def Index(request):
 
     #  Quantidade de serviços por categoria no mês atual
     quant_outros_mes = Servico.objects.filter(categoria=2, data_finalizacao__month=this_month).count()
-
     quant_serv_velocidade_mes = Servico.objects.filter(categoria=3, data_finalizacao__month=this_month).count()
-
-
-
-    quant_serv_osciliacao_mes = Servico.objects.filter(categoria=4).filter(data_finalizacao__month=this_month).count()
-    quant_serv_retirada_mes = Servico.objects.filter(categoria=5).filter(data_finalizacao__month=this_month).count()
-    quant_serv_fibra_rompida_mes = Servico.objects.filter(categoria=6).\
-        filter(data_finalizacao__month=this_month).count()
-    quant_serv_troca_modem_mes = Servico.objects.filter(categoria=7).filter(data_finalizacao__month=this_month).count()
-    quant_serv_voip_mes = Servico.objects.filter(categoria=8).filter(data_finalizacao__month=this_month).count()
-    quant_serv_sinal_alto_mes = Servico.objects.filter(categoria=9).filter(data_finalizacao__month=this_month).count()
-    quant_trocar_senha_mes = Servico.objects.filter(categoria=10).filter(data_finalizacao__month=this_month).count()
+    quant_serv_osciliacao_mes = Servico.objects.filter(categoria=4, data_finalizacao__month=this_month).count()
+    quant_serv_retirada_mes = Servico.objects.filter(categoria=5, data_finalizacao__month=this_month).count()
+    quant_serv_fibra_rompida_mes = Servico.objects.filter(categoria=6, data_finalizacao__month=this_month).count()
+    quant_serv_troca_modem_mes = Servico.objects.filter(categoria=7, data_finalizacao__month=this_month).count()
+    quant_serv_voip_mes = Servico.objects.filter(categoria=8, data_finalizacao__month=this_month).count()
+    quant_serv_sinal_alto_mes = Servico.objects.filter(categoria=9, data_finalizacao__month=this_month).count()
+    quant_trocar_senha_mes = Servico.objects.filter(categoria=10, data_finalizacao__month=this_month).count()
 
     #  Quantidade de serviços por categoria
     quant_outros = Servico.objects.filter(categoria=2).count()
@@ -55,17 +50,17 @@ def Index(request):
     quant_trocar_senha = Servico.objects.filter(categoria=10).count()
 
     #  Quantidade de serviços por categoria
-    quant_serv_abertos_outros = Servico.objects.filter(categoria=2).filter(status_concluido='False').count()
-    quant_serv_abertos_velocidade = Servico.objects.filter(categoria=3).filter(status_concluido='False').count()
-    quant_serv_abertos_osciliacao = Servico.objects.filter(categoria=4).filter(status_concluido='False').count()
-    quant_serv_abertos_retirada = Servico.objects.filter(categoria=5).filter(status_concluido='False').count()
-    quant_serv_abertos_fibra_rompida = Servico.objects.filter(categoria=6).filter(status_concluido='False').count()
-    quant_serv_abertos_troca_modem = Servico.objects.filter(categoria=7).filter(status_concluido='False').count()
-    quant_serv_abertos_voip = Servico.objects.filter(categoria=8).filter(status_concluido='False').count()
-    quant_serv_abertos_sinal_alto = Servico.objects.filter(categoria=9).filter(status_concluido='False').count()
-    quant_serv_abertos_trocar_senha = Servico.objects.filter(categoria=10).filter(status_concluido='False').count()
+    quant_serv_abertos_outros = Servico.objects.filter(categoria=2, status_concluido='False').count()
+    quant_serv_abertos_velocidade = Servico.objects.filter(categoria=3, status_concluido='False').count()
+    quant_serv_abertos_osciliacao = Servico.objects.filter(categoria=4, status_concluido='False').count()
+    quant_serv_abertos_retirada = Servico.objects.filter(categoria=5, status_concluido='False').count()
+    quant_serv_abertos_fibra_rompida = Servico.objects.filter(categoria=6, status_concluido='False').count()
+    quant_serv_abertos_troca_modem = Servico.objects.filter(categoria=7, status_concluido='False').count()
+    quant_serv_abertos_voip = Servico.objects.filter(categoria=8, status_concluido='False').count()
+    quant_serv_abertos_sinal_alto = Servico.objects.filter(categoria=9, status_concluido='False').count()
+    quant_serv_abertos_trocar_senha = Servico.objects.filter(categoria=10, status_concluido='False').count()
 
-    quant_retiradas_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False'). \
+    quant_retiradas_agendados = Servico.objects.filter(status_agendado='True', status_concluido='False'). \
         filter(status_analise='True').count()
 
     context = {
@@ -110,8 +105,6 @@ def Index(request):
         'quant_trocar_senha': quant_trocar_senha,
 
         'quant_retiradas_agendados': quant_retiradas_agendados,
-
-
     }
     return render(request, 'services/index.html', context)
 
@@ -154,10 +147,8 @@ def RemoverServico(request, id=None):
 
 
 def ServicosAbertos(request):
-    abertos = Servico.objects.order_by('-id')\
-        .filter(status_agendado='False')\
-        .filter(status_concluido='False')
-    qquant_aberto = Servico.objects.filter(status_agendado='False').filter(status_concluido='False').count()
+    abertos = Servico.objects.filter(status_agendado='False', status_concluido='False').order_by('-id')
+    qquant_aberto = Servico.objects.filter(status_agendado='False', status_concluido='False').count()
     context = {
         'abertos': abertos,
         'qquant_aberto': qquant_aberto
@@ -177,17 +168,16 @@ def EditarServicoAgendado(request, id=None):
 
 
 def ServicosAgendados(request):
-    agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').\
-        filter(status_analise='False').\
+    agendados = Servico.objects.filter(status_agendado='True', status_concluido='False', status_analise='False').\
         order_by('data_agendada', 'hora_agendada')
-    quant_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').\
-        filter(status_analise='False').count()
+    quant_agendados = Servico.objects.filter(status_agendado='True', status_concluido='False', status_analise='False').\
+        count()
 
     queryset = request.GET.get('q')
     startdate = request.GET.get('date')
 
     if queryset:
-        agendados = Servico.objects.filter(Q(contato_servico__icontains=queryset)).filter(status_concluido='False')
+        agendados = Servico.objects.filter(Q(contato_servico__icontains=queryset), status_concluido='False')
         quant_agendados = Servico.objects.filter(Q(contato_servico__icontains=queryset)).\
             filter(status_concluido='False').filter(status_analise='False').count()
 
@@ -198,8 +188,8 @@ def ServicosAgendados(request):
         quant_agendados = Servico.objects.filter(Q(data_agendada__icontains=startdate)).\
             filter(status_concluido='False').filter(status_analise='False').count()
 
-    quant_retiradas_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False'). \
-        filter(status_analise='True').count()
+    quant_retiradas_agendados = Servico.objects.filter(status_agendado='True',
+                                                       status_concluido='False', status_analise='True').count()
 
     context = {
         'agendados': agendados,
@@ -210,16 +200,16 @@ def ServicosAgendados(request):
 
 
 def servicos_retiradas_agendados(request):
-    agendados = Servico.objects.filter(status_agendado='True', status_concluido='False').\
-        filter(status_analise='True').order_by('data_agendada', 'hora_agendada')
+    agendados = Servico.objects.filter(status_agendado='True', status_concluido='False', status_analise='True').\
+        order_by('data_agendada', 'hora_agendada')
 
     # Servico.objects.filter(status_agendado='True').filter(status_concluido='False'). \
     #     filter(status_analise='True')
     #
 
 
-    quant_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').\
-    filter(status_analise='True').count()
+    quant_agendados = Servico.objects.filter(status_agendado='True',
+                                             status_concluido='False', status_analise='True').count()
 
     queryset = request.GET.get('q')
     startdate = request.GET.get('date')
@@ -247,8 +237,7 @@ def ServicosFinalizados(request):
     finalizados = Servico.objects.filter(status_concluido='True').order_by('-id')
     queryset = request.GET.get('q')
     if queryset:
-        finalizados = Servico.objects.filter(
-            Q(contato_servico__icontains=queryset))
+        finalizados = Servico.objects.filter(Q(contato_servico__icontains=queryset))
     quant_finalizados = Servico.objects.filter(status_concluido='True').count()
     conetxt = {
         'finalizados': finalizados,
