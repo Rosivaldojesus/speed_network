@@ -110,7 +110,7 @@
                         {
                             name: 'Fixo',
                             data: [
-                                {% for data in custos_mensais_categoria %} 
+                                {% for data in fixo_vs_variavel %} 
                                     {% if data.tipo_custo_pagamento == 1  %}
                                          '{{ data.total|safe}}',
                                 {% endif %}
@@ -119,7 +119,7 @@
                         },{
                             name: 'Variável',
                             data: [
-                                {% for data in custos_mensais_categoria %} 
+                                {% for data in fixo_vs_variavel %} 
                                     {% if data.tipo_custo_pagamento == 2  %}
                                          '{{ data.total|safe}}',
                                 {% endif %}
@@ -146,7 +146,7 @@
                     },
 
                     labels: [
-                        {% for data in custos_mensais_categoria %} 
+                        {% for data in fixo_vs_variavel %} 
                             {% if data.tipo_custo_pagamento == 1  %}
                                 '{{ data.month|date:'M, Y' }}',
                             {% endif %}
