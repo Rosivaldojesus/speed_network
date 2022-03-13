@@ -18,7 +18,8 @@ from django.views.generic.edit import UpdateView
 from dateutil.relativedelta import relativedelta
 from .models import FluxoEntradaSaidaMensal
 from django.views.generic.detail import DetailView
-
+from reportlab.pdfgen import canvas
+import io
 
 # Create your views here.
 
@@ -743,3 +744,7 @@ class EditarEntregaBoletosUpdateView(UpdateView):
     template_name = 'payment/editar-entrega-boletos.html'  # templete for updating
     success_url = "/pagamentos/lista-entrega-boletos/"  # return após atualizar
     success_message = "foi atualizado com sucesso!!!"
+
+
+
+

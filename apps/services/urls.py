@@ -5,6 +5,8 @@ from .views import Index, CadastroServico, AgendarServico, ServicosAbertos, Serv
 
 from .views import servicos_de_retiradas, servicos_retiradas_agendados
 
+from .views import relatorio_servicos_retiradas
+
 urlpatterns = [
     path('', Index),
     path('cadastro-servico/', CadastroServico),
@@ -31,6 +33,8 @@ urlpatterns = [
     path('servicos-de-retiradas-agendados/', servicos_retiradas_agendados, name='servicos-de-retiradas-agendados'),
 
     path('servicos-de-retiradas/', servicos_de_retiradas, name='servicos-de-retiradas'),
+
+    path('relatorio-servicos-retiradas/', relatorio_servicos_retiradas, name='exportar_servicos_em_analise')
 
 
 ]

@@ -362,3 +362,43 @@ def servicos_de_retiradas(request):
     response.write(pdf)
 
     return response
+
+
+
+
+def relatorio_servicos_retiradas(request):
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="mypdf.pdf"'
+
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer)
+
+    p.drawString(200, 810, 'Relatorio de Serviços')
+
+    servicos = Servico.objects.filter()
+
+
+    p.drawString(0, 800, '_' * 150)
+
+    y = 750
+    for servico in servicos:
+        p.drawString(40, y, 'Cliente: %s' % ( servico.contato_servico))
+        y -= 20
+        p.drawString(40, y, 'Serviço: %s' % (servico.servico_para_executar))
+        y -= 20
+        p.drawString(40, y, 'Endereço: %s' % (servico.endereco_servico))
+        y -= 20
+        p.drawString(40, y, 'Observação: %s' % (servico.observacao))
+        y -= 20
+
+        p.drawString(0, y, '_' * 120)
+        y -= 20
+
+    p.showPage()
+    p.save()
+
+    pdf = buffer.getvalue()
+    buffer.close()
+    response.write(pdf)
+
+    return response
