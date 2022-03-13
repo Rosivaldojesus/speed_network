@@ -95,7 +95,7 @@ class CustoMensalCategoriaView(TemplateView):
             annotate(month=TruncMonth('data_pagamento')).  \
             values('month'). \
             annotate(total=Sum('valor_pagamento')). \
-            values('month', 'total', 'categoria'). \
+            values('month', 'total', 'categoria', 'tipo_custo_pagamento'). \
             order_by('month')[1:]
 
         #  Query para o total de gastos de cada mês ===================================================================
