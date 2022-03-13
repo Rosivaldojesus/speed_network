@@ -51,6 +51,17 @@ def Index(request):
     quant_serv_sinal_alto = Servico.objects.filter(categoria=9).count()
     quant_trocar_senha = Servico.objects.filter(categoria=10).count()
 
+    #  Quantidade de serviços por categoria
+    quant_serv_abertos_outros = Servico.objects.filter(categoria=2).count()
+    quant_serv_abertos_velocidade = Servico.objects.filter(categoria=3).count()
+    quant_serv_abertos_osciliacao = Servico.objects.filter(categoria=4).count()
+    quant_serv_abertos_retirada = Servico.objects.filter(categoria=5).count()
+    quant_serv_abertos_fibra_rompida = Servico.objects.filter(categoria=6).count()
+    quant_serv_abertos_troca_modem = Servico.objects.filter(categoria=7).count()
+    quant_serv_abertos_voip = Servico.objects.filter(categoria=8).count()
+    quant_serv_abertos_sinal_alto = Servico.objects.filter(categoria=9).count()
+    quant_serv_abertos_trocar_senha = Servico.objects.filter(categoria=10).count()
+
     quant_retiradas_agendados = Servico.objects.filter(status_agendado='True').filter(status_concluido='False'). \
         filter(status_analise='True').count()
 
@@ -72,6 +83,17 @@ def Index(request):
         'quant_serv_sinal_alto_mes': quant_serv_sinal_alto_mes,
         'quant_outros_mes': quant_outros_mes,
         'quant_trocar_senha_mes': quant_trocar_senha_mes,
+
+        # Quantidade de serviços por categorias
+        'quant_serv_abertos_outros': quant_serv_abertos_outros,
+        'quant_serv_abertos_velocidade': quant_serv_abertos_velocidade,
+        'quant_serv_abertos_osciliacao': quant_serv_abertos_osciliacao,
+        'quant_serv_abertos_retirada': quant_serv_abertos_retirada,
+        'quant_serv_abertos_fibra_rompida': quant_serv_abertos_fibra_rompida,
+        'quant_serv_abertos_troca_modem': quant_serv_abertos_troca_modem,
+        'quant_serv_abertos_voip': quant_serv_abertos_voip,
+        'quant_serv_abertos_sinal_alto': quant_serv_abertos_sinal_alto,
+        'quant_serv_abertos_trocar_senha': quant_serv_abertos_trocar_senha,
 
         # Quantidade de serviços por categorias
         'quant_serv_velocidade': quant_serv_velocidade,

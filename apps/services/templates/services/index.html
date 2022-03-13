@@ -88,21 +88,42 @@
             <script>
               var options = {
 				  series: [{
-				  name: 'Marine Sprite',
-				  data: [{{ quant_outros_mes }}]
+				  name: 'Outros',
+				  data: [{{ quant_serv_abertos_outros }}]
 				}, {
-				  name: 'Striking Calf',
-				  data: [53]
+				  name: 'Velocidade',
+				  data: [{{ quant_serv_abertos_velocidade }}]
 				}, {
-				  name: 'Tank Picture',
-				  data: [12]
+				  name: 'Oscilação',
+				  data: [{{ quant_serv_abertos_osciliacao }}]
 				}, {
-				  name: 'Bucket Slope',
-				  data: [9]
+				  name: 'Retirada',
+				  data: [{{ quant_serv_abertos_retirada }}]
 				}, {
-				  name: 'Reborn Kid',
-				  data: [25]
-				}],
+				  name: 'Fibra Rompida',
+				  data: [{{ quant_serv_abertos_fibra_rompida }}]
+				}
+				, {
+				  name: 'Troca de Modem',
+				  data: [{{ quant_serv_abertos_troca_modem }}]
+				}, {
+				  name: 'Voip',
+				  data: [{{ quant_serv_abertos_voip }}]
+				}
+				, {
+				  name: 'Sinal Alto',
+				  data: [{{ quant_serv_abertos_sinal_alto }}]
+				}, {
+				  name: 'Troca de Senha',
+				  data: [{{ quant_serv_abertos_trocar_senha }}]
+				}
+				
+				
+				
+				
+				
+				
+				],
 				  chart: {
 				  type: 'bar',
 				  height: 200,
@@ -119,7 +140,7 @@
 				  colors: ['#fff']
 				},
 				title: {
-				  text: '100% Stacked Bar'
+				  text: 'Serviços não concluídos'
 				},
 				xaxis: {
 				  categories: ["Abertos",],
