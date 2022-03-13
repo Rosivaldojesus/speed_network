@@ -8,7 +8,7 @@
 <div class="container">
 
 	<div class="mt-4 mb-4">
-        <h1 class="display-5">Relação de Entradas e Saídas Mensais</h1>
+        <h1 class="display-5">Relação de Custos Mensais</h1>
     </div>
 	
 	
@@ -99,6 +99,67 @@
     Media Taxas = {{ media_taxas.total }}<br>
 
     -->
+	
+	<!--============================== Fixo VS Variáveis =========================================================================-->
+    <h3 class="ui dividing header blue">Fixo VS Variáveis <a class="anchor" id="content"></a></h3>
+    <div class="card shadow mt-3">
+        <div id="chart_AA">
+            <script>
+                var options = {
+                    series: [
+                        {
+                            name: 'Veículos',
+                            data: [
+                                {% for data in custos_mensais_categoria %} 
+                                    {% if data.tipo_custo_pagamento.id == 2  %}
+                                         '{{ data.total|safe}}',
+                                {% endif %}
+                                {% endfor %}
+                            ],
+                        }   
+                    ],
+
+                    dataLabels: {enabled: true,/*Coloca o valores em cada mês*/},
+                    
+                    colors: ['#545454', '#545454'],//Coloca a cor da barra
+          
+                    chart: {
+                        height: 350,
+                        type: 'line',
+                        zoom: { enabled: false },
+                        animations: {enabled: true }
+                    },
+
+                    stroke: {
+                        width: [2],//Largura da linha
+                        curve: 'straight',
+                        dashArray: [4, 8, 5]//Se quiser a linha pontilhada
+                    },
+
+                    labels: [
+                        {% for data in custos_mensais_categoria %} 
+                            {% if data.categoria == 1  %}
+                                '{{ data.month|date:'M, Y' }}',
+                            {% endif %}
+                        {% endfor %}    
+                    ],
+
+                    title: {
+                    text: 'Veículos'
+                    },
+
+                    xaxis: {
+                    },
+                    };
+
+                    var chart = new ApexCharts(document.querySelector("#chart_AA"), options);
+                    chart.render();
+            </script>
+        </div>
+    </div>
+    <!--=================================================================================================================-->
+	
+	
 
     <!--============================== VEÍCULOS =========================================================================-->
     <h3 class="ui dividing header blue">Custos com os veículos <a class="anchor" id="content"></a></h3>

@@ -87,8 +87,7 @@ class CustoMensalCategoriaView(TemplateView):
         last_months = date.today() + relativedelta(months=-0)
 
         # Query para total por mês de custo das categorias
-        context['custos_mensais_categoria'] = Pagamento.objects. \
-            filter(status_pago=True). \
+        context['custos_mensais_categoria'] = Pagamento.objects.filter(status_pago=True). \
             filter(Q(data_pagamento__range=[six_months, last_months])). \
             annotate(media_total=Sum('valor_pagamento')).\
             annotate(month=TruncMonth('data_pagamento')).  \
@@ -96,6 +95,10 @@ class CustoMensalCategoriaView(TemplateView):
             annotate(total=Sum('valor_pagamento')). \
             values('month', 'total', 'categoria'). \
             order_by('month')[1:]
+
+
+
+
 
         context['media_veiculos'] = Pagamento.objects.filter(categoria=1).\
             filter(Q(data_pagamento__range=[six_months, last_months])).aggregate(total=Sum('valor_pagamento') / 6)
@@ -115,6 +118,7 @@ class CustoMensalCategoriaView(TemplateView):
             filter(Q(data_pagamento__range=[six_months, last_months])).aggregate(total=Sum('valor_pagamento') / 6)
         context['media_taxas'] = Pagamento.objects.filter(categoria=11). \
             filter(Q(data_pagamento__range=[six_months, last_months])).aggregate(total=Sum('valor_pagamento') / 6)
+
 
         return context
 
