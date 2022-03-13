@@ -85,6 +85,7 @@ class CustoMensalCategoriaView(TemplateView):
         context = super().get_context_data(**kwargs)
         six_months = date.today() + relativedelta(months=-6)
         last_months = date.today() + relativedelta(months=-0)
+        data_atual = datetime.now()  # Variável da data de hoje
 
         # Query para total por mês de custo das categorias
         context['custos_mensais_categoria'] = Pagamento.objects.filter(status_pago=True). \
@@ -93,10 +94,18 @@ class CustoMensalCategoriaView(TemplateView):
             annotate(month=TruncMonth('data_pagamento')).  \
             values('month'). \
             annotate(total=Sum('valor_pagamento')). \
-            values('month', 'total', 'categoria', 'tipo_custo_pagamento'). \
+            values('month', 'total', 'categoria'). \
             order_by('month')[1:]
 
-        context['fixo_vs_variavel'] = Pagamento.objects.filter(status_pago=True)
+        #  Query para o total de gastos de cada mês ===================================================================
+        context['fixo_vs_variavel'] = Pagamento.objects.filter(status_pago=True). \
+            annotate(month=TruncMonth('data_pagamento'), c=Sum('valor_pagamento')). \
+            values('month'). \
+            annotate(c=Sum('valor_pagamento')). \
+            filter(data_pagamento__lte=data_atual). \
+            filter().values(
+            'month', 'c', 'tipo_custo_pagamento'). \
+            order_by('month')
 
 
 

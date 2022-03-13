@@ -110,8 +110,8 @@
                         {
                             name: 'Veículos',
                             data: [
-                                {% for data in custos_mensais_categoria %} 
-                                    {% if data.tipo_custo_pagamento == 2  %}
+                                {% for data in fixo_vs_variavel %} 
+                                    {% if data.tipo_custo_pagamento == 1  %}
                                          '{{ data.total|safe}}',
                                 {% endif %}
                                 {% endfor %}
