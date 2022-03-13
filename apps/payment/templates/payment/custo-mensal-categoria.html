@@ -138,7 +138,7 @@
 
                     labels: [
                         {% for data in custos_mensais_categoria %} 
-                            {% if data.categoria == 1  %}
+                            {% if data.tipo_custo_pagamento == 1  %}
                                 '{{ data.month|date:'M, Y' }}',
                             {% endif %}
                         {% endfor %}    
@@ -169,7 +169,7 @@
                 var options = {
                     series: [
                         {
-                            name: 'Veículos',
+                            name: 'Fixo',
                             data: [
                                 {% for data in custos_mensais_categoria %} 
                                     {% if data.categoria == 1  %}
@@ -177,7 +177,16 @@
                                 {% endif %}
                                 {% endfor %}
                             ],
-                        }   
+                        },{
+                            name: 'Variável',
+                            data: [
+                                {% for data in custos_mensais_categoria %} 
+                                    {% if data.categoria == 2  %}
+                                         '{{ data.total|safe}}',
+                                {% endif %}
+                                {% endfor %}
+                            ],
+                        } 						
                     ],
 
                     dataLabels: {enabled: true,/*Coloca o valores em cada mês*/},
