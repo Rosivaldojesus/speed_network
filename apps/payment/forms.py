@@ -39,10 +39,14 @@ class CadastarPagamentoForm(forms.ModelForm):
 
         # getting username and password from cleaned_data
         motivo_pagamento = self.cleaned_data.get('motivo_pagamento')
+        valor_pagamento = self.cleaned_data.get('valor_pagamento')
 
         # validating the username and password
         if len(motivo_pagamento) < 4:
             self._errors['motivo_pagamento'] = self.error_class(['A minimum of 4 characters is required'])
+
+        if len(motivo_pagamento) < 1:
+            self._errors['valor_pagamento'] = self.error_class(['Informe o valor'])
 
         return self.cleaned_data
 
