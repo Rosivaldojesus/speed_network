@@ -468,12 +468,12 @@ def ListaPagamentos(request):
 
     # Show payment per bank
     elif banco:
-        pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(
+        pagamentos = Pagamento.objects.filter().filter(
             Q(origem_valor_pagamento__exact=banco)).order_by('-data_pagamento')
 
     # Show payment per bank
     elif valor:
-        pagamentos = Pagamento.objects.filter(data_pagamento__lte=data_atual).filter(
+        pagamentos = Pagamento.objects.filter().filter(
             Q(valor_pagamento__exact=valor)).order_by('-data_pagamento').order_by('-data_pagamento')
 
     # Show payment per value and date
