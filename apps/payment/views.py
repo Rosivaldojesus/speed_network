@@ -82,6 +82,11 @@ class CustoMensalCategoriaView(TemplateView):
     template_name = 'payment/custo-mensal-categoria.html'
 
     def get_context_data(self, *args, **kwargs):
+        """
+        six_months representa os últimos 6 meses
+        data_inicial: indicates the date that starts counting the days of calculations
+        """
+
         context = super().get_context_data(**kwargs)
         six_months = date.today() + relativedelta(months=-6)
         last_months = date.today() + relativedelta(months=-0)
@@ -110,7 +115,8 @@ class CustoMensalCategoriaView(TemplateView):
                                                   order_by('month')[1:]
 
         #  Query para o total de gastos de cada mês ===================================================================
-        context['fixo_vs_variavel'] = Pagamento.objects.filter(status_pago=True). \
+        context['fixo_vs_variavel'] = Pagamento.objects.\
+            filter(status_pago=True). \
             filter(Q(data_pagamento__range=[data_inicial, data_atual])). \
             annotate(month=TruncMonth('data_pagamento')).values('month'). \
             annotate(total=Sum('valor_pagamento')). \
@@ -603,6 +609,9 @@ def AgendarPagamento(request):
 
 
 def EditarPagamento(request, id=None):
+    """
+    Editar as informações referente a pagamentos (Edit payment information)
+    """
     pagar = get_object_or_404(Pagamento, id=id)
     form = EditarPagamentoForm(request.POST or None, instance=pagar)
     if form.is_valid():
@@ -614,6 +623,10 @@ def EditarPagamento(request, id=None):
 
 
 def ConfirmarPagamento(request, id=None):
+    """
+    Serve para indicar que  o pagamento foi realizado (
+    Used to indicate that the payment has been made.)
+    """
     pagar = get_object_or_404(Pagamento, id=id)
     form = ComfirmarPagamentoForm(request.POST or None, instance=pagar)
     if form.is_valid():
@@ -638,6 +651,9 @@ class FluxoCreate(CreateView):
 
 # Exportando os dados para CSV
 def ExportarCSV(request):
+    """
+    Export all payment data
+    """
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="relatorio-pagamentos.csv"'
 
