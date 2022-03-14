@@ -89,14 +89,25 @@ class CustoMensalCategoriaView(TemplateView):
         data_inicial = '2021-7-1'
 
         # Query para total por mês de custo das categorias
-        context['custos_mensais_categoria'] = Pagamento.objects.filter(status_pago=True). \
-            filter(Q(data_pagamento__range=[six_months, last_months])). \
-            annotate(media_total=Sum('valor_pagamento')).\
-            annotate(month=TruncMonth('data_pagamento')).  \
-            values('month'). \
-            annotate(total=Sum('valor_pagamento')). \
-            values('month', 'total', 'categoria', 'tipo_custo_pagamento'). \
-            order_by('month')[1:]
+        # context['custos_mensais_categoria'] = Pagamento.objects.filter(status_pago=True). \
+        #     filter(Q(data_pagamento__range=[six_months, last_months])). \
+        #     annotate(media_total=Sum('valor_pagamento')).\
+        #     annotate(month=TruncMonth('data_pagamento')).  \
+        #     values('month'). \
+        #     annotate(total=Sum('valor_pagamento')). \
+        #     values('month', 'total', 'categoria', 'tipo_custo_pagamento'). \
+        #     order_by('month')[1:]
+
+        # Query para total por mês de custo das categorias
+        context['custos_mensais_categoria'] = Pagamento.objects. \
+                                                  filter(status_pago=True). \
+                                                  filter(Q(data_pagamento__range=[six_months, last_months])). \
+                                                  annotate(media_total=Sum('valor_pagamento')). \
+                                                  annotate(month=TruncMonth('data_pagamento')). \
+                                                  values('month'). \
+                                                  annotate(total=Sum('valor_pagamento')). \
+                                                  values('month', 'total', 'categoria'). \
+                                                  order_by('month')[1:]
 
         #  Query para o total de gastos de cada mês ===================================================================
         context['fixo_vs_variavel'] = Pagamento.objects.filter(status_pago=True). \
