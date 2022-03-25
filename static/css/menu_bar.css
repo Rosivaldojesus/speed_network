@@ -1,0 +1,18 @@
+.fundo {
+
+    background-color: #151515;
+}
+
+.texto_menu {
+    
+    font-size: medium;
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #FFFAFA;
+    text-decoration: none;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.texto_menu:hover {
+    color: #F5FFFA;
+}

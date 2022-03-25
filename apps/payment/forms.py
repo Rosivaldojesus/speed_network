@@ -17,8 +17,6 @@ class CadastarPagamentoForm(forms.ModelForm):
         }, required=False
     )
 
-
-
     data_pagamento = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
 
     class Meta:
@@ -35,12 +33,9 @@ class CadastarPagamentoForm(forms.ModelForm):
         # getting username and password from cleaned_data
         motivo_pagamento = self.cleaned_data.get('motivo_pagamento')
 
-
         # validating the username and password
         if len(motivo_pagamento) < 4:
             self._errors['motivo_pagamento'] = self.error_class(['A minimum of 4 characters is required'])
-
-
 
         return self.cleaned_data
 
@@ -58,10 +53,10 @@ class AgendarPagamentoForm(forms.ModelForm):
     motivo_pagamento = forms.CharField(
         widget=forms.TextInput(attrs={'placeholder': 'Ex: Boleto do link'}),
     )
-    valor_pagamento = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': 'Ex: 385,50'}),
+    # valor_pagamento = forms.CharField(
+    #     widget=forms.TextInput(attrs={'placeholder': 'Ex: 385,50'}),
+    # )
 
-    )
     informacao_pagamento = forms.CharField(
         widget=forms.TextInput(attrs={'placeholder': 'Código de barras, Conta bancária, Chave PIX'}),
         label='Informações para pagamento',

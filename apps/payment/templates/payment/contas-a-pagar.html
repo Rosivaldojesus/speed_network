@@ -18,7 +18,17 @@
     <div class="bd-title mt-4 mb-1">
         <h1 class="ui dividing header blue">Contas a pagar</h1>
     </div>
+    <!-- =====================================================================================================-->
 
+    <!-- INÍCIO Messagens -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert {{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  <!-- FIM Messagens --> 
 
     <!-- =====================================================================================================-->
     <div class="mt-2 mb-2" align="right">
@@ -102,6 +112,7 @@
                   <th scope="col">Banco</th>
                   <th scope="col">Data</th>
                   <th scope="col">Infor.</th>
+                  <th scope="col">Editar</th>
                   <th scope="col">Pagar</th>
                 </tr>
               </thead>
@@ -121,6 +132,7 @@
 
                     {% endif %}
                   </td>
+                  <td> <a href="{% url 'editar_pagamento_agendado' valor.id  %}"> Editar </a> </td>
                   <td>
                     <a href="/pagamentos/comfirmar-pagamento/{{ valor.id }}" title="Pagar"><i class="fas fa-money-check-alt fa-lg"></i></a>
                   </td>
@@ -142,6 +154,7 @@
                   <th scope="col">Banco</th>
                   <th scope="col">Data</th>
                   <th scope="col">Infor.</th>
+                  <th scope="col">Editar</th>
                   <th scope="col">Pagar</th>
                 </tr>
               </thead>
@@ -161,6 +174,7 @@
 
                     {% endif %}
                   </td>
+                  <td> <a href="{% url 'editar_pagamento_agendado' valor.id  %}"> Editar </a> </td>
                   <td>
                     <a href="/pagamentos/comfirmar-pagamento/{{ valor.id }}" title="Pagar"><i class="fas fa-money-check-alt fa-lg"></i></a>
                   </td>

@@ -404,8 +404,6 @@ def Index(request):
                                                   })
 
 
-
-
 def CadastrarPagamento(request):
     if request.method == 'POST':
         form = CadastarPagamentoForm(request.POST or None)
@@ -421,10 +419,6 @@ def CadastrarPagamento(request):
     else:
         form = CadastarPagamentoForm()
     return render(request, 'payment/cadastrar-pagamento.html', {'form': form})
-
-
-
-
 
 
 def DashboardPagamentos(request):
@@ -578,19 +572,6 @@ def PagamentosMensaisGrupos(request):
     }
 
     return render(request, 'payment/pagamentos-mensais-grupos.html', context)
-
-
-# def AgendarPagamento(request):
-#     form = AgendarPagamentoForm(request.POST)
-#     if form.is_valid():
-#         obj = form.save()
-#         obj.save()
-#         messages.success(request, 'Pagamento agendado com sucesso!')
-#         return redirect('/pagamentos/contas-a-pagar/')
-#     else:
-#         form = AgendarPagamentoForm()
-#
-#     return render(request, 'payment/agendar-pagamento.html', {'form': form})
 
 
 def AgendarPagamento(request):
