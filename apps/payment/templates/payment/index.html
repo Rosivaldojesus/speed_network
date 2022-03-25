@@ -7,12 +7,24 @@
 {% block main %}
 <div class="container-xl">
 
+
+
     <!-- Título da pagina -->
     <div class="bd-title mt-4 mb-1">
         <h1 class="ui dividing header blue">Finanças</h1>
     </div>
 
 <!-- =========================================================================================================== -->
+    <!-- INÍCIO Messagens -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert {{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  <!-- FIM Messagens -->   
+
 <!-- =========================================================================================================== -->
     <!--Botões de navegações das finanças -->
     <div align="right">

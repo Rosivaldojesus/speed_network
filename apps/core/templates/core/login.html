@@ -1,4 +1,6 @@
-
+{% load static %}
+    
+    
     <!doctype html>
 <html lang="en">
   <head>
@@ -14,21 +16,44 @@
 
     <!-- Fontawsone -->
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="{% static '../static/css/login.css' %}"> 
+
+
+    <style>
+    .fundo {
+        background-color: #1C1C1C;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .texto-normal {
+        color: white;
+}
+
+
+.cor-linhas {
+    color: #A9A9A9;
+}
+
+    </style>  
     
     
     <title>SPEED NETWORK TELECOM</title>
   </head>
-  <body style="background-color: SteelBlue;">
+  <body class="fundo">
 
     <div class="container mt-5">
         <div class="row">
 
             <div class="col-sm-6">
             <div class="card border-0">
-                <div class="card-body" style="background-color: SteelBlue;">
+                <div class="card-body fundo" >
                     <div class="mt-5" align="center">                       
-                        <h1 class="text-dark"><strong>SPEED</strong></h1>
-                        <h3 class="text-dark"><strong>NETWORK TELECOM</strong></h3>
+                        <h1 class="texto-normal"><strong>SPEED</strong></h1>
+                        <h3 class="texto-normal"><strong>NETWORK TELECOM</strong></h3>
                     </div>
                 </div>
             </div>
@@ -36,7 +61,7 @@
 
             <div class="col-sm-6">
             <div class="card border-0">
-                <div class="card-body" style="background-color: SteelBlue;">
+                <div class="card-body fundo">
                 <div>
                     <form action="submit" method="POST">{% csrf_token %}
                         <div>
@@ -65,6 +90,9 @@
                             </div>
 
 
+                           
+
+
 
 
                             <button type="submit" class="btn btn-dark mt-2"> Acessar </button>
@@ -85,20 +113,20 @@
 
 
     <div>
-        <hr>
-        <hr>
-        <hr>
+        <hr class="cor-linhas">
+        <hr class="cor-linhas">
+        <hr class="cor-linhas">
 
     </div>
 
     <div class="container">
         <div>
             <div class="col-sm-12">
-                <div class="card border-0 " style="background-color: SteelBlue;">
-                <div class="card-body"  style="background-color: SteelBlue;">
+                <div class="card border-0 fundo">
+                <div class="card-body fundo">
                     <div class="mt-5" align="center">
-                        <small>Rosivaldo de Jesus</small> <br>
-                        <small>@2021</small>
+                        <small class="teste texto-normal">Rosivaldo de Jesus</small> <br>
+                        <small class="texto-normal">@2021</small>
                     </div>
                 </div>
                 </div>
