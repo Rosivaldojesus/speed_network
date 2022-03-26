@@ -5,29 +5,22 @@
 {% block title %} .:: Contas a Vencer {% endblock %}
 
 
-
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
-  
-
 {% block main %}
 <div class="container-xl">
     <!-- Título da pagina -->
     <div class="bd-title mt-4 mb-1">
-        <h1 class="ui dividing header blue">Contas a Vencer</h1>
+        <h1 class="texto-cor-1">Contas a Vencer</h1>
     </div>
 
-    
     <!-- =====================================================================================================-->
     <!-- INÍCIO  Campo de Pesquisas-->
-    <div class="card">
+    <div class="texto-cor-1">
+        <p>Escolha apenas uma das opções para fazer a pesquisa.</a>
+    <div>
+    <div class="card fundo-card fundo-card-border">
         <form method="GET">
-        <div class="card-body">
-        
-            <div class="row">
+      
+            <div class="row texto-cor-1">
             <div class="form-group col-4">
                 <label for="inputCity">Motivo do pagamento</label>
                 <input type="search" class="form-control" placeholder="Motivo do pagamentos" name="motivo_pagamento" value="{{ request.GET.motivo_pagamento }}">
@@ -42,28 +35,25 @@
             </div>
             </div>
         
-            <button class=" form-control btn-success">
-                <i class="fas fa-search"></i>
-                Pesquisar
-            </button>
+            <div align="right">
+				<button type="submit" class="btn btn-success">Executar Pesquisa</button>
+			</div>
         
-        </div>
         </form>
     </div>
     <!-- FIM Campo de Pesquisas-->
     <!-- =====================================================================================================-->
-
+    <hr class="line-solid">
     <!-- =====================================================================================================-->
-    <h3 class="ui dividing header blue">Lista de contas a pagar - R$: {{ valor_a_pagar.total }}<a class="anchor" id="content"></a></h3>
+    <h3 class="texto-color-1">Lista de contas a pagar - R$: {{ valor_a_pagar.total }}</h3>
     <!-- =====================================================================================================-->
 	
-  
 
     <!-- =====================================================================================================-->
-    <div class="card shadow mb-3">
+    <div class="card shadow mb-3 fundo-card">
         <div class="table-responsive">
             <table class="table">
-                <thead>
+                <thead class="thead-01">
                 <tr>
                     <th scope="col">Conta</th>
                     <th scope="col">Valor</th>
@@ -79,18 +69,18 @@
 
                 <tbody>
                 {% for conta in conta_a_vencer %}
-                <tr>
+                <tr class="texto-tbody-tr">
                     <th scope="row">{{ conta.motivo_pagamento }}</th>
                     <td>{{ conta.valor_pagamento }}</td>
                     <td>{{ conta.origem_valor_pagamento}}</td>
                     <td>{{ conta.data_pagamento|date:'j-M-Y' }}</td>
                     <td>{{ conta.categoria }}</td>
-                    <td> <a href="{% url 'editar_pagamento_agendado' conta.id  %}"> Editar </a> </td>
+                    <td> <a href="{% url 'editar_pagamento_agendado' conta.id  %}" class="btn-edit-01"> Editar </a> </td>
 
                     <td>
                     {% if conta.informacao_pagamento is not null %}
 
-                      <a href="{% url 'detalhes_pagamento' conta.id %}"><i class="large barcode icon"></i></a>
+                      <a href="{% url 'detalhes_pagamento' conta.id %}"><i class="large barcode icon btn-edit-01"></i></a>
 					  
 				
                     {% else %}
@@ -100,7 +90,7 @@
 
 
                     <td>
-                        <a href="/pagamentos/comfirmar-pagamento/{{ conta.id }}" title="Pagar"><i class="fas fa-money-check-alt fa-lg"></i></a>
+                        <a href="/pagamentos/comfirmar-pagamento/{{ conta.id }}" title="Pagar"><i class="fas fa-money-check-alt fa-lg btn-edit-01"></i></a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -109,7 +99,6 @@
         </div>
     </div>
     <!-- =====================================================================================================-->
-    
     
 </div>
 

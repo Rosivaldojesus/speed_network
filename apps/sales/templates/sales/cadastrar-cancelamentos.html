@@ -5,8 +5,8 @@
 
 
 {% block main %}
-     <div class="container">
-         <h4 class="mt-4">Cadastrar Cancelamentos</h4>
+<div class="container">
+         <h1 class="mt-4 texto-cor-1">Cadastrar Cancelamentos</h1>
 
          
         <!-- Messagens -->
@@ -18,18 +18,15 @@
         {% endfor %}
         {% endif %}
 
-
-
-
-         <form action="" method="post"> {% csrf_token %}
+    <div class="mb-4">
+        <form action="" method="post" class="texto-cor-2"> {% csrf_token %}
 
             <div class="mt-10">
                 {{ form | crispy }}
             </div>
 				<input type="submit" class="btn btn-block btn-primary" value="Cadastrar o Cancelamento">
 		 </form>
-     </div>
-
-
+    </div>    
+</div>
 
 {% endblock %}

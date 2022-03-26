@@ -118,25 +118,25 @@
                         {% elif request.user.groups.all.0.name == "tecnico" %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Senhas
+                              <i class="fa fa-lock-open"></i> Senhas
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                               <a class="dropdown-item" href="/senhas/">Geral</a>
-                              <a class="dropdown-item" href="/senhas-por-equipamento/">Senhas Modem</a>
+                              <a class="dropdown-item" href="/senhas-por-equipamento/">  Senhas Modem</a>
                             </div>
                         </li>  
                 
                       {% endif %}                   
-
+	
 
   
                    <li class="nav-item">
-                   <a class="nav-link" href="/logout/">Sair</a>
+                   <a class="nav-link" href="/logout/"> <i class="fas fa-power-off"></i> Sair</a>
                  </li>
 
 
                  <li>
-                  <small class="texto_menu">BEM-VINDO(A), <strong>{{ request.user.get_short_name }}</strong></small>
+                  <small class="texto_menu"><i class="	far fa-user-circle"></i>   <strong>{{ request.user.get_short_name }}</strong></small>
                  </li>
                </ul>
 

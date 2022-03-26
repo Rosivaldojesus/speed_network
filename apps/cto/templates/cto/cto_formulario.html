@@ -6,77 +6,14 @@
 <div class="container">
     
   <div class="mb-2 mt-2">
-    <h2 class="ui dividing header ui blue">Cadastrar CTO´s</h2>
+    <h1 class="texto-cor-1">Cadastrar CTO´s</h1>
   </div>
   
     <div class="m4-4 mt-4">
       
-      <form class="ui form" method="POST">{% csrf_token %}
+      <form class="texto-cor-2" method="POST">{% csrf_token %}
 
-        <!-- Código da Caixa CTO-->
-        <div class="field">
-            <h4 class="ui dividing header ui blue">Código da Caixa CTO</h4>
-            <div class="fields">
-              <div class="three wide field">
-                <label>Código</label>
-                {{ form.codigo_cto}}
-              </div>
-            </div>
-        </div>
-
-        <!-- Endereço da CTO-->
-        <div class="field">
-            <h4 class="ui dividing header ui blue">Endereço da CTO</h4>
-            <div class="fields">
-              <div class="ten wide field">
-                <label>Rua</label>
-                {{ form.rua_cto}}
-              </div>
-              <div class="four wide field">
-                <label>Número</label>
-                {{ form.numero_rua_cto}}
-              </div>
-
-              <div class="four wide field">
-                <label>Bairro</label>
-                {{ form.bairro_cto}}
-              </div>
-            </div>
-        </div>
-
-        <!-- informações da CTO-->
-        <div class="field">
-            <h4 class="ui dividing header ui blue">Informações da CTO</h4>
-            <div class="fields">
-              <div class="four wide field">
-                <label>Borda</label>
-                {{ form.board_cto}}
-              </div>
-              <div class="four wide field">
-                <label>Pon</label>
-                {{ form.pon_cto}}
-              </div>
-              <div class="four wide field">
-                <label>Quantidade de conexões</label>
-                {{ form.conexoes_opticas_cto}}
-              </div>
-              <div class="four wide field">
-                <label>Conexões Usadas</label>
-                {{ form.quant_conexoes_usadas_cto}}
-              </div>
-            </div>
-        </div>
-
-        <!-- Observação -->
-        <div class="field">
-            <h4 class="ui dividing header ui blue">Área de observações do local</h4>
-            <div class="fields">
-              <div class="sixteen wide field">
-                <label>Observação</label>
-                {{ form.observacao_cto}}
-              </div>
-            </div>
-        </div>
+        {{ form|crispy }}
 
         <div align="right" class="mb-4">
           <input type="submit" class="ui inverted primary basic button" value="Cadastrar Informações">

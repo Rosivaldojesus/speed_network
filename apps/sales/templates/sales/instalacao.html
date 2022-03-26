@@ -18,7 +18,7 @@
   <!-- FIM Messagens -->   
   
   <!-- INiCIO dos botões de opções -->
-  <div class="card shadow mt-4 border-0 p-2">
+  <div class="card mt-4 border-0 p-2 fundo-card fundo-card-border">
     <div align="right">
       <a class="btn btn-primary" href="cadastro-instalacao/"><i class="far fa-plus-square"></i> Instalação</a>
       <a class="btn btn-danger" href="criar-cancelamento/"><i class="far fa-plus-square"></i> Cancelamento</a>
@@ -29,15 +29,15 @@
 
 
   <!--INICIO dos status de instalações -->
-  <div class="card shadow mt-4 p-2">
-    <div class="card-deck">
+  <div class="card mt-4 p-2 texto-cor-2 fundo-card fundo-card-border">
+    <div class="card-deck ">
       
-      <div class="card border-danger" align="center">
-        <div class="card-group">
-          <div class="card border-0">
+      <div class="card border-danger fundo-card " align="center">
+        <div class="card-group ">
+          <div class="card border-0 fundo-card">
             <h5 class="mt-3">Aberto</h5>
           </div>
-          <div class="card border-0" > 
+          <div class="card border-0 fundo-card" > 
             <div class="display-4"><strong>{{quant_aberta}}</strong></div>
           </div>
         </div>
@@ -46,40 +46,40 @@
         </div>
       </div>
 
-      <div class="card border-warning" align="center">
+      <div class="card border-warning fundo-card" align="center">
         <div class="card-group">
-          <div class="card border-0">
+          <div class="card border-0 fundo-card">
             <h5 class="mt-3">Agendado</h5>
           </div>
-          <div class="card border-0">
+          <div class="card border-0 fundo-card">
             <div class="display-4"><strong>{{quant_agendada}}</strong></div>
           </div>
         </div>
-        <div class="card-footer border-warning" align="right">
+        <div class="card-footer border-warning fundo-card" align="right">
           <a href="instalacao-agendada/"><i class="far fa-eye fa-2x text-warning"></i></a>
         </div>
       </div>
 
-      <div class="card border-dark" align="center">
+      <div class="card border-light fundo-card" align="center">
         <div class="card-group">
-          <div class="card border-0">
+          <div class="card border-0 fundo-card">
             <h5 class="mt-3">Boletos</h5>
           </div>
-          <div class="card border-0">
+          <div class="card border-0 fundo-card">
             <div class="display-4"><strong>{{ quant_sem_boleto }}</strong></div>
           </div>
         </div>
-        <div class="card-footer border-dark" align="right">
-          <a href="instalacao-finalizada-sem-boleto/"><i class="far fa-eye fa-2x text-dark"></i></a>
+        <div class="card-footer border-light" align="right">
+          <a href="instalacao-finalizada-sem-boleto/"><i class="far fa-eye fa-2x text-light"></i></a>
         </div>
       </div>
 
-      <div class="card border-success" align="center">
+      <div class="card border-success fundo-card" align="center">
         <div class="card-group">
-          <div class="card border-0">
+          <div class="card border-0 fundo-card">
             <h5 class="mt-3">Finalizados</h5>
           </div>
-          <div class="card border-0">
+          <div class="card border-0 fundo-card">
             <div class="display-4"><strong>{{quant_concluida}}</strong></div>
           </div>
         </div>
@@ -109,6 +109,7 @@
                 data: [{% for mensal in mensalInstalacao %} '{{ mensal.c }}', {% endfor %}],
             }]
             };
+            
   
             var chartOptions = {
             legend: {
@@ -120,6 +121,8 @@
                 }
             }
             };
+
+            
   
             var lineChart = new Chart(speedCanvas, {
             type: 'line',

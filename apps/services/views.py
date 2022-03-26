@@ -130,7 +130,7 @@ def EditarServico(request, id=None):
         obj = form.save()
         obj.save()
         messages.success(request, 'Serviço editado com sucesso!')
-        return redirect('/servicos/servicos-abertos/')
+        return redirect('/servicos/')
     return render(request, 'services/editar-servico.html', {'form': form})
 
 

@@ -263,7 +263,7 @@ def SenhasPorEquipamento(request):
             filter(Q(codigo_equipamento__icontains=queryset) | Q(sn_equipamento__icontains=queryset))
 
     elif patrimonio:
-        senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__contains=patrimonio))
+        senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__exact=patrimonio))
 
     context = {
         'senhasPorEquipamentos': senhasPorEquipamentos,

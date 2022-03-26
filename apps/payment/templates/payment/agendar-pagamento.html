@@ -4,30 +4,28 @@
 
 
 {% block main %}
-     <div class="container">
+     <div class="container-xl">
 		 
 		<div class="mt-4 mb-4">
-        <h1 class="display-5">Agendar Pagamento</h1>
+        <h1 class="texto-cor-1">Agendar Pagamento</h1>
 		</div>
 	
 	
-         <form action="" method="post"> {% csrf_token %}
+        <form action="" method="post" class="texto-cor-2"> {% csrf_token %}
 		 
-		 
-			<div class="shadow p-4">
-				<div class="form-row">
+			<div class="form-row">
 					<div class="form-group col-md-12 mb-0">
 					{{ form.motivo_pagamento|as_crispy_field }}
 					</div>
-				</div>
+			</div>
 				
-				<div class="form-row">
+			<div class="form-row">
 					<div class="form-group col-md-12 mb-0">
 					{{ form.informacao_pagamento|as_crispy_field }}
 					</div>
-				</div>
+			</div>
 				
-				<div class="form-row">
+			<div class="form-row">
 					<div class="form-group col-md-4 mb-0">
 					{{ form.valor_pagamento|as_crispy_field }}
 					</div>
@@ -37,33 +35,21 @@
 					<div class="form-group col-md-4 mb-0">
 					{{ form.tipo_custo_pagamento|as_crispy_field }}
 					</div>
-				</div>
+			</div>
 				
-				<div class="form-row">
+			<div class="form-row">
 					<div class="form-group col-md-4 mb-0">
 					{{ form.data_pagamento|as_crispy_field }}
 					</div>
 					<div class="form-group col-md-8 mb-0">
 					{{ form.categoria|as_crispy_field }}
 					</div>
-				</div>
 			</div>
-		
+			
 			<div class="mt-2 mb-4">
-				<input type="submit" class="btn  btn-primary" value="Agendar pagamento">
-				<a href="/pagamentos/contas-a-pagar/" class="btn  btn-secondary" >Cancelar</a>
-
+					<input type="submit" class="btn  btn-primary" value="Agendar pagamento">
+					<a href="/pagamentos/contas-a-pagar/" class="btn  btn-secondary" >Cancelar</a>
 			</div>
-		 
-		 
-		
-		
-
-
-
-		 </form>
+		</form>
      </div>
-
-
-
 {% endblock %}

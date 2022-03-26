@@ -1,33 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}<title>:: Instalações  agendadas </title> {% endblock %}
+{% block title %}.:: Instalações  agendadas {% endblock %}
 
 {% block main %}
 <div class="container-xl">
   {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
   <!-- INÍCIO  Campo de Pesquisas-->
-	<div class="mt-3">
-		<form method="GET">
+	<div class="mt-3 fundo-card">
+		<form method="GET" class="texto-cor-2 p-2">
+      <p>Escolha apenas das opções para pesquisa.</p>
 		   <div class="row">
-
-			   <div class="form-group col-6">
+       
+			   <div class="form-group col-8">
 				   <input type="search" class="form-control" placeholder="Informe o nome do cliente"
 						  name="q" value="{{ request.GET.q }}">
 			   </div>
-     ou 
-         <div class="form-group col-3">
+              
+         <div class="form-group col-4">
           <input type="date" class="form-control" placeholder="Data"
              name="data_dia" value="{{ request.GET.data_dia }}">
-        </div>
+        </div>   
+		  </div>
 
-			   <div class="form-group col-2">
-				   <button class=" form-control btn-success">
-						<i class="fas fa-search"></i>
-						Pesquisar
-				   </button>
-			   </div>
-		   </div>
-	   </form>
+      <div align="right">
+				<button type="submit" class="btn btn-success">Executar Pesquisa</button>
+			</div>
+	  </form>
 	</div>
 	<!-- FIM Campo de Pesquisas-->
 
@@ -40,21 +38,17 @@
     {% endfor %}
   {% endif %}      
   <!-- FIM Messagens -->
-  <hr>
-  <hr>
 
   <div>
-    <h5 class="mt-3 mb-3"><span class="badge badge-warning badge-pill">{{quant_agendada}} </span> Instalações Agendadas </h5>
+    <h2 class="mt-3 mb-3 texto-cor-2"><span class="badge badge-warning badge-pill">{{quant_agendada}} </span> Instalações Agendadas </h2>
   </div>
 
-  
-  
   <!-- INÍCIO da lista de instalaçoes agendas-->
   {% for agendada in agendadas %} 
-  <div class="card shadow mt-2 mb-2 border border-warning">
+  <div class="card mt-2 mb-2 fundo-card texto-cor-2">
     <div class="row">
       <div class="col-sm-9">
-        <div class="card border-0 mt-2 mb-2 ml-2">
+        <div class="card border-0 mt-2 mb-2 ml-2 fundo-card">
           <div>
             <small><strong>Nome:</strong></small><br>
                 {{ agendada.nome_cliente }} {{ agendada.sobrenome_cliente }}<br>
@@ -70,7 +64,7 @@
         </div>
       </div>
       <div class="col-sm-3">
-        <div class="card border-0 mt-2 mb-2 ml-2">
+        <div class="card border-0 mt-2 mb-2 ml-2 fundo-card">
           <div>
             <div>
               <a href="/vendas/finalizar-instalacao/{{ agendada.id }}" class="btn btn-success">Finalizar</a>

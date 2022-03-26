@@ -7,11 +7,11 @@
 <div class="container">
 
   <div class="mt-4">
-    <h5 class="mt-3 mb-3"><span class="badge badge-success badge-pill">{{quant_concluida}} </span> Instalações Concluida Por vendedores </h5>
+    <h1 class="mt-3 mb-3 texto-cor-1"><span class="badge badge-success badge-pill">{{quant_concluida}} </span> Instalações Concluída Por vendedores </h1>
   </div>
 
   <div class="mb-4">
-    <form method="GET">
+    <form method="GET" class="texto-cor-2">
       <div class="row">
         <div class="form-group col-6">
           <label>Vendedor:</label>
@@ -63,7 +63,7 @@
 
   <div class="mt-4 mb-4">
     <table class="table table-sm ">
-      <thead>
+      <thead class="fundo-card texto-cor-2 thead-01">
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Cliente</th>
@@ -71,20 +71,21 @@
             <th scope="col">Nº</th>
             <th>Data Finalização</th>
             <th scope="col">Vendedor</th>
+            <th scope="col">Opções</th>
         </tr>
       </thead>
       <tbody>
       {% for concluida in concluidas %}
-  
-        <tr>
+        <tr class="texto-tbody-tr">
             <td>{{ concluida.id }}</td>
-            <td class="nav-link ">
-                <a class="nav-link" href="/vendas/instalacao-concluida/visualizar-instalacao/?id={{ concluida.id }}">{{ concluida.nome_cliente }} {{ concluida.sobrenome_cliente}}</a>
-            </td>
+            <td class="nav-link ">{{ concluida.nome_cliente }} {{ concluida.sobrenome_cliente}}</td>
             <td>{{ concluida.rua_cliente }}</td>
             <td>{{ concluida.numero_endereco_cliente }}</td>
             <td>{{ concluida.data_finalizacao|date:"d M, Y" }}</td>
             <td>{{ concluida.instalacao_vendedor }}</td>
+            <td>
+                  <a href="/vendas/instalacao-concluida/visualizar-instalacao/?id={{ concluida.id }}" class="btn-edit-01">Ver</a>
+                </td>
         </tr>
   
       {% endfor %}

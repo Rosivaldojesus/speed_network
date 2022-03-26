@@ -4,42 +4,19 @@
 
 {% block main %}
 <div class="container">
+
+
     <div class="mt-4 mb-4">
-        <h2 class="ui dividing header">Cadastrar Boletos Entregue<a class="anchor" id="content"></a></h2>
+        <h1 class="texto-cor-2">
+            Cadastrar Boletos Entregue
+        </h1>
     </div>
 
     <div class="mb-4">
 <!--       <form class="ui form" action="" method="POST">{% csrf_token %}-->
-        <form action="" method="POST">{% csrf_token %}
-            <div class="field">
-              <label>Nome do Cliente</label>
-                {{form.nome_cliente}}
-                    {% if form.nome_cliente.errors %}
-                        <div>
-                            <div class="text-danger" role="alert">{{form.nome_cliente.errors }}</div>
-                        </div>
-                    {% endif %}
-            </div>
-
-            <div class="field">
-              <label>CPF do Cliente</label>
-              {{form.cpf_cliente}}
-                {% if form.cpf_cliente.errors %}
-                    <div>
-                        <div class="text-danger" role="alert">{{form.cpf_cliente.errors }}</div>
-                    </div>
-                {% endif %}
-            </div>
-
-            <div class="field">
-                <label>Forma de entrega do boleto</label>
-                {{form.forma_entrega}}
-                    {% if form.forma_entrega.errors %}
-                        <div>
-                            <div class="text-danger" role="alert">{{form.forma_entrega.errors }}</div>
-                        </div>
-                    {% endif %}
-            </div>
+        <form action="" method="POST" class="texto-cor-2">{% csrf_token %}
+            {{ form | crispy }}
+	        {{ form.media }}
 
             <button class="ui button" type="submit">Cadastar</button>
         </form>

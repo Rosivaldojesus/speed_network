@@ -19,12 +19,7 @@ from django.views.generic.list import ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import UpdateView
 
-
-
 from twilio.rest import Client
-
-
-
 
 # Create your views here.
 
@@ -257,7 +252,7 @@ def InstalacaoAgendar(request, id=None):
         obj = form.save()
         obj.save()
         messages.success(request, 'Instalação agendada com sucesso.')
-        return redirect('/vendas/instalacao-agendada/')
+        return redirect('/vendas/')
     return render(request, 'sales/agendar-instalacao.html', {'form': form})
 
 

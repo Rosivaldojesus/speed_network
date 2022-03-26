@@ -5,27 +5,24 @@
 <div class="container">
 
     <div class="mt-4">
-        <h5 class="mt-3 mb-3"><span class="badge badge-dark badge-pill">{{ quant_sem_boleto }} </span> Instalações finalizadas sem boleto </h5>
+        <h1 class="mt-3 mb-3 texto-cor-2"><span class="badge badge-dark badge-pill">{{ quant_sem_boleto }} </span> Instalações finalizadas sem boleto </h1>
     </div>
 
 
-         <!-- Messagens -->
-         {% if messages %}
-         {% for message in messages %}
-             <div class="alert {{ message.tags }}" role="alert">
-                 {{ message }}
-             </div>
-           {% endfor %}
-           {% endif %}
+    <!-- Messagens -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
    
 
 
-
-
-
-    <div class="table-responsive-sm">
+    <div class="table-responsive-sm texto-cor-2">
         <table class="table">
-          <thead>
+          <thead class='fundo-card texto-cor-2 thead-01'>
             <tr>
                 <th scope="col">Nome</th>
                 <th scope="col">Bairro</th>
@@ -38,17 +35,17 @@
           </thead>
           <tbody>
           {% for concluida in concluidas %}
-            <tr>
+            <tr class="texto-tbody-tr">
                 <td>{{ concluida.nome_cliente }}</td>
                 <td>{{ concluida.bairro_cliente }}</td>
                 <td>{{ concluida.rua_cliente }}</td>
                 <td>{{ concluida.numero_endereco_cliente }}</td>
                 <td>{{ concluida.data_finalizacao|date:"d M  Y"  }}</td>
                 <td>
-                    <a href="/vendas/finalizar-boleto/{{ concluida.id }}">Marcar Boleto</a>
+                    <a href="/vendas/finalizar-boleto/{{ concluida.id }}" class="btn-edit-01">Marcar Boleto</a>
                 </td>
                 <td>
-                    <a href="/vendas/instalacao-concluida/visualizar-instalacao/?id={{ concluida.id }}">Detalhes</a>
+                    <a href="/vendas/instalacao-concluida/visualizar-instalacao/?id={{ concluida.id }}" class="btn-edit-01">Detalhes</a>
                 </td>
             </tr>
           {% endfor %}

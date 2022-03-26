@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}<title>Primárias</title>{% endblock %}
+{% block title %}.:: Primárias {% endblock %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 {% block main %}
@@ -36,14 +36,14 @@
 	<hr><hr>
 	<!--INÍCIO titulo da página -->
 	<div class="mt-4">
-		<h5>Lista das Primárias</h5>
+		<h1 class="texto-cor-1">Lista das Primárias</h1>
 	</div>
 	<!--INÍCIO titulo da página -->
 
 	<!--INÍCIO Tabela das primárias -->
 	<div class="table-responsive-sm shadow">
 		<table class="table">
-			<thead>
+			<thead class="fundo-card texto-cor-2 thead-01">
 			  <tr>
 				<th scope="col">ID</th>
 				<th scope="col">Borda</th>
@@ -56,14 +56,14 @@
 			<tbody>
   
 			{% for primaria in primarias %}
-			  <tr>
+			  <tr class="texto-tbody-tr">
 				<th scope="row">{{ primaria.id}}</th>
 				<td>{{ primaria.board}}</td>
 				<td>{{ primaria.pon}}</td>
 				<td>{{ primaria.localizacao}}</td>
 				<td>{{ primaria.quant_caixas}}</td>
 				<td>
-					<a href="/cto/caixas-primarias/?id={{ primaria.id }}">Visualizar</a>
+					<a href="/cto/caixas-primarias/?id={{ primaria.id }}" class="btn-edit-01">Editar</a>
 				</td>
 			  </tr>
 			{% endfor %}

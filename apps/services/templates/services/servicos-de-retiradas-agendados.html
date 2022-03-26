@@ -6,11 +6,15 @@
 {% block title %}.:: Serviços de Retiradas agendados{% endblock %}
 
 {% block main %}
-<body style="background-color: lightgrey;">
+
 
 </body>
 <div class="container">
-  <h5 class="mt-3 mb-3"><span class="badge badge-warning badge-pill">{{ quant_agendados }} </span> Retiradas em Análise</h5>
+
+ <div class="mt-4">
+   <h1 class="mt-3 mb-3 texto-cor-1"><span class="badge badge-warning badge-pill">{{ quant_agendados }} </span> Retiradas em Análise</h1>
+
+ </div>
 
   {% if messages %}
   {% for message in messages %}
@@ -22,7 +26,7 @@
 
 
 <!-- INÍCIO  Campo de Pesquisas-->
-<div class="card">
+<div class="card fundo-card texto-cor-2">
   <form method="GET">
     <div class="card-body">
     
@@ -49,16 +53,17 @@
 <!-- FIM Campo de Pesquisas-->
 
 
-
+  <!--
   <hr>
   <div align="right">
     <a href="{% url 'exportar_servicos_em_analise' %}">Exportar PDF</a>
   </div>
   <hr>
+  -->
 
 
 {% for agendado in agendados %}
-  <div class="card mt-2 mb-2 shadow border-warning">
+  <div class="card mt-2 mb-4 fundo-card fundo-card-border texto-cor-2">
     <div class="card-header ">
         <div class="row">
           <div class="col-sm-4">

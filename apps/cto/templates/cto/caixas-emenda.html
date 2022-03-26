@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}<title> Caixas de Emenda </title> {% endblock %}
+{% block title %}.:: Caixas de Emenda{% endblock %}
 
 
 
@@ -38,7 +38,7 @@
 	
 	<!--INÍCIO titulo da página -->
 	<div>
-		<h5>Caixas de Emenda</h5>
+		<h1 class="texto-cor-1">Caixas de Emenda</h1>
 	</div>
 	<!--INÍCIO titulo da página -->
 
@@ -47,7 +47,7 @@
 	<!--INÍCIO tabela das Caixas de Emenda -->
 	<div class="table-responsive-sm shadow">
 		<table class="table">
-			<thead>
+			<thead class="fundo-card texto-cor-2 thead-01">
 				<tr>
 					<th scope="col">ID</th>
 					<th scope="col">Cód.</th>
@@ -58,13 +58,13 @@
 			</thead>
 			<tbody>
 				{% for caixa in caixa_emenda %}
-				<tr>
+				<tr class="texto-tbody-tr">
 					<th>{{caixa.id}}</th>
 					<th>{{caixa.codigo_caixa}}</th>
 					<td>{{caixa.rua_caixa_emenda}}</td>
 					<td>{{caixa.numero_rua_cto}}</td>
 					<td>
-						<a href="/cto/visualizar-caixa_emenda/?id={{ caixa.id }}" ><i class="fas fa-eye"></i></i></a>
+						<a href="/cto/visualizar-caixa_emenda/?id={{ caixa.id }}" class="btn-edit-01" >Visualizar</a>
 					</td>
 
 				</tr>

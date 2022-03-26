@@ -11,42 +11,57 @@
 
 {% comment %} <div class="teste">Speed Network Telecom</div> {% endcomment %}
 
-  <div class="row mt-4 mb-2">
+  <div class="row mt-4 mb-2 ">
     <!-- INÍCIO do campo principal a esquerda -->
-    <div class="card col-sm-9 border-0">
+    <div class="card border-0 col-sm-9 fundo-pagina">
       <!-- ------------------------------------------------------------------------------------------- -->
       {% if request.user.groups.all.0.name == "Master" %}
       <!-- INÍCIO Card de financeiro -->
-      <div class="ui link cards">
-        <div class="card w-100">
-          <div class="content" 
-          {% if pagamentos_para_hoje >= 1 or pagamentos_atrasados >= 1  %}"
-          style="background-color: red;" 
-          {% endif %} 
-        >
-            <div class="header">
-              Financeiro
-            </div>
-            <div class="meta">
-              Financeiro da Speed Network Telecom
-            </div>
-            <div class="description">
-              Informações referentes as contas a pagar
-            </div>
-          </div>
-          <div class="extra content">
-            <div class="ui three buttons">
-              <div class="ui basic blue button">
-                <a href="/pagamentos/contas-a-pagar/">Vencidas  ({{ pagamentos_atrasados }})</a>
+      <!--
+      {% if pagamentos_para_hoje >= 1 or pagamentos_atrasados >= 1  %}
+        <div class="card mb-4 texto-cor-2" style="background: #B22222; color: white; ">
+      {% else %}
+        <div class="card mb-4 fundo-card texto-cor-2">
+      {% endif %}
+      -->
+      <div class="card mb-4 fundo-card texto-cor-2">
+
+        <div class="p-2 "><h1>Finanças</h1></div>
+        <div class="card-body">
+
+            <div class="card-deck">
+
+              <div class="card border-0 fundo-card-dark fundo-card-border">
+                <div> <h3 class="card-title p-2">Vencidas</h3> </div>
+                <div align="center">
+                  <h2>({{ pagamentos_atrasados }})</h2> 
+                </div>
+                <div class="p-2" align="right">
+                  <a href="/pagamentos/contas-a-pagar/" class="btn btn-info">Visualizar</a>
+                </div>
               </div>
-              <div class="ui basic blue button">
-                <a href="/pagamentos/contas-a-pagar/">Hoje ({{pagamentos_para_hoje}})</a>
+
+              <div class="card border-0 fundo-card-dark fundo-card-border">
+                <div><h3 class="card-title p-2">Hoje</h3></div>
+                <div align="center">
+                  <h2>({{ pagamentos_para_hoje }})</h2>
+                </div>
+                <div class="p-2" align="right">
+                  <a href="/pagamentos/contas-a-pagar/" class="btn btn-info">Visualizar</a>
+                </div>
               </div>
-              <div class="ui basic blue button">
-                <a href="/pagamentos/contas-a-pagar/">Futuros ({{pagamentos_para_vencer}})</a>
+
+              <div class="card border-0 fundo-card-dark fundo-card-border">
+                <div><h3 class="card-title p-2">Futuras</h3></div>
+                <div align="center">
+                  <h2>({{ pagamentos_para_vencer }})</h2>
+                </div>
+                <div class="p-2" align="right">
+                  <a href="/pagamentos/contas-a-pagar/" class="btn btn-info">Visualizar</a>
+                </div>
               </div>
+
             </div>
-          </div>
         </div>
       </div>
       <!-- INÍCIO Card de financeiro -->
@@ -55,101 +70,130 @@
       
       <!-- ------------------------------------------------------------------------------------------- -->
       <!-- INÍCIO Card de Controle de Boletos -->
-      <div class="ui card mt-3 w-100">
-        <div class="content">
-          <div class="header">Controle de Boletos</div>
-          <div class="meta">Lista dos boletos a serem emetidos</div>
-          <div class="description">
-            <div class="ui two column grid row">
-              <div class="column">
-                <div class="ui fluid card">
-                  <div class="image">
-                    <i class="wifi icon"> </i>Instalações
-                  </div>
-                  <div class="content">
-                    <a href="/vendas/instalacao-finalizada-sem-boleto/" class="header">
-                      Boletos - ({{ quant_instalacao_sem_boleto }})
-                    </a>
-                  </div>
+      <div class="card mb-4 p-2 fundo-card texto-cor-2">
+        <div class="p-2"><h2>Controle de Boletos</h2> </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card fundo-card-dark">
+              <div class="card-body">
+                <h3 class="card-title">Instalações</h3>
+                <div align="right">
+                  <a href="/vendas/instalacao-finalizada-sem-boleto/" class="header btn btn-warning">Boletos - ({{ quant_instalacao_sem_boleto }})
+                </a>
                 </div>
               </div>
-              <div class="column">
-                <div class="ui fluid card">
-                  <div class="image">
-                    <i class="tty icon"></i> Voip
-                  </div>
-                  <div class="content">
-                    <a href="/voip/lista-voip-sem-boleto/" class="header">
-                      Boletos - ({{ quantidade_voip_sem_boleto }})
-
-                    </a>
-                  </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card fundo-card-dark">
+              <div class="card-body">
+                <h3 class="card-title">Telefonia Voip</h3>
+                <div align="right">
+                    <a href="/voip/lista-voip-sem-boleto/" class="header btn btn-warning">Boletos - ({{ quantidade_voip_sem_boleto }})</a>
                 </div>
+                
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <!-- FIM Card de Controle de boletos  -->
       <!-- ------------------------------------------------------------------------------------------- -->
 
       <!-- ------------------------------------------------------------------------------------------- -->
       <!-- INÍCIO dos Status de Serviços -->
-      <div class="card-group">
-        <div class="card">
-          <!-- Staus de serviços -->
-        <div class="column">
-          <div class="ui fluid card">
-            <div class="content">
-              
-              <div class="header">
-                Status dos Serviços <i class="cogs icon"> </i>
-              </div>
-              <div class="meta">
-                <P></P>
-              </div>
-              <div class="description">
-                <p></p>
-              </div>
-            </div>
-            <div class="extra content">
-              <div class="ui three buttons">
+
+
+      <div class="card mb-4 fundo-card texto-cor-2">
+        <div class="card-body">
+          <h2 class="card-title">Status dos Serviços de manutenção</h2>
+
+          <div class="card-deck">
+            <div class="card fundo-card-dark">
+
+              <div class="card-body">
+                <h3 class="card-title">Esperando...</h3>
                 <a href="servicos/servicos-abertos/" class="ui basic red button">Espera {{quant_servico_aberto}}</a>
+              </div>
+
+            </div>
+            <div class="card fundo-card-dark">
+
+              <div class="card-body">
+                <h3 class="card-title">Agendados</h3>
                 <a href="servicos/servicos-agendados/" class="ui basic yellow button">Agenda {{quant_servico_agendado}}</a>
+              </div>
+
+            </div>
+            <div class="card fundo-card-dark">
+
+              <div class="card-body">
+                <h3 class="card-title">Concluídos</h3>
                 <a href="servicos/servicos-finalizados/" class="ui basic green button">Concluído {{quant_servicos_finalizados_mes}}</a>
               </div>
-            </div>
-          </div>
-        </div> 
-        </div>
-        <!-- Status de instalaçoes-->
-        <div class="card">
-        <div class="column">
-          <div class="ui fluid card">
-            <div class="content">
 
-              <div class="header">
-                Status das instalaçoes <i class="wifi icon"> </i>
-              </div>
-              <div class="meta">
-                <P></P>
-              </div>
-              <div class="description">
-                <p></p>
-              </div>
-            </div>
-            <div class="extra content">
-              <div class="ui three buttons">
-                <a href="vendas/instalacao-aberta/" class="ui basic red button">Espera {{quant_instalacao_aberta}}</a>
-                <a href="vendas/instalacao-agendada/" class="ui basic yellow button">Agenda {{quant_instalacao_agendada}}</a>
-                <a href="vendas/instalacao-concluida/" class="ui basic green button">Concluído {{quant_instalacao_finalizados_mes}}</a>
-              </div>
             </div>
           </div>
-        </div>
+          
+          
         </div>
       </div>
-      <!-- INÍCIO dos Status de Serviços -->
+
+       <!-- FIM dos Status de Serviços -->
+
+
+
+
+
+
+
+      <!-- INÍCIO dos Status de Instalações -->
+
+
+      <div class="card mb-4 fundo-card texto-cor-2">
+        <div class="card-body">
+          <h2 class="card-title">Status das instalações</h2>
+
+          <div class="card-deck">
+            <div class="card fundo-card-dark">
+
+              <div class="card-body">
+                <h3 class="card-title">Esperando...</h3>
+                 <div align="right"> 
+                  <a href="vendas/instalacao-aberta/" class="btn btn-danger">Espera {{quant_instalacao_aberta}}</a>
+                </div>
+              </div>
+
+            </div>
+            <div class="card fundo-card-dark">
+
+              <div class="card-body">
+                <h3 class="card-title">Agendados</h3>
+                <div align="right">             
+                  <a href="vendas/instalacao-agendada/" class="btn btn-warning">Agenda {{quant_instalacao_agendada}}</a>
+                </div>
+              </div>
+
+            </div>
+            <div class="card fundo-card-dark">
+
+              <div class="card-body">
+                <h3 class="card-title">Concluídos</h3>
+
+                <div align="right">
+                  <a href="vendas/instalacao-concluida/" class="btn btn-success">Concluído {{quant_instalacao_finalizados_mes}}</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+
+       <!-- FIM dos Status de Instalaçoes -->
       <!-- ------------------------------------------------------------------------------------------- -->
   
 
@@ -164,93 +208,56 @@
 
       
   <!-- INÍCIO dos Serviços Voip -->
-    <div class="card mt-4">
-        <h5 class="card-header">Status dos Serviços Voip</h5>
-      
 
-            <div class="row">
-              <div class="col-sm-4">
-                <div class="card border-0">
-                  <div class="card-body">
-    
-                    <a href="/voip/lista-voip-solicitados/" class="btn btn-primary w-100" >Solicitado ( {{ quantidade_voip_disponiveis }} )</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="card border-0">
-                  <div class="card-body">
+        <div class="card mb-4 fundo-card texto-cor-2">
+        <div class="card-body">
+          <h2 class="card-title">Serviços de Telefonia Voip</h2>
 
-                    <a href="/voip/lista-voip-reservados/" class="btn btn-primary w-100">Reservados ( {{ quantidade_voip_reservados }} )</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="card border-0">
-                  <div class="card-body">
+          <div class="card-deck">
+            <div class="card fundo-card-dark">
 
-                    <a href="/voip/lista-voip-sem-boleto/" class="btn btn-primary w-100">Sem Boletos ({{ quantidade_voip_sem_boleto }})</a>
-                  </div>
-                </div>
+              <div class="card-body">
+
+                <a href="/voip/lista-voip-solicitados/" class="btn btn-primary w-100" >Solicitado ( {{ quantidade_voip_disponiveis }} )</a>
               </div>
+
             </div>
-       
-        <!--
-        <div class="card-body">
-          <h5 class="card-title">Portabilidade</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-        -->
-    </div>
-  <!-- FIM dos Serviços Voip -->
+            <div class="card fundo-card-dark">
 
-  <!-- INICIO - Instalaçãoes por técnico -->
-      <div class="card w-100 border-0 shadow p-2 mb-3 mt-4">
-        <div class="card-header bg-dark text-white">Instalações agendadas por Técnico</div>
-        <div class="card-body">
-          <!--SERVIÇOS POR CADA TÉCNICO-->
-          <div class="table-responsive table-striped table-sm">
-            <table class="table caption-top">
-              <thead>
-                <tr>
-                  <th>Técnico</th>
-                  <th>Cliente</th>
-                  <th>Rua</th>
-                  <th>Nº</th>
-                  <th>Data</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for responsavel in responsavel_instalacao%}
-                    {% if responsavel.funcionario_instalacao is null %}
+              <div class="card-body">
 
-                    {% else %}
-                    <tr>
-                      <td><small>{{ responsavel.funcionario_instalacao.get_full_name }}</small></td>
-                      <td><small>{{ responsavel.nome_cliente }}</small></td>
-                      <td><small>{{ responsavel.rua_cliente }}</small></td>
-                      <td><small>{{ responsavel.numero_endereco_cliente }}</small></td>
-                      <td><small>{{ responsavel.data_instalacao|date:"D d"}} - {{ responsavel.hora_instalacao|time:"H:i"  }}</small></td>
-                    </tr>
-                    {% endif %}
-                {% endfor %}
-              </tbody>
-            </table>
+                                
+                <a href="/voip/lista-voip-reservados/" class="btn btn-primary w-100">Reservados ( {{ quantidade_voip_reservados }} )</a>
+              </div>
+
+            </div>
+            <div class="card fundo-card-dark">
+
+              <div class="card-body">
+
+
+                 <a href="/voip/lista-voip-sem-boleto/" class="btn btn-primary w-100">Sem Boletos ({{ quantidade_voip_sem_boleto }})</a>
+              </div>
+
+            </div>
           </div>
+          
+          
         </div>
       </div>
-  <!-- FIM - Instalaçãoes por técnico -->
+
+  <!-- FIM dos Serviços Voip -->
+
 
   <!-- INÍCIO  das últimas vendas-->
-  <div class="card border-0 shadow p-2 mb-3">
+  <div class="card border-0  p-2 mb-3 fundo-card">
     <div class="card-header bg-dark text-white">Últimas vendas de instalações</div>
     <div class="card-group">
-      <div class="card">
+      <div class="card fundo-card">
         <div class="table-responsive table-striped table-sm">
           <table class="table caption-top">
             <caption>Últimos lançamentos</caption>
-            <thead>
+            <thead class="fundo-card texto-cor-2 thead-01">
               <tr>
                 <th>Cliente</th>
                 <th>Rua</th>
@@ -260,8 +267,8 @@
             </thead>
             <tbody>
               {% for venda in ultimas_vendas %}
-              <tr>
-                <td><small>{{ venda.nome_cliente }}</small></td>
+              <tr class="texto-tbody-tr">
+                <td><small>{{ venda.nome_cliente }} {{ venda.sobrenome_cliente }}</small></td>
                 <td><small>{{ venda.rua_cliente }}</small></td>
                 <td><small>{{ venda.bairro_cliente }}</small></td>
                 <td><small>{{ venda.instalacao_vendedor }}</small></td>
@@ -279,17 +286,17 @@
   <!-- FIM do campo principal a esquerda -->
       
   <!-- INÍCIO do campo principal a direita -->
-    <div class="card col-sm-3 border-0">
+    <div class="card border-0 col-sm-3 fundo-pagina">
       <!-- INÍCIO Lista de serviços por dia -->
-      <div class="card">
-        <div class="card-header">
-          Serviços
+      <div class="card fundo-card fundo-card-border">
+        <div class="card-header texto-cor-2">
+          <h3>Serviços</h3>
         </div>
         <div class="card-body">
         
           {% for previsaoServico in previsaoServico %}
             {% if previsaoServico.number <= 4 %}
-           <p href="#" style="color:green;" class="ml-2">{{ previsaoServico.data_agendada|naturalday|title  }}: {{ previsaoServico.number }}<p>
+           <p href="#" style="color:Lime;" class="ml-2">{{ previsaoServico.data_agendada|naturalday|title  }}: {{ previsaoServico.number }}<p>
             {% elif previsaoServico.number > 4 and previsaoServico.number <= 6  %}
             <p style="color:orange;" class="ml-2">{{ previsaoServico.data_agendada|naturalday|title  }}: {{ previsaoServico.number }}<p>
             {% elif previsaoServico.number >= 7 %}
@@ -302,15 +309,15 @@
       <!-- INÍCIO Lista de serviços por dia -->
       <!-- *********************************************************************************************************  -->
       <!-- INÍCIO Lista de serviços por dia -->
-      <div class="card mt-4">
-        <div class="card-header">
-          Instalações
+      <div class="card mt-4 fundo-card fundo-card-border">
+        <div class="card-header texto-cor-2">
+          <h3>Instalações</h3>
         </div>
         <div class="card-body">
 
             {% for previsaoInstalacao in previsaoInstalacao %}
               {% if previsaoInstalacao.number <= 6 %}
-              <p style="color:green;" class="ml-2">{{ previsaoInstalacao.data_instalacao|naturalday|title }}: {{ previsaoInstalacao.number }}</p>
+              <p style="color:Lime;" class="ml-2">{{ previsaoInstalacao.data_instalacao|naturalday|title }}: {{ previsaoInstalacao.number }}</p>
               {% elif previsaoInstalacao.number > 6 and previsaoInstalacao.number <= 9  %}
               <p style="color:orange;" class="ml-2">{{ previsaoInstalacao.data_instalacao|naturalday|title }}: {{ previsaoInstalacao.number }}</p>
               {% elif previsaoInstalacao.number >= 10  %}

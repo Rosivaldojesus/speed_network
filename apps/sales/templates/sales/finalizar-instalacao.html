@@ -4,7 +4,7 @@
 
 {% block main %}
      <div class="container">
-         <h5 class="mt-2">Finalizar Instalação</h5>
+         <h1 class="mt-2 texto-cor-1">Finalizar Instalação</h1>
 
               <!-- Messagens -->
       {% if messages %}
@@ -14,16 +14,19 @@
           </div>
         {% endfor %}
         {% endif %}
-
-
-
-
-         <form action="" method="post"> {% csrf_token %}
+    
+    <div class="mb-4">
+        <form action="" method="post" class="texto-cor-2"> {% csrf_token %}
             <div class="mt-10">
                 {{ form | crispy }}
             </div>
 				<input type="submit" class="btn btn-block btn-primary" value="Finalizar Instalação">
 		 </form>
+    </div>
+
+
+
+         
      </div>
 
 

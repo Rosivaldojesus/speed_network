@@ -2,30 +2,33 @@
 {% load crispy_forms_tags %}
 
 
-{% block title %}<title> Cadastro de Senhas por Equipamentos </title> {% endblock %}
+{% block title %}.:: Cadastro de Senhas por Equipamentos {% endblock %}
 
 {% block main %}
-     <div class="container">
+<div class="container">
 
-         <h5 class="mt-2">Cadastro de Senhas por Equipamentos</h5>
+         <h1 class="texto-cor-1 mt-2">Cadastro de Senhas por Equipamentos</h1>
 
 
         <!-- Messagens -->
-      {% if messages %}
-      {% for message in messages %}
-          <div class="alert {{ message.tags }}" role="alert">
-              {{ message }}
-          </div>
-        {% endfor %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}" role="alert">
+                    {{ message }}
+            </div>
+            {% endfor %}
         {% endif %}
 
-
-         <form action="" method="post"> {% csrf_token %}
+    <div class="mb-4">
+        <form action="" method="post" class="texto-cor-2"> {% csrf_token %}
 
             <div class="mt-10">
                 {{ form | crispy }}
             </div>
 				<input type="submit" class="btn btn-block btn-primary" value="Concluir Cadastro">
-		 </form>
-     </div>
+		</form>
+    </div>
+
+        
+</div>
 {% endblock %}

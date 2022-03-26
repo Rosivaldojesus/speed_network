@@ -11,7 +11,7 @@
 
     <!-- Título da pagina -->
     <div class="bd-title mt-4 mb-1">
-        <h1 class="ui dividing header blue">Finanças</h1>
+        <h1 class="texto-cor-1">Finanças</h1>
     </div>
 
 <!-- =========================================================================================================== -->
@@ -32,7 +32,9 @@
         <a href="{% url 'contas-a-pagar' %}" class="btn btn-danger"><i class="far fa-eye"></i> Contas a Pagar</a>
         <a href="{% url 'lista_pagamentos' %}" class="btn btn-info"><i class="far fa-eye"></i> Lista Pagamentos</a>
         <a href="/pagamentos/cadastrar-pagamento/" class="btn btn-primary"><i class="far fa-plus-square"></i> Add Pagamento </a>
+        <!--
         <a href="/pagamentos/retiradas-gerencianet/" class="btn btn-warning"><i class="fas fa-file-invoice-dollar"></i></i> GerenciaNET </a>
+        -->
         <a href="/pagamentos/exportar-csv/" class="btn btn-info" title="Exportar CSV"><i class="fas fa-file-csv"></i></a>
     </div>
 
@@ -43,59 +45,59 @@
 <!-- =========================================================================================================== -->
 <!-- =========================================================================================================== -->
     <!-- Custos do mês atual por grupo -->
-    <h3 class="ui dividing header blue">Custos do Mês Atual <a class="anchor" id="content"></a></h3>
-    <div class="card-group mt-3 " >
+    <h3 class="texto-cor-2">Custos do Mês Atual</h3>
+    <div class="card-group mt-3" >
         <!-- Veículos no mês atual-->
-        <div class="card shadow-sm"  align="center">
+        <div class="card shadow-sm fundo-card texto-cor-2"  align="center">
             <p class="card-title">Veículos</p>
             R$: {{ veiculosMesAtual.total|safe }}
         </div>
 
         <!-- Funcionários no mês atual-->
-        <div class="card shadow-sm ml-1"  align="center">
+        <div class="card shadow-sm ml-1 fundo-card texto-cor-2"  align="center">
             <h6 class="card-title">Funcionários</h6>
             
             R$: {{ funcionariosMesAtual.total|safe }}
         </div>
 
         <!-- Alimentação no mês atual-->
-        <div class="card shadow-sm ml-1" align="center">
+        <div class="card shadow-sm ml-1 fundo-card texto-cor-2" align="center">
             <p>Alimentação</p>
             R$: {{ alimentacaoMesAtual.total|safe }}
         </div>
 
         <!-- Links no mês atual-->
-        <div class="card shadow-sm ml-1"  align="center">
+        <div class="card shadow-sm ml-1 fundo-card texto-cor-2"  align="center">
             <p>Links</p>
             R$: {{ linksMesAtual.total|safe }}
         </div>
 
         <!-- Locação no mês atual-->
-        <div class="card shadow-sm ml-1"  align="center">
+        <div class="card shadow-sm ml-1 fundo-card texto-cor-2"  align="center">
             <p>Locação</p>
             R$: {{ locacaoMesAtual.total|safe }}
         </div>
 
         <!-- Instalação no mês atual-->
-        <div class="card shadow-sm ml-1"  align="center">
+        <div class="card shadow-sm ml-1 fundo-card texto-cor-2"  align="center">
             <p>Instalação</p>
             R$: {{ instalacaoMesAtual.total|safe }}
         </div>
 
         <!-- Sócios no mês atual-->
-        <div class="card shadow-sm ml-1"  align="center">
+        <div class="card shadow-sm ml-1 fundo-card texto-cor-2"  align="center">
             <p>Sócios</p>
             R$: {{ sociosMesAtual.total|safe }}
         </div>
 
         <!-- Impostos no mês atual-->
-        <div class="card shadow-sm ml-1"  align="center">
+        <div class="card shadow-sm ml-1 fundo-card fundo-card-border texto-cor-2"  align="center">
             <p>Impostos</p>
             R$: {{ ImpostosMesAtual.total|safe }}
         </div>
 
         <!-- Taxas no mês atual-->
-        <div class="card shadow-sm ml-1"  align="center">
+        <div class="card shadow-sm ml-1 fundo-card fundo-card-border texto-cor-2"  align="center">
             <p>Taxas</p>
             R$: {{ taxaMesAtual.total|safe }}
         </div>
@@ -107,7 +109,7 @@
 <div class="mt-3">
     <div class="row">
         <div class="col-sm-6">
-          <div class="card h-100 shadow border-0">
+          <div class="card h-100 shadow border-0 fundo-card-grafico">
             <div class="card-body">
 
                 <!-- =========================================================================================================== -->
@@ -182,8 +184,8 @@
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="card h-100 shadow border-0">
-            <div class="card-body">
+          <div class="card h-100 shadow border-0 fundo-card-grafico">
+            <div class="card-body fundo-card-grafico">
                 <!-- =========================================================================================================== -->
                 <figure class="highcharts-figure">
                     <div id="container"></div>
@@ -265,8 +267,8 @@
 
 <!-- =========================================================================================================== -->
 <!-- =========================================================================================================== -->
-<h3 class="ui dividing header blue">Custos Mensais <a class="anchor" id="content"></a></h3>
-<div class="card shadow mt-3">
+<h3 class="texto-cor-2">Custos Mensais</h3>
+<div class="card shadow mt-3 fundo-card-grafico">
     <div id="chart_B">
         <div id="timeline-chart_custos_mensais">
             <script>
@@ -294,6 +296,10 @@
                     enabled: true,
                     enabledOnSeries: [1]
                     },
+
+                    colors: ['#f10000', '#4B0082'],//Coloca a cor da barra
+
+
                     labels: [{% for mes in mes %} '{{ mes.month|date:'F Y' }}', {% endfor %}],
                     
                     yaxis: [{
@@ -320,9 +326,9 @@
 
 <!-- =========================================================================================================== -->
 <!-- =========================================================================================================== -->
-<h3 class="ui dividing header blue">Custos Mensais por Categoria <a class="anchor" id="content"></a></h3>
-<div class="card shadow mt-3">
-    <div class="card shadow mt-3">
+<h3 class="texto-cor-2">Custos Mensais por Categoria</h3>
+<div class="card shadow mt-3 fundo-card-grafico">
+
         <div id="chart_CA">
             <div id="timeline-chart_custos_mensais">
                 <script>
@@ -445,8 +451,6 @@
                 </script>
             </div>
         </div>
-
-    </div>
 </div>
 <!--=======================================================================================================-->
 

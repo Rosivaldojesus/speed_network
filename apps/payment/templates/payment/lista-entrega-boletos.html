@@ -3,9 +3,7 @@
 {% load humanize %}
 
 
-{% block title %}
-    <title>.:: Boletos Entregues</title>
-{% endblock %}
+{% block title %}.:: Boletos Entregues{% endblock %}
 
 {% block main %}
 
@@ -15,7 +13,7 @@
     <div class="mt-4 mb-4 shadow">
         <!--INICIO título da página -->
         <div class="mt-4 mb-2 p-2">
-            <h2 class="ui dividing header blue">( {{ count_boletos_entregue }} )- Boletos Entregue <a class="anchor" id="content"></a></h2>
+            <h1 class="texto-cor-1">( {{ count_boletos_entregue }} )- Boletos Entregue </h1>
         </div>
     </div>
     <!--INICIO título da página -->
@@ -24,35 +22,30 @@
 
     <!-- ======================================================================================  -->
      <!-- INÍCIO  Campo de Pesquisas-->
-    <div class="card shadow">
-        <form method="GET">
-            <div class="row">
-                <div class="col-sm-7">
-                  <div class="card">
+    <div class="card fundo-card p-2">
+      <form method="GET" class=" fundo-card texto-cor-2">
+          <div class="row ">
+            <div class="col-sm-9">
+                    <label>Informe o nome do cliente</label>
                     <input type="search" class="form-control" placeholder="Informe nome do cliente" name="q" value="{{ request.GET.q }}">
-                  </div>
-                </div>
+            </div>
     
-                <div class="col-sm-3">
-                  <div class="card">
-                    <select name="forma_entrega_boleto" value="{{ request.GET.forma_entrega_boleto }}" class="form-control">
-                        <option selected value="0">Escolha a forma de entrega...</option>
-                          <option value="1">Via Fisica</option>
-                          <option value="2">E-mail e WhatsApp</option>
-                          <option value="3">App</option>
-                          <option value="4">WhatsApp</option>
-                          <option value="5">E-mail</option>    
-                    </select>
-                  </div>
-                </div>
-                
-                <div class="col-sm-2">
-                    <div class="card">
-                        <button class="btn btn-success">Pesquisar </button>
-                    </div>
-                  </div>
-              </div>
-            </form>
+            <div class="col-sm-3">
+              <label>Forma de entrega</label>
+                <select name="forma_entrega_boleto" value="{{ request.GET.forma_entrega_boleto }}" class="form-control">
+                  <option selected value="0">Escolha a forma de entrega...</option>
+                  <option value="1">Via Fisica</option>
+                  <option value="2">E-mail e WhatsApp</option>
+                  <option value="3">App</option>
+                  <option value="4">WhatsApp</option>
+                  <option value="5">E-mail</option>    
+                </select>
+            </div>
+          </div>
+          <div align="right">
+            <button type="submit" class="btn btn-success">Executar Pesquisa</button>
+          </div>
+      </form>
     </div>
         
       <!-- FIM Campo de Pesquisas-->
@@ -80,7 +73,7 @@
 
                 <!-- Boletos Físicos -->
                 <div class="ui labeled button" tabindex="0">
-                    <div class="ui basic black button">
+                    <div class="ui basic orange button">
                       <i class=""></i> Boletos Físicos
                     </div>
                     <a class="ui basic left pointing black label">

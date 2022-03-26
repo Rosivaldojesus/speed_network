@@ -1,23 +1,22 @@
+
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
 
 {% block title %} .:: Contas a Pagar {% endblock %}
 
-
-
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
-
 {% block main %}
-<div class="container">
+<div class="container-xl fundo-pagina">
     <!-- Título da pagina -->
     <div class="bd-title mt-4 mb-1">
-        <h1 class="ui dividing header blue">Contas a pagar</h1>
+        <h1 class="texto-cor-1">Contas a pagar</h1>
     </div>
+
     <!-- =====================================================================================================-->
 
     <!-- INÍCIO Messagens -->
@@ -32,123 +31,114 @@
 
     <!-- =====================================================================================================-->
     <div class="mt-2 mb-2" align="right">
-      <a href="{% url 'agendar_pagamento' %}" class="btn btn-outline-dark">Agendar Pagamento</a>
+      <a href="{% url 'agendar_pagamento' %}" class="btn btn-secondary">Agendar Pagamento</a>
+      <a href="{% url 'contas-a-vencer' %}" class="btn btn-danger">Lista de contas a pagar</a>
     </div>
     <!-- =====================================================================================================-->
-
     <!-- =====================================================================================================-->
-    <h3 class="ui dividing header blue">Resumo Financeiro<a class="anchor" id="content"></a></h3>
+    <h3 class="texto-cor-2">Resumo Financeiro<a class="anchor" id="content"></a></h3>
     <div class="mt-1 mb-3"> 
-
-        <div class="row">
+        <div class="row ">
             <div class="col-sm-4">
-              <div class="card border border-danger shadow">
+              <div class="card fundo-card fundo-card-border">
                 <div class="card-body">
-                  <h3 class="card-title">Atrasadas</h3>
+                  <h3 class="card-title texto-cor-2">Atrasadas</h3>
                   <div class="mb-2" align="center">
-                    
                     {% if valor_a_pagar_atrasada.total is null %}
                       <p>Não há contas Atrasadas</p>
                     {% else %}
-                      <p class="card-text">R$: {{ valor_a_pagar_atrasada.total }}</p>
+                      <p class="texto-cor-2">R$: {{ valor_a_pagar_atrasada.total }}</p>
                     {% endif %}
-                  
                   </div>
                   <!-- <div align="right"><a href="#" class="btn btn-primary">Go somewhere</a></div> -->
                 </div>
               </div>
             </div>
-
             <div class="col-sm-4 mt-2 mb-2">
-              <div class="card border border-warning shadow">
+              <div class="card fundo-card fundo-card-border">
                 <div class="card-body">
-                  <h3 class="card-title">Hoje</h3>
+                  <h3 class="card-title texto-cor-2">Hoje</h3>
                   <div class="mb-2" align="center">
-                    
                     {% if valor_a_pagar_hoje.total is null %}
-                    <p class="card-text" style="color: green;">Hoje não tem contas a pagar </p>
+                      <p class="card-text" style="color: green;">Hoje não tem contas a pagar </p>
                     {% else %}
-                    <p class="card-text">R$: {{ valor_a_pagar_hoje.total }}</p>
+                      <p class="texto-cor-2">R$: {{ valor_a_pagar_hoje.total }}</p>
                     {% endif %}
-                  
                   </div>
                   <!-- <div align="right"><a href="#" class="btn btn-primary">Go somewhere</a></div> -->
                 </div>
               </div>
             </div>
-
             <div class="col-sm-4">
-                <div class="card border border-info shadow">
-                  <div class="card-body">
-                    <h3 class="card-title">Futuros</h3>
-                    <div class="mb-2" align="center"><h3 class="card-text">R$: {{ valor_a_pagar.total }}</h3></div>
-                    <div align="right"><a href="{% url 'contas-a-vencer' %}" class="ui inverted blue button">Visualizar</a></div>
+                <div class="card fundo-card fundo-card-border">
+                  <div class="card-body" align="center">
+                    <h3 class="texto-cor-2">Futuros</h3>
+                    <p class="texto-cor-2">R$: {{ valor_a_pagar.total }}</p>
+          
                   </div>
                 </div>
               </div>
-
           </div>
-
-
     </div>
+    <hr class="line-solid">
     <!-- =====================================================================================================-->
     <!-- =====================================================================================================-->
-    <h3 class="ui dividing header blue">Lista de contas a Pagar<a class="anchor" id="content"></a></h3>
-
-
-    <div class="row">
+    <h3 class="texto-cor-2">Lista de contas a Pagar</h3>
+    <div class="row">  
       <div class="col-sm-8">
-        <div class="card border-0">
-          
-          <!-- ===================================================================================-->
-          <!-- Lista de contas que vencem hoje -->
-          <h3 class="ui dividing header yellow">Hoje ( R$: {{ valor_a_pagar_hoje.total }} )<a class="anchor" id="content"></a></h3>
-          <div class="table-responsive">
-            <table class="table ">
-              <thead class="table-warning">
-                <tr>
-                  <th scope="col">Motivo</th>
-                  <th scope="col">Valor</th>
-                  <th scope="col">Banco</th>
-                  <th scope="col">Data</th>
-                  <th scope="col">Infor.</th>
-                  <th scope="col">Editar</th>
-                  <th scope="col">Pagar</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for valor in lista_conta_a_hoje %}
-                <tr>
-                  <th scope="row">{{ valor.motivo_pagamento}}</th>
-                  <td>{{ valor.valor_pagamento}}</td>
-                  <td>{{ valor.origem_valor_pagamento}}</td>
-                  <td>{{ valor.data_pagamento|date:"d-M-Y"  }}</td>
-                  <td>
-                    {% if valor.informacao_pagamento is not null %}
-
-                      <a href="{% url 'detalhes_pagamento' valor.id %}"><i class="large barcode icon"></i></a>
-
-                    {% else %}
-
-                    {% endif %}
-                  </td>
-                  <td> <a href="{% url 'editar_pagamento_agendado' valor.id  %}"> Editar </a> </td>
-                  <td>
-                    <a href="/pagamentos/comfirmar-pagamento/{{ valor.id }}" title="Pagar"><i class="fas fa-money-check-alt fa-lg"></i></a>
-                  </td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+        <!-- ======================================================================================================= -->
+        <!-- Início - Contas que vencem hoje  -->
+        <div class="card mb-4 fundo-card fundo-card-border">
+          <div class="card-body">
+          <h3 class="fundo-card texto-cor-2">Hoje ( R$: {{ valor_a_pagar_hoje.total }} )</h3>
+            <div class="table-responsive fundo-card">
+              <table class="table fundo-card texto-cor-2">
+                <thead class="fundo-card texto-cor-2 thead-01">
+                  <tr>
+                    <th scope="col">Motivo</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Banco</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Infor.</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Pagar</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  {% for valor in lista_conta_a_hoje %}
+                  <tr class="texto-cor-2">
+                    <th scope="row">{{ valor.motivo_pagamento}}</th>
+                    <td>{{ valor.valor_pagamento}}</td>
+                    <td>{{ valor.origem_valor_pagamento}}</td>
+                    <td>{{ valor.data_pagamento|date:"d-M-Y"  }}</td>
+                    <td>
+                      {% if valor.informacao_pagamento is not null %}
+                        <a href="{% url 'detalhes_pagamento' valor.id %}"><i class="large barcode icon" style="color: #fff"></i></a>
+                      {% else %}
+                      {% endif %}
+                    </td>
+                    <td><a href="{% url 'editar_pagamento_agendado' valor.id  %}" class="btn-edit-01"> Editar </a> </td>
+                    <td>
+                      <a href="/pagamentos/comfirmar-pagamento/{{ valor.id }}" title="Pagar"><i class="fas fa-money-check-alt fa-lg btn-edit-01"></i></a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
           </div>
-          <!-- ===================================================================================-->
-          <!-- Lista de contas que vencem hoje -->
-
-          <h3 class="ui dividing header red">Atrasadas (R$: {{ valor_a_pagar_atrasada.total }}) <a class="anchor" id="content"></a></h3>
-          <div class="table-responsive">
+        </div>
+        <!-- Fim - Contas que vencem hoje  -->
+        <!-- ======================================================================================================= -->
+        <!-- ======================================================================================================= -->
+        <!-- Início - Contas atrasadas  -->
+        <div class="card mb-4 fundo-card fundo-card-border">
+          <div class="card-body">
+            <h3 class="texto-cor-2">Atrasadas (R$: {{ valor_a_pagar_atrasada.total }}) <a class="anchor" id="content"></a></h3>
+            <div class="table-responsive">
             <table class="table">
-              <thead class="table-danger">
-                <tr>
+              <thead class="thead-01">
+                <tr class="texto-cor-2">
                   <th scope="col">Motivo</th>
                   <th scope="col">Valor</th>
                   <th scope="col">Banco</th>
@@ -158,7 +148,7 @@
                   <th scope="col">Pagar</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="texto-cor-2">
                 {% for valor in lista_conta_atrasadas %}
                 <tr>
                   <th scope="row">{{ valor.motivo_pagamento}}</th>
@@ -167,90 +157,80 @@
                   <td>{{ valor.data_pagamento|date:"d-M-Y"  }}</td>
                   <td>
                     {% if valor.informacao_pagamento is not null %}
-
-                      <a href="{% url 'detalhes_pagamento' valor.id %}"><i class="large barcode icon"></i></a>
-
+                      <a href="{% url 'detalhes_pagamento' valor.id %}"><i class="large barcode icon" style="color: #fff"></i></a>
                     {% else %}
-
                     {% endif %}
                   </td>
-                  <td> <a href="{% url 'editar_pagamento_agendado' valor.id  %}"> Editar </a> </td>
+                  <td> <a href="{% url 'editar_pagamento_agendado' valor.id  %}" class="btn-edit-01"> Editar </a> </td>
                   <td>
-                    <a href="/pagamentos/comfirmar-pagamento/{{ valor.id }}" title="Pagar"><i class="fas fa-money-check-alt fa-lg"></i></a>
+                    <a href="/pagamentos/comfirmar-pagamento/{{ valor.id }}" title="Pagar"><i class="fas fa-money-check-alt fa-lg btn-edit-01"></i></a>
                   </td>
                 </tr>
                 {% endfor %}
               </tbody>
             </table>
           </div>
-
-
-
-          <!-- ===================================================================================-->
-
-
-
+          </div>
         </div>
+        <!-- Fim - Contas atrasadas  -->
+        <!-- ======================================================================================================= -->
       </div>
+      <!-- ********************************************************************************************************* -->
+      <!-- ********************************************************************************************************* -->
+      <!-- ********************************************************************************************************* -->
+      <div class="col-sm-4 ">
+        <!-- ======================================================================================================= -->
+        <!-- NÃO - Resumo de custos mensais  -->
+        <div class="card mb-4 fundo-card fundo-card-border">
+          <div class="card-body">
+            <h3 class="texto-cor-2">Mensais <a class="anchor" id="content"></a></h3>
+              <table class="table texto-cor-2">
+                <thead class="thead-01 texto-cor-2">
+                  <tr>
+                    <th scope="col">Mês</th>
+                    <th scope="col">Valor</th>
 
-
-      <div class="col-sm-4">
-        <div class="card border-0">
-
-          <!-- ===================================================================================-->
-          <!-- Pagamentos futuros mensais -->
-          <h3 class="ui dividing header blue">Mensais <a class="anchor" id="content"></a></h3>
-          <table class="table">
-            <thead class="table-info">
-              <tr>
-                <th scope="col">Mês</th>
-                <th scope="col">Valor</th>
-
-              </tr>
-            </thead>
-            <tbody>
-              {% for valor in pagamentos_futuros_mensal%}
-              <tr>
-                <th scope="row">{{ valor.month|date:"F Y" }}</th>
-                <td>R$: {{ valor.c }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-          <!-- ===================================================================================-->
-          <!-- Pagamentos futuros diários -->
-          <h3 class="ui dividing header violet">Diários <a class="anchor" id="content"></a></h3>
-          <table class="table">
-            <thead class="table-success">
-              <tr>
-                <th scope="col">Dia</th>
-                <th scope="col">Valor</th>
-
-              </tr>
-            </thead>
-            <tbody>
-              {% for valor in pagamentos_futuros_diarios %}
-              <tr>
-                <th scope="row">{{ valor.data_pagamento }}</th>
-                <td>R$: {{ valor.number }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-
-
-
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for valor in pagamentos_futuros_mensal%}
+                  <tr>
+                    <th scope="row">{{ valor.month|date:"F Y" }}</th>
+                    <td>R$: {{ valor.c }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+          </div>
         </div>
+        <!-- FIM - Resumo de custos mensais  -->
+        <!-- ======================================================================================================= -->
+        <!-- ======================================================================================================= -->
+        <!-- NÃO - Resumo de custos diários  -->
+        <div class="card mb-4 fundo-card fundo-card-border">
+          <div class="card-body">
+              <h3 class="texto-cor-2">Diários <a class="anchor" id="content"></a></h3>
+                <table class="table texto-cor-2">
+                  <thead class="thead-01 texto-cor-2">
+                    <tr>
+                      <th scope="col">Dia</th>
+                      <th scope="col">Valor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for valor in pagamentos_futuros_diarios %}
+                    <tr>
+                      <th scope="row">{{ valor.data_pagamento }}</th>
+                      <td>R$: {{ valor.number }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+          </div>
+        </div>
+         <!-- FIM - Resumo de custos diários  -->
+        <!-- ======================================================================================================= -->
       </div>
     </div>
-
-
-      
-
-
-    <!-- =====================================================================================================-->
-    <!-- =====================================================================================================-->
-
-
 </div>
 {% endblock %}

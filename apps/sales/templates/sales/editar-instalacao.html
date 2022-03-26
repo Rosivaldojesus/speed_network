@@ -2,14 +2,11 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-
-
 {% block main %}
-     <div class="container">
-         <h5 class="mt-2">Editar Instalação</h5>
+<div class="container">
+  <h1 class="mt-2 texto-cor-1">Editar Instalação</h1>
 
-         
-        <!-- Messagens -->
+      <!-- Messagens -->
       {% if messages %}
         {% for message in messages %}
           <div class="alert {{ message.tags }}" role="alert">
@@ -18,15 +15,13 @@
          {% endfor %}
       {% endif %}
 
-
-         <form action="" method="post"> {% csrf_token %}
-            <div class="mt-10">
+  <div class="mb-4">
+    <form action="" method="post" class="texto-cor-2"> {% csrf_token %}
+      <div class="mt-10">
                 {{ form | crispy }}
-            </div>
-				<input type="submit" class="btn btn-block btn-primary" value="Atualizar Informações">
-		 </form>
-     </div>
-
-
-
+      </div>
+			<input type="submit" class="btn btn-block btn-primary" value="Atualizar Informações">
+		</form>
+  </div>
+</div>
 {% endblock %}

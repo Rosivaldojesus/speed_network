@@ -7,12 +7,13 @@
 <div class="container-xl">
 
 	<div class="mt-4">
-		<h3 class="ui dividing header blue">
+		<h2 class="texto-cor-2">
 			Dashboard <a class="anchor" id="content"></a>
-		</h3>
+		</h2>
 	</div>
 
 	<!-- =========================================================================================================== -->
+	
 	<!-- =========================================================================================================== -->
 	<div class="row mt-4">
 		<div class="col-sm-6">
@@ -42,7 +43,7 @@
 					</div>
 
 					<!-- Caixas de emendas-->
-					<div class="card ui grey">
+					<div class="card fundo-card">
 						<div class="content">
 						<div class="header">Caixas de Emendas</div>
 						<div class="description ui grey">
@@ -173,14 +174,14 @@
 	<!--FIM botões -->
 	<!-- =========================================================================================================== -->
 
-	<h3 class="ui dividing header blue">
-		Caixas de Terminais Ópticos ({{ quant_cto_filtradas }}) <a class="anchor" id="content"></a>
-	</h3>
+	<h2 class="texto-cor-2">
+		Caixas de Terminais Ópticos ({{ quant_cto_filtradas }})	
+	</h2>
 
 	<!-- =========================================================================================================== -->
 	<!-- INÍCIO  Campo de Pesquisas-->
-	<div class=" card shadow p-2">
-		<form method="GET">
+	<div class="card p-2 fundo-card ">
+		<form method="GET" class="texto-cor-1">
 		   <div class="row">
 			<div class="form-group col-8">
 				<label>Pesquisa:</label>
@@ -199,15 +200,11 @@
 				<input type="search" class="form-control"  placeholder="PON"
 					   name="pon" value="{{ request.GET.pon }}">
 			</div>
-
-
-			   <div class="form-group col-12">
-				   <button class=" form-control btn-success">
-					<i class="fas fa-search"></i>
-					Pesquisar
-				</button>
-			   </div>
 		   </div>
+
+		   <div align="right">
+				<button type="submit" class="btn btn-success">Executar Pesquisa</button>
+			</div>
 	   </form>
 	   
 	</div>
@@ -219,8 +216,8 @@
 	
 	<div class="shadow  mt-3 mb-4 table-responsive-sm p-2">
 		<table class="table"> 
-			<thead>
-			  <tr class="bg-info">
+			<thead class="fundo-card texto-cor-2 thead-01">
+			  <tr>
 				<th scope="col">Rua</th>
 				<th scope="col">Nº</th>
 				<th scope="col">Bairro</th>
@@ -235,7 +232,12 @@
 			</thead>
 			<tbody>
 				{% for cto in ctos %}
-				<tr {% if cto.livre == 0 %} style="color:red; background-color: white;" {% endif %}>
+				<tr {% if cto.livre == 0 %}
+				 		style="color:red; background-color: #141414;"
+					{% else %} 
+						style="color: #A9A9A9; background-color: #141414;"
+					{% endif %}
+				>
 					<td>{{cto.rua_cto}}</td>
 					<td>{{cto.numero_rua_cto}} </td>
 					<td>{{cto.bairro_cto}}</td>

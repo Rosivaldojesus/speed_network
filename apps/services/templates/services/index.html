@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %} .:: Status dos Serviços {% endblock %}
 
@@ -30,57 +31,45 @@
 <!-- FIM Campo que mostrar as mensagens da página -->
 
 <!-- INÍCIO com as opções de processos dos serviços -->
-  <div class="mt-2 mb-2">
-    <div class="card">
-      <h5 class="card-header">Status dos Serviços</h5>
-      <div class="card-body">
-        <div class="card-body">
-          <div class="card-deck">
-            <div class="card shadow-lg">
-              <div class="media">
-                <h5 class="p-2">Abertos</h5>
-                <div class="media-body">
-                  <div align="right">
-                    <h3 class="p-2"></h3>
+  <div class="card-deck">
+      <div class="card fundo-card fundo-card-border texto-cor-2 p-2">
+        <div class="media">
+            <h5 class="p-2">Abertos</h5>
+              <div class="media-body">
+                <div align="right">
                     <h1 class="p-2"><span class="badge badge-danger badge-pill">{{ contarAbertos }}</span></h1>
                     <a href="servicos-abertos/" class="btn btn-outline-danger mr-2">+ Ver todos</a>
-                  </div>
                 </div>
+            </div>
+        </div>  
+      </div>
+      <div class="card fundo-card fundo-card-border texto-cor-2 p-2">
+        <div class="media">
+          <h5 class="p-2">Agendados</h5>
+            <div class="media-body">
+              <div align="right">
+                  <h1 class="p-2"><span class="badge badge-warning badge-pill">{{contarAgendados}}</span></h1>
+                  <a href="servicos-agendados/" class="btn btn-outline-warning mr-2">+ Ver todos</a>
               </div>
-            </div>
-            <div class="card shadow-lg">
-              <div class="media">
-                <h5 class="p-2">Agendados</h5>
-                <div class="media-body">
-                  <div align="right">
-                    <h1 class="p-2"><span class="badge badge-warning badge-pill">{{contarAgendados}}</span></h1>
-                    <a href="servicos-agendados/" class="btn btn-outline-warning mr-2">+ Ver todos</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card shadow-lg">
-              <div class="media">
-                <h5 class="p-2">Finalizados</h5>
-                <div class="media-body">
-                  <div align="right">
-                  <div align="right">
-                    <h1 class="p-2"><span class="badge badge-success badge-pill">{{contarFinalizados}}</span></h1>
-                  <a href="servicos-finalizados/" class="btn btn-outline-success mr-2">+ Ver todos</a>
-                  </div>
-                </div>
-            </div>
-            </div>
           </div>
         </div>
       </div>
-    </div>
+      <div class="card fundo-card fundo-card-border texto-cor-2 p-2">
+        <div class="media">
+          <h5 class="p-2">Finalizados</h5>
+          <div class="media-body">
+              <div align="right">
+                    <h1 class="p-2"><span class="badge badge-success badge-pill">{{contarFinalizados}}</span></h1>
+                    <a href="servicos-finalizados/" class="btn btn-outline-success mr-2">+ Ver todos</a>
+              </div>
+          </div>
+        </div>
+      </div>
   </div>
 <!-- FIM com as opções de processos dos serviços -->
 
-
 <!-- ========================================================================================================= -->
-<h3 class="ui dividing header blue">Gráfico de serviços não concluídos<a class="anchor" id="content"></a></h3>
+<h2 class="texto-cor-2">Gráfico de serviços não concluídos<a class="anchor" id="content"></a></h2>
   <!-- Gráfico de serviços diários -->
   <div class="card">
     <div id="chart_AB">
@@ -212,7 +201,7 @@
 
 <!-- ========================================================================================================= -->
 <!-- ========================================================================================================= -->
-<h3 class="ui dividing header blue">Gráfico de serviços diários<a class="anchor" id="content"></a></h3>
+<h2 class="texto-cor-2">Gráfico de serviços diários</h2>
   <!-- Gráfico de serviços diários -->
   <div class="card">
     <div id="chart_B">
@@ -257,10 +246,10 @@
 
 <!-- ========================================================================================================= -->
 <!-- ========================================================================================================= -->
-<h3 class="ui dividing header blue">Gráfico de serviços mensais por categoria<a class="anchor" id="content"></a></h3>
+<h2 class="texto-cor-2">Gráfico de serviços mensais por categoria</h2>
   <!-- Gráfico de serviços do mês -->
-  <div class="mt-2">
-    <div class="row">
+  <div class="mt-2 ">
+    <div class="row ">
       <!-- Serviços por categoria no mês atual-->
       <div class="col-sm-6">
         <div class="card">

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}<title> CTO Completas </title> {% endblock %}
+{% block title %}.:: CTO Completas {% endblock %}
 
 {% block main %}
 <div class="container-xl">
@@ -26,13 +26,13 @@
 	<!-- FIM Campo de Pesquisas-->
 
 	<!--INÍCIO Titulo da página -->
-	<div>
-		<h5>Caixas Cheias</h5>
+	<div class="mt-4 mb-4">
+		<h1 class="texto-cor-1">Caixas Cheias</h1>
 	</div>
 	<!--FIM Titulo da página -->
 	<div class="table-responsive-sm shadow">
 		<table class="table">
-			<thead>
+			<thead class="fundo-card texto-cor-2 thead-01">
 			  <tr>
 				<th scope="col">Cód.</th>
 				<th scope="col">Rua</th>
@@ -46,7 +46,7 @@
 			</thead>
 			<tbody>
 				{% for completa in cto_completas %}
-				<tr>
+				<tr class="texto-tbody-tr">
 					<th style="color:red;">{{completa.codigo_cto}}</th>
 					<td style="color:red;">{{completa.rua_cto}}</td>
 					<td style="color:red;">{{completa.numero_rua_cto}}</td>
@@ -55,12 +55,13 @@
 					<td style="color:red;">{{completa.quant_conexoes_usadas_cto}}</td>
 					<td style="color:red;">{{completa.livre}}</td>
 					<td>
-						<a href="/cto/editar-terminais-opticos/{{ completa.id }}" ><i class="fas fa-edit"></i></a>
+						<a href="/cto/editar-terminais-opticos/{{ completa.id }}" class="btn-edit-01"><i class="fas fa-edit"></i></a>
 					</td>
 				</tr>
 				{% endfor %}
 			</tbody>
 		  </table>
+	</div>
 
 </div>  	
 {% endblock %}

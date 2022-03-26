@@ -7,13 +7,13 @@
 <div class="container-xl">
 	
 	<div class="mt-4 mb-4">
-        <h1 class="display-5">Adicionar pagamento</h1>
+        <h1 class="texto-cor-1">Adicionar pagamento</h1>
     </div>
 	
 
-    <form action="" method="post"> {% csrf_token %}
+    <form action="" method="post" class="texto-cor-2"> {% csrf_token %}
 		
-		<div class="shadow p-4">
+	
 			<div class="form-row">
 				<div class="form-group col-md-12 mb-0">
 				{{ form.motivo_pagamento|as_crispy_field }}
@@ -40,12 +40,11 @@
 				{{ form.categoria|as_crispy_field }}
 				</div>
 			</div>
-		</div>
+	
 	
         <div class="mt-2 mb-4">
             <input type="submit" class="btn  btn-primary" value="Adicionar Pagamento">
 			<a href="/pagamentos/" class="btn  btn-secondary" >Cancelar</a>
-
         </div>
 
 	</form>

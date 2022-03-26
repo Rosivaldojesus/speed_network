@@ -1,56 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}<title> .:: Senhas </title> {% endblock %}
+{% block title %}.:: Senhas{% endblock %}
 
 {% block main %}
     <div class="container">
-        <div class="mt-2">
-
-			<!--
-             <form method="GET">
-			<div class="row">
-				<div class="form-group col-10">
-					<input type="search" class="form-control"
-						   placeholder="Informe o material"
-						   name="q" value="{{ request.GET.q }}">
-				</div>
-				<div class="form-group">
-					<button class=" form-control btn-success">
-						<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-						  <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-						  <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-						</svg>
-					</button>
-				</div>
-			</div>
-		</form>
-		-->
-        </div>
-
-    	<h5>Senhas de equipamentos</h5>
+  
+    	<div class="mt-4 mb-4">
+			<h1 class="texto-cor-1">Senhas de equipamentos</h1>
+		</div>
 
 		{% for senha in senhas %}
-		<div class="card mt-2">
-			<div class="card-header">{{ senha.fabricante }} {{ senha.equipamento }}</div>
-			<div class="card-group">
-				<div class="card border-0">
+		<div class="card mt-2  mb-4 fundo-card texto-cor-2">
+			<div class="card-header ">{{ senha.fabricante }} {{ senha.equipamento }}</div>
+			<div class="card-group ">
+				<div class="card border-0 fundo-card texto-cor-2 ">
 					<Small>Fabricante</Small>
 					<strong>{{ senha.fabricante }}</strong> 
 				</div>
-				<div class="card border-0">
+				<div class="card border-0 fundo-card texto-cor-2">
 					<small>Modelo</small>
 					<strong>{{ senha.equipamento }}</strong>
 				</div>
-				<div class="card border-0">
+				<div class="card border-0 fundo-card texto-cor-2">
 					<small>IP</small>
 					<strong>{{ senha.ip_equipamento }}</strong>
 				</div>
-				<div class="card border-0">
+				<div class="card border-0 fundo-card texto-cor-2">
 					<small>Login</small>
 					<strong>{{ senha.login }}</strong>
 				</div>
-				<div class="card border-0">
+				<div class="card border-0 fundo-card texto-cor-2">
 					<small>Senha</small>
 					<strong>{{ senha.senha }}</strong>
 				</div>
