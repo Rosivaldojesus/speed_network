@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     'ckeditor',
     #'bootstrap4',
     'widget_tweaks',
-    #'rest_framework',
+    'rest_framework',
     'django_matplotlib',
     'chartjs',
 
