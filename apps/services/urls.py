@@ -40,7 +40,7 @@ urlpatterns = [
     path('relatorio-servicos-retiradas/', relatorio_servicos_retiradas, name='exportar_servicos_em_analise'),
 
 
-    # ================== Urls da API ============================================
+
 ]
 
 

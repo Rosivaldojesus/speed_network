@@ -3,6 +3,6 @@ from ..api.serializers import ServicesSerializer
 from ..models import Servico
 
 
-class ServicesListViewSet(ModelViewSet):
+class ServicesViewSet(ModelViewSet):
     queryset = Servico.objects.all()[:10]
     serializer_class = ServicesSerializer

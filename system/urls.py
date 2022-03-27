@@ -3,14 +3,12 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework import routers
-from apps.services.api.viewsets import ServicesListViewSet
+from apps.services.api.viewsets import ServicesViewSet
 
 
 # As urls das api
 router = routers.DefaultRouter()
-router.register(r'lista-servicos-api', ServicesListViewSet)
-
-
+router.register(r'lista-servicos-api', ServicesViewSet)
 
 
 urlpatterns = [
