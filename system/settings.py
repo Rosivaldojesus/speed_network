@@ -57,14 +57,11 @@ INSTALLED_APPS = [
     #Bibliotecas
     'crispy_forms',
     'ckeditor',
-    #'bootstrap4',
     'widget_tweaks',
     'rest_framework',
     'django_matplotlib',
     'chartjs',
-
-    "bootstrap4",
-
+    'bootstrap4',
     'bootstrap_datepicker_plus',
 
 ]
