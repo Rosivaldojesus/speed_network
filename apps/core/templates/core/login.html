@@ -1,7 +1,7 @@
 {% load static %}
     
     
-    <!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -18,12 +18,11 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
 
-
-
     <link rel="stylesheet" type="text/css" href="{% static '../static/css/login.css' %}"> 
 
 
-    <style>
+<!--
+<style>
     .fundo {
         background-color: #1C1C1C;
         font-family: 'Open Sans', sans-serif;
@@ -38,10 +37,10 @@
     color: #A9A9A9;
 }
 
-    </style>  
+ </style>
+-->
     
-    
-    <title>SPEED NETWORK TELECOM</title>
+    <title>.:: Speed Network Telecom ::.</title>
   </head>
   <body class="fundo">
 
@@ -63,14 +62,13 @@
             <div class="card border-0">
                 <div class="card-body fundo">
                 <div>
-                    <form action="submit" method="POST">{% csrf_token %}
+                    <form action="submit" method="POST" class="texto-normal">{% csrf_token %}
                         <div>
                             <div align="center">
                                 <i class=" large material-icons">security</i>
                             </div>
 
                             <div class="col-auto">
-                                <label class="sr-only">Usuário</label>
                                 <div class="input-group mb-2">
                                   <div class="input-group-prepend">
                                     <div class="input-group-text"> <i class="material-icons">account_box</i></div>

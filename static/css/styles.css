@@ -1,7 +1,14 @@
 body {
 
-    background-color: 	#141414;
+    background-color:#2d2d2d;
 }
+
+.fundo-pagina {
+    background-color: 	#2d2d2d;
+}
+
+
+
 
 
 .line-solid {
@@ -19,9 +26,7 @@ body {
     font-size: larger;
 }
 
-.fundo-pagina {
-    background-color: 	#141414;
-}
+
 
 .fundo-card {
     background-color: #363636;
@@ -64,11 +69,11 @@ body {
 }
 
 .texto-cor-1 {
-    color: #A9A9A9;
+    color: 	#FFFAF0;
 }
 
 .texto-cor-2 {
-    color: #A9A9A9;
+    color: #FFFAFA;
 }
 
 

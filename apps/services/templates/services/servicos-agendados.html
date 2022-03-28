@@ -61,14 +61,14 @@
     <div class="card-header ">
         <div class="row">
           <div class="col-sm-4">
-            <div class="card">
+            <div class="card fundo-card">
               <div class="card-body shadow-sm">
                 <strong>Data agendada: </strong>  {{ agendado.data_agendada | date:'d/m/Y' }} ás {{agendado.hora_agendada}}
               </div>
             </div>
           </div>
           <div class="col-sm-4">
-            <div class="card">
+            <div class="card fundo-card">
               <div class="card-body shadow-sm">
                 <strong>Plano:</strong> {{ agendado.plano_internet}}
               </div>
@@ -76,7 +76,7 @@
           </div>
 
           <div class="col-sm-4">
-            <div class="card">
+            <div class="card fundo-card">
               <div class="card-body shadow-sm">
                 <strong>Serviço:</strong> {{ agendado.categoria}}
               </div>
