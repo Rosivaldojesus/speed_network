@@ -1,23 +1,23 @@
 <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/3da7fbe518.js" crossorigin="anonymous"></script>
 
-<div class="bg-dark  border-bottom shadow">
+<div class="bg-dark  border-bottom shadow ">
   <div class="container">
     <div>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark texto_menu">
              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
              </button>
              
              <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             
-               <a class="navbar-brand  " href="/">Home</a>
+               <a class="navbar-brand texto_menu " href="/">Home</a>
                  
                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 
                       {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
                       <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Boletos
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -30,23 +30,23 @@
                     </li>  
                                  
                       <li class="nav-item">
-                          <a class="nav-link" href="/cto/">CTO</a>
+                          <a class="nav-link text-white" href="/cto/">CTO</a>
                        </li>
                       {% endif %}
                        
                       {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
                         <li class="nav-item">
-                           <a class="nav-link texto_menu" href="/manuais/">Manuais</a>
+                           <a class="nav-link text-white" href="/manuais/">Manuais</a>
                         </li>
                       {% endif %}
 
                       {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
                         <li class="nav-item">
-                           <a class="nav-link" href="/vendas/">Instalação</a>
+                           <a class="nav-link text-white" href="/vendas/">Instalação</a>
                         </li>
                         {% elif request.user.groups.all.0.name == "Tecnico" or request.user.groups.all.0.name == "Venda" %}
                         <li class="nav-item">
-                           <a class="nav-link" href="/vendas/">Instalação</a>
+                           <a class="nav-link text-white" href="/vendas/">Instalação</a>
                         </li>  
                       {% endif %} 
                                           
@@ -54,7 +54,7 @@
                       
                       
                       <li class="nav-item">
-                           <a class="nav-link" href="/pagamentos/"> <i class="fa fa-money-bill"></i> Financeiro</a>
+                           <a class="nav-link text-white" href="/pagamentos/"> <i class="fa fa-money-bill"></i> Financeiro</a>
 
                       </li>
                       <i class="fa-solid fa-messages-dollar"></i>
@@ -77,28 +77,28 @@
                       
                       {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master"  %}
                         <li class="nav-item">
-                           <a class="nav-link" href="/componentes/ruas/">Ruas</a>
+                           <a class="nav-link text-white" href="/componentes/ruas/">Ruas</a>
                         </li>
 
                         <li class="nav-item">
-                           <a class="nav-link" href="/vendas/vale-refeicao/">Refeições</a>
+                           <a class="nav-link text-white" href="/vendas/vale-refeicao/">Refeições</a>
                         </li>
 
                         <li class="nav-item">
-                           <a class="nav-link" href="/servicos/">Serviços</a>
+                           <a class="nav-link text-white" href="/servicos/">Serviços</a>
                         </li>
 
 
 
                         {% elif request.user.groups.all.0.name == "Tecnico" %}
                         <li class="nav-item">
-                           <a class="nav-link" href="/servicos/"> <i class="fa fa-money"></i> Serviços</a>
+                           <a class="nav-link text-white" href="/servicos/"> <i class="fa fa-money"></i> Serviços</a>
                         </li>   
                       {% endif %}
 
                    {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
                         <li class="nav-item">
-                           <a class="nav-link" href="/voip/">Voip</a>
+                           <a class="nav-link text-white" href="/voip/">Voip</a>
                         </li>
 
 
@@ -107,7 +107,7 @@
                     
                       {% if request.user.groups.all.0.name == "Adm" or request.user.groups.all.0.name == "Master" %}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Senhas
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -131,7 +131,7 @@
 
   
                    <li class="nav-item">
-                   <a class="nav-link" href="/logout/"> <i class="fas fa-power-off"></i> Sair</a>
+                   <a class="nav-link text-white" href="/logout/"> <i class="fas fa-power-off"></i> Sair</a>
                  </li>
 
 
