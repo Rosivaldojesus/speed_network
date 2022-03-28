@@ -57,12 +57,12 @@ class AgendarPagamentoForm(forms.ModelForm):
     #     widget=forms.TextInput(attrs={'placeholder': 'Ex: 385,50'}),
     # )
 
-    informacao_pagamento = forms.CharField(
-        widget=forms.TextInput(attrs={'placeholder': 'Código de barras, Conta bancária, Chave PIX'}),
-        label='Informações para pagamento',
-        help_text='Caso haja código de barras, conta bancária, Chave Pix e etc',
-        required=False
-    )
+    # informacao_pagamento = forms.CharField(
+    #     widget=forms.TextInput(attrs={'placeholder': 'Código de barras, Conta bancária, Chave PIX'}),
+    #     label='Informações para pagamento',
+    #     help_text='Caso haja código de barras, conta bancária, Chave Pix e etc',
+    #     required=False
+    # )
     origem_valor_pagamento = forms.ModelChoiceField(
         queryset=OrigemValores.objects.all(),
         help_text='Origem do dinheiro Ex: Banco NET.'

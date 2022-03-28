@@ -754,7 +754,7 @@ class EntregaBoletosCreateView(SuccessMessageMixin, CreateView):
     success_message = "%(nome_cliente)s, foi cadastrado com sucesso!!!"
 
 
-class EditarEntregaBoletosUpdateView(UpdateView):
+class EditarEntregaBoletosUpdateView(SuccessMessageMixin, UpdateView):
     model = ClientesEntregaBoletos  # A tabela do banco de dados
     form_class = EditarClientesEntregaBoletosForm  # Form for Update
     template_name = 'payment/editar-entrega-boletos.html'  # templete for updating

@@ -58,11 +58,15 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor',
     'widget_tweaks',
-    'rest_framework',
     'django_matplotlib',
     'chartjs',
     'bootstrap4',
     'bootstrap_datepicker_plus',
+
+    # Rest Framework
+    'rest_framework',
+    'django_filters',
+    'rest_framework.authtoken'
 
 ]
 
@@ -168,3 +172,13 @@ MESSAGE_TAGS = {
 
 #Heroku
 django_heroku.settings(locals())
+
+# Rest Framework filters
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+
+    # Páginação
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 3
+
+}

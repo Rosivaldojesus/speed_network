@@ -115,6 +115,7 @@
                       {% if valor.informacao_pagamento is not null %}
                         <a href="{% url 'detalhes_pagamento' valor.id %}"><i class="large barcode icon" style="color: #fff"></i></a>
                       {% else %}
+
                       {% endif %}
                     </td>
                     <td><a href="{% url 'editar_pagamento_agendado' valor.id  %}" class="btn-edit-01"> Editar </a> </td>

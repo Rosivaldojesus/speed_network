@@ -11,7 +11,7 @@ from .views import relatorio_servicos_retiradas
 urlpatterns = [
 
 
-    path('', Index),
+    path('', Index, name='services_index'),
     path('cadastro-servico/', CadastroServico),
     path('editar-servico/<int:id>', EditarServico),
     path('remover-servico/<int:id>', RemoverServico),

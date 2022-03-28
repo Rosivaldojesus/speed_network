@@ -12,6 +12,10 @@
         <h1 class="texto-cor-1">Contas a Vencer</h1>
     </div>
 
+    <div class="mb-2" align="right">
+        <a href="/pagamentos/contas-a-pagar/" class="btn btn-info">Voltar para contas a pagar</a>
+    </div>
+
     <!-- =====================================================================================================-->
     <!-- INÍCIO  Campo de Pesquisas-->
     <div class="texto-cor-1">
@@ -47,7 +51,7 @@
     <!-- =====================================================================================================-->
     <h3 class="texto-color-1">Lista de contas a pagar - R$: {{ valor_a_pagar.total }}</h3>
     <!-- =====================================================================================================-->
-	
+
 
     <!-- =====================================================================================================-->
     <div class="card shadow mb-3 fundo-card">
@@ -60,13 +64,11 @@
                     <th scope="col">Banco</th>
                     <th scope="col">Data</th>
                     <th scope="col">Categoria</th>
-
                     <th scope="col">Editar</th>
                     <th scope="col">Infor.</th>
                     <th scope="col">Pagar</th>
                 </tr>
                 </thead>
-
                 <tbody>
                 {% for conta in conta_a_vencer %}
                 <tr class="texto-tbody-tr">
@@ -79,16 +81,10 @@
 
                     <td>
                     {% if conta.informacao_pagamento is not null %}
-
                       <a href="{% url 'detalhes_pagamento' conta.id %}"><i class="large barcode icon btn-edit-01"></i></a>
-					  
-				
                     {% else %}
-
                     {% endif %}
                   </td>
-
-
                     <td>
                         <a href="/pagamentos/comfirmar-pagamento/{{ conta.id }}" title="Pagar"><i class="fas fa-money-check-alt fa-lg btn-edit-01"></i></a>
                     </td>
@@ -99,7 +95,5 @@
         </div>
     </div>
     <!-- =====================================================================================================-->
-    
 </div>
-
 {% endblock %}

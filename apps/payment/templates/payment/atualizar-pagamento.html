@@ -4,9 +4,11 @@
 
 {% block main %}
 <div class="container">
-    <h2>Editar pagamentos</h2>
+    <div class="mt-4 mb-4">
+        <h1 class="texto-cor-1">Editar pagamentos</h1>
+    </div>
 
-    <form action="" method="post"> {% csrf_token %}
+    <form action="" method="post" class="texto-cor-2"> {% csrf_token %}
         {{ form | crispy }}
 	    {{ form.media }}
 	    <input type="submit" class="btn btn-block btn-warning" value="Atualizar informações">
