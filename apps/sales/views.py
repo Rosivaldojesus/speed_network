@@ -334,7 +334,7 @@ def ExportarReletarioVendasVendedor(request):
    
 
 
-    vendas = Instalacao.objects.filter(instalacao_vendedor=q)
+    vendas = Instalacao.objects.filter()
     writer = csv.writer(response)
     writer.writerow(['nome_cliente', 'cpf_cliente','data_concluido','planos_instalacao' , 'instalacao_vendedor'
     ])
