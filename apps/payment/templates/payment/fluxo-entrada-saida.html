@@ -45,12 +45,16 @@
                     },
                     stroke: {
                     width: [5,5,4],
+
+                    colors: ['#f10000', '#4B0082'],//Coloca a cor da barra
+
                     curve: 'straight'
                     },
                     labels: [{% for data in entrada_banco %} '{{ data.month|date:'F Y' }}', {% endfor %}],
                     title: {
                     text: 'Entradas'
                     },
+
                     xaxis: {
                     },
                     };

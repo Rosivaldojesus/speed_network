@@ -10,36 +10,65 @@
 	{% if request.user.groups.all.0.name == "Master" %}
 		<div class="card mt-4 mb-4 fundo-card fundo-card-border">
 
-			<div class="row mt-2 ml-2 mb-2 texto-cor-2 ">
-				<div class="col-sm-2" align="center">
-				<div class="mr-1"><small><strong>6T:</strong></small> </div>
-				<div><small>{{ quant_6t }}</small></div>
-			</div>
+			<h1 class="texto-cor-1 p-2">Dashboard </h1>
 
-			<div class="col-sm-2" align="center">
-				<div class="mr-1"><small><strong>V5:</strong></small> </div>
-				<div><small>{{ quant_v5 }}</small></div>
-			</div>
+			<div class="row texto-cor-2 p-2 ">
 
-			<div class="col-sm-2" align="center">
-				<div class="mr-1"><small><strong>Q2:</strong></small> </div>
-			<div><small>{{ quant_v5 }}</small></div>
-							</div>
-
-			<div class="col-sm-2" align="center">
-				<div class="mr-1"><small><strong>Nokia 140:</strong></small> </div>
-				<div><small>{{ quant_nokia_140 }}</small></div>
-			</div>
-
-			<div class="col-sm-2" align="center">
-				<div class="mr-1"><small><strong>Nokia 240:</strong></small> </div>
-				<div><small>{{ quant_nokia_240 }}</small></div>
-			</div>
-
-			<div class="col-sm-2" align="center">
-				<div class="mr-1"><small><strong>Total:</strong></small> </div>
-					<div><small>{{ quant_modens }}</small></div>
+			<div class="col-sm" align="center">
+				<div class="card fundo-pagina">
+					<div><small><strong>6T</strong></small> </div>
+					<div><small>{{ quant_6t }}</small></div>
 				</div>
+			</div>
+
+			<div class="col-sm" align="center">
+				<div class="card fundo-pagina">
+					<div><small><strong>V5</strong></small> </div>
+					<div><small>{{ quant_v5 }}</small></div>
+				</div>
+			</div>
+
+			<div class="col-sm" align="center">
+				<div class="card fundo-pagina">
+					<div class="mr-1"><small><strong>Q2</strong></small> </div>
+					<div><small>{{ quant_v5 }}</small></div>
+				</div>
+			</div>
+
+			<div class="col-sm" align="center">
+				<div class="card fundo-pagina">
+					<div class="mr-1"><small><strong>140</strong></small> </div>
+					<div><small>{{ quant_nokia_140 }}</small></div>
+				</div>
+			</div>
+
+			<div class="col-sm" align="center">
+				<div class="card fundo-pagina">
+					<div class="mr-1"><small><strong>Nokia 240:</strong></small> </div>
+					<div><small>{{ quant_nokia_240 }}</small></div>
+				</div>
+			</div>
+
+			<div class="col-sm" align="center">
+				<div class="card fundo-pagina">
+					<small><strong>G-2425G-A:</strong></small> 
+					<div><small>{{ quant_nokia_2425A }}</small></div>
+				</div>
+			</div>
+
+			<div class="col-sm" align="center">
+				<div class="card fundo-pagina">
+					<small><strong>G-1425G-A:</strong></small> 
+					<div><small>{{ quant_nokia_1425A }}</small></div>
+				</div>
+			</div>
+
+			<div class="col-sm" align="center">
+				<div class="card fundo-pagina">
+					<div class="mr-1"><small><strong>Total:</strong></small> </div>
+						<div><small>{{ quant_modens }}</small></div>
+					</div>
+				</div>	
 			</div>
 					
 		</div>
@@ -48,29 +77,24 @@
 
 	<!-- INÍCIO  Campo de Pesquisas-->
 	<div class="card">
-		
-			<form method="GET" class="texto-cor-2 fundo-card fundo-card-border">
-				<div class="row mt-3 mr-2 ml-2">
-					<!-- Campo do formulário de pesquisa por patrimônio -->
-					<div class="form-group col-4">
-						<label>Patrímônio</label>
-					<input type="search" class="form-control"  placeholder="Informe o Patrímônio"
-						name="p" value="{{ request.GET.p }}">
+		<form method="GET" class="texto-cor-2 fundo-card fundo-card-border">
+			<div class="row p-2">
+				<div class="col-sm-4">
+					<label>Patrímônio</label>
+						<input type="search" class="form-control"  placeholder="Informe o Patrímônio"
+							name="p" value="{{ request.GET.p }}">
 					</div>
-					<!-- Campo do formulário de pesquisa por código e S/N -->
-					<div class="form-group col-8">
+					<div class="col-sm">
 						<label>Informe o código, S/N</label>
-						<input type="search" class="form-control"  placeholder="Informe ou código S/N"
+							<input type="search" class="form-control"  placeholder="Informe ou código S/N"
 							name="q" value="{{ request.GET.q }}">
-					</div>
-			
 				</div>
-				<!-- Botão de pesquisar -->
-				<div align="right">
-					<button type="submit" class="btn btn-success">Executar Pesquisa</button>
-				</div>
-			</form>
-		
+			</div>
+			<!-- Botão de pesquisar -->
+			<div class="p-2" align="right">
+				<button type="submit" class="btn btn-success">Executar Pesquisa</button>
+			</div>			
+		</form>
 	</div>
 	<!-- FIM Campo de Pesquisas-->
 
@@ -92,10 +116,11 @@
 		{% endif %}
 	</div>	
 	<!-- FIM Botões -->
-	<hr class="line-solid">
+	
 	<!-- INÍCIO Titulo da página -->
 	<div class="mb-4">
 		<h2 class="texto-cor-2">Senhas por equipamentos</h2>
+		<hr class="line-solid">
 	</div>
 	<!-- Fim Titulo da página -->
 

@@ -253,6 +253,12 @@ def SenhasPorEquipamento(request):
     quant_q2 = SenhasPorEquipamentos.objects.filter(equipamento=3).count()
     quant_nokia_140 = SenhasPorEquipamentos.objects.filter(equipamento=6).count()
     quant_nokia_240 = SenhasPorEquipamentos.objects.filter(equipamento=5).count()
+
+    quant_nokia_2425A = SenhasPorEquipamentos.objects.filter(equipamento=7).count()
+    quant_nokia_1425A = SenhasPorEquipamentos.objects.filter(equipamento=8).count()
+
+
+
     quant_modens = SenhasPorEquipamentos.objects.filter().count()
 
     queryset = request.GET.get('q')
@@ -272,6 +278,8 @@ def SenhasPorEquipamento(request):
         'quant_q2': quant_q2,
         'quant_nokia_140': quant_nokia_140,
         'quant_nokia_240': quant_nokia_240,
+        'quant_nokia_2425A': quant_nokia_2425A,
+        'quant_nokia_1425A': quant_nokia_1425A,
         'quant_modens': quant_modens
     }
     return render(request, 'core/senhas-por-equipamento.html', context)
