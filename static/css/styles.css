@@ -7,6 +7,9 @@ body {
     background-color: 	#282828;
 }
 
+.fundo-card-grafico {
+    background-color: #C0C0C0;
+}
 
 
 
@@ -47,9 +50,7 @@ body {
     box-shadow: 3px 3px 3px #DCDCDCed;
 }
 
-.fundo-card-grafico {
-    background-color: #C0C0C0;
-}
+
 
 .texto-h1{
     color: #A9A9A9;

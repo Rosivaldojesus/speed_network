@@ -19,52 +19,65 @@
 		</h5>
     </div>
 	
-    <div class="card shadow mt-3 mb-4">
-        <div id="chart_A">
+    <!--=====================================================================================================-->
+
+    <!--============================== Fixo VS Variáveis =========================================================================-->
+    <h3 class="texto-cor-2">Entradas VS Saídas</h3>
+    <div class="card shadow mt-3 fundo-card-grafico">
+        <div id="chart_AA">
             <script>
                 var options = {
-                    series: [{
-                    name: 'Bancos',
-                    data: [{% for data in entrada_banco %} '{{ data.c }}', {% endfor %}]
-                    },{
-                    name: 'Custos Mensais',
-                    data: [{% for data in custos_gerais %} '{{ data.c }}', {% endfor %}]
-                    }
-
+                    series: [
+                        {
+                            name: 'Saídas',
+                            data: [{% for data in entrada_banco %} '{{ data.c }}', {% endfor %}],
+                        },{
+                            name: 'Entradas',
+                            data: [{% for data in custos_gerais %} '{{ data.c }}', {% endfor %}],
+                        }   
                     ],
-                    chart: {
-                    height: 350,
-                    type: 'line',
-                    zoom: {
-                        enabled: false
-                    },
+
+                    dataLabels: {enabled: true,/*Coloca o valores em cada mês*/},
                     
-                    animations: {
-                        enabled: false
-                    }
+                    colors: ['#f10000', '#008000'],//Coloca a cor da barra
+          
+                    chart: {
+                        height: 350,
+                        type: 'line',
+                        zoom: { enabled: false },
+                        animations: {enabled: true }
                     },
+
                     stroke: {
-                    width: [5,5,4],
-
-                    colors: ['#f10000', '#4B0082'],//Coloca a cor da barra
-
-                    curve: 'straight'
+                        width: [4],//Largura da linha
+                        curve: 'straight',
+                        dashArray: [4, 8, 5]//Se quiser a linha pontilhada
                     },
+
                     labels: [{% for data in entrada_banco %} '{{ data.month|date:'F Y' }}', {% endfor %}],
+
+          
+                    
+                    
                     title: {
-                    text: 'Entradas'
+                    text: 'Fixos vs Variáveis'
                     },
 
                     xaxis: {
                     },
                     };
 
-                    var chart = new ApexCharts(document.querySelector("#chart_A"), options);
+                    var chart = new ApexCharts(document.querySelector("#chart_AA"), options);
                     chart.render();
-      
             </script>
         </div>
     </div>
-    <!--=====================================================================================================-->
+    <!--=================================================================================================================-->
+	
+	
+
+
+
+
 </div>
 {% endblock %}
