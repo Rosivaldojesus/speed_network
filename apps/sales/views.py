@@ -330,11 +330,16 @@ def FinalizarEntregaBoleto(request, id=None):
 def ExportarReletarioVendasVendedor(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="relatorio-vendas.csv"'
-    vendas = Instalacao.objects.all()
+
+    queryset = request.GET.get('q')
+
+
+    vendas = Instalacao.objects.filter(instalacao_vendedor=q)
     writer = csv.writer(response)
-    writer.writerow('nome_cliente')
+    writer.writerow(['nome_cliente', 'cpf_cliente','data_concluido','planos_instalacao' , 'instalacao_vendedor'
+    ])
     for venda in vendas:
-        writer.writerow([venda.nome_cliente])
+       writer.writerow([venda.nome_cliente, venda.cpf_cliente, venda.planos_instalacao, venda.data_concluido, venda.instalacao_vendedor])
     return response
 #  ------------------------------------  SERVIÇOS VOIP  -------------------------------------
 

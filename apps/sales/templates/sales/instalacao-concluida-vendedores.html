@@ -7,7 +7,7 @@
 <div class="container">
 
   <div class="mt-4">
-    <h1 class="mt-3 mb-3 texto-cor-1"><span class="badge badge-success badge-pill">{{quant_concluida}} </span> Instalações Concluída Por vendedores </h1>
+    <h1 class="mt-3 mb-3 texto-cor-1"><span class="badge badge-success badge-pill">{{quant_concluida}} </span>  Instalações Concluída Por vendedores </h1>
     <hr class="line-solid">
   </div>
 
@@ -63,7 +63,11 @@
 
 
   <div align="right">
-    <a href="{% url 'exportar-reletario-vendas-vendedor' %}" class="btn btn-danger">Exportar para CSV</a>
+    <a href="{% url 'exportar-reletario-vendas-vendedor' %}" class="texto-cor-1">
+      <span style="font-size: 32px; color: Dodgerblue;">
+        <i class="fa fa-file-csv"> Exportar</i>
+      </span>
+    </a>
   </div>
 
 
