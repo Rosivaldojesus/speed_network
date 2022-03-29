@@ -6,8 +6,10 @@
 
 {% block main %}
 <div class="container">
-  <h1 class="mt-3 mb-3 texto-cor-1"><span class="badge badge-danger badge-pill">{{ qquant_aberto}}</span>  Serviços abertos</h1>
-
+  <div class="mt-4">
+      <h1 class="mt-3 mb-3 texto-cor-1"><span class="badge badge-danger badge-pill">{{ qquant_aberto}}</span>  Serviços abertos</h1>
+      <hr class="line-solid">
+  </div>
 <!-- Messagens -->
   {% if messages %}
     {% for message in messages %}
@@ -27,15 +29,17 @@
       <h6>Cliente: <strong>{{ aberto.contato_servico}}</strong></h6><hr>
       <h6>O que: </h6><p>{{ aberto.servico_para_executar}}</p>
       <h6>Onde: </h6><p>{{ aberto.endereco_servico}}</p>
-
       <div align="right">
         <a href="/servicos/editar-servico/{{ aberto.id }}" class="btn btn-outline-primary">Editar</a>
         <a href="/servicos/agendar-servico/{{ aberto.id }}" class="btn btn-outline-success">Agendar</a>
         <a href="/servicos/remover-servico/{{ aberto.id }}" class="btn btn-outline-danger">Excluir</a>
       </div>
     </div>
-
   </div>
+{% empty %}
+  <div class="mt-4 texto-cor-2">
+    <h2>No momento, não há serviços em aberto!</h2>
+  <div>
 {% endfor %}
 
 <!--FIM-->

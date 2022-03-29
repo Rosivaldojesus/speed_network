@@ -9,6 +9,11 @@
 
 </body>
 <div class="container">
+
+  <div class="mt-4 texto-cor-1">
+    <h1>Serviços</h1>
+    <hr class="line-solid">
+  </div>
   <!-- INÍCIO Botões com as opções da página -->
   <div class="mt-4 mb-2">
     <div align="right">
@@ -71,7 +76,7 @@
 <!-- ========================================================================================================= -->
 <h2 class="texto-cor-2">Gráfico de serviços não concluídos<a class="anchor" id="content"></a></h2>
   <!-- Gráfico de serviços diários -->
-  <div class="card">
+  <div class="card fundo-card-grafico">
     <div id="chart_AB">
             <script>
               var options = {
@@ -157,9 +162,9 @@
 
 <!-- INICIO Gráfico com o serviços Mensal  -->
 <div class="mt-2 mb-2">
-  <div class="card">
+  <div class="card fundo-card-grafico">
     <h5 class="card-header">Serviços Mensal</h5>
-    <div class="card-body">
+    <div class="card-body ">
         <canvas id="speedChartA" width="600" height="100">
           <script>
               
@@ -203,7 +208,7 @@
 <!-- ========================================================================================================= -->
 <h2 class="texto-cor-2">Gráfico de serviços diários</h2>
   <!-- Gráfico de serviços diários -->
-  <div class="card">
+  <div class="card fundo-card-grafico">
     <div id="chart_B">
             <script>
               var options = {
@@ -252,7 +257,7 @@
     <div class="row ">
       <!-- Serviços por categoria no mês atual-->
       <div class="col-sm-6">
-        <div class="card">
+        <div class="card fundo-card-grafico">
           <div class="card-body">
             <h5 class="card-title">{% now 'M Y' %}</h5>
             <div id='chart'>

@@ -15,11 +15,13 @@ body {
 
 .largura-tabela-td {
     width:10%;
-    color: red;
+    color: white;
+    height: 20%;
+
   }
 
 
-/* Cards ===============================================> */
+/* Cards */
 .fundo-card {
     background-color: #363636;
 }
