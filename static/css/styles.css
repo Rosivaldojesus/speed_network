@@ -13,6 +13,19 @@ body {
 
 
 
+.largura-tabela-td {
+    width:10%;
+    color: red;
+  }
+
+
+/* Cards ===============================================> */
+.fundo-card {
+    background-color: #363636;
+}
+
+
+
 
 .line-solid {
     border-top: 3px solid #bbb;
@@ -31,9 +44,6 @@ body {
 
 
 
-.fundo-card {
-    background-color: #363636;
-}
 
 
 .fundo-card-claro {

@@ -331,7 +331,7 @@ def ExportarReletarioVendasVendedor(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="relatorio-vendas.csv"'
 
-    queryset = request.GET.get('q')
+   
 
 
     vendas = Instalacao.objects.filter(instalacao_vendedor=q)
