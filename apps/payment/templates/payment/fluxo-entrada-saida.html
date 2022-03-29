@@ -32,17 +32,17 @@
                 var options = {
                     series: [
                         {
-                            name: 'Saídas',
+                            name: 'Entradas',
                             data: [{% for data in entrada_banco %} '{{ data.c }}', {% endfor %}],
                         },{
-                            name: 'Entradas',
+                            name: 'Saídas',
                             data: [{% for data in custos_gerais %} '{{ data.c }}', {% endfor %}],
                         }   
                     ],
 
                     dataLabels: {enabled: true,/*Coloca o valores em cada mês*/},
                     
-                    colors: ['#f10000', '#008000'],//Coloca a cor da barra
+                    colors: ['#008000', '#f10000'],//Coloca a cor da barra
           
                     chart: {
                         height: 350,
