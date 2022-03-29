@@ -1,4 +1,7 @@
+import csv
+
 from django.contrib import messages
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Sum, Count
@@ -323,13 +326,16 @@ def FinalizarEntregaBoleto(request, id=None):
     return render(request, 'sales/finalizar-boleto.html', {'form': form})
 
 
-def ExportarReletarioVendas():
-    response = HttpResponse(content_type='vendas/csv')
+# Exportando relatório de vendas por vendedor
+def ExportarReletarioVendasVendedor(request):
+    response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="relatorio-vendas.csv"'
     vendas = Instalacao.objects.all()
     writer = csv.writer(response)
-    writer.writerow('')
-
+    writer.writerow('nome_cliente')
+    for venda in vendas:
+        writer.writerow([venda.nome_cliente])
+    return response
 #  ------------------------------------  SERVIÇOS VOIP  -------------------------------------
 
 

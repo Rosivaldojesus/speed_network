@@ -7,6 +7,8 @@ from .views import CadastroInstalacao, InstalacaoVisualizacao, InstalacaoEditar,
     AdicionarNomeParaValeCreate, AdicionarPagamentoVale, VoipFinalizadoSemBoleto, CancelamentosUpdateView
 from .views import CancelamentosCreateView, CancelamentosListView
 
+from .views import ExportarReletarioVendasVendedor
+
 
 urlpatterns = [
     path('', Index),
@@ -50,5 +52,8 @@ urlpatterns = [
     # UpdateView
 
     path('editar-cancelamento/<int:pk>', CancelamentosUpdateView.as_view(), name='editar-cancelamento'),
+
+    # Relatórios em CSV
+    path('ExportarReletarioVendasVendedor', ExportarReletarioVendasVendedor, name='exportar-reletario-vendas-vendedor')
 
 ]
