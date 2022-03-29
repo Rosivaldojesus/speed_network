@@ -66,6 +66,7 @@
 {% for agendado in agendados %}
   <div class="card mt-4 fundo-card texto-cor-2">
 
+<!--
     <div class="p-4">
       <div class="row border-1">
       <div class="col-md-2"><div>Nome do Cliente</div></div>
@@ -120,7 +121,6 @@
 
     </table>
 
-    <!-- Botões de opções -->
     <div class="p-2" align="right">
       <a href="/servicos/editar-servico-agendado/{{ agendado.id }}" class="btn btn-warning">Editar</a>
       <a href="/servicos/remover-servico/{{ agendado.id }}" class="btn btn-danger">Excluir</a>
@@ -129,7 +129,7 @@
     
   </div>
 
-
+-->
 {% endfor %}
 
 {% for agendado in agendados %}

@@ -339,7 +339,7 @@ def ExportarReletarioVendasVendedor(request):
     writer.writerow(['nome_cliente', 'cpf_cliente','data_concluido','planos_instalacao' , 'instalacao_vendedor'
     ])
     for venda in vendas:
-       writer.writerow([venda.nome_cliente, venda.cpf_cliente, venda.planos_instalacao, venda.data_concluido, venda.instalacao_vendedor])
+       writer.writerow([venda.nome_cliente, venda.cpf_cliente,venda.data_concluido, venda.planos_instalacao,  venda.instalacao_vendedor])
     return response
 #  ------------------------------------  SERVIÇOS VOIP  -------------------------------------
 
