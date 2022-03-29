@@ -6,6 +6,12 @@
 {% block main %}
 
 <div class="container">
+
+  <div class="mt-4">
+    <h1 class="texto-cor-1">Instalações</h1>
+    <hr class="line-solid">
+  </div>
+
     
   <!-- INÍCIO Messagens -->
     {% if messages %}
@@ -23,6 +29,7 @@
       <a class="btn btn-primary" href="cadastro-instalacao/"><i class="far fa-plus-square"></i> Instalação</a>
       <a class="btn btn-danger" href="criar-cancelamento/"><i class="far fa-plus-square"></i> Cancelamento</a>
       <a class="btn btn-info" href="lista-cancelamentos/"><i class="far fa-list-alt"></i> Cancelamentos</a>
+      <a class="btn btn-secondary" href="/vendas/instalacao-concluida-vendedores/"><i class="far fa-list-alt"></i> Instalação por porvendedor</a>
     </div>
   </div>
   <!-- FIM dos botões de opções -->
@@ -93,7 +100,7 @@
 
   <!-- INICIO Gráfico de instalações por mês -->
   {% if request.user.groups.all.0.name == "Master" %}
-  <div class="card shadow mt-4 p-2">
+  <div class="card shadow mt-4 p-2 fundo-card-grafico">
     <canvas id="speedChartA" width="600" height="100">
         <script>
             
@@ -138,7 +145,7 @@
 
   <!-- =====================================================================================================================-->
   <!-- INICIO Gráfico de instações diárias -->
-  <div class="card shadow mt-4 mb-4 p-2">
+  <div class="card shadow mt-4 mb-4 p-2 fundo-card-grafico">
     <canvas id="speedChart" width="400" height="100">
         <script>
           var speedCanvas = document.getElementById("speedChart");
@@ -200,9 +207,9 @@
   <div class="row mb-4">
     <div class="col-sm-6">
       <div class="card shadow h-100 border-0">
-        <div class="card-body">
-          <h4 class="card-title">{% now "M Y" %} ( {{ conheceu_empresa_mes_count }} )</h4>
-          <div id="chart_AA">
+        <div class="card-body fundo-card-grafico">
+          <h4 class="card-title ">{% now "M Y" %} ( {{ conheceu_empresa_mes_count }} )</h4>
+          <div id="chart_AA" >
             <script>
               var options = {
                   series: [
@@ -240,7 +247,7 @@
       </div>
     </div>
     <div class="col-sm-6">
-      <div class="card shadow h-100 border-0">
+      <div class="card shadow h-100 border-0 fundo-card-grafico">
         <div class="card-body">
           <h4 class="card-title">Geral ( {{ conheceu_empresa_count}} )</h4>
           <div id="chart_BB">

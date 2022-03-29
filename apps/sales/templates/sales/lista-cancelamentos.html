@@ -5,7 +5,8 @@
 <div class="container">
 
     <div class="mt-4 mb-4">
-        <h1 class="texto-cor-1">Cancelamentos ( {{ count_cancelamentos}} )<a class="anchor" id="content"></a></h1>
+        <h1 class="texto-cor-2">Cancelamentos ( {{ count_cancelamentos}} )<a class="anchor" id="content"></a></h1>
+        <hr class="line-solid">
     </div>
 
     <!-- Messagens -->
@@ -22,7 +23,8 @@
   <!-- =====================================================================================================-->
   <!-- =====================================================================================================-->
 
-  <div id="chart_mensais" class="shadow mb-2 texto-cor-2">
+  <div class="fundo-card-grafico">
+    <div id="chart_mensais" class="shadow mb-2">
     <script>
       var options = {
             series: [{
@@ -77,6 +79,8 @@
           chart.render();
     </script>
   </div>
+
+  </div>
   <!-- =====================================================================================================-->
   <!-- =====================================================================================================-->
 
@@ -85,7 +89,7 @@
   <div class="row">
     <!-- Gráfico de cancelamentos mês atual-->
     <div class="col-sm-6">
-      <div class="card">
+      <div class="card fundo-card-grafico">
         <div class="card-body">
           <h5 class="card-title">Mês atual</h5>
           <div id="chart_mes_atual">
@@ -129,7 +133,7 @@
     </div>
     <!-- Gráfico de cancelamentos nos Geral-->
     <div class="col-sm-6 ">
-      <div class="card h-100">
+      <div class="card h-100 fundo-card-grafico">
         <div class="card-body">
           <h5 class="card-title">Geral ( {{ count_cancelamentos}} )</h5>
           <div id='chart_geral'>

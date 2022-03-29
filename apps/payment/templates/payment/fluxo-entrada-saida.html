@@ -13,11 +13,14 @@
     </div>
 	
 	<div class="mt-4 mb-4">
-        <h5 class="display-5 fw-light texto-cor-1">
+        <p class="display-5 fw-light texto-cor-1">
 			Aqui são demostrados os valores registrados de entradas na conta bancária e a saídas
 			registradas via sistema.
-		</h5>
+		</p>
+        <hr class="line-solid">
     </div>
+
+    
 	
     <!--=====================================================================================================-->
 
@@ -56,16 +59,13 @@
 
                     labels: [{% for data in entrada_banco %} '{{ data.month|date:'F Y' }}', {% endfor %}],
 
-          
-                    
-                    
                     title: {
                     text: 'Fixos vs Variáveis'
                     },
 
                     xaxis: {
                     },
-                    };
+                };
 
                     var chart = new ApexCharts(document.querySelector("#chart_AA"), options);
                     chart.render();

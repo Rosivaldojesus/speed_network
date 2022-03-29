@@ -322,6 +322,14 @@ def FinalizarEntregaBoleto(request, id=None):
         return redirect('/vendas/')
     return render(request, 'sales/finalizar-boleto.html', {'form': form})
 
+
+def ExportarReletarioVendas():
+    response = HttpResponse(content_type='vendas/csv')
+    response['Content-Disposition'] = 'attachment; filename="relatorio-vendas.csv"'
+    vendas = Instalacao.objects.all()
+    writer = csv.writer(response)
+    writer.writerow('')
+
 #  ------------------------------------  SERVIÇOS VOIP  -------------------------------------
 
 
