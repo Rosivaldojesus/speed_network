@@ -45,7 +45,8 @@ class EditarAgendarServicoForm(forms.ModelForm):
             'observacao'
         ]
         widgets = {
-            'data_agendada': DatePickerInput(),
+            #'data_agendada': DatePickerInput(),
+            #'data_agendada': forms.DateInput(attrs={'type': 'date'}),
         }
 
     hora_agendada = forms.TimeField()
