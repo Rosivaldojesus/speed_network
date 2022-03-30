@@ -71,7 +71,6 @@ class AgendaPagamento(models.Model):
 
 class FluxoEntradaSaidaMensal(models.Model):
     entrada_mes_atual = models.DecimalField(max_digits=8, decimal_places=2, default=0)
-    entrada_referente_mes_atual = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     custos_mensais = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     data_registro = models.DateField(auto_now_add=False, auto_now=False, blank=True, null=True)
 

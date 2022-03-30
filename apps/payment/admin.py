@@ -44,7 +44,7 @@ admin.site.register(DestinoValoresBoletos, DestinoValoresBoletosAdmin)
 
 
 class FluxoEntradaSaidaMensalAdmin(admin.ModelAdmin):
-    list_display = ('id', 'entrada_mes_atual', 'entrada_referente_mes_atual', 'custos_mensais')
+    list_display = ('id', 'entrada_mes_atual', 'custos_mensais')
 
 
 admin.site.register(FluxoEntradaSaidaMensal, FluxoEntradaSaidaMensalAdmin)

@@ -9,8 +9,22 @@
 	<div class="mt-4">
 		<h2 class="texto-cor-2">
 			Dashboard <a class="anchor" id="content"></a>
+			<hr class="line-solid">
 		</h2>
 	</div>
+
+	<!-- =========================================================================================================== -->
+    <!-- INÍCIO Messagens -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert {{ message.tags }}" role="alert">
+            {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+  <!-- FIM Messagens -->   
+
+<!-- =========================================================================================================== -->
 
 	<!-- =========================================================================================================== -->
 	
@@ -257,5 +271,39 @@
 	</div>
 	<!--FIM da Tabela de Terminais Ópticos -->
 	<!-- =========================================================================================================== -->
+
+	<div class="texto-cor-2">	
+		<ul class="pagination">
+			<li class="page-item">
+				{% if ctos.has_previous %}
+					<a class="page-link"  href="?page=1">&laquo; Primeira</a>
+				{% endif %}
+			</li>
+			<li class="page-item">
+				{% if ctos.has_previous %}
+					<a class="page-link" href="?page={{ ctos.previous_page_number }}">Anterior</a>
+				{% endif %}
+			</li>
+
+				<li class="page-item active">
+					<a class="page-link">Página {{ ctos.number }} de {{ ctos.paginator.num_pages }}</a>
+				</li>
+
+			<li class="page-item">
+				{% if ctos.has_next %}
+					<a class="page-link" href="?page={{ ctos.next_page_number }}">Próximo</a>
+				{% endif %}
+			</li>
+			<li class="page-item">
+				{% if ctos.has_next %}
+					<a class="page-link" href="?page={{ ctos.paginator.num_pages }}">Última &raquo;</a>
+				{% endif %}
+			</li>
+		</ul>
+	</div>
+
+
+
+
 </div>
 {% endblock %}

@@ -7,7 +7,9 @@ from .models import TerminaisOpticos, Primarias, CaixasDasPrimarias
 from .models import CaixasDeEmenda, PonPorCaixaEmenda
 from django.views.generic.edit import CreateView
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator
 import csv
+from django.contrib.messages.views import SuccessMessageMixin
 
 
 # Create your views here
@@ -58,6 +60,13 @@ def Index(request):
     quant_cto_jd_rochhale = TerminaisOpticos.objects.filter(bairro_cto=6).count()
     quant_cto_jd_marisa = TerminaisOpticos.objects.filter(bairro_cto=7).count()
 
+
+   # Paginator
+    paginator = Paginator(ctos,3 )
+    page_number = request.GET.get('page', '1')
+    ctos = paginator.get_page(page_number)
+
+
     context = {
         'ctos': ctos,
         'quant_cto_completas': quant_cto_completas,
@@ -75,6 +84,10 @@ def Index(request):
         'quant_cto_jd_rochhale': quant_cto_jd_rochhale,
         'quant_cto_jd_marisa': quant_cto_jd_marisa,
     }
+
+    
+
+
     return render(request, 'cto/index.html', context)
 
 
@@ -85,6 +98,7 @@ def EditarCto(request, id=None):
     if form.is_valid():
         obj = form.save()
         obj.save()
+        messages.success(request, 'CTO alterada com sucesso!')
         return redirect('/cto/')
     return render(request, 'cto/cto_formulario.html', {'form': form})
 
@@ -104,10 +118,10 @@ def CtoCompletas(request):
     return render(request, 'cto/cto-completas.html', context)
 
 
-class CTOCreate(CreateView):
+class CTOCreate(SuccessMessageMixin, CreateView):
     model = TerminaisOpticos
     template_name = "cto/cto_formulario.html"
-    form_class = InsertCtoForm
+    form_class = CtoForm
     success_url = '/cto/'
     success_message = "%(nome_cliente)s, foi cadastrado com sucesso!!!"
 
