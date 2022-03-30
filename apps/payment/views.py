@@ -158,8 +158,6 @@ class FluxoEntradaSaidaView(TemplateView):
             values('month', 'c').\
             order_by('month')
 
-
-
         context['custos_gerais'] = FluxoEntradaSaidaMensal.objects. \
             annotate(month=TruncMonth('data_registro')) \
             .values('month'). \
@@ -755,7 +753,4 @@ class EditarEntregaBoletosUpdateView(SuccessMessageMixin, UpdateView):
     template_name = 'payment/editar-entrega-boletos.html'  # templete for updating
     success_url = "/pagamentos/lista-entrega-boletos/"  # return após atualizar
     success_message = "foi atualizado com sucesso!!!"
-
-
-
 

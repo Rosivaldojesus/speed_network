@@ -62,7 +62,7 @@ def Index(request):
 
 
    # Paginator
-    paginator = Paginator(ctos,3 )
+    paginator = Paginator(ctos,15 )
     page_number = request.GET.get('page', '1')
     ctos = paginator.get_page(page_number)
 
