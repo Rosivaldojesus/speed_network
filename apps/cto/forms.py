@@ -10,6 +10,10 @@ class CtoForm(forms.ModelForm):
             'board_cto', 'quant_conexoes_usadas_cto', 'observacao_cto'
         ]
 
+    observacao_cto = forms.CharField(widget=forms.Textarea(attrs={'rows': 3, 'cols': 40}),
+                                            label='Observações', required=False
+                                            )
+
 
 class InsertCtoForm(forms.ModelForm):
     class Meta:
