@@ -84,10 +84,6 @@ def Index(request):
         'quant_cto_jd_rochhale': quant_cto_jd_rochhale,
         'quant_cto_jd_marisa': quant_cto_jd_marisa,
     }
-
-    
-
-
     return render(request, 'cto/index.html', context)
 
 
@@ -123,7 +119,7 @@ class CTOCreate(SuccessMessageMixin, CreateView):
     template_name = "cto/cto_formulario.html"
     form_class = CtoForm
     success_url = '/cto/'
-    success_message = "%(nome_cliente)s, foi cadastrado com sucesso!!!"
+    success_message = "%(codigo_cto)s, foi cadastrado com sucesso!!!"
 
 
 def ExportarCSVCTO(request):
