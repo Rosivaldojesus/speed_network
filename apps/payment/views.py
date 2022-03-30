@@ -158,12 +158,7 @@ class FluxoEntradaSaidaView(TemplateView):
             values('month', 'c').\
             order_by('month')
 
-        context['entrada_erp'] = FluxoEntradaSaidaMensal.objects.\
-            annotate(month=TruncMonth('data_registro')) \
-            .values('month').\
-            annotate(c=Sum('entrada_referente_mes_atual')).\
-            values('month', 'c').\
-            order_by('month')
+
 
         context['custos_gerais'] = FluxoEntradaSaidaMensal.objects. \
             annotate(month=TruncMonth('data_registro')) \
