@@ -15,6 +15,7 @@
     <!-- Título da pagina -->
     <div class="bd-title mt-4 mb-1">
         <h1 class="texto-cor-1">Contas a pagar</h1>
+        <hr class="line-solid">
     </div>
 
     <!-- =====================================================================================================-->
@@ -33,6 +34,7 @@
     <div class="mt-2 mb-2" align="right">
       <a href="{% url 'agendar_pagamento' %}" class="btn btn-secondary">Agendar Pagamento</a>
       <a href="{% url 'contas-a-vencer' %}" class="btn btn-danger">Lista de contas a pagar</a>
+      <a href="/pagamentos/" class="btn btn-info">Voltar</a>
     </div>
     <!-- =====================================================================================================-->
     <!-- =====================================================================================================-->
@@ -233,5 +235,34 @@
         <!-- ======================================================================================================= -->
       </div>
     </div>
+
+
+
+
+
+  <div>
+    <div id="tester" style="width:100%;height:250px;" class="fundo-card"></div>
+
+    <script>
+      TESTER = document.getElementById('tester');
+      Plotly.newPlot( TESTER, [{
+      x: [{% for valor in pagamentos_futuros_mensal%} '{{ valor.month|date:"F Y" }}', {% endfor%}],
+      y: [{% for valor in pagamentos_futuros_mensal%} '{{ valor.c }}', {% endfor%}] }], {
+      margin: { t: 0 } } );
+    </script>
+  </div>
+
+
+
+
+
+  
+
+
+
+
+
+
+
 </div>
 {% endblock %}
