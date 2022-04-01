@@ -384,8 +384,30 @@
             <script>
               var data = [{
                 type: "pie",
-                values: [2, 3, 4, 4, 8],
+                values: [
+
+                {{ quant_outros_mes }},
+                    {{ quant_serv_velocidade_mes }},
+                    {{ quant_serv_osciliacao_mes }},
+                    {{ quant_serv_retirada_mes }},
+                    {{ quant_serv_fibra_rompida_mes }},
+                    {{ quant_serv_troca_modem_mes }},
+                    {{ quant_serv_voip_mes }},
+                    {{ quant_serv_sinal_alto_mes }},
+                    {{ quant_trocar_senha_mes }},
+
+                ],
                 labels: [
+
+                'Outros',
+                  'Velocidade',
+                  'Oscilação',
+                  'Retirada',
+                  'Fibra Rompida',
+                  'Troca de modem',
+                  'Voip',
+                  'Sinal Alto',
+                  'Senha',
                   
                 ],
                 textinfo: "label+percent",
@@ -393,7 +415,7 @@
               }]
 
               var layout = [{
-                title: 'Serviços',
+                title: '{% now 'M Y' %}',
       
                 height: 700,
                 width: 700
