@@ -249,138 +249,17 @@
 <!-- ========================================================================================================= -->
 <!-- ========================================================================================================= -->
 
-<!-- ========================================================================================================= -->
-<!-- ========================================================================================================= -->
-<h2 class="texto-cor-2">Gráfico de serviços mensais por categoria</h2>
-  <!-- Gráfico de serviços do mês -->
-  <div class="mt-2 ">
-    <div class="row ">
-      <!-- Serviços por categoria no mês atual-->
-      <div class="col-sm-6">
-        <div class="card fundo-card-grafico">
-          <div class="card-body">
-            <h5 class="card-title">{% now 'M Y' %}</h5>
-            <div id='chart'>
-              <script>
-                var options = {
-                    series: [
-                      
-                    {{ quant_outros_mes }},
-                    {{ quant_serv_velocidade_mes }},
-                    {{ quant_serv_osciliacao_mes }},
-                    {{ quant_serv_retirada_mes }},
-                    {{ quant_serv_fibra_rompida_mes }},
-                    {{ quant_serv_troca_modem_mes }},
-                    {{ quant_serv_voip_mes }},
-                    {{ quant_serv_sinal_alto_mes }},
-                    {{ quant_trocar_senha_mes }},
-                  
-                  ],
-                    chart: {
-                    width: 380,
-                    type: 'pie',
-                  },
-                  labels: [
-                    
-                  'Outros',
-                  'Velocidade',
-                  'Oscilação',
-                  'Retirada',
-                  'Fibra Rompida',
-                  'Troca de modem',
-                  'Voip',
-                  'Sinal Alto',
-                  'Senha',
-                
-                ],
-                  responsive: [{
-                    breakpoint: 480,
-                    options: {
-                      chart: {
-                        width: 200
-                      },
-                      legend: {
-                        position: 'bottom'
-                      }
-                    }
-                  }]
-                  };
-                  var chart = new ApexCharts(document.querySelector("#chart"), options);
-                  chart.render();
-              </script>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Serviços por categoria no geral -->
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Geral</h5>
-            <div id='chart_A'>
-              <script>
-                var options = {
-                    series: [
-
-                    {{ quant_outros }},
-                    {{ quant_serv_velocidade }},
-                    {{ quant_serv_osciliacao }},
-                    {{ quant_serv_retirada }},
-                    {{ quant_serv_fibra_rompida }},
-                    {{ quant_serv_troca_modem }},
-                    {{ quant_serv_voip }},
-                    {{ quant_serv_sinal_alto }},
-                    {{ quant_trocar_senha }},
-
-                  ],
-                    chart: {
-                    width: 380,
-                    type: 'donut',
-                  },
-                  labels: [
-                    
-                  'Outros',
-                  'Velocidade',
-                  'Oscilação',
-                  'Retirada',
-                  'Fibra Rompida',
-                  'Troca de modem',
-                  'Voip',
-                  'Sinal Alto',
-                  'Senha',
-                
-                ],
-                  responsive: [{
-                    breakpoint: 480,
-                    options: {
-                      chart: {
-                        width: 200
-                      },
-                      legend: {
-                        position: 'bottom'
-                      }
-                    }
-                  }]
-                  };
-
-                  var chart = new ApexCharts(document.querySelector("#chart_A"), options);
-                  chart.render();
-              </script>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 <!-- =================================================================================================== -->
+
 
   <h2 class="texto-cor-2">Gráfico de serviços mensais por categoria</h2>
   <div class="row">
     <div class="col-sm-6">
       <div class="card">
+        <div class="card-header">
+          {% now 'M Y' %}
+        </div>
           <div id="servicosMesAtual" style="width:100%;height:350px;" class="fundo-card"></div>
-
             <script>
               var data = [{
                 type: "pie",
@@ -434,6 +313,9 @@
     </div>
     <div class="col-sm-6">
       <div class="card">
+          <div class="card-header">
+            Geral
+          </div>
         <div id="servicos" style="width:100%;height:350px;" class="fundo-card"></div>
 
             <script>
