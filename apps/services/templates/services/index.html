@@ -373,7 +373,106 @@
       </div>
     </div>
   </div>
-<!-- ======================================================================================================== -->
+<!-- =================================================================================================== -->
+
+<div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div id="srvicosMesAtual" style="width:100%;height:350px;" class="fundo-card"></div>
+
+          <script>
+            var trace1 = {
+                type: 'bar',
+                x: [{% for valor in pagamentos_futuros_mensal%} "{{ valor.month|date:"F Y" }}", {% endfor%}],
+                y: [{% for valor in pagamentos_futuros_mensal%} "{{ valor.c }}", {% endfor%}],
+                marker: {
+                    color: '#FF0000',
+                    line: {
+                        width: 0.5
+                    }
+                }
+              };
+
+              var data = [ trace1 ];
+
+              var layout = { 
+                title: 'Contas a pagar / Mensal',
+                font: {size: 18}
+              };
+
+              var config = {responsive: true}
+
+              Plotly.newPlot('srvicosMesAtual', data, layout, config );
+          </script>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <div id="servicosMeses" style="width:100%;height:350px;" class="fundo-card"></div>
+
+          <script>
+            var trace1 = {
+                type: 'pie',
+                x: [
+                  'Outros',
+                  'Velocidade',
+                  'Oscilação',
+                  'Retirada',
+                  'Fibra Rompida',
+                  'Troca de modem',
+                  'Voip',
+                  'Sinal Alto',
+                  'Senha'
+                ],
+                y: [
+                
+                
+                {{ quant_outros }},
+                    {{ quant_serv_velocidade }},
+                    {{ quant_serv_osciliacao }},
+                    {{ quant_serv_retirada }},
+                    {{ quant_serv_fibra_rompida }},
+                    {{ quant_serv_troca_modem }},
+                    {{ quant_serv_voip }},
+                    {{ quant_serv_sinal_alto }},
+                    {{ quant_trocar_senha }},
+                
+                
+                
+                
+                ],
+                marker: {
+                    color: '#FF0000',
+                    line: {
+                        width: 0.5
+                    }
+                }
+              };
+
+              var data = [ trace1 ];
+
+              var layout = { 
+                title: 'Contas a pagar / Mensal',
+                font: {size: 18}
+              };
+
+              var config = {responsive: true}
+
+              Plotly.newPlot('servicosMeses', data, layout, config );
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
 <!-- ========================================================================================================= -->
 <!-- FIM do Container-->
 </div>

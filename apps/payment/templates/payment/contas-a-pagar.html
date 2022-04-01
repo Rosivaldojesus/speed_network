@@ -236,26 +236,11 @@
       </div>
     </div>
 
-
-
-
-
-  <div class="mb-4">
-    <div id="contaPagarMensal" style="width:100%;height:250px;" class="fundo-card"></div>
-
-    <script>
-      TESTER = document.getElementById('contaPagarMensal');
-      Plotly.newPlot( TESTER, [{
-      x: [{% for valor in pagamentos_futuros_mensal%} '{{ valor.month|date:"F Y" }}', {% endfor%}],
-      y: [{% for valor in pagamentos_futuros_mensal%} '{{ valor.c }}', {% endfor%}] }], {
-      margin: { t: 0 } } );
-    </script>
-  </div>
-
-
+    <!-- ======================================================================================================= -->
+    <!-- INICIO - Gráfico mensal  de contas pagar -->
 
     <div>
-    <div id="contaPagarMensal1" style="width:100%;height:250px;" class="fundo-card"></div>
+    <div id="contaPagarMensal1" style="width:100%;height:500px;" class="fundo-card"></div>
 
     <script>
       var trace1 = {
@@ -282,6 +267,9 @@
         Plotly.newPlot('contaPagarMensal1', data, layout, config );
     </script>
   </div>
+  <!-- INICIO - Gráfico mensal  de contas pagar -->
+  <!-- ======================================================================================================= -->
+    
 
 
 
