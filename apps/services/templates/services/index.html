@@ -375,61 +375,50 @@
   </div>
 <!-- =================================================================================================== -->
 
-<div>
+  <h2 class="texto-cor-2">Gráfico de serviços mensais por categoria</h2>
   <div class="row">
     <div class="col-sm-6">
       <div class="card">
-        <div id="srvicosMesAtual" style="width:100%;height:350px;" class="fundo-card"></div>
+          <div id="servicosMesAtual" style="width:100%;height:350px;" class="fundo-card"></div>
 
-          <script>
-            var trace1 = {
-                type: 'bar',
-                x: [{% for valor in pagamentos_futuros_mensal%} "{{ valor.month|date:"F Y" }}", {% endfor%}],
-                y: [{% for valor in pagamentos_futuros_mensal%} "{{ valor.c }}", {% endfor%}],
-                marker: {
-                    color: '#FF0000',
-                    line: {
-                        width: 0.5
-                    }
-                }
-              };
+            <script>
+              var data = [{
+                type: "pie",
+                values: [2, 3, 4, 4, 8],
+                labels: [
+                  
+                ],
+                textinfo: "label+percent",
+                insidetextorientation: "radial"
+              }]
 
-              var data = [ trace1 ];
+              var layout = [{
+                title: 'Serviços',
+      
+                height: 700,
+                width: 700
+              }]
 
               var layout = { 
-                title: 'Contas a pagar / Mensal',
-                font: {size: 18}
-              };
+                  title: 'Serviços',
+                  font: {size: 12}
+                };
 
               var config = {responsive: true}
 
-              Plotly.newPlot('srvicosMesAtual', data, layout, config );
-          </script>
+              Plotly.newPlot('servicosMesAtual', data, layout)
+            </script>
       </div>
     </div>
     <div class="col-sm-6">
       <div class="card">
-        <div class="card-body">
-          <div id="servicosMeses" style="width:100%;height:350px;" class="fundo-card"></div>
+        <div id="servicos" style="width:100%;height:350px;" class="fundo-card"></div>
 
-          <script>
-            var trace1 = {
-                type: 'pie',
-                x: [
-                  'Outros',
-                  'Velocidade',
-                  'Oscilação',
-                  'Retirada',
-                  'Fibra Rompida',
-                  'Troca de modem',
-                  'Voip',
-                  'Sinal Alto',
-                  'Senha'
-                ],
-                y: [
-                
-                
-                {{ quant_outros }},
+            <script>
+              var data = [{
+                type: "pie",
+                values: [
+                  {{ quant_outros }},
                     {{ quant_serv_velocidade }},
                     {{ quant_serv_osciliacao }},
                     {{ quant_serv_retirada }},
@@ -438,36 +427,45 @@
                     {{ quant_serv_voip }},
                     {{ quant_serv_sinal_alto }},
                     {{ quant_trocar_senha }},
-                
-                
-                
+
+                ],
+                labels: [
+                  'Outros',
+                  'Velocidade',
+                  'Oscilação',
+                  'Retirada',
+                  'Fibra Rompida',
+                  'Troca de modem',
+                  'Voip',
+                  'Sinal Alto',
+                  'Senha',
                 
                 ],
-                marker: {
-                    color: '#FF0000',
-                    line: {
-                        width: 0.5
-                    }
-                }
-              };
+                textinfo: "label+percent",
+                insidetextorientation: "radial"
+              }]
 
-              var data = [ trace1 ];
+              var layout = [{
+                title: 'Serviços',
+      
+                height: 700,
+                width: 700
+              }]
 
               var layout = { 
-                title: 'Contas a pagar / Mensal',
-                font: {size: 18}
-              };
+                  title: 'Serviços',
+                  font: {size: 12}
+                };
 
               var config = {responsive: true}
 
-              Plotly.newPlot('servicosMeses', data, layout, config );
-          </script>
-        </div>
+              Plotly.newPlot('servicos', data, layout)
+            </script>
       </div>
     </div>
   </div>
 
-</div>
+
 
 
 
