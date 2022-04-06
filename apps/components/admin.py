@@ -19,14 +19,15 @@ admin.site.register(Bancos)
 
 class RuasAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'logradouro', 'bairro_ruas', 'cep'
+        'id', 'logradouro', 'bairro_ruas','bairro' ,'cep'
     )
     list_filter = (
         'bairro_ruas', 'cep',
     )
     search_fields = (
-        'id', 'logradouro', 'bairro_ruas', 'cep'
+        'id', 'logradouro', 'bairro_ruas', 'cep', 
     )
+    list_editable = ('logradouro', 'bairro_ruas')
 
 
 admin.site.register(Ruas, RuasAdmin)
