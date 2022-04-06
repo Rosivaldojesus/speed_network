@@ -29,7 +29,7 @@
     <!--=====================================================================================================-->
 
     <!--============================== Fixo VS Variáveis =========================================================================-->
-    <h3 class="texto-cor-2">Entradas VS Saídas</h3>
+    <h2 class="texto-cor-2">Entradas VS Saídas</h2>
     <div class="card shadow mt-3 fundo-card-grafico">
         <div id="chart_AA">
             <script>
@@ -77,7 +77,50 @@
         </div>
     </div>
     <!--=================================================================================================================-->
+    <!--=================================================================================================================-->
+    <!--=================================================================================================================-->
 	
+    <div class="mt-4 mb-4 texto-cor-2">
+        <h2>Entradas e Saídas</h2>
+        <hr class="line-solid">
+    </div>
+
+
+    <div id="entradasesaidas" style="width:100%;height:350px;" class="fundo-card mb-4">
+
+    <script>
+        var trace1 = {
+            x: [{% for data in entrada_banco %} '{{ data.month|date:'F Y' }}', {% endfor %}],
+            y: [{% for data in entrada_banco %} '{{ data.c }}', {% endfor %}],
+            name: 'Entradas',
+            type: 'bar',
+            marker: {
+                    color: 'rgb(0,153,0)',
+                    opacity: 1
+                }
+            };
+            
+
+            var trace2 = {
+            x: [{% for data in custos_gerais %} '{{ data.month|date:'F Y' }}', {% endfor %}],
+            y: [{% for data in custos_gerais %} '{{ data.c }}', {% endfor %}],
+            name: 'Saídas',
+            type: 'bar',
+            marker: {
+                    color: 'rgb(255,0,0)',
+                    opacity: 1
+                }
+            };
+
+            var data = [trace1, trace2];
+
+            var layout = {barmode: 'group'};
+
+            Plotly.newPlot('entradasesaidas', data, layout);
+
+
+    </script>
+    </div>
 	
 
 
