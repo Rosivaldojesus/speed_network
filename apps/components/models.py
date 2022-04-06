@@ -199,9 +199,9 @@ class Ruas(models.Model):
     logradouro = models.CharField(max_length=255)
     bairro = models.CharField(max_length=100)
     bairro_ruas = models.ForeignKey(Bairros, on_delete=models.DO_NOTHING, blank=True, null=True)
-    cep = models.CharField(max_length=100)
-    numero_baixo = models.CharField(max_length=20)
-    numero_alto = models.CharField(max_length=20)
+    cep = models.CharField(max_length=100, blank=True, null=True)
+    numero_baixo = models.CharField(max_length=20, blank=True, null=True)
+    numero_alto = models.CharField(max_length=20, blank=True, null=True)
 
     objects = models.Manager()
 

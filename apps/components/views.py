@@ -15,7 +15,7 @@ def DirecionamentoServicos(request):
 
 
 def RuasAtendidas(request):
-    ruas = Ruas.objects.all()
+    ruas = Ruas.objects.order_by('bairro_ruas')
     quant_ruas = Ruas.objects.all().count()
     queryset = request.GET.get('q')
     if queryset:
