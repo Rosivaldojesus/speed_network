@@ -43,8 +43,7 @@
             <th scope="col">Rua</th>
             <th scope="col">Bairro</th>
             <th scope="col">CEP</th>
-            <th scope="col">Nº.Baixo</th>
-            <th scope="col">Nº.Alto</th>
+
           </tr>
         </thead>
         <tbody>
@@ -52,10 +51,9 @@
           <tr class="texto-tbody-tr">
             <th scope="row">{{ rua.id }}</th>
             <td>{{ rua.logradouro }}</td>
-            <td>{{ rua.bairro }}</td>
+            <td>{{ rua.bairro_ruas }}</td>
             <td>{{ rua.cep }}</td>
-            <td>{{ rua.numero_baixo }}</td>
-            <td>{{ rua.numero_alto }}</td>
+
           </tr>
         {% endfor %}
 
