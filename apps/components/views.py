@@ -41,7 +41,7 @@ def ExportarRuasCSV(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="listagem-ruas.csv"'
 
-    ruas = Ruas.objects.all()
+    ruas = Ruas.objects.order_by('bairro_ruas')
 
     writer = csv.writer(response)
     writer.writerow(
