@@ -5,12 +5,15 @@
 
 {% block main %}
   <div class="container-xl">
-    <h5 class="mt-3 mb-3">Finalizar Portabiliade Voip</h5>
+    <div class="mt-4 texto-cor-1">
+      <h1>Finalizar Portabiliade Voip</h1>
+      <hr class="line-solid">
+    </div>
 
 
-      <div>
+      <div class="texto-cor-2">
           <div class="mb-4 mt-4">
-            <h4>Você deseja finalizar a instalação da portabiliade Voip? </h4>
+            <h2>Você deseja finalizar a instalação da portabiliade Voip? </h2>
           </div>
           <p><strong>Cliente: </strong>{{ portabilidade_voip.nome_usuario_voip }}</p>
           <p><strong>CPF:</strong> {{ portabilidade_voip.cpf_usuario_voip }}</p>
@@ -19,10 +22,14 @@
           <p><strong>Telefone: </strong>{{ portabilidade_voip.numero_telefone_voip }}</p>
       </div>
 
-    <form action="" method="post"> {% csrf_token %}
+    <div class="mb-4">
+      <form action="" method="post" class="texto-cor-2"> {% csrf_token %}
           {{ form | crispy }}
         {{ form.media }}
-        <input type="submit" class="btn btn-block btn-primary" value="Finalizar portabiliade">
-    </form>
+        <input type="submit" class="btn btn-block btn-primary" value="Finalizar portabilidade">
+      </form>
+    </div>
+
+
   </div>
 {% endblock %}

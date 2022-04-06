@@ -3,8 +3,9 @@
 
 {% block main %}
 <div class="container">
-    <div class="mt-4">
-        <h5 class="mt-3 mb-3">Lista de Voip´s Reservados </h5>
+    <div class="mt-4 texto-cor-1">
+        <h1 class="mt-3 mb-3">Lista de Voip´s Reservados </h1>
+        <hr class="line-solid">
     </div>
 
 
@@ -12,7 +13,7 @@
         <div class="row">
             {% for reservado in voip_reservados %}
             <div class="col-sm-3 mt-2 mb-4">
-              <div class="card shadow">
+              <div class="card fundo-card texto-cor-2">
                 <div class="card-body">
                     <div class="ml-2">
                         <p><strong>Cliente:</strong> {{ reservado.nome_usuario_voip }}</p>
@@ -20,8 +21,8 @@
                         <p><strong>Senha:</strong> {{ reservado.senha_voip }} </p>
                         <p><strong>Tel.:</strong> {{ reservado.numero_telefone_voip }}</p>
                         <div class="card-footer bg-transparent border-success">
-                            <div align="right">
-                                <a href="/voip/finalizar-numero-voip/{{ reservado.id }}" class="btn">Finalizar</a>
+                            <div class="texto-cor-2" align="right">
+                                <a href="/voip/finalizar-numero-voip/{{ reservado.id }}" class="btn btn-success">Finalizar</a>
                             </div>
                         </div>
                         

@@ -3,8 +3,9 @@
 
 {% block main %}
 <div class="container">
-    <div class="mt-4">
-        <h5 class="mt-3 mb-3">Serviço de Voip </h5>
+    <div class="mt-4 texto-cor-2">
+        <h1>Serviço de Voip </h1>
+        <hr class="line-solid">
     </div>
 
     <!-- INÍCIO Messagens -->
@@ -28,16 +29,13 @@
         -->
     </div>
     <!--FIM dos botões -->
-    <hr>
-    <hr>
-
-
+  
 
     <!-- INÍCIO dos status dos serviços de Voip -->
-    <div class="card shadow">
+    <div class="card border-0 fundo-pagina texto-cor-2">
         <div class="row  mt-2 mb-2">
             <div class="col-sm-3">
-              <div class="card shadow-sm">
+              <div class="card fundo-card">
                 <div class="card-body">
                   <h5 class="card-title">Solicitados ( {{ quantidade_voip_disponiveis }} )</h5>
                   <p class="card-text">Lista de números disponíveis.</p>
@@ -46,7 +44,7 @@
               </div>
             </div>
             <div class="col-sm-3">
-              <div class="card shadow-sm">
+              <div class="card fundo-card">
                 <div class="card-body">
                   <h5 class="card-title">Reservados ( {{ quantidade_voip_reservados }} )</h5>
                   <p class="card-text">Lista de números reservados.</p>
@@ -55,7 +53,7 @@
               </div>
             </div>
             <div class="col-sm-3">
-              <div class="card shadow-sm">
+              <div class="card fundo-card">
                 <div class="card-body">
                   <h5 class="card-title">Sem Boletos ({{ quantidade_voip_sem_boleto }})</h5>
                   <p class="card-text">Lista de Clientes sem Boleto.</p>
@@ -64,7 +62,7 @@
               </div>
           </div>
             <div class="col-sm-3">
-                <div class="card shadow-sm">
+                <div class="card fundo-card">
                   <div class="card-body">
                     <h5 class="card-title">Finalizados ( {{ quantidade_voip_finalizados }} )</h5>
                     <p class="card-text">Lista de Voip, finalizados!.</p>
@@ -75,28 +73,27 @@
           </div>
     </div>
     <!-- INÍCIO dos status dos serviços de Voip -->
-    <hr>
-    <hr>
+
     <!-- INICIO Fluxo da Portabiliade -->
     <div>
-      <div>
-        <h4>Portabilidade</h4>
+      <div class="mt-4">
+        <h2 class="texto-cor-2">Portabilidade</h2>
+        <hr class="line-solid">
       </div>
-      <hr>
 
-      <div class=" card shadow">
+      <div class=" card border-0 fundo-pagina texto-cor-2">
         <div class="row mt-2 mb-2">
           <div class="col-sm-4">
-            <div class="card shadow-sm">
+            <div class="card fundo-card">
               <div class="card-body">
                 <h5 class="card-title">Aguardando ({{ quantidade_portabilidade_aguardando }})</h5>
-                <p class="card-text">Lista de portabilidade aguardando entrada no processo.</p>
+                <p class="card-text">Lista de portabilidade em aberto.</p>
                 <a href="/voip/lista-portabilidade-aguardando/" class="btn btn-primary">Ver todos</a>
               </div>
             </div>
           </div>
           <div class="col-sm-4">
-            <div class="card shadow-sm">
+            <div class="card fundo-card">
               <div class="card-body">
                 <h5 class="card-title">Em Análise ({{ quantidade_portabilidade_analise }})</h5>
                 <p class="card-text">Lista de Portabilidade em Análise.</p>
@@ -105,7 +102,7 @@
             </div>
           </div>
           <div class="col-sm-4">
-            <div class="card shadow-sm">
+            <div class="card fundo-card">
               <div class="card-body">
                 <h5 class="card-title">Concluído ({{quantidade_portabilidade_finalizados}})</h5>
                 <p class="card-text">Lista de Portabilidades concluídas.</p>

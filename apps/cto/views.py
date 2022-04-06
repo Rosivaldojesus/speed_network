@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db.models import F, Q
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -10,10 +12,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 import csv
 from django.contrib.messages.views import SuccessMessageMixin
+import logging
+
 
 
 # Create your views here
 
+now = datetime.now() # current date and time
 
 @login_required(login_url='/login/')
 def Index(request):
@@ -89,6 +94,7 @@ def Index(request):
 
 @login_required(login_url='/login/')
 def EditarCto(request, id=None):
+    logger = logging.getLogger('django')
     cto = get_object_or_404(TerminaisOpticos, id=id)
     form = CtoForm(request.POST or None, instance=cto)
     if form.is_valid():
@@ -96,6 +102,7 @@ def EditarCto(request, id=None):
         obj.save()
         messages.success(request, 'CTO alterada com sucesso!')
         return redirect('/cto/')
+    logger.error(f'{str(request.user)} alterou a cto de ID:{str(id)} na data: {now.strftime(" %m/%d/%Y, %H:%M:%S")}')
     return render(request, 'cto/cto_formulario.html', {'form': form})
 
 

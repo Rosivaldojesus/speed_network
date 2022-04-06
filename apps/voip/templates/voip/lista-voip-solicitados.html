@@ -3,22 +3,23 @@
 
 {% block main %}
 <div class="container">
-    <div class="mt-4">
-        <h5 class="mt-3 mb-3">Lista de Voip´s Solicitados </h5>
+    <div class="mt-4 texto-cor-1">
+        <h1 class="mt-3 mb-3">Lista de Voip´s Solicitados </h1>
+        <hr class="line-solid">
     </div>
 
     <div>
         <div class="row">
             {% for solicitado in voip_solicitados %}
             <div class="col-sm-3 mt-2 mb-4">
-              <div class="card shadow">
+              <div class="card fundo-card texto-cor-2">
                 <div class="card-body">
                     <div class="ml-2">
                         <p><strong>Cliente:</strong> {{ solicitado.nome_usuario_voip }}</p>
                         <p><strong>CPF:</strong> {{ solicitado.cpf_usuario_voip }} </p>
                         <div class="card-footer bg-transparent border-success">
                             <div align="right">
-                                <a href="/voip/reservar-numero-voip/{{ solicitado.id }}" class="btn">Reservar Número</a>
+                                <a href="/voip/reservar-numero-voip/{{ solicitado.id }}" class="btn btn-success">Reservar Número</a>
                             </div>
                         </div>
                         

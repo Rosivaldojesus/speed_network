@@ -3,15 +3,15 @@
 
 {% block main %}
 <div class="container">
-    <div class="mt-4 mb-2">
-        <h2 class="ui dividing header blue">Lista de clientes VoIP <a class="anchor" id="content"></a></h2>
-
+    <div class="mt-4 texto-cor-2">
+        <h1>Lista de clientes VoIP</h1>
+        <hr class="line-solid">
     </div>
 
       <!-- ======================================================================================  -->
      <!-- INÍCIO  Campo de Pesquisas-->
      <div>
-        <form method="GET">
+        <form method="GET" class="texto-cor-2">
             <div class="row">
                 <div class="col-sm-10">
                   <div class="card">
@@ -32,7 +32,7 @@
     <!-- FIM Campo de Pesquisas-->
     <!-- ===========================================================================================-->
 
-    <div class="table-responsive-sm mt-2">
+    <div class="table-responsive-sm mt-2 ">
         <table class="table table-sm">
             <thead class="table-dark">
                 <tr>
@@ -42,7 +42,7 @@
                     <th>Número</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="texto-cor-2">
                 {% for cliente in lista_clientes %}
                 <tr>
                     <td>{{ cliente.nome_usuario_voip}}</td>
@@ -54,6 +54,10 @@
             </tbody>
         </table>
     </div>
+
+
+
+
     </div>
 </div>
 {% endblock %}

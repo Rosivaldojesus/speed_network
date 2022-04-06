@@ -3,8 +3,9 @@
 
 {% block main %}
 <div class="container">
-    <div class="mt-4">
-        <h5 class="mt-3 mb-3">Lista de Portabiliade em Análise </h5>
+    <div class="mt-4 texto-cor-1">
+        <h1>Lista de Portabiliade em Análise </h1>
+        <hr class="line-solid">
     </div>
 
 
@@ -12,7 +13,7 @@
         <div class="row">
             {% for analise in portabilidade_analise %}
             <div class="col-sm-3 mt-2 mb-4">
-              <div class="card shadow">
+              <div class="card fundo-card texto-cor-2">
                 <div class="card-body">
                     <div class="ml-2">
                         <p><strong>Cliente:</strong> {{ analise.nome_usuario_voip }}</p>
@@ -20,7 +21,7 @@
                         <p><strong>Tel.:</strong> {{ analise.numero_telefone_voip}}</p>
                         <div class="card-footer bg-transparent border-success">
                             <div align="right">
-                                <a href="/voip/finalizar-portabilidade-voip/{{ analise.id }}" class="btn">Concluir Portabiliade</a>
+                                <a href="/voip/finalizar-portabilidade-voip/{{ analise.id }}" class="btn btn-success">Concluir Portabiliade</a>
                             </div>
                         </div>
                         
