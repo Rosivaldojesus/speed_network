@@ -46,9 +46,9 @@ def ExportarRuasCSV(request):
     writer = csv.writer(response)
     writer.writerow(
         [
-            'id', 'logradouro', 'bairro', 'cep', 'numero_baixo', 'numero_alto',
+            'id', 'logradouro',  'cep', 'bairro_ruas',
         ]
     )
     for rua in ruas:
-        writer.writerow([rua.id, rua.logradouro, rua.bairro, rua.cep, rua.numero_baixo, rua.numero_alto])
+        writer.writerow([rua.id, rua.logradouro, rua.bairro_ruas, rua.cep])
     return response
