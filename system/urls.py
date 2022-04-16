@@ -2,24 +2,14 @@
 from django.contrib import admin
 from django.urls import path, include
 
-
-
-
 # Imports das API
 from rest_framework import routers
-from apps.core.api import viewsets
-from apps.core.api.viewsets import UserViewSet
-from apps.services.api.viewsets import ServicesViewSet
-from rest_framework.authtoken.views import obtain_auth_token
+from apps.services.api.viewsets import ServiceViewSet
 
-
-# As urls das api
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet, basename='user')
-router.register(r'users',viewsets.UserViewSet)
-router.register(r'groups', viewsets.GroupViewSet)
 
-router.register(r'lista-servicos-api', ServicesViewSet, basename='Servico')
+# Sempre colocar o basename
+router.register(r'servicos', ServiceViewSet, basename='servicos')
 
 
 urlpatterns = [
@@ -34,11 +24,8 @@ urlpatterns = [
     path('voip/', include('apps.voip.urls')),
     path('tarefas/', include('apps.tasks.urls')),
 
-    # Urls das api
-    path('api-auth/', include(router.urls)),
-    path('api-token-auth/', obtain_auth_token),
+    #Paths of the api´s
     path('api/', include(router.urls)),
-
 
 
 ]

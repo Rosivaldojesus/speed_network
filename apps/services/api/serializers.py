@@ -4,10 +4,12 @@ from ..models import Servico, CategoriaServico
 from rest_framework import serializers
 
 # Create models serializers
-class ServicesSerializer(serializers.ModelSerializer):
-    # id = serializers.IntegerField()
-    # contato_servico = serializers.CharField(max_length=255)
-    # categoria = StringRelatedField()
+class ServiceSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField()
+    contato_servico = serializers.CharField(max_length=255)
+    servico_para_executar = serializers.CharField(max_length=255)
+    categoria = StringRelatedField()
+
     # agendado_por = StringRelatedField()
     # funcionario_servico = StringRelatedField()
     # finalizado_por = StringRelatedField()
@@ -16,5 +18,15 @@ class ServicesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Servico
-        fields = ['id', 'contato_servico']
+        fields = [
+            
+            'id',
+            'contato_servico',
+            'categoria',
+            'servico_para_executar',
+            'endereco_servico',
+
+            'data_agendada',
+            'hora_agendada',
+        ]
 
