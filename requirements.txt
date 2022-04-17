@@ -60,6 +60,7 @@ py==1.11.0
 Pygments==2.11.2
 PyJWT==2.3.0
 pyparsing==3.0.6
+pypiwin32==223
 pytest==7.0.1
 pytest-django==4.5.2
 pytest-dotenv==0.5.2
@@ -67,7 +68,6 @@ pytest-watch==2.0.0
 python-dateutil==2.8.2
 python-dotenv==0.19.2
 pytz==2021.1
-pywin32==302
 pyzmq==22.3.0
 reportlab==3.6.8
 requests==2.26.0
