@@ -1,7 +1,16 @@
-body {
+/* Refactored */
 
+body {
     background-color:#282828;
 }
+
+
+
+
+/* Not Refactored */
+
+
+
 
 .fundo-pagina {
     background-color: 	#282828;

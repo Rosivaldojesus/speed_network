@@ -65,7 +65,7 @@ INSTALLED_APPS = [
 
     # Rest Framework
     'rest_framework',
-    "corsheaders",
+    #s"corsheaders",
     #'django_filters',
     'rest_framework.authtoken'
 
@@ -75,6 +75,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 
 
+    #'corsheaders.middleware.CorsMiddleware',
+    #'django.middleware.common.CommonMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
