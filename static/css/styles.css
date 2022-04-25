@@ -1,20 +1,25 @@
 /* Refactored */
 
 body {
-    background-color:#282828;
+    background-color: #282828;
 }
 
 
+.fundo-pagina {
+    background-color: 	#282828;
+}
 
+/* Cards */
+.fundo-card {
+    background-color: #363636;
+}
 
 /* Not Refactored */
 
 
 
 
-.fundo-pagina {
-    background-color: 	#282828;
-}
+
 
 .fundo-card-grafico {
     background-color: #C0C0C0;
@@ -30,10 +35,7 @@ body {
   }
 
 
-/* Cards */
-.fundo-card {
-    background-color: #363636;
-}
+
 
 
 

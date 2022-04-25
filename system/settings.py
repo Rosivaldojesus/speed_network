@@ -61,11 +61,12 @@ INSTALLED_APPS = [
     'django_matplotlib',
     'chartjs',
     'bootstrap4',
+    "django_bootstrap5",
     'bootstrap_datepicker_plus',
 
     # Rest Framework
     'rest_framework',
-    #s"corsheaders",
+    "corsheaders",
     #'django_filters',
     'rest_framework.authtoken'
 
@@ -75,8 +76,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 
 
-    #'corsheaders.middleware.CorsMiddleware',
-    #'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -158,7 +159,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,  'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR,  'static')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 
@@ -180,14 +181,14 @@ MESSAGE_TAGS = {
 django_heroku.settings(locals())
 
 # Rest Framework filters
-# REST_FRAMEWORK = {
-#     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-#
-#     # Páginação
+#REST_FRAMEWORK = {
+#     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],#
+
+     # Páginação
 #     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
 #     'PAGE_SIZE': 3
-#
-# }
+
+#}
 
 
 LOGGING = {
@@ -210,10 +211,9 @@ LOGGING = {
 }
 
 
-'''
+
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://192.168.0.13:3000',
 
 ]
-'''
