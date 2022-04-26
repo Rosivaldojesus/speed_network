@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load widget_tweaks %}
 
 
 {% block title %}.:: Cadastro de Senhas por Equipamentos {% endblock %}
@@ -7,8 +8,10 @@
 {% block main %}
 <div class="container">
 
-         <h1 class="texto-cor-1 mt-2">Cadastro de Senhas por Equipamentos</h1>
-
+        <div class="mt-4 mb-4">
+            <h1 class="texto-cor-1 mt-2">Cadastro de Senhas por Equipamentos</h1>
+            <hr class="line-solid">
+        </div> 
 
         <!-- Messagens -->
         {% if messages %}
@@ -19,13 +22,53 @@
             {% endfor %}
         {% endif %}
 
-    <div class="mb-4">
+    <div class="mb-2 mb-4">
         <form action="" method="post" class="texto-cor-2"> {% csrf_token %}
 
-            <div class="mt-10">
-                {{ form | crispy }}
+        <div class="row g-3 mt-4">
+            <div class="col-md-1">
+                <label for="id_name">Código:</label>
+                {{ form.codigo_equipamento|add_class:"form-control"|attr:"autofocus" }}
             </div>
-				<input type="submit" class="btn btn-block btn-primary" value="Concluir Cadastro">
+            <div class="col-md-4">
+                <label for="id_name">Sn equipamento:</label>
+                {{ form.sn_equipamento|add_class:"form-control"|attr:"autofocus" }}
+            </div>
+            <div class="col-md-4">
+                <label for="id_name">Equipamento:</label>
+                {{ form.equipamento|add_class:"form-control"|attr:"autofocus" }}
+            </div>
+            <div class="col-md-3">
+                <label for="id_name">Fabricante:</label>
+                {{ form.fabricante|add_class:"form-control"|attr:"autofocus" }}
+            </div>
+        </div>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-3">
+                <label for="id_name">IP equipamento:</label>
+                {{ form.ip_equipamento|add_class:"form-control"|attr:"autofocus" }}
+            </div>
+            <div class="col-md-3">
+                <label for="id_name">Login:</label>
+                {{ form.login|add_class:"form-control"|attr:"autofocus" }}
+            </div>
+            <div class="col-md-3">
+                <label for="id_name">Senha:</label>
+                {{ form.senha|add_class:"form-control"|attr:"autofocus" }}
+            </div>
+            <div class="col-md-3">
+                <label for="id_name">Patrimônio:</label>
+                {{ form.patrimonio_equipamento|add_class:"form-control"|attr:"autofocus" }}
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <input type="submit" class="btn btn-primary" value="Cadastrar">
+        </div>
+
+			
+
 		</form>
     </div>
 

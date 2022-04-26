@@ -16,6 +16,8 @@ from .forms import SenhasPorEquipamentosForm
 from django.http import HttpResponse
 import csv
 from .forms import UserForm
+from django.db import connection
+
 
 # Create your views here.
 def add_user(request):
@@ -271,6 +273,10 @@ def SenhasPorEquipamento(request):
     elif patrimonio:
         senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__exact=patrimonio))
 
+
+    query = connection.queries
+    queries = len(query)
+
     context = {
         'senhasPorEquipamentos': senhasPorEquipamentos,
         'quant_v5': quant_v5,
@@ -280,7 +286,9 @@ def SenhasPorEquipamento(request):
         'quant_nokia_240': quant_nokia_240,
         'quant_nokia_2425A': quant_nokia_2425A,
         'quant_nokia_1425A': quant_nokia_1425A,
-        'quant_modens': quant_modens
+        'quant_modens': quant_modens,
+
+        'queries': queries
     }
     return render(request, 'core/senhas-por-equipamento.html', context)
 
