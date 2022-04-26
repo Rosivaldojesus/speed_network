@@ -248,7 +248,7 @@ def Senhas(request):
 
 @login_required(login_url='/login/')
 def SenhasPorEquipamento(request):
-    senhasPorEquipamentos = SenhasPorEquipamentos.objects.all().order_by('-id')[:15]
+    senhasPorEquipamentos = SenhasPorEquipamentos.objects.select_related('equipamento', 'fabricante').order_by('-id')[:15]
 
     quant_6t = SenhasPorEquipamentos.objects.filter(equipamento=1).count()
     quant_v5 = SenhasPorEquipamentos.objects.filter(equipamento=2).count()
@@ -288,7 +288,8 @@ def SenhasPorEquipamento(request):
         'quant_nokia_1425A': quant_nokia_1425A,
         'quant_modens': quant_modens,
 
-        'queries': queries
+        'queries': queries,
+        'query': query,
     }
     return render(request, 'core/senhas-por-equipamento.html', context)
 

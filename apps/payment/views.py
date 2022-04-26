@@ -20,6 +20,7 @@ from .models import FluxoEntradaSaidaMensal
 from django.views.generic.detail import DetailView
 from reportlab.pdfgen import canvas
 import io
+from django.db import connection
 
 # Create your views here.
 
@@ -475,7 +476,16 @@ def ListaPagamentos(request):
     paginator = Paginator(pagamentos, 50)  # Show 25 payment per page.
     page_number = request.GET.get('page', '1')  #
     pagamentos = paginator.get_page(page_number)
-    return render(request, 'payment/lista_pagamentos.html', {'pagamentos': pagamentos})
+
+    query = connection.queries
+    queries = len(query)
+
+    context = {
+        'pagamentos': pagamentos,
+        'queries': queries,
+    }
+
+    return render(request, 'payment/lista_pagamentos.html', context)
 
 
 def AgendamentosPagamentos(request):
