@@ -66,39 +66,38 @@ def Index(request):
     this_month = date.today().month
 
     #  ------------------------------------ Query dos serviços --------------------------------------------------------
-
     pendentes = Instalacao.objects.all().count()
-    quant_servico_aberto = Servico.objects.filter(status_agendado='False').filter(status_concluido='False').count()
-    quant_servico_agendado = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').count()
-    quant_servico_finalizados = Servico.objects.all().filter(status_concluido='True').count()
+    quant_servico_aberto = Servico.objects.filter(status_agendado='False', status_concluido='False').count()
+    quant_servico_agendado = Servico.objects.filter(status_agendado='True', status_concluido='False').count()
+    quant_servico_finalizados = Servico.objects.filter(status_concluido='True').count()
     quant_servicos_finalizados_mes = Servico.objects.filter(data_finalizacao__month=this_month).count()
 
     #  ---------------------------------- Query das Instalações -------------------------------------------------------
-
-    quant_instalacao_aberta = Instalacao.objects.filter(status_agendada='False').filter(concluido='False').count()
-    quant_instalacao_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
-    quant_instalacao_concluida = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='True').count()
-    quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
+    quant_instalacao_aberta = Instalacao.objects.filter(status_agendada='False', concluido='False').count()
+    quant_instalacao_agendada = Instalacao.objects.filter(status_agendada='True', concluido='False').count()
+    quant_instalacao_concluida = Instalacao.objects.filter(concluido='True', boleto_entregue='True').count()
+    quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True', boleto_entregue='False').count()
     quant_instalacao_finalizados_mes = Instalacao.objects.filter(data_finalizacao__month=this_month).count()
-    responsavel_instalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').\
+    responsavel_instalacao = Instalacao.objects.filter(status_agendada='True', concluido='False').\
         order_by('funcionario_instalacao', 'data_instalacao', 'hora_instalacao')
-    hora_instalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').\
+    hora_instalacao = Instalacao.objects.filter(status_agendada='True', concluido='False').\
         values('data_instalacao').annotate(number=Count('id')).order_by('data_instalacao')
-    ultimas_vendas = Instalacao.objects.filter().order_by('-id')[:6]
+    ultimas_vendas = Instalacao.objects.order_by('-id')[:6]
 
     #  ----------------------------------- Query das Previsões de serviços e Instalaçãoes -----------------------------
-    previsaoServico = Servico.objects.filter(status_agendado='True').filter(status_concluido='False').values(
+    previsaoServico = Servico.objects.filter(status_agendado='True', status_concluido='False').values(
         'data_agendada').annotate(number=Count('id')).order_by('data_agendada')
-    previsaoInstalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').values(
+    previsaoInstalacao = Instalacao.objects.filter(status_agendada='True', concluido='False').values(
         'data_instalacao').annotate(number=Count('id')).order_by('data_instalacao')
 
+    # ------->>>> Filter service by técnico (Estudar como retirar)
     #  ------------------------------------ Filter service by técnico (Estudar como retirar) --------------------------
-    funcionarioinstalacao = Instalacao.objects.filter(status_agendada='True').filter(concluido='False')
-    instalacaoEduardo = Instalacao.objects.filter(funcionario_instalacao=12).filter(status_agendada='True').\
+    funcionarioinstalacao = Instalacao.objects.filter(status_agendada='True', concluido='False')
+    instalacaoEduardo = Instalacao.objects.filter(funcionario_instalacao=12, status_agendada='True').\
         filter(concluido='False').order_by('data_instalacao')
-    instalacaoDiego = Instalacao.objects.filter(funcionario_instalacao=14).filter(status_agendada='True').\
+    instalacaoDiego = Instalacao.objects.filter(funcionario_instalacao=14, status_agendada='True').\
         filter(concluido='False').order_by('data_instalacao')
-    instalacaoPaulo = Instalacao.objects.filter(funcionario_instalacao=13).filter(status_agendada='True').\
+    instalacaoPaulo = Instalacao.objects.filter(funcionario_instalacao=13, status_agendada='True').\
         filter(concluido='False').order_by('data_instalacao')
     
     #  ------------------------------------- Query de Serviços --------------------------------------------------------
@@ -116,50 +115,38 @@ def Index(request):
         annotate(number=Count('instalacao_criado_por'))
 
     #  ------------------------------------- STATUS VOIP --------------------------------------------------------------
-    voipDisponiveis = ServicoVoip.objects.filter(reservado_voip='False').filter(finalizado_voip='False').count()
-    voipReservados = ServicoVoip.objects.filter(portabilidade_voip='False').filter(reservado_voip='True').\
-        filter(finalizado_voip='False').count()
-    voipPortabilidade = ServicoVoip.objects.filter(portabilidade_voip='True').filter(reservado_voip='True').\
-        filter(finalizado_voip='False').count()
+    voipDisponiveis = ServicoVoip.objects.filter(reservado_voip='False', finalizado_voip='False').count()
+    voipReservados = ServicoVoip.objects.filter(portabilidade_voip='False', reservado_voip='True', finalizado_voip='False').count()
+    voipPortabilidade = ServicoVoip.objects.filter(portabilidade_voip='True', reservado_voip='True', finalizado_voip='False').count()
     #  ------------------------------------ Query para Pagamentos ------------      -----------------------------------
     data_atual = datetime.now()
-    pagamentos_atrasados = Pagamento.objects.filter(status_pago='False').filter(data_pagamento__lt=data_atual).count()
-    pagamentos_para_vencer = Pagamento.objects.filter(status_pago='False').filter(data_pagamento__gt=data_atual).count()
-
-    pagamentos_para_hoje = Pagamento.objects.filter(status_pago='False').filter(data_pagamento=data_atual).count()
+    pagamentos_atrasados = Pagamento.objects.filter(status_pago='False', data_pagamento__lt=data_atual).count()
+    pagamentos_para_vencer = Pagamento.objects.filter(status_pago='False', data_pagamento__gt=data_atual).count()
+    pagamentos_para_hoje = Pagamento.objects.filter(status_pago='False', data_pagamento=data_atual).count()
 
     #  --------------------------------------- SERVIÇOS DE VOIP -------------------------------------------------------
     # Contagem referentes ao números novos voip
-    quantidade_voip_disponiveis = ServicoVoip.objects.filter(reservado_voip='False'). \
-        filter(finalizado_voip='False'). \
-        filter(boleto_entregue='False').count()
-    quantidade_voip_reservados = ServicoVoip.objects.filter(reservado_voip='True'). \
-        filter(portabilidade_voip='False'). \
-        filter(finalizado_voip='False'). \
-        filter(boleto_entregue='False').count()
-    quantidade_voip_sem_boleto = ServicoVoip.objects.filter(reservado_voip='True'). \
-        filter(finalizado_voip='True').filter(boleto_entregue='False').count()
-    quantidade_voip_finalizados = ServicoVoip.objects. \
-        filter(reservado_voip='True'). \
-        filter(finalizado_voip='True'). \
-        filter(boleto_entregue='True').count()
+    quantidade_voip_disponiveis = ServicoVoip.objects.filter(
+        reservado_voip='False', finalizado_voip='False',boleto_entregue='False').count()
+    quantidade_voip_reservados = ServicoVoip.objects.filter(
+        reservado_voip='True', portabilidade_voip='False', finalizado_voip='False', boleto_entregue='False' ).count()
+    quantidade_voip_sem_boleto = ServicoVoip.objects.filter(
+        reservado_voip='True', finalizado_voip='True', boleto_entregue='False').count()
+    quantidade_voip_finalizados = ServicoVoip.objects.filter(
+        reservado_voip='True', finalizado_voip='True', boleto_entregue='True' ).count()
 
-    #  Contagem referentes ao números de portabiliade
-    quantidade_portabilidade_aguardando = ServicoVoip.objects.filter(reservado_voip='True'). \
-        filter(portabilidade_voip='True'). \
-        filter(portabilidade_analise='False'). \
-        filter(finalizado_voip='False'). \
-        filter(boleto_entregue='False').count()
-    quantidade_portabilidade_analise = ServicoVoip.objects.filter(reservado_voip='True'). \
-        filter(portabilidade_voip='True'). \
-        filter(portabilidade_analise='True'). \
-        filter(finalizado_voip='False'). \
-        filter(boleto_entregue='False').count()
-    quantidade_portabilidade_finalizados = ServicoVoip.objects.filter(reservado_voip='True'). \
-        filter(portabilidade_voip='True'). \
-        filter(portabilidade_analise='True'). \
-        filter(finalizado_voip='True'). \
-        filter(boleto_entregue='False').count()
+    #  Contagem referentes ao números de portabilidade
+    quantidade_portabilidade_aguardando = ServicoVoip.objects.filter(
+        reservado_voip='True', portabilidade_voip='True', portabilidade_analise='False', finalizado_voip='False',
+        boleto_entregue='False').count()
+
+    quantidade_portabilidade_analise = ServicoVoip.objects.filter(
+        reservado_voip='True', portabilidade_voip='True', portabilidade_analise='True', finalizado_voip='False', 
+        boleto_entregue='False'  ).count()
+
+    quantidade_portabilidade_finalizados = ServicoVoip.objects.filter(
+        reservado_voip='True', portabilidade_voip='True', portabilidade_analise='True', finalizado_voip='True',
+         boleto_entregue='False').count()
 
     context = {
         'pendentes': pendentes,
@@ -208,7 +195,6 @@ def Index(request):
         'quantidade_portabilidade_analise': quantidade_portabilidade_analise,
         'quantidade_portabilidade_finalizados': quantidade_portabilidade_finalizados,
     }
-
     return render(request, 'core/index.html', context)
 
 
@@ -255,12 +241,8 @@ def SenhasPorEquipamento(request):
     quant_q2 = SenhasPorEquipamentos.objects.filter(equipamento=3).count()
     quant_nokia_140 = SenhasPorEquipamentos.objects.filter(equipamento=6).count()
     quant_nokia_240 = SenhasPorEquipamentos.objects.filter(equipamento=5).count()
-
     quant_nokia_2425A = SenhasPorEquipamentos.objects.filter(equipamento=7).count()
     quant_nokia_1425A = SenhasPorEquipamentos.objects.filter(equipamento=8).count()
-
-
-
     quant_modens = SenhasPorEquipamentos.objects.filter().count()
 
     queryset = request.GET.get('q')
@@ -272,7 +254,6 @@ def SenhasPorEquipamento(request):
 
     elif patrimonio:
         senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__exact=patrimonio))
-
 
     query = connection.queries
     queries = len(query)
