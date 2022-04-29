@@ -1,3 +1,4 @@
+from logging import PlaceHolder
 from django import forms
 from ..components.models import Bancos
 from .models import Pagamento, FluxoEntradasSaidas, MeiosEntregaBoletos, TipoCusto, OrigemValores
@@ -39,8 +40,27 @@ class CadastarPagamentoForm(forms.ModelForm):
 
         return self.cleaned_data
 
-
+# 
 class EditarPagamentoForm(forms.ModelForm):
+
+    informacao_pagamento = forms.CharField(
+        required=False,
+        label='Informação para pagar',
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': 'Ex.: Código de barras, PIX, Conta Bancária',
+            }
+        )
+    )
+
+    data_pagamento = forms.DateField(
+        label='Data do pagamento',
+
+        widget=forms.DateInput(
+            format='%Y-%m-%d',
+            attrs={'type':'date',}),
+    )
+
     class Meta:
         model = Pagamento
         fields = [

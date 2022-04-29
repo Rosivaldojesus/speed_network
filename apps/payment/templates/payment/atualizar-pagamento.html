@@ -2,17 +2,73 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+
 {% block main %}
 <div class="container">
     <div class="mt-4 mb-4">
-        <h1 class="texto-cor-1">Editar pagamentos</h1>
+        <h1 class="texto-cor-1">Editar pagamentos </h1>
     </div>
 
     <form action="" method="post" class="texto-cor-2"> {% csrf_token %}
+        
+        <!--
         {{ form | crispy }}
-	    {{ form.media }}
-	    <input type="submit" class="btn btn-block btn-warning" value="Atualizar informações">
+        -->
+
+    <div class="form-row">
+        <div class="form-group col-md-12 mb-0">
+            {{ form.motivo_pagamento|as_crispy_field }}
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12 mb-0">
+            {{ form.informacao_pagamento|as_crispy_field }}
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-4 mb-0">
+            {{ form.valor_pagamento|as_crispy_field }}
+        </div>
+        <div class="form-group col-md-4 mb-0">
+            {{ form.origem_valor_pagamento|as_crispy_field }}
+        </div>
+        <div class="form-group col-md-4 mb-0">
+            {{ form.tipo_custo_pagamento|as_crispy_field }}
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-4 mb-0">
+            {{ form.data_pagamento|as_crispy_field }}
+        </div>
+        <div class="form-group col-md-4 mb-0">
+            {{ form.categoria|as_crispy_field }}
+        </div>
+    </div>
+
+    <div>
+        <input type="submit" class="btn btn-warning" value="Atualizar informações">
+    </div>
+
+
 	</form>
 
+
+
+
 </div>
+
+
+
+
+
+
+
 {% endblock %}
+
+
+
+
+

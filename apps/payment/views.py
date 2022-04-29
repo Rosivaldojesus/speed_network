@@ -241,7 +241,8 @@ class ContasVencerView(TemplateView):
 
 class EditarPagamentoAgendadoView(UpdateView):
     model = Pagamento
-    fields = '__all__'
+    #fields = '__all__'
+    form_class = EditarPagamentoForm
     template_name = 'payment/atualizar-pagamento.html'
     success_url = '/pagamentos/contas-a-pagar/'
 

@@ -3,8 +3,6 @@
 {% load humanize %}
 
 {% block main %}
-
-
 <div class="container-xl">
 
 	<div class="mt-4 mb-4">
@@ -16,7 +14,6 @@
   <div align="right">
     <a href="/pagamentos/" class="btn btn-info">Voltar</a>
   </div>
-
 
 
   <!-- INÍCIO dos campos de Filtros -->
@@ -85,57 +82,10 @@
 	</div>
     <!-- FIM dos campos de Filtros -->
 
-<!--=================================================================================-->
-    <!-- INÍCIO do Modal da opção de adicionado pagamento  -->
-    <div align="right">
+  <!--=================================================================================-->
 
-        <!-- Button to Open the Modal
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-          Open modal
-        </button>
-        -->
-
-    </div>
-    <!-- The Modal -->
-      <form name="form-pag" action="/pagamentos/editar-pagamento/{{ pagamento.id }}">
-        <div class="modal" id="myModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-  
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title">Fazer Pagamento</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-  
-              <!-- Modal body -->
-              <div class="modal-body">
-                
-                  <div class="form-group">
-                    <label>Motivo do Pagamento</label>
-                    <input type="text" name="motivo_pagamento" required id="motivo_pagamento">
-                  </div>
-
-                  {{ form }}
-  
-                
-              </div>]
-  
-              <!-- Modal footer -->
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Salvar</button>
-              </div>
-  
-            </div>
-          </div>
-        </div>
-      </form>
   <!-- FIM do Modal da opção de adicionado pagamento  -->
-<!--=================================================================================-->
-    
-
-
+  <!--=================================================================================-->
     <div class="table-responsive-sm mt-2">
         <table class="table table-sm">
           <thead class="fundo-card texto-cor-2 thead-01">
@@ -176,9 +126,7 @@
         </table>
 	<div>
   
-  
-  
-  
+  <!-- pagination -->
   <nav aria-label="...">
     <ul class="pagination justify-content-center">
       <li class="page-item">
@@ -219,35 +167,7 @@
   </nav>
 </div>
 
-
-
-
-   <!--
-            <div class="pagination">
-            <span class="step-links" align="center">
-                {% if pagamentos.has_previous %}
-                    <a href="?page=1">&laquo; Primeiro</a>
-                    <a href="?page={{ pagamentos.previous_page_number }}&q={% if request.GET.banco %} {{ request.GET.banco }} {% endif %}">Anterior</a>
-                {% endif %}
-
-                <span class="current">
-                    Página {{ pagamentos.number }} de {{ pagamentos.paginator.num_pages }}.
-                </span>
-
-                {% if pagamentos.has_next %}
-                    <a href="?page={{ pagamentos.next_page_number }}&q={% if request.GET.banco %} {{ request.GET.banco }} {% endif %}">Próximo</a>
-                    <a href="?page={{ pagamentos.paginator.num_pages }}&q={% if request.GET.banco %} {{ request.GET.banco }} {% endif %}">Último &raquo;</a>
-                {% endif %}
-            </span>
-        </div>
-
-   -->
-
-
-
-
-
-        </div>
+</div>
 
 </div>
 <p>Performace: {{ queries }}</p>

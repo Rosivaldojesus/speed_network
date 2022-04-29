@@ -2,6 +2,8 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
 {% block main %}
 <div class="container">
     
@@ -13,9 +15,21 @@
         <form action="" method="post" class="texto-cor-2"> {% csrf_token %}
             {{ form | crispy }}
             {{ form.media }}
+
+            
             <input type="submit" class="btn btn-block btn-warning" value="Atualizar informações">
 	    </form>
     </div>
 
 </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+  <script>
+  $( function() {
+    $( ".dateinput form-control" ).datepicker();
+  } );
+  </script>
+
 {% endblock %}
