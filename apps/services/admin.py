@@ -14,14 +14,11 @@ class ServicoAdmin(admin.ModelAdmin):
         'id', 'contato_servico', 'servico_para_executar', 'categoria', 'data_criacao', 'data_agendada',
         'status_agendado', 'status_concluido', 'data_finalizacao', 'agendado_por', 'criado_por', 'finalizado_por'
     )
-    list_editable = (
-        'categoria',
-    )
+    list_filter = ('data_finalizacao',)
+
     search_fields = (
-        'contato_servico', 'usuario_voip'
+        'contato_servico', 'servico_para_executar' 
     )
-
-
 admin.site.register(Servico, ServicoAdmin)
 
 
