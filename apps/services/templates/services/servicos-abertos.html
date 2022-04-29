@@ -32,6 +32,7 @@
       <div align="right">
         <a href="/servicos/editar-servico/{{ aberto.id }}" class="btn btn-outline-primary">Editar</a>
         <a href="/servicos/agendar-servico/{{ aberto.id }}" class="btn btn-outline-success">Agendar</a>
+
         <a href="/servicos/remover-servico/{{ aberto.id }}" class="btn btn-outline-danger">Excluir</a>
       </div>
     </div>
@@ -48,59 +49,11 @@
 
 
 
-<!--
-  {% for aberto in abertos %}
-  <div class="card mt-3 shadow border-danger">
-    <div class="card-header ">
 
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="card">
-              <div class="card-body shadow-sm">
-
-                <strong>Setor:</strong> {{ aberto.categoria}}
-
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="card">
-              <div class="card-body shadow-sm">
-
-              <strong>Abertura: </strong>  {{ aberto.data_criacao | date:'d/m/Y H:i' }}
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-    </div>
-    <div class="card-body">
-      <h6 class="card-title"><strong>O que: </strong> {{ aberto.servico_para_executar}}</h6>
-      <p class="card-text"><strong>Onde: </strong>{{ aberto.endereco_servico}}</p>
-      <div align="right">
-        <tr>
-          {% if request.user.groups.all.0.name == "Adm" %}
-          <td>
-             <a href="/servicos/editar-servico/{{ aberto.id }}" class="btn btn-primary">Editar</a>
-          </td>
-          {% endif %}
-          <td>
-             <a href="/servicos/agendar-servico/{{ aberto.id }}" class="btn btn-success">Agendar</a>
-          </td>
-          {% if request.user.groups.all.0.name == "Adm" %}
-          <td>
-             <a href="/servicos/remover-servico/{{ aberto.id }}" class="btn btn-danger">Excluir</a>
-          </td>
-          {% endif %}
-        </tr>
-      </div>
-    </div>
-  </div>
-  {% endfor %}
-
--->
 </div>
 </div>
 </div>
+
+ 
+
 {% endblock %}

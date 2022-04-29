@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load widget_tweaks %}
 
 {% block title %}.:: Cadastrar serviço{% endblock %}
 
@@ -10,9 +11,10 @@
 
   <div class="mb-4">
     <form action="" method="post" class="texto-cor-2"> {% csrf_token %}
+        
         {{ form | crispy }}
-	    {{ form.media }}
-	    <input type="submit" class="btn btn-block btn-primary" value="Cadastrar">
+         
+	    <input type="submit" class="btn btn-primary" value="Cadastrar">
 	  </form>
   </div>
 

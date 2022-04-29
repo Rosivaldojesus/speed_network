@@ -48,11 +48,15 @@ body {
 
 .btn-edit-01 {
     color: white;
+    text-decoration: none;
+    
 }
 
 .btn-edit-01:hover {
     color: white;
     font-size: larger;
+    text-decoration: none;
+    color: green;
 }
 
 

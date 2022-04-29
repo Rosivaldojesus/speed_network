@@ -252,6 +252,7 @@ def AgendarServico(request, id=None):
     if form.is_valid():
         obj = form.save(commit=False)
         obj.agendado_por = request.user
+        obj.status_agendado = True
         obj = form.save()
         obj.save()
         messages.success(request, 'Serviço agendado com sucesso!')
