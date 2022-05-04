@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class CoreConfig(AppConfig):
-    name = 'templates'
+    name = 'core'
+    verbose_name = 'Principal'

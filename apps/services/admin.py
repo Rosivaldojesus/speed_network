@@ -2,10 +2,7 @@ from django.contrib import admin
 from .models import CategoriaServico, Servico, ServicoVoip, TipoDeServico
 # Register your models here.
 
-
 admin.site.register(CategoriaServico)
-
-
 admin.site.register(TipoDeServico)
 
 
@@ -15,7 +12,6 @@ class ServicoAdmin(admin.ModelAdmin):
         'status_agendado', 'status_concluido', 'data_finalizacao', 'agendado_por', 'criado_por', 'finalizado_por'
     )
     list_filter = ('data_finalizacao',)
-
     search_fields = (
         'contato_servico', 'servico_para_executar' 
     )
@@ -29,6 +25,4 @@ class ServicoVoipForm(admin.ModelAdmin):
     search_fields = (
         'nome_usuario_voip', 'usuario_voip'
     )
-
-
 admin.site.register(ServicoVoip, ServicoVoipForm)

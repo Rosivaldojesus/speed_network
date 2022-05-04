@@ -70,14 +70,15 @@ def Index(request):
     quant_servico_aberto = Servico.objects.filter(status_agendado='False', status_concluido='False').count()
     quant_servico_agendado = Servico.objects.filter(status_agendado='True', status_concluido='False').count()
     quant_servico_finalizados = Servico.objects.filter(status_concluido='True').count()
-    quant_servicos_finalizados_mes = Servico.objects.filter(data_finalizacao__month=this_month).count()
+    quant_servicos_finalizados_mes = Servico.objects.filter(status_concluido='True', data_finalizacao__month=this_month).count()
 
     #  ---------------------------------- Query das Instalações -------------------------------------------------------
     quant_instalacao_aberta = Instalacao.objects.filter(status_agendada='False', concluido='False').count()
     quant_instalacao_agendada = Instalacao.objects.filter(status_agendada='True', concluido='False').count()
     quant_instalacao_concluida = Instalacao.objects.filter(concluido='True', boleto_entregue='True').count()
     quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True', boleto_entregue='False').count()
-    quant_instalacao_finalizados_mes = Instalacao.objects.filter(data_finalizacao__month=this_month).count()
+    quant_instalacao_finalizados_mes = Instalacao.objects.filter(concluido='True', data_finalizacao__month=this_month).count()
+
     responsavel_instalacao = Instalacao.objects.filter(status_agendada='True', concluido='False').\
         order_by('funcionario_instalacao', 'data_instalacao', 'hora_instalacao')
     hora_instalacao = Instalacao.objects.filter(status_agendada='True', concluido='False').\
