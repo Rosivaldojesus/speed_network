@@ -63,8 +63,8 @@ def submit_login(request):
 
 @login_required(login_url='/login/')
 def Index(request):
-    #this_month = date.today().month
-    this_month = datetime.now().month
+    this_month = date.today().month
+    #this_month = datetime.now().month
     data_atual = datetime.now()
 
    
