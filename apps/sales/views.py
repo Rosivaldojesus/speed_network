@@ -29,6 +29,7 @@ from twilio.rest import Client
 
 @login_required(login_url='/login/')
 def Index(request):
+    this_year = datetime.now().year
     this_month = date.today().month
     instalacoes = Instalacao.objects.all().order_by('data_instalacao', 'data_instalacao')
     quant_aberta = Instalacao.objects.filter(status_agendada='False').filter(concluido='False').count()

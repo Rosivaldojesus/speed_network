@@ -66,6 +66,7 @@ def submit_login(request):
 @login_required(login_url='/login/')
 def Index(request):
     #this_month = date.today().month
+    this_year = datetime.now().year
     this_month = datetime.now().month
     data_atual = datetime.now()
 
@@ -77,7 +78,7 @@ def Index(request):
     quant_servico_agendado = Servico.objects.filter(status_agendado='True', status_concluido='False').count()
     quant_servico_finalizados = Servico.objects.filter(status_concluido='True').count()
 
-    quant_servicos_finalizados_mes = Servico.objects.filter(data_finalizacao__month=this_month).count()
+    quant_servicos_finalizados_mes = Servico.objects.filter(data_finalizacao__month=this_month, data_finalizacao__year=this_year).count()
 
     #  ---------------------------------- Query das Instalações -------------------------------------------------------
     quant_instalacao_aberta = Instalacao.objects.filter(status_agendada='False', concluido='False').count()
@@ -85,7 +86,8 @@ def Index(request):
     quant_instalacao_concluida = Instalacao.objects.filter(concluido='True', boleto_entregue='True').count()
     quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True', boleto_entregue='False').count()
 
-    quant_instalacao_finalizados_mes = Instalacao.objects.filter(data_finalizacao__month=this_month).count()
+    quant_instalacao_finalizados_mes = Instalacao.objects.filter(
+        data_finalizacao__month=this_month, data_finalizacao__year=this_year, concluido='True').count()
 
     install_mes = instalacoes_mes_atual()
 
