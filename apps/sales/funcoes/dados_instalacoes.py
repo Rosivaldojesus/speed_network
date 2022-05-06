@@ -12,6 +12,6 @@ last_month = (datetime.today() - timedelta(days=30)).month
 
 
 def instalacoes_mes_atual():
-    total = this_month
-    #total = Instalacao.objects.filter(data_finalizacao__month=5, concluido='True').count()
+    total = Instalacao.objects.filter(
+        data_finalizacao__month=this_month, data_finalizacao__year=this_year, concluido='True').count()
     return total
