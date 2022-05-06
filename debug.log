@@ -1226,3 +1226,73 @@ Traceback (most recent call last):
     this_month = datetime.datetime.now().month
 AttributeError: type object 'datetime.datetime' has no attribute 'datetime'
 "GET / HTTP/1.1" 500 80400
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 92, in Index
+    print(install.concluido)
+AttributeError: 'list' object has no attribute 'concluido'
+"GET / HTTP/1.1" 500 83260
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 91, in Index
+    install.append(mes)
+AttributeError: 'dict' object has no attribute 'append'
+"GET / HTTP/1.1" 500 83235
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 91, in Index
+    install.append(mes)
+AttributeError: 'dict' object has no attribute 'append'
+"GET / HTTP/1.1" 500 83235
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 91, in Index
+    install.append(mes)
+AttributeError: 'tuple' object has no attribute 'append'
+"GET / HTTP/1.1" 500 83239
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 91, in Index
+    install.append(mes)
+AttributeError: 'tuple' object has no attribute 'append'
+"GET / HTTP/1.1" 500 83239

@@ -18,6 +18,8 @@ import csv
 from .forms import UserForm
 from django.db import connection
 
+from ..sales.funcoes.dados_instalacoes import *
+
 
 # Create your views here.
 def add_user(request):
@@ -84,6 +86,14 @@ def Index(request):
     quant_instalacao_sem_boleto = Instalacao.objects.filter(concluido='True', boleto_entregue='False').count()
 
     quant_instalacao_finalizados_mes = Instalacao.objects.filter(data_finalizacao__month=this_month).count()
+
+    install_mes = instalacoes_mes_atual()
+
+    install = []
+    mes = Instalacao.objects.filter(data_finalizacao__month=this_month)
+    for mes in mes:
+        install.append(mes)
+    print(install)
 
     responsavel_instalacao = Instalacao.objects.filter(status_agendada='True', concluido='False').\
         order_by('funcionario_instalacao', 'data_instalacao', 'hora_instalacao')
@@ -156,6 +166,9 @@ def Index(request):
          boleto_entregue='False').count()
 
     context = {
+
+        'install_mes': install_mes,
+
         'pendentes': pendentes,
         'quant_servico_aberto': quant_servico_aberto,
         'quant_servico_agendado': quant_servico_agendado,
