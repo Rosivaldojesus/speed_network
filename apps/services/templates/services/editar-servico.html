@@ -11,51 +11,9 @@
   <div class="mb-4">
     <form action="" method="post" class="texto-cor-2"> {% csrf_token %}
 
-    
-      <div class="form-row">
-          <div class="form-group col-md-12 mb-0">
-              {{ form.contato_servico|as_crispy_field }}
-          </div>
-      </div>
-      <div class="form-row">
-          <div class="form-group col-md-12 mb-0">
-              {{ form.servico_para_executar|as_crispy_field }}
-          </div>
-      </div>
-
-      <div class="form-row">
-          <div class="form-group col-md-2 mb-0">
-              {{ form.data_agendada|as_crispy_field }}
-          </div>
-          <div class="form-group col-md-2 mb-0">
-              {{ form.hora_agendada|as_crispy_field }}
-          </div>
-          <div class="form-group col-md-8 mb-0">
-              {{ form.categoria|as_crispy_field }}
-          </div>
-      </div>
-
-
-      <div class="form-row">
-        <h3>Caso não seja possivel finalizar o serviço</h3>
-          <div class="form-group col-md-12 mb-0">
-              {{ form.status_analise|as_crispy_field }}
-          </div>
-      </div>
-
-      <div class="form-row">
-          <div class="form-group col-md-12 mb-0">
-              {{ form.observacao|as_crispy_field }}
-          </div>
-      </div>
-
-
-    <!--
-    
       {{ form | crispy }}
-    -->
-            
-    <input type="submit" class="btn btn-primary" value="Atualizar Informações">
+                
+        <input type="submit" class="btn btn-primary" value="Atualizar Informações">
 	</form>
   </div>
 </div>

@@ -203,10 +203,6 @@ def servicos_retiradas_agendados(request):
     agendados = Servico.objects.filter(status_agendado='True', status_concluido='False', status_analise='True').\
         order_by('data_agendada', 'hora_agendada')
 
-    # Servico.objects.filter(status_agendado='True').filter(status_concluido='False'). \
-    #     filter(status_analise='True')
-    #
-
 
     quant_agendados = Servico.objects.filter(status_agendado='True',
                                              status_concluido='False', status_analise='True').count()

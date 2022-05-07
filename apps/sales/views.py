@@ -20,7 +20,6 @@ import csv
 @login_required(login_url='/login/')
 def Index(request):
     template_name = 'sales/instalacao.html'
-
     quant_aberta = quantidade_instalacoes_em_aberto()
     quant_agendada = quantidade_instalacoes_agendadas()
     quant_sem_boleto = quantidade_instalacoes_sem_boleto()
@@ -35,21 +34,6 @@ def Index(request):
     conheceu_empresa_mes_count = quantidade_conheceu_empresa_mes_count()
     panfletos_count = quantidade_conheceu_por_panfletos()
 
-
-    # =======>>>> Não refatorado ===================================>
-    this_month = date.today().month
-    instalacoes = Instalacao.objects.all().order_by('data_instalacao', 'data_instalacao')
-
-    #  Filtrando instalação por Vendedor
-    user = request.user
-    instalacaoVendedor = Instalacao.objects.filter(instalacao_criado_por=user)
-    quant_aberta_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='False')\
-        .filter(concluido='False').count()
-
-    quant_agendada_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='True')\
-        .filter(concluido='False').count()
-
-    mediaDiarioInstalacao = media_diario_instalacao()
     #  Filtros de como o cliente conheceu a empresa
     redes_sociais_count = conheceu_redes_sociais_count()
     site_count = conheceu_site_count()
@@ -63,19 +47,24 @@ def Index(request):
     indicacao_mes_count = conheceu_indicacao_mes_count()
     outros_mes_count = conheceu_empresa_outros_mes_count()
 
+
+
+
+
+    # =======>>>> Não refatorado ===================================>
+    this_month = date.today().month
+    instalacoes = Instalacao.objects.all().order_by('data_instalacao', 'data_instalacao')
+  
+
     context = {
         'instalacoes': instalacoes,
         'quant_aberta': quant_aberta,
         'quant_agendada': quant_agendada,
         'quant_concluida': quant_concluida,
         'quant_sem_boleto': quant_sem_boleto,
-        #  Filtrando instalação por Vendedor
-        'instalacaoVendedor': instalacaoVendedor,
-        'quant_aberta_vendedor': quant_aberta_vendedor,
-        'quant_agendada_vendedor': quant_agendada_vendedor,
         'instalacoes_mensais': instalacoes_mensais,
         'instalacoes_diarias': instalacoes_diarias,
-        'mediaDiarioInstalacao': mediaDiarioInstalacao,
+
         #  Filtros de como o cliente conheceu a empresa
         'conheceu_empresa_count': conheceu_empresa_count,
         'panfletos_count': panfletos_count,
