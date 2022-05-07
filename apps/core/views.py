@@ -90,12 +90,6 @@ def Index(request):
         data_finalizacao__month=this_month, data_finalizacao__year=this_year, concluido='True').count()
 
 
-    install = []
-    mes = Instalacao.objects.filter(data_finalizacao__month=this_month)
-    for mes in mes:
-        install.append(mes)
-    print(install)
-
     responsavel_instalacao = Instalacao.objects.filter(status_agendada='True', concluido='False').\
         order_by('funcionario_instalacao', 'data_instalacao', 'hora_instalacao')
     hora_instalacao = Instalacao.objects.filter(status_agendada='True', concluido='False').\

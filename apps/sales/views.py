@@ -1,3 +1,4 @@
+from django.http import HttpResponseNotFound
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -47,17 +48,7 @@ def Index(request):
     indicacao_mes_count = conheceu_indicacao_mes_count()
     outros_mes_count = conheceu_empresa_outros_mes_count()
 
-
-
-
-
-    # =======>>>> Não refatorado ===================================>
-    this_month = date.today().month
-    instalacoes = Instalacao.objects.all().order_by('data_instalacao', 'data_instalacao')
-  
-
     context = {
-        'instalacoes': instalacoes,
         'quant_aberta': quant_aberta,
         'quant_agendada': quant_agendada,
         'quant_concluida': quant_concluida,
@@ -180,16 +171,13 @@ def InstalacaoConcluidaVendedores(request):
     return render(request, 'sales/instalacao-concluida-vendedores.html', context)
 
 
-#@login_required(login_url='/login/')
+@login_required(login_url='/login/')
 def CadastroInstalacao(request):
-
     form = InstalacaoCreateForm(request.POST)
     if form.is_valid():
         obj = form.save(commit=False)
         obj.instalacao_criado_por = request.user
         obj.save()
-
-
         messages.success(request, 'Instalação cadastrada com sucesso.')
         return redirect('/vendas/')
     else:
@@ -207,82 +195,89 @@ def InstalacaoVisualizacao(request):
 
 @login_required(login_url='/login/')
 def InstalacaoEditar(request, id=None):
-    insta = get_object_or_404(Instalacao, id=id)
-    form = InstalacaoUpdateForm(request.POST or None, instance=insta)
-    if form.is_valid():
-        obj = form.save()
-        obj.save()
-        messages.success(request, 'Instalação editada com sucesso.')
-        return redirect('/vendas/')
+    try:
+        insta = get_object_or_404(Instalacao, id=id)
+        form = InstalacaoUpdateForm(request.POST or None, instance=insta)
+        if form.is_valid():
+            obj = form.save()
+            obj.save()
+            messages.success(request, 'Instalação editada com sucesso.')
+            return redirect('/vendas/')
+    except:
+        return HttpResponseNotFound("error 404") 
     return render(request, 'sales/editar-instalacao.html', {'form': form})
 
 
 @login_required(login_url='/login/')
 def InstalacaoAgendar(request, id=None):
-    insta = get_object_or_404(Instalacao, id=id)
-    form = InstalacaoAgendarForm(request.POST or None, instance=insta)
-    if form.is_valid():
-        obj = form.save(commit=False)
-        obj.status_agendada = True
-        obj = form.save()
-        obj.save()
-        messages.success(request, 'Instalação agendada com sucesso.')
-        return redirect('/vendas/')
+    try:
+        insta = get_object_or_404(Instalacao, id=id)
+        form = InstalacaoAgendarForm(request.POST or None, instance=insta)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.status_agendada = True
+            obj = form.save()
+            obj.save()
+            messages.success(request, 'Instalação agendada com sucesso.')
+            return redirect('/vendas/')
+    except:
+        return HttpResponseNotFound("error 404")
+
     return render(request, 'sales/agendar-instalacao.html', {'form': form})
 
 
 @login_required(login_url='/login/')
 def DeletarInstalacaoAgendada(request, id=None):
-    install = get_object_or_404(Instalacao, id=id)
-    if request.method == "POST":
-        install.delete()
-        return redirect('/vendas/')
+    try:
+        install = get_object_or_404(Instalacao, id=id)
+        if request.method == "POST":
+            install.delete()
+            return redirect('/vendas/')
+    except:
+        return HttpResponseNotFound("error 404")
     return render(request, 'sales/deletar-instalacao-agendada.html', {'install': install})
 
-
-@login_required(login_url='/login/')
-def InstalacaoDefinirTecnico(request, id=None):
-    defenir = get_object_or_404(Instalacao, id=id)
-    form = InstalacaoDefinirTecnicoForm(request.POST or None, instance=defenir)
-    if form.is_valid():
-        obj = form.save()
-        obj.save()
-        messages.success(request, 'Técnico defenido com sucesso.')
-        return redirect('/vendas/')
-    return render(request, 'sales/agendar-instalacao.html', {'form': form})
 
 
 @login_required(login_url='/login/')
 def InstalacaoSemBoleto(request):
-    boletos = Instalacao.objects.filter(status_agendada='True')
-    context = {
-        'boletos': boletos
-    }
+    try:
+        boletos = Instalacao.objects.filter(status_agendada='True')
+        context = {'boletos': boletos }
+    except:
+        return HttpResponseNotFound("error 404")
     return render(request, 'sales/instalacao-sem-boleto.html', context)
+
 
 
 @login_required(login_url='/login/')
 def InstalacaoFinalizadaSemBoleto(request):
-    concluidas = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False')
-    quant_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
-    context = {
-        'concluidas': concluidas,
-        'quant_sem_boleto': quant_sem_boleto,
-    }
+    try:
+        concluidas = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False')
+        quant_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
+        context = {
+            'concluidas': concluidas,
+            'quant_sem_boleto': quant_sem_boleto,
+        }
+    except:
+        return HttpResponseNotFound("error 404")
     return render(request, 'sales/instalacao-finalizada-sem-boleto.html', context)
 
 
 @login_required(login_url='/login/')
 def InstalacaoFinalizar(request, id=None):
-    insta = get_object_or_404(Instalacao, id=id)
-    form = InstalacaoFinalizarForm(request.POST or None, instance=insta)
-    if form.is_valid():
-        obj = form.save(commit=False)
-        obj.instalacao_finalizado_por = request.user
-        obj = form.save()
-        obj.save()
-        messages.success(request, 'Instalação finalizada com sucesso.')
-        return redirect('/vendas/')
+    try:
+        insta = get_object_or_404(Instalacao, id=id)
+        form = InstalacaoFinalizarForm(request.POST or None, instance=insta)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.instalacao_finalizado_por = request.user
+            obj = form.save()
+            obj.save()
+            messages.success(request, 'Instalação finalizada com sucesso.')
+            return redirect('/vendas/')
+    except:
+        return HttpResponseNotFound("error 404")
     return render(request, 'sales/finalizar-instalacao.html', {'form': form})
 
 
@@ -302,9 +297,6 @@ def FinalizarEntregaBoleto(request, id=None):
 def ExportarReletarioVendasVendedor(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="relatorio-vendas.csv"'
-
-   
-
 
     vendas = Instalacao.objects.filter()
     writer = csv.writer(response)
@@ -413,8 +405,6 @@ def AdicionarPagamentoVale(request, id=None):
     return render(request, 'sales/adicionar-pagamento-vale.html', {'form': form})
 
 #  --------------------- Cancellations -------------------------------------------------
-
-
 class CancelamentosCreateView(CreateView, SuccessMessageMixin):
     model = Cancelamentos
     form_class = CadastrarCancelamentosForm

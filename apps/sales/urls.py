@@ -2,7 +2,7 @@ from django.urls import path
 from .views import Index
 from .views import CadastroInstalacao, InstalacaoVisualizacao, InstalacaoEditar, InstalacaoAgendar, InstalacaoAberta,\
     InstalacaoAgendada, InstalacaoFinalizar, InstalacaoConcluida, InstalacaoSemBoleto, InstalacaoFinalizadaSemBoleto,\
-    FinalizarEntregaBoleto, InstalacaoDefinirTecnico, VendasInstalacao, InstalacaoConcluidaVendedores,\
+    FinalizarEntregaBoleto, VendasInstalacao, InstalacaoConcluidaVendedores,\
     DeletarInstalacaoAgendada, ClientesVoip, Voip, ValeRefeicoes, EmitirValeRefeicaoCreate, AdicionarValorVale, \
     AdicionarNomeParaValeCreate, AdicionarPagamentoVale, VoipFinalizadoSemBoleto, CancelamentosUpdateView
 from .views import CancelamentosCreateView, CancelamentosListView
@@ -27,7 +27,6 @@ urlpatterns = [
     path('instalacao-sem-boleto/', InstalacaoSemBoleto),
     path('instalacao-finalizada-sem-boleto/', InstalacaoFinalizadaSemBoleto),
     path('finalizar-boleto/<int:id>', FinalizarEntregaBoleto),
-    path('definir-tecnico_instalacao/<int:id>', InstalacaoDefinirTecnico),
 
     path('vendas-instalacao/', VendasInstalacao),
 

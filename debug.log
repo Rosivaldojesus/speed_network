@@ -2376,3 +2376,223 @@ Traceback (most recent call last):
     'instalacaoVendedor': instalacaoVendedor,
 NameError: name 'instalacaoVendedor' is not defined
 "GET /vendas/ HTTP/1.1" 500 83863
+Internal Server Error: /vendas/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\sales\views.py", line 54, in Index
+    # 'instalacoes': instalacoes,
+NameError: name 'instalacoes' is not defined
+"GET /vendas/ HTTP/1.1" 500 82169
+Internal Server Error: /vendas/editar-instalacao/199
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\sales\views.py", line 211, in InstalacaoEditar
+    return render(request, 'sales/editar-instalacao.html', {'form': form})
+UnboundLocalError: local variable 'form' referenced before assignment
+"GET /vendas/editar-instalacao/199 HTTP/1.1" 500 78818
+Internal Server Error: /vendas/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\sales\views.py", line 73, in Index
+    return render(request, template_name, context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\templatetags\static.py", line 106, in render
+    url = self.url(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\templatetags\static.py", line 103, in url
+    return self.handle_simple(path)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\templatetags\static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\staticfiles\storage.py", line 153, in url
+    return self._url(self.stored_name, name, force)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\staticfiles\storage.py", line 132, in _url
+    hashed_name = hashed_name_func(*args)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\staticfiles\storage.py", line 423, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'css/bootstrap.css'
+"GET /vendas/ HTTP/1.1" 500 145
+Internal Server Error: /vendas/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\sales\views.py", line 73, in Index
+    return render(request, template_name, context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\templatetags\static.py", line 106, in render
+    url = self.url(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\templatetags\static.py", line 103, in url
+    return self.handle_simple(path)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\templatetags\static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\staticfiles\storage.py", line 153, in url
+    return self._url(self.stored_name, name, force)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\staticfiles\storage.py", line 132, in _url
+    hashed_name = hashed_name_func(*args)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\staticfiles\storage.py", line 423, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'css/bootstrap.css'
+"GET /vendas/ HTTP/1.1" 500 145
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 211, in Index
+    return render(request, 'core/index.html', context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\templatetags\static.py", line 106, in render
+    url = self.url(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\templatetags\static.py", line 103, in url
+    return self.handle_simple(path)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\templatetags\static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\staticfiles\storage.py", line 153, in url
+    return self._url(self.stored_name, name, force)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\staticfiles\storage.py", line 132, in _url
+    hashed_name = hashed_name_func(*args)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\staticfiles\storage.py", line 423, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'css/bootstrap.css'
+"GET / HTTP/1.1" 500 145
+Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 211, in Index
+    return render(request, 'core/index.html', context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\templatetags\static.py", line 106, in render
+    url = self.url(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\templatetags\static.py", line 103, in url
+    return self.handle_simple(path)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\templatetags\static.py", line 118, in handle_simple
+    return staticfiles_storage.url(path)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\staticfiles\storage.py", line 153, in url
+    return self._url(self.stored_name, name, force)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\staticfiles\storage.py", line 132, in _url
+    hashed_name = hashed_name_func(*args)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\staticfiles\storage.py", line 423, in stored_name
+    raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
+ValueError: Missing staticfiles manifest entry for 'css/bootstrap.css'
+"GET / HTTP/1.1" 500 145
