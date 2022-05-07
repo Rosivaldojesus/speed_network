@@ -217,3 +217,6 @@ CORS_ALLOWED_ORIGINS = [
     'http://192.168.0.13:3000',
 
 ]
+
+
+CRISPY_TEMPLATE_PACK = 'uni_form'

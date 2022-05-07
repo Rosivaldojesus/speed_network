@@ -1,86 +1,67 @@
-import csv
-
-from django.contrib import messages
-from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.http import HttpResponse
 from django.db.models import Q, Sum, Count
-from .models import Instalacao, ValeRefeicao, Cancelamentos
-from ..components.models import FuncionariosParaVale
-from ..services.models import ServicoVoip
-from .forms import InstalacaoCreateForm, InstalacaoUpdateForm,\
-    InstalacaoAgendarForm, InstalacaoFinalizarForm, BoletoEntregueForm,\
-    InstalacaoDefinirTecnicoForm, EmitirValeRefeicaoForm,\
-    AdicionarValorValeRefeicaoForm, AdicionarPagamentoValeRefeicaoForm, \
-    CadastrarCancelamentosForm, EditarCancelamentosForm
-from ..components.models import Vendedores
-from django.db.models.functions import ExtractMonth
-from django.db.models.functions import TruncMonth
+from django.db.models.functions import TruncMonth, ExtractMonth
 from datetime import datetime, date, timedelta
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic.edit import UpdateView
-
-from twilio.rest import Client
+from ..sales.funcoes.dados_instalacoes import *
+from .models import Instalacao, ValeRefeicao, Cancelamentos
+from ..components.models import FuncionariosParaVale, Vendedores
+from ..services.models import ServicoVoip
+from .forms import *
+import csv
 
 # Create your views here.
 
-
 @login_required(login_url='/login/')
 def Index(request):
-    this_year = datetime.now().year
+    template_name = 'sales/instalacao.html'
+
+    quant_aberta = quantidade_instalacoes_em_aberto()
+    quant_agendada = quantidade_instalacoes_agendadas()
+    quant_sem_boleto = quantidade_instalacoes_sem_boleto()
+    quant_concluida = quantidade_instalacoes_mes_atual()
+
+    #  Instalações Mensais
+    instalacoes_mensais = quantidade_instalacoes_mensais()
+    instalacoes_diarias = quantidade_instalacoes_diarias()
+
+    # Como o cliente conheceu a empresa
+    conheceu_empresa_count = quantidade_conheceu_empresa_count()
+    conheceu_empresa_mes_count = quantidade_conheceu_empresa_mes_count()
+    panfletos_count = quantidade_conheceu_por_panfletos()
+
+
+    # =======>>>> Não refatorado ===================================>
     this_month = date.today().month
     instalacoes = Instalacao.objects.all().order_by('data_instalacao', 'data_instalacao')
-    quant_aberta = Instalacao.objects.filter(status_agendada='False').filter(concluido='False').count()
-    quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
-    quant_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
-    quant_concluida = Instalacao.objects.filter(concluido='True').filter(data_finalizacao__month=this_month).count()
 
     #  Filtrando instalação por Vendedor
-
     user = request.user
     instalacaoVendedor = Instalacao.objects.filter(instalacao_criado_por=user)
     quant_aberta_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='False')\
         .filter(concluido='False').count()
+
     quant_agendada_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='True')\
         .filter(concluido='False').count()
 
-    #  Instalações Mensais
-
-    instalacoesMensais = Instalacao.objects.annotate(month=ExtractMonth('data_finalizacao')).values('month').\
-        annotate(count=Count('id'))
-    mensalInstalacao = Instalacao.objects.annotate(month=TruncMonth('data_finalizacao')).filter(concluido='True').\
-        values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').order_by('month')
-
-    diarioInstalacao = Instalacao.objects.filter(concluido='True').\
-        filter(data_finalizacao__gte=datetime.today()-timedelta(days=30)).values('data_finalizacao').\
-        annotate(number=Count('data_finalizacao')).order_by('data_finalizacao')
-
-    mediaDiarioInstalacao = Instalacao.objects.annotate(month=TruncMonth('data_finalizacao')).\
-        filter(concluido='True').values('month').annotate(c=Count('data_finalizacao')).values('month', 'c').\
-        order_by('month')
-
+    mediaDiarioInstalacao = media_diario_instalacao()
     #  Filtros de como o cliente conheceu a empresa
-    conheceu_empresa_count = Instalacao.objects.filter(como_conheceu_empresa__isnull=True).count()
-    panfletos_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Panfleto')).count()
-    redes_sociais_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Redes Socias')).count()
-    site_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Site')).count()
-    indicacao_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Indicação')).count()
-    outros_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Outros')).count()
+    redes_sociais_count = conheceu_redes_sociais_count()
+    site_count = conheceu_site_count()
+    indicacao_count = conheceu_indicacao_count()
+    outros_count = conheceu_outros_count()
 
     #  Filtros de como o cliente conheceu a empresa mês atual
-    conheceu_empresa_mes_count = Instalacao.objects.filter(data_finalizacao__month=this_month).count()
-    panfletos_mes_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Panfleto')).\
-        filter(data_finalizacao__month=this_month).count()
-    redes_sociais_mes_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Redes Socias')).\
-        filter(data_finalizacao__month=this_month).count()
-    site_mes_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Site')).\
-        filter(data_finalizacao__month=this_month).count()
-    indicacao_mes_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Indicação')).\
-        filter(data_finalizacao__month=this_month).count()
-    outros_mes_count = Instalacao.objects.filter(Q(como_conheceu_empresa__icontains='Outros')).\
-        filter(data_finalizacao__month=this_month).count()
+    panfletos_mes_count = conheceu_panfletos_mes_count()
+    redes_sociais_mes_count = conheceu_redes_sociais_mes_count()
+    site_mes_count = conheceu_site_mes_count()
+    indicacao_mes_count = conheceu_indicacao_mes_count()
+    outros_mes_count = conheceu_empresa_outros_mes_count()
 
     context = {
         'instalacoes': instalacoes,
@@ -92,9 +73,8 @@ def Index(request):
         'instalacaoVendedor': instalacaoVendedor,
         'quant_aberta_vendedor': quant_aberta_vendedor,
         'quant_agendada_vendedor': quant_agendada_vendedor,
-        'instalacoesMensais': instalacoesMensais,
-        'mensalInstalacao': mensalInstalacao,
-        'diarioInstalaçao': diarioInstalacao,
+        'instalacoes_mensais': instalacoes_mensais,
+        'instalacoes_diarias': instalacoes_diarias,
         'mediaDiarioInstalacao': mediaDiarioInstalacao,
         #  Filtros de como o cliente conheceu a empresa
         'conheceu_empresa_count': conheceu_empresa_count,
@@ -110,7 +90,7 @@ def Index(request):
         'outros_mes_count': outros_mes_count,
         'conheceu_empresa_mes_count': conheceu_empresa_mes_count,
     }
-    return render(request, 'sales/instalacao.html', context)
+    return render(request, template_name, context)
 
 
 @login_required(login_url='/login/')

@@ -110,14 +110,13 @@
             Chart.defaults.global.defaultFontSize = 16;
   
             var speedData = {
-            labels: [ {% for mensal in mensalInstalacao %}'{{ mensal.month|date:"F Y"  }}',{% endfor %} ],
+            labels: [ {% for mensal in instalacoes_mensais %}'{{ mensal.month|date:"F Y"  }}',{% endfor %} ],
             datasets: [{
                 label: "Instalações (mês)",
-                data: [{% for mensal in mensalInstalacao %} '{{ mensal.c }}', {% endfor %}],
+                data: [{% for mensal in instalacoes_mensais %} '{{ mensal.c }}', {% endfor %}],
             }]
             };
             
-  
             var chartOptions = {
             legend: {
                 display: true,
@@ -129,8 +128,6 @@
             }
             };
 
-            
-  
             var lineChart = new Chart(speedCanvas, {
             type: 'line',
             data: speedData,
@@ -156,12 +153,12 @@
 
           var speedData = {
             labels: [
-            {% for diario in diarioInstalaçao %} '{{ diario.data_finalizacao|date:"d M, Y" }}', {% endfor %}
+            {% for diario in instalacoes_diarias %} '{{ diario.data_finalizacao|date:"d M, Y" }}', {% endfor %}
           ],
             datasets: [{
               label: "Instalação (dia)",
               data: [
-              {% for diario in diarioInstalaçao %} '{{ diario.number}}', {% endfor %}
+              {% for diario in instalacoes_diarias %} '{{ diario.number}}', {% endfor %}
             ],
               lineTension: 0,
               fill: false,

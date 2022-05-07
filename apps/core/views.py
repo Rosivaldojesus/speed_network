@@ -89,7 +89,6 @@ def Index(request):
     quant_instalacao_finalizados_mes = Instalacao.objects.filter(
         data_finalizacao__month=this_month, data_finalizacao__year=this_year, concluido='True').count()
 
-    install_mes = instalacoes_mes_atual()
 
     install = []
     mes = Instalacao.objects.filter(data_finalizacao__month=this_month)
@@ -168,8 +167,6 @@ def Index(request):
          boleto_entregue='False').count()
 
     context = {
-
-        'install_mes': install_mes,
 
         'pendentes': pendentes,
         'quant_servico_aberto': quant_servico_aberto,

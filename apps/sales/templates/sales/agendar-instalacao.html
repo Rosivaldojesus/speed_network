@@ -3,17 +3,28 @@
 {% load crispy_forms_tags %}
 
 
+
 {% block main %}
 <div class="container">
     <h1 class="mt-4 texto-cor-1">Agendar Instalação</h1>
     <div class="mb-4">
-        <form action="" method="post" class="texto-cor-2"> {% csrf_token %}
-
-            <div class="mt-10">
-                {{ form | crispy }}
+    
+        <div class="form-row">
+            <div class="form-group col-md-2 mb-0">
+                {{ form.data_instalacao|as_crispy_field }}
             </div>
 
-			<input type="submit" class="btn btn-block btn-primary" value="Agendar instalação">
+            <div class="form-group col-md-2 mb-0">
+                {{ form.hora_instalacao|as_crispy_field }}
+            </div>
+        </div>
+
+        <div>
+            <input type="submit" class="btn btn-block btn-primary" value="Agendar instalação">
+        </div>
+
+
+			
 		 </form>
     </div>
 </div>
