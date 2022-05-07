@@ -11,6 +11,7 @@
   <div class="mb-4">
     <form action="" method="post" class="texto-cor-2"> {% csrf_token %}
 
+    
       <div class="form-row">
           <div class="form-group col-md-12 mb-0">
               {{ form.contato_servico|as_crispy_field }}
@@ -49,8 +50,8 @@
       </div>
 
 
-
     <!--
+    
       {{ form | crispy }}
     -->
             

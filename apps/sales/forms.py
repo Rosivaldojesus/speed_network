@@ -83,7 +83,7 @@ class InstalacaoAgendarForm(forms.ModelForm):
         }
     data_instalacao = forms.DateField(widget=forms.DateInput(attrs={"type": "date"}))
     hora_instalacao = forms.TimeField(widget=forms.DateInput(attrs={"type": "time"}))
-    # status_agendada = forms.BooleanField(label='Marque para agendar instalação.')
+    #status_agendada = forms.BooleanField(label='Marque para agendar instalação.')
 
 
 class InstalacaoDefinirTecnicoForm(forms.ModelForm):

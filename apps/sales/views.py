@@ -233,6 +233,8 @@ def InstalacaoAgendar(request, id=None):
     insta = get_object_or_404(Instalacao, id=id)
     form = InstalacaoAgendarForm(request.POST or None, instance=insta)
     if form.is_valid():
+        obj = form.save(commit=False)
+        obj.status_agendada = True
         obj = form.save()
         obj.save()
         messages.success(request, 'Instalação agendada com sucesso.')
