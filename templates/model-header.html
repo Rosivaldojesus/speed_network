@@ -67,9 +67,12 @@
 							   <a class="nav-link text-white" href="/componentes/ruas/">Ruas</a>
 							</li>
 
+							<!--
 							<li class="nav-item">
 							   <a class="nav-link text-white" href="/vendas/vale-refeicao/">Refeições</a>
 							</li>
+							-->
+
 
 							<li class="nav-item">
 							   <a class="nav-link text-white" href="/servicos/">Serviços</a>
@@ -123,7 +126,7 @@
 
 
 					 <li>
-					  <small class="texto_menu"><i class="	far fa-user-circle"></i>   <strong>{{ request.user.get_short_name }}</strong></small>
+					  <small class="texto_menu"><i class="	far fa-user-circle"></i> {{ request.user.get_short_name }}</small>
 					 </li>
 				   </ul>
 

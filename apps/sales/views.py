@@ -9,10 +9,10 @@ from datetime import datetime, date, timedelta
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from django.contrib.messages.views import SuccessMessageMixin
-from ..sales.funcoes.dados_instalacoes import *
+#from ..sales.funcoes.dados_instalacoes import *
+from ..sales.funcoes.contagem_instalacoes import *
 from .models import Instalacao, ValeRefeicao, Cancelamentos
 from ..components.models import FuncionariosParaVale, Vendedores
-from ..services.models import ServicoVoip
 from .forms import *
 import csv
 
@@ -74,49 +74,27 @@ def Index(request):
 
 
 @login_required(login_url='/login/')
-def VendasInstalacao(request):
-    vendedores = Vendedores.objects.all()
-    vendas = Instalacao.objects.all().order_by('-id')
-    queryset = request.GET.get('q')
-    if queryset:
-        vendas = Instalacao.objects.filter(Q(instalacao_vendedor__icontains=queryset))
-    conetxt = {
-        'vendas': vendas,
-        'vendedores': vendedores
-    }
-    return render(request, 'sales/vendas-instalacao.htyml', conetxt)
-
-
-@login_required(login_url='/login/')
 def InstalacaoAberta(request):
-    user = request.user
     abertas = Instalacao.objects.filter(status_agendada='False').filter(concluido='False')
-    quant_aberta = Instalacao.objects.filter(status_agendada='False').filter(concluido='False').count()
-    #  Filtro por vendedor logado
-    abertas_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='False')\
-        .filter(concluido='False')
-    quant_aberta_vendedor = Instalacao.objects.filter(instalacao_criado_por=user).filter(status_agendada='False')\
-        .filter(concluido='False').count()
+    quant_aberta = quantidade_instalacoes_em_aberto()
     context = {
         'abertas': abertas,
         'quant_aberta': quant_aberta,
-        'abertas_vendedor': abertas_vendedor,
-        'quant_aberta_vendedor': quant_aberta_vendedor,
     }
     return render(request, 'sales/instalacao-aberta.html', context)
 
 
 @login_required(login_url='/login/')
 def InstalacaoAgendada(request):
-    agendadas = Instalacao.objects.filter(status_agendada='True')\
-        .filter(concluido='False').order_by('data_instalacao', 'hora_instalacao')
-    quant_agendada = Instalacao.objects.filter(status_agendada='True').filter(concluido='False').count()
+    agendadas = Instalacao.objects.filter(
+        status_agendada='True').filter(concluido='False').order_by('data_instalacao', 'hora_instalacao')
+    quant_agendada = quantidade_instalacoes_agendadas()
     queryset = request.GET.get('q')
     data_dia = request.GET.get('data_dia')
     if queryset:
-        agendadas = Instalacao.objects.\
-            filter(Q(nome_cliente__icontains=queryset) | Q(sobrenome_cliente__icontains=queryset)).\
-            filter(status_agendada='True').filter(concluido='False').order_by('data_instalacao', 'hora_instalacao')
+        agendadas = Instalacao.objects.filter(
+            Q(nome_cliente__icontains=queryset) | Q(sobrenome_cliente__icontains=queryset)).filter(
+                status_agendada='True', concluido='False').order_by('data_instalacao', 'hora_instalacao')
     elif data_dia:
         agendadas = Instalacao.objects.filter(Q(data_instalacao__exact=data_dia))
         quant_agendada = Instalacao.objects.filter(Q(data_instalacao__exact=data_dia)).count()
@@ -129,16 +107,16 @@ def InstalacaoAgendada(request):
 
 @login_required(login_url='/login/')
 def InstalacaoConcluida(request):
-    quant_concluida = Instalacao.objects.filter(concluido='True').count()
+    quant_concluida = quantidade_concluida()
     concluidas = Instalacao.objects.filter(concluido='True').order_by('-id')
     startdate = request.GET.get('startdate')
     queryset = request.GET.get('q')
     date = request.GET.get('date')
     if queryset:
-        concluidas = Instalacao.objects.\
-            filter(Q(nome_cliente__icontains=queryset) | Q(sobrenome_cliente__icontains=queryset))
-        quant_concluida = Instalacao.objects.\
-            filter(Q(nome_cliente__icontains=queryset) | Q(sobrenome_cliente__icontains=queryset)).count()
+        concluidas = Instalacao.objects.filter(
+            Q(nome_cliente__icontains=queryset) | Q(sobrenome_cliente__icontains=queryset))
+        quant_concluida = Instalacao.objects.filter(
+            Q(nome_cliente__icontains=queryset) | Q(sobrenome_cliente__icontains=queryset)).count()
     elif date:
         concluidas = Instalacao.objects.filter(Q(data_finalizacao__exact=date))
         quant_concluida = Instalacao.objects.filter(Q(data_finalizacao__exact=date)).count()
@@ -154,14 +132,14 @@ def InstalacaoConcluida(request):
 @login_required(login_url='/login/')
 def InstalacaoConcluidaVendedores(request):
     concluidas = Instalacao.objects.filter(concluido='True').order_by('-id')
-    quant_concluida = Instalacao.objects.filter(concluido='True').count()
+    quant_concluida = quantidade_concluida()
     startdate = request.GET.get('startdate')
     enddate = request.GET.get('enddate')
     queryset = request.GET.get('q')
     if startdate and enddate and queryset:
         concluidas = Instalacao.objects.filter(concluido='True').\
             filter(Q(data_instalacao__range=[startdate, enddate]) & Q(instalacao_vendedor__exact=queryset)).\
-            order_by('data_instalacao')
+                order_by('data_instalacao')
         quant_concluida = Instalacao.objects.filter(concluido='True').\
             filter(Q(data_instalacao__range=[startdate, enddate]) & Q(instalacao_vendedor__exact=queryset)).count()
     context = {
@@ -173,24 +151,30 @@ def InstalacaoConcluidaVendedores(request):
 
 @login_required(login_url='/login/')
 def CadastroInstalacao(request):
-    form = InstalacaoCreateForm(request.POST)
-    if form.is_valid():
-        obj = form.save(commit=False)
-        obj.instalacao_criado_por = request.user
-        obj.save()
-        messages.success(request, 'Instalação cadastrada com sucesso.')
-        return redirect('/vendas/')
-    else:
-        form = InstalacaoCreateForm()
-    return render(request, 'sales/cadastro-instalacao.html', {'form': form})
+    try:
+        form = InstalacaoCreateForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.instalacao_criado_por = request.user
+            obj.save()
+            messages.success(request, 'Instalação cadastrada com sucesso.')
+            return redirect('/vendas/')
+        else:
+            form = InstalacaoCreateForm()
+        return render(request, 'sales/cadastro-instalacao.html', {'form': form})
+    except:
+        return HttpResponseNotFound("error 404") 
 
 
 @login_required(login_url='/login/')
 def InstalacaoVisualizacao(request):
-    install = request.GET.get('id')
-    if install:
-        install = Instalacao.objects.get(id=install)
-    return render(request, 'sales/visualizar-instalacao.html', {'install': install})
+    try:
+        install = request.GET.get('id')
+        if install:
+            install = Instalacao.objects.get(id=install)
+        return render(request, 'sales/visualizar-instalacao.html', {'install': install})
+    except:
+        return HttpResponseNotFound("error 404") 
 
 
 @login_required(login_url='/login/')
@@ -203,10 +187,10 @@ def InstalacaoEditar(request, id=None):
             obj.save()
             messages.success(request, 'Instalação editada com sucesso.')
             return redirect('/vendas/')
+        return render(request, 'sales/editar-instalacao.html', {'form': form})
     except:
         return HttpResponseNotFound("error 404") 
-    return render(request, 'sales/editar-instalacao.html', {'form': form})
-
+    
 
 @login_required(login_url='/login/')
 def InstalacaoAgendar(request, id=None):
@@ -220,10 +204,9 @@ def InstalacaoAgendar(request, id=None):
             obj.save()
             messages.success(request, 'Instalação agendada com sucesso.')
             return redirect('/vendas/')
+        return render(request, 'sales/agendar-instalacao.html', {'form': form})
     except:
         return HttpResponseNotFound("error 404")
-
-    return render(request, 'sales/agendar-instalacao.html', {'form': form})
 
 
 @login_required(login_url='/login/')
@@ -233,36 +216,34 @@ def DeletarInstalacaoAgendada(request, id=None):
         if request.method == "POST":
             install.delete()
             return redirect('/vendas/')
+        return render(request, 'sales/deletar-instalacao-agendada.html', {'install': install})
     except:
         return HttpResponseNotFound("error 404")
-    return render(request, 'sales/deletar-instalacao-agendada.html', {'install': install})
-
-
+    
 
 @login_required(login_url='/login/')
 def InstalacaoSemBoleto(request):
     try:
         boletos = Instalacao.objects.filter(status_agendada='True')
         context = {'boletos': boletos }
+        return render(request, 'sales/instalacao-sem-boleto.html', context)
     except:
         return HttpResponseNotFound("error 404")
-    return render(request, 'sales/instalacao-sem-boleto.html', context)
-
-
+    
 
 @login_required(login_url='/login/')
 def InstalacaoFinalizadaSemBoleto(request):
     try:
         concluidas = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False')
-        quant_sem_boleto = Instalacao.objects.filter(concluido='True').filter(boleto_entregue='False').count()
+        quant_sem_boleto = quantidade_instalacoes_sem_boleto()
         context = {
             'concluidas': concluidas,
             'quant_sem_boleto': quant_sem_boleto,
         }
+        return render(request, 'sales/instalacao-finalizada-sem-boleto.html', context)
     except:
         return HttpResponseNotFound("error 404")
-    return render(request, 'sales/instalacao-finalizada-sem-boleto.html', context)
-
+    
 
 @login_required(login_url='/login/')
 def InstalacaoFinalizar(request, id=None):
@@ -276,22 +257,25 @@ def InstalacaoFinalizar(request, id=None):
             obj.save()
             messages.success(request, 'Instalação finalizada com sucesso.')
             return redirect('/vendas/')
+        return render(request, 'sales/finalizar-instalacao.html', {'form': form})
     except:
         return HttpResponseNotFound("error 404")
-    return render(request, 'sales/finalizar-instalacao.html', {'form': form})
-
+    
 
 @login_required(login_url='/login/')
 def FinalizarEntregaBoleto(request, id=None):
-    boleto = get_object_or_404(Instalacao, id=id)
-    form = BoletoEntregueForm(request.POST or None, instance=boleto)
-    if form.is_valid():
-        obj = form.save()
-        obj.save()
-        messages.success(request, 'Boleto finalizado com sucesso.')
-        return redirect('/vendas/')
-    return render(request, 'sales/finalizar-boleto.html', {'form': form})
-
+    try:
+        boleto = get_object_or_404(Instalacao, id=id)
+        form = BoletoEntregueForm(request.POST or None, instance=boleto)
+        if form.is_valid():
+            obj = form.save()
+            obj.save()
+            messages.success(request, 'Boleto finalizado com sucesso.')
+            return redirect('/vendas/')
+        return render(request, 'sales/finalizar-boleto.html', {'form': form})
+    except:
+        return HttpResponseNotFound("error 404")
+        
 
 # Exportando relatório de vendas por vendedor
 def ExportarReletarioVendasVendedor(request):
@@ -305,45 +289,8 @@ def ExportarReletarioVendasVendedor(request):
     for venda in vendas:
        writer.writerow([venda.nome_cliente, venda.cpf_cliente,venda.data_instalacao, venda.planos_instalacao,  venda.instalacao_vendedor])
     return response
-#  ------------------------------------  SERVIÇOS VOIP  -------------------------------------
 
-
-@login_required(login_url='/login/')
-def Voip(request):
-    VendaMes = ServicoVoip.objects.annotate(month=TruncMonth('data_reserva_voip')).filter().values('month').\
-        annotate(c=Count('data_reserva_voip')).values('month', 'c').order_by('month')
-    quant_numeros_novos = ServicoVoip.objects.filter(portabilidade_voip='False').count()
-    quant_numeros_portabilidade = ServicoVoip.objects.filter(portabilidade_voip='True').count()
-    context = {
-        'quant_numeros_novos': quant_numeros_novos,
-        'quant_numeros_portabilidade': quant_numeros_portabilidade,
-        'VendaMes': VendaMes,
-    }
-    return render(request, 'sales/voip.html', context)
-
-
-@login_required(login_url='/login/')
-def ClientesVoip(request):
-    clientes = ServicoVoip.objects.filter(reservado_voip='True')
-    quant_clientes_ativo = ServicoVoip.objects.filter(reservado_voip='True').count()
-    context = {
-        'clientes': clientes,
-        'quant_clientes_ativo': quant_clientes_ativo,
-    }
-    return render(request, 'sales/clientes-voip.html', context)
-
-
-def VoipFinalizadoSemBoleto(request):
-    quant_sem_boleto = ServicoVoip.objects.filter(boleto_entregue='False').count()
-    concluidos = ServicoVoip.objects.all()
-    context = {
-        'quant_sem_boleto': quant_sem_boleto,
-        'concluidos': concluidos
-    }
-    return render(request, 'sales/voip-finalizado-sem-boleto.html', context)
-
-
-#  ------------------------------------  VALES  -------------------------------------
+#  >----------------------------------->>> VALES <<<-------------------------------------<
 def ValeRefeicoes(request):
     vales_sem_valor = ValeRefeicao.objects.filter(valor_vale__isnull=True)
     vales_com_valor = ValeRefeicao.objects.filter(valor_vale__isnull=False).filter(status_pago=False)

@@ -1,0 +1,119 @@
+/* Refactored */
+
+body {
+    background-color: #282828;
+}
+
+
+.fundo-pagina {
+    background-color: 	#282828;
+}
+
+/* Cards */
+.fundo-card {
+    background-color: #363636;
+}
+
+/* Not Refactored */
+
+
+
+
+
+
+.fundo-card-grafico {
+    background-color: #C0C0C0;
+}
+
+
+
+.largura-tabela-td {
+    width:10%;
+    color: white;
+    height: 20%;
+
+  }
+
+
+
+
+
+
+
+.line-solid {
+    border-top: 3px solid #bbb;
+    color: #A9A9A9;
+  }
+
+
+.btn-edit-01 {
+    color: white;
+    text-decoration: none;
+    
+}
+
+.btn-edit-01:hover {
+    color: white;
+    font-size: larger;
+    text-decoration: none;
+    color: green;
+}
+
+
+
+
+
+.fundo-card-claro {
+    background-color: #1C1C1C;
+}
+
+.fundo-card-dark {
+    background-color: #1C1C1C;
+}
+
+
+
+.fundo-card-border {
+    box-shadow: 3px 3px 3px #DCDCDCed;
+}
+
+
+
+.texto-h1{
+    color: #A9A9A9;
+}
+
+.text-white {
+    color: #C0C0C0;
+}
+
+.texto-dark {
+    color:#1C1C1C;
+}
+
+
+.texto-tbody-tr {
+    color: #DCDCDC;
+}
+
+.texto-cor-1 {
+    color: 	#FFFAF0;
+}
+
+.texto-cor-2 {
+    color: #FFFAFA;
+}
+
+
+
+
+.thead-01 {
+    background-color: #696969;
+    font-size: medium;
+    color: #C0C0C0;
+}
+
+
+
+
+

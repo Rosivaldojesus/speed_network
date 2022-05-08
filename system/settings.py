@@ -10,9 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os
-import django_heroku
 from django.contrib.messages import constants
+import django_heroku
+import os
+
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +29,7 @@ SECRET_KEY = 'v_@0m+pm4%!b(e_p-flt!5sqgu6=1dt#c9*uf7f$-6m+kti-a3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -69,12 +71,10 @@ INSTALLED_APPS = [
     "corsheaders",
     #'django_filters',
     'rest_framework.authtoken'
-
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-
 
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -85,8 +85,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-
 ]
 
 ROOT_URLCONF = 'system.urls'
@@ -215,9 +213,11 @@ LOGGING = {
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://192.168.0.13:3000',
-
 ]
 
 
 CRISPY_TEMPLATE_PACK = 'uni_form'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+
