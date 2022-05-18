@@ -264,9 +264,21 @@ def SenhasPorEquipamento(request):
     if queryset:
         senhasPorEquipamentos = SenhasPorEquipamentos.objects.\
             filter(Q(codigo_equipamento__icontains=queryset) | Q(sn_equipamento__icontains=queryset))
+    
 
-    elif patrimonio:
-        senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__exact=patrimonio))
+    
+    if patrimonio:
+        try:
+            senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__exact=patrimonio))
+        except:
+            messages.error(request, 'Verificar se só existe número digitado, no campo patrimônio.')
+        
+   
+        
+        
+      
+
+
 
     query = connection.queries
     queries = len(query)

@@ -2849,3 +2849,445 @@ Traceback (most recent call last):
     raise ValueError("Missing staticfiles manifest entry for '%s'" % clean_name)
 ValueError: Missing staticfiles manifest entry for 'css/bootstrap.css'
 "GET /vendas/ HTTP/1.1" 500 145
+Internal Server Error: /senhas-por-equipamento/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1497, in to_python
+    return decimal.Decimal(value)
+decimal.InvalidOperation: [<class 'decimal.ConversionSyntax'>]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 269, in SenhasPorEquipamento
+    senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__exact=patrimonio))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 904, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 923, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1337, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1357, in _add_q
+    child_clause, needed_inner = self._add_q(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1362, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1298, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1155, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 22, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 72, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1510, in get_prep_value
+    return self.to_python(value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1499, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['O valor “as” deve ser um número decimal.']
+"GET /senhas-por-equipamento/?p=as&q= HTTP/1.1" 500 144517
+Internal Server Error: /senhas-por-equipamento/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1497, in to_python
+    return decimal.Decimal(value)
+decimal.InvalidOperation: [<class 'decimal.ConversionSyntax'>]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 270, in SenhasPorEquipamento
+    senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__exact=patrimonio))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 904, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 923, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1337, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1357, in _add_q
+    child_clause, needed_inner = self._add_q(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1362, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1298, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1155, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 22, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 72, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1510, in get_prep_value
+    return self.to_python(value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1499, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['O valor “as” deve ser um número decimal.']
+"GET /senhas-por-equipamento/?p=as&q= HTTP/1.1" 500 144383
+Internal Server Error: /senhas-por-equipamento/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1497, in to_python
+    return decimal.Decimal(value)
+decimal.InvalidOperation: [<class 'decimal.ConversionSyntax'>]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 270, in SenhasPorEquipamento
+    senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__exact=patrimonio))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 904, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 923, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1337, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1357, in _add_q
+    child_clause, needed_inner = self._add_q(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1362, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1298, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1155, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 22, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 72, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1510, in get_prep_value
+    return self.to_python(value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1499, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['O valor “a\\a” deve ser um número decimal.']
+"GET /senhas-por-equipamento/?p=a%5Ca&q= HTTP/1.1" 500 144447
+Internal Server Error: /senhas-por-equipamento/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1497, in to_python
+    return decimal.Decimal(value)
+decimal.InvalidOperation: [<class 'decimal.ConversionSyntax'>]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 268, in SenhasPorEquipamento
+    senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__exact=patrimonio))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 904, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 923, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1337, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1357, in _add_q
+    child_clause, needed_inner = self._add_q(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1362, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1298, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1155, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 22, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 72, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1510, in get_prep_value
+    return self.to_python(value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1499, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['O valor “ass” deve ser um número decimal.']
+"GET /senhas-por-equipamento/?p=ass&q= HTTP/1.1" 500 144612
+Internal Server Error: /senhas-por-equipamento/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1497, in to_python
+    return decimal.Decimal(value)
+decimal.InvalidOperation: [<class 'decimal.ConversionSyntax'>]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\apps\core\views.py", line 271, in SenhasPorEquipamento
+    senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__exact=patrimonio))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 904, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 923, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1337, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1357, in _add_q
+    child_clause, needed_inner = self._add_q(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1362, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1298, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1155, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 22, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 72, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1510, in get_prep_value
+    return self.to_python(value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1499, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['O valor “ass” deve ser um número decimal.']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 272, in SenhasPorEquipamento
+    except ValidationError:
+NameError: name 'ValidationError' is not defined
+"GET /senhas-por-equipamento/?p=ass&q= HTTP/1.1" 500 150401
+Internal Server Error: /senhas-por-equipamento/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1497, in to_python
+    return decimal.Decimal(value)
+decimal.InvalidOperation: [<class 'decimal.ConversionSyntax'>]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\apps\core\views.py", line 271, in SenhasPorEquipamento
+    senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__exact=patrimonio))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 904, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 923, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1337, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1357, in _add_q
+    child_clause, needed_inner = self._add_q(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1362, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1298, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1155, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 22, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 72, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1510, in get_prep_value
+    return self.to_python(value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1499, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['O valor “ass” deve ser um número decimal.']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 272, in SenhasPorEquipamento
+    except ValidationError:
+NameError: name 'ValidationError' is not defined
+"GET /senhas-por-equipamento/?p=ass&q= HTTP/1.1" 500 150450
+Internal Server Error: /senhas-por-equipamento/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1497, in to_python
+    return decimal.Decimal(value)
+decimal.InvalidOperation: [<class 'decimal.ConversionSyntax'>]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 271, in SenhasPorEquipamento
+    senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__exact=patrimonio))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 904, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 923, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1337, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1357, in _add_q
+    child_clause, needed_inner = self._add_q(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1362, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1298, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1155, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 22, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 72, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1510, in get_prep_value
+    return self.to_python(value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1499, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['O valor “as” deve ser um número decimal.']
+"GET /senhas-por-equipamento/?p=as&q= HTTP/1.1" 500 144508
+Internal Server Error: /senhas-por-equipamento/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1497, in to_python
+    return decimal.Decimal(value)
+decimal.InvalidOperation: [<class 'decimal.ConversionSyntax'>]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 271, in SenhasPorEquipamento
+    senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__exact=patrimonio))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 904, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 923, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1337, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1357, in _add_q
+    child_clause, needed_inner = self._add_q(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1362, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1298, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1155, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 22, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 72, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1510, in get_prep_value
+    return self.to_python(value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1499, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['O valor “as” deve ser um número decimal.']
+"GET /senhas-por-equipamento/?p=as&q= HTTP/1.1" 500 144335
+Internal Server Error: /senhas-por-equipamento/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1497, in to_python
+    return decimal.Decimal(value)
+decimal.InvalidOperation: [<class 'decimal.ConversionSyntax'>]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\apps\core\views.py", line 272, in SenhasPorEquipamento
+    senhasPorEquipamentos = SenhasPorEquipamentos.objects.filter(Q(patrimonio_equipamento__exact=patrimonio))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 904, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 923, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1337, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1357, in _add_q
+    child_clause, needed_inner = self._add_q(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1362, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1298, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1155, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 22, in __init__
+    self.rhs = self.get_prep_lookup()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\lookups.py", line 72, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1510, in get_prep_value
+    return self.to_python(value)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\fields\__init__.py", line 1499, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['O valor “as” deve ser um número decimal.']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 273, in SenhasPorEquipamento
+    except ValidationError:
+NameError: name 'ValidationError' is not defined
+"GET /senhas-por-equipamento/?p=as&q= HTTP/1.1" 500 150313
+Internal Server Error: /senhas-por-equipamento/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\utils\deprecation.py", line 96, in __call__
+    response = self.process_response(request, response)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\middleware\clickjacking.py", line 26, in process_response
+    if response.get('X-Frame-Options') is not None:
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 404, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 904, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 916, in _filter_or_exclude
+    assert not self.query.is_sliced, \
+AssertionError: Cannot filter a query once a slice has been taken.
+"GET /senhas-por-equipamento/?p=as&q= HTTP/1.1" 500 80290

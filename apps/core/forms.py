@@ -87,6 +87,9 @@ class UserForm(forms.ModelForm):
 '''
 
 class SenhasPorEquipamentosForm(forms.ModelForm):
+
+
+
     class Meta:
         model = SenhasPorEquipamentos
         fields = [
