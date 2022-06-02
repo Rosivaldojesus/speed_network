@@ -26,6 +26,8 @@ urlpatterns = [
     path('voip/', include('apps.voip.urls')),
     path('tarefas/', include('apps.tasks.urls')),
 
+    path('negocios/', include('apps.business.urls')),
+
     #Paths of the api´s
     path('api/', include(router.urls)),
 

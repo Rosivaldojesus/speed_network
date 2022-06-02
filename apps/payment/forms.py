@@ -1,4 +1,3 @@
-from logging import PlaceHolder
 from django import forms
 from ..components.models import Bancos
 from .models import Pagamento, FluxoEntradasSaidas, MeiosEntregaBoletos, TipoCusto, OrigemValores

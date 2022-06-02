@@ -273,15 +273,6 @@ def SenhasPorEquipamento(request):
         except:
             messages.error(request, 'Verificar se só existe número digitado, no campo patrimônio.')
         
-   
-        
-        
-      
-
-
-
-    query = connection.queries
-    queries = len(query)
 
     context = {
         'senhasPorEquipamentos': senhasPorEquipamentos,

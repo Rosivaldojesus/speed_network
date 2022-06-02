@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'apps.cto',
     'apps.voip',
     'apps.tasks',
+    'apps.business.apps.BusinessConfig',
 
     #Bibliotecas
     'crispy_forms',
