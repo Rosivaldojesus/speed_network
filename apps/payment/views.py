@@ -32,6 +32,7 @@ class IndexTemplateView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         this_month = date.today().month  # Variável do mês atual
+        this_year = datetime.now().year
         data_atual = datetime.now()  # Variável da data de hoje
         data_inicial = '2021-7-1'
 
@@ -56,23 +57,39 @@ class IndexTemplateView(TemplateView):
             order_by('month')
 
         # Query de mês atual dos gastos por categoria ==================================================================
-        context['veiculosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month) \
-            .filter(status_pago=True).filter(categoria=1).aggregate(total=Sum('valor_pagamento'))
-        context['funcionariosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month) \
+        context['veiculosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(data_pagamento__month=this_year) \
+            .filter(status_pago=True, categoria=1).aggregate(total=Sum('valor_pagamento'))
+
+
+        context['funcionariosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(data_pagamento__month=this_year) \
             .filter(status_pago=True).filter(categoria=2).aggregate(total=Sum('valor_pagamento'))
-        context['alimentacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month) \
+
+
+        context['alimentacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(data_pagamento__month=this_year) \
             .filter(status_pago=True).filter(categoria=3).aggregate(total=Sum('valor_pagamento'))
-        context['linksMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month) \
+
+
+        context['linksMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(data_pagamento__month=this_year) \
             .filter(status_pago=True).filter(categoria=4).aggregate(total=Sum('valor_pagamento'))
-        context['locacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month) \
+
+
+        context['locacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(data_pagamento__month=this_year) \
             .filter(status_pago=True).filter(categoria=5).aggregate(total=Sum('valor_pagamento'))
-        context['instalacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
+
+
+        context['instalacaoMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(data_pagamento__month=this_year).filter(
             status_pago=True).filter(categoria=6).aggregate(total=Sum('valor_pagamento'))
-        context['sociosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
+
+
+        context['sociosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(data_pagamento__month=this_year).filter(
             status_pago=True).filter(categoria=7).aggregate(total=Sum('valor_pagamento'))
-        context['ImpostosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
+
+            
+        context['ImpostosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(data_pagamento__month=this_year).filter(
             status_pago=True).filter(categoria=8).aggregate(total=Sum('valor_pagamento'))
-        context['taxaMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(
+
+
+        context['taxaMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(data_pagamento__month=this_year).filter(
             status_pago=True).filter(categoria=11).aggregate(total=Sum('valor_pagamento'))
 
         return context
