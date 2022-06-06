@@ -63,7 +63,7 @@
 
 
 {% for agendado in agendados %}
-  <div class="card mt-2 mb-4 fundo-card fundo-card-border texto-cor-2">
+  <div class="card mt-2 mb-4 fundo-card fundo-card-border">
     <div class="card-header ">
         <div class="row">
           <div class="col-sm-4">
@@ -92,7 +92,7 @@
 
         </div>
     </div>
-    <div class="card-body">
+    <div class="card-body text-white">
       <h6 class="card-title"><strong>Cliente: </strong> {{ agendado.contato_servico}}</h6>
       <h6 class="card-title"><strong>O que: </strong> {{ agendado.servico_para_executar}}</h6>
       <p class="card-text"><strong>Onde: </strong>{{ agendado.endereco_servico}}</p>

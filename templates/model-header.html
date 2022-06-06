@@ -52,12 +52,18 @@
 											  
 						  {% if request.user.groups.all.0.name == "Master" %}
 						  
-						  
 						  <li class="nav-item">
 							   <a class="nav-link text-white" href="/pagamentos/">Financeiro</a>
-
 						  </li>
-						  <i class="fa-solid fa-messages-dollar"></i>
+						  <li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								  Negociações
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								  <a class="dropdown-item" href="#">.:: Compras</a>
+								  <a class="dropdown-item" href="{% url 'venda_produtos' %}">.:: Vendas</a>
+								</div>
+							</li>  
 
 						  {% endif %}
 

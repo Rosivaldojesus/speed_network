@@ -4239,3 +4239,997 @@ Traceback (most recent call last):
     venda = get_object_or_404(VendasProdutos, pk=kwargs['pk'])
 KeyError: 'pk'
 "GET /negocios/ HTTP/1.1" 500 83092
+Internal Server Error: /negocios/concluir-venda/1/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 190, in get
+    return super().get(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 133, in get
+    return self.render_to_response(self.get_context_data())
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 66, in get_context_data
+    kwargs['form'] = self.get_form()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 32, in get_form
+    form_class = self.get_form_class()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 96, in get_form_class
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Using ModelFormMixin (base class of ConcluirVendaUpdateView) without the 'fields' attribute is prohibited.
+"GET /negocios/concluir-venda/1/ HTTP/1.1" 500 100706
+Internal Server Error: /negocios/concluir-venda/1/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 190, in get
+    return super().get(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 133, in get
+    return self.render_to_response(self.get_context_data())
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 66, in get_context_data
+    kwargs['form'] = self.get_form()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 32, in get_form
+    form_class = self.get_form_class()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 96, in get_form_class
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Using ModelFormMixin (base class of ConcluirVendaUpdateView) without the 'fields' attribute is prohibited.
+"GET /negocios/concluir-venda/1/ HTTP/1.1" 500 100843
+Internal Server Error: /negocios/concluir-venda/6/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 190, in get
+    return super().get(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 133, in get
+    return self.render_to_response(self.get_context_data())
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 66, in get_context_data
+    kwargs['form'] = self.get_form()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 32, in get_form
+    form_class = self.get_form_class()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 96, in get_form_class
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Using ModelFormMixin (base class of ConcluirVendaUpdateView) without the 'fields' attribute is prohibited.
+"GET /negocios/concluir-venda/6/ HTTP/1.1" 500 100712
+Internal Server Error: /negocios/concluir-venda/6/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 190, in get
+    return super().get(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 133, in get
+    return self.render_to_response(self.get_context_data())
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 66, in get_context_data
+    kwargs['form'] = self.get_form()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 32, in get_form
+    form_class = self.get_form_class()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 96, in get_form_class
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Using ModelFormMixin (base class of ConcluirVendaUpdateView) without the 'fields' attribute is prohibited.
+"GET /negocios/concluir-venda/6/ HTTP/1.1" 500 100843
+Internal Server Error: /negocios/concluir-venda/6/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(', '.join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: business/concluir-venda.html
+"GET /negocios/concluir-venda/6/ HTTP/1.1" 500 94969
+Internal Server Error: /negocios/concluir-venda/6/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 78, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/6/ HTTP/1.1" 500 99631
+Internal Server Error: /negocios/concluir-venda/6/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 78, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/6/ HTTP/1.1" 500 99761
+Internal Server Error: /negocios/concluir-venda/6/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 78, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/6/ HTTP/1.1" 500 99761
+Internal Server Error: /negocios/concluir-venda/1/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 78, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/1/ HTTP/1.1" 500 99608
+Internal Server Error: /negocios/concluir-venda/5/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 77, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/5/ HTTP/1.1" 500 99899
+Internal Server Error: /negocios/concluir-venda/5/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 77, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/5/ HTTP/1.1" 500 100029
+Internal Server Error: /negocios/concluir-venda/2/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 77, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/2/ HTTP/1.1" 500 99883
+Internal Server Error: /negocios/concluir-venda/2/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 77, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/2/ HTTP/1.1" 500 100030
+Internal Server Error: /negocios/concluir-venda/2/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 77, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/2/ HTTP/1.1" 500 100030
+Internal Server Error: /negocios/concluir-venda/7/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 77, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/7/ HTTP/1.1" 500 100030
+Internal Server Error: /negocios/concluir-venda/7/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 76, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/7/ HTTP/1.1" 500 100027
+Internal Server Error: /negocios/concluir-venda/7/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/7/ HTTP/1.1" 500 96770
+Internal Server Error: /negocios/concluir-venda/7/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/7/ HTTP/1.1" 500 96574
+Internal Server Error: /negocios/concluir-venda/8/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 70, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/8/ HTTP/1.1" 500 100730
+Internal Server Error: /negocios/concluir-venda/8/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 71, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/8/ HTTP/1.1" 500 100718
+Internal Server Error: /negocios/concluir-venda/8/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 71, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/8/ HTTP/1.1" 500 99934
+Internal Server Error: /negocios/concluir-venda/8/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 73, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 11, in form_valid
+    response = super().form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 126, in form_valid
+    return super().form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 57, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 112, in get_success_url
+    if self.success_url:
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\utils\functional.py", line 119, in __wrapper__
+    res = func(*self.__args, **self.__kw)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'mensajes' not found. 'mensajes' is not a valid view function or pattern name.
+"POST /negocios/concluir-venda/8/ HTTP/1.1" 500 123708
+Internal Server Error: /negocios/concluir-venda/8/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 73, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 11, in form_valid
+    response = super().form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 126, in form_valid
+    return super().form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 57, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 112, in get_success_url
+    if self.success_url:
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\utils\functional.py", line 119, in __wrapper__
+    res = func(*self.__args, **self.__kw)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 616, in _reverse_with_prefix
+    self._populate()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 454, in _populate
+    for url_pattern in reversed(self.url_patterns):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\utils\functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 587, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\utils\functional.py", line 48, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 580, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "c:\users\jsros\appdata\local\programs\python\python39\lib\importlib\__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+ModuleNotFoundError: No module named '/negocios/'
+"POST /negocios/concluir-venda/8/ HTTP/1.1" 500 152540
+Internal Server Error: /negocios/concluir-venda/4/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 190, in get
+    return super().get(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 133, in get
+    return self.render_to_response(self.get_context_data())
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 66, in get_context_data
+    kwargs['form'] = self.get_form()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 32, in get_form
+    form_class = self.get_form_class()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 96, in get_form_class
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Using ModelFormMixin (base class of ConcluirVendaUpdateView) without the 'fields' attribute is prohibited.
+"GET /negocios/concluir-venda/4/ HTTP/1.1" 500 100712
+Internal Server Error: /negocios/concluir-venda/4/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 190, in get
+    return super().get(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 133, in get
+    return self.render_to_response(self.get_context_data())
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 66, in get_context_data
+    kwargs['form'] = self.get_form()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 32, in get_form
+    form_class = self.get_form_class()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 96, in get_form_class
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Using ModelFormMixin (base class of ConcluirVendaUpdateView) without the 'fields' attribute is prohibited.
+"GET /negocios/concluir-venda/4/ HTTP/1.1" 500 100706
+Internal Server Error: /negocios/concluir-venda/9/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 190, in get
+    return super().get(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 133, in get
+    return self.render_to_response(self.get_context_data())
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 66, in get_context_data
+    kwargs['form'] = self.get_form()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 32, in get_form
+    form_class = self.get_form_class()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 96, in get_form_class
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Using ModelFormMixin (base class of ConcluirVendaUpdateView) without the 'fields' attribute is prohibited.
+"GET /negocios/concluir-venda/9/ HTTP/1.1" 500 100706
+Internal Server Error: /senhas-por-equipamento/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 288, in SenhasPorEquipamento
+    'queries': queries,
+NameError: name 'queries' is not defined
+"GET /senhas-por-equipamento/ HTTP/1.1" 500 80848
+Internal Server Error: /senhas-por-equipamento/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 288, in SenhasPorEquipamento
+    'queries': queries,
+NameError: name 'queries' is not defined
+"GET /senhas-por-equipamento/ HTTP/1.1" 500 80985
+Internal Server Error: /senhas-por-equipamento/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 288, in SenhasPorEquipamento
+    'queries': queries,
+NameError: name 'queries' is not defined
+"GET /senhas-por-equipamento/ HTTP/1.1" 500 80848
+Internal Server Error: /senhas-por-equipamento/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\auth\decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\core\views.py", line 288, in SenhasPorEquipamento
+    'queries': queries,
+NameError: name 'queries' is not defined
+"GET /senhas-por-equipamento/ HTTP/1.1" 500 80822
+Internal Server Error: /negocios/1/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 45, in get
+    return render(request, 'business/detalhe-venda.html', context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'compra_produtos' not found. 'compra_produtos' is not a valid view function or pattern name.
+"GET /negocios/1/ HTTP/1.1" 500 176079
+Internal Server Error: /negocios/concluir-venda/1/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 73, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 11, in form_valid
+    response = super().form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 126, in form_valid
+    return super().form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 57, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 112, in get_success_url
+    if self.success_url:
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\utils\functional.py", line 119, in __wrapper__
+    res = func(*self.__args, **self.__kw)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'compra_produtos' not found. 'compra_produtos' is not a valid view function or pattern name.
+"POST /negocios/concluir-venda/1/ HTTP/1.1" 500 124627
+Internal Server Error: /negocios/concluir-venda/1/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 73, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/1/ HTTP/1.1" 500 100763
+Internal Server Error: /negocios/3/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 45, in get
+    return render(request, 'business/detalhe-venda.html', context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'compra_produtos' not found. 'compra_produtos' is not a valid view function or pattern name.
+"GET /negocios/3/ HTTP/1.1" 500 176079
+Internal Server Error: /negocios/concluir-venda/3/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 73, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/3/ HTTP/1.1" 500 100763
+Internal Server Error: /negocios/concluir-venda/3/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 73, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/3/ HTTP/1.1" 500 100763
+Internal Server Error: /negocios/concluir-venda/9/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 73, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/9/ HTTP/1.1" 500 100766
+Internal Server Error: /negocios/concluir-venda/9/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 116, in get_success_url
+    url = self.object.get_absolute_url()
+AttributeError: 'VendasProdutos' object has no attribute 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 75, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 11, in form_valid
+    response = super().form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 126, in form_valid
+    return super().form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 57, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 118, in get_success_url
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: No URL to redirect to.  Either provide a url or define a get_absolute_url method on the Model.
+"POST /negocios/concluir-venda/9/ HTTP/1.1" 500 114127
+Internal Server Error: /negocios/concluir-venda/4/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\base.py", line 97, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 194, in post
+    return super().post(request, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\views\generic\edit.py", line 142, in post
+    return self.form_valid(form)
+  File "C:\projetos\speednetwork\apps\business\views.py", line 75, in form_valid
+    return super(ConcluirVendaUpdateView, self).form_valid(form)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 12, in form_valid
+    success_message = self.get_success_message(form.cleaned_data)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\contrib\messages\views.py", line 18, in get_success_message
+    return self.success_message % cleaned_data
+KeyError: 'produto'
+"POST /negocios/concluir-venda/4/ HTTP/1.1" 500 100661

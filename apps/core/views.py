@@ -285,8 +285,8 @@ def SenhasPorEquipamento(request):
         'quant_nokia_1425A': quant_nokia_1425A,
         'quant_modens': quant_modens,
 
-        'queries': queries,
-        'query': query,
+        #'queries': queries,
+        #'query': query,
     }
     return render(request, 'core/senhas-por-equipamento.html', context)
 
