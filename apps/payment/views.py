@@ -31,8 +31,8 @@ class IndexTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        this_month = date.today().month  # Variável do mês atual
         this_year = datetime.now().year
+        this_month = datetime.now().month   
         data_atual = datetime.now()  # Variável da data de hoje
         data_inicial = '2021-7-1'
 
@@ -87,8 +87,6 @@ class IndexTemplateView(TemplateView):
             
         context['ImpostosMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(data_pagamento__month=this_year).filter(
             status_pago=True).filter(categoria=8).aggregate(total=Sum('valor_pagamento'))
-
-
         context['taxaMesAtual'] = Pagamento.objects.filter(data_pagamento__month=this_month).filter(data_pagamento__month=this_year).filter(
             status_pago=True).filter(categoria=11).aggregate(total=Sum('valor_pagamento'))
 
