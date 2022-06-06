@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block title %}.::Vendas {% endblock %}
+
+{% block main %}
+<div class="container">
+
+    <!-- Titúlo da página-->
+    <div class="mt-4 mb-4">
+        <h1 class="text-white">Venda</h1>
+    </div>
+
+    <div class="">
+        <form method="post" class="text-white">{% csrf_token %}
+            {{ form | crispy }}
+            <input class="btn btn-primary" type="submit"  value="Salvar Informações">
+        </form>
+    </div>
+
+</div>
+{% endblock %}

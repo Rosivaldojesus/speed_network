@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}.:: Histórico de Vendas {% endblock %}
+
+{% block main %}
+<div class="container">
+
+    <!-- Titúlo da página-->
+    <div class="mt-4 mb-4">
+        <h1 class="text-white">Histórico de Vendas</h1>
+    </div>
+
+    <!-- =========================================================================================================== -->
+    <!-- INÍCIO Messagens -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    <!-- FIM Messagens -->   
+
+<!-- =========================================================================================================== -->
+
+    <div align="right">
+        <a href="{% url 'venda_produtos' %}" class="btn btn-secondary text-white">Voltar ao início</a>
+    </div>
+
+    <div class="table-responsive-sm mt-4">
+        <table class="table">
+        <thead class="text-white">
+            <tr>
+            <th scope="col">Produto</th>
+            <th scope="col">Quant.</th>
+            <th scope="col">Valor total</th>
+            <th scope="col">Cadastro</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Visualizar</th>
+            <th scope="col">Conluir</th>
+            </tr>
+        </thead>
+        <tbody class="text-white">
+        {% for venda in historico_vendas %}
+            <tr>
+                <th scope="row">{{ venda.produto }}</th>
+                <td>{{ venda.quantidade }}</td>
+                <td>{{ venda.valor_total }}</td>
+                <td>{{ venda.data_criacao }}</td>
+
+                <td>
+                    <a href="{% url 'editar_venda' venda.id %}" class="btn btn-warning btn-sm">Editar</a>
+                </td>
+                <td>
+                    <a href="{% url 'detalhe_venda' venda.id %}" class="btn btn-info btn-sm">Detalhes</a>
+                </td>
+                <td>
+                    <a href="{% url 'concluir_venda' venda.id %}" class="btn btn-success btn-sm">Finalizar</a>
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block title %}.:: Detalhe Venda {% endblock %}
+
+{% block main %}
+<div class="container">
+
+    <!-- Titúlo da página-->
+    <div class="mt-4 mb-4">
+        <h1 class="text-white">{{ venda.produto }}</h1>
+    </div>
+
+    <div class="mb-4">
+        <a href="{% url 'editar_venda' venda.id %}" class="btn btn-info">Atualizar Informações</a>
+        <a href="{% url 'venda_produtos'%}" class="btn btn-secondary">Voltar</a>
+    </div>
+
+
+    <div>
+      
+        <h4 class="text-white"> Quantidade: {{ venda.quantidade }} <h4>
+        <h4 class="text-white"> Valor Unitário: R$: {{ venda.valor_unitario }} <h4>
+
+        <h4 class="text-white"> Valor total: R$: {{ venda.valor_total }} <h4>
+        <h4 class="text-white"> Data Criação: {{ venda.data_criacao }} <h4>
+
+
+        <h4 class="text-white"> Quem criou:  {{ venda.criador_por }} <h4>
+
+        {% if venda.ultima_alteracao_por %}
+            <h4 class="text-white"> Última atualização:  {{ venda.ultima_alteracao_por }} <h4>
+        {% endif %}
+        
+
+        {% if venda.observacao %}
+            <h4 class="text-white">Observação: {{ venda.observacao }} <h4>
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock %}
