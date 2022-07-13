@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block title %}.:: Concluir Compra {% endblock %}
+
+{% block main %}
+<div class="container">
+
+    <!-- Titúlo da página-->
+    <h1 class="text-white">Conluir Compra </h1>
+
+    <div class="">
+        <form method="post" class="text-white">{% csrf_token %}
+        <h1>Deseja finalizar a compra!!! </h1>
+            <!-- {{ form | crispy }} -->
+            <input class="btn btn-primary" type="submit"  value="Finalizar compra!!!">
+        </form>
+    </div>
+
+</div>
+{% endblock %}

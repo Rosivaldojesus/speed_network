@@ -14,7 +14,7 @@ import csv
 from django.contrib.messages.views import SuccessMessageMixin
 import logging
 
-
+logger = logging.basicConfig(filename="Ctos.log")
 
 # Create your views here
 
@@ -102,7 +102,9 @@ def EditarCto(request, id=None):
         obj.save()
         messages.success(request, 'CTO alterada com sucesso!')
         return redirect('/cto/')
-    logger.error(f'{str(request.user)} alterou a cto de ID:{str(id)} na data: {now.strftime(" %m/%d/%Y, %H:%M:%S")}')
+
+    logger.info(f'{str(request.user)} alterou a cto de ID:{str(id)} na data: {now.strftime(" %m/%d/%Y, %H:%M:%S")}')
+    
     return render(request, 'cto/cto_formulario.html', {'form': form})
 
 

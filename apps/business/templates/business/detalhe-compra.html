@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block title %}.:: Detalhe Compra {% endblock %}
+
+{% block main %}
+<div class="container">
+
+    <!-- Titúlo da página-->
+    <div class="mt-4 mb-4">
+        <h1 class="text-white">{{ compra.produto }}</h1>
+    </div>
+
+    <div class="mb-4">
+        <a href="{% url 'editar_compra' compra.id %}" class="btn btn-info">Atualizar Informações</a>
+        <a href="{% url 'compra_produtos'%}" class="btn btn-secondary">Voltar</a>
+    </div>
+
+
+    <div>
+        <h4 class="text-white"> Quantidade: {{ compra.quantidade }} <h4>
+        <h4 class="text-white"> Valor Unitário: R$: {{ compra.valor_unitario }} <h4>
+        <h4 class="text-white"> Valor total: R$: {{ compra.valor_total }} <h4>
+        <h4 class="text-white"> Data Criação: {{ compra.data_criacao }} <h4>
+        <h4 class="text-white"> Quem criou:  {{ compra.criador_por }} <h4>
+
+        {% if compra.ultima_alteracao_por %}
+            <h4 class="text-white"> Última atualização:  {{ compra.ultima_alteracao_por }} <h4>
+        {% endif %}
+        
+
+        {% if compra.observacao %}
+            <h4 class="text-white">Observação: {{ compra.observacao }} <h4>
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock %}

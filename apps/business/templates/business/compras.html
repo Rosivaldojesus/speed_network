@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}.:: Vendas {% endblock %}
+{% block title %}.:: Compras {% endblock %}
 
 {% block main %}
 <div class="container">
 
     <!-- Titúlo da página-->
     <div class="mt-4 mb-4">
-        <h1 class="text-white">Lista de vendas</h1>
+        <h1 class="text-white">Lista de compras</h1>
     </div>
 
     <!-- =========================================================================================================== -->
@@ -25,8 +25,8 @@
 <!-- =========================================================================================================== -->
 
     <div align="right">
-        <a href="{% url 'cadastrar_venda' %}" class="btn btn-primary text-white">Cadastrar venda</a>
-        <a href="{% url 'historico_vendas' %}" class="btn btn-info text-white">Histórico vendas</a>
+        <a href="{% url 'cadastrar_compra' %}" class="btn btn-primary text-white">Cadastrar compra</a>
+        <a href="{% url 'historico_compras' %}" class="btn btn-info text-white">Histórico compras</a>
     </div>
 
     <div class="table-responsive-sm mt-4">
@@ -43,21 +43,21 @@
             </tr>
         </thead>
         <tbody class="text-white">
-        {% for venda in vendas %}
+        {% for compra in compras %}
             <tr>
-                <th scope="row">{{ venda.produto }}</th>
-                <td>{{ venda.quantidade }}</td>
-                <td>{{ venda.valor_total }}</td>
-                <td>{{ venda.data_criacao }}</td>
+                <th scope="row">{{ compra.produto }}</th>
+                <td>{{ compra.quantidade }}</td>
+                <td>{{ compra.valor_total }}</td>
+                <td>{{ compra.data_criacao }}</td>
 
                 <td>
-                    <a href="{% url 'editar_venda' venda.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{% url 'editar_compra' compra.id %}" class="btn btn-warning btn-sm">Editar</a>
                 </td>
                 <td>
-                    <a href="{% url 'detalhe_venda' venda.id %}" class="btn btn-info btn-sm">Detalhes</a>
+                    <a href="{% url 'detalhe_compra' compra.id %}" class="btn btn-info btn-sm">Detalhes</a>
                 </td>
                 <td>
-                    <a href="{% url 'concluir_venda' venda.id %}" class="btn btn-success btn-sm">Finalizar</a>
+                    <a href="{% url 'concluir_compra' compra.id %}" class="btn btn-success btn-sm">Finalizar</a>
                 </td>
 
             </tr>
@@ -65,11 +65,6 @@
         </tbody>
         </table>
     </div>
-
-
-    {% for linha in linhas reversed %}
-        <p class="text-white">{{ linha }}</p>
-    {% endfor %}
 
 
 

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}.:: Histórico de Compras {% endblock %}
+
+{% block main %}
+<div class="container">
+
+    <!-- Titúlo da página-->
+    <div class="mt-4 mb-4">
+        <h1 class="text-white">Histórico de Compras</h1>
+    </div>
+
+    <!-- =========================================================================================================== -->
+    <!-- INÍCIO Messagens -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    <!-- FIM Messagens -->   
+
+<!-- =========================================================================================================== -->
+
+    <div align="right">
+        <a href="{% url 'compra_produtos' %}" class="btn btn-secondary text-white">Voltar ao início</a>
+    </div>
+
+    <div class="table-responsive-sm mt-4">
+        <table class="table">
+        <thead class="text-white">
+            <tr>
+                <th scope="col">Produto</th>
+                <th scope="col">Quant.</th>
+                <th scope="col">Valor total</th>
+                <th scope="col">Cadastro</th>
+                <th scope="col">Visualizar</th>
+
+            </tr>
+        </thead>
+        <tbody class="text-white">
+        {% for compra in historico_compras %}
+            <tr>
+                <th scope="row">{{ compra.produto }}</th>
+                <td>{{ compra.quantidade }}</td>
+                <td>{{ compra.valor_total }}</td>
+                <td>{{ compra.data_criacao }}</td>
+
+                <td>
+                    <a href="{% url 'detalhe_compra' compra.id %}" class="btn btn-info btn-sm">Detalhes</a>
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+
+
+
+</div>
+{% endblock %}
