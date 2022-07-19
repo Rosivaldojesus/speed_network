@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
-from apps.services.models import ServicoVoip
+from .models import ServicoVoip
 from .forms import AdicionarNumeroVoipForm, ReservarNumeroVoipForm, FinalizarNumeroVoipForm,\
     SolicitarPortabilidadeVoipForm, FinalizarNumeroVoipSemBoletoForm, SolicitarNumeroVoipForm
 from .forms import PortabilidadeEnviarAnaliseForm
 from django.contrib import messages
-
 
 # Create your views here.
 

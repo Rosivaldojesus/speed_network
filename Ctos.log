@@ -700,3 +700,4 @@ Traceback (most recent call last):
   File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1466, in names_to_path
     raise FieldError("Cannot resolve keyword '%s' into field. "
 django.core.exceptions.FieldError: Cannot resolve keyword 'portabilidade_analise' into field. Choices are: boleto_entregue, cpf_usuario_voip, data_reserva_voip, finalizado_voip, funcionario_reserva_voip, funcionario_reserva_voip_id, id, nome_usuario_voip, numero_telefone_voip, portabilidade_voip, reservado_voip, senha_voip, usuario_voip
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\voip\views.py changed, reloading.
