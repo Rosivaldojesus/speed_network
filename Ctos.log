@@ -36,3 +36,667 @@ INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\services\api\serializ
 INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\services\api\serializers.py changed, reloading.
 INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\services\api\serializers.py changed, reloading.
 INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\services\api\serializers.py changed, reloading.
+ERROR:django.request:Internal Server Error: /pagamentos/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'contas-a-pagar' not found. 'contas-a-pagar' is not a valid view function or pattern name.
+ERROR:django.request:Internal Server Error: /pagamentos/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'lista_pagamentos' not found. 'lista_pagamentos' is not a valid view function or pattern name.
+ERROR:django.request:Internal Server Error: /pagamentos/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'contas-a-pagar' not found. 'contas-a-pagar' is not a valid view function or pattern name.
+ERROR:django.request:Internal Server Error: /pagamentos/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'contas-a-pagar' not found. 'contas-a-pagar' is not a valid view function or pattern name.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\payment\urls.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\payment\urls.py changed, reloading.
+ERROR:django.request:Internal Server Error: /pagamentos/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'contas-a-pagar' not found. 'contas-a-pagar' is not a valid view function or pattern name.
+ERROR:django.request:Internal Server Error: /voip/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\apps\voip\views.py", line 31, in Index
+    quantidade_portabilidade_aguardando = ServicoVoip.objects.filter(reservado_voip='True').\
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 904, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 923, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1337, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1362, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1239, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1077, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1466, in names_to_path
+    raise FieldError("Cannot resolve keyword '%s' into field. "
+django.core.exceptions.FieldError: Cannot resolve keyword 'portabilidade_analise' into field. Choices are: boleto_entregue, cpf_usuario_voip, data_reserva_voip, finalizado_voip, funcionario_reserva_voip, funcionario_reserva_voip_id, id, nome_usuario_voip, numero_telefone_voip, portabilidade_voip, reservado_voip, senha_voip, usuario_voip
+ERROR:django.request:Internal Server Error: /pagamentos/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'contas-a-pagar' not found. 'contas-a-pagar' is not a valid view function or pattern name.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\payment\urls.py changed, reloading.
+ERROR:django.request:Internal Server Error: /pagamentos/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'contas-a-pagar' not found. 'contas-a-pagar' is not a valid view function or pattern name.
+ERROR:django.request:Internal Server Error: /pagamentos/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'contas-a-pagar' not found. 'contas-a-pagar' is not a valid view function or pattern name.
+ERROR:django.request:Internal Server Error: /pagamentos/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'contas-a-pagar' not found. 'contas-a-pagar' is not a valid view function or pattern name.
+WARNING:django.request:Not Found: /favicon.ico
+ERROR:django.request:Internal Server Error: /pagamentos/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'fluxo_entrada_saida' not found. 'fluxo_entrada_saida' is not a valid view function or pattern name.
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\payment\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /pagamentos/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'fluxo_entrada_saida' not found. 'fluxo_entrada_saida' is not a valid view function or pattern name.
+ERROR:django.request:Internal Server Error: /pagamentos/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'contas-a-pagar' not found. 'contas-a-pagar' is not a valid view function or pattern name.
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\payment\urls.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\payment\urls.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\payment\urls.py changed, reloading.
+ERROR:django.request:Internal Server Error: /pagamentos/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'contas-a-pagar' not found. 'contas-a-pagar' is not a valid view function or pattern name.
+ERROR:django.request:Internal Server Error: /pagamentos/contas-a-pagar/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 145, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 143, in _get_response
+    response = response.render()
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 936, in render
+    bit = node.render_annotated(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\base.py", line 903, in render_annotated
+    return self.render(context)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\template\defaulttags.py", line 443, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\urls\resolvers.py", line 676, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'agendar_pagamento' not found. 'agendar_pagamento' is not a valid view function or pattern name.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\payment\urls.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\payment\views.py changed, reloading.
+ERROR:django.request:Internal Server Error: /voip/
+Traceback (most recent call last):
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\projetos\speednetwork\apps\voip\views.py", line 31, in Index
+    quantidade_portabilidade_aguardando = ServicoVoip.objects.filter(reservado_voip='True').\
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 904, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\query.py", line 923, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1337, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1362, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1239, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1077, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "C:\projetos\speednetwork\venv\lib\site-packages\django\db\models\sql\query.py", line 1466, in names_to_path
+    raise FieldError("Cannot resolve keyword '%s' into field. "
+django.core.exceptions.FieldError: Cannot resolve keyword 'portabilidade_analise' into field. Choices are: boleto_entregue, cpf_usuario_voip, data_reserva_voip, finalizado_voip, funcionario_reserva_voip, funcionario_reserva_voip_id, id, nome_usuario_voip, numero_telefone_voip, portabilidade_voip, reservado_voip, senha_voip, usuario_voip
