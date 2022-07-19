@@ -1,20 +1,18 @@
 from django.urls import path
-from .views import Index, CadastrarPagamento
-from .views import DashboardPagamentos, ListaPagamentos, AgendamentosPagamentos,\
+from apps.payment.views import Index, CadastrarPagamento
+from apps.payment.views import DashboardPagamentos, ListaPagamentos, AgendamentosPagamentos,\
     AgendarPagamento, ConfirmarPagamento, EditarPagamento, ExportarCSV,\
     PagamentosFuturos, PagamentosMensaisGrupos, FluxoEntradaSaida, FluxoCreate
-
-from .views import RetiradasGerencianetCreateView, RetiradasGerencianetUpdateView, RetiradasGerencianet
-
-from .views import EntregaBoletosListView, EntregaBoletosCreateView, EditarEntregaBoletosUpdateView
-from .views import SalvarPagamento
-
-from .views import IndexTemplateView, CustoMensalCategoriaView, FluxoEntradaSaidaView, ContarPagarView,\
+from apps.payment.views import RetiradasGerencianetCreateView, RetiradasGerencianetUpdateView, RetiradasGerencianet
+from apps.payment.views import EntregaBoletosListView, EntregaBoletosCreateView, EditarEntregaBoletosUpdateView
+from apps.payment.views import SalvarPagamento
+from apps.payment.views import IndexTemplateView, CustoMensalCategoriaView, FluxoEntradaSaidaView, ContarPagarView,\
     ContasVencerView
+from apps.payment.views import EditarPagamentoAgendadoView
+from apps.payment.views import PagamentoDetailView
 
-from .views import EditarPagamentoAgendadoView
+app_name = 'payment'
 
-from .views import PagamentoDetailView
 
 
 urlpatterns = [

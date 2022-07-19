@@ -1,8 +1,7 @@
-from ..models import Servico
-
+from apps.services.models import Servico
 from rest_framework import viewsets
 from rest_framework import permissions, authentication
-from .serializers import ServiceSerializer
+from apps.services.api.serializers import ServiceSerializer
 
 
 class ServiceViewSet(viewsets.ModelViewSet):

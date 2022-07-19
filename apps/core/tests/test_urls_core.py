@@ -6,9 +6,9 @@ from django.test import Client
 
 class CoreUrlsTest(TestCase):
 
-    def setUp(self):
+    #def setUp(self):
         # Every test needs a client.
-        self.client = Client()
+        #self.client = Client()
 
     def test_core_index_url_is_correct(self):
         url = reverse('core:core_index')

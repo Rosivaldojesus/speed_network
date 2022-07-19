@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     "django.contrib.humanize",
 
-
     #APP´s criados para o sistema
     'apps.core',
     'apps.stock',

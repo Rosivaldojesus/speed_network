@@ -1,4 +1,4 @@
-from ..voip.models import ServicoVoip
+#from ..voip.models import ServicoVoip
 
 # from rest_framework import serializers
 #

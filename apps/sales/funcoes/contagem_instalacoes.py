@@ -1,8 +1,8 @@
 from datetime import datetime, date, timedelta
-from django.db.models.functions import ExtractMonth, TruncMonth
-from django.db.models import Q, Sum, Count
+from django.db.models.functions import TruncMonth
+from django.db.models import Q,Count
 
-from ..models import Instalacao
+from apps.sales.models import Instalacao
 
 this_month = date.today().month
 this_year = datetime.now().year

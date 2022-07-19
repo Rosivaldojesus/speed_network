@@ -1,6 +1,6 @@
-from rest_framework.relations import PrimaryKeyRelatedField, StringRelatedField
-from rest_framework.serializers import ModelSerializer
-from ..models import Servico, CategoriaServico
+from rest_framework.relations import StringRelatedField
+#from rest_framework.serializers import ModelSerializer
+from apps.services.models import Servico
 from rest_framework import serializers
 
 # Create models serializers
@@ -19,13 +19,11 @@ class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Servico
         fields = [
-            
             'id',
             'contato_servico',
             'categoria',
             'servico_para_executar',
             'endereco_servico',
-
             'data_agendada',
             'hora_agendada',
         ]

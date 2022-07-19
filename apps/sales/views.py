@@ -9,11 +9,10 @@ from datetime import datetime, date, timedelta
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from django.contrib.messages.views import SuccessMessageMixin
-#from ..sales.funcoes.dados_instalacoes import *
-from ..sales.funcoes.contagem_instalacoes import *
-from .models import Instalacao, ValeRefeicao, Cancelamentos
-from ..components.models import FuncionariosParaVale, Vendedores
-from .forms import *
+from apps.sales.funcoes.dados_instalacoes import *
+from apps.sales.models import Instalacao, ValeRefeicao, Cancelamentos
+from apps.components.models import FuncionariosParaVale
+from apps.sales.forms import *
 import csv
 
 # Create your views here.

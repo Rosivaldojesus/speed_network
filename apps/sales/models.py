@@ -1,5 +1,5 @@
 from django.utils import timezone
-from ..components.models import PlanosInternet, Cidade, DataVencimento, Vendedores
+from apps.components.models import PlanosInternet, Cidade, DataVencimento, Vendedores
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -50,6 +50,7 @@ class Instalacao(models.Model):
 
     class Meta:
         verbose_name_plural = 'Instalação'
+
 
     def __str__(self):
         return "{}".format(self.nome_cliente)

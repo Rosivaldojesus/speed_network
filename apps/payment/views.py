@@ -16,10 +16,8 @@ from django.core.paginator import Paginator
 from django.views.generic import TemplateView
 from django.views.generic.edit import UpdateView
 from dateutil.relativedelta import relativedelta
-from .models import FluxoEntradaSaidaMensal
+from apps.payment.models import FluxoEntradaSaidaMensal
 from django.views.generic.detail import DetailView
-from reportlab.pdfgen import canvas
-import io
 from django.db import connection
 
 # Create your views here.

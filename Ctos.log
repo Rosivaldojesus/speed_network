@@ -19,3 +19,20 @@ WARNING:root:This will get logged to a file
 INFO:django: 06/11/2022, 12:48:21 | user: admin | cadastrou uma venda de 1: Escada
 INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\business\views.py changed, reloading.
 INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\business\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\sales\models.py changed, reloading.
+WARNING:django.request:Not Found: /favicon.ico
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\sales\models.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\sales\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\sales\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\voip\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\payment\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\payment\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\system\settings.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\sales\views.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\payment\urls.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\payment\urls.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\payment\urls.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\services\api\serializers.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\services\api\serializers.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\services\api\serializers.py changed, reloading.
+INFO:django.utils.autoreload:C:\projetos\speednetwork\apps\services\api\serializers.py changed, reloading.
